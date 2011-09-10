@@ -1,0 +1,14 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+  home: 'Inicio'
+  there_are_currently: 'En estos momentos hay'
+  members: 'miembros'
+  access_your_account: 'Acceder a tu cuenta'
+  no_account_yet: '¿No tienes una cuenta todavía?'
+  join_oigame: '¡Únete a oiga.me!'
+  campaigns: 'Campañas'
+  community: 'Comunidad'
+  donate: 'Donar'
+  media: 'Medios'

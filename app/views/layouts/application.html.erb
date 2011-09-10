@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Oigame</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8" />
+    <title><%= @page_title %> - oiga.me</title>
+    <%= stylesheet_link_tag 'http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container_24">
+           <ul id="navbar" class="nav">
+            <li><%= link_to t(:join_oigame), '#' %>
+            <li><%= link_to t(:campaigns), '#' %></li>
+            <li><%= link_to t(:community), '#' %></li>
+            <li><%= link_to t(:donate), '#' %></li>
+            <li><%= link_to t(:media), '#' %></li>
+           </ul>
+           <form id="search-form" action="" style="float:right;">
+             <span class="glass"><i></i></span>
+             <input type="text" placeholder="Buscar">
+           </form>
+         </div>
+      </div>
+    </div><!-- topbar -->
+    <div id="front">
+      <%= link_to image_tag('logo.png'), root_path %>
+    </div>
+    <div id="content-wrapper">
+      <%= yield %>
+    </div>
+  </body>
 </html>

@@ -1,0 +1,49 @@
+@import "960"
+
+$main-color: #bf0411
+$secondary-color: $main-color
+
+$border-main-color: #d2d2d2
+$border-shadow: #b1b1b1
+
+a
+  color: $main-color
+  text-decoration: none
+
+a:hover
+  color: $main-color
+  text-decoration: underline
+
+.main-color
+  color: $main-color
+
+body
+  color: #000
+
+#search-form
+  margin: 6px 0 0
+  opacity: 1
+
+  span.glass
+    cursor: pointer
+    display: block
+    padding: 7px 8px 5px
+    position: absolute
+    right: 0
+
+  span.glass i
+    background-image: image-url("sprite-icons.png")
+    background-position: -224px -96px
+    display: block
+    font-size: 0
+    height: 14px
+    width: 14px
+
+#navbar li, #search-form input[type=text]
+  font-size: 1.1em
+
+#front
+  @extend .container_24
+  margin-top: 42px
+
+#content-wrapper
