@@ -23,7 +23,7 @@ body
 #search-form
   margin: 6px 0 0
   opacity: 1
-
+  
   span.glass
     cursor: pointer
     display: block
@@ -39,11 +39,66 @@ body
     height: 14px
     width: 14px
 
+#sessions
+  a
+    color: #fff
+    font-size: 1.1em
+
 #navbar li, #search-form input[type=text]
   font-size: 1.1em
 
-#front
+#frontpage
   @extend .container_24
   margin-top: 42px
 
-#content-wrapper
+  p
+    font-size: 1.1em
+
+  #front-page-left, #front-page-right
+
+  #front-page-left
+    @extend .grid_12
+    @extend .alpha
+    @extend .suffix_1
+
+    .frontpage-campaign-info
+      margin-left: 0px
+
+    .frontpage-campaign-info li
+      display: inline
+      margin-right: 20px
+  
+  #front-page-right
+    @extend .grid_11
+    @extend .omega
+    margin-top: 20px
+
+.campaign-title
+  line-height: 20px
+  color: $main-color
+
+
+#sessions ul.login-form
+  margin-top: -2px
+  padding: 20px
+  background-color: #222
+  min-width: 260px !important
+
+#sessions ul.login-form form
+  margin-left: 0px
+
+
+ul.login-form label, ul.login-form p
+  text-align: left
+  color: #fff
+  font-size: .9em
+
+#flash-messages
+  margin-bottom: 20px
+
+#footer
+  @extend .container_24
+  border-top: 1px solid $border-main-color
+  margin-top: 20px
+  padding-top: 10px
+

@@ -7,3 +7,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function() {
+
+  $("#flash-messages").fadeOut(30000);
+
+  $("#flash-messages a.close").click(function() {
+    $("#flash-messages").toggle();
+  });
+
+  $("#sessions .dropdown-toggle").click(function() {
+    $(".dropdown-menu").toggle();
+  });
+});

@@ -1,5 +1,6 @@
 Oigame::Application.routes.draw do
 
+  get 'testing' => 'pages#testing', :as => 'testing'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
