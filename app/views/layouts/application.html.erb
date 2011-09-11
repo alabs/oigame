@@ -30,11 +30,11 @@
                 <ul class="login-form dropdown-menu">
                   <li>
                     <div id="login-form" class="form-stacked">       
-                      <form action="#" class="signin" method="post">
+                      <form action="/testing" class="signin" method="get">
                         <fieldset class="textbox">
                           <label class="username">
                             <span>Nombre de usuario o correo electrónico</span>
-                             <input type="text" value="" name="session[username_or_email]" autocomplete="on" />
+                             <input type="text" id="username_or_email" value="" name="session[username_or_email]" autocomplete="on" />
                           </label>
                           <label class="password">
                             <span>Contraseña</span>
@@ -50,7 +50,7 @@
                          </fieldset>
                          <p>
                           <a class="forgot" href="/account/resend_password">¿Olvidaste tu contraseña?</a>
-                          <a class="mobile" href="/account/complete">¿Ya usas Twitter vía SMS?</a>
+                          <a class="mobile" href="/account/complete">¿No tienes una cuenta todavia?</a>
                          </p>
                       </form>
                     </div>
@@ -92,14 +92,14 @@
         </div>
       </div>
       <div id="front-page-right">
-        <div id="flash-messages">
-          <% flash.each do |name, msg| %>
+        <% flash.each do |name, msg| %>
+          <div id="flash-messages">
             <div id="<%= "flash-#{name}" %>" class="alert-message <%= name %>">
               <a class="close" href="#">x</a>
               <p><%= msg %></p>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
         <div id="list-events">
           <h2>Últimas campañas</h2>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>

@@ -10,7 +10,7 @@
 
 $(function() {
 
-  $("#flash-messages").fadeOut(30000);
+  $("#flash-messages").delay(15000).fadeOut();
 
   $("#flash-messages a.close").click(function() {
     $("#flash-messages").toggle();
@@ -18,5 +18,12 @@ $(function() {
 
   $("#sessions .dropdown-toggle").click(function() {
     $(".dropdown-menu").toggle();
+    $("#username_or_email").focus();
+  });
+
+  $(document).mouseup(function(e) {
+    if($(e.target).parent("#sessions .dropdown-toggle").length==0) {
+      $(".dropdown-menu").hide();
+    }
   });
 });
