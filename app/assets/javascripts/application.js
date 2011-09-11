@@ -16,14 +16,14 @@ $(function() {
     $("#flash-messages").toggle();
   });
 
-  $("#sessions .dropdown-toggle").click(function() {
-    $(".dropdown-menu").toggle();
-    $("#username_or_email").focus();
+  $("#sessions #user-login-session").click(function(e) {
+    e.preventDefault();
+    $("#login-form-ul").toggle();
+    $("#email").focus();
   });
 
-  $(document).mouseup(function(e) {
-    if($(e.target).parent("#sessions .dropdown-toggle").length==0) {
-      $(".dropdown-menu").hide();
-    }
+  $("#user-actions").click(function(e) {
+    e.preventDefault();
+    $("#user-actions-options").toggle();
   });
 });

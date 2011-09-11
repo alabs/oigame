@@ -13,7 +13,7 @@
       <div class="topbar-inner">
         <div class="container_24">
            <ul id="navbar" class="nav">
-            <li><%= link_to t(:join_oigame), '#' %>
+            <li><%= link_to t(:join_oigame), new_user_registration_path %>
             <li><%= link_to t(:campaigns), '#' %></li>
             <li><%= link_to t(:community), '#' %></li>
             <li><%= link_to t(:donate), '#' %></li>
@@ -25,93 +25,54 @@
              <input type="text" placeholder="Buscar">
            </form>
            <ul id="sessions" class="nav secondary-nav">
-             <li class="dropdown">
-               <a class="dropdown-toggle" href="#">Iniciar sesión</a>
-                <ul class="login-form dropdown-menu">
-                  <li>
-                    <div id="login-form" class="form-stacked">       
-                      <form action="/testing" class="signin" method="get">
-                        <fieldset class="textbox">
-                          <label class="username">
-                            <span>Nombre de usuario o correo electrónico</span>
-                             <input type="text" id="username_or_email" value="" name="session[username_or_email]" autocomplete="on" />
-                          </label>
-                          <label class="password">
-                            <span>Contraseña</span>
-                            <input type="password" value="" name="session[password]" />
-                          </label>
-                         </fieldset>
-                         <fieldset class="subchck">
-                          <label class="remember">
-                            <input type="checkbox" value="1" name="remember_me" />
-                            <span>Recuerda mis datos</span>
-                          </label>
-                          <button type="submit" class="submit btn">Iniciar sesión</button>
-                         </fieldset>
-                         <p>
-                          <a class="forgot" href="/account/resend_password">¿Olvidaste tu contraseña?</a>
-                          <a class="mobile" href="/account/complete">¿No tienes una cuenta todavia?</a>
-                         </p>
-                      </form>
-                    </div>
-                  </li>
+             <% unless user_signed_in? %>
+               <li class="dropdown">
+                 <a id="user-login-session" class="dropdown-toggle" href="#">Iniciar sesión</a>
+                 <ul class="login-form dropdown-menu" id="login-form-ul">
+                   <li>
+                     <div id="login-form" class="form-stacked">       
+                       <form action="/users/login" class="signin" method="post">
+                         <fieldset class="textbox">
+                           <label class="username">
+                             <span>Nombre de usuario o correo electrónico</span>
+                              <input type="email" id="email" value="" name="user[email]" autocomplete="on" />
+                           </label>
+                           <label class="password">
+                             <span>Contraseña</span>
+                             <input type="password" value="" name="user[password]" />
+                           </label>
+                          </fieldset>
+                          <fieldset class="subchck">
+                           <label class="remember">
+                             <input type="checkbox" value="1" name="user[remember_me]" />
+                             <span>Recuerda mis datos</span>
+                           </label>
+                           <button type="submit" class="submit btn">Iniciar sesión</button>
+                          </fieldset>
+                          <p>
+                           <%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %>
+                           <%= link_to '¿No tienes una cuenta todavía?', new_user_registration_path %>
+                          </p>
+                       </form>
+                     </div>
+                   </li>
+                 </ul>
+               </li><!-- dropdown -->
+             <% else %>
+               <li class="dropdown">
+                <a id="user-actions" class="dropdown-toggle" href="#"><%= current_user.email %></a>
+                <ul id="user-actions-options" class="dropdown-menu">
+                  <li><%= link_to 'Configuración', '#' %></li>
+                  <li><%= link_to 'Ayuda', '#' %></li>
+                  <li><%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete' %></li>
                 </ul>
-             </li>
+               </li>
+             <% end %>
            </ul>
          </div>
       </div>
     </div><!-- topbar -->
-    <div id="frontpage">
-      <div id="front-page-left">
-        <div id="logo">
-          <%= link_to image_tag('logo.png'), root_path %>
-        </div>
-        <div id="list-campaigns">
-          <div class="campaign">
-            <%= link_to image_tag('campaign-n.jpg'), '#' %>
-            <h3 class="campaign-title"><a href="#">Vamos a dominar el mundo con armas de difusión</a></h3>
-            <p class="frontpage-campaign-intro">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <ul class="frontpage-campaign-info">
-              <li><a href="#">&rarr; Únete a esta campaña</a></li>
-              <li>Ya se han unido 345 personas</li>
-            </ul>
-          </div>
-          <div class="pagination">
-            <ul>
-              <li class="prev disabled"><a href="#">&larr; Previa</a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">6</a></li>
-              <li><a href="#">7</a></li>
-              <li class="next"><a href="#">Siguiente &rarr;</a></li>
-            </ul>
-          </div><!-- pagination -->
-        </div>
-      </div>
-      <div id="front-page-right">
-        <% flash.each do |name, msg| %>
-          <div id="flash-messages">
-            <div id="<%= "flash-#{name}" %>" class="alert-message <%= name %>">
-              <a class="close" href="#">x</a>
-              <p><%= msg %></p>
-            </div>
-          </div>
-        <% end %>
-        <div id="list-events">
-          <h2>Últimas campañas</h2>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </div>
-        <div id="social">
-          <h2>Redes sociales</h2>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </div>
-      </div>
-    </div><!-- frontpage -->
+    <%= yield %>
     <div id="footer">
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
       <% if Rails.env == 'development' %>
