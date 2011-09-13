@@ -5,7 +5,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Oigame"
+  config.site_title = "oiga.me"
 
 
   # == Default Namespace
@@ -24,6 +24,7 @@ ActiveAdmin.setup do |config|
   #
   # Default:
   # config.default_namespace = :admin
+  config.default_namespace = :manage
 
 
   # == User Authentication

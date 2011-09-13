@@ -12,3 +12,8 @@ es:
   community: 'Comunidad'
   donate: 'Donar'
   media: 'Medios'
+  signup: 'Crear cuenta'
+  email: 'Correo electrónico'
+  password: 'Contraseña'
+  password_confirmation: 'Confirmar contraseña'
+  login: 'Iniciar sesión'

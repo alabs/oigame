@@ -34,11 +34,11 @@
                        <form action="/users/login" class="signin" method="post">
                          <fieldset class="textbox">
                            <label class="username">
-                             <span>Nombre de usuario o correo electrónico</span>
+                             <span><%= t(:email) %></span>
                               <input type="email" id="email" value="" name="user[email]" autocomplete="on" />
                            </label>
                            <label class="password">
-                             <span>Contraseña</span>
+                             <span><%= t(:password) %></span>
                              <input type="password" value="" name="user[password]" />
                            </label>
                           </fieldset>

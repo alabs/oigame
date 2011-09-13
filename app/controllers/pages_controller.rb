@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
+
   def index
   end
-
 
   def testing
     flash[:error] = 'Esto es un mensaje de prueba'

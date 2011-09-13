@@ -1,18 +1,48 @@
-<h2>Sign up</h2>
+<% @page_title = t(:signup) %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<div id="frontpage">
+  <div id="front-page-left">
+    <div id="logo">
+      <%= link_to image_tag('logo.png'), root_path %>
+    </div>
+    <div id="signup-form" class="form-stacked">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <fieldset>
+          <legend><%= @page_title %></legend>
+          <div class="form-field">
+            <%= f.label t(:email) %>
+            <%= f.email_field :email %>
+            <% unless resource.errors[:email].blank? %>
+              <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+            <% end %>
+          </div>
+          <div class="form-field">
+            <%= f.label t(:password) %>
+            <%= f.password_field :password %>
+            <% unless resource.errors[:password].blank? %>
+              <span class="error_message"><%= resource.errors[:password].to_sentence %></span>
+            <% end %>
+          </div>
+          <div class="form-field">
+            <%= f.label t(:password_confirmation) %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="form-actions">
+            <%= f.submit @page_title, :class => 'btn submit' %>
+          </div>
+        </fieldset>
+      <% end %>
+      <%= render :partial => "devise/shared/links" %>
+    </div><!-- signup-form -->
+  </div><!-- front-page-left -->
+  <div id="front-page-right">
+    <% flash.each do |name, msg| %>
+      <div class="flash-messages">
+        <div id="<%= "flash-#{name}" %>" class="alert-message <%= name %>">
+          <a class="close" href="#">x</a>
+          <p><%= msg %></p>
+        </div>
+      </div>
+    <% end %>
+  </div><!-- front-page-right -->
+</div><!-- frontpage -->

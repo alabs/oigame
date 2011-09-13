@@ -10,10 +10,10 @@
 
 $(function() {
 
-  $("#flash-messages").delay(15000).fadeOut();
+  $(".flash-messages").delay(15000).fadeOut();
 
-  $("#flash-messages a.close").click(function() {
-    $("#flash-messages").toggle();
+  $(".flash-messages a.close").click(function() {
+    $(".flash-messages").toggle();
   });
 
   $("#sessions #user-login-session").click(function(e) {
@@ -26,4 +26,6 @@ $(function() {
     e.preventDefault();
     $("#user-actions-options").toggle();
   });
+
+  $("#user_email").focus();
 });
