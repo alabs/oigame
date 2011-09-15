@@ -1,0 +1,96 @@
+@import "960"
+
+$main-color: #be0411
+$border-main-color: #d2d2d2
+
+a, a:hover
+  color: $main-color
+
+::-webkit-validation-bubble-message
+  color: #000
+  background: #fff
+  border-color: #000
+  -webkit-box-shadow: 0 0 0 0
+
+#header
+  @extend .container_24
+  margin-top: 10px
+
+  #logo
+    @extend .grid_7
+    @extend .alpha
+  
+  #navbar
+    @extend .grid_17
+    @extend .omega
+    margin-top: 44px
+    text-align: right
+    li
+      display: inline
+      margin-right: 10px
+      font-size: 1.4em
+      a
+        color: #fff
+
+#subscribe-wrapper
+  background: image_url("subscribe-wrapper-bg.gif") repeat scroll left top black
+  height: 366px
+  padding: 10px
+
+  #subscribe
+    @extend .container_24
+
+    #subscribe-img, #subscribe-form
+      @extend .grid_12
+
+    #subscribe-img
+      @extend .alpha
+
+    #subscribe-form
+      @extend .omega
+      margin-left: 15px
+      .msg
+        margin-top: 15px
+        font-size: 4em
+        font-weight: bold
+        line-height: 50px
+        color: #f40919
+      p.user-count
+        color: #fff
+        font-size: 3em
+        font-weight: bold
+        margin-top: 10px
+        margin-top: 25px
+      p.do-it
+        font-size: 3em
+        color: #f40919
+        font-weight: bold
+        margin-top: 20px
+      form#pre-signup
+        margin-top: -10px
+        input[type=email], span.add-on
+          padding: 9px 14px
+
+#home-info-wrapper
+  background-color: #f1f2f1
+  border-bottom: 1px solid $border-main-color
+
+  #home-info
+    @extend .container_24
+    background-color: #fff
+    border: 1px solid #E8E8E8
+    margin: 15px auto
+
+    #campaigns-slideshow, #realtime
+      @extend .grid_11
+      padding: 15px
+
+    #campaigns-slideshow
+      @extend .alpha
+
+    #realtime
+      @extend .omega
+
+#debug
+  @extend .container_24
+  margin-top: 40px

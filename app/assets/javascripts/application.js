@@ -28,4 +28,6 @@ $(function() {
   });
 
   $("#user_email").focus();
+
+  $('#slideshowHolder').jqFancyTransitions({ width: 416, height: 264, navigation: true, effect: 'wave' });
 });

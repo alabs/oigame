@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8" />
+    <title><%= @page_title %> - oiga.me</title>
+    <%= stylesheet_link_tag 'bootstrap-1.2.0.min' %>
+    <%= stylesheet_link_tag 'main' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript">
+      var uvOptions = {};
+      (function() {
+        var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+        uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/vyJKUH9hro9s2yOsARJQ.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="header-wrapper">
+      <div id="header">
+        <div id="logo">
+          <%= link_to image_tag('logo.png'), root_path %>
+        </div>
+        <div id="navbar">
+          <ul>
+            <li class="btn danger"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+            <li class="btn danger"><%= link_to t(:campaigns), '#' %></li>
+            <li class="btn danger"><%= link_to t(:community), '#' %></li>
+            <li class="btn danger"><%= link_to t(:donate), '#' %></li>
+            <li class="btn danger"><%= link_to t(:media), '#' %></li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- header-wrapper -->
+    <div id="subscribe-wrapper">
+      <div id="subscribe">
+        <div id="subscribe-img">
+          <%= image_tag("home-subscribe.jpg") %>
+        </div>
+        <div id="subscribe-form">
+          <p class="msg">NO ODIES AL<br />
+          LOBBY, ¡COMÉTELO!</p>
+          <p class="user-count">435.234 PERSONAS</p>
+          <p class="do-it">YA LO HAN HECHO</p>
+          <br >
+          <br />
+          <form id="pre-signup" action="#" method="post">
+            <div class="input-prepend">
+              <span class="add-on">@</span>
+              <input type="email" name="user[email]" placeholder="Tu correo electrónico" required="true" />
+            </div>
+            <button type="submit" class="primary btn large">Hazte miembro ahora</button>
+          </form>
+        </div>
+      </div>
+    </div><!-- subscribe-wrapper -->
+    <div id="home-info-wrapper">
+      &nbsp;
+      <div id="home-info">
+        <div id="campaigns-slideshow">
+          <div id='slideshowHolder'>
+            <%= image_tag('slide1.png', :alt => 'Campana número 1') %>
+            <%= image_tag('slide2.png', :alt => 'Campaña número 2') %>
+            <%= image_tag('slide3.png', :alt => 'Campaña número 3') %>
+          </div>
+        </div>
+        <div id="realtime">
+          <p>Hola mundo</p>
+        </div><!-- realtime -->
+      </div>
+      &nbsp;
+    </div><!-- home-info-wrapper -->
+    <div id="links">
+    </div><!-- links -->
+    <div id="footer">
+    </div><!-- footer -->
+    <% if Rails.env == 'development' %>
+      <div id="debug">
+        <%= debug(params) %>
+      </div>
+    <% end %>
+  </body>
+</html>
