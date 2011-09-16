@@ -60,4 +60,9 @@ Oigame::Application.configure do
   
   # Para Devise
   config.action_mailer.default_url_options = { :host => 'oiga.me' }
+  
+  # Configuración para ActionMailer
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => false
+  }
 end
