@@ -66,4 +66,10 @@ Oigame::Application.configure do
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => false
   }
+  
+  # Para notificar excepciones
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[oiga.me exception] ",
+    :sender_address => %{"notifier" <notifier@oiga.me>},
+    :exception_recipients => %w{debug@alabs.es}
 end

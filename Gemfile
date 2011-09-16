@@ -36,3 +36,4 @@ gem 'devise'
 gem 'activeadmin'
 gem 'capistrano'
 gem 'sass-rails', "  ~> 3.1.0"
+gem 'exception_notification', :require => 'exception_notifier'
