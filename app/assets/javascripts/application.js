@@ -10,6 +10,8 @@
 
 $(function() {
 
+  $("#slider").nivoSlider();
+
   $(".flash-messages").delay(15000).fadeOut();
 
   $(".flash-messages a.close").click(function() {
@@ -28,6 +30,4 @@ $(function() {
   });
 
   $("#user_email").focus();
-
-  $('#slideshowHolder').jqFancyTransitions({ width: 416, height: 264, navigation: true, effect: 'wave' });
 });

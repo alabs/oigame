@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <title><%= @page_title %> - oiga.me</title>
     <%= stylesheet_link_tag 'bootstrap-1.2.0.min' %>
+    <%= stylesheet_link_tag 'slideshow' %>
+    <%= stylesheet_link_tag 'nivo-slider' %>
     <%= stylesheet_link_tag 'main' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -58,11 +60,21 @@
     <div id="home-info-wrapper">
       &nbsp;
       <div id="home-info">
-        <div id="campaigns-slideshow">
-          <div id='slideshowHolder'>
-            <%= image_tag('slide1.png', :alt => 'Campana número 1') %>
-            <%= image_tag('slide2.png', :alt => 'Campaña número 2') %>
-            <%= image_tag('slide3.png', :alt => 'Campaña número 3') %>
+        <div id="campaigns-slideshow" class="slider-wrapper theme-default">
+          <div class="ribbon"></div>
+          <div id="slider" class="nivoSlider">
+            <%= link_to image_tag('slide1.png', :title => '#title-c-1'), '#', %>
+            <div id="title-c-1" class="nivo-html-caption">
+              <%= link_to 'Campaña número 1', '#' %>
+            </div>
+            <%= link_to image_tag('slide2.png', :title => '#title-c-2'), '#' %>
+            <div id="title-c-2" class="nivo-html-caption">
+              <%= link_to 'Campaña número 2', '#' %>
+            </div>
+            <%= link_to image_tag('slide3.png', :title => '#title-c-3'), '#' %>
+            <div id="title-c-3" class="nivo-html-caption">
+              <%= link_to 'Campaña número 3', '#' %>
+            </div>
           </div>
         </div>
         <div id="realtime">
