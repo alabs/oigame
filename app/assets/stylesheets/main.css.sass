@@ -22,6 +22,7 @@ a, a:hover
   #logo
     @extend .grid_7
     @extend .alpha
+    margin-top: 10px
   
   #navbar
     @extend .grid_17
@@ -94,6 +95,34 @@ a, a:hover
 
     #realtime
       @extend .omega
+
+#campaigns-wrapper
+  background-color: #f1f2f1
+  padding-top: 30px
+  padding-bottom: 30px
+
+  #list-campaigns
+    @extend .container_24
+    background-color: #fff
+    border: 1px solid #E8E8E8
+
+    #list-campaigns-info
+      @extend .grid_16
+      padding: 25px
+      h2
+        font-size: 2em
+        margin-bottom: 15px
+
+      .campaign-info
+        
+        .campaign-image
+          @extend .grid_4
+          @extend .alpha
+
+        .campaign-text
+          @extend .grid_8
+          @extend .omega
+          margin-bottom: 20px
 
 #links-wrapper
   background-color: #fff
