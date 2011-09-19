@@ -83,14 +83,22 @@
       </div>
       &nbsp;
     </div><!-- home-info-wrapper -->
-    <div id="links">
-    </div><!-- links -->
+    <div id="links-wrapper">
+      <div id="links">
+        <div id="links-logo">
+          <%= image_tag('logo-small.png') %>
+        </div>
+        <div id="links-message">
+          <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
+        </div>
+        <div id="links-social">
+          <span>Encuéntranos en:</span><br />
+          <%= link_to image_tag('facebook.png') %>
+          <%= link_to image_tag('twitter.png') %>
+        </div>
+      </div>
+    </div><!-- links-wrapper -->
     <div id="footer">
     </div><!-- footer -->
-    <% if Rails.env == 'development' %>
-      <div id="debug">
-        <%= debug(params) %>
-      </div>
-    <% end %>
   </body>
 </html>
