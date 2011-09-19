@@ -3,83 +3,48 @@
   <head>
     <meta charset="utf-8" />
     <title><%= @page_title %> - oiga.me</title>
-    <%= stylesheet_link_tag 'http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css' %>
-    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'bootstrap-1.2.0.min' %>
+    <%= stylesheet_link_tag 'slideshow' %>
+    <%= stylesheet_link_tag 'nivo-slider' %>
+    <%= stylesheet_link_tag 'main' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript">
+      var uvOptions = {};
+      (function() {
+        var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+        uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/vyJKUH9hro9s2yOsARJQ.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+      })();
+    </script>
   </head>
   <body>
-    <div class="topbar">
-      <div class="topbar-inner">
-        <div class="container_24">
-           <ul id="navbar" class="nav">
-             <li><%= link_to t(:join_oigame), new_user_registration_path %></li>
-            <li><%= link_to t(:campaigns), '#' %></li>
-            <li><%= link_to t(:community), '#' %></li>
-            <li><%= link_to t(:donate), '#' %></li>
-            <li><%= link_to t(:media), '#' %></li>
-            <li><%= link_to 'Testing', testing_path %></li>
-           </ul>
-           <form id="search-form" action="">
-             <span class="glass"><i></i></span>
-             <input type="text" placeholder="Buscar">
-           </form>
-           <ul id="sessions" class="nav secondary-nav">
-             <% unless user_signed_in? %>
-               <li class="dropdown">
-                 <a id="user-login-session" class="dropdown-toggle" href="#">Iniciar sesión</a>
-                 <ul class="login-form dropdown-menu" id="login-form-ul">
-                   <li>
-                     <div id="login-form" class="form-stacked">       
-                       <form action="/users/login" class="signin" method="post">
-                         <fieldset class="textbox">
-                           <label class="username">
-                             <span><%= t(:email) %></span>
-                              <input type="email" id="email" value="" name="user[email]" autocomplete="on" />
-                           </label>
-                           <label class="password">
-                             <span><%= t(:password) %></span>
-                             <input type="password" value="" name="user[password]" />
-                           </label>
-                          </fieldset>
-                          <fieldset class="subchck">
-                           <label class="remember">
-                             <input type="checkbox" value="1" name="user[remember_me]" />
-                             <span>Recuerda mis datos</span>
-                           </label>
-                           <button type="submit" class="submit btn">Iniciar sesión</button>
-                          </fieldset>
-                          <p>
-                           <%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %>
-                           <%= link_to '¿No tienes una cuenta todavía?', new_user_registration_path %>
-                          </p>
-                       </form>
-                     </div>
-                   </li>
-                 </ul>
-               </li><!-- dropdown -->
-             <% else %>
-               <li class="dropdown">
-                <a id="user-actions" class="dropdown-toggle" href="#"><%= current_user.email %></a>
-                <ul id="user-actions-options" class="dropdown-menu">
-                  <li><%= link_to 'Configuración', '#' %></li>
-                  <li><%= link_to 'Ayuda', '#' %></li>
-                  <li><%= link_to 'Cerrar sesión', destroy_user_session_path, :method => 'delete' %></li>
-                </ul>
-               </li>
-             <% end %>
-           </ul>
-         </div>
-      </div>
-    </div><!-- topbar -->
-    <%= yield %>
-    <div id="footer">
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      <% if Rails.env == 'development' %>
-        <div id="debug">
-          <%= debug(params) %>
+    <div id="header-wrapper">
+      <div id="header">
+        <div id="logo">
+          <%= link_to image_tag('logo.png'), root_path %>
         </div>
-      <% end %>
-    </div><!-- footer -->
+        <div id="navbar">
+          <ul>
+            <li class="btn danger"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+            <li class="btn danger"><%= link_to t(:campaigns), campaigns_path %></li>
+            <li class="btn danger"><%= link_to t(:community), '#' %></li>
+            <li class="btn danger"><%= link_to t(:donate), '#' %></li>
+            <li class="btn danger"><%= link_to t(:media), '#' %></li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- header-wrapper -->
+    <%= yield %>
+    <div id="footer-wrapper">
+      <div id="footer-main">
+        <div id="info-links">
+          <p>&copy; 2010-<%= Time.now.year %> Algunos derechos reservados | <%= link_to t(:privacy_policy), '#' %> | <%= link_to t(:unsubscribe), '#' %></p>
+        </div>
+        <div id="footer-donate">
+          <p><%= link_to 'Donar a oiga.me', '#' %></p>
+        </div>
+      </div><!-- footer -->
+    </div><!-- footer-wrapper -->
   </body>
 </html>

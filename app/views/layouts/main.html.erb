@@ -27,7 +27,7 @@
         <div id="navbar">
           <ul>
             <li class="btn danger"><%= link_to t(:join_oigame), new_user_registration_path %></li>
-            <li class="btn danger"><%= link_to t(:campaigns), '#' %></li>
+            <li class="btn danger"><%= link_to t(:campaigns), campaigns_path %></li>
             <li class="btn danger"><%= link_to t(:community), '#' %></li>
             <li class="btn danger"><%= link_to t(:donate), '#' %></li>
             <li class="btn danger"><%= link_to t(:media), '#' %></li>
@@ -35,69 +35,7 @@
         </div>
       </div>
     </div><!-- header-wrapper -->
-    <div id="subscribe-wrapper">
-      <div id="subscribe">
-        <div id="subscribe-img">
-          <%= image_tag("home-subscribe.jpg") %>
-        </div>
-        <div id="subscribe-form">
-          <p class="msg">NO ODIES AL<br />
-          LOBBY, ¡COMÉTELO!</p>
-          <p class="user-count">435.234 PERSONAS</p>
-          <p class="do-it">YA LO HAN HECHO</p>
-          <br >
-          <br />
-          <form id="pre-signup" action="#" method="post">
-            <div class="input-prepend">
-              <span class="add-on">@</span>
-              <input type="email" name="user[email]" placeholder="Tu correo electrónico" required="true" />
-            </div>
-            <button type="submit" class="primary btn large">Hazte miembro ahora</button>
-          </form>
-        </div>
-      </div>
-    </div><!-- subscribe-wrapper -->
-    <div id="home-info-wrapper">
-      &nbsp;
-      <div id="home-info">
-        <div id="campaigns-slideshow" class="slider-wrapper theme-default">
-          <div class="ribbon"></div>
-          <div id="slider" class="nivoSlider">
-            <%= link_to image_tag('slide1.png', :title => '#title-c-1'), '#', %>
-            <%= link_to image_tag('slide2.png', :title => '#title-c-2'), '#' %>
-            <%= link_to image_tag('slide3.png', :title => '#title-c-3'), '#' %>
-          </div>
-          <div id="title-c-1" class="nivo-html-caption">
-            <%= link_to 'Campaña número 1', '#' %>
-          </div>
-          <div id="title-c-2" class="nivo-html-caption">
-            <%= link_to 'Campaña número 2', '#' %>
-          </div>
-          <div id="title-c-3" class="nivo-html-caption">
-            <%= link_to 'Campaña número 3', '#' %>
-          </div>
-        </div>
-        <div id="realtime">
-          <p>Hola mundo</p>
-        </div><!-- realtime -->
-      </div>
-      &nbsp;
-    </div><!-- home-info-wrapper -->
-    <div id="links-wrapper">
-      <div id="links">
-        <div id="links-logo">
-          <%= image_tag('logo-small.png') %>
-        </div>
-        <div id="links-message">
-          <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
-        </div>
-        <div id="links-social">
-          <span>Encuéntranos en:</span><br />
-          <%= link_to image_tag('facebook.png') %>
-          <%= link_to image_tag('twitter.png') %>
-        </div>
-      </div>
-    </div><!-- links-wrapper -->
+    <%= yield %>
     <div id="footer-wrapper">
       <div id="footer-main">
         <div id="info-links">
