@@ -3,6 +3,9 @@
 $main-color: #be0411
 $border-main-color: #d2d2d2
 
+html
+  background-color: #000
+
 a, a:hover
   color: $main-color
 
@@ -33,6 +36,7 @@ a, a:hover
         color: #fff
 
 #subscribe-wrapper
+  background-color: #fff
   background: image_url("subscribe-wrapper-bg.gif") repeat scroll left top black
   height: 366px
   padding: 10px
@@ -92,10 +96,12 @@ a, a:hover
       @extend .omega
 
 #links-wrapper
+  background-color: #fff
 
   #links
     @extend .container_24
     margin-top: 40px
+    margin-bottom: 30px
 
     #links-logo
       @extend .grid_4
@@ -111,5 +117,23 @@ a, a:hover
       span
         font-size: 1.3em
 
-#footer
-  margin-bottom: 40px
+#footer-wrapper
+  margin-bottom: 20px
+  background-color: #000
+
+  #footer-main
+    @extend .container_24
+    a
+      color: #fff
+
+    #info-links
+      margin-top: 20px
+      @extend .grid_12
+      @extend .alpha
+
+    #footer-donate
+      margin-top: 20px
+      text-align: right
+      @extend .grid_12
+      @extend .omega
+

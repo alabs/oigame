@@ -98,7 +98,15 @@
         </div>
       </div>
     </div><!-- links-wrapper -->
-    <div id="footer">
-    </div><!-- footer -->
+    <div id="footer-wrapper">
+      <div id="footer-main">
+        <div id="info-links">
+          <p>&copy; 2010-<%= Time.now.year %> Algunos derechos reservados | <%= link_to t(:privacy_policy), '#' %> | <%= link_to t(:unsubscribe), '#' %></p>
+        </div>
+        <div id="footer-donate">
+          <p><%= link_to 'Donar a oiga.me', '#' %></p>
+        </div>
+      </div><!-- footer -->
+    </div><!-- footer-wrapper -->
   </body>
 </html>
