@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: oigame_production
   pool: 5
-  username: oigame
-  password: alksjdalkdjasldasd
+  username: root
+  password:
   socket: /var/run/mysqld/mysqld.sock

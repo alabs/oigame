@@ -2,6 +2,7 @@
 
 $main-color: #be0411
 $border-main-color: #d2d2d2
+$border-shadow: #b1b1b1
 
 html
   background-color: #000
@@ -150,7 +151,48 @@ a, a:hover
           span
             font-size: 1.2em
 
+#accounts-wrapper
+  background-color: #f1f2f1
+  padding-top: 30px
+  padding-bottom: 30px
+
+  #accounts
+    @extend .container_24
+    background-color: #fff
+    border: 1px solid #e8e8e8
+    padding: 30px
+      
+    #signup-form
+      @extend .grid_14
+      @extend .alpha
+      font-size: 1.3em
+      fieldset
+        border: 1px solid $border-main-color
+        padding: 20px
+      legend
+        border: 1px solid $border-main-color
+        padding: 10px
+        background: #efefef
+      label, input
+        font-size: .9em
+      .form-field
+        margin-bottom: 15px
+        input[type=text], input[type=email], input[type=password]
+          border: 1px solid $border-main-color
+          padding: 5px
+          font-weight: normal
+          width: 270px 
+        input:focus
+          background-color: #f6f6f6
+          box-shadow: 0 0 4px $border-shadow
+      .error_message
+        font-size: small
+        color: #f00
+      .field_with_errors input[type=text], .field_with_errors input[type=email], .field_with_errors input[type=password]
+        border: 1px solid #f00
+
 #links-wrapper
+  border-top: 1px solid #e8e8e8
   background-color: #fff
 
   #links
