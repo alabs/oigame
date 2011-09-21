@@ -18,6 +18,7 @@ a, a:hover
 #header-wrapper
   border-bottom: 1px solid #e8e8e8
   
+<<<<<<< HEAD
   #header
     @extend .container_24
     margin-top: 4px
@@ -37,7 +38,16 @@ a, a:hover
         margin-right: 10px
         font-size: 1.4em
         a
-          color: #fff
+          color: $main-color
+      .pills
+        li
+          a:hover
+            color: #fff
+            background: $main-color
+        .active
+          a
+            color: #fff
+            background: $main-color
 
 #subscribe-wrapper
   background-color: #fff
@@ -94,9 +104,14 @@ a, a:hover
       padding: 15px
 
     #campaigns-slideshow
+      height: 300px
       @extend .alpha
 
-    #realtime
+      #slider
+        height: 224px
+        width: 416px
+
+    #activity-realtime
       @extend .omega
 
 #campaigns-wrapper
