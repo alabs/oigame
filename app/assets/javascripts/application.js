@@ -81,6 +81,21 @@ function activity_clean(){
 }
 
 ////////////////////////// activity-realtime end
+//
+////////////////////////// check-current-navbar start
+
+function check_current_navbar(section){ 
+  // TODO: mover al controlador, esto es una guarrada
+  switch (section) {
+    case 'campaigns': 
+      $('#header-campaigns').addClass('active');
+      break;
+    case 'users':
+      $('#header-signup').addClass('active');
+      break;
+  }
+}
+////////////////////////// check-current-navbar start
 
 $(function() {
 
@@ -105,6 +120,9 @@ $(function() {
 
   $("#user_email").focus();
 
+  // activity-realtime
   activity_init();
+
+  check_current_navbar(document.URL.split('/')[3]);
 
 });

@@ -25,12 +25,12 @@
           <%= link_to image_tag('logo.png'), root_path %>
         </div>
         <div id="navbar">
-          <ul>
-            <li class="btn danger"><%= link_to t(:join_oigame), new_user_registration_path %></li>
-            <li class="btn danger"><%= link_to t(:campaigns), campaigns_path %></li>
-            <li class="btn danger"><%= link_to t(:community), '#' %></li>
-            <li class="btn danger"><%= link_to t(:donate), '#' %></li>
-            <li class="btn danger"><%= link_to t(:media), '#' %></li>
+          <ul class="pills">
+            <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+            <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
+            <li><%= link_to t(:community), '#' %></li>
+            <li><%= link_to t(:donate), '#' %></li>
+            <li><%= link_to t(:media), '#' %></li>
           </ul>
         </div>
       </div>

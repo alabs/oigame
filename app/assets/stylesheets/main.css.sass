@@ -34,8 +34,18 @@ a, a:hover
       margin-right: 10px
       font-size: 1.4em
       a
-        color: #fff
+        color: $main-color
 
+    .pills
+      li
+        a:hover
+          background-color: $main-color
+          color: #fff
+      .active
+        a
+          background-color: $main-color
+          color: #fff
+          
 #subscribe-wrapper
   background-color: #fff
   background: image_url("subscribe-wrapper-bg.gif") repeat scroll left top black
