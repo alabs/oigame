@@ -1,12 +1,24 @@
-<h2>Forgot your password?</h2>
+<% @page_title = t(:forgot_your_password) %>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<div id="accounts-wrapper">
+  <div id="accounts">
+    <div id="forgot-password-form" class="form-stacked">
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+        <fieldset>
+          <legend><%= t(:please_fill_the_form) %></legend>
+          <div class="form-field">
+            <%= f.label t(:email) %>
+            <%= f.email_field :email, :required => true %>
+            <% unless resource.errors[:email].blank? %>
+              <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+            <% end %>
+          </div>
+          <div class="form-actions">
+            <%= f.submit t(:request_new_password), :class => 'btn submit' %>
+          </div>
+        </fieldset>
+      <% end %>
+      <%= render :partial => "users/shared/links" %>
+    </div><!-- forgot-passowrd-form -->
+  </div>
+</div><!-- accounts-wrapper -->

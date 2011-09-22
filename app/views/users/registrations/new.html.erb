@@ -8,7 +8,7 @@
           <legend><%= @page_title %></legend>
           <div class="form-field">
             <%= f.label t(:email) %>
-            <%= f.email_field :email %>
+            <%= f.email_field :email, :required => true %>
             <% unless resource.errors[:email].blank? %>
               <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
             <% end %>
@@ -29,7 +29,7 @@
           </div>
         </fieldset>
       <% end %>
-      <%= render :partial => "devise/shared/links" %>
+      <%= render :partial => "users/shared/links" %>
     </div><!-- signup-form -->
   </div><!-- account -->
 </div><!-- accounts-wrapper -->
