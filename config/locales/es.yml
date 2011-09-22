@@ -21,7 +21,7 @@ es:
   join_this_campaign: 'Únete a esta campaña'
   create_account: 'Crear cuenta'
   sign_in: 'Iniciar sesión'
-  forgot_your_password: '¿Olvidate tu contraseña?'
+  forgot_your_password: '¿Olvidaste tu contraseña?'
   didnt_receive_confirmation_instructions: '¿No recibiste instrucciones de confirmación?'
   please_fill_the_form: 'Por favor rellena el formulario'
   request_new_password: 'Solicitar nueva contraseña'

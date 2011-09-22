@@ -127,8 +127,9 @@ a, a:hover
     background-color: #fff
     border: 1px solid #E8E8E8
     margin: 15px auto
+    padding-bottom: 30px
 
-    #campaigns-slideshow, #realtime
+    #campaigns-slideshow, #activity-realtime
       @extend .grid_11
       padding: 15px
 
@@ -142,6 +143,32 @@ a, a:hover
 
     #activity-realtime
       @extend .omega
+      ul
+        height: 12em
+        list-style: none outside none
+        margin-left: 0px
+        li
+          border-bottom: 1px solid #e8e8e8
+          display: block
+          font-size: .9em
+          height: 4em
+          overflow: hidden
+          .timestamp
+            color: #ccc
+            float: right
+            font-size: .9em
+            height: 48px
+            line-height: 48px
+            overflow: hidden
+          .activity
+            float: left
+            height: 4em
+            line-height: 4
+            overflow: hidden
+            white-space: nowrap
+            width: auto
+            .login
+              font-weight: bold
 
 #campaigns-wrapper
   background-color: #f1f2f1

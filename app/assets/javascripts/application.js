@@ -110,7 +110,7 @@ $(function() {
   $("#user_email").focus();
 
   // activity-realtime
-  activity_init();
+  //activity_init();
 
   check_current_navbar(document.URL.split('/')[3]);
 
