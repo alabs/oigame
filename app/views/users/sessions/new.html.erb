@@ -8,7 +8,7 @@
           <legend><%= @page_title %></legend>
           <div class="form-field">
             <%= f.label t(:email) %>
-            <%= f.email_field :email %>
+            <%= f.email_field :email, :required => true %>
           </div>
           <div class="form-field">
             <%= f.label t(:password) %>
