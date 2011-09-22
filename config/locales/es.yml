@@ -26,3 +26,5 @@ es:
   please_fill_the_form: 'Por favor rellena el formulario'
   request_new_password: 'Solicitar nueva contraseña'
   resend_confirmation_instructions: 'Reenviar instrucciones de confirmación'
+  my_account: 'Mi cuenta'
+  logout: 'Desconectar'
