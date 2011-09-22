@@ -19,16 +19,19 @@ a, a:hover
   border-color: #000
   -webkit-box-shadow: 0 0 0 0
 
-#flash-notice
-  @extend .alert-message
-  @extend .success
-  cursor: pointer
+.flash-messages
   margin: 0
-  text-align: center
-  position: fixed
+  position: absolute !important
   top: 30px
+  right: 50px
   width: 960px
   z-index: 8000
+  @extend .alert-message
+  p
+    font-weight: bold
+
+.flash-notice
+  @extend .success
 
 #header-wrapper
   border-bottom: 1px solid #e8e8e8

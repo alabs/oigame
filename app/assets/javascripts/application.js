@@ -101,22 +101,11 @@ $(function() {
 
   $("#slider").nivoSlider();
 
-  //$(".flash-messages").delay(15000).fadeOut();
+  $(".flash-messages").delay(15000).fadeOut();
 
-  //$(".flash-messages a.close").click(function() {
-  //  $(".flash-messages").toggle();
-  //});
-
-  //$("#sessions #user-login-session").click(function(e) {
-  //  e.preventDefault();
-  //  $("#login-form-ul").toggle();
-  //  $("#email").focus();
-  //});
-
-  //$("#user-actions").click(function(e) {
-  //  e.preventDefault();
-  //  $("#user-actions-options").toggle();
-  //});
+  $(".flash-messages a.close").click(function() {
+    $(".flash-messages").toggle();
+  });
 
   $("#user_email").focus();
 
