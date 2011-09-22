@@ -1,11 +1,8 @@
 <% @page_title = t(:login) %>
 
-<div id="frontpage">
-  <div id="front-page-left">
-    <div id="logo">
-      <%= link_to image_tag('logo.png'), root_path %>
-    </div>
-    <div id="login-form-page" class="form-stacked">
+<div id="accounts-wrapper">
+  <div id="accounts">
+    <div id="login-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <fieldset>
           <legend><%= @page_title %></legend>
@@ -23,16 +20,7 @@
         </fieldset>
       <% end %>
       <%= render :partial => "devise/shared/links" %>
-    </div><!-- signup-form -->
-  </div><!-- front-page-left -->
-  <div id="front-page-right">
-    <% flash.each do |name, msg| %>
-      <div class="flash-messages">
-        <div id="<%= "flash-#{name}" %>" class="alert-message <%= name %>">
-          <a class="close" href="#">x</a>
-          <p><%= msg %></p>
-        </div>
-      </div>
-    <% end %>
-  </div><!-- front-page-right -->
-</div><!-- frontpage -->
+    </div><!-- login-form -->
+  </div><!-- accounts -->
+</div><!-- accounts-wrapper -->
+

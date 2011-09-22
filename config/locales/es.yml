@@ -17,3 +17,5 @@ es:
   password: 'Contraseña'
   password_confirmation: 'Confirmar contraseña'
   login: 'Iniciar sesión'
+  last_campaigns: 'Últimas campañas'
+  join_this_campaign: 'Únete a esta campaña'

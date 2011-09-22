@@ -1,10 +1,10 @@
 Oigame::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }
   get 'testing' => 'pages#testing', :as => 'testing'
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }
   resources :campaigns
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

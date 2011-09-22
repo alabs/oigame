@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <title><%= @page_title %> - oiga.me</title>
-    <%= stylesheet_link_tag 'bootstrap-1.3.0.min' %>
-    <%= stylesheet_link_tag 'slideshow' %>
-    <%= stylesheet_link_tag 'nivo-slider' %>
     <%= stylesheet_link_tag 'main' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -19,7 +16,25 @@
     </script>
   </head>
   <body>
+    <% flash.each do |name, msg| %>
+      <div id="<%= "flash-#{name}" %>">
+        <%= content_tag :span, msg %>
+      </div>
+    <% end %>
     <div id="header-wrapper">
+      <div id="user-actions-wrapper">
+        <div id="user-actions">
+          <ul>
+            <% unless user_signed_in? %>
+              <li><%= link_to t(:create_account), new_user_registration_path %></li>
+              <li><%= link_to t(:login), new_user_session_path %></li>
+            <% else %>
+              <li><%= link_to t(:my_account), '#' %></li>
+              <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
       <div id="header">
         <div id="logo">
           <%= link_to image_tag('logo.png'), root_path %>
