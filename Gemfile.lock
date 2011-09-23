@@ -47,14 +47,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
-    devise (1.4.5)
+    devise (1.4.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     erubis (2.7.0)
     exception_notification (2.5.2)
       actionmailer (>= 3.0.4)
-    execjs (1.2.6)
+    execjs (1.2.8)
       multi_json (~> 1.0)
     highline (1.6.2)
     hike (1.2.1)
