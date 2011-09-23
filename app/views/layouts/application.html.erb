@@ -42,7 +42,9 @@
         </div>
         <div id="navbar">
           <ul class="pills">
-            <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+            <% unless user_signed_in? %>
+              <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+            <% end %>
             <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
             <li><%= link_to t(:community), '#' %></li>
             <li><%= link_to t(:donate), '#' %></li>

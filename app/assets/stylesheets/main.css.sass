@@ -43,7 +43,6 @@ a, a:hover
     @extend .container_24
 
     #user-actions
-      @extend .suffix_2
       float: right
       margin-top: 8px
       li
@@ -63,20 +62,19 @@ a, a:hover
     #navbar
       @extend .grid_18
       @extend .omega
-      text-align: right
-      li
-        display: inline
-        margin-top: 5px
-        margin-left: 10px
-        font-size: 1.4em
-        a
-          color: $main-color
       .pills
+        float: right
         li
+          display: inline
+          margin-top: 5px
+          margin-left: 10px
+          font-size: 1.4em
+          a
+            color: $main-color
           a:hover
             color: #fff
             background: $main-color
-        .active
+        li.active
           a
             color: #fff
             background: $main-color
