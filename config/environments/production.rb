@@ -60,7 +60,7 @@ Oigame::Application.configure do
   config.active_support.deprecation = :notify
   
   # Para Devise
-  config.action_mailer.default_url_options = { :host => 'oiga.me' }
+  config.action_mailer.default_url_options = { :host => 'beta.oiga.me' }
   
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
