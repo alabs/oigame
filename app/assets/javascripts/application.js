@@ -108,6 +108,7 @@ $(function() {
   });
 
   $("#user_email").focus();
+  $("#campaign_name").focus();
 
   // activity-realtime
   //activity_init();

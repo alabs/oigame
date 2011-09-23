@@ -28,3 +28,8 @@ es:
   resend_confirmation_instructions: 'Reenviar instrucciones de confirmación'
   my_account: 'Mi cuenta'
   logout: 'Desconectar'
+  create_campaign: 'Crear campaña'
+  name_of_campaign: 'Nombre de la campaña'
+  cancel: 'Cancelar'
+  intro_of_campaign: 'Introducción de la campaña'
+  body_of_campaign: 'Cuerpo de la campaña'

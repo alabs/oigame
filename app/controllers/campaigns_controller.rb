@@ -1,4 +1,7 @@
 class CampaignsController < ApplicationController
+
+  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
+
   # GET /campaigns
   # GET /campaigns.json
   def index

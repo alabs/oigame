@@ -28,57 +28,15 @@
         </div>
       </div><!-- campaign-info -->
       <div class="clear"></div>
-      <div class="campaign-info">
-        <h3><%= link_to 'Título de la campaña', '#' %></h3>
-        <div class="cinfo">
-          <div class="campaign-image">
-            <%= link_to image_tag('slide3.png', :width => 170), '#' %>
-          </div>
-          <div class="campaign-text">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. <span class="join-this-campaign"><%= link_to t(:join_this_campaign), '#' %></span>.</p>
-          </div>
-        </div>
-      </div><!-- campaign-info -->
-      <div class="clear"></div>
-      <div class="campaign-info">
-        <h3><%= link_to 'Título de la campaña', '#' %></h3>
-        <div class="cinfo">
-          <div class="campaign-image">
-            <%= link_to image_tag('slide1.png', :width => 170), '#' %>
-          </div>
-          <div class="campaign-text">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. <span class="join-this-campaign"><%= link_to t(:join_this_campaign), '#' %></span>.</p>
-          </div>
-        </div>
-      </div><!-- campaign-info -->
-      <div class="clear"></div>
-      <div class="campaign-info">
-        <h3><%= link_to 'Título de la campaña', '#' %></h3>
-        <div class="cinfo">
-          <div class="campaign-image">
-            <%= link_to image_tag('slide2.png', :width => 170), '#' %>
-          </div>
-          <div class="campaign-text">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. <span class="join-this-campaign"><%= link_to t(:join_this_campaign), '#' %></span>.</p>
-          </div>
-        </div>
-      </div><!-- campaign-info -->
-      <div class="clear"></div>
-      <div class="campaign-info">
-        <h3><%= link_to 'Título de la campaña', '#' %></h3>
-        <div class="cinfo">
-          <div class="campaign-image">
-            <%= link_to image_tag('slide3.png', :width => 170), '#' %>
-          </div>
-          <div class="campaign-text">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. <span class="join-this-campaign"><%= link_to t(:join_this_campaign), '#' %></span>.</p>
-          </div>
-        </div>
-      </div><!-- campaign-info -->
-      <div class="clear"></div>
-    </div>
-  </div>
-</div>
+    </div><!-- list-campaigns-info -->
+    <div id="list-campaigns-sidebar">
+      <h2>Acciones a tomar</h2>
+      <ul>
+        <li><%= link_to t(:create_campaign), new_campaign_path %></li>
+      </ul>
+    </div><!-- list-campaigns-sidebar -->
+  </div><!-- list-campaigns -->
+</div><!-- campaigns-wrapper -->
 
 <!--
 <h1>Listing campaigns</h1>
