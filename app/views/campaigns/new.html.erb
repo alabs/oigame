@@ -27,8 +27,8 @@
           <div class="form-field">
             <%= f.label t(:body_of_campaign) %>
             <div class="wmd-panel">
-              <div id="wmd-button-bar"></div>
-              <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input', :rows => 10, :class => 'span8' %>
+              <div id="wmd-button-bar-second"></div>
+              <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span8' %>
             </div>
             <% unless @campaign.errors[:body].blank? %>
               <span class="error_message"><%= @campaign.errors[:body].to_sentence %></span>
@@ -46,8 +46,12 @@
 
 <script type="text/javascript">
   (function() {
-    var converter = Markdown.getSanitizingConverter();
-    var editor = new Markdown.Editor(converter);
-    editor.run();
+    var converter1 = Markdown.getSanitizingConverter();
+    var editor1 = new Markdown.Editor(converter1);
+    editor1.run();
+    
+    var converter2 = Markdown.getSanitizingConverter();
+    var editor2 = new Markdown.Editor(converter2, "-second");
+    editor2.run();
   })();
 </script>
