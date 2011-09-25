@@ -14,10 +14,17 @@ class Campaign < ActiveRecord::Base
 
   attr_accessor :recipients
 
-  before_save :create_recipients
+  before_save :generate_slug, :create_recipients
 
-  def self.last_campaigns(limit = nil)
-    order("created_at DESC").limit(limit).all
+  class << self
+
+    def last_campaigns(limit = nil)
+      order("created_at DESC").limit(limit).all
+    end
+  end
+
+  def to_param
+    slug
   end
 
   def to_html(field)
@@ -25,7 +32,12 @@ class Campaign < ActiveRecord::Base
     markdown.to_html
   end
 
+
   private
+
+  def generate_slug
+    self.slug = self.name.parameterize
+  end
 
   # método para crear registros en la tabla emails
   def create_recipients

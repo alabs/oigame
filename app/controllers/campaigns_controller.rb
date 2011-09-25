@@ -16,7 +16,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    @campaign = Campaign.find(params[:id])
+    @campaign = Campaign.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +37,7 @@ class CampaignsController < ApplicationController
 
   # GET /campaigns/1/edit
   def edit
-    @campaign = Campaign.find(params[:id])
+    @campaign = Campaign.find_by_slug(params[:id])
   end
 
   # POST /campaigns
@@ -60,7 +60,7 @@ class CampaignsController < ApplicationController
   # PUT /campaigns/1
   # PUT /campaigns/1.json
   def update
-    @campaign = Campaign.find(params[:id])
+    @campaign = Campaign.find_by_slug(params[:id])
 
     respond_to do |format|
       if @campaign.update_attributes(params[:campaign])
@@ -76,7 +76,7 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1
   # DELETE /campaigns/1.json
   def destroy
-    @campaign = Campaign.find(params[:id])
+    @campaign = Campaign.find_by_slug(params[:id])
     @campaign.destroy
 
     respond_to do |format|
