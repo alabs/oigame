@@ -16,10 +16,10 @@ class Campaign < ActiveRecord::Base
 
   before_save :create_recipients
 
-  def self.last_campaigns
-    order("created_at DESC").all
+  def self.last_campaigns(limit = nil)
+    order("created_at DESC").limit(limit).all
   end
-  
+
   def to_html(field)
     markdown = Redcarpet.new(field)
     markdown.to_html

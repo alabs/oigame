@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   def index
+    @campaigns = Campaign.last_campaigns(3)
   end
 
   def testing
