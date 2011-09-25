@@ -79,5 +79,10 @@
         </div>
       </div><!-- footer -->
     </div><!-- footer-wrapper -->
+    <% if Rails.env == 'development' %>
+      <div id="debug">
+        <%= debug(params) %>
+      </div>
+    <% end %>
   </body>
 </html>
