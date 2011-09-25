@@ -15,6 +15,10 @@ class Campaign < ActiveRecord::Base
   attr_accessor :recipients
 
   before_save :create_recipients
+
+  def self.last_campaigns
+    order("created_at DESC").all
+  end
   
   def to_html(field)
     markdown = Redcarpet.new(field)

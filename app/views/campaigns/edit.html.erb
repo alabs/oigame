@@ -1,6 +1,23 @@
-<h1>Editing campaign</h1>
+<% @page_title = t(:edit_campaign) %>
 
-<%= render 'form' %>
+<div id="campaigns-wrapper">
+  <div id="create-campaigns">
+    <div id="create-campaign-form" class="form-stacked">
+      <h2><%= @page_title %></h2>
+      <%= render 'form' %>
+      <%= link_to t(:cancel), campaigns_path %>
+    </div><!-- create-campaign-form -->
+  </div><!-- create-campaigns -->
+</div><!-- campaigns-wrapper -->
 
-<%= link_to 'Show', @campaign %> |
-<%= link_to 'Back', campaigns_path %>
+<script type="text/javascript">
+  (function() {
+    var converter1 = Markdown.getSanitizingConverter();
+    var editor1 = new Markdown.Editor(converter1);
+    editor1.run();
+    
+    var converter2 = Markdown.getSanitizingConverter();
+    var editor2 = new Markdown.Editor(converter2, "-second");
+    editor2.run();
+  })();
+</script>

@@ -1,33 +1,47 @@
-<%= form_for(@campaign) do |f| %>
-  <% if @campaign.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
-
-      <ul>
-      <% @campaign.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<%= form_for @campaign, :html => {:multipart => true} do |f| %>
+  <fieldset>
+    <legend><%= t(:please_fill_the_form) %></legend>
+    <div class="form-field">
+      <%= f.label t(:name_of_campaign) %>
+      <%= f.text_field :name, :class => 'span8', :required => true, :placeholder => 'Título de la campaña' %>
+      <% unless @campaign.errors[:name].blank? %>
+        <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :slug %><br />
-    <%= f.text_field :slug %>
-  </div>
-  <div class="field">
-    <%= f.label :intro %><br />
-    <%= f.text_area :intro %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-field">
+      <%= f.label t(:image_of_campaign) %>
+      <%= f.file_field :image, :class => 'input-file' %>
+    </div>
+    <div class="form-field">
+      <%= f.label t(:intro_of_campaign) %>
+      <div class="wmd-panel">
+        <div id="wmd-button-bar"></div>
+        <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span8', :required => true, :placeholder => 'Entradilla de la campaña, este texto aparece en el listado de campañas.' %>
+      </div>
+      <% unless @campaign.errors[:intro].blank? %>
+        <span class="error_message"><%= @campaign.errors[:intro].to_sentence %></span>
+      <% end %>
+    </div>
+    <div class="form-field">
+      <%= f.label t(:body_of_campaign) %>
+      <div class="wmd-panel">
+        <div id="wmd-button-bar-second"></div>
+        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span8', :required => true, :placeholder => 'Texto desarrollado de la campaña' %>
+      </div>
+      <% unless @campaign.errors[:body].blank? %>
+        <span class="error_message"><%= @campaign.errors[:body].to_sentence %></span>
+      <% end %>
+    </div>
+    <div class="form-field">
+      <%= f.label t(:recipients) %>
+      <%= f.text_area :recipients, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Lista de direcciones de correo de destinatarios, una por línea.' %>
+    </div>
+    <div class="form-field">
+      <%= f.label t(:tags) %>
+      <%= f.text_field :tag_list, :class => 'span8', :placeholder => 'Lista de etiquetas separadas por comas' %>
+    </div>
+    <div id="form-actions">
+      <%= f.submit @page_title, :class => 'btn submit' %>
+    </div>
+  </fieldset>
 <% end %>

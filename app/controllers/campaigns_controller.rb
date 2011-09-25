@@ -5,7 +5,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns
   # GET /campaigns.json
   def index
-    @campaigns = Campaign.all
+    @campaigns = Campaign.last_campaigns
 
     respond_to do |format|
       format.html # index.html.erb

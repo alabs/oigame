@@ -10,15 +10,15 @@
           <div class="cinfo">
             <div class="campaign-image">
               <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
+              <p><%= link_to t(:join_this_campaign), campaign %><br /><strong>8456</strong> personas ya lo han hecho</p>
             </div>
             <div class="campaign-text">
               <%= campaign.to_html(campaign.intro).html_safe %>
-              <span class="join-this-campaign"><%= link_to t(:join_this_campaign), campaign %></span>
             </div>
           </div>
         </div>
+        <div class="clear"></div>
       <% end %>
-      <div class="clear"></div>
     </div><!-- list-campaigns-info -->
     <div id="list-campaigns-sidebar">
       <h2>Acciones a tomar</h2>
