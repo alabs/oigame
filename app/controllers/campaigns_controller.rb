@@ -44,6 +44,7 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(params[:campaign])
+    @campaign.user = current_user
 
     respond_to do |format|
       if @campaign.save

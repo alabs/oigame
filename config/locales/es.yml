@@ -35,3 +35,5 @@ es:
   body_of_campaign: 'Cuerpo de la campaña'
   tags: 'Etiquetas'
   recipients: 'Destinatarios'
+  image_of_campaign: 'Imágen de la campaña'
+  edit_campaign: 'Editar campaña'

@@ -4,29 +4,20 @@
   <div id="list-campaigns">
     <div id="list-campaigns-info">
       <h2>Últimas campañas</h2>
-      <div class="campaign-info">
-        <h3><%= link_to 'Título de la campaña', '#' %></h3>
-        <div class="cinfo">
-          <div class="campaign-image">
-            <%= link_to image_tag('slide1.png', :width => 170), '#' %>
-          </div>
-          <div class="campaign-text">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. <span class="join-this-campaign"><%= link_to t(:join_this_campaign), '#' %></span>.</p>
-          </div>
-        </div>
-      </div><!-- campaign-info -->
-      <div class="clear"></div>
-      <div class="campaign-info">
-        <h3><%= link_to 'Título de la campaña', '#' %></h3>
-        <div class="cinfo">
-          <div class="campaign-image">
-            <%= link_to image_tag('slide2.png', :width => 170), '#' %>
-          </div>
-          <div class="campaign-text">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. <span class="join-this-campaign"><%= link_to t(:join_this_campaign), '#' %></span>.</p>
+      <% @campaigns.each do |campaign| %>
+        <div class="campaign-info">
+          <h3><%= link_to campaign.name, campaign %></h3>
+          <div class="cinfo">
+            <div class="campaign-image">
+              <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
+            </div>
+            <div class="campaign-text">
+              <%= campaign.to_html(campaign.intro).html_safe %>
+              <span class="join-this-campaign"><%= link_to t(:join_this_campaign), campaign %></span>
+            </div>
           </div>
         </div>
-      </div><!-- campaign-info -->
+      <% end %>
       <div class="clear"></div>
     </div><!-- list-campaigns-info -->
     <div id="list-campaigns-sidebar">

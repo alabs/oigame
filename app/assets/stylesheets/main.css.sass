@@ -178,7 +178,7 @@ a, a:hover
   padding-top: 30px
   padding-bottom: 30px
 
-  #list-campaigns, #create-campaigns
+  #list-campaigns, #create-campaigns, #show-campaign
     @extend .container_24
     background-color: #fff
     border: 1px solid #E8E8E8
@@ -219,6 +219,28 @@ a, a:hover
       h2
         font-size: 1.3em
 
+    #show-campaign-detail
+      @extend .grid_14
+      @extend .alpha
+      padding: 25px
+      border-right: 1px dashed #e8e8e8
+      h2
+        font-size: 2.2em
+        margin-bottom: 15px
+        a, a:hover
+          color: #fff
+      img
+        margin-bottom: 15px
+      p
+        font-size: 1.1em
+
+    #show-campaign-sidebar
+      @extend .grid_8
+      @extend .omega
+      padding-top: 25px
+      h2
+        font-size: 1.3em
+
     #create-campaign-form
       @extend .grid_14
       @extend .alpha
@@ -241,7 +263,7 @@ a, a:hover
         background: #efefef
       .form-field
         margin-bottom: 25px
-        input[type=text], textarea
+        input[type=text], textarea, input[type=file]
           border: 1px solid $border-main-color
           padding: 5px
           font-weight: normal

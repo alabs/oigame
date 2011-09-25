@@ -3,17 +3,23 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :emails
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image
 
   validates_presence_of :name, :intro, :body
   validates_uniqueness_of :name
 
   acts_as_taggable
 
+  mount_uploader :image, CampaignImageUploader
+
   attr_accessor :recipients
 
   before_save :create_recipients
-
+  
+  def to_html(field)
+    markdown = Redcarpet.new(field)
+    markdown.to_html
+  end
 
   private
 

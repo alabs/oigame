@@ -4,7 +4,7 @@
   <div id="create-campaigns">
     <div id="create-campaign-form" class="form-stacked">
       <h2><%= @page_title %></h2>
-      <%= form_for(@campaign) do |f| %>
+      <%= form_for @campaign, :html => {:multipart => true} do |f| %>
         <fieldset>
           <legend><%= t(:please_fill_the_form) %></legend>
           <div class="form-field">
@@ -13,6 +13,10 @@
             <% unless @campaign.errors[:name].blank? %>
               <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
             <% end %>
+          </div>
+          <div class="form-field">
+            <%= f.label t(:image_of_campaign) %>
+            <%= f.file_field :image, :class => 'input-file' %>
           </div>
           <div class="form-field">
             <%= f.label t(:intro_of_campaign) %>
