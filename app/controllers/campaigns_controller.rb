@@ -1,5 +1,7 @@
 class CampaignsController < ApplicationController
 
+  layout 'application', :except => [:widget, :widget_iframe]
+
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
 
   # GET /campaigns
@@ -90,8 +92,10 @@ class CampaignsController < ApplicationController
   end
 
   def widget
+    @campaign = Campaign.find_by_slug(params[:id])
   end
 
   def widget_iframe
+    @campaign = Campaign.find_by_slug(params[:id])
   end
 end

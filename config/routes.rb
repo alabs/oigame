@@ -6,7 +6,7 @@ Oigame::Application.routes.draw do
     member do
       post 'message'
       get 'widget'
-      get 'widget-iframe' => 'campaigns#widget_iframe', :as => 'widget_iframe'
+      get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
     end
     collection do
       get 'tag'
