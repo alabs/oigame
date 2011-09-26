@@ -48,7 +48,13 @@
       <div id="campaign-stats">
         <h2><%= t(:campaign_stats) %></h2>
         <p style="font-size: 1.3em;"><a href="#" data-campaign="<%= @campaign.slug %>" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
-      </div>
+
+        <div id="modal-stats-window" style="display:none;">
+          <h1>Hola modal</h1>
+          <div id="data" style="display: none;"><%= @stats_data %></div>
+        </div>
+
+      </div><!-- campaign-stats -->
       <div id="integrate-this-campaign">
         <h2>Integra esta campaña en tu sitio</h2>
         <p style="font-size: 1.3em;">Aquí el Javascript para integrar esta campaña en otro sitio web.</p>

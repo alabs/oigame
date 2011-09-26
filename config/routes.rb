@@ -5,7 +5,6 @@ Oigame::Application.routes.draw do
   resources :campaigns do
     member do
       post 'message'
-      get 'stats'
     end
     collection do
       get 'tag'
