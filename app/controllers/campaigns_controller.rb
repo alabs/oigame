@@ -88,4 +88,10 @@ class CampaignsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def widget
+  end
+
+  def widget_iframe
+  end
 end
