@@ -1,5 +1,7 @@
 class CampaignsController < ApplicationController
 
+  layout 'application', :except => :stats
+
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
 
   # GET /campaigns
@@ -84,5 +86,9 @@ class CampaignsController < ApplicationController
       format.html { redirect_to campaigns_url }
       format.json { head :ok }
     end
+  end
+
+  # Estadísticas de una campaña
+  def stats
   end
 end
