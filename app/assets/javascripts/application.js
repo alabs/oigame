@@ -128,15 +128,14 @@ $(function() {
     $("#campaign-message-form #email").focus();
   }); 
 
+  $("#modal-stats-window").dialog2({
+    removeOnClose: false,
+    autoOpen: false
+  });
+
   $("#show-modal-stats-window").click(function(event) {
-    url = '/campaigns/' + $(this).attr('data-campaign') + '/stats';
-    console.log(url);
-    $('<div/>').dialog2({
-      title: "Cargando...",
-      content: url,
-      id: "modal-stats-window"
-    });
     event.preventDefault();
+    $("#modal-stats-window").dialog2("open");
   });
 
 });
