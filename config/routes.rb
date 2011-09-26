@@ -2,7 +2,11 @@ Oigame::Application.routes.draw do
 
   get 'testing' => 'pages#testing', :as => 'testing'
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }
-  resources :campaigns
+  resources :campaigns do
+    member do
+      post 'message'
+    end
+  end
   #devise_for :admin_users, ActiveAdmin::Devise.config
   #ActiveAdmin.routes(self)
 

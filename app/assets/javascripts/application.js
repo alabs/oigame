@@ -115,4 +115,16 @@ $(function() {
 
   check_current_navbar(document.URL.split('/')[3]);
 
+  // Al hacer click en unirse a una campaña, hacer el scroll
+  // y poner foco en el campo nombre
+  $("#join-this-campaign-link").click(function(event) {
+    event.preventDefault();
+    var fullUrl = this.href;
+    var parts = fullUrl.split("#");
+    var target = parts[1];
+    var targetOffset = $("#"+target).offset();
+    var targetTop = targetOffset.top;
+    $("html, body").animate({scrollTop:targetTop}, 1000);
+    $("#campaign-message-form #email").focus();
+  }); 
 });

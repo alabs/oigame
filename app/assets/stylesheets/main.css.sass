@@ -233,13 +233,41 @@ a, a:hover
         margin-bottom: 15px
       p
         font-size: 1.1em
+      p#this-campaign-link
+        margin-top: 25px
+        font-size: 2em
 
     #show-campaign-sidebar
       @extend .grid_8
       @extend .omega
       padding-top: 25px
       h2
-        font-size: 1.3em
+        span
+          font-size: .8em
+
+      #campaign-message-form
+        padding-left: 0
+        form
+          fieldset
+            background-color: #f1f2f1
+            border: 1px solid $border-main-color
+            padding: 10px
+          .form-field
+            margin-bottom: 10px
+            input[type=text], textarea, input[type=email]
+              border: 1px solid $border-main-color
+              padding: 5px
+              font-weight: normal
+            input:focus, textarea:focus
+              background-color: #f6f6f6
+              box-shadow: 0 0 4px $border-shadow
+            label, input, textarea
+              font-size: 1em
+          .error_message
+            font-size: small
+            color: #f00
+          .field_with_errors input[type=text], .field_with_errors input[type=email], .field_with_errors textarea
+            border: 1px solid #f00
 
     #create-campaign-form
       @extend .grid_14

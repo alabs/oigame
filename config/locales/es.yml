@@ -37,3 +37,7 @@ es:
   recipients: 'Destinatarios'
   image_of_campaign: 'Imágen de la campaña'
   edit_campaign: 'Editar campaña'
+  subject: 'Asunto'
+  message: 'Mensaje'
+  send_message: 'Enviar mensaje'
+  your_email: 'Tu correo electrónico'
