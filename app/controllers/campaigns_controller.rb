@@ -6,6 +6,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns.json
   def index
     @campaigns = Campaign.last_campaigns
+    @tags = Campaign.tag_counts_on(:tags)
 
     respond_to do |format|
       format.html # index.html.erb
