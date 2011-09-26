@@ -17,7 +17,7 @@
       <p id="this-campaign-link"><%= link_to t(:join_this_campaign), '#show-campaign-sidebar', :id => 'join-this-campaign-link' %></p>
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar">
-      <h2><%= t(:join_this_campaign) %></h2>
+      <h2 id="jtc"><%= t(:join_this_campaign) %></h2>
       <div id="campaign-message-form" class="form-stacked">
         <%= form_tag message_campaign_path do %>
           <fieldset>
@@ -39,6 +39,14 @@
             </div>
           </fieldset>
         <% end %>
+      </div><!-- campaign-message-form -->
+      <div id="campaign-stats">
+        <h2><%= t(:campaign_stats) %></h2>
+        <p style="font-size: 1.3em;">Aquí las gráficas de jqPlot</p>
+      </div>
+      <div id="integrate-this-campaign">
+        <h2>Integra esta campaña en tu sitio</h2>
+        <p style="font-size: 1.3em;">Aquí el Javascript para integrar esta campaña en otro sitio web.</p>
       </div>
     </div><!-- show-campaign-sidebar -->
   </div><!-- show-campaign -->

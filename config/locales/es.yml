@@ -41,3 +41,4 @@ es:
   message: 'Mensaje'
   send_message: 'Enviar mensaje'
   your_email: 'Tu correo electrónico'
+  campaign_stats: 'Estadísticas de la campaña'
