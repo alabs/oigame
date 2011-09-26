@@ -6,8 +6,42 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.jqplot
 //= require_tree .
 //
+
+////////////////////////// chart_draw: jqplot helper  - start
+
+function chart_draw(items, chart_id, chart_title, color){
+  $.jqplot(chart_id, [items], {
+    title: chart_title,
+    highlighter: {
+      tooltipAxes: 'y',
+    },
+    grid: {
+        drawGridlines: false
+    },
+    axes: {
+      xaxis: {
+        label:'Fecha (Año-Mes)',
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+        renderer:$.jqplot.DateAxisRenderer,
+        tickOptions:{formatString:'%Y-%m'},
+        tickInterval:'1 month'
+      },
+      yaxis: {
+        label:'Cantidad',
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+      }
+    },
+    series: [{
+      color: color,
+      lineWidth:4
+    }]
+  }); 
+}
+
+////////////////////////// chart_draw: jqplot helper  - end
 
 ////////////////////////// activity-realtime start
 
@@ -133,9 +167,13 @@ $(function() {
     autoOpen: false
   });
 
+  $.jqplot.config.enablePlugins = true;
+
   $("#show-modal-stats-window").click(function(event) {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
+    var items_messages = $('#stats-data').text();
+    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', 'red');
   });
 
 });
