@@ -127,4 +127,16 @@ $(function() {
     $("html, body").animate({scrollTop:targetTop}, 1000);
     $("#campaign-message-form #email").focus();
   }); 
+
+  $("#show-modal-stats-window").click(function(event) {
+    url = '/campaigns/' + $(this).attr('data-campaign') + '/stats';
+    console.log(url);
+    $('<div/>').dialog2({
+      title: "Cargando...",
+      content: url,
+      id: "modal-stats-window"
+    });
+    event.preventDefault();
+  });
+
 });
