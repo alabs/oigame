@@ -89,6 +89,8 @@ class CampaignsController < ApplicationController
   end
 
   # Estadísticas de una campaña
+  # @data es: [fecha, mensajes enviados]
   def stats
+    @data = "[['2011-09-23 4:00PM',3023], ['2011-09-24 4:00PM',6023],  ['2011-09-25 4:00PM',16023],  ['2011-09-26 4:00PM',26023],  ['2011-09-27 4:00PM',46023]]"
   end
 end
