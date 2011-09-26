@@ -29,7 +29,7 @@ Oigame::Application.configure do
   config.assets.debug = true
 
   # Para Devise
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'localhost:8080' }
   
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
