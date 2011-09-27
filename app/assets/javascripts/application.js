@@ -137,5 +137,15 @@ $(function() {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
   });
+  
+  $("#modal-widget-window").dialog2({
+    removeOnClose: false,
+    autoOpen: false
+  });
+
+  $("#show-modal-widget").click(function(event) {
+    event.preventDefault();
+    $("#modal-widget-window").dialog2("open");
+  });
 
 });

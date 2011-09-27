@@ -47,7 +47,7 @@
       </div><!-- campaign-message-form -->
       <div id="campaign-stats">
         <h2><%= t(:campaign_stats) %></h2>
-        <p style="font-size: 1.3em;"><a href="#" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
+        <p style="font-size: 1.2em;"><a href="#" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
 
         <div id="modal-stats-window" style="display:none;">
           <h1>Hola modal</h1>
@@ -57,7 +57,12 @@
       </div><!-- campaign-stats -->
       <div id="integrate-this-campaign">
         <h2>Integra esta campaña en tu sitio</h2>
-        <p style="font-size: 1.3em;">Aquí el Javascript para integrar esta campaña en otro sitio web.</p>
+        <p style="font-size: 1.2em;">Información de como incluir <a href="#" id="show-modal-widget">el widget de esta campaña</a> en tu sitio web.</p>
+
+        <div id="modal-widget-window" style="display:none;">
+          <p style="font-size: 1.4em; font-weight:bold;">Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript:</p><br />
+          <p style="font-weight-bold;"><%=h "<script src=\"http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget\"></script>" %></p>
+        </div>
       </div>
     </div><!-- show-campaign-sidebar -->
   </div><!-- show-campaign -->
