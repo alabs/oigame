@@ -6,3 +6,4 @@ tmp/
 *.swp
 public/assets/*
 public/uploads/
+config/database.yml
