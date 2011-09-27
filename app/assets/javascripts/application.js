@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.jqplot
+//= require external
 //= require_tree .
 //
 
