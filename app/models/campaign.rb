@@ -1,9 +1,10 @@
 class Campaign < ActiveRecord::Base
 
   belongs_to :user
-  has_and_belongs_to_many :emails
   
   attr_accessible :name, :intro, :body, :recipients, :tag_list, :image
+
+  serialize :emails, Array
 
   validates_presence_of :name, :intro, :body
   validates_uniqueness_of :name
@@ -12,9 +13,7 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :image, CampaignImageUploader
 
-  attr_accessor :recipients
-
-  before_save :generate_slug, :create_recipients
+  before_save :generate_slug
 
   class << self
 
@@ -27,23 +26,20 @@ class Campaign < ActiveRecord::Base
     slug
   end
 
+  def emails=
+    emails = emails.gsub(/\s+/, ',').split(',')
+    emails.each {|address| address.downcase! }.uniq!
+    self.emails = emails
+  end
+
   def to_html(field)
     markdown = Redcarpet.new(field)
     markdown.to_html
   end
 
-
   private
 
   def generate_slug
     self.slug = self.name.parameterize
-  end
-
-  # método para crear registros en la tabla emails
-  def create_recipients
-    #logger.debug('DEBUG: Lista de destinatarios: ' + recipients.inspect)
-    addresses = recipients.gsub(/\s+/, ',').split(',')
-    addresses.each {|a| a.downcase! }.uniq!
-    addresses.each {|a| emails << Email.create(:address => a) }
   end
 end
