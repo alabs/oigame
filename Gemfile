@@ -22,7 +22,7 @@ gem 'jquery-rails'
 gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -34,7 +34,6 @@ end
 
 gem 'devise'
 gem 'activeadmin'
-gem 'capistrano'
 gem 'sass-rails', "  ~> 3.1.0"
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'acts-as-taggable-on'
