@@ -144,6 +144,7 @@ $(function() {
   });
 
   $("#show-modal-widget").click(function(event) {
+    $("#modal-widget-window").parent().addClass("modal-large");
     event.preventDefault();
     $("#modal-widget-window").dialog2("open");
   });

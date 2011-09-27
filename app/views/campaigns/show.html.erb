@@ -60,10 +60,19 @@
         <p style="font-size: 1.2em;">Información de como incluir <a href="#" id="show-modal-widget">el widget de esta campaña</a> en tu sitio web.</p>
 
         <div id="modal-widget-window" style="display:none;">
-          <p style="font-size: 1.4em; font-weight:bold;">Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript:</p><br />
-          <p style="font-weight-bold;"><%=h "<script src=\"http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget\"></script>" %></p>
-        </div>
-      </div>
+          <h1> Integrar formulario</h1>
+          <div id="modal-widget-window-main">
+            <div id="modal-widget-window-integrate">
+              <p>Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:</p><br />
+              <pre><%=h "<script type=\"text\/javascript\" src=\"http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></pre>
+            </div><!-- modal-widget-window-integrate -->
+            <div id="modal-widget-window-example">
+              <p>Resultado</p>
+              <%= render :partial => "widget_iframe" %>
+            </div><!-- modal-widget-window-example -->
+          </div><!-- modal-widget-window-wrapper -->
+        </div><!-- modal-widget-window -->
+      </div><!-- integrate-this-campaign -->
     </div><!-- show-campaign-sidebar -->
   </div><!-- show-campaign -->
 </div><!-- campaigns-wrapper -->
