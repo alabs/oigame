@@ -12,8 +12,10 @@ Oigame::Application.routes.draw do
       get 'tag'
     end
   end
-  #devise_for :admin_users, ActiveAdmin::Devise.config
-  #ActiveAdmin.routes(self)
+  if Rails.env == 'production' %>
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    ActiveAdmin.routes(self)
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
