@@ -128,6 +128,7 @@ $(function() {
     $("#campaign-message-form #email").focus();
   }); 
 
+  // modal-stats start
   $("#modal-stats-window").dialog2({
     removeOnClose: false,
     autoOpen: false
@@ -137,7 +138,9 @@ $(function() {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
   });
-  
+  // modal-stats end
+
+  // modal-widget start
   $("#modal-widget-window").dialog2({
     removeOnClose: false,
     autoOpen: false
@@ -148,5 +151,15 @@ $(function() {
     event.preventDefault();
     $("#modal-widget-window").dialog2("open");
   });
+  // modal-widget end
+
+  // comment-form floating start
+  $('#show-campaign-sidebar').scrollToFixed({
+    marginTop:
+      $('#header').outerHeight() + 10,
+    limit:
+      $('#links-wrapper').offset().top - $('#show-campaign-sidebar').outerHeight() - 10
+  });
+  // comment-form floating end
 
 });

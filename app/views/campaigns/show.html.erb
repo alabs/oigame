@@ -20,6 +20,35 @@
       <%= @campaign.to_html(@campaign.intro).html_safe %> 
       <%= @campaign.to_html(@campaign.body).html_safe %> 
       <p id="this-campaign-link"><%= link_to t(:join_this_campaign), '#show-campaign-sidebar', :id => 'join-this-campaign-link' %></p>
+
+      <div id="campaign-stats">
+        <h2><%= t(:campaign_stats) %></h2>
+        <p style="font-size: 1.2em;"><a href="#" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
+        <div id="modal-stats-window" style="display:none;">
+          <h1>Hola modal</h1>
+          <div id="data" style="display: none;"><%= @stats_data %></div>
+        </div>
+      </div><!-- campaign-stats -->
+
+      <div id="integrate-this-campaign">
+        <h2>Integra esta campaña en tu sitio</h2>
+        <p style="font-size: 1.2em;">Información de como incluir <a href="#" id="show-modal-widget">el widget de esta campaña</a> en tu sitio web.</p>
+
+        <div id="modal-widget-window" style="display:none;">
+          <h1> Integrar formulario</h1>
+          <div id="modal-widget-window-main">
+            <div id="modal-widget-window-integrate">
+              <p>Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:</p><br />
+              <pre><%=h "<script type=\"text\/javascript\" src=\"http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></pre>
+            </div><!-- modal-widget-window-integrate -->
+            <div id="modal-widget-window-example">
+              <p>Resultado</p>
+              <%= render :partial => "widget_iframe" %>
+            </div><!-- modal-widget-window-example -->
+          </div><!-- modal-widget-window-wrapper -->
+        </div><!-- modal-widget-window -->
+      </div><!-- integrate-this-campaign -->
+
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar">
       <h2 id="jtc"><%= t(:join_this_campaign) %></h2>
@@ -45,34 +74,6 @@
           </fieldset>
         <% end %>
       </div><!-- campaign-message-form -->
-      <div id="campaign-stats">
-        <h2><%= t(:campaign_stats) %></h2>
-        <p style="font-size: 1.2em;"><a href="#" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
-
-        <div id="modal-stats-window" style="display:none;">
-          <h1>Hola modal</h1>
-          <div id="data" style="display: none;"><%= @stats_data %></div>
-        </div>
-
-      </div><!-- campaign-stats -->
-      <div id="integrate-this-campaign">
-        <h2>Integra esta campaña en tu sitio</h2>
-        <p style="font-size: 1.2em;">Información de como incluir <a href="#" id="show-modal-widget">el widget de esta campaña</a> en tu sitio web.</p>
-
-        <div id="modal-widget-window" style="display:none;">
-          <h1> Integrar formulario</h1>
-          <div id="modal-widget-window-main">
-            <div id="modal-widget-window-integrate">
-              <p>Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:</p><br />
-              <pre><%=h "<script type=\"text\/javascript\" src=\"http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></pre>
-            </div><!-- modal-widget-window-integrate -->
-            <div id="modal-widget-window-example">
-              <p>Resultado</p>
-              <%= render :partial => "widget_iframe" %>
-            </div><!-- modal-widget-window-example -->
-          </div><!-- modal-widget-window-wrapper -->
-        </div><!-- modal-widget-window -->
-      </div><!-- integrate-this-campaign -->
     </div><!-- show-campaign-sidebar -->
   </div><!-- show-campaign -->
 </div><!-- campaigns-wrapper -->
