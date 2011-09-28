@@ -19,10 +19,9 @@
       <%= image_tag(@campaign.image_url.to_s) %>
       <%= @campaign.to_html(@campaign.intro).html_safe %> 
       <%= @campaign.to_html(@campaign.body).html_safe %> 
-      <p id="this-campaign-link"><%= link_to t(:join_this_campaign), '#show-campaign-sidebar', :id => 'join-this-campaign-link' %></p>
 
       <div id="campaign-stats">
-        <h2><%= t(:campaign_stats) %></h2>
+        <h3><%= t(:campaign_stats) %></h3>
         <p style="font-size: 1.2em;"><a href="#" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
         <div id="modal-stats-window" style="display:none;">
           <h1>Hola modal</h1>
@@ -31,7 +30,7 @@
       </div><!-- campaign-stats -->
 
       <div id="integrate-this-campaign">
-        <h2>Integra esta campaña en tu sitio</h2>
+        <h3>Integra esta campaña en tu sitio</h3>
         <p style="font-size: 1.2em;">Información de como incluir <a href="#" id="show-modal-widget">el widget de esta campaña</a> en tu sitio web.</p>
 
         <div id="modal-widget-window" style="display:none;">
