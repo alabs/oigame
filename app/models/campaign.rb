@@ -3,6 +3,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   
   attr_accessible :name, :intro, :body, :recipients, :tag_list, :image
+  attr_accessor :recipients
 
   serialize :emails, Array
 
@@ -30,10 +31,15 @@ class Campaign < ActiveRecord::Base
     slug
   end
 
-  def emails=
-    emails = emails.gsub(/\s+/, ',').split(',')
-    emails.each {|address| address.downcase! }.uniq!
-    self.emails = emails
+  def recipients
+    self.emails.join("\r\n")
+  end
+
+  def recipients=(args)
+    addresses = args.gsub(/\s+/, ',').split(',')
+    addresses.each {|address| address.downcase! }.uniq!
+    addresses.delete_if {|a| a.blank? }
+    self.emails = addresses
   end
 
   def to_html(field)
