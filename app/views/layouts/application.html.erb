@@ -61,8 +61,8 @@
             <% end %>
             <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
             <li><%= link_to t(:community), 'http://community.oiga.me/' %></li>
-            <li><%= link_to t(:donate), '#' %></li>
-            <li><%= link_to t(:help), '#' %></li>
+            <li><%= link_to t(:donate), donate_path %></li>
+            <li><%= link_to t(:help), help_path %></li>
           </ul>
         </div>
       </div>
@@ -86,10 +86,10 @@
     <div id="footer-wrapper">
       <div id="footer-main">
         <div id="info-links">
-          <p>&copy; 2010-<%= Time.now.year %> Algunos derechos reservados | <%= link_to t(:privacy_policy), '#' %> | <%= link_to t(:unsubscribe), '#' %></p>
+          <p>&copy; 2010-<%= Time.now.year %> Algunos derechos reservados | <%= link_to t(:privacy_policy), privacy_policy_path %></p>
         </div>
         <div id="footer-donate">
-          <p><%= link_to 'Donar a oiga.me', '#' %></p>
+          <p><%= link_to 'Donar a oiga.me', donate_path %></p>
         </div>
       </div><!-- footer -->
     </div><!-- footer-wrapper -->

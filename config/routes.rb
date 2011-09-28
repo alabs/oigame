@@ -1,6 +1,8 @@
 Oigame::Application.routes.draw do
 
-  get 'testing' => 'pages#testing', :as => 'testing'
+  get 'donate' => 'pages#donate', :as => 'donate'
+  get 'help' => 'pages#help', :as => 'help'
+  get 'privacy-policy' => 'pages#privacy_policy', :as => 'privacy_policy'
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }
   resources :campaigns do
     member do

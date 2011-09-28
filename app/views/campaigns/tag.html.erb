@@ -1,9 +1,9 @@
-<% @page_title = t(:last_campaigns) %>
+<% @page_title = 'Campañas con la etiqueta: ' + params[:id]  %>
 
 <div id="campaigns-wrapper">
   <div id="list-campaigns">
     <div id="list-campaigns-info">
-      <h2>Últimas campañas</h2>
+      <h2><%= @page_title %></h2>
       <% @campaigns.each do |campaign| %>
         <div class="campaign-info">
           <h3><%= link_to campaign.name, campaign %></h3>

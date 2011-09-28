@@ -98,4 +98,14 @@ class CampaignsController < ApplicationController
   def widget_iframe
     @campaign = Campaign.find_by_slug(params[:id])
   end
+
+  def tag
+    @campaigns = Campaign.last_campaigns_by_tag(params[:id])
+    @tags = Campaign.tag_counts_on(:tags)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @campaigns }
+    end
+  end
 end

@@ -4,8 +4,12 @@ class PagesController < ApplicationController
     @campaigns = Campaign.last_campaigns(3)
   end
 
-  def testing
-    flash[:error] = 'Esto es un mensaje de prueba'
-    redirect_to root_path
+  def donate
+  end
+
+  def help
+  end
+
+  def privacy_policy
   end
 end

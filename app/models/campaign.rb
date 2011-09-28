@@ -20,6 +20,10 @@ class Campaign < ActiveRecord::Base
     def last_campaigns(limit = nil)
       order("created_at DESC").limit(limit).all
     end
+
+    def last_campaigns_by_tag(tag, limit = nil)
+      tagged_with(tag).order("created_at DESC").limit(limit).all
+    end
   end
 
   def to_param
