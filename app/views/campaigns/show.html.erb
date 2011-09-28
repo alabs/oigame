@@ -3,19 +3,20 @@
 <div id="campaigns-wrapper">
   <div id="show-campaign">
     <div id="show-campaign-detail">
-      <h2>
-        <%= @campaign.name %>
-        <% if @campaign.user == current_user %>
-          <span class="label notice">
-            <%= link_to t(:edit_campaign), edit_campaign_path(@campaign) %>
-          </span>
-        <% end %>
-      </h2>
+      <h2><%= @campaign.name %></h2>
       <div id="social-buttons">
           <g:plusone size="medium" href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
           <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="horizontal" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
           <iframe allowtransparency="true" src="http://www.facebook.com/plugins/like.php?href=http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;height=21&amp;action=like&amp;font=arial&amp;colorscheme=light" style="border:none; overflow:hidden; width:110px; height:21px" frameborder="0" scrolling="no"></iframe>
       </div><!-- social-buttons -->
+      <p id="cdate_and_edit">
+        Campaña creada hace: <%= time_ago_in_words(@campaign.created_at) %>
+        <% if @campaign.user == current_user %>
+          <span class="label notice">
+            <%= link_to t(:edit_campaign), edit_campaign_path(@campaign) %>
+          </span>
+        <% end %>
+      </p>
       <%= image_tag(@campaign.image_url.to_s) %>
       <%= @campaign.to_html(@campaign.intro).html_safe %> 
       <%= @campaign.to_html(@campaign.body).html_safe %> 
