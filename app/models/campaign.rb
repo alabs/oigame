@@ -41,6 +41,10 @@ class Campaign < ActiveRecord::Base
     addresses.delete_if {|a| a.blank? }
     self.emails = addresses
   end
+  
+  def recipients_for_message
+    self.emails.join(',')
+  end
 
   def to_html(field)
     markdown = Redcarpet.new(field)

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CampaignsController < ApplicationController
 
   layout 'application', :except => [:widget, :widget_iframe]
@@ -106,6 +107,17 @@ class CampaignsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @campaigns }
+    end
+  end
+
+  def message
+    if request.post?
+      to = user_signed_in? ? current_user.email : params[:email]
+      campaign = Campaign.find_by_slug(params[:id])
+      Mailman.send_message_to_user(to, params[:subject], params[:body], campaign).deliver
+      redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+
+      return
     end
   end
 end

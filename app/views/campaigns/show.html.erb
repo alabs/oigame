@@ -55,10 +55,12 @@
       <div id="campaign-message-form" class="form-stacked">
         <%= form_tag message_campaign_path do %>
           <fieldset>
-            <div class="form-field">
-              <%= label_tag t(:your_email) %>
-              <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
-            </div>
+            <% unless user_signed_in? %>
+              <div class="form-field">
+                <%= label_tag t(:your_email) %>
+                <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+              </div>
+            <% end %>
             <div class="form-field">
               <%= label_tag t(:subject) %>
               <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje', :class => 'span5' %>
