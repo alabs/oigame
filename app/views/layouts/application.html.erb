@@ -7,9 +7,6 @@
     <link rel="shortcut icon" href="/assets/favicon.png" />
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-        {lang: 'es'}
-    </script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-19861474-1']);
@@ -20,6 +17,9 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script> 
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+        {lang: 'es'}
+    </script>
   </head>
   <body>
     <% flash.each do |name, msg| %>
