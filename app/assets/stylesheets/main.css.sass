@@ -142,9 +142,14 @@ a, a:hover
     margin: 15px auto
     padding-bottom: 30px
 
-    #campaigns-slideshow, #activity-realtime
-      @extend .grid_11
+    #campaigns-slideshow, #activity-realtime, #whats-oigame
       padding: 15px
+
+    #campaigns-slideshow
+      @extend .grid_9
+
+    #activity-realtime, #whats-oigame
+      @extend .grid_13
 
     #campaigns-slideshow
       height: 300px
@@ -153,6 +158,13 @@ a, a:hover
       #slider
         height: 264px
         width: 352px
+
+    #whats-oigame
+      @extend .omega
+      h2
+        margin-bottom: 15px
+      p
+        font-size: 1.2em
 
     #activity-realtime
       @extend .omega
@@ -430,7 +442,7 @@ a, a:hover
     #links-message
       @extend .grid_10
       p
-        font-size: 1.3em
+        font-size: 1.1em
 
     #links-social
       float: right
@@ -461,14 +473,16 @@ a, a:hover
     @extend .container_24
     a
       color: #fff
+    p
+      font-size: 1.1em
 
     #info-links
       margin-top: 20px
-      @extend .grid_12
+      @extend .grid_18
       @extend .alpha
 
     #footer-donate
       margin-top: 20px
       text-align: right
-      @extend .grid_12
+      @extend .grid_6
       @extend .omega
