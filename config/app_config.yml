@@ -5,4 +5,4 @@ test:
   domain: localhost:8080
 
 production:
-  domain: beta.oiga.me
+  domain: oiga.me
