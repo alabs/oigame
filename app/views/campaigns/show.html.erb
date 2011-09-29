@@ -25,16 +25,24 @@
 
       <div id="campaign-stats">
         <h3><%= t(:campaign_stats) %></h3>
-        <p style="font-size: 1.2em;"><a href="#" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
-        <div id="modal-stats-window" style="display:none;">
-          <h1>Hola modal</h1>
-          <div id="data" style="display: none;"><%= @stats_data %></div>
-        </div>
+        <p style="font-size: 1.2em;">Ver las <a href="#" id="show-modal-stats-window">estadísticas de envío</a>.</p>
+        
+        <div id="modal-stats-window">
+          <h1>Estadísticas de envío</h1>
+          <div id="stats-data" style="display: none;"><%= @stats_data %></div>
+          <div id="chart_center" style="width: 400px; height:300px; margin: 0px auto;">
+            <div id="chart_messages"></div>
+          </div>
+          <div class="actions">
+              <button class="primary close-dialog">Cerrar</button>
+          </div>
+        </div><!-- modal-stats-window -->
+
       </div><!-- campaign-stats -->
 
       <div id="integrate-this-campaign">
         <h3>Integra esta campaña en tu sitio</h3>
-        <p style="font-size: 1.2em;">Información de como incluir <a href="#" id="show-modal-widget">el widget de esta campaña</a> en tu sitio web.</p>
+        <p style="font-size: 1.2em;">Ver las instrucciones de como incluir <a href="#" id="show-modal-widget">el widget de esta campaña</a> en tu sitio web.</p>
 
         <div id="modal-widget-window" style="display:none;">
           <h1> Integrar formulario</h1>
@@ -48,6 +56,9 @@
               <%= render :partial => "widget_iframe" %>
             </div><!-- modal-widget-window-example -->
           </div><!-- modal-widget-window-wrapper -->
+          <div class="actions">
+              <button class="primary close-dialog">Cerrar</button>
+          </div>
         </div><!-- modal-widget-window -->
       </div><!-- integrate-this-campaign -->
 

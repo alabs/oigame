@@ -1,15 +1,7 @@
-// This is a manifest file that'll be compiled into including all the files listed below.
-// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-// be included in the compiled file accessible from http://example.com/assets/application.js
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require external
 //
-//
-////////////////////////// cookies start
 
 function createCookie(name,value,days) {
 	if (days) {
@@ -36,6 +28,39 @@ function eraseCookie(name) {
 	createCookie(name,"",-1);
 }
 ////////////////////////// cookies end
+
+////////////////////////// chart_draw: jqplot helper  - start
+
+function chart_draw(items, chart_id, chart_title, color){
+  $.jqplot(chart_id, [items], {
+    title: chart_title,
+    highlighter: {
+      tooltipAxes: 'y',
+    },
+    grid: {
+        drawGridlines: false
+    },
+    axes: {
+      xaxis: {
+        label:'Fecha (Día-Mes)',
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+        renderer:$.jqplot.DateAxisRenderer,
+        tickOptions:{formatString:'%d-%m'},
+        tickInterval:'1 day'
+      },
+      yaxis: {
+        label:'Cantidad',
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+      }
+    },
+    series: [{
+      color: color,
+      lineWidth:4
+    }]
+  }); 
+}
+
+////////////////////////// chart_draw: jqplot helper  - end
 
 ////////////////////////// activity-realtime start
 
@@ -121,19 +146,11 @@ function check_current_navbar(section){
     case 'users':
       $('#header-signup').addClass('active');
       break;
-    case 'donate':
-      $('#header-donate').addClass('active');
-      break;
-    case 'help':
-      $('#header-help').addClass('active');
-      break;
   }
 }
 ////////////////////////// check-current-navbar start
 
 $(function() {
-
-  $("#slider").nivoSlider();
 
   $(".flash-messages").delay(15000).fadeOut();
 
@@ -162,9 +179,19 @@ $(function() {
     $("#campaign-message-form #email").focus();
   }); 
 
-  // modal-stats start
+
+  ////////////////////////// modal-stats-window start
+  $.jqplot.config.enablePlugins = true;
+
+  // comprobamos que se encuentre la data
+  if ( $('#stats-data').text().length != 0 ) {
+    var items_messages = JSON.parse($('#stats-data').text());
+    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', 'red');
+  }
+
   $("#modal-stats-window").dialog2({
     removeOnClose: false,
+    modal: true,
     autoOpen: false
   });
 
@@ -172,7 +199,7 @@ $(function() {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
   });
-  // modal-stats end
+  ////////////////////////// modal-stats-window end
 
   // modal-widget start
   $("#modal-widget-window").dialog2({
@@ -209,4 +236,8 @@ $(function() {
   // modal-beta-home end
   
 
+});
+
+$(window).load(function() {
+  $("#slider").nivoSlider();
 });
