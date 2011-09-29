@@ -12,6 +12,8 @@
       <p id="cdate_and_edit">
         Campaña creada hace: <%= time_ago_in_words(@campaign.created_at) %>
         <% if @campaign.user == current_user %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <span class="label notice">
             <%= link_to t(:edit_campaign), edit_campaign_path(@campaign) %>
           </span>
