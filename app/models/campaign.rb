@@ -15,7 +15,10 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, CampaignImageUploader
 
   before_save :generate_slug
-  after_create :send_campaign_twitter
+
+  if Rails.env == 'production'
+    after_create :send_campaign_twitter
+  end
 
   class << self
 
