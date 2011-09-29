@@ -16,9 +16,9 @@ class Campaign < ActiveRecord::Base
 
   before_save :generate_slug
 
-  if Rails.env == 'production'
-    after_create :send_campaign_twitter
-  end
+  #if Rails.env == 'production'
+  #  after_create :send_campaign_twitter
+  #end
 
   class << self
 
