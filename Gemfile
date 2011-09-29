@@ -41,3 +41,4 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'redcarpet'
 gem 'pry', :group => :development
+gem 'twitter'
