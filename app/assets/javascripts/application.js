@@ -121,6 +121,12 @@ function check_current_navbar(section){
     case 'users':
       $('#header-signup').addClass('active');
       break;
+    case 'donate':
+      $('#header-donate').addClass('active');
+      break;
+    case 'help':
+      $('#header-help').addClass('active');
+      break;
   }
 }
 ////////////////////////// check-current-navbar start
