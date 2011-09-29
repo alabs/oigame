@@ -89,7 +89,8 @@ namespace :deploy do
       ln -s #{shared_path}/system #{latest_release}/public/system &&
       ln -s #{shared_path}/pids #{latest_release}/tmp/pids &&
       ln -sf #{shared_path}/config/database.yml #{latest_release}/config/database.yml &&
-      ln -sf #{shared_path}/uploads #{latest_release}/public
+      ln -sf #{shared_path}/uploads #{latest_release}/public &&
+      ln -sf #{shared_path}/config/app_config.yml #{latest_release}/config/app_config.yml
     CMD
 
     if fetch(:normalize_asset_timestamps, true)

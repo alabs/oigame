@@ -142,17 +142,29 @@ a, a:hover
     margin: 15px auto
     padding-bottom: 30px
 
-    #campaigns-slideshow, #activity-realtime
-      @extend .grid_11
+    #campaigns-slideshow, #activity-realtime, #whats-oigame
       padding: 15px
+
+    #campaigns-slideshow
+      @extend .grid_9
+
+    #activity-realtime, #whats-oigame
+      @extend .grid_13
 
     #campaigns-slideshow
       height: 300px
       @extend .alpha
 
       #slider
-        height: 224px
-        width: 416px
+        height: 264px
+        width: 352px
+
+    #whats-oigame
+      @extend .omega
+      h2
+        margin-bottom: 15px
+      p
+        font-size: 1.2em
 
     #activity-realtime
       @extend .omega
@@ -182,6 +194,33 @@ a, a:hover
             width: auto
             .login
               font-weight: bold
+
+#page-wrapper
+  background-color: #f1f2f1
+  padding-top: 30px
+  padding-bottom: 30px
+
+  #page
+    @extend .container_24
+    background-color: #fff
+    border: 1px solid #e8e8e8
+    
+    #page-info
+      @extend .grid_14
+      @extend .alpha
+      padding: 25px
+      border-right: 1px dashed #e8e8e8
+      h2
+        font-size: 2.2em
+        margin-bottom: 15px
+      h3
+        font-size: 1.6em
+      p, li
+        color: #000
+        font-size: 1.1em
+      li
+        margin-bottom: 10px
+
 
 #campaigns-wrapper
   background-color: #f1f2f1
@@ -238,10 +277,13 @@ a, a:hover
       h2
         font-size: 2.2em
         margin-bottom: 0px
-        a, a:hover
-          color: #fff
       img
         margin-bottom: 15px
+      p#cdate_and_edit
+        font-size: .9em
+        font-weight: bold
+        a, a:hover
+          color: #fff
       p
         font-size: 1.1em
         text-align: justify
@@ -252,6 +294,7 @@ a, a:hover
       #social-buttons
         width: 100%
         margin-bottom: 10px
+        margin-top: 10px
 
     #show-campaign-sidebar
       @extend .grid_8
@@ -399,7 +442,7 @@ a, a:hover
     #links-message
       @extend .grid_10
       p
-        font-size: 1.3em
+        font-size: 1.1em
 
     #links-social
       float: right
@@ -430,14 +473,16 @@ a, a:hover
     @extend .container_24
     a
       color: #fff
+    p
+      font-size: 1.1em
 
     #info-links
       margin-top: 20px
-      @extend .grid_12
+      @extend .grid_18
       @extend .alpha
 
     #footer-donate
       margin-top: 20px
       text-align: right
-      @extend .grid_12
+      @extend .grid_6
       @extend .omega

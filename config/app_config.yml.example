@@ -1,0 +1,17 @@
+defaults: &defaults
+  twitter_consumer_key: ''
+  twitter_consumer_secret: ''
+  twitter_oauth_token: ''
+  twitter_oauth_token_secret: ''
+
+development:
+  <<: *defaults
+  domain: localhost:8080
+
+test:
+  <<: *defaults
+  domain: localhost:8080
+
+production:
+  <<: *defaults
+  domain: oiga.me

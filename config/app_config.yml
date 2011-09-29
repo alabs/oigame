@@ -1,8 +1,0 @@
-development:
-  domain: localhost:8080
-
-test:
-  domain: localhost:8080
-
-production:
-  domain: beta.oiga.me

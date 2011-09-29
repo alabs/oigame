@@ -1,0 +1,8 @@
+<h1><%= @campaign.name %></h1>
+
+<p>Para terminar el proceso de adhesión a la campaña '<%= @campaign.name %>' en <a href="http://beta.oiga.me/">oiga.me</a> te pedimos que envies tú mismo el mensaje a los destinatarios de la campaña haciendo click en el siguiente enlace:</p>
+
+<a href="mailto:<%= @message_to %>?bcc=<%= @campaign.recipients_for_message %>&subject=<%= @message_subject %>&body=<%= @message_body %>">Terminar el proceso</a>
+
+<p>Graciar por participar en oiga.me</p>
+

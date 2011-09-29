@@ -4,19 +4,9 @@
     <meta charset="utf-8" />
     <title><%= @page_title %> - oiga.me</title>
     <%= stylesheet_link_tag 'main' %>
+    <link rel="shortcut icon" href="/assets/favicon.png" />
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-    <script type="text/javascript">
-      var uvOptions = {};
-      (function() {
-        var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-        uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/vyJKUH9hro9s2yOsARJQ.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-      })();
-    </script>
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-        {lang: 'es'}
-    </script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-19861474-1']);
@@ -27,6 +17,9 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script> 
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+        {lang: 'es'}
+    </script>
   </head>
   <body>
     <% flash.each do |name, msg| %>
@@ -60,8 +53,8 @@
             <% end %>
             <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
             <li><%= link_to t(:community), 'http://community.oiga.me/' %></li>
-            <li><%= link_to t(:donate), '#' %></li>
-            <li><%= link_to t(:help), '#' %></li>
+            <li><%= link_to t(:donate), donate_path %></li>
+            <li><%= link_to t(:help), help_path %></li>
           </ul>
         </div>
       </div>
@@ -85,10 +78,10 @@
     <div id="footer-wrapper">
       <div id="footer-main">
         <div id="info-links">
-          <p>&copy; 2010-<%= Time.now.year %> Algunos derechos reservados | <%= link_to t(:privacy_policy), '#' %> | <%= link_to t(:unsubscribe), '#' %></p>
+          <p>&copy; 2010-<%= Time.now.year %> Algunos derechos reservados | <%= link_to t(:privacy_policy), privacy_policy_path %> | <%= link_to t(:developers), 'https://github.com/alabs/oigame' %></p>
         </div>
         <div id="footer-donate">
-          <p><%= link_to 'Donar a oiga.me', '#' %></p>
+          <p><%= link_to 'Donar a oiga.me', donate_path %></p>
         </div>
       </div><!-- footer -->
     </div><!-- footer-wrapper -->

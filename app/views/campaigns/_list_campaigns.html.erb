@@ -1,0 +1,31 @@
+<div id="campaigns-wrapper">
+  <div id="list-campaigns">
+    <div id="list-campaigns-info">
+      <h2><%= @page_title %></h2>
+      <% @campaigns.each do |campaign| %>
+        <div class="campaign-info">
+          <h3><%= link_to campaign.name, campaign %></h3>
+          <div class="cinfo">
+            <div class="campaign-image">
+              <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
+              <p><%= link_to t(:join_this_campaign), campaign %><br /><strong>8456</strong> personas ya lo han hecho</p>
+              <p>Campaña creada hace: <strong><%= time_ago_in_words(campaign.created_at) %></strong></p>
+            </div>
+            <div class="campaign-text">
+              <%= campaign.to_html(campaign.intro).html_safe %>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      <% end %>
+    </div><!-- list-campaigns-info -->
+    <div id="list-campaigns-sidebar">
+      <h2 style="font-size: 2em;"><%= link_to t(:create_campaign), new_campaign_path %></h2>
+      <br /><br />
+      <h2>Etiquetas más usadas</h2>
+      <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+        <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+      <% end %>
+    </div><!-- list-campaigns-sidebar -->
+  </div><!-- list-campaigns -->
+</div><!-- campaigns-wrapper -->
