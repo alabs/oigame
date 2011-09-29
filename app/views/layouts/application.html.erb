@@ -92,6 +92,25 @@
         </div>
       </div><!-- footer -->
     </div><!-- footer-wrapper -->
+    <div id="modal-beta-notice" style="display:none;">
+      <h1>Aviso importante</h1>
+      <p>
+        Te damos la bienvenida a oiga.me, la plataforma creada por <a
+          href="http://alabs.es/">aLabs</a> para crear campañas de movilización
+        social. Esta web que estas viendo es una versión beta, que aunque
+        funcional no es operativa todavía. Por lo tanto los usuarios que te
+        crees y el contenido que subas al servidor podrá ser borrado en
+        cualquier momento. La primera versión estable estará disponible en la
+        dirección web: <a href="http://oiga.me/">http://oiga.me/</a>
+      </p>
+
+      <p>
+        Disfruta y fluye por el sitio.
+      </p>
+      <div class="actions">
+          <button class="close-dialog btn primary">Cerrar</button>
+      </div>
+    </div>
     <% if Rails.env == 'development' %>
       <div id="debug">
         <%= debug(params) %>
