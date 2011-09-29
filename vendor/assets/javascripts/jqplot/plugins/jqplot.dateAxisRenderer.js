@@ -2,7 +2,7 @@
  * jqPlot
  * Pure JavaScript plotting plugin using jQuery
  *
- * Version: 1.0.0b2_r792
+ * Version: @VERSION
  *
  * Copyright (c) 2009-2011 Chris Leonello
  * jqPlot is currently available for use in all personal or commercial projects 
@@ -197,6 +197,43 @@
 					}
                 }
 				sum += intv;              
+            }
+
+            if (s.renderer.bands) {
+                if (s.renderer.bands.hiData.length) {
+                    var bd = s.renderer.bands.hiData;
+                    for (var j=0, l=bd.length; j < l; j++) {
+                        if (this.name === 'xaxis' || this.name === 'x2axis') {
+                            bd[j][0] = new $.jsDate(bd[j][0]).getTime();
+                            if ((bd[j][0] != null && bd[j][0] > db.max) || db.max == null) {
+                                db.max = bd[j][0];
+                            }                        
+                        }              
+                        else {
+                            bd[j][1] = new $.jsDate(bd[j][1]).getTime();
+                            if ((bd[j][1] != null && bd[j][1] > db.max) || db.max == null) {
+                                db.max = bd[j][1];
+                            }
+                        }
+                    }
+                }
+                if (s.renderer.bands.lowData.length) {
+                    var bd = s.renderer.bands.lowData;
+                    for (var j=0, l=bd.length; j < l; j++) {
+                        if (this.name === 'xaxis' || this.name === 'x2axis') {
+                            bd[j][0] = new $.jsDate(bd[j][0]).getTime();
+                            if ((bd[j][0] != null && bd[j][0] < db.min) || db.min == null) {
+                                db.min = bd[j][0];
+                            }                       
+                        }              
+                        else {
+                            bd[j][1] = new $.jsDate(bd[j][1]).getTime();
+                            if ((bd[j][1] != null && bd[j][1] < db.min) || db.min == null) {
+                                db.min = bd[j][1];
+                            }
+                        }
+                    }
+                }
             }
 			
 			var tempf = 0,

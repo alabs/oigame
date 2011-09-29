@@ -1,14 +1,6 @@
-// This is a manifest file that'll be compiled into including all the files listed below.
-// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-// be included in the compiled file accessible from http://example.com/assets/application.js
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
 //= require jquery
 //= require jquery_ujs
-//= require jquery.jqplot
 //= require external
-//= require_tree .
 //
 
 ////////////////////////// chart_draw: jqplot helper  - start
@@ -24,11 +16,11 @@ function chart_draw(items, chart_id, chart_title, color){
     },
     axes: {
       xaxis: {
-        label:'Fecha (Año-Mes)',
+        label:'Fecha (Día-Mes)',
         labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
         renderer:$.jqplot.DateAxisRenderer,
-        tickOptions:{formatString:'%Y-%m'},
-        tickInterval:'1 month'
+        tickOptions:{formatString:'%d-%m'},
+        tickInterval:'1 day'
       },
       yaxis: {
         label:'Cantidad',
@@ -134,8 +126,6 @@ function check_current_navbar(section){
 
 $(function() {
 
-  $("#slider").nivoSlider();
-
   $(".flash-messages").delay(15000).fadeOut();
 
   $(".flash-messages a.close").click(function() {
@@ -163,18 +153,30 @@ $(function() {
     $("#campaign-message-form #email").focus();
   }); 
 
+
+  ////////////////////////// modal-stats-window start
+  $.jqplot.config.enablePlugins = true;
+
+  // comprobamos que se encuentre la data
+  if ( $('#stats-data').text().length != 0 ) {
+    var items_messages = JSON.parse($('#stats-data').text());
+    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', 'red');
+  }
+
   $("#modal-stats-window").dialog2({
     removeOnClose: false,
+    modal: true,
     autoOpen: false
   });
-
-  $.jqplot.config.enablePlugins = true;
 
   $("#show-modal-stats-window").click(function(event) {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
-    var items_messages = $('#stats-data').text();
-    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', 'red');
   });
+  ////////////////////////// modal-stats-window end
 
+});
+
+$(window).load(function() {
+  $("#slider").nivoSlider();
 });

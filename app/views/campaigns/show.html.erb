@@ -49,10 +49,12 @@
         <h2><%= t(:campaign_stats) %></h2>
         <p style="font-size: 1.3em;"><a href="#" id="show-modal-stats-window">Aquí las gráficas de jqPlot</a></p>
 
-        <div id="modal-stats-window" style="display:none;">
+        <div id="modal-stats-window">
           <h1>Hola modal</h1>
           <div id="stats-data" style="display: none;"><%= @stats_data %></div>
-          <div id="chart_messages"></div>
+          <div id="chart_center" style="width: 400px; height:300px; margin: 0px auto;">
+            <div id="chart_messages"></div>
+          </div>
           <div class="actions">
               <button class="primary close-dialog">Cerrar</button>
           </div>

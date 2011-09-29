@@ -20,7 +20,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:id])
     
     # @stats_data es: [fecha, mensajes enviados]
-    @stats_data = "[['2011-09-23 4:00PM',3023], ['2011-09-24 4:00PM',6023],  ['2011-09-25 4:00PM',16023],  ['2011-09-26 4:00PM',26023],  ['2011-09-27 4:00PM',46023]]"
+    @stats_data = '[["2011-09-23 4:00PM",3023], ["2011-09-24 4:00PM",6023],  ["2011-09-25 4:00PM",16023],  ["2011-09-26 4:00PM",26023],  ["2011-09-27 4:00PM",46023]]'
 
     respond_to do |format|
       format.html # show.html.erb
