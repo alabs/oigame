@@ -15,6 +15,7 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, CampaignImageUploader
 
   before_save :generate_slug
+  after_create :send_campaign_twitter
 
   class << self
 
@@ -55,5 +56,15 @@ class Campaign < ActiveRecord::Base
 
   def generate_slug
     self.slug = self.name.parameterize
+  end
+
+  def send_campaign_twitter
+    Twitter.configure do |config|
+      config.consumer_key = APP_CONFIG[:twitter_consumer_key]
+      config.consumer_secret = APP_CONFIG[:twitter_consumer_secret]
+      config.oauth_token = APP_CONFIG[:twitter_oauth_token]
+      config.oauth_token_secret = APP_CONFIG[:twitter_oauth_token_secret]
+    end
+    Twitter.update(self.name + ' ' + "http://#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
   end
 end
