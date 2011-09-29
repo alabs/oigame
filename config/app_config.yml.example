@@ -5,10 +5,13 @@ defaults: &defaults
   twitter_oauth_token_secret: ''
 
 development:
+  <<: *defaults
   domain: localhost:8080
 
 test:
+  <<: *defaults
   domain: localhost:8080
 
 production:
+  <<: *defaults
   domain: oiga.me
