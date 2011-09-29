@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require external
 //
+//
+////////////////////////// cookies start
 
 function createCookie(name,value,days) {
 	if (days) {
@@ -145,6 +147,12 @@ function check_current_navbar(section){
       break;
     case 'users':
       $('#header-signup').addClass('active');
+      break;
+    case 'donate':
+      $('#header-donate').addClass('active');
+      break;
+    case 'help':
+      $('#header-help').addClass('active');
       break;
   }
 }
