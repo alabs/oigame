@@ -46,6 +46,20 @@ $(function() {
     $("#campaign-message-form #email").focus();
   }); 
 
+  ////////////////////////// modal-send-message start
+  $("#modal-send-message").dialog2({
+    removeOnClose: false,
+    modal: true,
+    autoOpen: false
+  });
+
+  $("#show-modal-send-message").click(function(event) {
+    event.preventDefault();
+    $('#modal-campaign-message-form').html($('#campaign-message-form').html())
+    $("#modal-send-message").dialog2("open");
+  });
+  ////////////////////////// modal-send-message end
+
 
   ////////////////////////// modal-stats-window start
   $.jqplot.config.enablePlugins = true;
@@ -67,7 +81,7 @@ $(function() {
     $("#modal-stats-window").dialog2("open");
   });
   ////////////////////////// modal-stats-window end
-
+  
   // modal-widget start
   $("#modal-widget-window").dialog2({
     removeOnClose: false,

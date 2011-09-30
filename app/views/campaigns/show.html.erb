@@ -65,7 +65,12 @@
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar-wrapper">
       <div id="show-campaign-sidebar">
-        <h2 id="jtc"><%= t(:join_this_campaign) %></h2>
+        <h2 id="jtc">
+          <%= t(:join_this_campaign) %>
+          <a id="show-modal-send-message" href="#" title="Maximizar">
+            <img style="float:right;" src="/assets/view-fullscreen.png" alt="Maximizar" />
+          </a>
+        </h2>
         <div id="campaign-message-form" class="form-stacked">
           <%= form_tag message_campaign_path do %>
             <fieldset>
@@ -84,12 +89,18 @@
                 <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :class => 'span5', :rows => 10 %>
               </div>
               <div class="form-actions">
-                <%= submit_tag t(:send_message), :class => 'btn primary' %>
-                <button class="btn" type="reset"><%= t(:cancel) %></button>
+                <%= submit_tag t(:send_message), :class => 'btn primary large center' %>
               </div>
             </fieldset>
           <% end %>
         </div><!-- campaign-message-form -->
+        <div id="modal-send-message" style="display:none;">
+          <h1><%= t(:join_this_campaign) %></h1>
+          <div id="modal-campaign-message-form"></div>
+          <div class="actions">
+          </div>
+        </div><!-- modal-send-message -->
+
       </div><!-- show-campaign-sidebar -->
     </div><!-- show-campaign-sidebar-wrapper -->
   </div><!-- show-campaign -->
