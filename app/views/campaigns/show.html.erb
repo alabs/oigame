@@ -63,32 +63,34 @@
       </div><!-- integrate-this-campaign -->
 
     </div><!-- show-campaign-detail -->
-    <div id="show-campaign-sidebar">
-      <h2 id="jtc"><%= t(:join_this_campaign) %></h2>
-      <div id="campaign-message-form" class="form-stacked">
-        <%= form_tag message_campaign_path do %>
-          <fieldset>
-            <% unless user_signed_in? %>
+    <div id="show-campaign-sidebar-wrapper">
+      <div id="show-campaign-sidebar">
+        <h2 id="jtc"><%= t(:join_this_campaign) %></h2>
+        <div id="campaign-message-form" class="form-stacked">
+          <%= form_tag message_campaign_path do %>
+            <fieldset>
+              <% unless user_signed_in? %>
+                <div class="form-field">
+                  <%= label_tag t(:your_email) %>
+                  <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+                </div>
+              <% end %>
               <div class="form-field">
-                <%= label_tag t(:your_email) %>
-                <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+                <%= label_tag t(:subject) %>
+                <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje', :class => 'span5' %>
               </div>
-            <% end %>
-            <div class="form-field">
-              <%= label_tag t(:subject) %>
-              <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje', :class => 'span5' %>
-            </div>
-            <div class="form-field">
-              <%= label_tag t(:message) %>
-              <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :class => 'span5', :rows => 10 %>
-            </div>
-            <div class="form-actions">
-              <%= submit_tag t(:send_message), :class => 'btn primary' %>
-              <button class="btn" type="reset"><%= t(:cancel) %></button>
-            </div>
-          </fieldset>
-        <% end %>
-      </div><!-- campaign-message-form -->
-    </div><!-- show-campaign-sidebar -->
+              <div class="form-field">
+                <%= label_tag t(:message) %>
+                <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :class => 'span5', :rows => 10 %>
+              </div>
+              <div class="form-actions">
+                <%= submit_tag t(:send_message), :class => 'btn primary' %>
+                <button class="btn" type="reset"><%= t(:cancel) %></button>
+              </div>
+            </fieldset>
+          <% end %>
+        </div><!-- campaign-message-form -->
+      </div><!-- show-campaign-sidebar -->
+    </div><!-- show-campaign-sidebar-wrapper -->
   </div><!-- show-campaign -->
 </div><!-- campaigns-wrapper -->
