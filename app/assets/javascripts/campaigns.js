@@ -55,7 +55,13 @@ $(function() {
 
   $("#show-modal-send-message").click(function(event) {
     event.preventDefault();
-    $('#modal-campaign-message-form').html($('#campaign-message-form').html())
+    $("#modal-campaign-message-form").html($("#campaign-message-form").html());
+    $("#modal-send-message").parent().addClass("modal-large");
+    $("#modal-campaign-message-form .btn").removeClass("large")
+    $("#modal-campaign-message-form .form-actions").addClass("actions");
+    $("#modal-campaign-message-form .form-field").addClass('clearfix').removeClass('form-field');
+    $("#modal-campaign-message-form .span5").addClass('span9').removeClass('span5');
+    $("#modal-campaign-message-form input, #modal-campaign-message-form textarea").wrap('<div class="input" />');
     $("#modal-send-message").dialog2("open");
   });
   ////////////////////////// modal-send-message end
