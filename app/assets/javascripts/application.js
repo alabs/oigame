@@ -243,6 +243,14 @@ $(function() {
   }
   // modal-beta-home end
   
+  // TOC para /help start
+  $("#toc").tableOfContents(
+    $("#page-info"), {
+      startLevel: 3, // H2 and up
+      depth: 2 // H2 through H4,
+    }
+  );
+  // TOC para /help end
 
 });
 

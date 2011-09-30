@@ -6,6 +6,7 @@
 //= require jquery-scrolltofixed
 //= require jquery.dialog2
 //= require jquery.nivo.slider.pack
+//= require jquery.tableofcontents
 //= require Markdown.Converter
 //= require Markdown.Editor
 //= require Markdown.Sanitizer
