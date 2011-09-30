@@ -33,15 +33,20 @@ a, a:hover
   -webkit-box-shadow: 0 0 0 0
 
 .flash-messages
-  margin: 0
-  position: absolute !important
-  top: 15px
-  right: 100px
-  width: 960px
-  z-index: 8000
+  width: 100%
+  position: fixed
+  opacity: 0.95
+  text-align: center
+  left: 0px
+  z-index: 9999999
+  margin: 0px
+  padding: .5em
+  top: 0px
   @extend .alert-message
   p
     font-weight: bold
+  .close 
+    margin-right: 1em
 
 .flash-notice
   @extend .success
