@@ -125,13 +125,14 @@ function check_current_navbar(section){
   }
 }
 ////////////////////////// check-current-navbar start
+//
+//
 
 $(function() {
 
-  $(".flash-messages").delay(15000).fadeOut();
-
-  $(".flash-messages a.close").click(function() {
-    $(".flash-messages").toggle();
+  $(".flash-messages a.close").click(function(event) {
+    event.preventDefault();
+    $(this).parent().fadeOut();
   });
 
   $("#user_email").focus();
