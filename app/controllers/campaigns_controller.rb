@@ -23,7 +23,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:id])
     
     # @stats_data es: [fecha, mensajes enviados]
-    @stats_data = "[['2011-09-23 4:00PM',3023], ['2011-09-24 4:00PM',6023],  ['2011-09-25 4:00PM',16023],  ['2011-09-26 4:00PM',26023],  ['2011-09-27 4:00PM',46023]]"
+    @stats_data = '[["2011-09-23 4:00PM",3023], ["2011-09-24 4:00PM",6023],  ["2011-09-25 4:00PM",16023],  ["2011-09-26 4:00PM",26023],  ["2011-09-27 4:00PM",46023]]'
 
     respond_to do |format|
       format.html # show.html.erb
@@ -69,6 +69,14 @@ class CampaignsController < ApplicationController
   def update
     @campaign = Campaign.find_by_slug(params[:id])
 
+    # Solo el usuario autorizado puede actualizar una campaña
+    if @campaign.user != current_user
+      flash[:error] = 'No estas autorizado para editar esta campaña'
+      redirect_to @campaign
+
+      return
+    end
+
     respond_to do |format|
       if @campaign.update_attributes(params[:campaign])
         format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
@@ -84,6 +92,15 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1.json
   def destroy
     @campaign = Campaign.find_by_slug(params[:id])
+
+    # Solo el usuario autorizado puede borrar una campaña
+    if @campaign.user != current_user
+      flash[:error] = 'No estas autorizado para borrar esta campaña'
+      redirect_to @campaign
+
+      return
+    end
+
     @campaign.destroy
 
     respond_to do |format|

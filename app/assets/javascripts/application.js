@@ -1,13 +1,36 @@
-// This is a manifest file that'll be compiled into including all the files listed below.
-// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-// be included in the compiled file accessible from http://example.com/assets/application.js
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//
+//= require external
+//= require campaigns
+
+
+////////////////////////// cookies start
+
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
+////////////////////////// cookies end
 
 ////////////////////////// activity-realtime start
 
@@ -93,18 +116,23 @@ function check_current_navbar(section){
     case 'users':
       $('#header-signup').addClass('active');
       break;
+    case 'donate':
+      $('#header-donate').addClass('active');
+      break;
+    case 'help':
+      $('#header-help').addClass('active');
+      break;
   }
 }
 ////////////////////////// check-current-navbar start
+//
+//
 
 $(function() {
 
-  $("#slider").nivoSlider();
-
-  $(".flash-messages").delay(15000).fadeOut();
-
-  $(".flash-messages a.close").click(function() {
-    $(".flash-messages").toggle();
+  $(".flash-messages a.close").click(function(event) {
+    event.preventDefault();
+    $(this).parent().fadeOut();
   });
 
   $("#user_email").focus();
@@ -114,52 +142,29 @@ $(function() {
   //activity_init();
 
   check_current_navbar(document.URL.split('/')[3]);
+  
+  // modal-beta-home start
+  if ( readCookie('beta-welcome') == null ) {
+    $("#modal-beta-notice").dialog2({
+      removeOnClose: false,
+      autoOpen: true
+    });
+    $("#modal-beta-notice").parent().addClass("modal-large");
+    createCookie('beta-welcome', 'visited', 100); 
+  }
+  // modal-beta-home end
+  
+  // TOC para /help start
+  $("#toc").tableOfContents(
+    $("#page-info"), {
+      startLevel: 3, // H2 and up
+      depth: 2 // H2 through H4,
+    }
+  );
+  // TOC para /help end
 
-  // Al hacer click en unirse a una campaña, hacer el scroll
-  // y poner foco en el campo nombre
-  $("#join-this-campaign-link").click(function(event) {
-    event.preventDefault();
-    var fullUrl = this.href;
-    var parts = fullUrl.split("#");
-    var target = parts[1];
-    var targetOffset = $("#"+target).offset();
-    var targetTop = targetOffset.top;
-    $("html, body").animate({scrollTop:targetTop}, 1000);
-    $("#campaign-message-form #email").focus();
-  }); 
+});
 
-  // modal-stats start
-  $("#modal-stats-window").dialog2({
-    removeOnClose: false,
-    autoOpen: false
-  });
-
-  $("#show-modal-stats-window").click(function(event) {
-    event.preventDefault();
-    $("#modal-stats-window").dialog2("open");
-  });
-  // modal-stats end
-
-  // modal-widget start
-  $("#modal-widget-window").dialog2({
-    removeOnClose: false,
-    autoOpen: false
-  });
-
-  $("#show-modal-widget").click(function(event) {
-    $("#modal-widget-window").parent().addClass("modal-large");
-    event.preventDefault();
-    $("#modal-widget-window").dialog2("open");
-  });
-  // modal-widget end
-
-  // comment-form floating start
-  $('#show-campaign-sidebar').scrollToFixed({
-    marginTop:
-      $('#header').outerHeight() + 10,
-    limit:
-      $('#links-wrapper').offset().top - $('#show-campaign-sidebar').outerHeight() - 10
-  });
-  // comment-form floating end
-
+$(window).load(function() {
+  $("#slider").nivoSlider();
 });

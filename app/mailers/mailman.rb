@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
-  default from: "no-reply@oiga.me"
+  default from: "noreply@oiga.me"
 
   def send_message_to_user(to, subject, message, campaign)
     @message_to = to

@@ -1,0 +1,12 @@
+//= require jqplot
+//= require jqplot/plugins/jqplot.canvasAxisLabelRenderer
+//= require jqplot/plugins/jqplot.dateAxisRenderer
+//= require jqplot/plugins/jqplot.canvasTextRenderer
+//= require jqplot/plugins/jqplot.highlighter
+//= require jquery-scrolltofixed
+//= require jquery.dialog2
+//= require jquery.nivo.slider.pack
+//= require jquery.tableofcontents
+//= require Markdown.Converter
+//= require Markdown.Editor
+//= require Markdown.Sanitizer
