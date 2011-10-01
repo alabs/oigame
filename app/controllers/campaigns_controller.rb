@@ -69,6 +69,14 @@ class CampaignsController < ApplicationController
   def update
     @campaign = Campaign.find_by_slug(params[:id])
 
+    # Solo el usuario autorizado puede actualizar una campaña
+    if @campaign.user != current_user
+      flash[:error] = 'No estas autorizado para editar esta campaña'
+      redirect_to @campaign
+
+      return
+    end
+
     respond_to do |format|
       if @campaign.update_attributes(params[:campaign])
         format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
@@ -84,6 +92,15 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1.json
   def destroy
     @campaign = Campaign.find_by_slug(params[:id])
+
+    # Solo el usuario autorizado puede borrar una campaña
+    if @campaign.user != current_user
+      flash[:error] = 'No estas autorizado para borrar esta campaña'
+      redirect_to @campaign
+
+      return
+    end
+
     @campaign.destroy
 
     respond_to do |format|
