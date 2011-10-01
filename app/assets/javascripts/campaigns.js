@@ -46,6 +46,26 @@ $(function() {
     $("#campaign-message-form #email").focus();
   }); 
 
+  ////////////////////////// modal-send-message start
+  $("#modal-send-message").dialog2({
+    removeOnClose: false,
+    modal: true,
+    autoOpen: false
+  });
+
+  $("#show-modal-send-message").click(function(event) {
+    event.preventDefault();
+    $("#modal-campaign-message-form").html($("#campaign-message-form").html());
+    $("#modal-send-message").parent().addClass("modal-large");
+    $("#modal-campaign-message-form .btn").removeClass("large")
+    $("#modal-campaign-message-form .form-actions").addClass("actions");
+    $("#modal-campaign-message-form .form-field").addClass('clearfix').removeClass('form-field');
+    $("#modal-campaign-message-form .span5").addClass('span9').removeClass('span5');
+    $("#modal-campaign-message-form input, #modal-campaign-message-form textarea").wrap('<div class="input" />');
+    $("#modal-send-message").dialog2("open");
+  });
+  ////////////////////////// modal-send-message end
+
 
   ////////////////////////// modal-stats-window start
   $.jqplot.config.enablePlugins = true;
@@ -67,7 +87,7 @@ $(function() {
     $("#modal-stats-window").dialog2("open");
   });
   ////////////////////////// modal-stats-window end
-
+  
   // modal-widget start
   $("#modal-widget-window").dialog2({
     removeOnClose: false,
