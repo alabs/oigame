@@ -52,16 +52,23 @@ $(function() {
     modal: true,
     autoOpen: false
   });
+  
+  function copy_input_to_modal(input_id){
+    $("#modal-send-message #" + input_id).val($("#show-campaign-sidebar #" + input_id).val());
+  }
 
   $("#show-modal-send-message").click(function(event) {
     event.preventDefault();
     $("#modal-campaign-message-form").html($("#campaign-message-form").html());
     $("#modal-send-message").parent().addClass("modal-large");
-    $("#modal-campaign-message-form .btn").removeClass("large")
-    $("#modal-campaign-message-form .form-actions").addClass("actions");
+    $("#modal-campaign-message-form .form-actions").hide();
     $("#modal-campaign-message-form .form-field").addClass('clearfix').removeClass('form-field');
     $("#modal-campaign-message-form .span5").addClass('span9').removeClass('span5');
     $("#modal-campaign-message-form input, #modal-campaign-message-form textarea").wrap('<div class="input" />');
+    copy_input_to_modal('email'); 
+    copy_input_to_modal('subject'); 
+    copy_input_to_modal('body'); 
+    $(".modal-send-form").click( function(){ $("#modal-campaign-message-form form").submit() } );
     $("#modal-send-message").dialog2("open");
   });
   ////////////////////////// modal-send-message end
