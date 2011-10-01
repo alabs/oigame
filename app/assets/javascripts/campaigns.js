@@ -106,7 +106,7 @@ $(function() {
     marginTop:
       $('#header').outerHeight() + 10,
     limit:
-      $('#integrate-this-campaign').offset().top - $('#show-campaign-sidebar').outerHeight() - 10
+      $('#campaign-actions').offset().top - $('#show-campaign-sidebar').outerHeight() - 10
   });
   // comment-form floating end
   
