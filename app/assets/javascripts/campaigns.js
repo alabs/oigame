@@ -119,4 +119,16 @@ $(function() {
     // comment-form floating end
   }
 
+  $(".show_markdown_help").click( function(event){
+    event.preventDefault();
+    if ( $(this).hasClass("hide_markdown_help") ){
+      $(this).text("ver ayuda de marcado");
+      $(this).removeClass("hide_markdown_help");
+    } else {
+      $(this).addClass("hide_markdown_help");
+      $(this).text("esconder ayuda de marcado");
+    }
+    $(this).next().fadeToggle("slow", "linear");
+  });
+
 });

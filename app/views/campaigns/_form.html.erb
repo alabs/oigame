@@ -18,6 +18,10 @@
         <div id="wmd-button-bar"></div>
         <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span8', :required => true, :placeholder => 'Entradilla de la campaña, este texto aparece en el listado de campañas.' %>
       </div>
+      <a href="#" class="show_markdown_help">ver ayuda de marcado</a>
+      <div class="markdown_help" style="display:none;">
+        <%= render :partial => 'markdown_help' %>
+      </div>
       <% unless @campaign.errors[:intro].blank? %>
         <span class="error_message"><%= @campaign.errors[:intro].to_sentence %></span>
       <% end %>
@@ -27,6 +31,10 @@
       <div class="wmd-panel">
         <div id="wmd-button-bar-second"></div>
         <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span8', :required => true, :placeholder => 'Texto desarrollado de la campaña' %>
+      </div>
+      <a href="#" class="show_markdown_help">ver ayuda de marcado</a>
+      <div class="markdown_help" style="display:none;">
+        <%= render :partial => 'markdown_help' %>
       </div>
       <% unless @campaign.errors[:body].blank? %>
         <span class="error_message"><%= @campaign.errors[:body].to_sentence %></span>
