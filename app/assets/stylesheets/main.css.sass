@@ -49,6 +49,7 @@ a, a:hover
   @extend .alert-message
   p
     font-weight: bold
+    font-size: 120%
   .close 
     margin-right: 1em
 
@@ -232,6 +233,8 @@ a, a:hover
       li
         margin-bottom: 10px
 
+    #page-sidebar
+      @extend .grid_8
 
 #campaigns-wrapper
   background-color: #f1f2f1
@@ -469,6 +472,10 @@ a, a:hover
 
     #modal-widget-window-example
       @extend .grid_9
+
+#toc 
+  list-style: none outside none
+  padding-top: 25px
 
 #footer-wrapper
   margin-bottom: 20px
