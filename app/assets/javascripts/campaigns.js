@@ -108,13 +108,15 @@ $(function() {
   });
   // modal-widget end
 
-  // comment-form floating start
-  $('#show-campaign-sidebar').scrollToFixed({
-    marginTop:
-      $('#header').outerHeight() + 10,
-    limit:
-      $('#campaign-actions').offset().top - $('#show-campaign-sidebar').outerHeight() - 10
-  });
-  // comment-form floating end
-  
+  if ( $("#campaign-actions").length > 0 ) {
+    // comment-form floating start
+    $('#show-campaign-sidebar').scrollToFixed({
+      marginTop:
+        $('#header').outerHeight() + 10,
+      limit:
+        $('#campaign-actions').offset().top - $('#show-campaign-sidebar').outerHeight() - 10
+    });
+    // comment-form floating end
+  }
+
 });
