@@ -45,3 +45,5 @@ es:
   help: 'Ayuda'
   privacy_policy: 'Política de privacidad'
   developers: 'Desarrolladores'
+  current_password: 'Contraseña actual'
+  update: 'Actualizar'

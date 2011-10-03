@@ -1,25 +1,44 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% @page_title = t(:my_account) %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div id="accounts-wrapper">
+  <div id="accounts">
+    <div id="edit-account-form" class="form-stacked">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+        <fieldset>
+          <legend>Editar mis datos</legend>
+          <div class="form-field">
+            <%= f.label t(:email) %>
+            <%= f.email_field :email %>
+            <% unless resource.errors[:email].blank? %>
+              <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+            <% end %>
+          </div>
+          <div class="form-field">
+            <%= f.label t(:password) %> <span class="note">(dejala en blanco si no quieres cambiarla)</span>
+            <%= f.password_field :password %>
+            <% unless resource.errors[:password].blank? %>
+              <span class="error_message"><%= resource.errors[:password].to_sentence %></span>
+            <% end %>
+          </div>
+          <div class="form-field">
+            <%= f.label t(:password_confirmation) %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="form-field">
+            <%= f.label t(:current_password) %> <span class="note">(necesitamos tu contraseña actual para realizar los cambios)</span>
+            <%= f.password_field :current_password %>
+            <% unless resource.errors[:current_password].blank? %>
+              <span class="error_message"><%= resource.errors[:current_password].to_sentence %></span>
+            <% end %>
+          </div>
+          <div class="form-actions">
+            <%= f.submit t(:update), :class => 'btn submit' %>
+          </div>
+        </fieldset>
+      <% end %>
+      <h3>Cancelar mi cuenta</h3>
+      <p>¿No te gusta oiga.me? Puedes <%= link_to 'cancelar tu cuenta', registration_path(resource_name), :confirm => '¿Estas seguro?', :method => :delete %>.</p>
+    </div><!-- edit-account-form -->
+  </div><!-- accounts -->
+</div><!-- accounts-wrapper -->
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
