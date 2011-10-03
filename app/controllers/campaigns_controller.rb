@@ -115,6 +115,7 @@ class CampaignsController < ApplicationController
 
   def widget_iframe
     @campaign = Campaign.find_by_slug(params[:id])
+    render :partial => "widget_iframe"
   end
 
   def tag
