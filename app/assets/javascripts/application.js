@@ -4,6 +4,20 @@
 //= require campaigns
 
 
+////////////////////////// goTo start
+/*
+ * Go to anchor tag with beauty effect
+ * 
+ * Usage:  goTo('que-ocurre-con-mis-datos-cuando-participo-en-una-campana-y-al-registrarme');
+*/
+
+function goTo(target){
+    var targetOffset = $("#"+target).offset();
+    var targetTop = targetOffset.top;
+    $("html, body").animate({scrollTop:targetTop}, 1000);
+}
+////////////////////////// goTo end
+
 ////////////////////////// slugify start
 /*
  * jQuery Slugify a string!
@@ -27,23 +41,29 @@ jQuery.slugify = function( string ){
 }
 ////////////////////////// slugify end
 
-////////////////////////// generate_toc start
-function generate_TOC(){
-  $("#toc").append('<h2>Indíce</h2>');
+////////////////////////// generateTOC start
+function generateTOC(){
+  $("#toc").prepend('<h2>Indíce</h2>');
   $("#page-info h3, #page-info h4").each(function(i) {
       var current = $(this);
       var current_slug = $.slugify(current.text());
       current.attr("id", current_slug);
       var html_line = "<a href='#" + current_slug + "' title='" + current.html() + "'>" + current.html() + "</a>";
-      console.log( current.is('h3'));
       if (current.is('h3')) { 
-        $("#toc").append($(html_line).wrap("<li />").wrap("<b />"));
+        $("#toc").append("<br /><br />");
+        $("#toc").append("<li><b>" + html_line + "</b></li>");
       } else {
-        $("#toc").append($(html_line).wrap("<li />"));
+        $("#toc").append("<li>" + html_line + "</li>");
       }
   }); 
+  $("#toc a").click(function() {
+    var fullUrl = this.href;
+    var parts = fullUrl.split("#");
+    var target = parts[1];
+    goTo( target );
+  }); 
 }
-////////////////////////// generate_toc end
+////////////////////////// generateTOC end
     
 
 ////////////////////////// cookies start
@@ -144,31 +164,33 @@ function activity_clean(){
     });
   }
 }
-
 ////////////////////////// activity-realtime end
-//
-////////////////////////// check-current-navbar start
 
+////////////////////////// check-current-navbar start
 function check_current_navbar(section){ 
   // TODO: mover al controlador, esto es una guarrada
+  if ( section.split("#")[1] ) {
+    var query = section.split("#")[1];
+  }
+  var section = section.split("#")[0];
   switch (section) {
-    case 'campaigns': 
-      $('#header-campaigns').addClass('active');
+    case "campaigns": 
+      $("#header-campaigns").addClass("active");
       break;
-    case 'users':
-      $('#header-signup').addClass('active');
+    case "users":
+      $("#header-signup").addClass("active");
       break;
-    case 'donate':
-      $('#header-donate').addClass('active');
+    case "donate":
+      $("#header-donate").addClass("active");
       break;
-    case 'help':
-      $('#header-help').addClass('active');
+    case "help":
+      $("#header-help").addClass("active");
+      generateTOC();
+      if (query) { goTo(query); }
       break;
   }
 }
 ////////////////////////// check-current-navbar start
-//
-//
 
 $(function() {
 
