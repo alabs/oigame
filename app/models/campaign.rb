@@ -60,6 +60,7 @@ class Campaign < ActiveRecord::Base
 
   def activate!
     self.moderated = false
+    self.published_at = Time.now
     save!
     if Rails.env == 'production'
       tweet_campaign

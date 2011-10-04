@@ -217,4 +217,12 @@ class CampaignsController < ApplicationController
       redirect_to campaigns_url
     end
   end
+
+  def feed
+    @campaigns = Campaign.last_campaigns
+
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
 end

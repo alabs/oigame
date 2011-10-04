@@ -15,6 +15,7 @@ Oigame::Application.routes.draw do
     collection do
       get 'tag'
       get 'moderated'
+      get 'feed', :defaults => { :format => 'rss' }
     end
   end
 #  devise_for :admin_users, ActiveAdmin::Devise.config
