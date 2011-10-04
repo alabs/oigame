@@ -10,9 +10,11 @@ Oigame::Application.routes.draw do
       get 'message'
       get 'widget'
       get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
+      post 'activate'
     end
     collection do
       get 'tag'
+      get 'moderated'
     end
   end
 #  devise_for :admin_users, ActiveAdmin::Devise.config
