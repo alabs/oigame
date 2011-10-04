@@ -1,12 +1,4 @@
 
-function multilineTrim(htmlString) {
-   // split the string into an array by line separator
-   // call $.trim on each line
-   // filter out the empty lines
-   // join the array of lines back into a string
-   return htmlString.split("\n").map($.trim).filter(function(line) { return line != "" }).join("\n");
-}
-
 ////////////////////////// chart_draw: jqplot helper  - start
 
 function chart_draw(items, chart_id, chart_title, color){
@@ -98,6 +90,16 @@ $(function() {
     autoOpen: false
   });
 
+//  // cerrar las ventanas modales con escape
+//  $(".modal").bind("keydown" ,function(event) {
+//    if (event.keyCode == '27') {
+//      console.log('exit');
+//      event.preventDefault();
+//      $(".modal").dialog2("close");
+//      $(".modal-backdrop").hide();
+//    }
+//  });
+
   $("#show-modal-stats-window").click(function(event) {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
@@ -111,7 +113,7 @@ $(function() {
   });
 
   $("#modal-widget-html").val(
-   multilineTrim($("#modal-widget-window-example").html())
+   $("#modal-widget-window-example").html()
   );
 
   $("#show-modal-widget").click(function(event) {
