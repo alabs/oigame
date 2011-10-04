@@ -11,12 +11,20 @@
       </div><!-- social-buttons -->
       <p id="cdate_and_edit">
         Campaña creada hace: <%= time_ago_in_words(@campaign.created_at) %>
-        <% if @campaign.user == current_user %>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <span class="label notice">
-            <%= link_to t(:edit_campaign), edit_campaign_path(@campaign) %>
-          </span>
+        <% if user_signed_in? %>
+          <% if @campaign.user == current_user || current_user.is_editor || current_user.is_admin %>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label notice">
+              <%= link_to t(:edit_campaign), edit_campaign_path(@campaign) %>
+            </span>
+          <% end %>
+          <% if current_user.is_admin %>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label important">
+              <%= link_to t(:delete_campaign), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
+            </span>
+          <% end %>
         <% end %>
       </p>
       <%= image_tag(@campaign.image_url.to_s) %>

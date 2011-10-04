@@ -44,3 +44,10 @@ gem 'pry', :group => :development
 gem 'twitter'
 
 gem 'yaml_db'
+
+# Con la versión 3.1.8 peta el CSS de Bootstrap.
+# Revisar esta línea y actualizar cuando salga
+# la siguiente versión.
+# Quitándo esta línea es suficiente porque ya la
+# requiere sass-rails
+gem 'sass', '3.1.7'
