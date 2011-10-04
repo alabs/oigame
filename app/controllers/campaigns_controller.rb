@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
-  protect_from_forgery :except => :widget_iframe 
+  protect_from_forgery :except => :message 
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
 
