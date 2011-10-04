@@ -18,6 +18,10 @@
     </script> 
   </head>
   <body>
+    <div id="campaign-message-info">
+      <h2><%= @campaign.name %></h2>
+      <p><%= @campaign.intro %></p>
+    </div>
     <div id="campaign-message-form" class="form-stacked">
       <%= form_tag "http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message" do %>
         <fieldset>
