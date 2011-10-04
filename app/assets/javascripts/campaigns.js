@@ -1,3 +1,12 @@
+
+function multilineTrim(htmlString) {
+   // split the string into an array by line separator
+   // call $.trim on each line
+   // filter out the empty lines
+   // join the array of lines back into a string
+   return htmlString.split("\n").map($.trim).filter(function(line) { return line != "" }).join("\n");
+}
+
 ////////////////////////// chart_draw: jqplot helper  - start
 
 function chart_draw(items, chart_id, chart_title, color){
@@ -100,6 +109,10 @@ $(function() {
     removeOnClose: false,
     autoOpen: false
   });
+
+  $("#modal-widget-html").val(
+   multilineTrim($("#modal-widget-window-example").html())
+  );
 
   $("#show-modal-widget").click(function(event) {
     $("#modal-widget-window").parent().addClass("modal-large");
