@@ -49,10 +49,15 @@
         <div id="modal-widget-window-main">
           <div id="modal-widget-window-integrate">
             <p>Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:</p><br />
+            <b>Opción 1</b>
             <pre><%=h "<script type=\"text\/javascript\" src=\"http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></pre>
+            <p>En caso que el código no te funcione, puedes probar con la versión sin Javascript ni iframes, en HTML limpio:</p>
+            <b>Opción 2</b>
+            <textarea id="modal-widget-html" class="grid_9" rows="10">
+            </textarea>
           </div><!-- modal-widget-window-integrate -->
-          <div id="modal-widget-window-example">
             <p>Resultado</p>
+          <div id="modal-widget-window-example">
             <%= render :partial => "widget_iframe" %>
           </div><!-- modal-widget-window-example -->
         </div><!-- modal-widget-window-wrapper -->
