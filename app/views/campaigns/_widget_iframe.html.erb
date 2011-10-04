@@ -2,47 +2,36 @@
 <html lang="<%= I18n.locale %>">
   <head>
     <meta charset="utf-8" />
-    <title><%= @page_title %> - oiga.me</title>
     <%= stylesheet_link_tag 'main' %>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-19861474-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script> 
   </head>
   <body>
-    <div id="campaign-message-info">
-      <h2><%= @campaign.name %></h2>
-      <p><%= @campaign.intro %></p>
-    </div>
-    <div id="campaign-message-form" class="form-stacked">
-      <%= form_tag "http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message" do %>
-        <fieldset>
-          <div class="form-field">
-            <%= label_tag t(:your_email) %>
-            <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
-          </div>
-          <div class="form-field">
-            <%= label_tag t(:subject) %>
-            <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje', :class => 'span5' %>
-          </div>
-          <div class="form-field">
-            <%= label_tag t(:message) %>
-            <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :class => 'span5', :rows => 10 %>
-          </div>
-          <div class="form-actions">
-            <%= submit_tag t(:send_message), :class => 'btn primary' %>
-            <button class="btn" type="reset"><%= t(:cancel) %></button>
-          </div>
-        </fieldset>
-      <% end %>
-    </div><!-- campaign-message-form -->
+    <div id="campaign-message-wrapper">
+      <div id="campaign-message-info">
+        <h2><%= @campaign.name %></h2>
+        <p><%= @campaign.intro %></p>
+      </div><!-- campaign-message-info -->
+      <div id="campaign-message-form" class="form-stacked">
+        <%= form_tag "http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message" do %>
+          <fieldset>
+            <div class="form-field">
+              <%= label_tag t(:your_email) %>
+              <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+            </div>
+            <div class="form-field">
+              <%= label_tag t(:subject) %>
+              <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje', :class => 'span5' %>
+            </div>
+            <div class="form-field">
+              <%= label_tag t(:message) %>
+              <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :class => 'span5', :rows => 10 %>
+            </div>
+            <div class="form-actions">
+              <%= submit_tag t(:send_message), :class => 'btn primary' %>
+              <button class="btn" type="reset"><%= t(:cancel) %></button>
+            </div>
+          </fieldset>
+        <% end %>
+      </div><!-- campaign-message-form -->
+    </div><!-- campaign-message-wrapper -->
   </body>
 </html>
