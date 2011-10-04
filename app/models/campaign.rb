@@ -16,10 +16,6 @@ class Campaign < ActiveRecord::Base
 
   before_save :generate_slug
 
-  if Rails.env == 'production'
-    after_create :tweet_campaign
-  end
-
   # Scope para solo mostrar la campañas que han sido moderadas
   scope :published, where(:moderated => false)
 
@@ -65,6 +61,9 @@ class Campaign < ActiveRecord::Base
   def activate!
     self.moderated = false
     save!
+    if Rails.env == 'production'
+      tweet_campaign
+    end
   end
 
   def moderated?
