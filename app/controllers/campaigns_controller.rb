@@ -70,7 +70,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:id])
 
     # Solo el usuario autorizado puede actualizar una campaña
-    if @campaign.user != current_user
+    unless @campaign.user == current_user || current_user.is_editor || current_user.is_admin
       flash[:error] = 'No estas autorizado para editar esta campaña'
       redirect_to @campaign
 
@@ -94,7 +94,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:id])
 
     # Solo el usuario autorizado puede borrar una campaña
-    if @campaign.user != current_user
+    unless @campaign.user == current_user || current_user.is_admin
       flash[:error] = 'No estas autorizado para borrar esta campaña'
       redirect_to @campaign
 
