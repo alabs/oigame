@@ -19,6 +19,7 @@
           </span>
         <% end %>
         <% if current_user.is_admin %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <span class="label important">
             <%= link_to t(:delete_campaign), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
           </span>

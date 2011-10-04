@@ -47,3 +47,4 @@ es:
   developers: 'Desarrolladores'
   current_password: 'Contraseña actual'
   update: 'Actualizar'
+  delete_campaign: 'Eliminar campaña'
