@@ -4,12 +4,20 @@ class PagesController < ApplicationController
     @campaigns = Campaign.last_campaigns(3)
   end
 
-  def donate
-  end
-
   def help
   end
 
   def privacy_policy
+  end
+  
+  def donate
+    @reference = secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+  end
+
+  private
+  
+  def secure_digest(*args)
+    require 'digest/sha1'
+    Digest::SHA1.hexdigest(args.flatten.join('--'))
   end
 end

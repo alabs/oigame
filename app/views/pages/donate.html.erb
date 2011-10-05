@@ -10,5 +10,38 @@
       <h3>Sobre certificados SSL</h3>
       <p>Las transacciones con tarjetas de crédito son procesadas en línea usando el TPV de pago de Banesto. Con este sistema seguro de pago la información viaja cifrada antes de ser enviada usando el certificado SSL. Si encuentras algún problema usando el sistema, tienes alguna duda o alguna recomendación, por favor contacta con aLabs a través del correo donaciones[arroba]alabs.es.</p>
     </div><!-- page-info -->
+    <div id="page-sidebar">
+      <div id="donate-form-wrapper">
+        <div id="donate-form" class="form-stacked">
+          <h2>Dona a oiga.me</h2>
+          <form action="http://pruebas.pagoseguro.com.es/cgi-bin/totalizacion" method="post">
+            <fieldset>
+              <input type="hidden" name="nombre_comercio" value="ALABS_PRUEBAS" />
+              <input type="hidden" name="referencia" value="<%= @reference %>" />
+              <input type="hidden" name="moneda" value="EUR" />
+              <input type="hidden" name="project" value="oigame" />
+              <div class="form-field">
+                <select name="coste">
+                  <option value=""><%= t(:amount_to_donate) %></option>
+                  <option value="5.00">5 Euros</option>
+                  <option value="10.00">10 Euros</option>
+                  <option value="20.00">20 Euros</option>
+                  <option value="50.00">50 Euros</option>
+                  <option value="75.00">75 Euros</option>
+                  <option value="100.00">100 Euros</option>
+                  <option value="200.00">200 Euros</option>
+                  <option value="500.00">500 Euros</option>
+                </select>
+              </div>
+              <div class="form-actions">
+                <input type="submit" name="submit" value="Realizar la donación" class="btn primary" />
+              </div>
+            </fieldset>
+          </form>
+          <p>Tajetas aceptadas:<br />
+          <%= image_tag('credit-cards.jpg') %>
+        </div><!-- donate-form -->
+      </div><!-- donate-form-wrapper -->
+    </div><!-- page-sidebar -->
   </div><!-- page -->
 </div><!-- page-wrapper -->
