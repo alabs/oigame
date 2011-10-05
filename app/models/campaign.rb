@@ -18,6 +18,7 @@ class Campaign < ActiveRecord::Base
 
   # Scope para solo mostrar la campañas que han sido moderadas
   scope :published, where(:moderated => false)
+  scope :not_published, where(:moderated => true)
 
   class << self
 
