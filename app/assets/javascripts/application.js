@@ -238,8 +238,27 @@ $(function() {
       .css("margin-top", "2em");
   }
 
+  ///////////////////////// dialog2 - close modal windows with ESC key - start
+  function __getOverlay(dialog) {
+      return dialog.parent().prev(".modal-backdrop");
+  }
+
+  $(".modal").bind("keydown" ,function(event) {
+    if (event.keyCode == "27") {
+      var dialog = $(this).children(".modal-body");
+      __getOverlay(dialog).hide();
+      
+      dialog
+          .parent().hide().end()
+          .trigger("dialog2.closed")
+          .removeClass("opened");
+    }
+  });
+  ///////////////////////// dialog2 - close modal windows with ESC key - end
+
 });
 
 $(window).load(function() {
   $("#slider").nivoSlider();
 });
+

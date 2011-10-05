@@ -90,16 +90,6 @@ $(function() {
     autoOpen: false
   });
 
-//  // cerrar las ventanas modales con escape
-//  $(".modal").bind("keydown" ,function(event) {
-//    if (event.keyCode == '27') {
-//      console.log('exit');
-//      event.preventDefault();
-//      $(".modal").dialog2("close");
-//      $(".modal-backdrop").hide();
-//    }
-//  });
-
   $("#show-modal-stats-window").click(function(event) {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
