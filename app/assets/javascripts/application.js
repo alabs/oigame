@@ -221,6 +221,23 @@ $(function() {
   // edit-user clean password
   $("#user_edit #user_password").val("")
 
+  var isInIFrame = (window.location != window.parent.location) ? true : false;
+  if (isInIFrame) {
+    $("#corner").hide();
+    $("#navbar").hide();
+    $("#links-wrapper").hide();
+    $("#footer-wrapper").hide();
+    $("#page").css("width", "inherit").addClass("grid_3");
+    $("#page-info").css("width", "240px");
+    $("#page-wrapper")
+      .css("padding-bottom", "125px").css("padding-left", "1px");
+    $("#page-wrapper #page #page-info").css("border-right", "none");
+    $("#logo a img")
+      .css("margin-bottom", "1em")
+      .css("margin-left", "2em")
+      .css("margin-top", "2em");
+  }
+
 });
 
 $(window).load(function() {
