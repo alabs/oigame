@@ -218,6 +218,8 @@ $(function() {
   }
   // modal-beta-home end
   
+  // edit-user clean password
+  $("#user_edit #user_password").val("")
 
 });
 

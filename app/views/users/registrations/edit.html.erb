@@ -15,6 +15,7 @@
           </div>
           <div class="form-field">
             <%= f.label t(:password) %> <span class="note">(dejala en blanco si no quieres cambiarla)</span>
+            <%= f.password_field :password, :style => "display:none;", :name => "fuckautocompleteonfirstpasswd" %>
             <%= f.password_field :password %>
             <% unless resource.errors[:password].blank? %>
               <span class="error_message"><%= resource.errors[:password].to_sentence %></span>
