@@ -1,19 +1,20 @@
+# encoding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  # Define your dashboard sections here. Each block will be
-  # rendered on the dashboard in the context of the view. So just
-  # return the content which you would like to display.
-  
-  # == Simple Dashboard Section
-  # Here is an example of a simple dashboard section
-  #
-  #   section "Recent Posts" do
-  #     ul do
-  #       Post.recent(5).collect do |post|
-  #         li link_to(post.title, admin_post_path(post))
-  #       end
-  #     end
-  #   end
+  section "Últimas campañas por moderar" do
+    table_for Campaign.last_campaigns_moderated do
+      column("Nombre")   {|campaign| link_to(campaign.name, manage_campaign_path(campaign)) }
+      column("Activar")  {|campaign| link_to("Activar campaña", activate_manage_campaign_path(campaign),
+                                        :confirm => "Estás seguro que quieres activarla?", :method => :put)}
+    end
+  end
+
+  section "Últimas campañas publicadas" do
+    table_for Campaign.last_campaigns do
+      column("Nombre")   {|campaign| link_to(campaign.name, manage_campaign_path(campaign)) }
+      column("Publicada")   {|campaign| campaign.published_at.to_s }
+    end
+  end
   
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can
