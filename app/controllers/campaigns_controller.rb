@@ -218,6 +218,19 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def deactivate
+    if current_user.is_admin
+      @campaign = Campaign.find_by_slug(params[:id])
+      @campaign.deactivate!
+      redirect_to @campaign, :notice => 'Campaña desactivada con éxito'
+
+      return
+    else
+      flash[:error] = "No tienes acceso a esta página"
+      redirect_to campaigns_url
+    end
+  end
+
   def feed
     @campaigns = Campaign.last_campaigns
 

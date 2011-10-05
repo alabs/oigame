@@ -19,6 +19,13 @@
               <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
             </span>
           <% end %>
+          <% if current_user.is_admin && @campaign.published? %>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label success">
+              <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+            </span>
+          <% end %>
           <% if @campaign.user == current_user || current_user.is_editor || current_user.is_admin %>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <span class="label notice">

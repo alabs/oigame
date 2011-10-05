@@ -13,6 +13,7 @@ Oigame::Application.routes.draw do
       get 'widget'
       get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
       post 'activate'
+      post 'deactivate'
     end
     collection do
       get 'tag'

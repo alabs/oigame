@@ -68,8 +68,17 @@ class Campaign < ActiveRecord::Base
     #end
   end
 
+  def deactivate!
+    self.moderated = true
+    save!
+  end
+
   def moderated?
     moderated == true ? true : false
+  end
+
+  def published?
+    moderated == false ? true : false
   end
 
   private
