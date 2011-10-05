@@ -14,6 +14,14 @@ class PagesController < ApplicationController
     @reference = secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
   end
 
+  def donation_accepted
+    render :text => 'Gracias'
+  end
+
+  def donation_denied
+    render :text => 'Lo sentimos'
+  end
+
   private
   
   def secure_digest(*args)
