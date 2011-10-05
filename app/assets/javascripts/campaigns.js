@@ -112,9 +112,8 @@ $(function() {
     autoOpen: false
   });
 
-  $("#modal-widget-html").val(
-   $("#modal-widget-window-example").html()
-  );
+  var html_clean =  jQuery.trim( $("#modal-widget-window-example").html() );
+  $("#modal-widget-html").val(html_clean);
 
   $("#show-modal-widget").click(function(event) {
     $("#modal-widget-window").parent().addClass("modal-large");
