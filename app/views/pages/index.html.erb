@@ -10,15 +10,17 @@
       LOBBY, ¡COMÉTELO!</p>
       <p class="user-count">435.234 PERSONAS</p>
       <p class="do-it">YA LO HAN HECHO</p>
-      <br >
-      <br />
-      <form id="pre-signup" action="/users/signup" method="get">
-        <div class="input-prepend">
-          <span class="add-on">@</span>
-          <input type="email" name="email" placeholder="Tu correo electrónico" required="true" />
-        </div>
-        <button type="submit" class="primary btn large">Hazte miembro ahora</button>
-      </form>
+      <% unless user_signed_in? %>
+        <br >
+        <br />
+        <form id="pre-signup" action="/users/signup" method="get">
+          <div class="input-prepend">
+            <span class="add-on">@</span>
+            <input type="email" name="email" placeholder="Tu correo electrónico" required="true" />
+          </div>
+          <button type="submit" class="primary btn large">Hazte miembro ahora</button>
+        </form>
+      <% end %>
     </div>
   </div>
 </div><!-- subscribe-wrapper -->
