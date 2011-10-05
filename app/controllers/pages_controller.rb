@@ -15,11 +15,9 @@ class PagesController < ApplicationController
   end
 
   def donation_accepted
-    render :text => 'Gracias'
   end
 
   def donation_denied
-    render :text => 'Lo sentimos'
   end
 
   private
