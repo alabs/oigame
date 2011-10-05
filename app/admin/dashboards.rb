@@ -3,16 +3,16 @@ ActiveAdmin::Dashboards.build do
 
   section "Últimas campañas por moderar" do
     table_for Campaign.last_campaigns_moderated do
-      column("Nombre")   {|campaign| link_to(campaign.name, manage_campaign_path(campaign)) }
-      column("Activar")  {|campaign| link_to("Activar campaña", activate_manage_campaign_path(campaign),
+      column("Nombre")   {|c| link_to(c.name, manage_campaign_path(c)) }
+      column("Activar")  {|c| link_to("Activar campaña", activate_manage_campaign_path(c),
                                         :confirm => "Estás seguro que quieres activarla?", :method => :put)}
     end
   end
 
   section "Últimas campañas publicadas" do
     table_for Campaign.last_campaigns do
-      column("Nombre")   {|campaign| link_to(campaign.name, manage_campaign_path(campaign)) }
-      column("Publicada")   {|campaign| campaign.published_at.to_s }
+      column("Nombre")     {|c| link_to(c.name, manage_campaign_path(c)) }
+      column("Publicada")  {|c| c.published_at.to_s }
     end
   end
   

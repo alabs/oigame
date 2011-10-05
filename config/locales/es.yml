@@ -29,6 +29,7 @@ es:
   my_account: 'Mi cuenta'
   logout: 'Desconectar'
   create_campaign: 'Crear campaña'
+  propose_campaign: 'Proponer una campaña'
   name_of_campaign: 'Nombre de la campaña'
   cancel: 'Cancelar'
   intro_of_campaign: 'Introducción de la campaña'

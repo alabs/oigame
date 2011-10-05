@@ -90,16 +90,6 @@ $(function() {
     autoOpen: false
   });
 
-//  // cerrar las ventanas modales con escape
-//  $(".modal").bind("keydown" ,function(event) {
-//    if (event.keyCode == '27') {
-//      console.log('exit');
-//      event.preventDefault();
-//      $(".modal").dialog2("close");
-//      $(".modal-backdrop").hide();
-//    }
-//  });
-
   $("#show-modal-stats-window").click(function(event) {
     event.preventDefault();
     $("#modal-stats-window").dialog2("open");
@@ -112,9 +102,8 @@ $(function() {
     autoOpen: false
   });
 
-  $("#modal-widget-html").val(
-   $("#modal-widget-window-example").html()
-  );
+  var html_clean =  jQuery.trim( $("#modal-widget-window-example").html() );
+  $("#modal-widget-html").val(html_clean);
 
   $("#show-modal-widget").click(function(event) {
     $("#modal-widget-window").parent().addClass("modal-large");
