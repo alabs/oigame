@@ -22,7 +22,7 @@
       <% end %>
     </div><!-- list-campaigns-info -->
     <div id="list-campaigns-sidebar">
-      <h2 style="font-size: 2em;"><%= link_to t(:create_campaign), new_campaign_path %></h2>
+      <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path %></h2>
       <% if user_signed_in? && current_user.is_admin %>
         <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path %></h2>
       <% end %>
