@@ -5,6 +5,7 @@
     <title><%= @page_title %> - oiga.me</title>
     <%= stylesheet_link_tag 'main' %>
     <link rel="shortcut icon" href="/assets/favicon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="http://<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <script type="text/javascript">
@@ -72,7 +73,8 @@
           <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
         </div>
         <div id="links-social">
-          <span>Encuéntranos en:</span><br />
+          <span>Síguenos en:</span><br />
+          <%= link_to image_tag('rss.png'), feed_campaigns_path %>
           <%= link_to image_tag('facebook.png'), 'https://www.facebook.com/oiga.me' %>
           <%= link_to image_tag('twitter.png'), 'https://twitter.com/oigame' %>
         </div>

@@ -98,7 +98,7 @@ a, a:hover
         border: 1px solid #faa
         color: #fff
         display: block
-        font-size: 0.9em
+        font-size: 1.1em
         font-weight:bold
         padding: 0.1em 4em
         text-align: center
@@ -259,6 +259,31 @@ a, a:hover
     #page-sidebar
       @extend .grid_8
 
+      #donate-form-wrapper
+        margin-top: 35px
+
+        #donate-form
+          h2
+            font-size: 1.7em
+            padding-left: 10px
+            color: #fff
+            background-color: #000
+          p
+            font-size: 1.1em
+          form
+            fieldset
+              background-color: #f1f2f1
+              border: 1px solid $border-main-color
+              padding: 10px
+            .form-field
+              margin-bottom: 10px
+            select
+              padding: 5px
+              border: 1px solid $border-main-color
+              font-size: 1.1em
+              color: #000
+              background-color: #fff
+
 #campaigns-wrapper
   background-color: #f1f2f1
   padding-top: 30px
@@ -294,7 +319,6 @@ a, a:hover
           margin-bottom: 20px
           p
             font-size: 1.1em
-            text-align: justify
           span
             font-size: 1.2em
 
@@ -323,7 +347,6 @@ a, a:hover
           color: #fff
       p
         font-size: 1.1em
-        text-align: justify
       p#this-campaign-link
         margin-top: 25px
         font-size: 2em
@@ -482,7 +505,7 @@ a, a:hover
         font-size: 1.3em
 
 .modal-large
-  @extends .modal
+  @extend .modal
   top: 10%
   left: 40%
   width: 760px

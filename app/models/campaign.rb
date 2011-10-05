@@ -16,18 +16,21 @@ class Campaign < ActiveRecord::Base
 
   before_save :generate_slug
 
-  if Rails.env == 'production'
-    after_create :tweet_campaign
-  end
+  # Scope para solo mostrar la campañas que han sido moderadas
+  scope :published, where(:moderated => false)
 
   class << self
 
     def last_campaigns(limit = nil)
-      order("created_at DESC").limit(limit).all
+      order('created_at DESC').published.limit(limit).all
     end
 
     def last_campaigns_by_tag(tag, limit = nil)
-      tagged_with(tag).order("created_at DESC").limit(limit).all
+      tagged_with(tag).order('created_at DESC').published.limit(limit).all
+    end
+
+    def last_campaigns_moderated
+      order('created_at ASC').where('moderated = ?', true).all  
     end
   end
 
@@ -53,6 +56,20 @@ class Campaign < ActiveRecord::Base
   def to_html(field)
     markdown = Redcarpet.new(field)
     markdown.to_html
+  end
+
+  def activate!
+    self.moderated = false
+    self.published_at = Time.now
+    save!
+    # Descomentar cuando pasemos a producción
+    #if Rails.env == 'production'
+    #  tweet_campaign
+    #end
+  end
+
+  def moderated?
+    moderated == true ? true : false
   end
 
   private
