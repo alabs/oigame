@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004223201) do
+ActiveRecord::Schema.define(:version => 20111005121900) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20111004223201) do
     t.text     "emails"
     t.boolean  "moderated",    :default => true
     t.datetime "published_at"
+    t.string   "target"
   end
 
   create_table "taggings", :force => true do |t|

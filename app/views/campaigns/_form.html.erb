@@ -45,6 +45,10 @@
       <%= f.text_area :recipients, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Lista de direcciones de correo de destinatarios, una por línea.' %>
     </div>
     <div class="form-field">
+      <%= f.label t(:target) %>
+      <%= f.text_field :target, :class => 'span8', :placeholder => 'Cantidad pensada de mensajes enviados' %>
+    </div>
+    <div class="form-field">
       <%= f.label t(:tags) %>
       <%= f.text_field :tag_list, :class => 'span8', :placeholder => 'Lista de etiquetas separadas por comas' %>
     </div>
