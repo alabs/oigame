@@ -5,6 +5,7 @@
 @import "wisiwisi-editor"
 @import "jquery.dialog2"
 @import "jquery.jqplot"
+@import "jquery.notify"
 
 
 $main-color: #be0411
@@ -37,21 +38,7 @@ a, a:hover
   -webkit-box-shadow: 0 0 0 0
 
 .flash-messages
-  width: 100%
-  position: fixed
-  opacity: 0.95
-  text-align: center
-  left: 0px
-  z-index: 9999999
-  margin: 0px
-  padding: .5em
-  top: 0px
-  @extend .alert-message
-  p
-    font-weight: bold
-    font-size: 120%
-  .close 
-    margin-right: 1em
+  display: none
 
 .flash-notice
   @extend .success
