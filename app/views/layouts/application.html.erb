@@ -24,9 +24,8 @@
   </head>
   <body>
     <% flash.each do |name, msg| %>
-      <div class="<%= "flash-#{name}" %> flash-messages">
-        <a class="close" href="#">x</a>
-        <%= content_tag :p, msg %>
+      <div class="flash-messages">
+        <%= content_tag :p, msg, :class => "#{name}" %>
       </div>
     <% end %>
     <div id="header-wrapper">
