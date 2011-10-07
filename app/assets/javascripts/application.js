@@ -194,9 +194,9 @@ function check_current_navbar(section){
 
 $(function() {
 
-  $(".flash-messages a.close").click(function(event) {
-    event.preventDefault();
-    $(this).parent().fadeOut();
+  $(".flash-messages").each(function() {
+    msg = $(this).children("p");
+    $.jGrowl(msg.text());
   });
 
   $("#user_email").focus();

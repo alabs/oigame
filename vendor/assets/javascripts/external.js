@@ -3,6 +3,7 @@
 //= require jqplot/plugins/jqplot.dateAxisRenderer
 //= require jqplot/plugins/jqplot.canvasTextRenderer
 //= require jqplot/plugins/jqplot.highlighter
+//= require jquery.jgrowl
 //= require jquery-scrolltofixed
 //= require jquery.dialog2
 //= require jquery.nivo.slider.pack
