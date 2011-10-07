@@ -93,6 +93,19 @@
             <img style="float:right;" src="/assets/view-fullscreen.png" alt="Maximizar" />
           </a>
         </h2>
+
+        <div id="campaign-information">
+          <p>
+          Han actuado 11255 personas
+          </p>
+          <p>
+            Nos faltan <%= @campaign.target %> correos
+          </p>
+          <p>
+            Nos quedan 8 meses
+          </p>
+        </div>
+
         <div id="campaign-message-form" class="form-stacked">
           <%= form_tag message_campaign_path do %>
             <fieldset>
