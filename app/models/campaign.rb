@@ -2,7 +2,7 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :user
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target
   attr_accessor :recipients
 
   serialize :emails, Array
