@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -34,7 +34,7 @@ end
 
 gem 'devise'
 gem 'activeadmin'
-gem 'sass-rails', "  ~> 3.1.0"
+gem 'sass-rails', "  ~> 3.1.4"
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'acts-as-taggable-on'
 gem 'rmagick'
@@ -53,4 +53,4 @@ gem 'therubyracer'
 # la siguiente versión.
 # Quitándo esta línea es suficiente porque ya la
 # requiere sass-rails
-gem 'sass', '3.1.7'
+#gem 'sass', '3.1.7'
