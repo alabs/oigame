@@ -4,11 +4,6 @@
   <div id="show-campaign">
     <div id="show-campaign-detail">
       <h2><%= @campaign.name %></h2>
-      <div id="social-buttons">
-          <g:plusone size="medium" href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
-          <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="horizontal" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-          <iframe allowtransparency="true" src="http://www.facebook.com/plugins/like.php?href=http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;height=21&amp;action=like&amp;font=arial&amp;colorscheme=light" style="border:none; overflow:hidden; width:110px; height:21px" frameborder="0" scrolling="no"></iframe>
-      </div><!-- social-buttons -->
       <p id="cdate_and_edit">
         Campaña creada hace: <%= time_ago_in_words(@campaign.created_at) %>
         <% if user_signed_in? %>
@@ -47,20 +42,16 @@
       <%= @campaign.to_html(@campaign.body).html_safe %> 
 
       <div id="campaign-actions">
-        <span class="label notice"><a href="#" id="show-modal-stats-window">Ver las estadísticas de envío</a></span>
         <span class="label success"><a href="#" id="show-modal-widget">Ver el widget de esta campaña</a></span>
       </div><!-- campaign-actions -->
         
-      <div id="modal-stats-window">
-        <h1>Estadísticas de envío</h1>
+      <div id="stats-chart">
+        <h2>Estadísticas de envío</h2>
         <div id="stats-data" style="display: none;"><%= @stats_data %></div>
-        <div id="chart_center" style="width: 400px; height:300px; margin: 0px auto;">
+        <div id="chart_center" style="width: 400px; height:300px; margin: 2em auto;">
           <div id="chart_messages"></div>
         </div>
-        <div class="actions">
-            <button class="primary close-dialog">Cerrar</button>
-        </div>
-      </div><!-- modal-stats-window -->
+      </div><!-- stats-chart -->
 
       <div id="modal-widget-window">
         <h1> Integrar formulario</h1>
@@ -95,17 +86,18 @@
         </h2>
 
         <div id="campaign-information">
-          <p>
-          Han actuado 11255 personas
-          </p>
-          <p>
-            Nos faltan <%= @campaign.target %> correos
-          </p>
-          <p>
-            Nos quedan 8 meses
-          </p>
+          <div class="thermometer">
+            <div class="thermocontainer">
+              <div class="signatures-needed">
+              <span class="big strong">201</span>
+              <span class="small weak">de</span>
+              <span class="big strong weak"><%= @campaign.target %> ciudadanos indignados</span>
+              </div>
+              <div style="width: 9%" class="mercury"></div>
+            </div>
+          </div>
+          <p> Nos quedan 8 meses </p>
         </div>
-
         <div id="campaign-message-form" class="form-stacked">
           <%= form_tag message_campaign_path do %>
             <fieldset>
@@ -129,6 +121,11 @@
             </fieldset>
           <% end %>
         </div><!-- campaign-message-form -->
+        <div id="social-buttons">
+            <g:plusone size="tall" href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
+            <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="vertical" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            <iframe allowtransparency="true" src="http://www.facebook.com/plugins/like.php?href=http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>&amp;layout=box_count&amp;show_faces=false&amp;width=110&amp;height=21&amp;action=like&amp;font=arial&amp;colorscheme=light" style="border:none; overflow:hidden; width:110px; height:21px" frameborder="0" scrolling="no"></iframe>
+        </div><!-- social-buttons -->
         <div id="modal-send-message" style="display:none;">
           <h1><%= t(:join_this_campaign) %></h1>
           <div id="modal-campaign-message-form"></div>

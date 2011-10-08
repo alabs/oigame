@@ -45,6 +45,9 @@ gem 'twitter'
 
 gem 'yaml_db'
 
+gem 'execjs'
+gem 'therubyracer'
+
 # Con la versión 3.1.8 peta el CSS de Bootstrap.
 # Revisar esta línea y actualizar cuando salga
 # la siguiente versión.

@@ -4,10 +4,18 @@
 function chart_draw(items, chart_id, chart_title, color){
   $.jqplot(chart_id, [items], {
     title: chart_title,
+    seriesDefaults: {
+      fill: true,
+      fillAndStroke: true,
+      fillAlpha: 0.5,
+      shadow: false
+    },
     highlighter: {
       tooltipAxes: 'y',
     },
     grid: {
+        backgroundColor: 'white',
+        borderColor: 'white',
         drawGridlines: false
     },
     axes: {
@@ -81,7 +89,7 @@ $(function() {
   // comprobamos que se encuentre la data
   if ( $('#stats-data').text().length != 0 ) {
     var items_messages = JSON.parse($('#stats-data').text());
-    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', 'red');
+    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', '#819FF7');
   }
 
   $("#modal-stats-window").dialog2({
