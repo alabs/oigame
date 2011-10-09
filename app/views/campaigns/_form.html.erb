@@ -49,6 +49,10 @@
       <%= f.text_field :target, :class => 'span8', :placeholder => 'Cantidad pensada de mensajes enviados' %>
     </div>
     <div class="form-field">
+      <%= f.label t(:due_date_of_campaign) %>
+      <%= f.date_select :duedate_at, :prompt => { :day => 'Día', :month => 'Mes', :year => 'Año' } %>
+    </div>
+    <div class="form-field">
       <%= f.label t(:tags) %>
       <%= f.text_field :tag_list, :class => 'span8', :placeholder => 'Lista de etiquetas separadas por comas' %>
     </div>
