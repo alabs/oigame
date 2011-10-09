@@ -45,6 +45,7 @@ GEM
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    cancan (1.6.7)
     capistrano (2.9.0)
       highline
       net-scp (>= 1.0.0)
@@ -208,6 +209,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   acts-as-taggable-on
+  cancan
   capistrano
   carrierwave
   coffee-rails (~> 3.1.0)

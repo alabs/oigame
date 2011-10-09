@@ -6,33 +6,31 @@
       <h2><%= @campaign.name %></h2>
       <p id="cdate_and_edit">
         Campaña creada hace: <%= time_ago_in_words(@campaign.created_at) %>
-        <% if user_signed_in? %>
-          <% if current_user.is_admin && @campaign.moderated? %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label success">
-              <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
-            </span>
-          <% end %>
-          <% if current_user.is_admin && @campaign.published? %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label success">
-              <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
-            </span>
-          <% end %>
-          <% if @campaign.user == current_user || current_user.is_editor || current_user.is_admin %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label notice">
-              <%= link_to t(:edit), edit_campaign_path(@campaign) %>
-            </span>
-          <% end %>
-          <% if current_user.is_admin %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label important">
-              <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
-            </span>
-          <% end %>
+        <% if can?(:moderated, @campaign) && @campaign.moderated? %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="label success">
+            <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+          </span>
+        <% end %>
+        <% if can?(:deactivate, @campaign) && @campaign.published? %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="label success">
+            <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+          </span>
+        <% end %>
+        <% if can? :update, @campaign %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="label notice">
+            <%= link_to t(:edit), edit_campaign_path(@campaign) %>
+          </span>
+        <% end %>
+        <% if can? :destroy, @campaign %>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="label important">
+            <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
+          </span>
         <% end %>
       </p>
       <% if @campaign.image.to_s %>

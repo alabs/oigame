@@ -7,7 +7,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing
 
-  has_many :campaigns
+  has_many :campaigns, :dependent => :destroy
+  
+  ROLES = %w[user editor admin]
+  
+  def role?(base_role)
+    ROLES.index(base_role.to_s) <= ROLES.index(role)
+  end
 
   def is_editor
     role == 'editor' ? true : false
