@@ -14,12 +14,4 @@ class User < ActiveRecord::Base
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
-
-  def is_editor
-    role == 'editor' ? true : false
-  end
-
-  def is_admin
-    role == 'admin' ? true : false
-  end
 end
