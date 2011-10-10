@@ -1,6 +1,7 @@
 class Campaign < ActiveRecord::Base
 
   belongs_to :user
+  has_many :messages
   
   attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at
   attr_accessor :recipients
