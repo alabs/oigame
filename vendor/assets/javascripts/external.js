@@ -8,6 +8,7 @@
 //= require jquery.dialog2
 //= require jquery.nivo.slider.pack
 //= require date
+//= require date_es
 //= require jquery.datePicker
 //= require jquery.tableofcontents
 //= require Markdown.Converter

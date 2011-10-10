@@ -3,8 +3,9 @@
 table.jCalendar {
 	border: 1px solid #000;
 	background: #aaa;
-    border-collapse: separate;
-    border-spacing: 2px;
+  border-collapse: separate;
+  border-spacing: 2px;
+  margin-bottom: inherit;
 }
 table.jCalendar th {
 	background: #333;
@@ -55,6 +56,16 @@ table.jCalendar td.unselectable.dp-hover {
 	color: #888;
 }
 
+/* bootstrap shit apereira */
+
+table.jCalendar tr + tr td {
+  border-top: 0px solid #DDDDDD;
+}
+
+table.jCalendar th, table.jCalendar td {
+  line-height: inherit;
+}
+
 /* For the popup */
 
 /* NOTE - you will probably want to style a.dp-choose-date - see how I did it in demo.css */
@@ -65,7 +76,7 @@ div.dp-popup {
 	font-size: 10px;
 	font-family: arial, sans-serif;
 	padding: 2px;
-	width: 171px;
+  width: 195px;
 	line-height: 1.2em;
 }
 div#dp-popup {
@@ -77,6 +88,9 @@ div.dp-popup h2 {
 	text-align: center;
 	margin: 2px 0;
 	padding: 0;
+  /* apereira: cambios para bootstrap */
+  line-height: inherit;
+  border-bottom: 2px solid #CCCCCC;
 }
 a#dp-close {
 	font-size: 11px;
