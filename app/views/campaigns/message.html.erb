@@ -4,8 +4,10 @@
   <div id="page">
     <div id="page-info">
       <h2><%= @page_title %></h2>
-      <p>Gracias por enviar tu mensaje a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.</p>
+      <p class="thanks-message">Gracias por enviar tu mensaje a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.</p>
+      <br />
       <p><%= link_to t(:back), @campaign, :class => "btn primary" %>
+      <br /><br />
 
       <%= render :partial => "stats_chart" %>
 
