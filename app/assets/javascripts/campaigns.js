@@ -15,9 +15,8 @@ $.dpText = {
 
 ////////////////////////// chart_draw: jqplot helper  - start
 
-function chart_draw(items, chart_id, chart_title, color, minimal_date){
+function chart_draw(items, chart_id, color, minimal_date){
   $.jqplot(chart_id, [items], {
-    title: chart_title,
     seriesDefaults: {
       fill: true,
       fillAndStroke: true,
@@ -45,7 +44,7 @@ function chart_draw(items, chart_id, chart_title, color, minimal_date){
       yaxis: {
         min: 0,
         tickInterval: 1,
-        label:'Cantidad',
+        label:'Mensajes enviados',
         labelRenderer: $.jqplot.CanvasAxisLabelRenderer
       }
     },
@@ -109,7 +108,7 @@ $(function() {
     var items_messages = JSON.parse($('#stats-data').text());
     var minimal_date = $("#stats-minimal_date").text();
     console.log(minimal_date);
-    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', '#F78181', minimal_date);
+    chart_draw(items_messages, 'chart_messages', '#F78181', minimal_date);
   }
 
   $("#modal-stats-window").dialog2({
