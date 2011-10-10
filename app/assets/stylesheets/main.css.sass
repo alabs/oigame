@@ -347,6 +347,26 @@ a, a:hover
       @extend .omega
       margin-top: 10px
 
+      .thermometer
+        width: 230px
+        border-radius: 2px 2px 2px 2px
+        background-color: #FFFFFF
+        border: 1px solid #CCCCCC
+        display: inline-block
+        padding: 1px
+        vertical-align: middle
+        width: 100%
+        .thermocontainer
+          background-image: -moz-linear-gradient(#F6F6F6, #FEFEFE)
+          border: 1px solid #EFEFEF
+          .signatures-needed 
+            margin-left: 10px
+            margin-top: 2px
+            position: absolute
+          .mercury
+            background-image: -moz-linear-gradient(#DDDDDD, #BBBBBB 15px)
+            height: 25px
+
       #social-buttons
         width: 100%
         margin-bottom: 10px
@@ -397,25 +417,6 @@ a, a:hover
                 display: block
               .btn 
                 width: 80%
-        .thermometer
-          width: 230px
-          border-radius: 2px 2px 2px 2px
-          background-color: #FFFFFF
-          border: 1px solid #CCCCCC
-          display: inline-block
-          padding: 1px
-          vertical-align: middle
-          width: 100%
-          .thermocontainer
-            background-image: -moz-linear-gradient(#F6F6F6, #FEFEFE)
-            border: 1px solid #EFEFEF
-            .signatures-needed 
-              margin-left: 10px
-              margin-top: 2px
-              position: absolute
-            .mercury
-              background-image: -moz-linear-gradient(#DDDDDD, #BBBBBB 15px)
-              height: 25px
 
     #create-campaign-form
       @extend .grid_14
