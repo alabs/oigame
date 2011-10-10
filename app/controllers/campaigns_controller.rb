@@ -17,12 +17,7 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    dates = (@campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
-    dates.each do |date|
-      data.push([date.strftime('%Y-%m-%d'), Message.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => @campaign.id).all.count])
-    end
-    @stats_data = data
+    @stats_data = generate_stats(@campaign)
   end
 
   def new
@@ -80,6 +75,7 @@ class CampaignsController < ApplicationController
       return
     end
     @campaign = Campaign.published.find_by_slug(params[:id])
+    @stats_data = generate_stats(@campaign)
   end
 
   def moderated
@@ -99,5 +95,17 @@ class CampaignsController < ApplicationController
 
   def feed
     @campaigns = Campaign.last_campaigns
+  end
+
+  private
+
+  def generate_stats(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    dates.each do |date|
+      data.push([date.strftime('%Y-%m-%d'), Message.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count])
+    end
+    
+    return data
   end
 end
