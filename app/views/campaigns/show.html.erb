@@ -5,7 +5,7 @@
     <div id="show-campaign-detail">
       <h2><%= @campaign.name %></h2>
       <p id="cdate_and_edit">
-        Campaña creada hace: <%= time_ago_in_words(@campaign.created_at) %>
+        Creada hace <%= time_ago_in_words(@campaign.created_at) %>
         <% if can?(:moderated, @campaign) && @campaign.moderated? %>
           &nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;

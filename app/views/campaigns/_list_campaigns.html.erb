@@ -10,8 +10,16 @@
               <% if campaign.image.to_s %>
                 <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
               <% end %>
-              <p><%= link_to t(:join_this_campaign), campaign %><br /><strong>8456</strong> personas ya lo han hecho</p>
-              <p>Campaña creada hace: <strong><%= time_ago_in_words(campaign.created_at) %></strong></p>
+              <p>
+                <%= link_to t(:join_this_campaign), campaign %><br />
+                <% msgs = campaign.emails.count * campaign.messages.count %>
+                <% if msgs == 1 %>
+                  <strong><%= msgs %></strong> persona ya lo ha hecho<br />
+                <% else %>
+                  <strong><%= msgs %></strong> personas ya lo han hecho<br />
+                <% end %>
+                Creada hace <%= time_ago_in_words(campaign.created_at) %>
+              </p>
             </div>
             <div class="campaign-text">
               <%= campaign.to_html(campaign.intro).html_safe %>
