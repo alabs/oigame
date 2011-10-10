@@ -1,4 +1,18 @@
 
+////////////////////////// jquery.DatePicker cutomizations - start
+
+$.dpText = {
+  TEXT_PREV_YEAR    : 'Año anterior',
+  TEXT_PREV_MONTH   : 'Mes anterior',
+  TEXT_NEXT_YEAR    : 'Próximo año',
+  TEXT_NEXT_MONTH   : 'Próximo mes',
+  TEXT_CLOSE      : 'Cerrar',
+  TEXT_CHOOSE_DATE: '',
+  HEADER_FORMAT   : 'mmmm yyyy'
+}
+
+////////////////////////// jquery.DatePicker cutomizations - end
+
 ////////////////////////// chart_draw: jqplot helper  - start
 
 function chart_draw(items, chart_id, chart_title, color){
@@ -150,5 +164,7 @@ $(function() {
   var percent = Math.round(percent_raw);
   $(".thermocontainer .mercury").css("width", percent + "%")
   // thermometer end
+
+  $('#campaign_duedate_at').datePicker({clickInput:true})
 
 });
