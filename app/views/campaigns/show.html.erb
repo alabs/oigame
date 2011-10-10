@@ -5,8 +5,23 @@
     <div id="show-campaign-detail">
       <h2><%= @campaign.name %></h2>
       <div class="grid_6">
-        <p id="cdate_and_edit">
-          Creada hace <%= time_ago_in_words(@campaign.created_at) %>
+        <p class="small"> Creada hace <%= time_ago_in_words(@campaign.created_at) %> </p>
+        <p class="small"> Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días </p>
+      </div>
+      <div class="grid_7">
+        <div id="campaign-information">
+          <div class="thermometer">
+            <div class="thermocontainer">
+              <div class="signatures-needed">
+                <span id="participants" class="big strong"><%= @campaign.messages.count %></span>
+                <span class="small weak">de</span>
+                <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> participantes
+            </div>
+            <div style="width: 0%" class="mercury"></div>
+          </div>
+        </div><!-- campaing-information -->
+      </div>
+        <p>
           <% if can?(:moderated, @campaign) && @campaign.moderated? %>
             &nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,22 +48,7 @@
               <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
             </span>
           <% end %>
-          </p><!-- cdate_and_edit -->
-        <p class="small"> Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días </p>
-      </div>
-      <div class="grid_7">
-        <div id="campaign-information">
-          <div class="thermometer">
-            <div class="thermocontainer">
-              <div class="signatures-needed">
-                <span id="participants" class="big strong"><%= @campaign.messages.count %></span>
-                <span class="small weak">de</span>
-                <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> participantes
-            </div>
-            <div style="width: 0%" class="mercury"></div>
-          </div>
-        </div><!-- campaing-information -->
-      </div>
+        </p>
     </div>
       <% if @campaign.image.to_s %>
         <%= image_tag(@campaign.image_url.to_s) %>
@@ -61,7 +61,6 @@
       </div><!-- campaign-actions -->
         
       <div id="stats-chart">
-        <h2>Estadísticas de envío</h2>
         <div id="stats-data" style="display: none;"><%= @stats_data %></div>
         <div id="chart_center" style="width: 400px; height:300px; margin: 2em auto;">
           <div id="chart_messages"></div>
