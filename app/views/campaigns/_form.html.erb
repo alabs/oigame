@@ -50,7 +50,7 @@
     </div>
     <div class="form-field">
       <%= f.label t(:due_date_of_campaign) %>
-      <%= f.date_select :duedate_at, :prompt => { :day => 'Día', :month => 'Mes', :year => 'Año' } %>
+      <%= f.text_field :duedate_at %>
     </div>
     <div class="form-field">
       <%= f.label t(:tags) %>
