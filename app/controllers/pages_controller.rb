@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     @users = User.count
   end
 
-  def help
+  def answers
   end
 
   def privacy_policy

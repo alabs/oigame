@@ -50,7 +50,7 @@
     </div>
     <div class="form-field">
       <%= f.label t(:due_date_of_campaign) %>
-      <%= f.date_select :duedate_at, :prompt => { :day => 'Día', :month => 'Mes', :year => 'Año' }, :required => true %>
+      <%= f.text_field :duedate_at, :required => true %>
       <% unless @campaign.errors[:duedate_at].blank? %>
         <br />
         <span class="error_message"><%= @campaign.errors[:duedate_at].to_sentence %></span>
