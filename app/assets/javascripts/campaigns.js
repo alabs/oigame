@@ -150,7 +150,7 @@ $(function() {
   console.log(percent_raw);
   var percent = Math.round(percent_raw);
   console.log(percent);
-  $(".thermocontainer .mercury").css("width", percent)
+  $(".thermocontainer .mercury").css("width", percent + "%")
   // thermometer end
 
 });
