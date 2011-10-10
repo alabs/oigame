@@ -10,8 +10,15 @@
               <% if campaign.image.to_s %>
                 <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
               <% end %>
-              <p><%= link_to t(:join_this_campaign), campaign %><br /><strong>8456</strong> personas ya lo han hecho</p>
-              <p>Campaña creada hace: <strong><%= time_ago_in_words(campaign.created_at) %></strong></p>
+              <p>
+                <%= link_to t(:join_this_campaign), campaign %><br />
+                <% if campaign.messages.count == 1 %>
+                  <strong><%= campaign.messages.count %></strong> persona ya lo ha hecho<br />
+                <% else %>
+                  <strong><%= campaign.messages.count %></strong> personas ya lo han hecho<br />
+                <% end %>
+                Creada hace <%= time_ago_in_words(campaign.created_at) %>
+              </p>
             </div>
             <div class="campaign-text">
               <%= campaign.to_html(campaign.intro).html_safe %>
@@ -23,7 +30,7 @@
     </div><!-- list-campaigns-info -->
     <div id="list-campaigns-sidebar">
       <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path %></h2>
-      <% if user_signed_in? && current_user.is_admin %>
+      <% if can? :moderated, Campaign %>
         <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path %></h2>
       <% end %>
       <br /><br />
