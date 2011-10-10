@@ -40,7 +40,7 @@
       <%= @campaign.to_html(@campaign.body).html_safe %> 
 
       <div id="campaign-actions">
-        <span class="label success"><a href="#" id="show-modal-widget">Ver el widget de esta campaña</a></span>
+        <!-- span class="label success"><a href="#" id="show-modal-widget">Ver el widget de esta campaña</a></span -->
       </div><!-- campaign-actions -->
         
       <div id="stats-chart">
@@ -95,9 +95,10 @@
           </a>
         </h2>
 
-              <div id="campaign-message-form" class="form-stacked">
+        <div id="campaign-message-form" class="form-stacked">
           <%= form_tag message_campaign_path do %>
             <fieldset>
+              In food truck adipisicing irony bicycle rights farm-to-table proident, echo park +1 helvetica magna. Cliche four loko cosby sweater non fap butcher cred, squid commodo. Vero carles fanny pack cosby sweater elit food truck. 
               <% unless user_signed_in? %>
                 <div class="form-field">
                   <%= label_tag t(:your_email) %>
@@ -119,6 +120,12 @@
           <% end %>
         </div><!-- campaign-message-form -->
 
+        <h2 id="jtc">Difunde</h2>
+        <div id="diffusion">
+          In food truck adipisicing irony bicycle rights farm-to-table proident, echo park +1 helvetica magna. Cliche four loko cosby sweater non fap butcher cred, squid commodo. Vero carles fanny pack cosby sweater elit food truck. 
+          <a id="show-modal-widget" href="#" class="btn large primary center">Pon el formulario en tu web</a>
+        </div>
+
         <h2 id="jtc">Comunica</h2>
         <ul id="social-buttons">
            <li> 
@@ -138,9 +145,6 @@
               <g:plusone size="tall" href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
             </li>
         </ul><!-- social-buttons -->
-        <h2 id="jtc">Difunde</h2>
-        <a href="#" class="btn large primary">Pon el formulario en tu web</a>
-
 
         <div id="modal-send-message" style="display:none;">
           <h1><%= t(:join_this_campaign) %></h1>
