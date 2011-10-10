@@ -197,7 +197,17 @@ $(function() {
   $(".flash-messages").each(function() {
     var msg = $(this).children("p");
     var theme = $(this).children("p").attr("class");
-    $.jGrowl(msg.text(), { sticky: true, theme: "flash-" + theme });
+    $.jGrowl(msg.text(), { 
+      sticky: true, 
+      theme: "flash-" + theme,
+      open: function() { 
+        $(this).click( 
+          function(){ 
+            $(this).fadeOut();
+          } 
+        )
+      }
+    });
   });
 
   $("#user_email").focus();
