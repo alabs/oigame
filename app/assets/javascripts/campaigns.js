@@ -15,7 +15,7 @@ $.dpText = {
 
 ////////////////////////// chart_draw: jqplot helper  - start
 
-function chart_draw(items, chart_id, chart_title, color){
+function chart_draw(items, chart_id, chart_title, color, minimal_date){
   $.jqplot(chart_id, [items], {
     title: chart_title,
     seriesDefaults: {
@@ -30,7 +30,8 @@ function chart_draw(items, chart_id, chart_title, color){
     grid: {
         backgroundColor: 'white',
         borderColor: 'white',
-        drawGridlines: false
+        drawGridlines: false,
+      shadow: false
     },
     axes: {
       xaxis: {
@@ -38,9 +39,12 @@ function chart_draw(items, chart_id, chart_title, color){
         labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
         renderer:$.jqplot.DateAxisRenderer,
         tickOptions:{formatString:'%d-%m'},
-        tickInterval:'1 day'
+        tickInterval:'1 day',
+        min: minimal_date
       },
       yaxis: {
+        min: 0,
+        tickInterval: 1,
         label:'Cantidad',
         labelRenderer: $.jqplot.CanvasAxisLabelRenderer
       }
@@ -103,7 +107,9 @@ $(function() {
   // comprobamos que se encuentre la data
   if ( $('#stats-data').text().length != 0 ) {
     var items_messages = JSON.parse($('#stats-data').text());
-    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', '#819FF7');
+    var minimal_date = $("#stats-minimal_date").text();
+    console.log(minimal_date);
+    chart_draw(items_messages, 'chart_messages', 'Mensajes enviados', '#F78181', minimal_date);
   }
 
   $("#modal-stats-window").dialog2({
