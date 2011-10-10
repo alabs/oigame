@@ -195,8 +195,9 @@ function check_current_navbar(section){
 $(function() {
 
   $(".flash-messages").each(function() {
-    msg = $(this).children("p");
-    $.jGrowl(msg.text());
+    var msg = $(this).children("p");
+    var theme = $(this).children("p").attr("class");
+    $.jGrowl(msg.text(), { sticky: true, theme: "flash-" + theme });
   });
 
   $("#user_email").focus();
