@@ -31,7 +31,8 @@
     <div id="list-campaigns-sidebar">
       <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path, :class => "btn primary large" %></h2>
       <% if can? :moderated, Campaign %>
-        <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path %></h2>
+        <br />
+        <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn large danger" %></h2>
       <% end %>
       <br /><br />
       <h2>Etiquetas más usadas</h2>

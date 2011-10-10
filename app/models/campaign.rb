@@ -10,6 +10,7 @@ class Campaign < ActiveRecord::Base
 
   validates_presence_of :name, :intro, :body
   validates_uniqueness_of :name
+  validates_presence_of :duedate_at
 
   acts_as_taggable
 
