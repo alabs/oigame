@@ -32,7 +32,7 @@
             <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
           </span>
         <% end %>
-      </p>
+        </p><!-- cdate_and_edit -->
       <% if @campaign.image.to_s %>
         <%= image_tag(@campaign.image_url.to_s) %>
       <% end %>
