@@ -12,11 +12,10 @@
               <% end %>
               <p>
                 <%= link_to t(:join_this_campaign), campaign %><br />
-                <% msgs = campaign.emails.count * campaign.messages.count %>
-                <% if msgs == 1 %>
-                  <strong><%= msgs %></strong> persona ya lo ha hecho<br />
+                <% if campaign.messages.count == 1 %>
+                  <strong><%= campaign.messages.count %></strong> persona ya lo ha hecho<br />
                 <% else %>
-                  <strong><%= msgs %></strong> personas ya lo han hecho<br />
+                  <strong><%= campaign.messages.count %></strong> personas ya lo han hecho<br />
                 <% end %>
                 Creada hace <%= time_ago_in_words(campaign.created_at) %>
               </p>
