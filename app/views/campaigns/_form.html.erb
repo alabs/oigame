@@ -45,12 +45,16 @@
       <%= f.text_area :recipients, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Lista de direcciones de correo de destinatarios, una por línea.' %>
     </div>
     <div class="form-field">
-      <%= f.label t(:target) %>
-      <%= f.text_field :target, :class => 'span8', :placeholder => 'Cantidad pensada de mensajes enviados' %>
+      <%= f.label 'Número de personas que piensas que se unirán a la campaña' %>
+      <%= f.text_field :target, :class => 'span8', :placeholder => 'Número de personas que piensas que se unirán' %>
     </div>
     <div class="form-field">
       <%= f.label t(:due_date_of_campaign) %>
-      <%= f.date_select :duedate_at, :prompt => { :day => 'Día', :month => 'Mes', :year => 'Año' } %>
+      <%= f.date_select :duedate_at, :prompt => { :day => 'Día', :month => 'Mes', :year => 'Año' }, :required => true %>
+      <% unless @campaign.errors[:duedate_at].blank? %>
+        <br />
+        <span class="error_message"><%= @campaign.errors[:duedate_at].to_sentence %></span>
+      <% end %>
     </div>
     <div class="form-field">
       <%= f.label t(:tags) %>
