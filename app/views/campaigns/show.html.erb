@@ -79,11 +79,11 @@
         <div class="thermometer">
           <div class="thermocontainer">
             <div class="signatures-needed">
-              <span class="big strong"><%= @campaign.messages.count %></span>
+              <span id="participants" class="big strong"><%= @campaign.messages.count %></span>
               <span class="small weak">de</span>
-              <span class="big strong weak"><%= @campaign.target %> ciudadanos indignados</span>
+              <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> participantes
           </div>
-          <div style="width: 9%" class="mercury"></div>
+          <div style="width: 0%" class="mercury"></div>
         </div>
       </div><!-- campaing-information -->
       <p> Nos quedan <%= (Time.now - @campaign.duedate_at).round / 60 / 60 / 24 %> días </p>
