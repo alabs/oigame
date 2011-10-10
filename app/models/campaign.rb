@@ -84,6 +84,9 @@ class Campaign < ActiveRecord::Base
     moderated == false ? true : false
   end
 
+  def stats
+  end
+
   private
 
   def generate_slug
