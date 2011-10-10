@@ -86,7 +86,7 @@
           <div style="width: 0%" class="mercury"></div>
         </div>
       </div><!-- campaing-information -->
-      <p> Nos quedan <%= (Time.now - @campaign.duedate_at).round / 60 / 60 / 24 %> días </p>
+      <p> Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días </p>
 
       <div id="show-campaign-sidebar">
         <h2 id="jtc">Participa
