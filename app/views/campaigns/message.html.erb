@@ -7,5 +7,12 @@
       <p>Gracias por enviar tu mensaje a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.</p>
       <p><%= link_to t(:back), @campaign %>
     </div><!-- page-info -->
+    <div id="page-sidebar">
+      <div id="show-campaign-sidebar">
+        <%= render :partial => "communication" %>
+      </div><!-- show-campaign-sidebar -->
+    </div><!-- page-sidebar -->
   </div><!-- page -->
 </div><!-- page-wrapper -->
+
+

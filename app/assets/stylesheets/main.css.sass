@@ -373,72 +373,6 @@ a, a:hover
           background-image: -moz-linear-gradient(#DDDDDD, #BBBBBB 15px)
           height: 25px
 
-    #show-campaign-sidebar-wrapper
-      @extend .grid_8
-      @extend .omega
-      margin-top: 10px
-
-      #show-campaign-sidebar
-
-        h2#jtc
-          font-size: 1.7em
-          padding: 8px
-          color: #fff
-          background-color: #000
-
-        #campaign-message-form
-          padding-left: 0
-          form
-            fieldset
-              background-color: #f1f2f1
-              border: 1px solid $border-main-color
-              padding: 10px
-            .form-field
-              margin-bottom: 10px
-              input[type=text], textarea, input[type=email]
-                border: 1px solid $border-main-color
-                padding: 5px
-                font-weight: normal
-              input:focus, textarea:focus
-                background-color: #f6f6f6
-                box-shadow: 0 0 4px $border-shadow
-              label, input, textarea
-                font-size: 1em
-            .error_message
-              font-size: small
-              color: #f00
-            .field_with_errors input[type=text], .field_with_errors input[type=email], .field_with_errors textarea
-              border: 1px solid #f00
-            .form-actions
-              .center
-                margin: 0 auto
-                display: block
-              .btn 
-                width: 80%
-
-        #social-buttons
-          margin-bottom: 10px
-          text-align: center
-          background-color: #f1f2f1
-          border: 1px solid $border-main-color
-          padding: 10px
-          li 
-            display: inline
-            list-style-type: none
-            padding-right: 20px
-
-        #diffusion
-          margin-bottom: 10px
-          background-color: #f1f2f1
-          border: 1px solid $border-main-color
-          padding: 10px
-          .center
-            margin: 0 auto
-            display: block
-            text-align: center
-          .btn 
-            margin-top: 1em
-            width: 70%
 
     #create-campaign-form
       @extend .grid_14
@@ -618,3 +552,68 @@ a, a:hover
 .hide
   display: none
 
+#show-campaign-sidebar
+  @extend .grid_8
+  @extend .omega
+  margin-top: 10px
+
+  h2#jtc
+    font-size: 1.7em
+    padding: 8px
+    color: #fff
+    background-color: #000
+
+  #campaign-message-form
+    padding-left: 0
+    form
+      fieldset
+        background-color: #f1f2f1
+        border: 1px solid $border-main-color
+        padding: 10px
+      .form-field
+        margin-bottom: 10px
+        input[type=text], textarea, input[type=email]
+          border: 1px solid $border-main-color
+          padding: 5px
+          font-weight: normal
+        input:focus, textarea:focus
+          background-color: #f6f6f6
+          box-shadow: 0 0 4px $border-shadow
+        label, input, textarea
+          font-size: 1em
+      .error_message
+        font-size: small
+        color: #f00
+      .field_with_errors input[type=text], .field_with_errors input[type=email], .field_with_errors textarea
+        border: 1px solid #f00
+      .form-actions
+        .center
+          margin: 0 auto
+          display: block
+        .btn 
+          width: 80%
+
+  #social-buttons
+    margin-left: 0
+    margin-bottom: 10px
+    text-align: center
+    background-color: #f1f2f1
+    border: 1px solid $border-main-color
+    padding: 10px
+    li 
+      display: inline
+      list-style-type: none
+      padding-right: 20px
+
+  #diffusion
+    margin-bottom: 10px
+    background-color: #f1f2f1
+    border: 1px solid $border-main-color
+    padding: 10px
+    .center
+      margin: 0 auto
+      display: block
+      text-align: center
+    .btn 
+      margin-top: 1em
+      width: 70%
