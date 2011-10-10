@@ -183,8 +183,8 @@ function check_current_navbar(section){
     case "donate":
       $("#header-donate").addClass("active");
       break;
-    case "help":
-      $("#header-help").addClass("active");
+    case "answers":
+      $("#header-answers").addClass("active");
       generateTOC();
       if (query) { goTo(query); }
       break;
