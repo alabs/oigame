@@ -77,28 +77,27 @@
 
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar-wrapper">
+      <div id="campaign-information">
+        <div class="thermometer">
+          <div class="thermocontainer">
+            <div class="signatures-needed">
+            <span class="big strong">201</span>
+            <span class="small weak">de</span>
+            <span class="big strong weak"><%= @campaign.target %> ciudadanos indignados</span>
+          </div>
+          <div style="width: 9%" class="mercury"></div>
+        </div>
+      </div><!-- campaing-information -->
+      <p> Nos quedan 8 meses </p>
+
       <div id="show-campaign-sidebar">
-        <h2 id="jtc">
-          <%= t(:join_this_campaign) %>
+        <h2 id="jtc">Participa
           <a id="show-modal-send-message" href="#" title="Maximizar">
             <img style="float:right;" src="/assets/view-fullscreen.png" alt="Maximizar" />
           </a>
         </h2>
 
-        <div id="campaign-information">
-          <div class="thermometer">
-            <div class="thermocontainer">
-              <div class="signatures-needed">
-              <span class="big strong">201</span>
-              <span class="small weak">de</span>
-              <span class="big strong weak"><%= @campaign.target %> ciudadanos indignados</span>
-              </div>
-              <div style="width: 9%" class="mercury"></div>
-            </div>
-          </div>
-          <p> Nos quedan 8 meses </p>
-        </div>
-        <div id="campaign-message-form" class="form-stacked">
+              <div id="campaign-message-form" class="form-stacked">
           <%= form_tag message_campaign_path do %>
             <fieldset>
               <% unless user_signed_in? %>
@@ -121,11 +120,30 @@
             </fieldset>
           <% end %>
         </div><!-- campaign-message-form -->
-        <div id="social-buttons">
-            <g:plusone size="tall" href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
-            <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="vertical" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-            <iframe allowtransparency="true" src="http://www.facebook.com/plugins/like.php?href=http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>&amp;layout=box_count&amp;show_faces=false&amp;width=110&amp;height=21&amp;action=like&amp;font=arial&amp;colorscheme=light" style="border:none; overflow:hidden; width:110px; height:21px" frameborder="0" scrolling="no"></iframe>
-        </div><!-- social-buttons -->
+
+        <h2 id="jtc">Comunica</h2>
+        <ul id="social-buttons">
+           <li> 
+              <div id="fb-root"></div>
+              <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
+              <div class="fb-like" data-href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true" data-font="verdana"></div>
+            </li>   <li>
+              <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="vertical" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            </li>
+            <li>
+              <g:plusone size="tall" href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
+            </li>
+        </ul><!-- social-buttons -->
+        <h2 id="jtc">Difunde</h2>
+        <a href="#" class="btn large primary">Pon el formulario en tu web</a>
+
+
         <div id="modal-send-message" style="display:none;">
           <h1><%= t(:join_this_campaign) %></h1>
           <div id="modal-campaign-message-form"></div>
