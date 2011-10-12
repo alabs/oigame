@@ -5,8 +5,8 @@
     <div id="show-campaign-detail">
       <h2><%= @campaign.name %></h2>
       <div class="grid_6">
-        <p class="small"> Creada hace <%= time_ago_in_words(@campaign.created_at) %> </p>
-        <p class="small"> Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días </p>
+        <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %><br />
+          Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
       </div>
       <div class="grid_7">
         <div id="campaign-information">
