@@ -14,6 +14,10 @@
             <%= f.label t(:password) %>
             <%= f.password_field :password %>
           </div>
+          <div class="form-field">
+            <%= f.check_box :remember_me %>
+            <span class="remember"><%= t(:remember_me) %></span>
+          </div>
           <div class="form-actions">
             <%= f.submit @page_title, :class => 'btn primary' %>
           </div>
