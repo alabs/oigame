@@ -27,80 +27,20 @@
 <div id="home-info-wrapper">
   &nbsp;
   <div id="home-info">
-    <div id="campaigns-slideshow" class="slider-wrapper theme-default">
-      <h2>Última campañas</h2>
-      <div id="slider" class="nivoSlider">
-        <% @campaigns.each do |campaign| %>
-          <%= link_to image_tag(campaign.image_url(:home), :title => campaign.name, :alt => campaign.name), campaign %>
-        <% end %>
-      </div>
-      <% @campaigns.each do |campaign| %>
-        <div id="<%= campaign.name %>" class="nivo-html-caption">
-          <%= link_to campaign.name, campaign %>
-        </div>
-      <% end %>
-    </div><!-- campaigns-slideshow -->
-    <div id="whats-oigame">
-      <h2>¿Qué es oiga.me?</h2>
-      <p><strong>oiga.me</strong> es una plataforma de acción y movilización ciudadana, una herramienta de democracia participativa a través de sistemas web y correo electrónico para colectivos, entidades o asociaciones que desean ser escuchados. oiga.me multiplica la potencia de miles de pequeños esfuerzos individuales en una poderosa fuerza colectiva. Es, además, un altavoz tecnológico que sirve a personas y organizaciones para hacer oír su voz y constituirse en agente activo en la vida política y social.</p>
-      <br />
-      <p>oiga.me pone a disposición de las asociaciones y colectivos las herramientas necesarias para responder al aislamiento, pedir responsabilidades políticas, y participar en acciones eficaces e innovadoras sobre asuntos importantes de nuestro pais. Se trata, en resumen, de devolver la participación a la democracia.</p>
+    <div id="sayit">
+      <h2>Dilo</h2>
+      <p>Coge el altavoz, que se escuche tu voz. <strong>oiga.me</strong> es una plataforma en la que puedes montar campañas online en las que el mundo entero puede participar.</p>
+      <p><strong><%= link_to '> Aprende a usar oiga.me', answers_path %></strong></p>
     </div>
-    <!--
-    <div id="activity-realtime">
-      <h2>Actividad reciente</h2>
-      <ul>
-        <li>
-          <div class="timestamp">5 minutes ago</div>
-          <div class="activity">
-            <span class="login">apardo</span>
-            se ha unido a la campaña:
-            <a href="#">No mas desalojos</a>.
-          </div>
-        </li>
-        <li>
-          <div class="timestamp">5 minutes ago</div>
-          <div class="activity">
-            <span class="login">apardo</span>
-            se ha unido a la campaña:
-            <a href="#">No mas desalojos</a>.
-          </div>
-        </li>
-        <li>
-          <div class="timestamp">5 minutes ago</div>
-          <div class="activity">
-            <span class="login">apardo</span>
-            se ha unido a la campaña:
-            <a href="#">No mas desalojos</a>.
-          </div>
-        </li>
-        <li>
-          <div class="timestamp">5 minutes ago</div>
-          <div class="activity">
-            <span class="login">apardo</span>
-            se ha unido a la campaña:
-            <a href="#">No mas desalojos</a>.
-          </div>
-        </li>
-        <li>
-          <div class="timestamp">5 minutes ago</div>
-          <div class="activity">
-            <span class="login">apardo</span>
-            se ha unido a la campaña:
-            <a href="#">No mas desalojos</a>.
-          </div>
-        </li>
-        <li>
-          <div class="timestamp">5 minutes ago</div>
-          <div class="activity">
-            <span class="login">apardo</span>
-            se ha unido a la campaña:
-            <a href="#">No mas desalojos</a>.
-          </div>
-        </li>
-      </ul>
+    <div id="repeat">
+      <h2>Repítelo</h2>
+      <p>Súmate a la protesta, úne tu voz a las otras. Participa enviando millones de correos de forma efectiva, sin que te filtren, sin que puedan taparse los oídos.</p>
+      <p><strong><%= link_to '> Últimas campañas', campaigns_path %></strong></p>
     </div>
-    -->
-  </div>
-  &nbsp;
+    <div id="doit">
+      <h2>Hazlo posible</h2>
+      <p>Haz posible que en <strong>oiga.me</strong> podamos hacer campañas de miles de llamadas de teléfono a los poderosos, que podamos enviar cientos de faxes. Mejora, dona, difunde, escribe código.</p>
+      <p><strong><%= link_to '> Infórmate como donar', donate_path %></strong></p>
+    </div>
+  </div><!-- home-info -->
 </div><!-- home-info-wrapper -->

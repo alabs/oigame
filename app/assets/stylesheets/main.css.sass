@@ -154,7 +154,18 @@ a, a:hover
     background-color: #fff
     border: 1px solid #E8E8E8
     margin: 15px auto
-    padding-bottom: 30px
+    padding: 15px
+
+    #sayit, #repeat, #doit
+      @extend .grid_8
+      p
+        font-size: 1.1em
+
+    #sayit
+      @extend .alpha
+
+    #doit
+      @extend .omega
 
     #campaigns-slideshow, #activity-realtime, #whats-oigame
       padding: 15px
