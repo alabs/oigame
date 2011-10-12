@@ -25,6 +25,11 @@
     </script>
   </head>
   <body>
+    <% flash.each do |name, msg| %>
+      <div class="flash-messages">
+        <%= content_tag :p, msg, :class => "#{name}" %>
+      </div>
+    <% end %>
     <div id="header-wrapper">
       <div class="topbar">
         <div class="fill">
