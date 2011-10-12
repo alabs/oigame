@@ -2,16 +2,18 @@
 
 <p>Puedes confirmar tu cuenta a través del siguiente enlace:</p>
 
-<p><%= link_to 'Confirmar mi cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to 'Confirmar mi cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>.</p>
 
-<p>Sigue a <a href="http://twitter.com/oigame">@oiga.me</a> en twitter y <a href="http://www.facebook.com/oiga.me">Facebook</a>.</p>
+<p>Puedes seguir a <a href="http://twitter.com/oigame">@oiga.me</a> en Twitter y en <a href="http://www.facebook.com/oiga.me">Facebook</a>.</p>
 
-<p>oiga.me es un proyecto de la asociación <a href="http://alabs.es">aLabs</a>. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa <a href="http://beta.oiga.me/donate">donando al proyecto</a>.</p>
+<p>oiga.me es un proyecto de la asociación <a href="http://alabs.es/">aLabs</a>. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa <a href="http://<%= APP_CONFIG[:domain] %>/donate">donando al proyecto</a>.</p>
 
-<p>Queremos asegurarnos que recibes los avisos de campañas importantes, puedes asegurarte haciendo dos cosas muy sencillas:</p)
+<p>Queremos asegurarnos que recibes los avisos de campañas importantes, puedes asegurarte haciendo dos cosas muy sencillas:</p>
 
-<p>- Añadirnos a tu libreta de direcciones.</p>
-<p>- Responder a este correo, con ello facilitas que no se puedan filtrar las alertas de campañas importantes que te enviamos, y además las personas que participamos en oiga.me estaremos encantadas de conocerte. </p>
+<ul>
+  <li>Añadirnos a tu libreta de direcciones.</li>
+  <li>Responder a este correo, con ello facilitas que no se puedan filtrar las alertas de campañas importantes que te enviamos, y además las personas que participamos en oiga.me estaremos encantadas de conocerte.</li>
+</ul>
 
 <p>Nos pondremos en contacto contigo para facilitarte nuevas formas de acción en red que permitan conseguir grandes objetivos de manera efectiva.</p>
 
