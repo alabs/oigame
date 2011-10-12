@@ -211,6 +211,7 @@ $(function() {
   });
 
   // Para la barra de navegación del login
+  // cuando no se está desconectado
   $(".signin").click(function(e) {
     e.preventDefault();
     $("fieldset#signin-menu").toggle();
@@ -223,6 +224,23 @@ $(function() {
   $(document).mouseup(function(e) {
     if ($(e.target).parent("a.signin").length==0) {
       $("fieldset#signin-menu").hide();
+    }
+  });
+  
+  // Para la barra de navegación del login
+  // cuando se está conectado
+  $(".signin").click(function(e) {
+    e.preventDefault();
+    $("#session-menu").toggle();
+  });
+
+  $("#session-menu").mouseup(function() {
+    return false;
+  });
+
+  $(document).mouseup(function(e) {
+    if ($(e.target).parent("a.signin").length==0) {
+      $("#session-menu").hide();
     }
   });
 

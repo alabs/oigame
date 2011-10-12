@@ -33,41 +33,59 @@
               <%= link_to 'oiga.me', root_path %>
             </div><!-- logo -->
             <ul class="nav">
-              <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+              <% unless user_signed_in? %>
+                <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+              <% end %>
               <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
               <li id="header-community"><%= link_to t(:community), 'http://community.oiga.me/' %></li>
               <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
               <li id="header-answers"><%= link_to t(:answers), answers_path %></li>
             </ul>
             <ul class="nav secondary-nav">
-              <div id="signin-container">
-                <div id="topnav" class="topnav">
-                  <a href="#" class="signin">
-                    <em>¿Tienes una cuenta?</em>
-                    <strong>Iniciar sesión</strong>
-                  </a>
-                </div><!-- topnav -->
-                <%= form_tag user_session_path do %>
-                  <fieldset id="signin-menu">
-                    <div class="form-field">
-                      <%= label_tag t(:email) %>
-                      <%= email_field_tag :email, nil, :required => true, :autocomplete => 'on' %>
-                    </div>
-                    <div class="form-field">
-                      <%= label_tag t(:password) %>
-                      <%= password_field_tag :password, nil, :required => true %>
-                    </div>
-                    <div class="form-field">
-                      <%= check_box_tag :remember_me %> <span class="remember">Recuerda mis datos</span>
-                    </div>
-                    <div class="form-actions">
-                      <%= submit_tag 'Iniciar sesión' %>
-                    </div>
-                    <p><%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %></p>
-                  </fieldset>
-                <% end %>
-              </div><!-- signin-container -->
-            </ul>
+              <% unless user_signed_in? %>
+                <div id="signin-container">
+                  <div id="topnav" class="topnav">
+                    <a href="#" class="signin">
+                      <em>¿Tienes una cuenta?</em>
+                      <strong>Iniciar sesión</strong>
+                    </a>
+                  </div><!-- topnav -->
+                  <%= form_tag user_session_path do %>
+                    <fieldset id="signin-menu">
+                      <div class="form-field">
+                        <%= label_tag t(:email) %>
+                        <input autocomplete="on" id="email" name="user[email]" required="required" type="email" />
+                      </div>
+                      <div class="form-field">
+                        <%= label_tag t(:password) %>
+                        <input id="password" name="user[password]" required="required" type="password" />
+                      </div>
+                      <div class="form-field">
+                        <%= check_box_tag :remember_me %> <span class="remember">Recuerda mis datos</span>
+                      </div>
+                      <div class="form-actions">
+                        <%= submit_tag 'Iniciar sesión' %>
+                      </div>
+                      <p><%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %></p>
+                    </fieldset>
+                  <% end %>
+                </div><!-- signin-container -->
+              <% else %>
+                <div id="signin-container">
+                  <div id="topnav" class="topnav">
+                    <a href="#" class="signin">
+                      <strong><%= current_user.email %></strong>
+                    </a>
+                  </div><!-- topnav -->
+                  <div id="session-menu">
+                    <ul>
+                      <li><%= link_to 'Configuración',  edit_user_registration_path %></li>
+                      <li><%= link_to 'Desconectar', destroy_user_session_path, :method => :delete %></li>
+                    </ul>
+                  </div><!-- session-menu -->
+                </div><!-- signin-container -->
+              <% end %>
+            </ul><!-- secondary-nav -->
           </div><!-- topbar-wrapper -->
         </div><!-- fill -->
       </div><!-- topbar -->
