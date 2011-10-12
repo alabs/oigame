@@ -70,5 +70,53 @@
         </div><!-- topbar-wrapper -->
       </div><!-- fill -->
     </div><!-- topbar -->
+    <%= yield %>
+    <div id="links-wrapper">
+      <div id="links">
+        <div id="links-logo">
+          <%= image_tag('logo-small.png') %>
+        </div>
+        <div id="links-message">
+          <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
+        </div>
+        <div id="links-social">
+          <span>Síguenos en:</span><br />
+          <%= link_to image_tag('rss.png'), feed_campaigns_path %>
+          <%= link_to image_tag('facebook.png'), 'https://www.facebook.com/oiga.me' %>
+          <%= link_to image_tag('twitter.png'), 'https://twitter.com/oigame' %>
+        </div>
+      </div>
+    </div><!-- links-wrapper -->
+    <div id="footer-wrapper">
+      <div id="footer-main">
+        <div id="info-links">
+          <p><span style="color:#fff;">&copy; 2010-<%= Time.now.year %> Algunos derechos reservados</span> | <%= link_to t(:privacy_policy), privacy_policy_path %> | <%= link_to t(:developers), 'https://github.com/alabs/oigame' %></p>
+          <p style="color: #fff;">Mientras no se exprese lo contrario, el contenido de este sitio tiene <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES" style="color:red;">esta licencia</a> Creative Commons.</p>
+        </div>
+        <div id="footer-donate">
+          <p style="color:#fff;">Creado y mantenido por:</p>
+          <p><%= link_to image_tag('logo-alabs.png'), 'http://alabs.es/' %></p>
+        </div>
+      </div><!-- footer -->
+    </div><!-- footer-wrapper -->
+    <div id="modal-beta-notice" style="display:none;">
+      <h1>Aviso importante</h1>
+      <p style="font-size: 120%;">
+        Te damos la bienvenida a oiga.me, la plataforma creada por <a
+          href="http://alabs.es/">aLabs</a> para crear campañas de movilización
+        social. Esta web que estas viendo es una versión beta, que aunque
+        funcional no es operativa todavía. Por lo tanto los usuarios que te
+        crees y el contenido que subas al servidor podrá ser borrado en
+        cualquier momento. La primera versión estable estará disponible en la
+        dirección web: <a href="http://oiga.me/">http://oiga.me/</a>
+      </p>
+
+      <p style="font-size: 120%;">
+        Disfruta y fluye por el sitio.
+      </p>
+      <div class="actions">
+          <button class="close-dialog btn primary">Cerrar</button>
+      </div>
+    </div>
   </body>
 </html>
