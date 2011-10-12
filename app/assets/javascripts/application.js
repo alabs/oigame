@@ -210,6 +210,22 @@ $(function() {
     });
   });
 
+  // Para la barra de navegación del login
+  $(".signin").click(function(e) {
+    e.preventDefault();
+    $("fieldset#signin-menu").toggle();
+  });
+
+  $("fieldset#signin-menu").mouseup(function() {
+    return false;
+  });
+
+  $(document).mouseup(function(e) {
+    if ($(e.target).parent("a.signin").length==0) {
+      $("fieldset#signin-menu").hide();
+    }
+  });
+
   $("#user_email").focus();
   $("#campaign_name").focus();
 

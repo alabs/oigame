@@ -47,80 +47,62 @@ a, a:hover
 .flash-alert
   background-color: #3B0B0B !important
 
-#header-wrapper
-  border-bottom: 1px solid #e8e8e8
+#topbar-wrapper
+  @extend .container_24
 
-  #user-actions-wrapper
-    @extend .container_24
+  #logo a
+    background: image-url("logo-header.png") no-repeat scroll 12px 9px transparent
+    color: #fff
+    display: block
+    width: 160px
+    height: 46px
+    text-indent: -9999px
+    margin-right: 5px
+    outline: medium none
+    float: left
 
-    #user-actions
-      float: right
-      margin-top: 8px
-      li
-        display: inline
-        font-size: 1.1em
-        margin-left: 10px
-        a.myaccount
-          font-weight: bold
-          color: #000
+  .nav li
+    font-size: 1.1em
 
-  #header
-    @extend .container_24
-    margin-top: -40px
-  
-    #logo
-      @extend .grid_6
-      @extend .alpha
-      margin-top: 10px
-   
-    #corner
-      background-color: #a00
-      overflow: hidden
+  #topnav
+    em
+      font-size: .9em
+      font-style: normal
+    strong
+      font-size: 1.1em
+
+  form
+    @extend .form-stacked
+
+    #signin-menu
+      display: none
       position: absolute
-      left: -3em
-      top: 1em
-      -moz-transform: rotate(-45deg)
-      -webkit-transform: rotate(-45deg)
-      transform: rotate(-45deg)
-      -moz-box-shadow: 0 0 1em #888
-      -webkit-box-shadow: 0 0 1em #888
-      box-shadow: 0 0 1em #888
-      a 
-        border: 1px solid #faa
+      margin-left: -50px
+      padding: 12px
+      width: 240px
+      background-color: #222
+      .form-field
+        margin-bottom: 10px
+        label
+          color: #fff
+          font-weight: normal
+        input[type=email], input[type=password]
+          padding: 5px
+        span
+          color: #fff
+      .form-actions
+        margin-bottom: 10px
+        input[type=submit]
+          @extend .btn
+          @extend .submit
+      p a
         color: #fff
-        display: block
-        font-size: 1.1em
-        font-weight:bold
-        padding: 0.1em 4em
-        text-align: center
-        text-decoration: none
-        text-shadow: 1px 1px 1px #000
-    
-    #navbar
-      @extend .grid_18
-      @extend .omega
-      .pills
-        float: right
-        li
-          display: inline
-          margin-top: 5px
-          margin-left: 10px
-          font-size: 1.4em
-          a
-            color: $main-color
-          a:hover
-            color: #fff
-            background: $main-color
-        li.active
-          a
-            color: #fff
-            background: $main-color
 
 #subscribe-wrapper
   background-color: #fff
   background: image_url("subscribe-wrapper-bg.gif") repeat scroll left top black
   height: 366px
-  padding: 10px
+  padding: 55px 10px 10px 10px
 
   #subscribe
     @extend .container_24
@@ -223,7 +205,7 @@ a, a:hover
 
 #page-wrapper
   background-color: #f1f2f1
-  padding-top: 30px
+  padding-top: 65px
   padding-bottom: 30px
 
   #page
@@ -279,7 +261,7 @@ a, a:hover
 
 #campaigns-wrapper
   background-color: #f1f2f1
-  padding-top: 30px
+  padding-top: 65px
   padding-bottom: 30px
 
   #list-campaigns, #create-campaigns, #show-campaign
@@ -422,7 +404,7 @@ a, a:hover
 
 #accounts-wrapper
   background-color: #f1f2f1
-  padding-top: 30px
+  padding-top: 65px
   padding-bottom: 30px
 
   #accounts
@@ -455,6 +437,8 @@ a, a:hover
         input:focus
           background-color: #f6f6f6
           box-shadow: 0 0 4px $border-shadow
+        .remember
+          font-size: .8em
       span.note
         font-size: .8em
         margin-top: -3px 
