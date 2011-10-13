@@ -13,6 +13,10 @@ class PagesController < ApplicationController
   
   def donate
     @reference = secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+
+    data = {}
+    data[:reference] = @reference
+    HTTParty.post("http://192.168.163.102/pre", :body => data)
   end
 
   def donation_accepted
