@@ -80,16 +80,16 @@
             <% unless user_signed_in? %>
               <div class="form-field">
                 <%= label_tag t(:your_email) %>
-                <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+                <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico' %>
               </div>
             <% end %>
             <div class="form-field">
               <%= label_tag t(:subject) %>
-              <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje', :class => 'span5' %>
+              <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje' %>
             </div>
             <div class="form-field">
               <%= label_tag t(:message) %>
-              <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :class => 'span5', :rows => 10 %>
+              <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :rows => 10 %>
             </div>
             <div class="form-actions">
               <%= submit_tag t(:send_message), :class => 'btn primary large center' %>
