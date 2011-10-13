@@ -17,4 +17,12 @@ class Mailman < ActionMailer::Base
     subject = "[oiga.me] #{@campaign.name}"
     mail :to => APP_CONFIG[:social_council_email], :subject => subject
   end
+
+  def send_contact_message(message)
+    @message = message
+    from = "#{@message.name} <#{@message.email}>"
+    subject = "[oiga.me] #{@message.subject}"
+    @message_body = @message.body
+    mail :from => from, :to => 'hola@oiga.me', :subject => subject
+  end
 end

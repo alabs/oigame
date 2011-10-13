@@ -248,6 +248,46 @@ a, a:hover
         margin-bottom: 10px
       p.thanks-message
         font-size: 1.3em
+    
+      #contact-form
+        @extend .grid_14
+        @extend .alpha
+        font-size: 1.3em
+        fieldset
+          border: 1px solid $border-main-color
+          padding: 20px
+        legend
+          border: 1px solid $border-main-color
+          padding: 10px
+          background-color: #000
+          color: #fff
+        label, input
+          font-size: .9em
+        .form-field
+          margin-bottom: 15px
+          input[type=text], input[type=email], input[type=password], textarea
+            border: 1px solid $border-main-color
+            padding: 5px
+            font-weight: normal
+            width: 270px 
+          textarea
+            width: 400px !important
+            font-size: .9em
+          input:focus, textarea:focus
+            background-color: #f6f6f6
+            box-shadow: 0 0 4px $border-shadow
+          .remember
+            font-size: .8em
+        span.note
+          font-size: .8em
+          margin-top: -3px 
+        .error_message
+          font-size: small
+          color: #f00
+        .field_with_errors input[type=text], .field_with_errors input[type=email], .field_with_errors input[type=password]
+          border: 1px solid #f00
+        p
+          font-size: 1em
 
     #page-sidebar
       @extend .grid_8

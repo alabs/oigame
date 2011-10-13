@@ -1,0 +1,47 @@
+<% @page_title = t(:contact) %>
+
+<div id="page-wrapper">
+  <div id="page">
+    <div id="page-info">
+      <h2>Contactar con oiga.me</h2>
+      <div id="contact-form" class="form-stacked">
+        <%= form_for @contact, :url => contact_path do |f| %>
+          <fieldset>
+            <legend><%= t(:please_fill_the_form) %></legend>
+            <div class="form-field">
+              <%= f.label t(:name) %>
+              <%= f.text_field :name, :class => 'span8', :required => true, :placeholder => 'Nombre y apellido' %>
+              <% unless @contact.errors[:name].blank? %>
+                <span class="error_message"><%= @contact.errors[:name].to_sentence %></span>
+              <% end %>
+            </div>
+            <div class="form-field">
+              <%= f.label t(:email) %>
+              <%= f.email_field :email, :class => 'span8', :required => true, :placeholder => 'Tu correo de contacto' %>
+              <% unless @contact.errors[:email].blank? %>
+                <span class="error_message"><%= @contact.errors[:email].to_sentence %></span>
+              <% end %>
+            </div>
+            <div class="form-field">
+              <%= f.label t(:subject) %>
+              <%= f.text_field :subject, :placeholder => 'El asunto del mensaje' %>
+            </div>
+            <div class="form-field">
+              <%= f.label t(:message) %>
+              <%= f.text_area :body, :rows => 10, :required => true,  :placeholder => 'Cuéntanos' %>
+              <% unless @contact.errors[:body].blank? %>
+                <span class="error_message"><%= @contact.errors[:body].to_sentence %></span>
+              <% end %>
+            </div>
+            <div class="form-field">
+              <%= f.check_box :mailing, :checked => true %> <span class="note">Deseo recibir noticias de oiga.me</span>
+            </div>
+            <div class="form-actions">
+              <%= f.submit t(:send_message), :class => 'btn primary' %>
+            </div>
+          </fieldset>
+        <% end %>
+      </div><!-- contact-form -->
+    </div>
+  </div>
+</div><!-- page-wrapper -->

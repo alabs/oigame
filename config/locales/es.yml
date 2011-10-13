@@ -62,3 +62,7 @@ es:
   due_date_of_campaign: 'Fecha de vencimiento de la campaña'
   back: 'Volver'
   remember_me: 'Recuerda mis datos'
+  contact: 'Contacto'
+  name: 'Nombre'
+  message_received: 'Mensaje recibido'
+  go_to_home: 'Volver al inicio'
