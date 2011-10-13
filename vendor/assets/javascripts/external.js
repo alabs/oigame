@@ -14,3 +14,4 @@
 //= require Markdown.Converter
 //= require Markdown.Editor
 //= require Markdown.Sanitizer
+//= require bootstrap-tabs
