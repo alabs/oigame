@@ -3,7 +3,7 @@
 <div id="subscribe-wrapper">
   <div id="subscribe">
     <div id="subscribe-img">
-      <%= image_tag("home-subscribe.jpg") %>
+      <%= image_tag("home-subscribe-3.jpg", :width => 462, :height => 359) %>
     </div>
     <div id="subscribe-form">
       <p class="msg">NO ODIES AL<br />
@@ -29,21 +29,21 @@
   <div id="home-info">
     <div id="sayit">
       <h2>Dilo</h2>
-      <p>Coge el altavoz, que se escuche tu voz. <strong>oiga.me</strong> es una plataforma en la que puedes montar campañas online en las que el mundo entero puede participar.</p>
+      <p>Que se escuche tu voz. <strong>oiga.me</strong> es una plataforma en la que puedes montar campañas online en las que el mundo entero puede participar.</p>
       <p><strong><%= link_to '> Aprende a usar oiga.me', answers_path %></strong></p>
-      <%= image_tag('sayit.jpg') %>
+      <%= link_to image_tag('sayit.jpg'), answers_path %>
     </div>
     <div id="repeat">
       <h2>Repítelo</h2>
       <p>Súmate a la protesta, úne tu voz a las otras. Participa enviando millones de correos de forma efectiva, sin que te filtren, sin que puedan taparse los oídos.</p>
       <p><strong><%= link_to '> Últimas campañas', campaigns_path %></strong></p>
-      <%= image_tag('repeat.jpg') %>
+      <%= link_to image_tag('repeat.jpg'), campaigns_path %>
     </div>
     <div id="doit">
       <h2>Hazlo posible</h2>
       <p>Haz posible que en <strong>oiga.me</strong> podamos hacer campañas de miles de llamadas de teléfono a los poderosos, que podamos enviar cientos de faxes. Mejora, dona, difunde, escribe código.</p>
       <p><strong><%= link_to '> Infórmate como donar', donate_path %></strong></p>
-      <%= image_tag('doit.jpg') %>
+      <%= link_to image_tag('doit.jpg'), donate_path %>
     </div>
   </div><!-- home-info -->
 </div><!-- home-info-wrapper -->
