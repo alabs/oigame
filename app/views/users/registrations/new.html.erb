@@ -6,6 +6,9 @@
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <fieldset>
           <legend><%= @page_title %></legend>
+          <p>
+            Si quieres proponer campañas o recibir noticias de oiga.me, create una cuenta de usuario.
+          </p>
           <div class="form-field">
             <%= f.label t(:email) %>
             <% unless params[:email] %>
