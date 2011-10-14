@@ -46,10 +46,12 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
   font-size: 1.2em
 
 .flash-notice
-  background-color: #0B3B17 !important
+  background-color: #5fba29 !important
+  font-weight: bold
 
 .flash-error, .flash-alert
-  background-color: #3B0B0B !important
+  background-color: #f40919 !important
+  font-weight: bold
 
 .topbar
   position: inherit
@@ -84,6 +86,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     #signin-menu
       display: none
       position: absolute
+      margin-top: -6px
       margin-left: -50px
       padding: 12px
       width: 240px
@@ -155,6 +158,34 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
 #home-info-wrapper
   background-color: #f1f2f1
   border-bottom: 1px solid $border-main-color
+
+  #last-campaigns-info-header
+    @extend .container_24
+    margin-bottom: -16px
+    h2
+      @extend .alpha
+      @extend .grid_6
+      margin-left: -14px
+      padding: 14px
+      background-color: #000
+      color: #fff
+
+  #campaigns-info
+    @extend .container_24
+    background-color: #fff
+    border: 1px solid #E8E8E8
+    margin: 15px auto
+    padding: 15px
+
+    .campaign-home-detail
+      @extend .grid_8
+      p
+        font-size: 1.1em
+      h2
+        font-size: 1.2em
+        line-height: 16px
+        margin-bottom: 10px
+        height: 28px
 
   #home-info
     @extend .container_24
@@ -237,6 +268,10 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     @extend .container_24
     background-color: #fff
     border: 1px solid #e8e8e8
+
+    ul.tabs
+      li
+        font-size: 1.2em
     
     #page-info
       @extend .grid_14
