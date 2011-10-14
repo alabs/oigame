@@ -305,6 +305,15 @@ $(function() {
   });
   ///////////////////////// dialog2 - close modal windows with ESC key - end
 
+  ///////////////////////// slideshow slogans - start
+  simpleSlide({"status_width": 50  });
+
+  $('.auto-slider').each( function() {
+    var related_group = $(this).attr('rel');
+    window.setInterval("simpleSlideAction('.right-button', " + related_group + ");", 10000);
+  }); 
+  ///////////////////////// slideshow slogans - end
+
 });
 
 $(window).load(function() {
