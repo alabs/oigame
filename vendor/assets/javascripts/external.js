@@ -7,6 +7,7 @@
 //= require jquery-scrolltofixed
 //= require jquery.dialog2
 //= require jquery.nivo.slider.pack
+//= require jquery.simpleSlide
 //= require date
 //= require date_es
 //= require jquery.datePicker
