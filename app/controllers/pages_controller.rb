@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
     data = {}
     data[:reference] = @reference
-    HTTParty.post("http://192.168.163.102/pre", :body => data)
+    HTTParty.post("http://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 
   def donation_accepted
