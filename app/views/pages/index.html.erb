@@ -10,7 +10,12 @@
       LOBBY, ¡CÓMETELO!</p>
       <p class="user-count">MILES DE PERSONAS</p>
       <p class="do-it">YA LO HAN HECHO</p>
-      <% unless user_signed_in? %>
+      <% if user_signed_in? %>
+        <br >
+        <br />
+        <%= link_to "Ver todas las campañas", campaigns_path, :class => "btn primary large" %>
+        <%= link_to t(:propose_campaign), new_campaign_path, :class => "btn primary large", :style => "margin-left:2em" %>
+      <% else %>
         <br >
         <br />
         <form id="pre-signup" action="/users/signup" method="get">
