@@ -43,4 +43,19 @@
       <%= link_to image_tag('doit.jpg'), donate_path %>
     </div>
   </div><!-- home-info -->
+  <div id="last-campaigns-info-header">
+    <h2>Últimas campañas</h2>
+  </div>
+  <div id="campaigns-info">
+    <% @campaigns.each do |campaign| %>
+      <div class="campaign-home-detail">
+        <h2><%= campaign.name %></h2>
+        <% if campaign.image.to_s %>
+          <%= link_to image_tag(campaign.image_url(:home)), campaign %>
+        <% end %>
+        <%= campaign.to_html(truncate(campaign.intro, :length => 225)).html_safe %>
+        <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.messages.count %> personas ya lo han hecho</p>
+      </div><!-- campaign-home-detail -->
+    <% end %>
+  </div><!-- campaigns-info -->
 </div><!-- home-info-wrapper -->

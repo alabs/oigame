@@ -7,15 +7,15 @@
         <fieldset>
           <legend>Editar mis datos</legend>
           <div class="form-field">
-            <%= f.label t(:name) %>
-            <%= f.text_field :name, :placeholder => 'Nombre y apellidos' %>
-          </div>
-          <div class="form-field">
             <%= f.label t(:email) %>
             <%= f.email_field :email %>
             <% unless resource.errors[:email].blank? %>
               <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
             <% end %>
+          </div>
+          <div class="form-field">
+            <%= f.label t(:name) %>
+            <%= f.text_field :name, :placeholder => 'Nombre y apellidos' %>
           </div>
           <div class="form-field">
             <label for="user_CIF / NIF">CIF / NIF</label>
