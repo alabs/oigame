@@ -107,7 +107,6 @@ $(function() {
   if ( $('#stats-data').text().length != 0 ) {
     var items_messages = JSON.parse($('#stats-data').text());
     var minimal_date = $("#stats-minimal_date").text();
-    console.log(minimal_date);
     chart_draw(items_messages, 'chart_messages', '#F78181', minimal_date);
   }
 
