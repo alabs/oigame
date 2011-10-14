@@ -1,14 +1,15 @@
 Oigame::Application.routes.draw do
 
-  get 'donate' => 'pages#donate', :as => 'donate'
-  get 'donate/accepted' => 'pages#donation_accepted'
-  get 'donate/denied' => 'pages#donation_denied'
+  get 'donate' => 'donate#index', :as => 'donate'
+  get 'donate/init' => 'donate#init', :as => 'donate_init'
+  get 'donate/accepted' => 'donate#accepted'
+  get 'donate/denied' => 'donate#denied'
   get 'answers' => 'pages#answers', :as => 'answers'
   get 'privacy-policy' => 'pages#privacy_policy', :as => 'privacy_policy'
   get 'contact' => 'pages#contact', :as => 'contact'
   post 'contact' => 'pages#contact', :as => 'contact'
   get 'contact/received' => 'pages#contact_received', :as => 'contact_received'
-  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }, :controllers => { :registrations => "users/registrations" }
   resources :campaigns do
     member do
       post 'message'

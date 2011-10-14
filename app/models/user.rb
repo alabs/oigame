@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
+
+  def ready_for_donation
+    name.blank? || vat.blank? ? false : true
+  end
 end
