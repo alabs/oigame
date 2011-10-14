@@ -8,9 +8,12 @@
       <p>oiga.me mantiene un equipo de trabajo reducido al máximo para mantener sus costes bajos. Practicamos una política de transparencia económica, cada año publicaremos un resumen con lo recaudado en donaciones y el destino de las mismas.</p>
       <h3>Donación segura.</h3>
       <p>La asociación aLabs no almacena ningún dato de las tarjetas de crédito de los usuarios que realizan las donaciones, las transacciones con tarjetas de crédito son procesadas en línea directamente usando el TPV de pago de Banesto. Con este sistema seguro de pago la información viaja cifrada antes de ser enviada usando el certificado SSL. Si encuentras algún problema usando el sistema, tienes alguna duda o alguna recomendación, por favor contacta con aLabs a través del correo donaciones[arroba]alabs.es.</p>
+      <br />
+      <p><%= link_to 'Realizar una donación a oiga.me', donate_init_path, :class => 'btn primary large' %></p>
     </div><!-- page-info -->
     <div id="page-sidebar">
       <div id="donate-form-wrapper">
+        <!--
         <div id="donate-form" class="form-stacked">
           <h2>Dona a oiga.me</h2>
           <form action="http://pruebas.pagoseguro.com.es/cgi-bin/totalizacion" method="post">
@@ -39,7 +42,8 @@
           </form>
           <p>Tajetas aceptadas:<br />
           <%= image_tag('credit-cards.jpg') %>
-        </div><!-- donate-form -->
+        </div>
+        -->
       </div><!-- donate-form-wrapper -->
     </div><!-- page-sidebar -->
   </div><!-- page -->

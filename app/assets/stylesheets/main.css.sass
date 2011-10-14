@@ -298,34 +298,33 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
           border: 1px solid #f00
         p
           font-size: 1em
+      
+      #donate-form
+        font-size: 1.3em
+        fieldset
+          border: 1px solid $border-main-color
+          padding: 20px
+        legend
+          border: 1px solid $border-main-color
+          padding: 10px
+          background-color: #000
+          color: #fff
+        label, input, select
+          font-size: .9em
+        .form-field
+          margin-bottom: 15px
+          input[type=text], input[type=email], input[type=password], select
+            border: 1px solid $border-main-color
+            padding: 5px
+            font-weight: normal
+            width: 270px 
+          input:focus
+            background-color: #f6f6f6
+            box-shadow: 0 0 4px $border-shadow
 
     #page-sidebar
       @extend .grid_8
 
-      #donate-form-wrapper
-        margin-top: 35px
-
-        #donate-form
-          h2
-            font-size: 1.7em
-            padding-left: 10px
-            color: #fff
-            background-color: #000
-          p
-            font-size: 1.1em
-          form
-            fieldset
-              background-color: #f1f2f1
-              border: 1px solid $border-main-color
-              padding: 10px
-            .form-field
-              margin-bottom: 10px
-            select
-              padding: 5px
-              border: 1px solid $border-main-color
-              font-size: 1.1em
-              color: #000
-              background-color: #fff
 
 #campaigns-wrapper
   background-color: #f1f2f1
