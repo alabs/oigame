@@ -254,13 +254,16 @@ $(function() {
   check_current_navbar(document.URL.split('/')[3]);
   
   // modal-beta-home start
-  if ( readCookie('beta-welcome') == null ) {
-    $("#modal-beta-notice").dialog2({
-      removeOnClose: false,
-      autoOpen: true
-    });
-    $("#modal-beta-notice").parent().addClass("modal-large");
-    createCookie('beta-welcome', 'visited', 100); 
+  var environment = $("meta[name=generator]").attr("content").split(" - ")[1];
+  if ( environment == "staging" ) { 
+    if ( readCookie('beta-welcome') == null ) {
+      $("#modal-beta-notice").dialog2({
+        removeOnClose: false,
+        autoOpen: true
+      });
+      $("#modal-beta-notice").parent().addClass("modal-large");
+      createCookie('beta-welcome', 'visited', 100); 
+    }
   }
   // modal-beta-home end
   
