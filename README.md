@@ -20,12 +20,12 @@ Instalación de entorno de desarrollo
 
 Instrucciones para Linux y MacOSX
 
-$ bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
-$ gem install bundler
-$ bundle # en la carpeta raíz del proyecto
-$ rake db:create
-$ rake db:migrate
-$ unicorn_rails
+    $ bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+    $ gem install bundler
+    $ bundle # en la carpeta raíz del proyecto
+    $ rake db:create
+    $ rake db:migrate
+    $ unicorn_rails
 
 Entrar en http://localhost:8080
 
