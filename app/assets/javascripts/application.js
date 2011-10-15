@@ -42,21 +42,21 @@ jQuery.slugify = function( string ){
 ////////////////////////// slugify end
 
 ////////////////////////// generateTOC start
-function generateTOC(){
-  $("#toc").prepend('<h2>Indíce</h2>');
-  $("#page-info h3, #page-info h4").each(function(i) {
+function generateTOC(section){
+  $(section + " #toc").prepend('<h2>Indíce</h2>');
+  $(section + " #page-info h3, " + section + " #page-info h4").each(function(i) {
       var current = $(this);
       var current_slug = $.slugify(current.text());
       current.attr("id", current_slug);
       var html_line = "<a href='#" + current_slug + "' title='" + current.html() + "'>" + current.html() + "</a>";
       if (current.is('h3')) { 
-        $("#toc").append("<br /><br />");
-        $("#toc").append("<li><b>" + html_line + "</b></li>");
+        $(section + " #toc").append("<br /><br />");
+        $(section + " #toc").append("<li><b>" + html_line + "</b></li>");
       } else {
-        $("#toc").append("<li>" + html_line + "</li>");
+        $(section + " #toc").append("<li>" + html_line + "</li>");
       }
   }); 
-  $("#toc a").click(function() {
+  $(section + " #toc a").click(function() {
     var fullUrl = this.href;
     var parts = fullUrl.split("#");
     var target = parts[1];
@@ -185,7 +185,8 @@ function check_current_navbar(section){
       break;
     case "answers":
       $("#header-answers").addClass("active");
-      generateTOC();
+      generateTOC("#preguntas");
+      generateTOC("#tutorial");
       if (query) { goTo(query); }
       break;
   }
