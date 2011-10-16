@@ -84,13 +84,18 @@
     <div id="last-campaigns-ribbon">últimas campañas</div>
     <% @campaigns.each do |campaign| %>
       <div class="campaign-home-detail">
-        <h2><%= campaign.name %></h2>
-        <% if campaign.image.to_s %>
-          <%= link_to image_tag(campaign.image_url(:home)), campaign %>
-        <% end %>
-        <%= campaign.to_html(truncate(campaign.intro, :length => 225)).html_safe %>
-        <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.messages.count %> personas ya lo han hecho</p>
+        <div class="c-image-and-title">
+          <div class="ctitle"><h2><%= link_to truncate(campaign.name, :length => 37), campaign %></h2></div>
+          <% if campaign.image.to_s %>
+            <%= link_to image_tag(campaign.image_url(:home)), campaign %>
+          <% end %>
+        </div>
+        <div class="c-text-and-link">
+          <%= campaign.to_html(truncate(campaign.intro, :length => 225)).html_safe %>
+          <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.messages.count %> personas ya lo han hecho</p>
+        </div>
       </div><!-- campaign-home-detail -->
     <% end %>
+    <div class="clear"></div>
   </div><!-- campaigns-info -->
 </div><!-- home-info-wrapper -->

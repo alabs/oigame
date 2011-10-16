@@ -198,7 +198,6 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       position: absolute
       top: 20px
       left: -40px
-      overflow: hidden
       padding: 15px
       background: #222
       color: #fff
@@ -206,16 +205,31 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       -webkit-transform: rotate(-39deg)
       transform: rotate(-39deg)
       font-size: 1.6em
+      z-index: 999
 
     .campaign-home-detail
       @extend .grid_8
-      p
-        font-size: 1.1em
-      h2
-        font-size: 1.2em
-        line-height: 16px
-        margin-bottom: 10px
-        height: 28px
+      position: relative
+      .c-image-and-title
+        img
+          z-index: 2
+        .ctitle
+          position: absolute
+          opacity: .5
+          background: #fff
+          padding: 5px
+          z-index: 3
+          top: 187px
+          left: 0
+          width: 290px
+          h2
+            font-size: 1.1em
+            text-align: center
+            a
+              color: #000
+      .c-text-and-link
+        p
+          font-size: 1.1em
 
   #home-info
     @extend .container_24
