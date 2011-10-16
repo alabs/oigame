@@ -8,7 +8,7 @@
           <legend>Editar mis datos</legend>
           <div class="form-field">
             <%= f.label t(:email) %>
-            <%= f.email_field :email %>
+            <%= f.email_field :email, :required => true %>
             <% unless resource.errors[:email].blank? %>
               <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
             <% end %>
@@ -35,7 +35,7 @@
           </div>
           <div class="form-field">
             <%= f.label t(:current_password) %> <span class="note">(necesitamos tu contraseña actual para realizar los cambios)</span>
-            <%= f.password_field :current_password %>
+            <%= f.password_field :current_password, :required => true %>
             <% unless resource.errors[:current_password].blank? %>
               <span class="error_message"><%= resource.errors[:current_password].to_sentence %></span>
             <% end %>
