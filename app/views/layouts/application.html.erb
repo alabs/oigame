@@ -41,7 +41,7 @@
             <div id="corner">
               <%= link_to 'peta', root_path %>
             </div><!-- corner -->
-            <ul class="nav">
+            <ul class="first-nav nav">
               <% unless user_signed_in? %>
                 <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
               <% end %>
