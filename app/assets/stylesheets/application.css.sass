@@ -181,26 +181,31 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
           padding: 9px 14px
 
 #home-info-wrapper
-  background-color: #f1f2f1
+  background-color: #222
   border-bottom: 1px solid $border-main-color
-
-  #last-campaigns-info-header
-    @extend .container_24
-    margin-bottom: -16px
-    h2
-      @extend .alpha
-      @extend .grid_6
-      margin-left: -14px
-      padding: 14px
-      background-color: #000
-      color: #fff
+  padding-bottom: 20px
 
   #campaigns-info
     @extend .container_24
     background-color: #fff
     border: 1px solid #E8E8E8
-    margin: 15px auto
+    margin: 35px auto
     padding: 15px
+    border-radius: 10px
+    position: relative
+
+    #last-campaigns-ribbon
+      position: absolute
+      top: 20px
+      left: -30px
+      overflow: hidden
+      padding: 15px
+      background: #222
+      color: #fff
+      -moz-transform: rotate(-30deg)
+      -webkit-transform: rotate(-30deg)
+      transform: rotate(-30deg)
+      font-size: 1.6em
 
     .campaign-home-detail
       @extend .grid_8
@@ -218,6 +223,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     border: 1px solid #E8E8E8
     margin: 15px auto
     padding: 15px
+    border-radius: 10px
 
     #sayit, #repeat, #doit
       @extend .grid_8
