@@ -6,6 +6,11 @@
     <%= stylesheet_link_tag 'application' %>
     <link rel="shortcut icon" href="/assets/favicon.png" />
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="http://<%= APP_CONFIG[:domain] %>/campaigns/feed" />
+    <% if @image_src %>
+      <link rel="image_src" href="<%= @image_src %>" />
+    <% else %>
+      <link rel="image_src" href="/assets/logo-small.png" />
+    <% end %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <% if Rails.env == 'production' %>

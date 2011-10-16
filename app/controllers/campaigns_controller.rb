@@ -18,6 +18,7 @@ class CampaignsController < ApplicationController
 
   def show
     @stats_data = generate_stats(@campaign)
+    @image_src = @campaign.image_url.to_s
   end
 
   def new
