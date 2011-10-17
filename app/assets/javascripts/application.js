@@ -316,8 +316,3 @@ $(function() {
   ///////////////////////// slideshow slogans - end
 
 });
-
-$(window).load(function() {
-  $("#slider").nivoSlider();
-});
-
