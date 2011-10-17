@@ -171,4 +171,10 @@ $(function() {
 
   $('#campaign_duedate_at').datePicker({clickInput:true})
 
+  // al hacer click en /campaigns en cualquier campania va directamente a esta misma
+  $(".campaign-info").click( function(){
+    var destination = $(this).children(".cinfo").children("h3").children("a").attr("href");
+    window.location = destination;
+  });
+
 });
