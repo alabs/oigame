@@ -62,7 +62,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
-    devise (1.4.7)
+    devise (1.4.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
@@ -93,9 +93,10 @@ GEM
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
-    jquery-rails (1.0.14)
+    jquery-rails (1.0.16)
       railties (~> 3.0)
       thor (~> 0.14)
+    json (1.6.1)
     kaminari (0.12.4)
       rails (>= 3.0.0)
     kgio (2.6.0)
@@ -123,7 +124,7 @@ GEM
     net-ssh (2.2.1)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    newrelic_rpm (3.1.2)
+    newrelic_rpm (3.2.0)
     orm_adapter (0.0.5)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -157,9 +158,10 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.6)
-    raindrops (0.7.0)
+    raindrops (0.8.0)
     rake (0.9.2)
-    rdoc (3.9.4)
+    rdoc (3.10)
+      json (~> 1.4)
     redcarpet (1.17.2)
     responders (0.6.4)
     rmagick (2.13.1)
@@ -186,8 +188,8 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.8.2)
-      ansi (>= 1.2.2)
+    turn (0.8.3)
+      ansi
     twitter (1.7.2)
       faraday (~> 0.7.4)
       faraday_middleware (~> 0.7.0)
@@ -205,7 +207,7 @@ GEM
       raindrops (~> 0.6)
     warden (1.0.6)
       rack (>= 1.0)
-    yaml_db (0.2.1)
+    yaml_db (0.2.2)
 
 PLATFORMS
   ruby
