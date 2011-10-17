@@ -1,32 +1,38 @@
 <div id="campaigns-wrapper">
   <div id="list-campaigns">
-    <div id="list-campaigns-info">
-      <h2><%= @page_title %></h2>
-      <% @campaigns.each do |campaign| %>
-        <div class="campaign-info">
-          <div class="cinfo">
-            <h3><%= link_to campaign.name, campaign %></h3>
-            <div class="campaign-image">
-              <% if campaign.image.to_s %>
-                <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
-              <% end %>
-            </div><!-- campaign-image -->
-            <div class="campaign-text">
-              <%= campaign.to_html(campaign.intro).html_safe %>
-              <div class="campaign-text-links">
-                <%= link_to t(:join_this_campaign), campaign %>
-                <% if campaign.messages.count == 1 %>
-                  <strong><%= campaign.messages.count %></strong> persona ya lo ha hecho
-                <% else %>
-                  <strong><%= campaign.messages.count %></strong> personas ya lo han hecho
+    <% if @campaigns %>
+      <div id="list-campaigns-info">
+        <h2><%= @page_title %></h2>
+        <% @campaigns.each do |campaign| %>
+          <div class="campaign-info">
+            <div class="cinfo">
+              <h3><%= link_to campaign.name, campaign %></h3>
+              <div class="campaign-image">
+                <% if campaign.image.to_s %>
+                  <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
                 <% end %>
-              </div><!-- campaign-text-links -->
-            </div><!-- campaign-text -->
-          </div><!-- cinfo -->
-          <div class="clear"></div>
-        </div><!-- campaign-info -->
-      <% end %>
-    </div><!-- list-campaigns-info -->
+              </div><!-- campaign-image -->
+              <div class="campaign-text">
+                <%= campaign.to_html(campaign.intro).html_safe %>
+                <div class="campaign-text-links">
+                  <%= link_to t(:join_this_campaign), campaign %>
+                  <% if campaign.messages.count == 1 %>
+                    <strong><%= campaign.messages.count %></strong> persona ya lo ha hecho
+                  <% else %>
+                    <strong><%= campaign.messages.count %></strong> personas ya lo han hecho
+                  <% end %>
+                </div><!-- campaign-text-links -->
+              </div><!-- campaign-text -->
+            </div><!-- cinfo -->
+            <div class="clear"></div>
+          </div><!-- campaign-info -->
+        <% end %>
+      </div><!-- list-campaigns-info -->
+    <% else %>
+      <div id="list-campaigns-info">
+        <h2>No hay campañas todavía, puedes proponer una.</h2>
+      </div>
+    <% end %>
     <div id="list-campaigns-sidebar">
       <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path, :class => "btn primary large" %></h2>
       <% if can? :moderated, Campaign %>
