@@ -427,24 +427,36 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
         font-size: 2.2em
         margin-bottom: 15px
 
+      .campaign-info:hover
+        background-color: #fffef2
       .campaign-info
-        h3
-          font-size: 1.7em
-          a
-            color: #000
-        
-        .campaign-image
-          @extend .grid_5
-          @extend .alpha
+        margin-bottom: 25px
+        border: 1px solid $border-main-color
+        padding: 10px
+        .cinfo
+          h3
+            font-size: 1.7em
+            line-height: 1.2em
+            margin-bottom: 12px
+            a
+              color: #000
 
-        .campaign-text
-          @extend .grid_9
-          @extend .omega
-          margin-bottom: 20px
-          p
-            font-size: 1.1em
-          span
-            font-size: 1.2em
+          .campaign-image
+            @extend .grid_4
+            @extend .alpha
+
+          .campaign-text
+            @extend .grid_9
+            @extend .omega
+            margin-left: 23px
+            margin-bottom: 20px
+            p
+              font-size: 1.1em
+            span
+              font-size: 1.2em
+            .campaign-text-links
+              border-top: 1px solid $border-main-color
+              padding-top: 5px
 
     #list-campaigns-sidebar
       @extend .grid_8
