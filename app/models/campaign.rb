@@ -65,10 +65,9 @@ class Campaign < ActiveRecord::Base
     self.moderated = false
     self.published_at = Time.now
     save!
-    # Descomentar cuando pasemos a producción
-    #if Rails.env == 'production'
-    #  tweet_campaign
-    #end
+    if Rails.env == 'production'
+      tweet_campaign
+    end
   end
 
   def deactivate!
