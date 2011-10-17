@@ -80,7 +80,7 @@
       <%= link_to image_tag('doit.jpg'), donate_path %>
     </div>
   </div><!-- home-info -->
-  <% if @campaigns %>
+  <% if @campaigns.count > 0 %>
     <div id="campaigns-info">
       <div id="last-campaigns-ribbon">últimas campañas</div>
       <% @campaigns.each do |campaign| %>
