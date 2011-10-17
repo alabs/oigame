@@ -20,7 +20,7 @@ class CampaignsController < ApplicationController
     @stats_data = generate_stats(@campaign)
     @image_src = @campaign.image_url.to_s
     @description = @campaign.name
-    @tags = @campaign.tag_list.join(', ')
+    @keywords = @campaign.tag_list.join(', ')
   end
 
   def new
