@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html lang="<%= I18n.locale %>" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="utf-8" />
     <title><%= @page_title %> - oiga.me</title>
     <%= stylesheet_link_tag 'application' %>
     <link rel="shortcut icon" href="/assets/favicon.png" />
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="http://<%= APP_CONFIG[:domain] %>/campaigns/feed" />
+    <meta property="og:title" content="<%= @page_title %> - oiga.me" />
+    <meta property="og:type" content="website" />
     <% if @image_src %>
-      <meta property="og:image" content="http://<%= APP_CONFIG[:domain] %><%= @image_src %>" />
+      <meta property="og:image" content="http://<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
-      <meta property="og:image" content="http://<%= APP_CONFIG[:domain] %>/assets/logo-small.png" />
+      <meta property="og:image" content="http://<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <% end %>
+    <meta property="og:url" content="<%= url_for :only_path => false %>" />
+    <meta property="og:description" content="<%= @page_title %> - oiga.me" />
+    <% if @description %>
+      <meta name="description" content="<%= @description %> - oiga.me" />
+    <% else %>
+      <meta name="description" content="Plataforma de movilización ciudadana a través de la web - oiga.me" />
+    <% end %>
+    <% if @tags %>
+      <meta name="keywords" content="<%= @tags %>" />
+    <% else %>
+      <meta name="keywords" content="oiga.me, plataforma, movilización, web, campaña, campañas" />
     <% end %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
