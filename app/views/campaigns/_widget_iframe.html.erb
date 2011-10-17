@@ -123,7 +123,7 @@ fieldset {
     <p><%= @campaign.intro %></p>
   </div><!-- campaign-message-info -->
   <div id="campaign-message-form" class="form-stacked">
-    <%= form_tag "http://#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message" do %>
+    <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message" do %>
       <fieldset>
         <div class="form-field">
           <%= label_tag t(:your_email) %>

@@ -5,13 +5,13 @@
     <title><%= @page_title %> - oiga.me</title>
     <%= stylesheet_link_tag 'application' %>
     <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="http://<%= APP_CONFIG[:domain] %>/campaigns/feed" />
+    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <meta property="og:title" content="<%= @page_title %> - oiga.me" />
     <meta property="og:type" content="website" />
     <% if @image_src %>
-      <meta property="og:image" content="http://<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+      <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
-      <meta property="og:image" content="http://<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+      <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
     <% end %>
     <meta property="og:url" content="<%= url_for :only_path => false %>" />
     <meta property="og:description" content="<%= @page_title %> - oiga.me" />

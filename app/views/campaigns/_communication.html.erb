@@ -15,10 +15,10 @@
                 js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
                 fjs.parentNode.insertBefore(js, fjs);
               }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-like" data-href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
+              <div class="fb-like" data-href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
             </li>
             <li>
-              <g:plusone size="tall" href="http://<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
+              <g:plusone size="tall" href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
             </li>
             <li>
               <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="vertical" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>

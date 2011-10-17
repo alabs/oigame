@@ -100,6 +100,6 @@ class Campaign < ActiveRecord::Base
       config.oauth_token = APP_CONFIG[:twitter_oauth_token]
       config.oauth_token_secret = APP_CONFIG[:twitter_oauth_token_secret]
     end
-    Twitter.update(self.name + ' - ' + "http://#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
+    Twitter.update(self.name + ' - ' + "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
   end
 end
