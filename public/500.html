@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <title>Error en la aplicación - oiga.me</title>
-    <link href="/assets/main.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="http://oiga.me/campaigns/feed" />
-    <script src="/assets/application.js" type="text/javascript"></script>
+    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="https://oiga.me/campaigns/feed" />
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-19861474-1']);
@@ -20,14 +19,24 @@
   </head>
   <body>
     <div id="header-wrapper">
-      <div id="header">
-        <div id="logo" style="margin-top: 54px;">
-          <a href="/"><img src="/assets/logo.png" /></a>
-        </div>
-        <div id="corner">
-          <a href="/">peta</a>
-        </div>
-      </div>
+      <div class="topbar">
+        <div class="fill">
+          <div id="topbar-wrapper">
+            <div id="logo">
+              <a href="/">oiga.me</a>
+            </div><!-- logo -->
+            <div id="corner">
+              <a href="/">peta</a>
+            </div><!-- corner -->
+            <ul class="first-nav nav">
+              <li id="header-campaigns"><a href="/campaigns">Campañas</a></li>
+              <li id="header-community"><a href="http://community.oiga.me/">Comunidad</a></li>
+              <li id="header-donate"><a href="/donate">Donar</a></li>
+              <li id="header-answers"><a href="/answers">Respuestas</a></li>
+            </ul>
+          </div><!-- topbar-wrapper -->
+        </div><!-- fill -->
+      </div><!-- topbar -->
     </div><!-- header-wrapper -->
     <div id="page-wrapper">
       <div id="page">
@@ -51,13 +60,14 @@
           <a href="/campaigns/feed"><img src="/assets/rss.png" /></a>
           <a href="https://www.facebook.com/oiga.me"><img src="/assets/facebook.png" /></a>
           <a href="https://twitter.com/oigame"><img src="/assets/twitter.png" /></a>
+          <a href="https://identi.ca/oigame"><img src="/assets/identica.png" /></a>
         </div>
       </div>
     </div><!-- links-wrapper -->
     <div id="footer-wrapper">
       <div id="footer-main">
         <div id="info-links">
-          <p><span style="color:#fff;">&copy; 2010-2011 Algunos derechos reservados</span> | <a href="/privacy-policy">Política de privacidad</a> |<a href="https://github.com/alabs/oigame">Desarrolladores</a></p>
+          <p><span style="color:#fff;">&copy; 2010-2011 Algunos derechos reservados</span> | <a href="/privacy-policy">Política de privacidad</a> | <a href="https://github.com/alabs/oigame">Desarrolladores</a> | <a href="/contact">Contacto</a></p>
           <p style="color: #fff;">Mientras no se exprese lo contrario, el contenido de este sitio tiene <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES" style="color:red;">esta licencia</a> Creative Commons.</p>
         </div>
         <div id="footer-donate">
