@@ -45,11 +45,5 @@ module Oigame
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    # para el jodido active_admin
-    config.after_initialize do
-      Sass::Plugin.options[:always_check] = false
-      Sass::Plugin.options[:never_update] = true  
-    end
   end
 end
