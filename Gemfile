@@ -36,7 +36,6 @@ group :test do
 end
 
 gem 'devise'
-gem 'activeadmin'
 gem 'sass-rails', "  ~> 3.1.4"
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'acts-as-taggable-on'
@@ -51,3 +50,4 @@ gem 'therubyracer'
 gem 'cancan'
 gem 'newrelic_rpm'
 gem 'httparty'
+gem 'sitemap_generator'
