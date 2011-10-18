@@ -85,13 +85,15 @@ namespace :deploy do
       rm -rf #{latest_release}/log #{latest_release}/public/system #{latest_release}/tmp/pids &&
       mkdir -p #{latest_release}/public &&
       mkdir -p #{latest_release}/tmp &&
-      ln -s #{shared_path}/log #{latest_release}/log &&
-      ln -s #{shared_path}/system #{latest_release}/public/system &&
-      ln -s #{shared_path}/pids #{latest_release}/tmp/pids &&
+      ln -sf #{shared_path}/log #{latest_release}/log &&
+      ln -sf #{shared_path}/system #{latest_release}/public/system &&
+      ln -sf #{shared_path}/pids #{latest_release}/tmp/pids &&
       ln -sf #{shared_path}/config/database.yml #{latest_release}/config/database.yml &&
       ln -sf #{shared_path}/uploads #{latest_release}/public &&
       ln -sf #{shared_path}/config/app_config.yml #{latest_release}/config/app_config.yml &&
-      ln -sf #{shared_path}/config/newrelic.yml #{latest_release}/config/newrelic.yml
+      ln -sf #{shared_path}/config/newrelic.yml #{latest_release}/config/newrelic.yml &&
+      ln -sf #{shared_path}/public/sitemap1.xml.gz #{latest_release}/public/sitemap1.xml.gz &&
+      ln -sf #{shared_path}/public/sitemap_index.xml.gz #{latest_release}/public/sitemap_index.xml.gz
     CMD
 
     if fetch(:normalize_asset_timestamps, true)
