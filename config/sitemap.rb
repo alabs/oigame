@@ -1,6 +1,8 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "https://oiga.me"
 
+SitemapGenerator::Sitemap.yahoo_app_id = "V_diTqPV34HiBmRTs7vbnppcD.3pBTqA_X_pK47FkcfLAcxC5tCUTaEir5X2ojJOJtM22g--"
+
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
   #
