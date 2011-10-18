@@ -32,5 +32,6 @@ class PagesController < ApplicationController
   end
 
   def contact_received
+    set_http_cache(24.hours, true)
   end
 end
