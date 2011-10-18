@@ -33,7 +33,7 @@ class Campaign < ActiveRecord::Base
     end
 
     def last_campaigns_moderated
-      order('created_at ASC').where('moderated = ?', true).all  
+      order('created_at DESC').where('moderated = ?', true).all  
     end
   end
 
