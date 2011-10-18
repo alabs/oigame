@@ -3,15 +3,12 @@ class PagesController < ApplicationController
   def index
     @campaigns = Campaign.last_campaigns(3)
     #@users = User.count
-    set_http_cache(6.hours, true)
   end
 
   def answers
-    set_http_cache(12.hours, true)
   end
 
   def privacy_policy
-    set_http_cache(24.hours, true)
   end
   
   def contact
@@ -27,11 +24,9 @@ class PagesController < ApplicationController
       end
     else
       @contact = Contact.new
-      set_http_cache(24.hours, true)
     end
   end
 
   def contact_received
-    set_http_cache(24.hours, true)
   end
 end
