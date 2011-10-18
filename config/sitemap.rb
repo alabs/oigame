@@ -31,4 +31,6 @@ SitemapGenerator::Sitemap.create do
   add answers_path
   add privacy_policy_path
   add contact_path
+  
+  add campaigns_path, :changefreq => 'daily'
 end
