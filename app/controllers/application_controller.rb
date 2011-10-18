@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protected
 
   # Método para decirle a Varnish qué tiene que cachear
-  def set_http_cache(period, visibility)
+  def set_http_cache(period, visibility = false)
     expires_in period, :public => visibility, 'max-stale' => 0
   end
 end

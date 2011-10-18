@@ -14,6 +14,7 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign.last_campaigns
     @tags = Campaign.published.tag_counts_on(:tags)
+    set_http_cache(15.minutes)
   end
 
   def show
@@ -21,9 +22,11 @@ class CampaignsController < ApplicationController
     @image_src = @campaign.image_url.to_s
     @description = @campaign.name
     @keywords = @campaign.tag_list.join(', ')
+    set_http_cache(1.minute)
   end
 
   def new
+    set_http_cache(24.hours)
   end
 
   def edit
@@ -56,15 +59,18 @@ class CampaignsController < ApplicationController
   end
 
   def widget
+    set_http_cache(24.hours)
   end
 
   def widget_iframe
     render :partial => "widget_iframe"
+    set_http_cache(24.hours)
   end
 
   def tag
     @campaigns = Campaign.last_campaigns_by_tag(params[:id])
     @tags = Campaign.published.tag_counts_on(:tags)
+    set_http_cache(15.minutes)
   end
 
   def message
@@ -79,11 +85,13 @@ class CampaignsController < ApplicationController
     end
     @campaign = Campaign.published.find_by_slug(params[:id])
     @stats_data = generate_stats(@campaign)
+    set_http_cache(24.hours)
   end
 
   def moderated
     @campaigns = Campaign.last_campaigns_moderated
     @tags = Campaign.published.tag_counts_on(:tags)
+    set_http_cache(15.minutes)
   end
 
   def activate
@@ -98,6 +106,7 @@ class CampaignsController < ApplicationController
 
   def feed
     @campaigns = Campaign.last_campaigns
+    set_http_cache(3.hours)
   end
 
   private

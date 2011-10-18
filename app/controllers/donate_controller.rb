@@ -3,6 +3,7 @@ class DonateController < ApplicationController
   before_filter :authenticate_user!, :only => [:init]
 
   def index
+    set_http_cache(24.hours)
   end
 
   def init
@@ -25,9 +26,11 @@ class DonateController < ApplicationController
   end
 
   def accepted
+    set_http_cache(24.hours)
   end
 
   def denied
+    set_http_cache(24.hours)
   end
   
   private
