@@ -27,8 +27,8 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
-  add '/donate'
-  add '/answers'
-  add '/privacy-policy'
-  add '/contact'
+  add donate_path
+  add answers_path
+  add privacy_policy_path
+  add contact_path
 end
