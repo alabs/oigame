@@ -2,7 +2,7 @@ require "bundler/capistrano"
 
 set :scm,             :git
 set :repository,      "git@git.alabs.es:oiga.me.git"
-set :branch,          "origin/production"
+set :branch,          "origin/master"
 set :migrate_target,  :current
 set :ssh_options,     { :forward_agent => true }
 set :rails_env,       "production"
