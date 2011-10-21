@@ -26,11 +26,6 @@ Oigame::Application.routes.draw do
     end
   end
 
-  # Para traducir el interfaz
-  match 'translate' => 'translate#index', :as => :translate_list
-  match 'translate/translate' => 'translate#translate', :as => :translate
-  match 'translate/reload' => 'translate#reload', :as => :translate_reload
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
