@@ -10,3 +10,5 @@ config/database.yml
 config/app_config.yml
 config/newrelic.yml
 public/sitemap*
+.idea
+.rvmrc
