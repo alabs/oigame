@@ -2,10 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
-# La version de rack 1.3.4 tiene este bug:
-# warning: already initialized constant WFKV_ 
-gem 'rack' , '1.3.3'
-
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
