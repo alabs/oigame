@@ -314,5 +314,8 @@ $(function() {
     window.setInterval("simpleSlideAction('.right-button', " + related_group + ");", 10000);
   }); 
   ///////////////////////// slideshow slogans - end
-
+  
+  // para ocultar o mostrar un field en función del select
+  $("#campaign_ttype").change(function() {
+  });
 });

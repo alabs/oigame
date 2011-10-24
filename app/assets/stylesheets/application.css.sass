@@ -399,6 +399,8 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
             padding: 5px
             font-weight: normal
             width: 270px 
+          select
+            padding: 0px
           input:focus
             background-color: #f6f6f6
             box-shadow: 0 0 4px $border-shadow
@@ -545,19 +547,20 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
         color: #fff
       .form-field
         margin-bottom: 25px
-        input[type=text], textarea, input[type=file]
+        input[type=text], textarea, input[type=file], select
           border: 1px solid $border-main-color
           padding: 5px
           font-weight: normal
-        input:focus, textarea:focus
+        input:focus, textarea:focus, select:focus
           background-color: #f6f6f6
           box-shadow: 0 0 4px $border-shadow
-        label, input, textarea
+        label, input, textarea, select
           font-size: .9em
         label
           margin-bottom: 10px
         select
-          width: 30%
+          width: 50%
+          padding: 0px
       .error_message
         font-size: small
         color: #f00

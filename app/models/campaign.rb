@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Campaign < ActiveRecord::Base
 
   belongs_to :user
@@ -7,6 +8,9 @@ class Campaign < ActiveRecord::Base
   attr_accessor :recipients
 
   serialize :emails, Array
+  serialize :ttype, Array # type no es un nombre de columna válido
+
+  TTYPES = { :petition => 'Petición', :mailing => 'Envio de correo' }
 
   validates_presence_of :name, :intro, :body
   validates_uniqueness_of :name

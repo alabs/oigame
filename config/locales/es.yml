@@ -66,3 +66,4 @@ es:
   name: 'Nombre'
   message_received: 'Mensaje recibido'
   go_to_home: 'Volver al inicio'
+  type_of_campaign: 'Tipo de campaña'
