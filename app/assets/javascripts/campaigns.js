@@ -2,13 +2,13 @@
 function switch_campaign_type(ctype) {
   switch (ctype) {
     case "petition": 
-      $("#crecipients").hide();
+      $("#crecipients").hide('slow');
       break;
     case "mailing":
-      $("#crecipients").show();
+      $("#crecipients").show('slow');
       break;
     default:
-      $("#crecipients").hide();
+      $("#crecipients").hide('slow');
       break;
   }
 }
