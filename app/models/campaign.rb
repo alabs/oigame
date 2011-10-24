@@ -9,7 +9,7 @@ class Campaign < ActiveRecord::Base
 
   serialize :emails, Array
 
-  TYPES = { :petition => 'Petición', :mailing => 'Envio de correo' }
+  TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo' }
 
   validates_presence_of :name, :intro, :body, :ttype
   validates_uniqueness_of :name
