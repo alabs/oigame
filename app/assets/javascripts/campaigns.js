@@ -1,4 +1,18 @@
 
+function switch_campaign_type(ctype) {
+  switch (ctype) {
+    case "petition": 
+      $("#crecipients").hide();
+      break;
+    case "mailing":
+      $("#crecipients").show();
+      break;
+    default:
+      $("#crecipients").hide();
+      break;
+  }
+}
+
 ////////////////////////// jquery.DatePicker cutomizations - start
 
 $.dpText = {
@@ -177,20 +191,13 @@ $(function() {
     window.location = destination;
   });
 
+  var ctype_old = $("#campaign_ttype").val() 
+  switch_campaign_type(ctype_old);
+
   // para ocultar o mostrar un field en función del select
   $("#campaign_ttype").change(function() {
-    var ctype = $(this).val();
-    switch (ctype) {
-      case "petition": 
-        $("#crecipients").hide();
-        break;
-      case "mailing":
-        $("#crecipients").show();
-        break;
-      default:
-        $("#crecipients").hide();
-        break;
-    }
+    var ctype_new = $(this).val();
+    switch_campaign_type(ctype_new);
   });
 
 });
