@@ -42,7 +42,7 @@
     </div>
     <div class="form-field">
       <%= f.label t(:type_of_campaign) %>
-      <%= select(:campaign, :ttype, Campaign::TTYPES.select {|k,v| [k,v]}.invert, {:prompt => 'Selecciona tipo de campaña'}) %>
+      <%= select(:campaign, :ttype, Campaign::TYPES.select {|k,v| [k,v]}.invert, {:prompt => 'Selecciona tipo de campaña'}) %>
     </div>
     <div id="crecipients" class="form-field hide">
       <%= f.label t(:recipients) %>

@@ -4,15 +4,14 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   has_many :messages
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype
   attr_accessor :recipients
 
   serialize :emails, Array
-  serialize :ttype, Array # type no es un nombre de columna válido
 
-  TTYPES = { :petition => 'Petición', :mailing => 'Envio de correo' }
+  TYPES = { :petition => 'Petición', :mailing => 'Envio de correo' }
 
-  validates_presence_of :name, :intro, :body
+  validates_presence_of :name, :intro, :body, :ttype
   validates_uniqueness_of :name
   validates_presence_of :duedate_at
 
