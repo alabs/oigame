@@ -44,7 +44,7 @@
       <%= f.label t(:type_of_campaign) %>
       <%= select(:campaign, :ttype, Campaign::TTYPES.select {|k,v| [k,v]}.invert, {:prompt => 'Selecciona tipo de campaña'}) %>
     </div>
-    <div id="crecipients" class="form-field">
+    <div id="crecipients" class="form-field hide">
       <%= f.label t(:recipients) %>
       <%= f.text_area :recipients, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Lista de direcciones de correo de destinatarios, una por línea.' %>
     </div>

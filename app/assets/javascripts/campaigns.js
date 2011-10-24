@@ -177,4 +177,20 @@ $(function() {
     window.location = destination;
   });
 
+  // para ocultar o mostrar un field en función del select
+  $("#campaign_ttype").change(function() {
+    var ctype = $(this).val();
+    switch (ctype) {
+      case "petition": 
+        $("#crecipients").hide();
+        break;
+      case "mailing":
+        $("#crecipients").show();
+        break;
+      default:
+        $("#crecipients").hide();
+        break;
+    }
+  });
+
 });

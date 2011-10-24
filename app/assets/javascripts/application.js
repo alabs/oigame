@@ -315,7 +315,4 @@ $(function() {
   }); 
   ///////////////////////// slideshow slogans - end
   
-  // para ocultar o mostrar un field en función del select
-  $("#campaign_ttype").change(function() {
-  });
 });
