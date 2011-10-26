@@ -4,11 +4,11 @@
   <div id="show-campaign">
     <div id="show-campaign-detail">
       <h2><%= @campaign.name %></h2>
-      <div class="grid_6">
+      <div class="grid_5">
         <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %><br />
           Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
       </div>
-      <div class="grid_7">
+      <div class="grid_8">
         <div id="campaign-information">
           <div class="thermometer">
             <div class="thermocontainer">
@@ -26,15 +26,18 @@
         </div><!-- campaing-information -->
       </div>
         <p>
+          <% if can?(:moderated, @campaign) %>
+            <span class="label warning">
+              <a href="mailto:<%= @campaign.user.email %>">Contacto</a>
+            </span>
+          <% end %>
           <% if can?(:moderated, @campaign) && @campaign.moderated? %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;
             <span class="label success">
               <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
             </span>
           <% end %>
           <% if can?(:deactivate, @campaign) && @campaign.published? %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;
             <span class="label success">
               <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
