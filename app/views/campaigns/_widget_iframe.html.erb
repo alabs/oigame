@@ -147,6 +147,10 @@ fieldset {
       <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition" do %>
         <fieldset>
           <div class="form-field">
+            <%= label_tag t(:name_and_surname) %>
+            <%= email_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos', :class => 'span5' %>
+          </div>
+          <div class="form-field">
             <%= label_tag t(:your_email) %>
             <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
           </div>

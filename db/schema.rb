@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026073715) do
+ActiveRecord::Schema.define(:version => 20111026102701) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20111026073715) do
     t.datetime "updated_at"
     t.boolean  "validated",   :default => false
     t.string   "token"
+    t.string   "name"
   end
 
   create_table "sessions", :force => true do |t|

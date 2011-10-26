@@ -64,6 +64,7 @@ es:
   remember_me: 'Recuerda mis datos'
   contact: 'Contacto'
   name: 'Nombre'
+  name_and_surname: 'Nombre y apellidos'
   message_received: 'Mensaje recibido'
   go_to_home: 'Volver al inicio'
   type_of_campaign: 'Tipo de campaña'

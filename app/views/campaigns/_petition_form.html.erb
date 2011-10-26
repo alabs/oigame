@@ -10,6 +10,10 @@
         <p>¡Que se escuche tu voz! Para participar en la campaña haz click en el boton <strong>unirme</strong>.</p>
         <br />
       <% end %>
+        <div class="form-field">
+          <%= label_tag t(:name_and_surname) %>
+          <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos' %>
+        </div>
       <% unless user_signed_in? %>
         <div class="form-field">
           <%= label_tag t(:your_email) %>
