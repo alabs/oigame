@@ -2,7 +2,7 @@ class Petition < ActiveRecord::Base
 
   belongs_to :campaign
 
-  attr_accessible :campaign, :email
+  attr_accessible :campaign, :email, :token, :validated
 
   scope :validated, where(:validated => true)
 

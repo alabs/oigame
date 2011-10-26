@@ -89,14 +89,29 @@ class CampaignsController < ApplicationController
     if request.post?
       to = user_signed_in? ? current_user.email : params[:email]
       campaign = Campaign.published.find_by_slug(params[:id])
-      Petition.create(:campaign => campaign, :email => to)
-      Mailman.send_message_to_validate_petition(to, campaign).deliver
+      petition = Petition.create(:campaign => campaign, :email => to, :token => generate_token )
+      Mailman.send_message_to_validate_petition(to, campaign, petition).deliver
       redirect_to petition_campaign_path, :notice => 'Gracias por unirte a esta campaña'
 
       return
     end
     @campaign = Campaign.published.find_by_slug(params[:id])
     @stats_data = generate_stats_for_petition(@campaign)
+  end
+
+  def validate
+    petition = Petition.find_by_token(params[:token])
+    if petition
+      petition.update_attributes(:validated => true, :token => nil)
+      redirect_to validated_campaign_path, :notice => 'Tu adhesión se ha ejecutado con éxito'
+
+      return
+    else
+      render
+    end
+  end
+  
+  def validated
   end
 
   def moderated
@@ -139,5 +154,14 @@ class CampaignsController < ApplicationController
     end
     
     return data
+  end
+
+  def generate_token
+    secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+  end
+
+  def secure_digest(*args)
+    require 'digest/sha1'
+    Digest::SHA1.hexdigest(args.flatten.join('--'))
   end
 end

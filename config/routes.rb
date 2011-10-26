@@ -14,6 +14,8 @@ Oigame::Application.routes.draw do
     member do
       post 'petition'
       get 'petition'
+      get 'validate/:token' => 'campaigns#validate', :as => 'validate'
+      get 'validated'
       post 'message'
       get 'message'
       get 'widget'

@@ -2,7 +2,7 @@
 
 <p>Para validar la adhesión a la campaña "<%= @campaign.name %>" tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:</p>
 
-<h2><%= link_to 'Sigue este enlace', '#' %></h2>
+<h2><a href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>/validate/<%= @token %>">Sigue este enlace</a></h2>
 
 <p>Si no has sido tú quien se adherió a esta campaña puede ignorar este mensaje.</p>
 
