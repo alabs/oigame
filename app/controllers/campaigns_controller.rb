@@ -87,6 +87,11 @@ class CampaignsController < ApplicationController
 
   def petition
     if request.post?
+      if user_signed_in?
+        if current_user.name.blank?
+          current_user.update_attributes(:name => params[:name])
+        end
+      end
       to = user_signed_in? ? current_user.email : params[:email]
       campaign = Campaign.published.find_by_slug(params[:id])
       petition = Petition.create(:campaign => campaign, :name => params[:name], :email => to, :token => generate_token )
