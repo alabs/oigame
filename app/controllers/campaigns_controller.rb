@@ -89,7 +89,7 @@ class CampaignsController < ApplicationController
     if request.post?
       to = user_signed_in? ? current_user.email : params[:email]
       campaign = Campaign.published.find_by_slug(params[:id])
-      petition = Petition.create(:campaign => campaign, :email => to, :token => generate_token )
+      petition = Petition.create(:campaign => campaign, :name => params[:name], :email => to, :token => generate_token )
       Mailman.send_message_to_validate_petition(to, campaign, petition).deliver
       redirect_to petition_campaign_path, :notice => 'Gracias por unirte a esta campaña'
 
