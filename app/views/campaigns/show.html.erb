@@ -13,7 +13,11 @@
           <div class="thermometer">
             <div class="thermocontainer">
               <div class="signatures-needed">
-                <span id="participants" class="big strong"><%= @campaign.messages.count %></span>
+                <% if @campaign.ttype == 'mailing' %>
+                  <span id="participants" class="big strong"><%= @campaign.messages.count %></span>
+                <% else %>
+                  <span id="participants" class="big strong"><%= @campaign.petitions.validated.count %></span>
+                <% end %>
                 <span class="small weak">de</span>
                 <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> participantes
             </div>
@@ -69,7 +73,9 @@
 
       <% if @campaign.ttype == 'petition' %>
         <%= render :partial => 'petition_form' %>
-      <% elsif @campaign.ttype == 'mailing' %>
+      <% end %>
+
+      <% if @campaign.ttype == 'mailing' %>
         <%= render :partial => 'mailing_form' %>
       <% end %>
       

@@ -17,7 +17,11 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @stats_data = generate_stats(@campaign)
+    if @campaign.ttype == 'petition'
+      @stats_data = generate_stats_for_petition(@campaign)
+    elsif @campaign.ttype == 'mailing'
+      @stats_data = generate_stats_for_mailing(@campaign)
+    end
     @image_src = @campaign.image_url.to_s
     @description = @campaign.name
     @keywords = @campaign.tag_list.join(', ')
@@ -78,7 +82,7 @@ class CampaignsController < ApplicationController
       return
     end
     @campaign = Campaign.published.find_by_slug(params[:id])
-    @stats_data = generate_stats(@campaign)
+    @stats_data = generate_stats_for_mailing(@campaign)
   end
 
   def petition
@@ -92,7 +96,7 @@ class CampaignsController < ApplicationController
       return
     end
     @campaign = Campaign.published.find_by_slug(params[:id])
-    # Invocar el método que genera los datos para la gráfica
+    @stats_data = generate_stats_for_petition(@campaign)
   end
 
   def moderated
@@ -117,11 +121,21 @@ class CampaignsController < ApplicationController
 
   private
 
-  def generate_stats(campaign)
+  def generate_stats_for_mailing(campaign)
     dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
     dates.each do |date|
       data.push([date.strftime('%Y-%m-%d'), Message.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count])
+    end
+    
+    return data
+  end
+  
+  def generate_stats_for_petition(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    dates.each do |date|
+      data.push([date.strftime('%Y-%m-%d'), Petition.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count])
     end
     
     return data
