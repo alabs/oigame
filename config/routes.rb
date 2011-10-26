@@ -12,6 +12,10 @@ Oigame::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }, :controllers => { :registrations => "users/registrations" }
   resources :campaigns do
     member do
+      post 'petition'
+      get 'petition'
+      get 'validate/:token' => 'campaigns#validate', :as => 'validate'
+      get 'validated'
       post 'message'
       get 'message'
       get 'widget'

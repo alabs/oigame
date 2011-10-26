@@ -1,7 +1,7 @@
-      <div id="stats-chart">
-        <div id="stats-data" class="hide"><%= @stats_data %></div>
-        <div id="stats-minimal_date" class="hide"><%= @campaign.created_at.yesterday.strftime("%Y-%m-%d") %></div>
-        <div id="chart_center" style="width: 500px; height:300px; margin: 0 auto;">
-          <div id="chart_messages"></div>
-        </div>
-      </div><!-- stats-chart -->
+<div id="stats-chart">
+  <div id="stats-data" class="hide"><%= @stats_data %></div>
+  <div id="stats-minimal_date" class="hide"><%= @campaign.created_at.yesterday.strftime("%Y-%m-%d") %></div>
+  <div id="chart_center" style="width: 500px; height:300px; margin: 0 auto;">
+    <div id="chart_messages"></div>
+  </div>
+</div><!-- stats-chart -->

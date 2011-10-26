@@ -3,6 +3,7 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :user
   has_many :messages
+  has_many :petitions
   
   attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype
   attr_accessor :recipients

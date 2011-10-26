@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
-  protect_from_forgery :except => :message 
+  protect_from_forgery :except => [:message, :petition]
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate]
 
@@ -17,7 +17,11 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @stats_data = generate_stats(@campaign)
+    if @campaign.ttype == 'petition'
+      @stats_data = generate_stats_for_petition(@campaign)
+    elsif @campaign.ttype == 'mailing'
+      @stats_data = generate_stats_for_mailing(@campaign)
+    end
     @image_src = @campaign.image_url.to_s
     @description = @campaign.name
     @keywords = @campaign.tag_list.join(', ')
@@ -78,7 +82,37 @@ class CampaignsController < ApplicationController
       return
     end
     @campaign = Campaign.published.find_by_slug(params[:id])
-    @stats_data = generate_stats(@campaign)
+    @stats_data = generate_stats_for_mailing(@campaign)
+  end
+
+  def petition
+    if request.post?
+      to = user_signed_in? ? current_user.email : params[:email]
+      campaign = Campaign.published.find_by_slug(params[:id])
+      petition = Petition.create(:campaign => campaign, :email => to, :token => generate_token )
+      Mailman.send_message_to_validate_petition(to, campaign, petition).deliver
+      redirect_to petition_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+
+      return
+    end
+    @campaign = Campaign.published.find_by_slug(params[:id])
+    @stats_data = generate_stats_for_petition(@campaign)
+  end
+
+  def validate
+    petition = Petition.find_by_token(params[:token])
+    if petition
+      petition.update_attributes(:validated => true, :token => nil)
+      redirect_to validated_campaign_path, :notice => 'Tu adhesión se ha ejecutado con éxito'
+
+      return
+    else
+      render
+    end
+  end
+  
+  def validated
+    @stats_data = generate_stats_for_petition(@campaign)
   end
 
   def moderated
@@ -103,7 +137,7 @@ class CampaignsController < ApplicationController
 
   private
 
-  def generate_stats(campaign)
+  def generate_stats_for_mailing(campaign)
     dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
     dates.each do |date|
@@ -111,5 +145,24 @@ class CampaignsController < ApplicationController
     end
     
     return data
+  end
+  
+  def generate_stats_for_petition(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    dates.each do |date|
+      data.push([date.strftime('%Y-%m-%d'), Petition.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count])
+    end
+    
+    return data
+  end
+
+  def generate_token
+    secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+  end
+
+  def secure_digest(*args)
+    require 'digest/sha1'
+    Digest::SHA1.hexdigest(args.flatten.join('--'))
   end
 end

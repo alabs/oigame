@@ -1,10 +1,10 @@
-<% @page_title = "Gracias" %>
+<% @page_title = "Hubo un problema" %>
 
 <div id="page-wrapper">
   <div id="page">
     <div id="page-info">
       <h2><%= @page_title %></h2>
-      <p class="thanks-message">Gracias por enviar tu mensaje a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.</p>
+      <p class="thanks-message">No encontramos una adhesión con ese token, revisa el correo que te enviamos y si te sigue sin funcionar <%= link_to 'ponte en contacto', contact_path %> con oiga.me</p>
       <br />
       <p><%= link_to t(:back), @campaign, :class => "btn primary" %>
       <br /><br />

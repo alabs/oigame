@@ -1,0 +1,40 @@
+<h2 class="jtc">Participa
+  <a id="show-modal-send-message" href="#" title="Maximizar">
+    <img style="float:right;" src="/assets/view-fullscreen.png" alt="Maximizar" />
+  </a>
+</h2>
+
+<div id="campaign-message-form" class="form-stacked">
+  <%= form_tag message_campaign_path do %>
+    <fieldset>
+      <p>¡Que se escuche tu voz! Para participar en la campaña escribe aquí tu mensaje, nosotros nos encargamos de que llegue de forma eficaz a todos los responsables.</p>
+      <br />
+      <% unless user_signed_in? %>
+        <div class="form-field">
+          <%= label_tag t(:your_email) %>
+          <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico' %>
+        </div>
+      <% end %>
+      <div class="form-field">
+        <%= label_tag t(:subject) %>
+        <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje' %>
+      </div>
+      <div class="form-field">
+        <%= label_tag t(:message) %>
+        <%= text_area_tag :body, nil, :required => true, :placeholder => 'Para hacer efectiva la campaña te recomendamos que tu mensaje sea con respeto, se puede ser firme pero asertivo y nuestra experiencia nos indica que quienes reciben los mensajes son mucho más receptivos si se les trata respetuosamente. Cuéntales que no estás de acuerdo con lo que están haciendo y por qué, cuéntales cómo te gustaría que actuaran realmente', :rows => 10 %>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag t(:send_message), :class => 'btn primary large center' %>
+      </div>
+    </fieldset>
+  <% end %>
+</div><!-- campaign-message-form -->
+
+<div id="modal-send-message" style="display:none;">
+  <h1><%= t(:join_this_campaign) %></h1>
+  <div id="modal-campaign-message-form"></div>
+  <div class="actions">
+    <%= submit_tag t(:send_message), :class => 'btn primary center modal-send-form' %>
+  </div>
+</div><!-- modal-send-message -->
+

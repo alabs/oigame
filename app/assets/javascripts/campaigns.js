@@ -58,7 +58,7 @@ function chart_draw(items, chart_id, color, minimal_date){
       yaxis: {
         min: 0,
         tickInterval: 1,
-        label:'Mensajes enviados',
+        label:'Adhesiones a esta campaña',
         labelRenderer: $.jqplot.CanvasAxisLabelRenderer
       }
     },
