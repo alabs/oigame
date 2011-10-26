@@ -37,6 +37,9 @@ class Ability
       can :update, Campaign, :moderated => false
       can :widget, Campaign, :moderated => false 
       can :widget_iframe, Campaign, :moderated => false
+      can :petition, Campaign, :moderated => false
+      can :validate, Campaign, :moderated => false
+      can :validated, Campaign, :moderated => false
     end
 
     if user.role? :user
@@ -45,6 +48,9 @@ class Ability
       can :update, Campaign, :moderated => false, :user_id => user.id
       can :widget, Campaign, :moderated => false 
       can :widget_iframe, Campaign, :moderated => false
+      can :petition, Campaign, :moderated => false
+      can :validate, Campaign, :moderated => false
+      can :validated, Campaign, :moderated => false
     end
   end
 end
