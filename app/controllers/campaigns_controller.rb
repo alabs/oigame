@@ -112,6 +112,7 @@ class CampaignsController < ApplicationController
   end
   
   def validated
+    @stats_data = generate_stats_for_petition(@campaign)
   end
 
   def moderated
