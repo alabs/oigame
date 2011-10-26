@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
-  protect_from_forgery :except => :message 
+  protect_from_forgery :except => [:message, :petition]
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate]
 
@@ -79,6 +79,20 @@ class CampaignsController < ApplicationController
     end
     @campaign = Campaign.published.find_by_slug(params[:id])
     @stats_data = generate_stats(@campaign)
+  end
+
+  def petition
+    if request.post?
+      to = user_signed_in? ? current_user.email : params[:email]
+      campaign = Campaign.published.find_by_slug(params[:id])
+      Petition.create(:campaign => campaign, :email => to)
+      Mailman.send_message_to_validate_petition(to, campaign).deliver
+      redirect_to petition_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+
+      return
+    end
+    @campaign = Campaign.published.find_by_slug(params[:id])
+    # Invocar el método que genera los datos para la gráfica
   end
 
   def moderated

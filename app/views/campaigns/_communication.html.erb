@@ -1,31 +1,25 @@
-        <h2 id="jtc">Difunde</h2>
-        <div id="diffusion">
-          Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.
-          <a id="show-modal-widget" href="#" class="btn large primary center">Pon el formulario en tu web</a>
-        </div>
-
-        <h2 id="jtc">Comunica</h2>
-        <ul id="social-buttons">
-           <li> 
-              <div id="fb-root"></div>
-              <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-like" data-href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
-            </li>
-            <li>
-              <g:plusone size="tall" href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
-            </li>
-            <li>
-              <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="vertical" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-            </li>
-            <li>
-              <div id="identishare" style="vertical-align: bottom;"></div>
-              <script type="text/javascript" src="http://www.tildehash.com/identishare.php?style2" defer="defer"></script> 
-            </li>
-            <div class="clear"></div>
-        </ul><!-- social-buttons -->
+<h2 class="jtc">Comunica</h2>
+<ul id="social-buttons">
+   <li> 
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      <div class="fb-like" data-href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>" data-send="false" data-layout="box_count" data-width="50" data-show-faces="true" data-font="verdana" data-action="recommend"></div>
+    </li>
+    <li>
+      <g:plusone size="tall" href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
+    </li>
+    <li>
+      <a href="http://twitter.com/share" class="twitter-share-button" data-text="<%= @campaign.name %>" data-count="vertical" data-via="oigame" data-related="alabs_es" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </li>
+    <li>
+      <div id="identishare" style="vertical-align: bottom;"></div>
+      <script type="text/javascript" src="http://www.tildehash.com/identishare.php?style2" defer="defer"></script> 
+    </li>
+    <div class="clear"></div>
+</ul><!-- social-buttons -->

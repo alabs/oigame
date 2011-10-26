@@ -25,4 +25,10 @@ class Mailman < ActionMailer::Base
     @message_body = @message.body
     mail :from => from, :to => 'hola@oiga.me', :subject => subject
   end
+
+  def send_message_to_validate_petition(to, campaign)
+    @campaign = campaign
+    subject = "[oiga.me] Valida tu adhesion a la campaña: #{@campaign.name}"
+    mail :to => to, :subject => subject
+  end
 end
