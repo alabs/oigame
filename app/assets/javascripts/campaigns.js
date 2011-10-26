@@ -1,17 +1,23 @@
 
+////////////////////////// switch_campaign_type - start 
+
 function switch_campaign_type(ctype) {
   switch (ctype) {
     case "petition": 
-      $("#crecipients").hide('slow');
+      $("#crecipients").hide("slow");
+      $("#campaign_recipients").removeAttr("required"); 
       break;
     case "mailing":
-      $("#crecipients").show('slow');
+      $("#crecipients").show("slow");
+      $("#crecipients").removeClass("hide");
+      $("#campaign_recipients").attr("required", "required");
       break;
     default:
       $("#crecipients").hide('slow');
       break;
   }
 }
+////////////////////////// switch_campaign_type - start 
 
 ////////////////////////// jquery.DatePicker cutomizations - start
 
