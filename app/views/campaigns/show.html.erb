@@ -72,8 +72,6 @@
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar" class="grid_8">
       
-      <%= render :partial => 'modal_widget_form' %>
-
       <% if @campaign.ttype == 'petition' %>
         <%= render :partial => 'petition_form' %>
       <% end %>
@@ -83,6 +81,7 @@
       <% end %>
       
       <h2 class="jtc">Difunde</h2>
+      <%= render :partial => 'modal_widget_form' %>
       <div id="diffusion">
         Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.
         <a id="show-modal-widget" href="#" class="btn large primary center">Pon el formulario en tu web</a>
