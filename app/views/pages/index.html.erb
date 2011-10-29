@@ -60,7 +60,7 @@
 </div><!-- subscribe-wrapper -->
 <div id="home-info-wrapper">
   &nbsp;
-  <% if @campaigns.count > 0 %>
+  <% if @campaigns.count >= 3 %>
     <div id="campaigns-info">
       <div id="last-campaigns-ribbon">últimas campañas</div>
       <% @campaigns.each do |campaign| %>
