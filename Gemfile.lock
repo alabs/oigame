@@ -138,6 +138,9 @@ GEM
     rdoc (3.11)
       json (~> 1.4)
     redcarpet (1.17.2)
+    redis (2.2.2)
+    redis-store (1.0.0.1)
+      redis (~> 2.2.1)
     rmagick (2.13.1)
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
@@ -204,6 +207,7 @@ DEPENDENCIES
   pry
   rails (= 3.1.1)
   redcarpet
+  redis-store
   rmagick
   sass-rails (~> 3.1.4)
   sitemap_generator
