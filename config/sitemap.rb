@@ -27,10 +27,17 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
+  # Páginas estáticas
   add donate_path
   add answers_path
   add privacy_policy_path
   add contact_path
   
+  # Secciones
   add campaigns_path, :changefreq => 'daily'
+
+  # Campañas
+  Campaign.find_each do |campaign|
+    add campaign_path(campaign), :lastmod => campaign.updated_at, :changefreq => 'daily'
+  end
 end
