@@ -16,6 +16,10 @@ $.dpText = {
 ////////////////////////// chart_draw: jqplot helper  - start
 
 function chart_draw(items, chart_id, color, minimal_date){
+  // seleccionamos el valor del ultimo item para saber cual tiene 
+  // que ser el tickInterval 
+  var last_item = items[items.length-1][1];
+  var tick_interval = Math.ceil(last_item / 4);
   $.jqplot(chart_id, [items], {
     seriesDefaults: {
       fill: true,
@@ -38,12 +42,14 @@ function chart_draw(items, chart_id, color, minimal_date){
         labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
         renderer:$.jqplot.DateAxisRenderer,
         tickOptions:{formatString:'%d-%m'},
-        tickInterval:'1 day',
         min: minimal_date
       },
       yaxis: {
         min: 0,
-        tickInterval: 1,
+        tickInterval: tick_interval,
+        tickOptions:{
+          formatString:'%d'
+        },
         label:'Mensajes enviados',
         labelRenderer: $.jqplot.CanvasAxisLabelRenderer
       }
