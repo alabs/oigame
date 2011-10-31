@@ -17,6 +17,9 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    # par que funcione el botón de facebook
+    @cause = true
+
     if @campaign.ttype == 'petition'
       @stats_data = generate_stats_for_petition(@campaign)
     elsif @campaign.ttype == 'mailing'
