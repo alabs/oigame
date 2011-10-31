@@ -145,8 +145,11 @@ class CampaignsController < ApplicationController
   def generate_stats_for_mailing(campaign)
     dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
+    messages = 0
     dates.each do |date|
-      data.push([date.strftime('%Y-%m-%d'), Message.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count])
+      count = Message.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count
+      messages += count
+      data.push([date.strftime('%Y-%m-%d'), messages])
     end
     
     return data
@@ -155,8 +158,11 @@ class CampaignsController < ApplicationController
   def generate_stats_for_petition(campaign)
     dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
+    petitions = 0
     dates.each do |date|
-      data.push([date.strftime('%Y-%m-%d'), Petition.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count])
+      count = Petition.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count
+      petitions += count
+      data.push([date.strftime('%Y-%m-%d'), petitions])
     end
     
     return data
