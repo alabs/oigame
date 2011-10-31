@@ -37,7 +37,7 @@ SitemapGenerator::Sitemap.create do
   add campaigns_path, :changefreq => 'daily'
 
   # Campañas
-  Campaign.find_each do |campaign|
+  Campaign.published.find_each do |campaign|
     add campaign_path(campaign), :lastmod => campaign.updated_at, :changefreq => 'daily'
   end
 end
