@@ -39,7 +39,11 @@ function chart_draw(items, chart_id, color, minimal_date){
   // seleccionamos el valor del ultimo item para saber cual tiene 
   // que ser el tickInterval 
   var last_item = items[items.length-1][1];
-  var tick_interval = Math.ceil(last_item / 4);
+  if (last_item > 0){
+    var tick_interval = Math.ceil(last_item / 4);
+  } else {
+    var tick_interval = 1;
+  }
   $.jqplot(chart_id, [items], {
     seriesDefaults: {
       fill: true,
