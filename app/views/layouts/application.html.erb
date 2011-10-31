@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>" prefix="og: http://ogp.me/ns#">
+<html lang="<%= I18n.locale %>" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
   <head>
     <meta charset="utf-8" />
     <title><%= @page_title %> - oiga.me</title>
@@ -7,7 +7,11 @@
     <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <meta property="og:title" content="<%= @page_title %> - oiga.me" />
-    <meta property="og:type" content="website" />
+    <% if @cause %>
+      <meta property="og:type" content="cause" />
+    <% else %>
+      <meta property="og:type" content="website" />
+    <% end %>
     <% if @image_src %>
       <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
