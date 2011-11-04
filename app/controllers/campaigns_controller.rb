@@ -22,10 +22,12 @@ class CampaignsController < ApplicationController
 
     @campaign = Campaign.includes(:messages, :petitions).find_by_slug(params[:id])
 
-    if @campaign.ttype == 'petition'
-      @stats_data = generate_stats_for_petition(@campaign)
-    elsif @campaign.ttype == 'mailing'
-      @stats_data = generate_stats_for_mailing(@campaign)
+    if @campaign
+      if @campaign.ttype == 'petition'
+        @stats_data = generate_stats_for_petition(@campaign)
+      elsif @campaign.ttype == 'mailing'
+        @stats_data = generate_stats_for_mailing(@campaign)
+      end
     end
     @image_src = @campaign.image_url.to_s
     @description = @campaign.name
