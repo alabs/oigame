@@ -17,7 +17,7 @@
     <% else %>
       <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
     <% end %>
-    <meta property="og:url" content="<%= url_for :only_path => false, :protocol => 'https' %>" />
+    <meta property="og:url" content="<%= url_for :only_path => false %>" />
     <meta property="og:description" content="<%= @page_title %> - oiga.me" />
     <% if @description %>
       <meta name="description" content="<%= @description %> - oiga.me" />
