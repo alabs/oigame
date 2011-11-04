@@ -40,6 +40,7 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign.user = current_user
+    @campaign.target = @campaign.target.gsub(/\./, '')
     if @campaign.save
       Mailman.send_campaign_to_social_council(@campaign).deliver
       flash[:notice] = 'Tu campaña se ha creado con éxito y está pendiente de moderación.'
