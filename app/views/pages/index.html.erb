@@ -73,7 +73,11 @@
           </div>
           <div class="c-text-and-link">
             <%= campaign.to_html(truncate(campaign.intro, :length => 225)).html_safe %>
-            <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.messages.count %> personas ya lo han hecho</p>
+            <% if campaign.ttype == 'mailing' %>
+              <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.messages.count %> personas ya lo han hecho</p>
+            <% elsif campaign.ttype == 'petition' %>
+              <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.petitions.count %> personas ya lo han hecho</p>
+            <% end %>
           </div>
         </div><!-- campaign-home-detail -->
       <% end %>

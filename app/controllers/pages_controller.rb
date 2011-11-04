@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-    @campaigns = Campaign.last_campaigns(3)
+    @campaigns = Campaign.includes(:messages, :petitions).last_campaigns(3)
     @users = User.count
   end
 
