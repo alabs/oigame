@@ -1,9 +1,9 @@
-<% @page_title = @campaign.name if @campaign %>
+<% @page_title = @campaign.name %>
 
 <div id="campaigns-wrapper">
   <div id="show-campaign">
     <div id="show-campaign-detail">
-      <h2><%= @campaign.name if @campaign %></h2>
+      <h2><%= @campaign.name %></h2>
       <div class="grid_5">
         <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %><br />
           Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>

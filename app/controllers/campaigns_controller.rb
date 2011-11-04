@@ -7,7 +7,7 @@ class CampaignsController < ApplicationController
 
   # para cancan
   load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :show, :tag, :message, :moderated, :feed]
+  skip_load_resource :only => [:index, :tag, :message, :moderated, :feed]
   authorize_resource
   skip_authorize_resource :only => [:index, :tag, :message, :feed]
 
@@ -20,18 +20,14 @@ class CampaignsController < ApplicationController
     # para que funcione el botón de facebook
     @cause = true
 
-    @campaign = Campaign.includes(:messages, :petitions).find_by_slug(params[:id])
-
-    if @campaign
-      if @campaign.ttype == 'petition'
-        @stats_data = generate_stats_for_petition(@campaign)
-      elsif @campaign.ttype == 'mailing'
-        @stats_data = generate_stats_for_mailing(@campaign)
-      end
+    if @campaign.ttype == 'petition'
+      @stats_data = generate_stats_for_petition(@campaign)
+    elsif @campaign.ttype == 'mailing'
+      @stats_data = generate_stats_for_mailing(@campaign)
     end
-    @image_src = @campaign.image_url.to_s if @campaign
-    @description = @campaign.name if @campaign
-    @keywords = @campaign.tag_list.join(', ') if @campaign
+    @image_src = @campaign.image_url.to_s
+    @description = @campaign.name 
+    @keywords = @campaign.tag_list.join(', ')
   end
 
   def new
