@@ -15,7 +15,7 @@
               <div class="signatures-needed">
                 <% if @campaign.ttype == 'mailing' %>
                   <span id="participants" class="big strong"><%= @campaign.messages.count %></span>
-                <% else %>
+                <% elsif @campaign.ttype == 'petition' %>
                   <span id="participants" class="big strong"><%= @campaign.petitions.validated.count %></span>
                 <% end %>
                 <span class="small weak">de</span>

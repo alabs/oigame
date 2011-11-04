@@ -7,18 +7,20 @@ class CampaignsController < ApplicationController
 
   # para cancan
   load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :tag, :message, :moderated, :feed]
+  skip_load_resource :only => [:index, :show, :tag, :message, :moderated, :feed]
   authorize_resource
   skip_authorize_resource :only => [:index, :tag, :message, :feed]
 
   def index
-    @campaigns = Campaign.last_campaigns
+    @campaigns = Campaign.includes(:messages, :petitions).last_campaigns
     @tags = Campaign.published.tag_counts_on(:tags)
   end
 
   def show
-    # par que funcione el botón de facebook
+    # para que funcione el botón de facebook
     @cause = true
+
+    @campaign = Campaign.includes(:messages, :petitions).find_by_slug(params[:id])
 
     if @campaign.ttype == 'petition'
       @stats_data = generate_stats_for_petition(@campaign)

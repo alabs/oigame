@@ -16,10 +16,10 @@
                 <%= campaign.to_html(campaign.intro).html_safe %>
                 <div class="campaign-text-links">
                   <%= link_to t(:join_this_campaign), campaign %>
-                  <% if campaign.messages.count == 1 %>
-                    <strong><%= campaign.messages.count %></strong> persona ya lo ha hecho
-                  <% else %>
+                  <% if campaign.ttype == 'mailing' %>
                     <strong><%= campaign.messages.count %></strong> personas ya lo han hecho
+                  <% elsif campaign.ttype == 'petition' %>
+                    <strong><%= campaign.petitions.count %></strong> personas ya lo han hecho
                   <% end %>
                 </div><!-- campaign-text-links -->
               </div><!-- campaign-text -->
