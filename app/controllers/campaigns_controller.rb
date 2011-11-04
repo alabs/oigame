@@ -29,9 +29,9 @@ class CampaignsController < ApplicationController
         @stats_data = generate_stats_for_mailing(@campaign)
       end
     end
-    @image_src = @campaign.image_url.to_s
-    @description = @campaign.name
-    @keywords = @campaign.tag_list.join(', ')
+    @image_src = @campaign.image_url.to_s if @campaign
+    @description = @campaign.name if @campaign
+    @keywords = @campaign.tag_list.join(', ') if @campaign
   end
 
   def new
