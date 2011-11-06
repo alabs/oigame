@@ -26,6 +26,7 @@ class CampaignsController < ApplicationController
       @stats_data = generate_stats_for_mailing(@campaign)
     end
     @image_src = @campaign.image_url.to_s
+    @image_file = @campaign.image.file.file
     @description = @campaign.name 
     @keywords = @campaign.tag_list.join(', ')
   end

@@ -14,8 +14,10 @@
     <% end %>
     <% if @image_src %>
       <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+      <link rel="image_src" type="<%= `file -ib #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
       <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+      <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
     <% end %>
     <meta property="og:url" content="<%= url_for :only_path => false %>" />
     <meta property="og:description" content="<%= @page_title %> - oiga.me" />
