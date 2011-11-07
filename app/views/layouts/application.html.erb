@@ -49,6 +49,7 @@
         {lang: 'es'}
     </script>
     <meta name="generator" content="oiga.me - <%= Rails.env %>" />
+    <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
   </head>
   <body>
     <% flash.each do |name, msg| %>
@@ -136,6 +137,7 @@
         <div id="links-social">
           <span>Síguenos en:</span><br />
           <%= link_to image_tag('rss.png'), feed_campaigns_path %>
+          <%= link_to image_tag('google.png'), 'https://plus.google.com/109609067558669990733/?prsrc=3' %>
           <%= link_to image_tag('facebook.png'), 'https://www.facebook.com/oiga.me' %>
           <%= link_to image_tag('twitter.png'), 'https://twitter.com/oigame' %>
           <%= link_to image_tag('identica.png'), 'https://identi.ca/oigame' %>
