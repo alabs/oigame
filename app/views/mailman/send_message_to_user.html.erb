@@ -1,8 +1,12 @@
 <h1><%= @campaign.name %></h1>
 
-<p>Para terminar el proceso de adhesión a la campaña '<%= @campaign.name %>' te pedimos que envies tú mismo el mensaje a los destinatarios de la campaña haciendo click en el siguiente enlace:</p>
+<p>Para terminar el proceso de adhesión a la campaña '<%= @campaign.name %>' te pedimos que envies tú mismo el mensaje a los destinatarios de la campaña haciendo click en el o los siguientes enlaces:</p>
 
-<h2><a href="mailto:<%= @message_to %>?bcc=<%= @campaign.recipients_for_message %>&subject=<%= URI::escape(@message_subject) %>&body=<%= URI::escape(@message_body) %>">Terminar el proceso</a></h2>
+<h2>
+  <% @campaign.partition_of_emails.each_with_index do |group, i| %>
+    <a href="mailto:<%= @message_to %>?bcc=<%= group %>&subject=<%= URI::escape(@message_subject) %>&body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
+  <% end %>
+</h2>
 
 <p>Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:</p>
 
