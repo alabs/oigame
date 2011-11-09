@@ -4,7 +4,11 @@
 
 <h2>
   <% @campaign.partition_of_emails.each_with_index do |group, i| %>
-    <a href="mailto:<%= @message_to %>?bcc=<%= group %>&subject=<%= URI::escape(@message_subject) %>&body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
+    <% if @message_to.match(/hotmail/) %>
+      <a href="http://mail.live.com/?rru=compose&amp;to=<%= @message_to %>&amp;cc=<%= group %>&amp;subject=<%= URI::escape(@message_subject) %>&amp;body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
+    <% else %>
+      <a href="mailto:<%= @message_to %>?bcc=<%= group %>&subject=<%= URI::escape(@message_subject) %>&body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
+    <% end %>
   <% end %>
 </h2>
 
