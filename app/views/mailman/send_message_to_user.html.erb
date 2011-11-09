@@ -2,17 +2,15 @@
 
 <p>Para terminar el proceso de adhesión a la campaña '<%= @campaign.name %>' te pedimos que envies tú mismo el mensaje a los destinatarios de la campaña haciendo click en los siguientes enlaces. Como los distintos proveedores de correo electrónico tiene algunos límites, es posible que te aparezca a continuación varios enlaces que dividen el envio en varios pasos. Tienes que hacer click en cada uno de ellos y darle a enviar en la composición del mensaje que te saldrá a continuación por cada uno de ellos.</p>
 
-<h2>
-  <% if @message_to.match(/hotmail/) %>
-    <% @campaign.partition_of_emails.each_with_index do |group, i| %>
-      <a href="http://mail.live.com/?rru=compose&amp;to=<%= @message_to %>&amp;cc=<%= group %>&amp;subject=<%= URI::escape(@message_subject) %>&amp;body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
-    <% end %>
-  <% else %>
-    <% @campaign.partition_of_emails(95).each_with_index do |group, i| %>
-      <a href="mailto:<%= @message_to %>?bcc=<%= group %>&subject=<%= URI::escape(@message_subject) %>&body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
-    <% end %>
+<% if @message_to.match(/hotmail/) %>
+  <% @campaign.partition_of_emails.each_with_index do |group, i| %>
+    <a href="http://mail.live.com/?rru=compose&amp;to=<%= @message_to %>&amp;cc=<%= group %>&amp;subject=<%= URI::escape(@message_subject) %>&amp;body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
   <% end %>
-</h2>
+<% else %>
+  <% @campaign.partition_of_emails(95).each_with_index do |group, i| %>
+    <a href="mailto:<%= @message_to %>?bcc=<%= group %>&subject=<%= URI::escape(@message_subject) %>&body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
+  <% end %>
+<% end %>
 
 <p>Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:</p>
 
