@@ -82,6 +82,7 @@ class Campaign < ActiveRecord::Base
     if Rails.env == 'production'
       tweet_campaign
     end
+    Mailman.inform_campaign_activated(self).deliver
   end
 
   def deactivate!

@@ -1,0 +1,7 @@
+<p>Hola <%= @message_to %>,</p>
+
+<p>Te escribimos para informarte que la campaña con nombre '<%= @campaign_name %>' que creaste en oiga.me, ha sido publicada y está disponible en la siguiente URL:</p>
+
+<a href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign_slug %>"><%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign_slug %></a>
+
+<p>Gracias por participar en oiga.me.</p>

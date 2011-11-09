@@ -32,4 +32,12 @@ class Mailman < ActionMailer::Base
     subject = "[oiga.me] Valida tu adhesion a la campaña: #{@campaign.name}"
     mail :to => to, :subject => subject
   end
+
+  def inform_campaign_activated(campaign)
+    @message_to = campaign.user.email
+    @campaign_name = campaign.name
+    @campaign_slug = campaign.slug
+    subject = "[oiga.me] Tu campaña ha sido publicada"
+    mail :to => @message_to, :subject => subject
+  end
 end
