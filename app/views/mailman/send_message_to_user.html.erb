@@ -1,6 +1,6 @@
 <h1><%= @campaign.name %></h1>
 
-<p>Para terminar el proceso de adhesión a la campaña '<%= @campaign.name %>' te pedimos que envies tú mismo el mensaje a los destinatarios de la campaña haciendo click en el o los siguientes enlaces:</p>
+<p>Para terminar el proceso de adhesión a la campaña '<%= @campaign.name %>' te pedimos que envies tú mismo el mensaje a los destinatarios de la campaña haciendo click en los siguientes enlaces. Como los distintos proveedores de correo electrónico tiene algunos límites, es posible que te aparezca a continuación varios enlaces que dividen el envio en varios pasos. Tienes que hacer click en cada uno de ellos y darle a enviar en la composición del mensaje que te saldrá a continuación por cada uno de ellos.</p>
 
 <h2>
   <% if @message_to.match(/hotmail/) %>
