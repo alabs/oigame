@@ -44,7 +44,7 @@ class Campaign < ActiveRecord::Base
   # Para repartir el envio de mensajes en varios enlaces
   def partition_of_emails
     data = []
-    emails.in_groups_of(75).each_with_index do |group, i|
+    emails.in_groups_of(95).each_with_index do |group, i|
       data[i] = group.join(',')
     end
 
