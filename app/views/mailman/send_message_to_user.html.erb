@@ -3,10 +3,12 @@
 <p>Para terminar el proceso de adhesión a la campaña '<%= @campaign.name %>' te pedimos que envies tú mismo el mensaje a los destinatarios de la campaña haciendo click en el o los siguientes enlaces:</p>
 
 <h2>
-  <% @campaign.partition_of_emails.each_with_index do |group, i| %>
-    <% if @message_to.match(/hotmail/) %>
+  <% if @message_to.match(/hotmail/) %>
+    <% @campaign.partition_of_emails.each_with_index do |group, i| %>
       <a href="http://mail.live.com/?rru=compose&amp;to=<%= @message_to %>&amp;cc=<%= group %>&amp;subject=<%= URI::escape(@message_subject) %>&amp;body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
-    <% else %>
+    <% end %>
+  <% else %>
+    <% @campaign.partition_of_emails(95).each_with_index do |group, i| %>
       <a href="mailto:<%= @message_to %>?bcc=<%= group %>&subject=<%= URI::escape(@message_subject) %>&body=<%= URI::escape(@message_body) %>">Terminar el proceso <%= i+1 %></a>
     <% end %>
   <% end %>
