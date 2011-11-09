@@ -3,6 +3,7 @@
 <div id="campaigns-wrapper">
   <div id="show-campaign">
     <div id="show-campaign-detail">
+      <div id="show-campaign-detail-main">
       <h2><%= @campaign.name %></h2>
       <div class="grid_5">
         <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %><br />
@@ -64,9 +65,7 @@
         <%= @campaign.to_html(@campaign.intro).html_safe %> 
         <%= @campaign.to_html(@campaign.body).html_safe %> 
       </div>
-      <div id="campaign-actions">
-        <!-- span class="label success"><a href="#" id="show-modal-widget">Ver el widget de esta campaña</a></span -->
-      </div><!-- campaign-actions -->
+    </div><!-- show-campaign-detail-main -->
         
       <%= render :partial => "stats_chart" %>
 
