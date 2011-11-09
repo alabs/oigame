@@ -29,11 +29,11 @@ class Campaign < ActiveRecord::Base
   class << self
 
     def last_campaigns(limit = nil)
-      order('created_at DESC').published.limit(limit).all
+      order('published_at DESC').published.limit(limit).all
     end
 
     def last_campaigns_by_tag(tag, limit = nil)
-      tagged_with(tag).order('created_at DESC').published.limit(limit).all
+      tagged_with(tag).order('published_at DESC').published.limit(limit).all
     end
 
     def last_campaigns_moderated
