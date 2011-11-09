@@ -503,43 +503,20 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
         p#this-campaign-link
           margin-top: 25px
           font-size: 2em
-        
+
       #stats-chart
         margin-top: 15px
         border: 2px solid $border-main-color
-        border-radius: 10px
+        border-top-right-radius: 10px
+        border-top-left-radius: 10px
+        border-bottom-right-radius: 10px
+        border-bottom-left-radius: 10px
         h2
+          border-top-right-radius: 10px
+          border-top-left-radius: 10px
+          background-color: #000
+          color: #fff
           padding: 10px
-          margin-left: 15px
-
-    .thermometer
-      width: 230px
-      border-radius: 2px 2px 2px 2px
-      background-color: #FFFFFF
-      border: 1px solid #CCCCCC
-      display: inline-block
-      padding: 1px
-      vertical-align: middle
-      width: 100%
-      .thermocontainer
-        background-image: -moz-linear-gradient(#F6F6F6, #FEFEFE)
-        border: 1px solid #EFEFEF
-        .signatures-needed 
-          margin-left: 10px
-          margin-top: 2px
-          position: absolute
-          span
-            line-height: 21px
-            vertical-align: middle
-            font-weight: bold
-            font-size: 120%
-            .weak
-              color: gray !important
-        .mercury
-          background-image: -moz-linear-gradient(#DDDDDD, #BBBBBB 15px)
-          background-image: -webkit-linear-gradient(#DDDDDD, #BBBBBB 15px)
-          background-image: linear-gradient(#DDDDDD, #BBBBBB 15px)
-          height: 25px
 
 
     #create-campaign-form
@@ -853,3 +830,36 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     width: 27px
     margin-top: -3px
     cursor: pointer
+        
+        
+.thermometer
+  width: 230px
+  border-radius: 2px 2px 2px 2px
+  background-color: #FFFFFF
+  border: 1px solid #CCCCCC
+  display: inline-block
+  padding: 1px
+  vertical-align: middle
+  width: 100%
+  .thermocontainer
+    background-image: -moz-linear-gradient(#F6F6F6, #FEFEFE)
+    background-image: -webkitlinear-gradient(#F6F6F6, #FEFEFE)
+    background-image: linear-gradient(#F6F6F6, #FEFEFE)
+    border: 1px solid #EFEFEF
+    .signatures-needed 
+      margin-left: 10px
+      margin-top: 2px
+      position: absolute
+      span
+        line-height: 21px
+        vertical-align: middle
+        font-weight: bold
+        font-size: 120%
+        .weak
+          color: gray !important
+    .mercury
+      background-image: -moz-linear-gradient(#DDDDDD, #BBBBBB 15px)
+      background-image: -webkit-linear-gradient(#DDDDDD, #BBBBBB 15px)
+      background-image: linear-gradient(#DDDDDD, #BBBBBB 15px)
+      height: 25px
+
