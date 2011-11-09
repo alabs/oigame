@@ -9,7 +9,7 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title campaign.name
         markdown = Redcarpet.new(campaign.intro)
-        xml.description markdown.to_html
+        xml.description markdown.to_html + "<p>> " + link_to('Únete a esta campaña', campaign) + "</p>"
         xml.pubDate campaign.published_at.to_s(:rfc822)
         xml.link "#{APP_CONFIG[:domain]}/campaigns/#{campaign.slug}"
         xml.guid "#{APP_CONFIG[:domain]}/campaigns/#{campaign.slug}"
