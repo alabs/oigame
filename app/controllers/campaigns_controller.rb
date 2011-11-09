@@ -27,7 +27,7 @@ class CampaignsController < ApplicationController
     end
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
-    @description = @campaign.name 
+    @description = Redcarpet.new(@campaign.intro).to_html
     @keywords = @campaign.tag_list.join(', ')
   end
 
