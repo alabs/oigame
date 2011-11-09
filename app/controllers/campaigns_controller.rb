@@ -141,7 +141,7 @@ class CampaignsController < ApplicationController
   end
 
   def feed
-    @campaigns = Campaign.last_campaigns
+    @campaigns = Campaign.last_campaigns(10)
     set_http_cache(3.hours, visibility = true)
   end
 
