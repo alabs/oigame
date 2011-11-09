@@ -3,11 +3,13 @@
 <div id="campaigns-wrapper">
   <div id="show-campaign">
     <div id="show-campaign-detail">
+      <div id="show-campaign-detail-main">
       <h2><%= @campaign.name %></h2>
-      <div class="grid_5">
-        <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %><br />
+      <div class="grid_8">
+        <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
           Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
       </div>
+      <div class="clear"></div>
       <div class="grid_8">
         <div id="campaign-information">
           <div class="thermometer">
@@ -64,9 +66,7 @@
         <%= @campaign.to_html(@campaign.intro).html_safe %> 
         <%= @campaign.to_html(@campaign.body).html_safe %> 
       </div>
-      <div id="campaign-actions">
-        <!-- span class="label success"><a href="#" id="show-modal-widget">Ver el widget de esta campaña</a></span -->
-      </div><!-- campaign-actions -->
+    </div><!-- show-campaign-detail-main -->
         
       <%= render :partial => "stats_chart" %>
 
@@ -74,11 +74,15 @@
     <div id="show-campaign-sidebar" class="grid_8">
       
       <% if @campaign.ttype == 'petition' %>
-        <%= render :partial => 'petition_form' %>
+        <div id="show-campaign-petition">
+          <%= render :partial => 'petition_form' %>
+        </div>
       <% end %>
 
       <% if @campaign.ttype == 'mailing' %>
-        <%= render :partial => 'mailing_form' %>
+        <div id="show-campaign-mailing">
+          <%= render :partial => 'mailing_form' %>
+        </div>
       <% end %>
       
       <h2 class="jtc">Difunde</h2>
