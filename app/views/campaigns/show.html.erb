@@ -5,10 +5,11 @@
     <div id="show-campaign-detail">
       <div id="show-campaign-detail-main">
       <h2><%= @campaign.name %></h2>
-      <div class="grid_5">
-        <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %><br />
+      <div class="grid_8">
+        <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
           Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
       </div>
+      <div class="clear"></div>
       <div class="grid_8">
         <div id="campaign-information">
           <div class="thermometer">
