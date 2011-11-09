@@ -306,14 +306,14 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
               font-weight: bold
 
 #page-wrapper
-  background-color: #f1f2f1
+  background-color: #fff
   padding-top: 55px
   padding-bottom: 30px
 
   #page
     @extend .container_24
     background-color: #fff
-    border: 1px solid #e8e8e8
+    border: 2px solid $border-main-color
     border-radius: 10px
 
     ul.tabs
@@ -411,8 +411,8 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
 
 
 #campaigns-wrapper
-  background-color: #f1f2f1
-  padding-top: 55px
+  background-color: #fff
+  padding-top: 30px
   padding-bottom: 30px
 
   #campaign-info
@@ -426,14 +426,13 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
   #list-campaigns, #create-campaigns, #show-campaign
     @extend .container_24
     background-color: #fff
-    border: 1px solid #E8E8E8
-    border-radius: 10px
 
     #list-campaigns-info
       @extend .grid_14
       @extend .alpha
       padding: 25px
-      border-right: 1px dashed #e8e8e8
+      border: 2px solid $border-main-color
+      border-radius: 10px
       h2
         font-size: 2.2em
         margin-bottom: 15px
@@ -442,7 +441,6 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
         background-color: #fffef2
       .campaign-info
         margin-bottom: 25px
-        border: 1px solid $border-main-color
         padding: 10px
         cursor: pointer
         .cinfo
@@ -474,7 +472,6 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       @extend .grid_8
       @extend .omega
       padding-left: 30px
-      padding-top: 25px
       padding-bottom: 30px
       h2
         font-size: 1.3em
@@ -483,7 +480,8 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       @extend .grid_14
       @extend .alpha
       padding: 25px
-      border-right: 1px dashed #e8e8e8
+      border: 2px solid $border-main-color
+      border-radius: 10px
       h2
         font-size: 2.2em
         margin-bottom: 10px
@@ -725,19 +723,32 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
   @extend .grid_8
   @extend .omega
   width: 340px !important
-  margin-top: 28px
-
+  
   h2.jtc
     font-size: 1.7em
     padding: 8px
     color: #fff
     background-color: #000
+    border-top-right-radius: 10px
+    border-top-left-radius: 10px
+
+  #show-campaign-mailing, #show-campaign-petition
+
+    h2.jtc
+      font-size: 1.7em
+      padding: 8px
+      color: #fff
+      background-color: #000
+      border-top-right-radius: 10px
+      border-top-left-radius: 10px
 
   #campaign-message-form
     padding-left: 0
     form
       fieldset
-        background-color: #f1f2f1
+        border-bottom-right-radius: 10px
+        border-bottom-left-radius: 10px
+        background-color: #fff
         border: 1px solid $border-main-color
         padding: 10px
       .form-field
@@ -765,10 +776,12 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
           width: 80%
 
   ul#social-buttons
+    border-bottom-right-radius: 10px
+    border-bottom-left-radius: 10px
     margin-left: 0
     margin-bottom: 10px
     text-align: center
-    background-color: #f1f2f1
+    background-color: #fff
     border: 1px solid $border-main-color
     padding: 10px
     li 
@@ -778,8 +791,10 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       float: left
 
   #diffusion
+    border-bottom-right-radius: 10px
+    border-bottom-left-radius: 10px
     margin-bottom: 10px
-    background-color: #f1f2f1
+    background-color: #fff
     border: 1px solid $border-main-color
     padding: 10px
     .center

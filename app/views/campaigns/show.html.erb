@@ -74,11 +74,15 @@
     <div id="show-campaign-sidebar" class="grid_8">
       
       <% if @campaign.ttype == 'petition' %>
-        <%= render :partial => 'petition_form' %>
+        <div id="show-campaign-petition">
+          <%= render :partial => 'petition_form' %>
+        </div>
       <% end %>
 
       <% if @campaign.ttype == 'mailing' %>
-        <%= render :partial => 'mailing_form' %>
+        <div id="show-campaign-mailing">
+          <%= render :partial => 'mailing_form' %>
+        </div>
       <% end %>
       
       <h2 class="jtc">Difunde</h2>
