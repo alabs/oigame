@@ -1,8 +1,8 @@
-<% unless Rails.env == 'development' %>
+<% if Rails.env == 'development' %>
 
 <h2 class="jtc">Comunica</h2>
 <ul id="social-buttons">
-   <li> 
+   <li style="margin-left: 40px;"> 
       <div id="fb-root"></div>
       <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
