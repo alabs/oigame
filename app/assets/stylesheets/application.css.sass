@@ -306,14 +306,14 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
               font-weight: bold
 
 #page-wrapper
-  background-color: #fff
+  background-color: #f1f2f1
   padding-top: 55px
   padding-bottom: 30px
 
   #page
     @extend .container_24
     background-color: #fff
-    border: 2px solid $border-main-color
+    border: 1px solid #e8e8e8
     border-radius: 10px
 
     ul.tabs
@@ -411,8 +411,8 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
 
 
 #campaigns-wrapper
-  background-color: #fff
-  padding-top: 30px
+  background-color: #f1f2f1
+  padding-top: 55px
   padding-bottom: 30px
 
   #campaign-info
@@ -426,13 +426,14 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
   #list-campaigns, #create-campaigns, #show-campaign
     @extend .container_24
     background-color: #fff
+    border: 1px solid #E8E8E8
+    border-radius: 10px
 
     #list-campaigns-info
       @extend .grid_14
       @extend .alpha
       padding: 25px
-      border: 2px solid $border-main-color
-      border-radius: 10px
+      border-right: 1px dashed #e8e8e8
       h2
         font-size: 2.2em
         margin-bottom: 15px
@@ -441,6 +442,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
         background-color: #fffef2
       .campaign-info
         margin-bottom: 25px
+        border: 1px solid $border-main-color
         padding: 10px
         cursor: pointer
         .cinfo
@@ -472,6 +474,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       @extend .grid_8
       @extend .omega
       padding-left: 30px
+      padding-top: 25px
       padding-bottom: 30px
       h2
         font-size: 1.3em
@@ -479,44 +482,57 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     #show-campaign-detail
       @extend .grid_14
       @extend .alpha
-      #show-campaign-detail-main
-        padding: 25px
-        border: 2px solid $border-main-color
-        border-radius: 10px
-        h2
-          font-size: 2.2em
-          margin-bottom: 10px
-        img
-          margin-bottom: 10px
-        p#cdate_and_edit
-          margin-bottom: 10px
-          font-size: .9em
-          a, a:hover
-            color: #fff
-        p.small
-          font-size: 0.9em
-          margin-bottom: 10px
-        p
-          font-size: 1.1em
-          margin-bottom: 10px
-          line-height: 1.2em
-        p#this-campaign-link
-          margin-top: 25px
-          font-size: 2em
+      padding: 25px
+      border-right: 1px dashed #e8e8e8
+      h2
+        font-size: 2.2em
+        margin-bottom: 10px
+      img
+        margin-bottom: 10px
+      p#cdate_and_edit
+        margin-bottom: 10px
+        font-size: .9em
+        a, a:hover
+          color: #fff
+      p.small
+        font-size: 0.9em
+        margin-bottom: 10px
+      p
+        font-size: 1.1em
+        margin-bottom: 10px
+        line-height: 1.2em
+      p#this-campaign-link
+        margin-top: 25px
+        font-size: 2em
 
-#stats-chart
-  margin-top: 15px
-  border: 2px solid $border-main-color
-  border-top-right-radius: 10px
-  border-top-left-radius: 10px
-  border-bottom-right-radius: 10px
-  border-bottom-left-radius: 10px
-  h2
-    border-top-right-radius: 10px
-    border-top-left-radius: 10px
-    background-color: #000
-    color: #fff
-    padding: 10px
+    .thermometer
+      width: 230px
+      border-radius: 2px 2px 2px 2px
+      background-color: #FFFFFF
+      border: 1px solid #CCCCCC
+      display: inline-block
+      padding: 1px
+      vertical-align: middle
+      width: 100%
+      .thermocontainer
+        background-image: -moz-linear-gradient(#F6F6F6, #FEFEFE)
+        border: 1px solid #EFEFEF
+        .signatures-needed 
+          margin-left: 10px
+          margin-top: 2px
+          position: absolute
+          span
+            line-height: 21px
+            vertical-align: middle
+            font-weight: bold
+            font-size: 120%
+            .weak
+              color: gray !important
+        .mercury
+          background-image: -moz-linear-gradient(#DDDDDD, #BBBBBB 15px)
+          background-image: -webkit-linear-gradient(#DDDDDD, #BBBBBB 15px)
+          background-image: linear-gradient(#DDDDDD, #BBBBBB 15px)
+          height: 25px
 
 
     #create-campaign-form
@@ -563,14 +579,14 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
         border: 1px solid #f00
 
 #accounts-wrapper
-  background-color: #fff
+  background-color: #f1f2f1
   padding-top: 65px
   padding-bottom: 30px
 
   #accounts
     @extend .container_24
     background-color: #fff
-    border: 2px solid $border-main-color
+    border: 1px solid #e8e8e8
     padding: 30px
     border-radius: 10px
       
@@ -581,11 +597,8 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       fieldset
         border: 1px solid $border-main-color
         padding: 20px
-        border-radius: 10px
       legend
-        font-size: .9em
         border: 1px solid $border-main-color
-        border-radius: 5px
         padding: 10px
         background-color: #000
         color: #fff
@@ -712,32 +725,19 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
   @extend .grid_8
   @extend .omega
   width: 340px !important
-  
+  margin-top: 28px
+
   h2.jtc
     font-size: 1.7em
     padding: 8px
     color: #fff
     background-color: #000
-    border-top-right-radius: 10px
-    border-top-left-radius: 10px
-
-  #show-campaign-mailing, #show-campaign-petition
-
-    h2.jtc
-      font-size: 1.7em
-      padding: 8px
-      color: #fff
-      background-color: #000
-      border-top-right-radius: 10px
-      border-top-left-radius: 10px
 
   #campaign-message-form
     padding-left: 0
     form
       fieldset
-        border-bottom-right-radius: 10px
-        border-bottom-left-radius: 10px
-        background-color: #fff
+        background-color: #f1f2f1
         border: 1px solid $border-main-color
         padding: 10px
       .form-field
@@ -765,12 +765,10 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
           width: 80%
 
   ul#social-buttons
-    border-bottom-right-radius: 10px
-    border-bottom-left-radius: 10px
     margin-left: 0
     margin-bottom: 10px
     text-align: center
-    background-color: #fff
+    background-color: #f1f2f1
     border: 1px solid $border-main-color
     padding: 10px
     li 
@@ -780,10 +778,8 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       float: left
 
   #diffusion
-    border-bottom-right-radius: 10px
-    border-bottom-left-radius: 10px
     margin-bottom: 10px
-    background-color: #fff
+    background-color: #f1f2f1
     border: 1px solid $border-main-color
     padding: 10px
     .center
@@ -833,36 +829,3 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     width: 27px
     margin-top: -3px
     cursor: pointer
-        
-        
-.thermometer
-  width: 230px
-  border-radius: 2px 2px 2px 2px
-  background-color: #FFFFFF
-  border: 1px solid #CCCCCC
-  display: inline-block
-  padding: 1px
-  vertical-align: middle
-  width: 100%
-  .thermocontainer
-    background-image: -moz-linear-gradient(#F6F6F6, #FEFEFE)
-    background-image: -webkitlinear-gradient(#F6F6F6, #FEFEFE)
-    background-image: linear-gradient(#F6F6F6, #FEFEFE)
-    border: 1px solid #EFEFEF
-    .signatures-needed 
-      margin-left: 10px
-      margin-top: 2px
-      position: absolute
-      span
-        line-height: 21px
-        vertical-align: middle
-        font-weight: bold
-        font-size: 120%
-        .weak
-          color: gray !important
-    .mercury
-      background-image: -moz-linear-gradient(#DDDDDD, #BBBBBB 15px)
-      background-image: -webkit-linear-gradient(#DDDDDD, #BBBBBB 15px)
-      background-image: linear-gradient(#DDDDDD, #BBBBBB 15px)
-      height: 25px
-
