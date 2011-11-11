@@ -3,6 +3,8 @@ class PagesController < ApplicationController
   def index
     @campaigns = Campaign.includes(:messages, :petitions).last_campaigns(3)
     @users = User.count
+    @users += Message.count
+    @users += Petition.count
   end
 
   def answers
