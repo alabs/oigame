@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat
 
   has_many :campaigns, :dependent => :destroy
+
+  class << self
+
+    def get_mailing_users
+      where('mailing = ?', true).all
+    end
+  end
   
   ROLES = %w[user editor admin]
   

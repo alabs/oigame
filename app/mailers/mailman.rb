@@ -40,4 +40,10 @@ class Mailman < ActionMailer::Base
     subject = "[oiga.me] Tu campaña ha sido publicada"
     mail :to => @message_to, :subject => subject
   end
+
+  def send_mailing(email, subject, message)
+    @message_body = message
+    subject = "[oiga.me] #{subject}"
+    mail :to => email, :subject => subject
+  end
 end
