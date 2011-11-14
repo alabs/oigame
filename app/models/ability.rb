@@ -33,7 +33,7 @@ class Ability
     
     if user.role? :editor
       can :read, Campaign, :moderated => false
-      can :read, Campaign, :status => 'archive'
+      can :read, Campaign, :status => 'archived'
       can :create, Campaign
       can :update, Campaign, :moderated => false
       can :widget, Campaign, :moderated => false 
@@ -46,7 +46,7 @@ class Ability
 
     if user.role? :user
       can :read, Campaign, :moderated => false
-      can :read, Campaign, :status => 'archive'
+      can :read, Campaign, :status => 'archived'
       can :create, Campaign
       can :update, Campaign, :moderated => false, :user_id => user.id
       can :widget, Campaign, :moderated => false 
