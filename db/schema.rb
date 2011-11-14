@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026102701) do
+ActiveRecord::Schema.define(:version => 20111114024517) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20111026102701) do
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
+    t.string   "status",       :default => "active"
   end
 
   create_table "contacts", :force => true do |t|

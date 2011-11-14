@@ -22,11 +22,14 @@ Oigame::Application.routes.draw do
       get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
       post 'activate'
       post 'deactivate'
+      post 'archive'
     end
     collection do
       get 'tag'
+      get 'tags-archived' => 'campaigns#tags_archived', :as => 'tags_archived'
       get 'moderated'
       get 'feed', :defaults => { :format => 'rss' }
+      get 'archived'
     end
   end
 

@@ -6,11 +6,16 @@
       <div id="show-campaign-detail-main">
       <h2><%= @campaign.name %></h2>
       <div class="grid_8">
-        <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
-          Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
+        <% unless @campaign.status == 'archived' %>
+          <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
+            Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
+        <% else %>
+          <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
+            Campaña archivada</strong></p>
+        <% end %>
       </div>
       <div class="clear"></div>
-      <div class="grid_8">
+      <div class="grid_9">
         <div id="campaign-information">
           <div class="thermometer">
             <div class="thermocontainer">
@@ -27,37 +32,48 @@
           </div>
         </div><!-- campaing-information -->
       </div>
+      <div id="action-buttons">
         <p>
           <% if can?(:moderated, @campaign) %>
             <span class="label warning">
               <a href="mailto:<%= @campaign.user.email %>">Contacto</a>
             </span>
           <% end %>
-          <% if can?(:moderated, @campaign) && @campaign.moderated? %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label success">
-              <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
-            </span>
-          <% end %>
-          <% if can?(:deactivate, @campaign) && @campaign.published? %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label success">
-              <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
-            </span>
-          <% end %>
-          <% if can? :update, @campaign %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label notice">
-              <%= link_to t(:edit), edit_campaign_path(@campaign) %>
-            </span>
-          <% end %>
-          <% if can? :destroy, @campaign %>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="label important">
-              <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
-            </span>
+          <% if @campaign.status == 'archived' %>
+          <% elsif @campaign.status == 'active' %>
+            <% if can?(:archive, @campaign) %>
+              &nbsp;&nbsp;
+              <span class="label">
+                <%= link_to t(:archive), archive_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+              </span>
+            <% end %>
+            <% if can?(:moderated, @campaign) && @campaign.moderated? %>
+              &nbsp;&nbsp;
+              <span class="label success">
+                <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+              </span>
+            <% end %>
+            <% if can?(:deactivate, @campaign) && @campaign.published? %>
+              &nbsp;&nbsp;
+              <span class="label success">
+                <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+              </span>
+            <% end %>
+            <% if can? :update, @campaign %>
+              &nbsp;&nbsp;
+              <span class="label notice">
+                <%= link_to t(:edit), edit_campaign_path(@campaign) %>
+              </span>
+            <% end %>
+            <% if can? :destroy, @campaign %>
+              &nbsp;&nbsp;
+              <span class="label important">
+                <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
+              </span>
+            <% end %>
           <% end %>
         </p>
+      </div>
     </div>
       <% if @campaign.image.to_s %>
         <%= image_tag(@campaign.image_url.to_s) %>
@@ -68,31 +84,37 @@
       </div>
     </div><!-- show-campaign-detail-main -->
         
-      <%= render :partial => "stats_chart" %>
+      <% unless @campaign.status == 'archived' %>
+        <%= render :partial => "stats_chart" %>
+      <% end %>
 
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar" class="grid_8">
       
-      <% if @campaign.ttype == 'petition' %>
-        <div id="show-campaign-petition">
-          <%= render :partial => 'petition_form' %>
-        </div>
-      <% end %>
+      <% unless @campaign.status == 'archived' %>
 
-      <% if @campaign.ttype == 'mailing' %>
-        <div id="show-campaign-mailing">
-          <%= render :partial => 'mailing_form' %>
-        </div>
-      <% end %>
-      
-      <h2 class="jtc">Difunde</h2>
-      <%= render :partial => 'modal_widget_form' %>
-      <div id="diffusion">
-        Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.
-        <a id="show-modal-widget" href="#" class="btn large primary center">Pon el formulario en tu web</a>
-      </div>
+        <% if @campaign.ttype == 'petition' %>
+          <div id="show-campaign-petition">
+            <%= render :partial => 'petition_form' %>
+          </div>
+        <% end %>
 
-      <%= render :partial => "communication" %>
+        <% if @campaign.ttype == 'mailing' %>
+          <div id="show-campaign-mailing">
+            <%= render :partial => 'mailing_form' %>
+          </div>
+        <% end %>
+        
+        <h2 class="jtc">Difunde</h2>
+        <%= render :partial => 'modal_widget_form' %>
+        <div id="diffusion">
+          Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.
+          <a id="show-modal-widget" href="#" class="btn large primary center">Pon el formulario en tu web</a>
+        </div>
+
+        <%= render :partial => "communication" %>
+
+      <% end %>
 
     </div><!-- show-campaign-sidebar -->
   </div><!-- show-campaign -->

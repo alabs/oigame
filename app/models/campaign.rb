@@ -23,8 +23,9 @@ class Campaign < ActiveRecord::Base
   before_save :generate_slug
 
   # Scope para solo mostrar la campañas que han sido moderadas
-  scope :published, where(:moderated => false)
-  scope :not_published, where(:moderated => true)
+  scope :published, where(:moderated => false, :status => 'active')
+  scope :not_published, where(:moderated => true, :status => 'active')
+  scope :archived, where(:status => 'archived')
 
   class << self
 
@@ -36,8 +37,16 @@ class Campaign < ActiveRecord::Base
       tagged_with(tag).order('published_at DESC').published.limit(limit).all
     end
 
+    def last_campaigns_by_tag_archived(tag, limit = nil)
+      tagged_with(tag).order('published_at DESC').archived.limit(limit).all
+    end
+
     def last_campaigns_moderated
       order('created_at DESC').where('moderated = ?', true).all  
+    end
+
+    def archived_campaigns
+      order('published_at DESC').archived.all
     end
   end
 
@@ -99,6 +108,16 @@ class Campaign < ActiveRecord::Base
   end
 
   def stats
+  end
+
+  def archive
+    self.status = 'archived'
+    save!
+  end
+
+  def trash
+    self.status = 'deleted'
+    save!
   end
 
   private

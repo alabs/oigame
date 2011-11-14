@@ -51,6 +51,7 @@ class Ability
       can :petition, Campaign, :moderated => false
       can :validate, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
+      can :archived, Campaign, :status => 'archived'
     end
   end
 end

@@ -7,9 +7,9 @@ class CampaignsController < ApplicationController
 
   # para cancan
   load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :tag, :message, :moderated, :feed]
+  skip_load_resource :only => [:index, :tag, :tags_archived, :message, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :tag, :message, :feed]
+  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed]
 
   def index
     @campaigns = Campaign.includes(:messages, :petitions).last_campaigns
@@ -74,6 +74,12 @@ class CampaignsController < ApplicationController
   def tag
     @campaigns = Campaign.last_campaigns_by_tag(params[:id])
     @tags = Campaign.published.tag_counts_on(:tags)
+  end
+
+  def tags_archived
+    @archived = true
+    @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id])
+    @tags = Campaign.archived.tag_counts_on(:tags)
   end
 
   def message
@@ -143,6 +149,17 @@ class CampaignsController < ApplicationController
   def feed
     @campaigns = Campaign.last_campaigns(10)
     set_http_cache(3.hours, visibility = true)
+  end
+
+  def archive
+    @campaign.archive
+    redirect_to @campaign, :notice => 'La campaña ha sido archivada con éxito'
+  end
+
+  def archived
+    @archived = true
+    @campaigns = Campaign.archived_campaigns
+    @tags = Campaign.archived.tag_counts_on(:tags)
   end
 
   private

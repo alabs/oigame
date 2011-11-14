@@ -68,3 +68,5 @@ es:
   message_received: 'Mensaje recibido'
   go_to_home: 'Volver al inicio'
   type_of_campaign: 'Tipo de campaña'
+  archive: 'Archivar'
+  archived_campaigns: 'Campañas archivadas'
