@@ -35,6 +35,7 @@ SitemapGenerator::Sitemap.create do
   
   # Secciones
   add campaigns_path, :changefreq => 'daily'
+  add archived_campaigns_path, :changefreq => 'daily'
 
   # Campañas
   Campaign.published.find_each do |campaign|
