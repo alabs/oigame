@@ -15,6 +15,7 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :name, :intro, :body, :ttype
   validates_uniqueness_of :name
   validates_presence_of :duedate_at
+  validates_presence_of :image
 
   acts_as_taggable
 
