@@ -26,6 +26,13 @@ class Mailman < ActionMailer::Base
     mail :from => from, :to => 'hola@oiga.me', :subject => subject
   end
 
+  def send_message_to_validate_message(to, campaign, message)
+    @campaign = campaign
+    @token = message.token
+    subject = "[oiga.me] Valida tu adhesion a la campaña: #{@campaign.name}"
+    mail :to => to, :subject => subject
+  end
+
   def send_message_to_validate_petition(to, campaign, petition)
     @campaign = campaign
     @token = petition.token
@@ -45,5 +52,12 @@ class Mailman < ActionMailer::Base
     @message_body = message
     subject = "[oiga.me] #{subject}"
     mail :to => email, :subject => subject
+  end
+
+  def send_message_to_recipients(message)
+    @message_body = message.body
+    subject = message.subject
+    recipients = message.campaign.emails
+    mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
 end

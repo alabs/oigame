@@ -21,7 +21,7 @@
             <div class="thermocontainer">
               <div class="signatures-needed">
                 <% if @campaign.ttype == 'mailing' %>
-                  <span id="participants" class="big strong"><%= @campaign.messages.count %></span>
+                  <span id="participants" class="big strong"><%= @campaign.messages.validated.count %></span>
                 <% elsif @campaign.ttype == 'petition' %>
                   <span id="participants" class="big strong"><%= @campaign.petitions.validated.count %></span>
                 <% end %>

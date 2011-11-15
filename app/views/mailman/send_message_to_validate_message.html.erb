@@ -1,0 +1,19 @@
+<h1>Validar adhesión a la campaña: <%= @campaign.name %></h1>
+
+<p>Para validar la adhesión a la campaña "<%= @campaign.name %>" tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:</p>
+
+<h2><a href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>/validate/<%= @token %>">Sigue este enlace</a></h2>
+
+<p>Si no has sido tú quien se adherió a esta campaña puede ignorar este mensaje.</p>
+
+<p>Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:</p>
+
+<p>Incluye la campaña en tu página web para que tus visitas puedan participar: <a href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"><%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %></a>. Es muy sencillo, tardarás menos de 1 minuto.</p>
+
+<p>Difunde al máximo la campaña en las redes sociales.</p>
+
+<p>Sigue a <a href="http://twitter.com/oigame">@oigame</a> en Twitter y en <a href="http://www.facebook.com/oiga.me">Facebook</a>.</p>
+
+<p>oiga.me es un proyecto de la asociación <a href="http://alabs.es/">aLabs</a>. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa <a href="<%= APP_CONFIG[:domain] %>/donate">donando al proyecto</a>.</p>
+
+<p>Gracias por participar en oiga.me.</p>

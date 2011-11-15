@@ -17,9 +17,9 @@
                 <div class="campaign-text-links">
                   <%= link_to t(:join_this_campaign), campaign %>
                   <% if campaign.ttype == 'mailing' %>
-                    <strong><%= campaign.messages.count %></strong> personas ya lo han hecho
+                    <strong><%= campaign.messages.validated.count %></strong> personas ya lo han hecho
                   <% elsif campaign.ttype == 'petition' %>
-                    <strong><%= campaign.petitions.count %></strong> personas ya lo han hecho
+                    <strong><%= campaign.petitions.validated.count %></strong> personas ya lo han hecho
                   <% end %>
                 </div><!-- campaign-text-links -->
               </div><!-- campaign-text -->

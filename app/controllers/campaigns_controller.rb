@@ -84,10 +84,10 @@ class CampaignsController < ApplicationController
 
   def message
     if request.post?
-      to = user_signed_in? ? current_user.email : params[:email]
+      from = user_signed_in? ? current_user.email : params[:email]
       campaign = Campaign.published.find_by_slug(params[:id])
-      Message.create(:campaign => campaign, :email => to)
-      Mailman.send_message_to_user(to, params[:subject], params[:body], campaign).deliver
+      message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+      Mailman.send_message_to_validate_message(from, campaign, message).deliver
       redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
 
       return
@@ -116,9 +116,13 @@ class CampaignsController < ApplicationController
   end
 
   def validate
-    petition = Petition.find_by_token(params[:token])
-    if petition
-      petition.update_attributes(:validated => true, :token => nil)
+    model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
+    if model
+      model.update_attributes(:validated => true, :token => nil)
+      # Enviar el mensaje si model es Message
+      if model.class.name == 'Message'
+        Mailman.send_message_to_recipients(model).deliver
+      end
       redirect_to validated_campaign_path, :notice => 'Tu adhesión se ha ejecutado con éxito'
 
       return
@@ -169,7 +173,7 @@ class CampaignsController < ApplicationController
     data = []
     messages = 0
     dates.each do |date|
-      count = Message.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count
+      count = Message.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count
       messages += count
       data.push([date.strftime('%Y-%m-%d'), messages])
     end
@@ -182,7 +186,7 @@ class CampaignsController < ApplicationController
     data = []
     petitions = 0
     dates.each do |date|
-      count = Petition.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count
+      count = Petition.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count
       petitions += count
       data.push([date.strftime('%Y-%m-%d'), petitions])
     end
