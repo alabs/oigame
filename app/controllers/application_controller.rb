@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
-    render :status => 404
+    redirect_to root_url, :alert => exception.message
   end
 
   protected
