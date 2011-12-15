@@ -101,6 +101,9 @@ namespace :deploy do
       asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
       run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
     end
+    
+    # precompile assets
+    run "cd #{latest_release}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
   desc "Zero-downtime restart of Unicorn"
