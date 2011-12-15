@@ -103,7 +103,7 @@ namespace :deploy do
     end
 
     # precompile assets
-    run "cd #{latest_release}; RAILS_ENV=production bundle exec rake assets:precompile"
+    run "cd #{latest_release}; RAILS_ENV=staging bundle exec rake assets:precompile"
   end
 
   desc "Zero-downtime restart of Unicorn"
