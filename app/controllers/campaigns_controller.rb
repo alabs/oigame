@@ -96,12 +96,14 @@ class CampaignsController < ApplicationController
         flash[:error] = "Esta campaña ya no está activa."
         redirect_to campaigns_path
       end
-    @campaign = Campaign.published.find_by_slug(params[:id])
-    if @campaign
-      @stats_data = generate_stats_for_mailing(@campaign)
     else
-      flash[:error] = "Esta campaña ya no está activa."
-      redirect_to campaigns_path
+      @campaign = Campaign.published.find_by_slug(params[:id])
+      if @campaign
+        @stats_data = generate_stats_for_mailing(@campaign)
+      else
+        flash[:error] = "Esta campaña ya no está activa."
+        redirect_to campaigns_path
+      end
     end
   end
 
