@@ -86,14 +86,23 @@ class CampaignsController < ApplicationController
     if request.post?
       from = user_signed_in? ? current_user.email : params[:email]
       campaign = Campaign.published.find_by_slug(params[:id])
-      message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
-      Mailman.send_message_to_validate_message(from, campaign, message).deliver
-      redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+      if campaign
+        message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+        Mailman.send_message_to_validate_message(from, campaign, message).deliver
+        redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
 
-      return
-    end
+        return
+      else
+        flash[:error] = "Esta campaña ya no está activa."
+        redirect_to campaigns_path
+      end
     @campaign = Campaign.published.find_by_slug(params[:id])
-    @stats_data = generate_stats_for_mailing(@campaign)
+    if @campaign
+      @stats_data = generate_stats_for_mailing(@campaign)
+    else
+      flash[:error] = "Esta campaña ya no está activa."
+      redirect_to campaigns_path
+    end
   end
 
   def petition
