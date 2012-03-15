@@ -1,7 +1,8 @@
 class SubOigamesController < ApplicationController
   # para cancan
   load_resource :find_by => :slug
-
+  layout :sub_oigame_layout
+ 
   # GET /sub_oigames
   # GET /sub_oigames.json
   def index
@@ -83,4 +84,19 @@ class SubOigamesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  private
+
+    def sub_oigame_layout
+      # Si en la url hay un sub_oigame definido entonces le pasamos el layout de sub_oigame
+      # es el mismo layout que application pero tambien tiene el header/footer/estilos del sub
+      @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id]||params[:id])
+      if @sub_oigame
+        return "sub_oigame"
+      else 
+        return "application"
+      end
+    end
+ 
+
 end

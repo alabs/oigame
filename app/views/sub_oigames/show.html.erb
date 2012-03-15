@@ -1,32 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @sub_oigame.title %>
-</p>
+<div id="campaigns-wrapper">
+  <div id="show-campaign">
+    <div id="show-campaign-detail">
+      <h1><%= @sub_oigame.title %></h1>
 
-<p>
-  <b>Slug:</b>
-  <%= @sub_oigame.slug %>
-</p>
+      <h2>Diseño</h2>
 
-<p>
-  <b>Html header:</b>
-  <%= @sub_oigame.html_header.html_safe %>
-</p>
+      <p>
+        <b>Header (HTML):</b>  
+        <pre>
+          <%= @sub_oigame.html_header %>
+        </pre>
+      </p>
 
-<p>
-  <b>Html footer:</b>
-  <%= @sub_oigame.html_footer.html_safe %>
-</p>
+      <p>
+        <b>Footer (HTML):</b>
+        <pre>
+          <%= @sub_oigame.html_footer %>
+        </pre>
+      </p>
 
-<p>
-  <b>Html style:</b>
-  <style>
-    <%= @sub_oigame.html_style %>
-  </style>
-</p>
-
-
-<%= link_to 'Edit', edit_sub_oigame_path(@sub_oigame) %> |
-<%= link_to 'Back', sub_oigames_path %>
+      <p>
+        <b>Estilos (CSS):</b>
+        <pre>
+          <%= @sub_oigame.html_style %>
+        </pre>
+      </p>
+    </div><!-- show-campaign-detail -->
+    <div id="show-campaign-sidebar" class="grid_8">
+      <p><%= link_to 'Editar', edit_sub_oigame_path(@sub_oigame), :class => "btn primary" %></p>
+      <p><%= link_to 'Campañas', sub_oigame_campaigns_path(@sub_oigame), :class => "btn success" %></p>
+    </div>
+  </div>
+</div>

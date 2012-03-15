@@ -1,37 +1,50 @@
 <%= form_for(@sub_oigame) do |f| %>
-  <% if @sub_oigame.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sub_oigame.errors.count, "error") %> prohibited this sub_oigame from being saved:</h2>
+  <fieldset>
+    <legend><%= t(:please_fill_the_form) %></legend>
 
-      <ul>
-      <% @sub_oigame.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <% if @sub_oigame.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@sub_oigame.errors.count, "error") %> prohibited this sub_oigame from being saved:</h2>
+
+        <ul>
+        <% @sub_oigame.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-field">
+      <%= f.label :title, "Nombre" %><br />
+      <div class="clearfix">
+        <%= f.text_field :title %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :slug %><br />
-    <%= f.text_field :slug %>
-  </div>
-  <div class="field">
-    <%= f.label :html_header %><br />
-    <%= f.text_area :html_header %>
-  </div>
-  <div class="field">
-    <%= f.label :html_footer %><br />
-    <%= f.text_area :html_footer %>
-  </div>
-  <div class="field">
-    <%= f.label :html_style %><br />
-    <%= f.text_area :html_style %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-field">
+      <%= f.label :html_header, "Header (HTML)" %><br />
+      <div class="clearfix">
+        <%= f.text_area :html_header, :style => "width: 500px;" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :html_footer, "Footer (HTML)" %><br />
+      <div class="clearfix">
+        <%= f.text_area :html_footer, :style => "width: 500px;" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :html_style, "Estílos (CSS)" %><br />
+      <div class="clearfix">
+        <%= f.text_area :html_style, :style => "width: 500px;" %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+  </fieldset>
 <% end %>

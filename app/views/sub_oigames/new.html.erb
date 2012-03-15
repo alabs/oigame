@@ -1,5 +1,13 @@
-<h1>New sub_oigame</h1>
+<% @page_title = "Nuevo SubOigame" %> 
 
-<%= render 'form' %>
+<div id="campaigns-wrapper">
+  <div id="create-campaigns">
+    <div id="create-campaign-form" class="form-stacked">
+      <h2><%= @page_title %></h2>
 
-<%= link_to 'Back', sub_oigames_path %>
+      <%= @sub_oigame.class %>
+
+      <%= link_to 'Volver', sub_oigames_path %>
+    </div><!-- create-campaign-form -->
+  </div><!-- create-campaigns -->
+</div><!-- campaigns-wrapper -->

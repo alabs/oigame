@@ -1,31 +1,35 @@
-<h1>Listing sub_oigames</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Slug</th>
-    <th>Html header</th>
-    <th>Html footer</th>
-    <th>Html style</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="campaigns-wrapper">
+  <div id="show-campaign">
+    <div id="show-campaign-detail">
+      <h1>SubOigames</h1>
+      <table>
+        <tr>
+          <th>SubOigame</th>
+          <th colspan="3">Campañas</th>
+        </tr>
+        <tr>
+          <th>Nombre</th>
+          <th>Activadas</th>
+          <th>Archivadas</th>
+          <th>Moderadas</th>
+        </tr>
+      <% @sub_oigames.each do |sub_oigame| %>
+        <tr>
+          <td><%= link_to sub_oigame.title, sub_oigame %></td>
+          <td>TODO</td>
+          <td>TODO</td>
+          <td>TODO</td>
+          <td><%= link_to 'Editar', edit_sub_oigame_path(sub_oigame), :class => "btn primary" %></td>
+          <td><%= link_to 'Eliminar', sub_oigame, confirm: '¿Estas seguro?', method: :delete, :class => "btn danger" %></td>
+        </tr>
+      <% end %>
+      </table>
 
-<% @sub_oigames.each do |sub_oigame| %>
-  <tr>
-    <td><%= sub_oigame.title %></td>
-    <td><%= sub_oigame.slug %></td>
-    <td><%= sub_oigame.html_header %></td>
-    <td><%= sub_oigame.html_footer %></td>
-    <td><%= sub_oigame.html_style %></td>
-    <td><%= link_to 'Show', sub_oigame %></td>
-    <td><%= link_to 'Edit', edit_sub_oigame_path(sub_oigame) %></td>
-    <td><%= link_to 'Destroy', sub_oigame, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Sub oigame', new_sub_oigame_path %>
+      <br />
+    </div>
+    <div id="show-campaign-sidebar" class="grid_8">
+      <%= link_to 'Nuevo SubOigame', new_sub_oigame_path, :class => "btn success" %>
+    </div>
+  </div>
+</div>

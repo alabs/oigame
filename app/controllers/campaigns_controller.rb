@@ -2,7 +2,7 @@
 class CampaignsController < ApplicationController
 
   protect_from_forgery :except => [:message, :petition]
-  layout 'application', :except => [:widget, :widget_iframe]
+  layout :sub_oigame_layout, :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate]
 
   # para cancan
@@ -215,4 +215,16 @@ class CampaignsController < ApplicationController
     require 'digest/sha1'
     Digest::SHA1.hexdigest(args.flatten.join('--'))
   end
+
+  private
+
+    def sub_oigame_layout
+      @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id])
+      if @sub_oigame
+        return "sub_oigame"
+      else 
+        return "application"
+      end
+    end
+ 
 end
