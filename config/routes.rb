@@ -1,5 +1,7 @@
 Oigame::Application.routes.draw do
 
+  resources :sub_oigames
+
   get 'donate' => 'donate#index', :as => 'donate'
   get 'donate/init' => 'donate#init', :as => 'donate_init'
   get 'donate/accepted' => 'donate#accepted'

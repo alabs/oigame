@@ -1,0 +1,31 @@
+<h1>Listing sub_oigames</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Slug</th>
+    <th>Html header</th>
+    <th>Html footer</th>
+    <th>Html style</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sub_oigames.each do |sub_oigame| %>
+  <tr>
+    <td><%= sub_oigame.title %></td>
+    <td><%= sub_oigame.slug %></td>
+    <td><%= sub_oigame.html_header %></td>
+    <td><%= sub_oigame.html_footer %></td>
+    <td><%= sub_oigame.html_style %></td>
+    <td><%= link_to 'Show', sub_oigame %></td>
+    <td><%= link_to 'Edit', edit_sub_oigame_path(sub_oigame) %></td>
+    <td><%= link_to 'Destroy', sub_oigame, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sub oigame', new_sub_oigame_path %>

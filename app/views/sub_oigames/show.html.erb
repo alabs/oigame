@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @sub_oigame.title %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @sub_oigame.slug %>
+</p>
+
+<p>
+  <b>Html header:</b>
+  <%= @sub_oigame.html_header.html_safe %>
+</p>
+
+<p>
+  <b>Html footer:</b>
+  <%= @sub_oigame.html_footer.html_safe %>
+</p>
+
+<p>
+  <b>Html style:</b>
+  <style>
+    <%= @sub_oigame.html_style %>
+  </style>
+</p>
+
+
+<%= link_to 'Edit', edit_sub_oigame_path(@sub_oigame) %> |
+<%= link_to 'Back', sub_oigames_path %>
