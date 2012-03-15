@@ -29,6 +29,16 @@ class CampaignsController < ApplicationController
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     # para que funcione el botón de facebook
     @cause = true
+    if @sub_oigame
+      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame.id}).first
+    else
+      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => nil}).first
+    end
+
+    if @campaign.nil?
+      render_404 
+      return false
+    end
 
     if @campaign.ttype == 'petition'
       @stats_data = generate_stats_for_petition(@campaign)
@@ -46,17 +56,22 @@ class CampaignsController < ApplicationController
   end
 
   def edit
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
   end
 
   def create
     @campaign.user = current_user
     @campaign.target = @campaign.target.gsub(/\./, '')
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-    if @sub_oigame then @campaign.sub_oigame = @sub_oigame end
+    redirect_url = campaigns_url 
+    if @sub_oigame
+      @campaign.sub_oigame = @sub_oigame 
+      redirect_url = sub_oigame_campaigns_url(@suboigame)
+    end
     if @campaign.save
       Mailman.send_campaign_to_social_council(@campaign).deliver
       flash[:notice] = 'Tu campaña se ha creado con éxito y está pendiente de moderación.'
-      redirect_to campaigns_url
+      redirect_to redirect_url
     else
       render :action => :new
     end
@@ -73,8 +88,13 @@ class CampaignsController < ApplicationController
 
   def destroy
     @campaign.destroy
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     flash[:notice] = 'La campaña se eliminió con éxito'
-    redirect_to campaigns_url
+    if @sub_oigame.nil?
+      redirect_to campaigns_url
+    else
+      redirect_to sub_oigame_campaigns_url(@sub_oigame)
+    end
   end
 
   def widget
@@ -173,12 +193,23 @@ class CampaignsController < ApplicationController
 
   def activate
     @campaign.activate!
-    redirect_to @campaign, :notice => 'La campaña se ha activado con éxito'
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
+    if @sub_oigame.nil? 
+      redirect_to @campaign, :notice => 'La campaña se ha activado con éxito'
+    else
+      redirect_to sub_oigame_campaign_path( @sub_oigame, @campaign ), :notice => 'La campaña se ha activado con éxito'
+    end
   end
 
   def deactivate
     @campaign.deactivate!
-    redirect_to @campaign, :notice => 'Campaña desactivada con éxito'
+
+    if @sub_oigame.nil? 
+      redirect_to @campaign, :notice => 'Campaña desactivada con éxito'
+    else
+      redirect_to sub_oigame_campaign_path( @sub_oigame, @campaign ), :notice => 'Campaña desactivada con éxito'
+    end
   end
 
   def feed
@@ -188,7 +219,12 @@ class CampaignsController < ApplicationController
 
   def archive
     @campaign.archive
-    redirect_to @campaign, :notice => 'La campaña ha sido archivada con éxito'
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame.nil?
+      redirect_to @campaign, :notice => 'La campaña ha sido archivada con éxito'
+    else
+      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido archivada con éxito'
+    end
   end
 
   def archived
@@ -234,5 +270,14 @@ class CampaignsController < ApplicationController
       require 'digest/sha1'
       Digest::SHA1.hexdigest(args.flatten.join('--'))
     end
+
+    def render_404
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout => nil }
+        format.xml  { head :not_found }
+        format.any  { head :not_found }
+      end
+    end
+
  
 end

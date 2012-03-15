@@ -13,10 +13,8 @@ class Campaign < ActiveRecord::Base
 
   TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo' }
 
-  validates_presence_of :name, :intro, :body, :ttype
-  validates_uniqueness_of :name
-  validates_presence_of :duedate_at
-  validates_presence_of :image
+  validates :name, :uniqueness => { :scope => :sub_oigame_id }
+  validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
 
   acts_as_taggable
 

@@ -44,31 +44,31 @@
             <% if can?(:archive, @campaign) %>
               &nbsp;&nbsp;
               <span class="label">
-                <%= link_to t(:archive), archive_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+                <%= link_to t(:archive), @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
               </span>
             <% end %>
             <% if can?(:moderated, @campaign) && @campaign.moderated? %>
               &nbsp;&nbsp;
               <span class="label success">
-                <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+                <%= link_to t(:activate), @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
               </span>
             <% end %>
             <% if can?(:deactivate, @campaign) && @campaign.published? %>
               &nbsp;&nbsp;
               <span class="label success">
-                <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+                <%= link_to t(:deactivate), @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
               </span>
             <% end %>
             <% if can? :update, @campaign %>
               &nbsp;&nbsp;
               <span class="label notice">
-                <%= link_to t(:edit), edit_campaign_path(@campaign) %>
+                <%= link_to t(:edit), @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) %>
               </span>
             <% end %>
             <% if can? :destroy, @campaign %>
               &nbsp;&nbsp;
               <span class="label important">
-                <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
+                <%= link_to t(:delete), @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
               </span>
             <% end %>
           <% end %>
