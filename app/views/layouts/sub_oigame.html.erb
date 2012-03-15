@@ -129,11 +129,11 @@
       <%= @sub_oigame.html_style %>
     </style>
     <div id="sub_oigame-header">
-      <%= @sub_oigame.html_header.html_safe %>
+      <%= sanitize @sub_oigame.html_header, :tags => %(a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
     </div>
     <%= yield %>
     <div id="sub_oigame-footer">
-      <%= @sub_oigame.html_footer.html_safe %>
+      <%= sanitize @sub_oigame.html_footer, :tags => %(a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
     </div>
     <div id="links-wrapper">
       <div id="links">

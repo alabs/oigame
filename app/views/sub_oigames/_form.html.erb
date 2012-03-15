@@ -1,6 +1,6 @@
 <%= form_for(@sub_oigame) do |f| %>
-  <fieldset>
-    <legend><%= t(:please_fill_the_form) %></legend>
+    <fieldset>
+      <legend>Opciones generales</legend>
 
     <% if @sub_oigame.errors.any? %>
       <div id="error_explanation">
@@ -15,35 +15,54 @@
     <% end %>
 
     <div class="form-field">
-      <%= f.label :name, "Nombre" %><br />
+      <%= f.label :name, "Nombre" %>
       <div class="clearfix">
         <%= f.text_field :name %>
       </div>
     </div>
+  </fieldset>
+  <fieldset>
+
+    <legend>Diseño</legend>
+
+    <div class="well">
+      Podrás usar estas etiquetas HTML
+      <p>
+        <code>
+          a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6
+        </code>
+      </p>
+      Con estos atributos
+      <p>
+        <code>
+          id class src style href
+        </code>
+      </p>
+    </div>
 
     <div class="form-field">
-      <%= f.label :html_header, "Header (HTML)" %><br />
+      <%= f.label :html_header, "Header (HTML)" %>
       <div class="clearfix">
-        <%= f.text_area :html_header, :style => "width: 500px;" %>
+        <%= f.text_area :html_header, :style => "width: 500px;", :placeholder => "La parte superior de la página" %>
       </div>
     </div>
 
-    <div class="field">
-      <%= f.label :html_footer, "Footer (HTML)" %><br />
+    <div class="form-field">
+      <%= f.label :html_footer, "Footer (HTML)" %>
       <div class="clearfix">
-        <%= f.text_area :html_footer, :style => "width: 500px;" %>
+        <%= f.text_area :html_footer, :style => "width: 500px;", :placeholder => "La parte inferior de la página" %>
       </div>
     </div>
 
-    <div class="field">
-      <%= f.label :html_style, "Estílos (CSS)" %><br />
+    <div class="form-field">
+      <%= f.label :html_style, "Estílos (CSS)" %>
       <div class="clearfix">
-        <%= f.text_area :html_style, :style => "width: 500px;" %>
+        <%= f.text_area :html_style, :style => "width: 500px;", :placeholder => "Los estilos CSS, por ejemplo: a {color:blue}" %>
       </div>
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Enviar", :class => 'btn primary large' %>
     </div>
 
   </fieldset>
