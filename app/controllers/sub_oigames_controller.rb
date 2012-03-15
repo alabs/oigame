@@ -1,4 +1,7 @@
 class SubOigamesController < ApplicationController
+  # para cancan
+  load_resource :find_by => :slug
+
   # GET /sub_oigames
   # GET /sub_oigames.json
   def index
@@ -13,7 +16,7 @@ class SubOigamesController < ApplicationController
   # GET /sub_oigames/1
   # GET /sub_oigames/1.json
   def show
-    @sub_oigame = SubOigame.find(params[:id])
+    @sub_oigame = SubOigame.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +37,7 @@ class SubOigamesController < ApplicationController
 
   # GET /sub_oigames/1/edit
   def edit
-    @sub_oigame = SubOigame.find(params[:id])
+    @sub_oigame = SubOigame.find_by_slug(params[:id])
   end
 
   # POST /sub_oigames
@@ -56,7 +59,7 @@ class SubOigamesController < ApplicationController
   # PUT /sub_oigames/1
   # PUT /sub_oigames/1.json
   def update
-    @sub_oigame = SubOigame.find(params[:id])
+    @sub_oigame = SubOigame.find_by_slug(params[:id])
 
     respond_to do |format|
       if @sub_oigame.update_attributes(params[:sub_oigame])
@@ -72,7 +75,7 @@ class SubOigamesController < ApplicationController
   # DELETE /sub_oigames/1
   # DELETE /sub_oigames/1.json
   def destroy
-    @sub_oigame = SubOigame.find(params[:id])
+    @sub_oigame = SubOigame.find_by_slug(params[:id])
     @sub_oigame.destroy
 
     respond_to do |format|
