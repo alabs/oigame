@@ -2,6 +2,7 @@
 class Campaign < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :sub_oigame
   has_many :messages
   has_many :petitions
   

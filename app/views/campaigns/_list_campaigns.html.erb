@@ -4,18 +4,19 @@
       <div id="list-campaigns-info">
         <h2><%= @page_title %></h2>
         <% @campaigns.each do |campaign| %>
+          <% if @sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(@sub_oigame, campaign) %> <% end %>
           <div class="campaign-info">
             <div class="cinfo">
-              <h3><%= link_to campaign.name, campaign %></h3>
+              <h3><%= link_to campaign.name, url %></h3>
               <div class="campaign-image">
                 <% if campaign.image.to_s %>
-                  <%= link_to image_tag(campaign.image_url(:thumb)), campaign %>
+                  <%= link_to image_tag(campaign.image_url(:thumb)), url %>
                 <% end %>
               </div><!-- campaign-image -->
               <div class="campaign-text">
                 <%= campaign.to_html(campaign.intro).html_safe %>
                 <div class="campaign-text-links">
-                  <%= link_to t(:join_this_campaign), campaign %>
+                  <%= link_to t(:join_this_campaign), url %>
                   <% if campaign.ttype == 'mailing' %>
                     <strong><%= campaign.messages.validated.count %></strong> personas ya lo han hecho
                   <% elsif campaign.ttype == 'petition' %>

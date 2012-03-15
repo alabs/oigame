@@ -12,12 +12,21 @@ class CampaignsController < ApplicationController
   skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed]
 
   def index
-    @campaigns = Campaign.includes(:messages, :petitions).last_campaigns
-    @tags = Campaign.published.tag_counts_on(:tags)
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
+    if @sub_oigame.nil? 
+      # si no es de un suboigame
+      @campaigns = Campaign.where(:sub_oigame_id => nil).includes(:messages, :petitions).last_campaigns
+      @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
+    else
+      # si es de un suboigame
+      @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).includes(:messages, :petitions).last_campaigns
+      @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
+    end
   end
 
   def show
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     # para que funcione el botón de facebook
     @cause = true
 
@@ -42,6 +51,8 @@ class CampaignsController < ApplicationController
   def create
     @campaign.user = current_user
     @campaign.target = @campaign.target.gsub(/\./, '')
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame then @campaign.sub_oigame = @sub_oigame end
     if @campaign.save
       Mailman.send_campaign_to_social_council(@campaign).deliver
       flash[:notice] = 'Tu campaña se ha creado con éxito y está pendiente de moderación.'
@@ -149,8 +160,15 @@ class CampaignsController < ApplicationController
   end
 
   def moderated
-    @campaigns = Campaign.last_campaigns_moderated
-    @tags = Campaign.published.tag_counts_on(:tags)
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
+    if @sub_oigame.nil? 
+      @campaigns = Campaign.where(:sub_oigame_id => nil).last_campaigns_moderated
+      @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
+    else
+      @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).last_campaigns_moderated
+      @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
+    end
   end
 
   def activate
@@ -181,50 +199,39 @@ class CampaignsController < ApplicationController
 
   private
 
-  def generate_stats_for_mailing(campaign)
-    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
-    messages = 0
-    dates.each do |date|
-      count = Message.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count
-      messages += count
-      data.push([date.strftime('%Y-%m-%d'), messages])
-    end
-    
-    return data
-  end
-  
-  def generate_stats_for_petition(campaign)
-    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
-    petitions = 0
-    dates.each do |date|
-      count = Petition.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count
-      petitions += count
-      data.push([date.strftime('%Y-%m-%d'), petitions])
-    end
-    
-    return data
-  end
-
-  def generate_token
-    secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
-  end
-
-  def secure_digest(*args)
-    require 'digest/sha1'
-    Digest::SHA1.hexdigest(args.flatten.join('--'))
-  end
-
-  private
-
-    def sub_oigame_layout
-      @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id])
-      if @sub_oigame
-        return "sub_oigame"
-      else 
-        return "application"
+    def generate_stats_for_mailing(campaign)
+      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+      data = []
+      messages = 0
+      dates.each do |date|
+        count = Message.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count
+        messages += count
+        data.push([date.strftime('%Y-%m-%d'), messages])
       end
+      
+      return data
+    end
+    
+    def generate_stats_for_petition(campaign)
+      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+      data = []
+      petitions = 0
+      dates.each do |date|
+        count = Petition.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count
+        petitions += count
+        data.push([date.strftime('%Y-%m-%d'), petitions])
+      end
+      
+      return data
+    end
+
+    def generate_token
+      secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+    end
+
+    def secure_digest(*args)
+      require 'digest/sha1'
+      Digest::SHA1.hexdigest(args.flatten.join('--'))
     end
  
 end
