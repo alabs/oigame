@@ -17,11 +17,16 @@
       <% @sub_oigames.each do |sub_oigame| %>
         <tr>
           <td><%= link_to sub_oigame.name, sub_oigame %></td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td><%= link_to 'Editar', edit_sub_oigame_path(sub_oigame), :class => "btn primary" %></td>
-          <td><%= link_to 'Eliminar', sub_oigame, confirm: '¿Estas seguro?', method: :delete, :class => "btn danger" %></td>
+          <td><%= link_to sub_oigame.campaigns.last_campaigns.count, sub_oigame_campaigns_path(sub_oigame) %></td>
+          <td><%= link_to sub_oigame.campaigns.archived_campaigns.count, archived_sub_oigame_campaigns_path(sub_oigame) %></td>
+          <td><%= link_to sub_oigame.campaigns.last_campaigns_moderated.count, moderated_sub_oigame_campaigns_path(sub_oigame) %></td>
+          <td>
+            <%= link_to 'Nueva campaña', new_sub_oigame_campaign_path(sub_oigame), :class => "btn" %>
+            <br />
+            <br />
+            <%= link_to 'Editar', edit_sub_oigame_path(sub_oigame), :class => "btn primary" %>
+            <%= link_to 'Eliminar', sub_oigame, confirm: '¿Estas seguro?', method: :delete, :class => "btn danger" %>
+          </td>
         </tr>
       <% end %>
       </table>

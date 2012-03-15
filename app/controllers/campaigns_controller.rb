@@ -192,6 +192,7 @@ class CampaignsController < ApplicationController
   end
 
   def archived
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     @archived = true
     @campaigns = Campaign.archived_campaigns
     @tags = Campaign.archived.tag_counts_on(:tags)
