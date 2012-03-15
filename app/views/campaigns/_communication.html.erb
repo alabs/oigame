@@ -1,4 +1,4 @@
-<% unless Rails.env == 'development' %>
+<% if Rails.env == 'development' %>
 
 <h2 class="jtc">Comunica</h2>
 <ul id="social-buttons">
@@ -11,7 +11,7 @@
   js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-      <div class="fb-like" data-send="true" data-layout="box_count" data-width="50" data-show-faces="false" data-action="recommend"></div>
+      <div class="fb-like" data-href="<%= CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) %>" data-send="false" data-layout="box_count" data-width="50" data-show-faces="false" data-action="recommend"></div>
     </li>
     <li>
       <g:plusone size="tall" href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"></g:plusone>
