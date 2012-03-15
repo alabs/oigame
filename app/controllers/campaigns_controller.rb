@@ -14,6 +14,7 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign.includes(:messages, :petitions).last_campaigns
     @tags = Campaign.published.tag_counts_on(:tags)
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
   end
 
   def show
@@ -32,6 +33,7 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
   end
 
   def edit
