@@ -1,4 +1,5 @@
-<%= form_for @campaign, :html => {:multipart => true} do |f| %>
+<%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
+<%= form_for @campaign, :url => url_for(:action=>"create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame), :html => {:multipart => true} do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="form-field">

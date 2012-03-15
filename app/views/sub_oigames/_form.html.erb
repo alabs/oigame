@@ -1,0 +1,50 @@
+<%= form_for(@sub_oigame) do |f| %>
+  <fieldset>
+    <legend><%= t(:please_fill_the_form) %></legend>
+
+    <% if @sub_oigame.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@sub_oigame.errors.count, "error") %> prohibited this sub_oigame from being saved:</h2>
+
+        <ul>
+        <% @sub_oigame.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-field">
+      <%= f.label :name, "Nombre" %><br />
+      <div class="clearfix">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :html_header, "Header (HTML)" %><br />
+      <div class="clearfix">
+        <%= f.text_area :html_header, :style => "width: 500px;" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :html_footer, "Footer (HTML)" %><br />
+      <div class="clearfix">
+        <%= f.text_area :html_footer, :style => "width: 500px;" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label :html_style, "Estílos (CSS)" %><br />
+      <div class="clearfix">
+        <%= f.text_area :html_style, :style => "width: 500px;" %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+  </fieldset>
+<% end %>
