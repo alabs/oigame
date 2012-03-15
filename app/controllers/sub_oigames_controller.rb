@@ -3,8 +3,8 @@ class SubOigamesController < ApplicationController
   load_resource :find_by => :slug
   layout :sub_oigame_layout
  
-  # GET /sub_oigames
-  # GET /sub_oigames.json
+  # GET /o
+  # GET /o.json
   def index
     @sub_oigames = SubOigame.all
 
@@ -14,8 +14,8 @@ class SubOigamesController < ApplicationController
     end
   end
 
-  # GET /sub_oigames/1
-  # GET /sub_oigames/1.json
+  # GET /o/1
+  # GET /o/1.json
   def show
     @sub_oigame = SubOigame.find_by_slug(params[:id])
 
@@ -25,8 +25,8 @@ class SubOigamesController < ApplicationController
     end
   end
 
-  # GET /sub_oigames/new
-  # GET /sub_oigames/new.json
+  # GET /o/new
+  # GET /o/new.json
   def new
     @sub_oigame = SubOigame.new
 
@@ -36,13 +36,13 @@ class SubOigamesController < ApplicationController
     end
   end
 
-  # GET /sub_oigames/1/edit
+  # GET /o/1/edit
   def edit
     @sub_oigame = SubOigame.find_by_slug(params[:id])
   end
 
-  # POST /sub_oigames
-  # POST /sub_oigames.json
+  # POST /o
+  # POST /o.json
   def create
     @sub_oigame = SubOigame.new(params[:sub_oigame])
 
@@ -57,8 +57,8 @@ class SubOigamesController < ApplicationController
     end
   end
 
-  # PUT /sub_oigames/1
-  # PUT /sub_oigames/1.json
+  # PUT /o/1
+  # PUT /o/1.json
   def update
     @sub_oigame = SubOigame.find_by_slug(params[:id])
 
@@ -73,8 +73,8 @@ class SubOigamesController < ApplicationController
     end
   end
 
-  # DELETE /sub_oigames/1
-  # DELETE /sub_oigames/1.json
+  # DELETE /o/1
+  # DELETE /o/1.json
   def destroy
     @sub_oigame = SubOigame.find_by_slug(params[:id])
     @sub_oigame.destroy
@@ -90,13 +90,12 @@ class SubOigamesController < ApplicationController
     def sub_oigame_layout
       # Si en la url hay un sub_oigame definido entonces le pasamos el layout de sub_oigame
       # es el mismo layout que application pero tambien tiene el header/footer/estilos del sub
-      @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id]||params[:id])
-      if @sub_oigame
+      @sub_oigame_exists = SubOigame.find_by_slug(params[:sub_oigame_id]||params[:id])
+      if @sub_oigame_exists
         return "sub_oigame"
       else 
         return "application"
       end
     end
- 
 
 end

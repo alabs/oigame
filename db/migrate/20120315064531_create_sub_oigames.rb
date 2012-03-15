@@ -1,7 +1,7 @@
 class CreateSubOigames < ActiveRecord::Migration
   def change
     create_table :sub_oigames do |t|
-      t.string :title
+      t.string :name
       t.string :slug
       t.text :html_header
       t.text :html_footer

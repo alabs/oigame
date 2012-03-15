@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20120315064531) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "sub_oigames", :force => true do |t|
-    t.string   "title"
+    t.string   "name"
     t.string   "slug"
     t.text     "html_header"
     t.text     "html_footer"

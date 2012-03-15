@@ -16,10 +16,10 @@
         </tr>
       <% @sub_oigames.each do |sub_oigame| %>
         <tr>
-          <td><%= link_to sub_oigame.title, sub_oigame %></td>
-          <td>TODO</td>
-          <td>TODO</td>
-          <td>TODO</td>
+          <td><%= link_to sub_oigame.name, sub_oigame %></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
           <td><%= link_to 'Editar', edit_sub_oigame_path(sub_oigame), :class => "btn primary" %></td>
           <td><%= link_to 'Eliminar', sub_oigame, confirm: '¿Estas seguro?', method: :delete, :class => "btn danger" %></td>
         </tr>

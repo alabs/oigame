@@ -4,6 +4,8 @@ class SubOigame < ActiveRecord::Base
 
   before_save :generate_slug
 
+  validates_presence_of :name
+
   def to_param
     slug
   end
@@ -11,7 +13,7 @@ class SubOigame < ActiveRecord::Base
   private
 
   def generate_slug
-    self.slug = self.title.parameterize
+    self.slug = self.name.parameterize
   end
 
 end
