@@ -80,7 +80,12 @@ class CampaignsController < ApplicationController
   def update
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = 'La campaña fué actualizada con éxito.'
-      redirect_to @campaign
+      @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+      if @sub_oigame.nil?
+        redirect_to @campaign
+      else
+        redirect_to sub_oigame_campaign_path(@campaign, @sub_oigame)
+      end
     else
       render :action => :edit
     end
@@ -122,7 +127,12 @@ class CampaignsController < ApplicationController
       if campaign
         message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
         Mailman.send_message_to_validate_message(from, campaign, message).deliver
-        redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+        @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+        if @sub_oigame.nil?
+          redirect_to message_campaign_path
+        else
+          redirect_to message_sub_oigame_campaign_path(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+        end
 
         return
       else
