@@ -7,7 +7,10 @@ class Campaign < ActiveRecord::Base
   has_many :petitions
   
   attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype
-  attr_accessor :recipients
+  attr_accessor :recipient
+
+  validate :validate_minimum_image_size
+  attr_accessor :image_width, :image_height
 
   serialize :emails, Array
 
@@ -26,6 +29,7 @@ class Campaign < ActiveRecord::Base
   scope :published, where(:moderated => false, :status => 'active')
   scope :not_published, where(:moderated => true, :status => 'active')
   scope :archived, where(:status => 'archived')
+
 
   class << self
 
@@ -135,4 +139,13 @@ class Campaign < ActiveRecord::Base
     end
     Twitter.update(self.name + ' - ' + "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
   end
+
+  # custom validation for image width & height minimum dimensions
+  def validate_minimum_image_size
+    if self.image_width < 500 && self.image_height < 400
+      errors.add :image, "debe ser 500x400px como mínimo!" 
+    end
+  end
+
+
 end
