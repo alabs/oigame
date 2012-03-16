@@ -16,12 +16,16 @@
         </div>
       <% end %>
       <div class="form-field">
-        <%= label_tag t(:subject) %>
-        <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje' %>
+        <%= check_box_tag :own_message %>
+        <%= label_tag :own_message, t(:own_message) %>
       </div>
-      <div class="form-field">
+      <div class="form-field form-message hide">
+        <%= label_tag t(:subject) %>
+        <%= text_field_tag :subject, nil, :placeholder => 'Asunto del mensaje' %>
+      </div>
+      <div class="form-field form-message hide">
         <%= label_tag t(:message) %>
-        <%= text_area_tag :body, nil, :required => true, :placeholder => 'Para hacer efectiva la campaña te recomendamos que tu mensaje sea con respeto, se puede ser firme pero asertivo y nuestra experiencia nos indica que quienes reciben los mensajes son mucho más receptivos si se les trata respetuosamente. Cuéntales que no estás de acuerdo con lo que están haciendo y por qué, cuéntales cómo te gustaría que actuaran realmente', :rows => 10 %>
+        <%= text_area_tag :body, nil, :placeholder => 'Para hacer efectiva la campaña te recomendamos que tu mensaje sea con respeto, se puede ser firme pero asertivo y nuestra experiencia nos indica que quienes reciben los mensajes son mucho más receptivos si se les trata respetuosamente. Cuéntales que no estás de acuerdo con lo que están haciendo y por qué, cuéntales cómo te gustaría que actuaran realmente', :rows => 10 %>
       </div>
       <div class="form-actions">
         <%= submit_tag t(:send_message), :class => 'btn primary large center' %>

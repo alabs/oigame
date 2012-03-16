@@ -75,18 +75,42 @@
         </p>
       </div>
     </div>
-      <% if @campaign.image.to_s %>
-        <%= image_tag(@campaign.image_url.to_s) %>
-      <% end %>
-      <div id="campaign-info">
-        <%= @campaign.to_html(@campaign.intro).html_safe %> 
-        <%= @campaign.to_html(@campaign.body).html_safe %> 
-      </div>
+
+          <% if @campaign.image.to_s %>
+            <%= image_tag(@campaign.image_url.to_s) %>
+          <% end %>
+
+    <ul class="tabs" data-tabs="tabs" >
+      <li class="active"><a href="#description">Descripción</a></li>
+      <li><a href="#message">Mensaje</a></li>
+    </ul><!-- tabs -->
+    <div class="tab-content" id="my-tab-content">
+      <div id="description" class="active">
+        <div id="campaign-info">
+          <h2>Descripción</h2>
+          <%= @campaign.to_html(@campaign.intro).html_safe %> 
+          <%= @campaign.to_html(@campaign.body).html_safe %> 
+        </div>
+      </div><!-- description -->
+      <div id="message">
+        <div id="campaign-info">
+          <h2>Destinatarios</h2>
+            <%= @campaign.recipients %> 
+          <h2>Mensaje</h2>
+          <code>
+            <b>Asunto</b><%= @campaign.default_message_subject %> 
+            <p><%= @campaign.default_message_body %></p>
+          </code>
+        </div>
+      </div><!-- message -->
+    </div><!-- tab-content -->
+
     </div><!-- show-campaign-detail-main -->
         
       <% unless @campaign.status == 'archived' %>
         <%= render :partial => "stats_chart" %>
       <% end %>
+
 
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar" class="grid_8">

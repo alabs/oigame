@@ -126,7 +126,12 @@ class CampaignsController < ApplicationController
       from = user_signed_in? ? current_user.email : params[:email]
       campaign = Campaign.published.find_by_slug(params[:id])
       if campaign
-        message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+        if params[:own_message] == "1" 
+          message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+        else
+          # mensaje por defecto
+          message = Message.create(:campaign => campaign, :email => from, :subject => campaign.default_message_subject, :body => campaign.default_message_body, :token => generate_token)
+        end
         Mailman.send_message_to_validate_message(from, campaign, message).deliver
         @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
         if @sub_oigame.nil?

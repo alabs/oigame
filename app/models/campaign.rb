@@ -6,7 +6,7 @@ class Campaign < ActiveRecord::Base
   has_many :messages
   has_many :petitions
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body
   attr_accessor :recipient
 
   validate :validate_minimum_image_size
@@ -74,7 +74,9 @@ class Campaign < ActiveRecord::Base
 
   def recipients=(args)
     addresses = args.gsub(/\s+/, ',').split(',')
-    addresses.each {|address| address.strip!.downcase! }.uniq!
+    addresses.each {|address| address.downcase! }.uniq!
+    # FIXME: undefined method `downcase!' for nil:NilClass
+    # addresses.each {|address| address.strip!.downcase! }.uniq!
     addresses.delete_if {|a| a.blank? }
     self.emails = addresses
   end
@@ -142,8 +144,8 @@ class Campaign < ActiveRecord::Base
 
   # custom validation for image width & height minimum dimensions
   def validate_minimum_image_size
-    if self.image_width < 500 && self.image_height < 400
-      errors.add :image, "debe ser 500x400px como mínimo!" 
+    if self.image_width < 500 && self.image_height < 200
+      errors.add :image, "debe tener 500px de ancho y 200px de largo como mínimo" 
     end
   end
 
