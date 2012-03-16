@@ -1,5 +1,30 @@
 Oigame::Application.routes.draw do
 
+  resources :sub_oigames, :path => "o" do
+    resources :campaigns do
+      member do
+        post 'petition'
+        get 'petition'
+        get 'validate/:token' => 'campaigns#validate', :as => 'validate'
+        get 'validated'
+        post 'message'
+        get 'message'
+        get 'widget'
+        get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
+        post 'activate'
+        post 'deactivate'
+        post 'archive'
+      end
+      collection do
+        get 'tag'
+        get 'tags-archived' => 'campaigns#tags_archived', :as => 'tags_archived'
+        get 'moderated'
+        get 'feed', :defaults => { :format => 'rss' }
+        get 'archived'
+      end
+    end
+  end
+
   get 'donate' => 'donate#index', :as => 'donate'
   get 'donate/init' => 'donate#init', :as => 'donate_init'
   get 'donate/accepted' => 'donate#accepted'

@@ -2,18 +2,23 @@
 ////////////////////////// switch_campaign_type - start 
 
 function switch_campaign_type(ctype) {
+  console.log(ctype);
   switch (ctype) {
     case "petition": 
-      $("#crecipients").hide("slow");
-      $("#campaign_recipients").removeAttr("required"); 
+      $(".form-campaign")
+        .hide("slow")
+        .removeAttr("required"); 
       break;
     case "mailing":
-      $("#crecipients").show("slow");
-      $("#crecipients").removeClass("hide");
-      $("#campaign_recipients").attr("required", "required");
+      $(".form-campaign")
+        .show("slow")
+        .attr("required", "required")
+        .removeClass("hide");
       break;
     default:
-      $("#crecipients").hide('slow');
+      $(".form-campaign")
+        .hide("slow")
+        .removeAttr("required"); 
       break;
   }
 }
@@ -86,6 +91,25 @@ function chart_draw(items, chart_id, color, minimal_date){
 }
 
 ////////////////////////// chart_draw: jqplot helper  - end
+//
+
+////////////////////////// check_own_message  - start
+function check_own_message($selector){
+  // function que comprueba si el selector esta selecionado y 
+  // muestra o esconde unos campos de formularios dependiendo de eso 
+  if ( $selector.attr('checked') == "checked" ){
+    $('.form-message')
+      .slideDown('slow')
+      .removeClass('hide');
+      $('.form-message input, .form-message textarea').attr('required', 'required');
+  } else {
+    $('.form-message')
+      .slideUp('slow')
+      .addClass('hide');
+      $('.form-message input, .form-message textarea').removeAttr('required');
+  }
+}
+////////////////////////// check_own_message  - end
 
 $(function() {
 
@@ -215,5 +239,12 @@ $(function() {
     var ctype_new = $(this).val();
     switch_campaign_type(ctype_new);
   });
+
+  // comprueba si esta marcada la casilla de escribir el propio mensaje
+  $('#own_message').bind('click', function(){
+    check_own_message($(this));
+  });
+
+  check_own_message($('#own_message'));
 
 });

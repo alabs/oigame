@@ -2,20 +2,22 @@
 class Campaign < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :sub_oigame
   has_many :messages
   has_many :petitions
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype
-  attr_accessor :recipients
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body
+  attr_accessor :recipient
+
+  validate :validate_minimum_image_size
+  attr_accessor :image_width, :image_height
 
   serialize :emails, Array
 
   TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo' }
 
-  validates_presence_of :name, :intro, :body, :ttype
-  validates_uniqueness_of :name
-  validates_presence_of :duedate_at
-  validates_presence_of :image
+  validates :name, :uniqueness => { :scope => :sub_oigame_id }
+  validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
 
   acts_as_taggable
 
@@ -27,6 +29,7 @@ class Campaign < ActiveRecord::Base
   scope :published, where(:moderated => false, :status => 'active')
   scope :not_published, where(:moderated => true, :status => 'active')
   scope :archived, where(:status => 'archived')
+
 
   class << self
 
@@ -72,6 +75,11 @@ class Campaign < ActiveRecord::Base
   def recipients=(args)
     addresses = args.gsub(/\s+/, ',').split(',')
     addresses.each {|address| address.downcase! }.uniq!
+<<<<<<< HEAD
+=======
+    # FIXME: undefined method `downcase!' for nil:NilClass
+    # addresses.each {|address| address.strip!.downcase! }.uniq!
+>>>>>>> 7a356d66f579fb146ced369160d19ce5af7c6299
     addresses.delete_if {|a| a.blank? }
     self.emails = addresses
   end
@@ -136,4 +144,13 @@ class Campaign < ActiveRecord::Base
     end
     Twitter.update(self.name + ' - ' + "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
   end
+
+  # custom validation for image width & height minimum dimensions
+  def validate_minimum_image_size
+    if self.image_width < 500 && self.image_height < 200
+      errors.add :image, "debe tener 500px de ancho y 200px de largo como mínimo" 
+    end
+  end
+
+
 end

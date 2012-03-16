@@ -73,6 +73,7 @@ GEM
     hashie (1.1.0)
     highline (1.6.2)
     hike (1.2.1)
+    honeypot-captcha (0.0.2)
     httparty (0.8.1)
       multi_json
       multi_xml
@@ -207,6 +208,7 @@ DEPENDENCIES
   devise
   exception_notification
   execjs
+  honeypot-captcha
   httparty
   jquery-rails
   mysql2

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115020551) do
+ActiveRecord::Schema.define(:version => 20120316140848) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -23,12 +23,15 @@ ActiveRecord::Schema.define(:version => 20111115020551) do
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
-    t.boolean  "moderated",    :default => true
+    t.boolean  "moderated",               :default => true
     t.datetime "published_at"
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
-    t.string   "status",       :default => "active"
+    t.string   "status",                  :default => "active"
+    t.integer  "sub_oigame_id"
+    t.string   "default_message_subject"
+    t.text     "default_message_body"
   end
 
   create_table "contacts", :force => true do |t|
@@ -71,6 +74,16 @@ ActiveRecord::Schema.define(:version => 20111115020551) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "sub_oigames", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "html_header"
+    t.text     "html_footer"
+    t.text     "html_style"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

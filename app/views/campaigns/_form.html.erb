@@ -1,4 +1,10 @@
-<%= form_for @campaign, :html => {:multipart => true} do |f| %>
+<%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
+<% if @sub_oigame %>
+  <% url = url_for(:action=>"create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
+<% else %>
+  <% url = @campaign %>
+<% end %>
+<%= form_for @campaign, :url => url, :html => {:multipart => true} do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="form-field">
@@ -11,6 +17,7 @@
     <div class="form-field">
       <%= f.label t(:image_of_campaign) %>
       <%= f.file_field :image, :class => 'input-file' %>
+      <p>Debe tener un tamaño de 500x400</p>
       <% unless @campaign.errors[:image].blank? %>
         <span class="error_message"><%= @campaign.errors[:image].to_sentence %></span>
       <% end %>
@@ -47,9 +54,17 @@
       <%= f.label t(:type_of_campaign) %>
       <%= select(:campaign, :ttype, Campaign::TYPES.select {|k,v| [k,v]}.invert, {:prompt => 'Selecciona tipo de campaña'}) %>
     </div>
-    <div id="crecipients" class="form-field hide">
+    <div class="form-field form-campaign hide">
       <%= f.label t(:recipients) %>
       <%= f.text_area :recipients, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Lista de direcciones de correo de destinatarios, una por línea.' %>
+    </div>
+    <div class="form-field form-campaign hide">
+      <%= f.label t(:default_message_subject) %>
+      <%= f.text_field :default_message_subject, :class => 'span8', :required => true, :placeholder => 'Asunto del mensaje por defecto.' %>
+    </div>
+    <div class="form-field form-campaign hide">
+      <%= f.label t(:default_message_body) %>
+      <%= f.text_area :default_message_body, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Mensaje por defecto que se enviará en la campaña por los participantes que no quieran escribir su propio mensaje.' %>
     </div>
     <div class="form-field">
       <%= f.label 'Número de personas que piensas que se unirán a la campaña' %>

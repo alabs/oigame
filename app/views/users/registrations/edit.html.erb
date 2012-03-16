@@ -22,7 +22,25 @@
             <%= f.text_field :vat, :placeholder => 'Solo necesario para donaciones' %>
           </div>
           <div class="form-field">
-            <%= f.label t(:password) %> <span class="note">(dejala en blanco si no quieres cambiarla)</span>
+            <%= f.label t(:current_password) %> <span class="note">(necesitamos tu contraseña actual para realizar los cambios)</span>
+            <%= f.password_field :current_password, :required => true %>
+            <% unless resource.errors[:current_password].blank? %>
+              <span class="error_message"><%= resource.errors[:current_password].to_sentence %></span>
+            <% end %>
+          </div>
+          <div class="form-actions">
+            <%= f.submit t(:update), :class => 'btn primary' %>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+
+    <div id="edit-account-form" class="form-stacked">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+        <fieldset>
+          <legend>Cambiar mi contraseña</legend>
+          <div class="form-field">
+            <%= f.label t(:password) %>
             <%= f.password_field :password, :style => "display:none;", :name => "fuckautocompleteonfirstpasswd" %>
             <%= f.password_field :password %>
             <% unless resource.errors[:password].blank? %>

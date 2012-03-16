@@ -1,8 +1,9 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
+  before_filter :protect_from_spam, :only => [:message, :petition]
   protect_from_forgery :except => [:message, :petition]
-  layout 'application', :except => [:widget, :widget_iframe]
+  layout :sub_oigame_layout, :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate]
 
   # para cancan
@@ -12,13 +13,33 @@ class CampaignsController < ApplicationController
   skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed]
 
   def index
-    @campaigns = Campaign.includes(:messages, :petitions).last_campaigns
-    @tags = Campaign.published.tag_counts_on(:tags)
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
+    if @sub_oigame.nil? 
+      # si no es de un suboigame
+      @campaigns = Campaign.where(:sub_oigame_id => nil).includes(:messages, :petitions).last_campaigns
+      @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
+    else
+      # si es de un suboigame
+      @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).includes(:messages, :petitions).last_campaigns
+      @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
+    end
   end
 
   def show
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     # para que funcione el botón de facebook
     @cause = true
+    if @sub_oigame
+      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame.id}).first
+    else
+      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => nil}).first
+    end
+
+    if @campaign.nil?
+      render_404 
+      return false
+    end
 
     if @campaign.ttype == 'petition'
       @stats_data = generate_stats_for_petition(@campaign)
@@ -32,18 +53,26 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
   end
 
   def edit
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
   end
 
   def create
     @campaign.user = current_user
     @campaign.target = @campaign.target.gsub(/\./, '')
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    redirect_url = campaigns_url 
+    if @sub_oigame
+      @campaign.sub_oigame = @sub_oigame 
+      redirect_url = sub_oigame_campaigns_url(@suboigame)
+    end
     if @campaign.save
       Mailman.send_campaign_to_social_council(@campaign).deliver
       flash[:notice] = 'Tu campaña se ha creado con éxito y está pendiente de moderación.'
-      redirect_to campaigns_url
+      redirect_to redirect_url
     else
       render :action => :new
     end
@@ -52,7 +81,12 @@ class CampaignsController < ApplicationController
   def update
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = 'La campaña fué actualizada con éxito.'
-      redirect_to @campaign
+      @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+      if @sub_oigame.nil?
+        redirect_to @campaign
+      else
+        redirect_to sub_oigame_campaign_path(@campaign, @sub_oigame)
+      end
     else
       render :action => :edit
     end
@@ -60,8 +94,13 @@ class CampaignsController < ApplicationController
 
   def destroy
     @campaign.destroy
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     flash[:notice] = 'La campaña se eliminió con éxito'
-    redirect_to campaigns_url
+    if @sub_oigame.nil?
+      redirect_to campaigns_url
+    else
+      redirect_to sub_oigame_campaigns_url(@sub_oigame)
+    end
   end
 
   def widget
@@ -87,9 +126,19 @@ class CampaignsController < ApplicationController
       from = user_signed_in? ? current_user.email : params[:email]
       campaign = Campaign.published.find_by_slug(params[:id])
       if campaign
-        message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+        if params[:own_message] == "1" 
+          message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+        else
+          # mensaje por defecto
+          message = Message.create(:campaign => campaign, :email => from, :subject => campaign.default_message_subject, :body => campaign.default_message_body, :token => generate_token)
+        end
         Mailman.send_message_to_validate_message(from, campaign, message).deliver
-        redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+        @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+        if @sub_oigame.nil?
+          redirect_to message_campaign_path
+        else
+          redirect_to message_sub_oigame_campaign_path(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+        end
 
         return
       else
@@ -147,18 +196,36 @@ class CampaignsController < ApplicationController
   end
 
   def moderated
-    @campaigns = Campaign.last_campaigns_moderated
-    @tags = Campaign.published.tag_counts_on(:tags)
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
+    if @sub_oigame.nil? 
+      @campaigns = Campaign.where(:sub_oigame_id => nil).last_campaigns_moderated
+      @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
+    else
+      @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).last_campaigns_moderated
+      @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
+    end
   end
 
   def activate
     @campaign.activate!
-    redirect_to @campaign, :notice => 'La campaña se ha activado con éxito'
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
+    if @sub_oigame.nil? 
+      redirect_to @campaign, :notice => 'La campaña se ha activado con éxito'
+    else
+      redirect_to sub_oigame_campaign_path( @sub_oigame, @campaign ), :notice => 'La campaña se ha activado con éxito'
+    end
   end
 
   def deactivate
     @campaign.deactivate!
-    redirect_to @campaign, :notice => 'Campaña desactivada con éxito'
+
+    if @sub_oigame.nil? 
+      redirect_to @campaign, :notice => 'Campaña desactivada con éxito'
+    else
+      redirect_to sub_oigame_campaign_path( @sub_oigame, @campaign ), :notice => 'Campaña desactivada con éxito'
+    end
   end
 
   def feed
@@ -168,10 +235,16 @@ class CampaignsController < ApplicationController
 
   def archive
     @campaign.archive
-    redirect_to @campaign, :notice => 'La campaña ha sido archivada con éxito'
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame.nil?
+      redirect_to @campaign, :notice => 'La campaña ha sido archivada con éxito'
+    else
+      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido archivada con éxito'
+    end
   end
 
   def archived
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     @archived = true
     @campaigns = Campaign.archived_campaigns
     @tags = Campaign.archived.tag_counts_on(:tags)
@@ -179,38 +252,48 @@ class CampaignsController < ApplicationController
 
   private
 
-  def generate_stats_for_mailing(campaign)
-    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
-    messages = 0
-    dates.each do |date|
-      count = Message.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count
-      messages += count
-      data.push([date.strftime('%Y-%m-%d'), messages])
+    def generate_stats_for_mailing(campaign)
+      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+      data = []
+      messages = 0
+      dates.each do |date|
+        count = Message.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).all.count
+        messages += count
+        data.push([date.strftime('%Y-%m-%d'), messages])
+      end
+      
+      return data
     end
     
-    return data
-  end
-  
-  def generate_stats_for_petition(campaign)
-    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
-    petitions = 0
-    dates.each do |date|
-      count = Petition.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count
-      petitions += count
-      data.push([date.strftime('%Y-%m-%d'), petitions])
+    def generate_stats_for_petition(campaign)
+      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+      data = []
+      petitions = 0
+      dates.each do |date|
+        count = Petition.validated.where(:created_at => (date..date.tomorrow.to_date)).where(:campaign_id => campaign.id).where(:validated => true).all.count
+        petitions += count
+        data.push([date.strftime('%Y-%m-%d'), petitions])
+      end
+      
+      return data
     end
-    
-    return data
-  end
 
-  def generate_token
-    secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
-  end
+    def generate_token
+      secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+    end
 
-  def secure_digest(*args)
-    require 'digest/sha1'
-    Digest::SHA1.hexdigest(args.flatten.join('--'))
-  end
+    def secure_digest(*args)
+      require 'digest/sha1'
+      Digest::SHA1.hexdigest(args.flatten.join('--'))
+    end
+
+    def render_404
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout => nil }
+        format.xml  { head :not_found }
+        format.any  { head :not_found }
+      end
+    end
+
+ 
 end
