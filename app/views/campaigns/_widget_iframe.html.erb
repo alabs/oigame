@@ -124,7 +124,7 @@ fieldset {
   </div><!-- campaign-message-info -->
   <div id="campaign-message-form" class="form-stacked">
     <% if @campaign.ttype == 'mailing' %>
-      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message" do %>
+      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message", :honeypot => true do %>
         <fieldset>
           <div class="form-field">
             <%= label_tag t(:your_email) %>
@@ -144,7 +144,7 @@ fieldset {
         </fieldset>
       <% end %>
     <% elsif @campaign.ttype == 'petition' %>
-      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition" do %>
+      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition", :honeypot => true do %>
         <fieldset>
           <div class="form-field">
             <%= label_tag t(:name_and_surname) %>

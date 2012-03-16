@@ -1,7 +1,7 @@
 <h2 class="jtc">Únete</h2>
 
 <div id="campaign-message-form" class="form-stacked">
-  <%= form_tag petition_campaign_path do %>
+  <%= form_tag petition_campaign_path, :honeypot => true do %>
     <fieldset>
       <% unless user_signed_in? %>
         <p>¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón <strong>unirme</strong>.</p>

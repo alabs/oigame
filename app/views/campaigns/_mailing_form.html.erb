@@ -5,7 +5,7 @@
 </h2>
 
 <div id="campaign-message-form" class="form-stacked">
-  <%= form_tag message_campaign_path do %>
+  <%= form_tag message_campaign_path, :honeypot => true do %>
     <fieldset>
       <p>¡Que se escuche tu voz! Para participar en la campaña escribe aquí tu mensaje, nosotros nos encargamos de que llegue de forma eficaz a todos los responsables.</p>
       <br />
