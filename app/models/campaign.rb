@@ -9,7 +9,7 @@ class Campaign < ActiveRecord::Base
   attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body
   attr_accessor :recipient
 
-  validate :validate_minimum_image_size
+#  validate :validate_minimum_image_size
   attr_accessor :image_width, :image_height
 
   serialize :emails, Array
