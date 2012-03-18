@@ -98,12 +98,19 @@
       <div id="message">
         <div id="campaign-info">
           <h2>Destinatarios</h2>
-            <%= @campaign.recipients %> 
+            <p>Tu mensaje se enviará a las siguientes personas:</p>
+            <ul>
+              <% @campaign.recipients.gsub('@', '[arroba]').split(' ').each do |dest| %> 
+                <li><%= dest %></li>
+              <% end %>
+            </ul>
           <h2>Mensaje</h2>
-          <code>
-            <b>Asunto</b><%= @campaign.default_message_subject %> 
-            <p><%= @campaign.default_message_body %></p>
-          </code>
+            <b>Asunto</b>: <%= @campaign.default_message_subject %> 
+          <p>
+            <code>
+              <%= @campaign.default_message_body %>
+            </code>
+          </p>
         </div>
       </div><!-- message -->
       <% unless @campaign.status == 'archived' %>
