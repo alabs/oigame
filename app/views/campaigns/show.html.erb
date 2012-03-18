@@ -83,6 +83,9 @@
     <ul class="tabs" data-tabs="tabs" >
       <li class="active"><a href="#description">Descripción</a></li>
       <li><a href="#message">Mensaje</a></li>
+      <% unless @campaign.status == 'archived' %>
+        <li><a href="#stats">Estadísticas</a></li>
+      <% end %>
     </ul><!-- tabs -->
     <div class="tab-content" id="my-tab-content">
       <div id="description" class="active">
@@ -103,14 +106,16 @@
           </code>
         </div>
       </div><!-- message -->
+      <% unless @campaign.status == 'archived' %>
+        <div id="stats">
+          <%= render :partial => "stats_chart" %>
+        </div><!-- message -->
+      <% end %>
+
     </div><!-- tab-content -->
 
     </div><!-- show-campaign-detail-main -->
         
-      <% unless @campaign.status == 'archived' %>
-        <%= render :partial => "stats_chart" %>
-      <% end %>
-
 
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar" class="grid_8">
