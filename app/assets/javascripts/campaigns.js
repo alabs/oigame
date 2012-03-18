@@ -1,8 +1,12 @@
 
+function draw_stats_chart(){
+  var items_messages = JSON.parse($('#stats-data').text());
+  var minimal_date = $("#stats-minimal_date").text();
+  chart_draw(items_messages, 'chart_messages', '#F78181', minimal_date);
+}
 ////////////////////////// switch_campaign_type - start 
 
 function switch_campaign_type(ctype) {
-  console.log(ctype);
   switch (ctype) {
     case "petition": 
       $(".form-campaign")
@@ -159,9 +163,7 @@ $(function() {
 
   // comprobamos que se encuentre la data
   if ( $('#stats-data').text().length != 0 ) {
-    var items_messages = JSON.parse($('#stats-data').text());
-    var minimal_date = $("#stats-minimal_date").text();
-    chart_draw(items_messages, 'chart_messages', '#F78181', minimal_date);
+    draw_stats_chart();
   }
 
   $("#modal-stats-window").dialog2({
@@ -246,5 +248,12 @@ $(function() {
   });
 
   check_own_message($('#own_message'));
+
+  // mostrar stats al cambiar de tab
+  $('.tabs li').bind('change', function(){
+    if ( $(this).data('tab-type').length != 0 ){ 
+      draw_stats_chart();
+    };
+  });
 
 });

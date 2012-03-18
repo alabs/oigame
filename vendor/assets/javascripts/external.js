@@ -1,3 +1,5 @@
+//= require jquery.min
+//= require jquery_ujs
 //= require jqplot
 //= require jqplot/plugins/jqplot.canvasAxisLabelRenderer
 //= require jqplot/plugins/jqplot.dateAxisRenderer
@@ -14,4 +16,4 @@
 //= require Markdown.Converter
 //= require Markdown.Editor
 //= require Markdown.Sanitizer
-//= require bootstrap-tab
+//= require bootstrap-tabs

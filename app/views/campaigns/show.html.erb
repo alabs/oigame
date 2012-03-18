@@ -84,7 +84,7 @@
       <li class="active"><a href="#description">Descripción</a></li>
       <li><a href="#message">Mensaje</a></li>
       <% unless @campaign.status == 'archived' %>
-        <li><a href="#stats">Estadísticas</a></li>
+        <li data-tab-type="stats"><a href="#stats">Estadísticas</a></li>
       <% end %>
     </ul><!-- tabs -->
     <div class="tab-content" id="my-tab-content">

@@ -1,7 +1,5 @@
-//= require jquery
-//= require jquery_ujs
 //= require external
-//= require campaigns
+//= require_tree
     
 $(function(){
 
