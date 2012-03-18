@@ -61,7 +61,17 @@ es:
   moderate_campaigns: 'Moderar campañas'
   edit_campaign: 'Editar campaña'
   amount_to_donate: 'Cantidad a donar'
+  amount_select: "Selecciona la cantidad"
+  accepted_cards: "Tarjetas aceptadas"
   thanks_for_your_donation: 'Gracias por tu donación'
+  thanks_for_your_donation_text: 'Te damos las más sinceras gracias por tu donación a <strong>oiga.me</strong>. Con aportaciones como la tuya este proyecto puede seguir adelante.'
+  greetings: 'Un fuerte abrazo del equipo de oiga.me y <a href="http://alabs.es/">aLabs</a>.'
+  donation_problem: '<p>Hubo un problema con tu donación a <strong>oiga.me</strong> y la transacción no ha podido realizarse con éxito por lo que <strong>no se ha cargado ninguna cantidad en tu cuenta</strong>. Prueba a repetir de nuevo el proceso, si sigue habiendo problemas ponte en contacto con el equipo de <strong>aLabs</strong> en la dirección de correo donaciones[arroba]alabs.es.</p>'
+  donation_info_1: 'oiga.me mantiene un equipo de trabajo reducido al máximo para mantener sus costes bajos. Practicamos una política de transparencia económica, cada año publicaremos un resumen con lo recaudado en donaciones y el destino de las mismas.'
+  donation_info_2: 'Como organización independiente y sin ánimo de lucro <strong>aLabs</strong> destina todo el dinero de cada donación recibida en <strong>oiga.me</strong> a mantener y potenciar esta plataforma. Con tu apoyo podemos conseguir que muchas personas puedan alzar su voz y coordinarse para cambiar el mundo, tu donación colabora directamente para que miles de personas puedan organizarse y realizar acciones de gran impacto.'
+  donation_secure: 'Donación segura'
+  donation_secure_info: 'La asociación aLabs no almacena ningún dato de las tarjetas de crédito de los usuarios que realizan las donaciones, las transacciones con tarjetas de crédito son procesadas en línea directamente usando el TPV de pago de Banesto. Con este sistema seguro de pago la información viaja cifrada antes de ser enviada usando el certificado SSL. Si encuentras algún problema usando el sistema, tienes alguna duda o alguna recomendación, por favor contacta con aLabs a través del correo donaciones[arroba]alabs.es.'
+  donate_oigame: 'Realizar una donación a oiga.me'
   there_was_a_problem: 'Hubo un problema'
   deactivate: 'Desactivar'
   target: 'Objetivo de mensajes enviados'
