@@ -7,11 +7,11 @@
       <h2><%= @campaign.name %></h2>
       <div class="grid_8">
         <% unless @campaign.status == 'archived' %>
-          <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
-            Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
+          <p><strong><%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+            <%= I18n.t(:time_left) %> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= I18n.t(:days) %></strong></p>
         <% else %>
-          <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
-            Campaña archivada</strong></p>
+          <p><strong><%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+            <%= I18n.t(:archived_campaign) %></strong></p>
         <% end %>
       </div>
       <div class="clear"></div>
@@ -25,8 +25,8 @@
                 <% elsif @campaign.ttype == 'petition' %>
                   <span id="participants" class="big strong"><%= @campaign.petitions.validated.count %></span>
                 <% end %>
-                <span class="small weak">de</span>
-                <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> participantes
+                <span class="small weak"><%= I18n.t(:of) %></span>
+                <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> <%= I18n.t(:participants) %>
             </div>
             <div style="width: 0%" class="mercury"></div>
           </div>
@@ -36,7 +36,7 @@
         <p>
           <% if can?(:moderated, @campaign) %>
             <span class="label warning">
-              <a href="mailto:<%= @campaign.user.email %>">Contacto</a>
+              <a href="mailto:<%= @campaign.user.email %>"><%= I18n.t(:contact) %></a>
             </span>
           <% end %>
           <% if @campaign.status == 'archived' %>
@@ -44,19 +44,19 @@
             <% if can?(:archive, @campaign) %>
               &nbsp;&nbsp;
               <span class="label">
-                <%= link_to t(:archive), @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+                <%= link_to t(:archive), @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
               </span>
             <% end %>
             <% if can?(:moderated, @campaign) && @campaign.moderated? %>
               &nbsp;&nbsp;
               <span class="label success">
-                <%= link_to t(:activate), @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+                <%= link_to t(:activate), @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
               </span>
             <% end %>
             <% if can?(:deactivate, @campaign) && @campaign.published? %>
               &nbsp;&nbsp;
               <span class="label success">
-                <%= link_to t(:deactivate), @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
+                <%= link_to t(:deactivate), @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
               </span>
             <% end %>
             <% if can? :update, @campaign %>
@@ -68,7 +68,7 @@
             <% if can? :destroy, @campaign %>
               &nbsp;&nbsp;
               <span class="label important">
-                <%= link_to t(:delete), @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
+                <%= link_to t(:delete), @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => t(:are_you_sure), :method => :delete %>
               </span>
             <% end %>
           <% end %>
@@ -81,10 +81,10 @@
           <% end %>
 
     <ul class="tabs" data-tabs="tabs" >
-      <li class="active"><a href="#description">Descripción</a></li>
-      <li><a href="#message">Mensaje</a></li>
+      <li class="active"><a href="#description"><%= I18n.t(:description) %></a></li>
+      <li><a href="#message"><%= I18n.t(:message) %></a></li>
       <% unless @campaign.status == 'archived' %>
-        <li data-tab-type="stats"><a href="#stats">Estadísticas</a></li>
+        <li data-tab-type="stats"><a href="#stats"><%= I18n.t(:stats) %></a></li>
       <% end %>
     </ul><!-- tabs -->
     <div class="tab-content" id="my-tab-content">
@@ -97,15 +97,15 @@
       </div><!-- description -->
       <div id="message">
         <div id="campaign-info">
-          <h2>Destinatarios</h2>
-            <p>Tu mensaje se enviará a las siguientes personas:</p>
+          <h2><%= I18n.t(:recipients) %></h2>
+          <p><%= I18n.t(:recipients_show) %></p>
             <ul>
               <% @campaign.recipients.gsub('@', '[arroba]').split(' ').each do |dest| %> 
                 <li><%= dest %></li>
               <% end %>
             </ul>
-          <h2>Mensaje</h2>
-            <b>Asunto</b>: <%= @campaign.default_message_subject %> 
+            <h2><%= I18n.t(:message) %></h2>
+            <b><%= I18n.t(:subject) %></b>: <%= @campaign.default_message_subject %> 
           <p>
             <pre>
               <%= @campaign.default_message_body %>
@@ -141,11 +141,11 @@
           </div>
         <% end %>
         
-        <h2 class="jtc">Difunde</h2>
+        <h2 class="jtc"><%= I18n.t(:spread) %></h2>
         <%= render :partial => 'modal_widget_form' %>
         <div id="diffusion">
-          Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.
-          <a id="show-modal-widget" href="#" class="btn large primary center">Pon el formulario en tu web</a>
+          <%= I18n.t(:spread_info) %>
+          <a id="show-modal-widget" href="#" class="btn large primary center"><%= I18n.t(:spread_form) %></a>
         </div>
 
         <%= render :partial => "communication" %>

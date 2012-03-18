@@ -55,7 +55,7 @@
         <% end %>
       <% end %>
       <br /><br />
-      <h2>Etiquetas más usadas</h2>
+      <h2><%= I18n.t(:tags_most_used) %></h2>
       <% unless @archived %>
         <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
           <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>

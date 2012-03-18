@@ -1,21 +1,21 @@
 <div id="modal-widget-window" class="hide">
-  <h1>Integrar formulario</h1>
+  <h1><%= I18n.t(:integrate_form) %></h1>
   <div id="modal-widget-window-main">
     <div id="modal-widget-window-integrate">
-      <p>Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:</p><br />
-      <b>Opción 1</b>
+      <p><%= I18n.t(:integrate_form_explanation_1 %></p><br />
+      <b><%= I18n.t(:option) %> 1</b>
       <pre><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></pre>
-      <p>En caso que el código no te funcione, puedes probar con la versión sin Javascript ni iframes, en HTML limpio:</p>
-      <b>Opción 2</b>
+      <p><%= I18n.t(:integrate_form_explanation_2 %></p>
+      <b><%= I18n.t(:option) %> 2</b>
       <textarea id="modal-widget-html" class="grid_9" rows="10">
       </textarea>
     </div><!-- modal-widget-window-integrate -->
-      <p>Resultado</p>
+      <p><%= I18n.t(:result) %></p>
     <div id="modal-widget-window-example">
       <%= render :partial => "widget_iframe" %>
     </div><!-- modal-widget-window-example -->
   </div><!-- modal-widget-window-wrapper -->
   <div class="actions">
-      <button class="primary close-dialog">Cerrar</button>
+    <button class="primary close-dialog"><%= I18n.t(:close) %></button>
   </div>
 </div><!-- modal-widget-window -->

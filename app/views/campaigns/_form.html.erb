@@ -9,7 +9,7 @@
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="form-field">
       <%= f.label t(:name_of_campaign) %>
-      <%= f.text_field :name, :class => 'span8', :required => true, :placeholder => 'Título de la campaña' %>
+      <%= f.text_field :name, :class => 'span8', :required => true, :placeholder => t(:name_of_campaign) %>
       <% unless @campaign.errors[:name].blank? %>
         <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
       <% end %>
@@ -17,7 +17,7 @@
     <div class="form-field">
       <%= f.label t(:image_of_campaign) %>
       <%= f.file_field :image, :class => 'input-file' %>
-      <p>Debe tener un tamaño de 500x400</p>
+      <p><%= I18n.t(:minimal_size) %></p>
       <% unless @campaign.errors[:image].blank? %>
         <span class="error_message"><%= @campaign.errors[:image].to_sentence %></span>
       <% end %>
@@ -26,9 +26,9 @@
       <%= f.label t(:intro_of_campaign) %>
       <div class="wmd-panel">
         <div id="wmd-button-bar"></div>
-        <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span8', :required => true, :placeholder => 'Entradilla de la campaña, este texto aparece en el listado de campañas.' %>
+        <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span8', :required => true, :placeholder => t(:intro_of_campaign_help) %>
       </div>
-      <a href="#" class="show_markdown_help">ver ayuda de marcado</a>
+      <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
       <div class="markdown_help" style="display:none;">
         <%= render :partial => 'markdown_help' %>
       </div>
@@ -40,9 +40,9 @@
       <%= f.label t(:body_of_campaign) %>
       <div class="wmd-panel">
         <div id="wmd-button-bar-second"></div>
-        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span8', :required => true, :placeholder => 'Texto desarrollado de la campaña' %>
+        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span8', :required => true, :placeholder => t(:body_of_campaign_help) %>
       </div>
-      <a href="#" class="show_markdown_help">ver ayuda de marcado</a>
+      <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
       <div class="markdown_help" style="display:none;">
         <%= render :partial => 'markdown_help' %>
       </div>
@@ -52,23 +52,23 @@
     </div>
     <div class="form-field">
       <%= f.label t(:type_of_campaign) %>
-      <%= select(:campaign, :ttype, Campaign::TYPES.select {|k,v| [k,v]}.invert, {:prompt => 'Selecciona tipo de campaña'}) %>
+      <%= select(:campaign, :ttype, Campaign::TYPES.select {|k,v| [k,v]}.invert, {:prompt => t(:type_of_campaign_prompt)}) %>
     </div>
     <div class="form-field form-campaign hide">
       <%= f.label t(:recipients) %>
-      <%= f.text_area :recipients, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Lista de direcciones de correo de destinatarios, una por línea.' %>
+      <%= f.text_area :recipients, :rows => 10, :class => 'span8', :required => true, :placeholder => t(:recipients_help) %>
     </div>
     <div class="form-field form-campaign hide">
       <%= f.label t(:default_message_subject) %>
-      <%= f.text_field :default_message_subject, :class => 'span8', :required => true, :placeholder => 'Asunto del mensaje por defecto.' %>
+      <%= f.text_field :default_message_subject, :class => 'span8', :required => true, :placeholder => t(:default_message_subject) %>
     </div>
     <div class="form-field form-campaign hide">
       <%= f.label t(:default_message_body) %>
-      <%= f.text_area :default_message_body, :rows => 10, :class => 'span8', :required => true, :placeholder => 'Mensaje por defecto que se enviará en la campaña por los participantes que no quieran escribir su propio mensaje.' %>
+      <%= f.text_area :default_message_body, :rows => 10, :class => 'span8', :required => true, :placeholder => t(:default_message_body_help) %>
     </div>
     <div class="form-field">
-      <%= f.label 'Número de personas que piensas que se unirán a la campaña' %>
-      <%= f.text_field :target, :class => 'span8', :placeholder => 'Número de personas que piensas que se unirán' %>
+      <%= f.label t(:number_of_people) %>
+      <%= f.text_field :target, :class => 'span8', :placeholder => t(:number_of_people) %>
     </div>
     <div class="form-field">
       <%= f.label t(:due_date_of_campaign) %>
