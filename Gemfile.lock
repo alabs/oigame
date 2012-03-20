@@ -1,5 +1,6 @@
-PATH
-  remote: /home/anders/Work/translate
+GIT
+  remote: http://github.com/alabs/translate
+  revision: 241d4244a4218f4d8b96b636d31f660ced2cab6e
   specs:
     translate-rails3 (0.2.3)
       ya2yaml (~> 0.30)
