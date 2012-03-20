@@ -157,3 +157,6 @@ es:
     page: 'Página'
     to: 'hacia'
     save: 'Guardar'
+  unauthorized:
+    default: "No estás autorizado a acceder a esta página"
+
