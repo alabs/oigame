@@ -26,9 +26,10 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new
-    
+
     if user.role? :admin
       can :manage, Campaign
+      can :manage, SubOigame
     end
     
     if user.role? :editor
@@ -42,6 +43,9 @@ class Ability
       can :validate, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
+      # sub_oigames
+      can :read, SubOigame
+      can :update, SubOigame, :user_id => user.sub_oigame
     end
 
     if user.role? :user
@@ -55,6 +59,9 @@ class Ability
       can :validate, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
+      # sub_oigames
+      can :read, SubOigame
+      can :update, SubOigame, :user_id => user.id
     end
   end
 end

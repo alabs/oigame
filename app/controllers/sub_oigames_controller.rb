@@ -1,6 +1,7 @@
 class SubOigamesController < ApplicationController
   # para cancan
   load_resource :find_by => :slug
+  authorize_resource
  
   # GET /o
   # GET /o.json
