@@ -125,7 +125,20 @@
         </div><!-- fill -->
       </div><!-- topbar -->
     </div><!-- header-wrapper -->
+    <% if defined? @sub_oigame %>
+      <style>
+        <%= @sub_oigame.html_style %>
+      </style>
+      <div id="sub_oigame-header">
+        <%= sanitize @sub_oigame.html_header, :tags => %(a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
     <%= yield %>
+    <% if defined? @sub_oigame %>
+      <div id="sub_oigame-footer">
+        <%= sanitize @sub_oigame.html_footer, :tags => %(a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
     <div id="links-wrapper">
       <div id="links">
         <div id="links-logo">

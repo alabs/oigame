@@ -1,7 +1,6 @@
 class SubOigamesController < ApplicationController
   # para cancan
   load_resource :find_by => :slug
-  layout :sub_oigame_layout
  
   # GET /o
   # GET /o.json
