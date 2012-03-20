@@ -44,4 +44,4 @@ gem 'sitemap_generator'
 gem 'redis-store'
 gem 'honeypot-captcha'
 
-gem 'translate-rails3', :require => "translate", :path => '/home/anders/Work/translate'
+gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
