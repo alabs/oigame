@@ -20,6 +20,13 @@
         <%= f.text_field :name %>
       </div>
     </div>
+
+    <div class="form-field">
+      <%= f.label :user_id, "Correo del usuario administrador" %>
+      <div class="clearfix">
+        <%= f.select :user_id, User.all.collect {|u| [ u.email, u.id ] } %>
+      </div>
+    </div>
   </fieldset>
   <fieldset>
 

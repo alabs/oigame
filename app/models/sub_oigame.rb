@@ -1,5 +1,5 @@
 class SubOigame < ActiveRecord::Base
-  #belongs_to :user
+  belongs_to :user
   has_many :campaigns
 
   before_save :generate_slug
@@ -17,3 +17,4 @@ class SubOigame < ActiveRecord::Base
   end
 
 end
+
