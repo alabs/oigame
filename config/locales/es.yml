@@ -134,3 +134,26 @@ es:
   bold: "negrita"
   quoted: "texto citado"
   another_format: "La líneas que empiezan con cuatro espacios son tratadas con otro formato:"
+  translate:
+    translations: "Traducciones"
+    all: "todos"
+    translated: "traducidas"
+    untranslated: "sin traducir"
+    changed: "cambiada"
+    search_filter: "Filtrado de busqueda"
+    show: "Mostrar"
+    sort_by: "Ordenar por"
+    translate_from: "Traducir desde"
+    translations_from: "Traducciones desde"
+    key: 'clave'
+    text: 'texto'
+    display: 'Mostrar'
+    search: 'Buscar'
+    found: 'Se han encontrado'
+    messages: 'mensajes'
+    clear: 'limpiar'
+    reload: 'Recargar mensajes'
+    pages: 'Páginas'
+    page: 'Página'
+    to: 'hacia'
+    save: 'Guardar'

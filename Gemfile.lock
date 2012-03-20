@@ -1,3 +1,9 @@
+PATH
+  remote: /home/anders/Work/translate
+  specs:
+    translate-rails3 (0.2.3)
+      ya2yaml (~> 0.30)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -192,6 +198,7 @@ GEM
       raindrops (~> 0.6)
     warden (1.0.6)
       rack (>= 1.0)
+    ya2yaml (0.31)
     yaml_db (0.2.2)
     yard (0.7.3)
 
@@ -221,6 +228,7 @@ DEPENDENCIES
   sass-rails (~> 3.1.4)
   sitemap_generator
   therubyracer
+  translate-rails3!
   turn
   twitter
   uglifier (>= 1.0.3)
