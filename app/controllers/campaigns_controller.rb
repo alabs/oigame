@@ -3,7 +3,7 @@ class CampaignsController < ApplicationController
 
   before_filter :protect_from_spam, :only => [:message, :petition]
   protect_from_forgery :except => [:message, :petition]
-  layout :sub_oigame_layout, :except => [:widget, :widget_iframe]
+  layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate]
 
   # para cancan
