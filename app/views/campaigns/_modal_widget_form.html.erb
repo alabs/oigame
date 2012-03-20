@@ -2,10 +2,10 @@
   <h1><%= I18n.t(:integrate_form) %></h1>
   <div id="modal-widget-window-main">
     <div id="modal-widget-window-integrate">
-      <p><%= I18n.t(:integrate_form_explanation_1 %></p><br />
+      <p><%= I18n.t(:integrate_form_explanation_1) %></p><br />
       <b><%= I18n.t(:option) %> 1</b>
       <pre><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></pre>
-      <p><%= I18n.t(:integrate_form_explanation_2 %></p>
+      <p><%= I18n.t(:integrate_form_explanation_2) %></p>
       <b><%= I18n.t(:option) %> 2</b>
       <textarea id="modal-widget-html" class="grid_9" rows="10">
       </textarea>
