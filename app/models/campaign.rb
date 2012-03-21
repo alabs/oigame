@@ -34,7 +34,7 @@ class Campaign < ActiveRecord::Base
   class << self
 
     def last_campaigns(limit = nil)
-      order('published_at DESC').published.limit(limit).all
+      order('priority DESC').order('published_at DESC').published.limit(limit).all
     end
 
     def last_campaigns_by_tag(tag, limit = nil)

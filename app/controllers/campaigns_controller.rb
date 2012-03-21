@@ -250,6 +250,28 @@ class CampaignsController < ApplicationController
     @tags = Campaign.archived.tag_counts_on(:tags)
   end
 
+  def prioritize
+    @campaign.priority = true
+    @campaign.save!
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame.nil?
+      redirect_to @campaign, :notice => 'La campaña ha sido marcada con prioridad'
+    else
+      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido marcada con prioridad'
+    end
+  end
+
+  def deprioritize
+    @campaign.priority = false
+    @campaign.save!
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame.nil?
+      redirect_to @campaign, :notice => 'La campaña ha sido desmarcada con prioridad'
+    else
+      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido desmarcada con prioridad'
+    end
+  end
+
   private
 
     def generate_stats_for_mailing(campaign)

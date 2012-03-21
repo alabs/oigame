@@ -15,7 +15,7 @@
         <% end %>
       </div>
       <div class="clear"></div>
-      <div class="grid_9">
+      <div class="grid_12">
         <div id="campaign-information">
           <div class="thermometer">
             <div class="thermocontainer">
@@ -64,6 +64,18 @@
               <span class="label notice">
                 <%= link_to t(:edit), @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) %>
               </span>
+            <% end %>
+            <% if can? :priority, @campaign %>
+              &nbsp;&nbsp;
+              <% unless @campaign.priority == true %>
+                <span class="label" style="background-color:#088A85;">
+                  <%= link_to t(:prioritize), @sub_oigame ? prioritize_sub_oigame_campaign_path(@sub_oigame) : prioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                </span>
+              <% else %>
+                <span class="label" style="background-color:#088A85;">
+                  <%= link_to t(:deprioritize), @sub_oigame ? deprioritize_sub_oigame_campaign_path(@sub_oigame) : deprioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                </span>
+              <% end %> 
             <% end %>
             <% if can? :destroy, @campaign %>
               &nbsp;&nbsp;

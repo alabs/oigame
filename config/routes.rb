@@ -13,6 +13,8 @@ Oigame::Application.routes.draw do
         get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
         post 'activate'
         post 'deactivate'
+        post 'prioritize'
+        post 'deprioritize'
         post 'archive'
       end
       collection do
@@ -50,6 +52,8 @@ Oigame::Application.routes.draw do
       get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
       post 'activate'
       post 'deactivate'
+      post 'prioritize'
+      post 'deprioritize'
       post 'archive'
     end
     collection do
