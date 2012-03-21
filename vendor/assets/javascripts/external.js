@@ -17,4 +17,4 @@
 //= require Markdown.Editor
 //= require Markdown.Sanitizer
 //= require bootstrap-tabs
-//= require translate
+// require translate
