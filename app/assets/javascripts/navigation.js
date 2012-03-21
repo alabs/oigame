@@ -18,9 +18,13 @@ function check_current_navbar(section){
     case "donate":
       $("#header-donate").addClass("active");
       break;
-    case "answers":
-      $("#header-answers").addClass("active");
+    case "help":
+      $("#header-help").addClass("active");
       generateTOC("#preguntas");
+      if (query) { goTo(query); }
+      break;
+    case "tutorial":
+      $("#header-tutorial").addClass("active");
       generateTOC("#tutorial");
       if (query) { goTo(query); }
       break;

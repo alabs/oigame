@@ -7,7 +7,10 @@ class PagesController < ApplicationController
     @users += Petition.validated.count
   end
 
-  def answers
+  def help
+  end
+
+  def tutorial
   end
 
   def privacy_policy
