@@ -70,7 +70,11 @@ class CampaignsController < ApplicationController
       redirect_url = sub_oigame_campaigns_url(@suboigame)
     end
     if @campaign.save
-      Mailman.send_campaign_to_social_council(@campaign).deliver
+      if @sub_oigame
+        Mailman.send_campaign_to_sub_oigame_admin(@sub_oigame, @campaign).deliver
+      else
+        Mailman.send_campaign_to_social_council(@campaign).deliver
+      end
       flash[:notice] = 'Tu campaña se ha creado con éxito y está pendiente de moderación.'
       redirect_to redirect_url
     else

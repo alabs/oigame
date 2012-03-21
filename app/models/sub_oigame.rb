@@ -4,7 +4,7 @@ class SubOigame < ActiveRecord::Base
 
   before_save :generate_slug
 
-  validates_presence_of :name
+  validates :name, :user, :presence => true
 
   def to_param
     slug
