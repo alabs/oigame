@@ -1,9 +1,21 @@
 <%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
-<% if @sub_oigame %>
-  <% url = url_for(:action=>"create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
-<% else %>
-  <% url = @campaign %>
+
+<% if params[:action] == "create" %>
+  <% if @sub_oigame %>
+    <% url = url_for(:action=> "create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
+  <% else %>
+    <% url = url_for(:action=> "create", :controller=> "campaigns") %>
+  <% end %>
 <% end %>
+
+<% if params[:action] == "edit" %>
+  <% if @sub_oigame %>
+    <% url = sub_oigame_campaign_path(@sub_oigame, @campaign) %>
+  <% else %>
+    <% url = campaign_path(@campaign) %>
+  <% end %>
+<% end %>
+
 <%= form_for @campaign, :url => url, :html => {:multipart => true} do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>

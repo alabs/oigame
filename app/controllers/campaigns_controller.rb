@@ -86,10 +86,10 @@ class CampaignsController < ApplicationController
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = 'La campaña fué actualizada con éxito.'
       @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-      if @sub_oigame.nil?
-        redirect_to @campaign
+      if @sub_oigame
+        redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign)
       else
-        redirect_to sub_oigame_campaign_path(@campaign, @sub_oigame)
+        redirect_to @campaign
       end
     else
       render :action => :edit
