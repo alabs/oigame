@@ -10,10 +10,12 @@
         <p><%= I18n.t(:may_your_voice_signed) %></p>
         <br />
       <% end %>
+      <% unless user_signed_in? and current_user.name != "" %>
         <div class="form-field">
           <%= label_tag t(:name_and_surname) %>
           <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos' %>
         </div>
+      <% end %>
       <% unless user_signed_in? %>
         <div class="form-field">
           <%= label_tag t(:your_email) %>
