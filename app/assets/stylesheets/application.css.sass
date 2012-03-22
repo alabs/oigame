@@ -22,6 +22,23 @@ html
 a, a:hover
   color: $main-color
 
+
+// inicio del fix para el markdown, parece que son sobreescritos :S por el reset
+strong
+  font-weight: bold !important
+
+blockquote
+  border-left: 5px solid #EEEEEE !important
+  margin-bottom: 18px !important
+  padding-left: 15px !important
+
+em 
+  font-style: italic !important
+  font-weight: inherit !important
+  line-height: inherit !important
+
+// fin del fix para el markdown
+
 .css1
   font-size: 1.0em
 .css2
@@ -832,3 +849,4 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     width: 27px
     margin-top: -3px
     cursor: pointer
+
