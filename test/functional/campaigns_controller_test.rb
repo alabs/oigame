@@ -3,6 +3,11 @@ require 'test_helper'
 class CampaignsControllerTest < ActionController::TestCase
   setup do
     @campaign = campaigns(:one)
+    @user = users(:normal)
+    @user.confirm!
+    @admin = users(:admin)
+    @admin.role = :admin
+    @admin.confirm!
   end
 
   test "should get index" do
@@ -11,13 +16,24 @@ class CampaignsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:campaigns)
   end
 
-  test "should get new" do
+  test "should not get new as anon" do
+    get :new
+    assert_response :error
+  end
+
+  test "should get new as user" do
     get :new
     assert_response :success
   end
 
-  test "should create campaign" do
+  test "should not create campaign as anon" do
+    post :create, campaign: @campaign.attributes
+    assert_response :warden
+  end
+
+  test "should create campaign as user" do
     assert_difference('Campaign.count') do
+      sign_in @user
       post :create, campaign: @campaign.attributes
     end
 
@@ -41,6 +57,7 @@ class CampaignsControllerTest < ActionController::TestCase
 
   test "should destroy campaign" do
     assert_difference('Campaign.count', -1) do
+      sign_in @admin
       delete :destroy, id: @campaign.to_param
     end
 
