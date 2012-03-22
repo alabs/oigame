@@ -16,19 +16,20 @@ class CampaignsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:campaigns)
   end
 
-  test "should not get new as anon" do
-    get :new
-    assert_response :error
-  end
-
   test "should get new as user" do
+    sign_in @user
     get :new
     assert_response :success
   end
 
-  test "should not create campaign as anon" do
+  test "should redirect on new as anon" do
+    get :new
+    assert_response :redirect
+  end
+
+  test "should redirect on create campaign as anon" do
     post :create, campaign: @campaign.attributes
-    assert_response :warden
+    assert_response :redirect
   end
 
   test "should create campaign as user" do
@@ -41,13 +42,14 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should show campaign" do
+    debugger
     get :show, id: @campaign.to_param
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should redirect on edit as anon" do
     get :edit, id: @campaign.to_param
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should update campaign" do
