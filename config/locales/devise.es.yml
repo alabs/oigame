@@ -51,8 +51,8 @@ es:
       failure: 'No has sido autorizado en la cuenta %{kind} porque "%{reason}".'
     mailer:
       confirmation_instructions:
-        subject: 'Instrucciones de confirmación'
+        subject: '[oiga.me] Instrucciones de confirmación'
       reset_password_instructions:
-        subject: 'Instrucciones de recuperación de contraseña'
+        subject: '[oiga.me] Instrucciones de recuperación de contraseña'
       unlock_instructions:
-        subject: 'Instrucciones para desbloquear'
+        subject: '[oiga.me] Instrucciones para desbloquear'
