@@ -18,6 +18,7 @@ class Campaign < ActiveRecord::Base
 
   validates :name, :uniqueness => { :scope => :sub_oigame_id }
   validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
+  validates :intro, :length => { :maximum => 500 }
 
   acts_as_taggable
 

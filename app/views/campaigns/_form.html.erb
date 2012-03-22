@@ -26,7 +26,8 @@
       <%= f.label t(:intro_of_campaign) %>
       <div class="wmd-panel">
         <div id="wmd-button-bar"></div>
-        <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span8', :required => true, :placeholder => t(:intro_of_campaign_help) %>
+        <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span8', :required => true, :placeholder => t(:intro_of_campaign_help), :maxlength => 500 %>
+        <p><%= I18n.t(:intro_limit) %></p>
       </div>
       <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
       <div class="markdown_help" style="display:none;">

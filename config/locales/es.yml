@@ -136,6 +136,7 @@ es:
   another_format: "La líneas que empiezan con cuatro espacios son tratadas con otro formato:"
   prioritize: "Prioritizar"
   deprioritize: "Desprioritizar"
+  intro_limit: "Tiene un límite de 500 caracteres"
   translate:
     translations: "Traducciones"
     all: "todos"
