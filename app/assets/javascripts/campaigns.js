@@ -10,19 +10,23 @@ function switch_campaign_type(ctype) {
   switch (ctype) {
     case "petition": 
       $(".form-campaign")
-        .hide("slow")
+        .hide("slow");
+      $(".form-campaign input, .form-campaign textarea")
         .removeAttr("required"); 
       break;
     case "mailing":
       $(".form-campaign")
         .show("slow")
-        .attr("required", "required")
         .removeClass("hide");
+      $(".form-campaign input, .form-campaign textarea")
+        .attr("required", "required");
       break;
     default:
       $(".form-campaign")
-        .hide("slow")
-        .removeAttr("required"); 
+        .show("slow")
+        .removeClass("hide");
+      $(".form-campaign input, .form-campaign textarea")
+        .attr("required", "required");
       break;
   }
 }
