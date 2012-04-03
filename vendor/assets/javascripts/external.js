@@ -18,3 +18,4 @@
 //= require Markdown.Sanitizer
 //= require bootstrap-tabs
 // require translate
+//= require jquery.mailcheck.min

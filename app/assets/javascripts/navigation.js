@@ -32,23 +32,23 @@ function check_current_navbar(section){
 }
 ////////////////////////// check-current-navbar start
 //
+function notify(message, theme){
+  $.jGrowl(message, { 
+    sticky: true, 
+    theme: "flash-" + theme,
+    open: function() { $(this).click( function(){ $(this).fadeOut(); }) }
+  });
+}
+
+
+//
 $(function() {
 
   // mensajes de flash, para que se muestren con jGrowl automaticamente
   $(".flash-messages").each(function() {
     var msg = $(this).children("p");
     var theme = $(this).children("p").attr("class");
-    $.jGrowl(msg.text(), { 
-      sticky: true, 
-      theme: "flash-" + theme,
-      open: function() { 
-        $(this).click( 
-          function(){ 
-            $(this).fadeOut();
-          } 
-        )
-      }
-    });
+    notify(msg.text(), theme)
   });
 
   // Para la barra de navegación del login
