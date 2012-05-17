@@ -6,6 +6,8 @@ class SubOigame < ActiveRecord::Base
 
   validates :name, :user, :presence => true
 
+  mount_uploader :logo, LogoUploader
+
   def to_param
     slug
   end

@@ -8,21 +8,28 @@
       <h2>Diseño</h2>
 
       <p>
-        <b>Header (HTML):</b>  
+        <h3>Logo</h3>  
+        <pre>
+          <%= image_tag @sub_oigame.logo %>
+        </pre>
+      </p>
+
+      <p>
+        <h3>Header (HTML)</h3>  
         <pre>
           <%= @sub_oigame.html_header %>
         </pre>
       </p>
 
       <p>
-        <b>Footer (HTML):</b>
+        <h3>Footer (HTML)</h3>
         <pre>
           <%= @sub_oigame.html_footer %>
         </pre>
       </p>
 
       <p>
-        <b>Estilos (CSS):</b>
+        <h3>Estilos (CSS)</h3>
         <pre>
           <%= @sub_oigame.html_style %>
         </pre>
