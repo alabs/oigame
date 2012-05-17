@@ -92,22 +92,29 @@
             <%= image_tag(@campaign.image_url.to_s) %>
           <% end %>
 
-    <ul class="tabs" data-tabs="tabs" >
-      <li class="active"><a href="#description"><%= I18n.t(:description) %></a></li>
-      <li><a href="#message"><%= I18n.t(:message) %></a></li>
+
+    <ul id="campaign-tab" class="nav nav-tabs">
+      <li class="active">
+        <a data-toggle="tab" href="#description"><%= I18n.t(:description) %></a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#message"><%= I18n.t(:message) %></a>
+      </li>
       <% unless @campaign.status == 'archived' %>
-        <li data-tab-type="stats"><a href="#stats"><%= I18n.t(:stats) %></a></li>
+        <li data-tab-type="stats">
+          <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
+        </li>
       <% end %>
     </ul><!-- tabs -->
-    <div class="tab-content" id="my-tab-content">
-      <div id="description" class="active">
+    <div class="tab-content">
+      <div id="description" class="active tab-pane">
         <div id="campaign-info">
           <h2>Descripción</h2>
           <%= @campaign.to_html(@campaign.intro).html_safe %> 
           <%= @campaign.to_html(@campaign.body).html_safe %> 
         </div>
       </div><!-- description -->
-      <div id="message">
+      <div id="message" class="tab-pane fade">
         <div id="campaign-info">
           <h2><%= I18n.t(:recipients) %></h2>
           <p><%= I18n.t(:recipients_show) %></p>
@@ -126,7 +133,7 @@
         </div>
       </div><!-- message -->
       <% unless @campaign.status == 'archived' %>
-        <div id="stats">
+        <div id="stats" class="tab-pane fade">
           <%= render :partial => "stats_chart" %>
         </div><!-- message -->
       <% end %>

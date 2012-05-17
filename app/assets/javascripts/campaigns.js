@@ -254,8 +254,9 @@ $(function() {
   check_own_message($('#own_message'));
 
   // mostrar stats al cambiar de tab
-  $('.tabs li').bind('change', function(){
-    if ( $(this).data('tab-type').length != 0 ){ 
+  $('a[data-toggle="tab"]').on('shown', function (e) {
+    console.log();
+    if ( $(this).attr('href') === "#stats" ){ 
       draw_stats_chart();
     };
   });
