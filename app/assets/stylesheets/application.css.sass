@@ -1,5 +1,5 @@
 @import "960"
-@import "bootstrap-1.3.0.min"
+@import "bootstrap"
 @import "wisiwisi-editor"
 @import "jquery.dialog2"
 @import "jquery.jqplot"
@@ -72,8 +72,9 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
 .topbar
   position: inherit
 
-#topbar-wrapper
-  @extend .container_24
+.navbar
+  width: 100%
+  margin-bottom: 0
 
   #corner
     background-color: #AA0000
@@ -123,14 +124,22 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     strong
       font-size: 1.1em
 
+  .secondary-nav
+    float: right
+    margin-top: 0.7em
+    a
+      color: #999999
+    fieldset
+      border: 0
+
   form
     @extend .form-stacked
 
     #signin-menu
       display: none
       position: absolute
-      margin-top: -6px
-      margin-left: -50px
+      margin-top: 9px
+      margin-left: -39px
       padding: 12px
       width: 240px
       background-color: #222
