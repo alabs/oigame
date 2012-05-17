@@ -1,19 +1,24 @@
 <div id="modal-widget-window" class="hide">
   <h1><%= I18n.t(:integrate_form) %></h1>
   <div id="modal-widget-window-main">
-    <div id="modal-widget-window-integrate">
-      <p><%= I18n.t(:integrate_form_explanation_1) %></p><br />
-      <b><%= I18n.t(:option) %> 1</b>
-      <pre><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></pre>
-      <p><%= I18n.t(:integrate_form_explanation_2) %></p>
-      <b><%= I18n.t(:option) %> 2</b>
-      <textarea id="modal-widget-html" class="grid_9" rows="10">
-      </textarea>
-    </div><!-- modal-widget-window-integrate -->
-      <p><%= I18n.t(:result) %></p>
-    <div id="modal-widget-window-example">
-      <%= render :partial => "widget_iframe" %>
-    </div><!-- modal-widget-window-example -->
+    <div class="span8">
+      <div class="well">
+        <b><%= I18n.t(:option) %> 1</b>
+        <p><%= I18n.t(:integrate_form_explanation_1) %></p><br />
+        <textarea><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></textarea>
+      </div><!-- well -->
+      <div class="well" style="height:19em;">
+        <b><%= I18n.t(:option) %> 2</b>
+        <p><%= I18n.t(:integrate_form_explanation_2) %></p><br />
+          <textarea id="modal-widget-html" class="grid_9" rows="10"> </textarea>
+      </div><!-- well -->
+    </div><!-- span8 -->
+    <div class="span5">
+      <p class="label"><%= I18n.t(:result) %></p>
+      <div id="modal-widget-window-example">
+        <%= render :partial => "widget_iframe" %>
+      </div><!-- modal-widget-window-example -->
+    </div><!-- span5 -->
   </div><!-- modal-widget-window-wrapper -->
   <div class="actions">
     <button class="primary close-dialog"><%= I18n.t(:close) %></button>
