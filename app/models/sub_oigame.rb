@@ -1,10 +1,12 @@
 class SubOigame < ActiveRecord::Base
-  #belongs_to :user
+  belongs_to :user
   has_many :campaigns
 
   before_save :generate_slug
 
-  validates_presence_of :name
+  validates :name, :user, :presence => true
+
+  mount_uploader :logo, LogoUploader
 
   def to_param
     slug
@@ -17,3 +19,4 @@ class SubOigame < ActiveRecord::Base
   end
 
 end
+

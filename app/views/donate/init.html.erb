@@ -1,4 +1,4 @@
-<% @page_title = 'Realizar una donación' %>
+<% @page_title = t(:donate_oigame) %>
 
 <div id="page-wrapper">
   <div id="page">
@@ -7,7 +7,7 @@
       <div id="donate-form" class="form-stacked">
         <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post">
           <fieldset>
-            <legend>Selecciona la cantidad</legend>
+            <legend><%= I18n.t(:amount_select) %></legend>
             <input type="hidden" name="nombre_comercio" value="ALABS" />
             <input type="hidden" name="referencia" value="<%= @reference %>" />
             <input type="hidden" name="moneda" value="EUR" />
@@ -26,11 +26,11 @@
               </select>
             </div>
             <div class="form-actions">
-              <input type="submit" name="submit" value="Realizar la donación" class="btn primary" />
+              <input type="submit" name="submit" value="<%= I18n.t(:donate_oigame) %>" class="btn primary" />
             </div>
           </fieldset>
         </form>
-        <p>Tajetas aceptadas:<br />
+        <p><%= I18n.t(:accepted_cards) %>:<br />
         <%= image_tag('credit-cards.jpg') %>
       </div><!-- donate-form -->
     </div><!-- page-info -->

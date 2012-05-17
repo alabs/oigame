@@ -13,8 +13,8 @@
       <% if user_signed_in? %>
         <br >
         <br />
-        <%= link_to "Ver todas las campañas", campaigns_path, :class => "btn primary large" %>
-        <%= link_to t(:propose_campaign), new_campaign_path, :class => "btn primary large", :style => "margin-left:2em" %>
+        <%= link_to "Ver todas las campañas", campaigns_path, :class => "btn btn-primary btn-large" %>
+        <%= link_to t(:propose_campaign), new_campaign_path, :class => "btn btn-primary btn-large", :style => "margin-left:2em" %>
       <% else %>
         <br >
         <br />
@@ -88,8 +88,8 @@
     <div id="sayit">
       <h2>Dilo</h2>
       <p>Que se escuche tu voz. <strong>oiga.me</strong> es una plataforma en la que puedes montar campañas online en las que el mundo entero puede participar.</p>
-      <p><strong><%= link_to '> Aprende a usar oiga.me', answers_path %></strong></p>
-      <%= link_to image_tag('sayit.jpg'), answers_path %>
+      <p><strong><%= link_to '> Aprende a usar oiga.me', tutorial_path %></strong></p>
+      <%= link_to image_tag('sayit.jpg'), tutorial_path %>
     </div>
     <div id="repeat">
       <h2>Repítelo</h2>

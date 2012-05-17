@@ -1,0 +1,32 @@
+<%
+	from_text = lookup(from_locale, key)
+	to_text = lookup(to_locale, key)
+	line_size = 100
+	n_lines = n_lines(from_text, line_size)
+	field_name = "key[#{key}]"
+%>
+
+<div class="translation">    
+<% if from_text.present? %>
+	<p class="translation-text">
+		<%= simple_format(h(from_text)) %>
+	</p>
+<% end %>
+<p class="edit-form">
+<% if n_lines > 1 %>
+	<%= text_area_tag(field_name, to_text, :size => "#{line_size}x#{n_lines}", :id => key) %>
+<% else %>
+	<%= text_field_tag(field_name, to_text, :size => line_size, :id => key) %>
+<% end %>
+</p>
+<p>
+	<em>
+		<%= translate_link(key, from_text, @from_locale, @to_locale) %>
+		<br/>
+		<strong>Key:</strong><%=h key %><br/>
+		<% if @files[key] %>
+			<strong>File:</strong><%= @files[key].join("<br/>") %>
+			<% end %>
+	</em>
+</p>
+</div>  

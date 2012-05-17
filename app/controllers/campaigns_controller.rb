@@ -3,7 +3,7 @@ class CampaignsController < ApplicationController
 
   before_filter :protect_from_spam, :only => [:message, :petition]
   protect_from_forgery :except => [:message, :petition]
-  layout :sub_oigame_layout, :except => [:widget, :widget_iframe]
+  layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate]
 
   # para cancan
@@ -70,7 +70,11 @@ class CampaignsController < ApplicationController
       redirect_url = sub_oigame_campaigns_url(@suboigame)
     end
     if @campaign.save
-      Mailman.send_campaign_to_social_council(@campaign).deliver
+      if @sub_oigame
+        Mailman.send_campaign_to_sub_oigame_admin(@sub_oigame, @campaign).deliver
+      else
+        Mailman.send_campaign_to_social_council(@campaign).deliver
+      end
       flash[:notice] = 'Tu campaña se ha creado con éxito y está pendiente de moderación.'
       redirect_to redirect_url
     else
@@ -82,10 +86,10 @@ class CampaignsController < ApplicationController
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = 'La campaña fué actualizada con éxito.'
       @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-      if @sub_oigame.nil?
-        redirect_to @campaign
+      if @sub_oigame
+        redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign)
       else
-        redirect_to sub_oigame_campaign_path(@campaign, @sub_oigame)
+        redirect_to @campaign
       end
     else
       render :action => :edit
@@ -248,6 +252,28 @@ class CampaignsController < ApplicationController
     @archived = true
     @campaigns = Campaign.archived_campaigns
     @tags = Campaign.archived.tag_counts_on(:tags)
+  end
+
+  def prioritize
+    @campaign.priority = true
+    @campaign.save!
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame.nil?
+      redirect_to @campaign, :notice => 'La campaña ha sido marcada con prioridad'
+    else
+      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido marcada con prioridad'
+    end
+  end
+
+  def deprioritize
+    @campaign.priority = false
+    @campaign.save!
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame.nil?
+      redirect_to @campaign, :notice => 'La campaña ha sido desmarcada con prioridad'
+    else
+      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido desmarcada con prioridad'
+    end
   end
 
   private

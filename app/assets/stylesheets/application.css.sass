@@ -1,10 +1,11 @@
 @import "960"
-@import "bootstrap-1.3.0.min"
+@import "bootstrap"
 @import "wisiwisi-editor"
 @import "jquery.dialog2"
 @import "jquery.jqplot"
 @import "jquery.jgrowl"
 @import "jquery.datePicker"
+@import "translate"
 
 
 $main-color: #be0411
@@ -20,6 +21,23 @@ html
 
 a, a:hover
   color: $main-color
+
+
+// inicio del fix para el markdown, parece que son sobreescritos :S por el reset
+strong
+  font-weight: bold !important
+
+blockquote
+  border-left: 5px solid #EEEEEE !important
+  margin-bottom: 18px !important
+  padding-left: 15px !important
+
+em 
+  font-style: italic !important
+  font-weight: inherit !important
+  line-height: inherit !important
+
+// fin del fix para el markdown
 
 .css1
   font-size: 1.0em
@@ -54,8 +72,9 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
 .topbar
   position: inherit
 
-#topbar-wrapper
-  @extend .container_24
+.navbar
+  width: 100%
+  margin-bottom: 0
 
   #corner
     background-color: #AA0000
@@ -105,14 +124,22 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     strong
       font-size: 1.1em
 
+  .secondary-nav
+    float: right
+    margin-top: 0.7em
+    a
+      color: #999999
+    fieldset
+      border: 0
+
   form
     @extend .form-stacked
 
     #signin-menu
       display: none
       position: absolute
-      margin-top: -6px
-      margin-left: -50px
+      margin-top: 9px
+      margin-left: -39px
       padding: 12px
       width: 240px
       background-color: #222
@@ -665,9 +692,9 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
 
 .modal-large
   @extend .modal
-  top: 10%
-  left: 40%
-  width: 760px
+  top: 5%
+  left: 28%
+  width: 97%
 
   #modal-widget-window-main
     @extend .container_24
@@ -753,6 +780,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
           box-shadow: 0 0 4px $border-shadow
         label, input, textarea
           font-size: 1em
+          display: inline
       .error_message
         font-size: small
         color: #f00
@@ -830,3 +858,4 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     width: 27px
     margin-top: -3px
     cursor: pointer
+

@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
+  layout "email"
   default from: "oigame@oiga.me"
 
   def send_message_to_user(to, subject, message, campaign)
@@ -16,6 +17,13 @@ class Mailman < ActionMailer::Base
     @campaign = campaign
     subject = "[oiga.me] #{@campaign.name}"
     mail :to => APP_CONFIG[:social_council_email], :subject => subject
+  end
+
+  def send_campaign_to_sub_oigame_admin(sub_oigame, campaign)
+    @campaign = campaign
+    @sub_oigame = sub_oigame
+    subject = "[oiga.me] [#{@sub_oigame.name}] #{@campaign.name}"
+    mail :to => @sub_oigame.user.email, :subject => subject
   end
 
   def send_contact_message(message)

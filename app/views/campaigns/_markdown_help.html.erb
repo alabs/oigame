@@ -1,18 +1,18 @@
 <table class="zebra-striped">
   <thead>
     <tr>
-      <th>si escribes:</th>
-      <th>quedará:</th>
+      <th><%= I18n.t(:if_you_write) %></th>
+      <th><%= I18n.t(:you_will_get) %></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>*cursiva*</td>
-      <td><em>cursiva</em></td>
+      <td>*<%= I18n.t(:italic) %>*</td>
+      <td><em><%= I18n.t(:italic) %></em></td>
     </tr>
     <tr>
-      <td>**negrita**</td>
-      <td><b>negrita</b></td>
+      <td>**<%= I18n.t(:bold) %>**</td>
+      <td><b><%= I18n.t(:bold) %></b></td>
     </tr>
     <tr>
       <td>[oiga.me](http://oiga.me)</td>
@@ -23,15 +23,15 @@
       <td><ul><li>item 1</li><li>item 2</li><li>item 3</li></ul></td>
     </tr>
     <tr>
-      <td>&gt; texto citado</td>
-      <td><blockquote>texto citado</blockquote></td>
+      <td>&gt; <%= I18n.t(:quoted) %></td>
+      <td><blockquote><%= I18n.t(:quoted) %></blockquote></td>
     </tr>
     <tr>
       <td>
-        La líneas que empiezan con cuatro espacios<br>son tratadas como código:<br><br><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>if 1 * 2 &lt; 3:<br><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>print "hola, mundo!"<br>
+        <%= I18n.t(:another_format) %><br><br><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>if 1 * 2 &lt; 3:<br><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>print "hola, mundo!"<br>
       </td>
       <td>
-        La líneas que empiezan con cuatro espacios<br>son tratadas como código:<br><pre>if 1 * 2 &lt; 3:<br>&nbsp;&nbsp;&nbsp;&nbsp;print "hola, mundo!"</pre>
+        <%= I18n.t(:another_format) %><br><pre>if 1 * 2 &lt; 3:<br>&nbsp;&nbsp;&nbsp;&nbsp;print "hola, mundo!"</pre>
       </td>
     </tr>
   </tbody>

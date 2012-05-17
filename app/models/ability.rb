@@ -2,33 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user permission to do.
-    # If you pass :manage it will apply to every action. Other common actions here are
-    # :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on. If you pass
-    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new
-    
+
     if user.role? :admin
       can :manage, Campaign
+      can :manage, SubOigame
     end
     
     if user.role? :editor
@@ -42,6 +22,9 @@ class Ability
       can :validate, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
+      # sub_oigames
+      can :read, SubOigame
+      can :update, SubOigame, :user_id => user.sub_oigame
     end
 
     if user.role? :user
@@ -55,6 +38,10 @@ class Ability
       can :validate, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
+      # sub_oigames
+      can :read, SubOigame
+      can :update, SubOigame, :user_id => user.id
+      #cannot :index, SubOigame
     end
   end
 end

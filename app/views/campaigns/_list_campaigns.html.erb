@@ -5,7 +5,11 @@
         <h2><%= @page_title %></h2>
         <% @campaigns.each do |campaign| %>
           <% if @sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(@sub_oigame, campaign) %> <% end %>
-          <div class="campaign-info">
+          <% if campaign.priority == true %>
+            <div class="campaign-info well">
+          <% else %>
+            <div class="campaign-info">
+          <% end %>
             <div class="cinfo">
               <h3><%= link_to campaign.name, url %></h3>
               <div class="campaign-image">
@@ -36,26 +40,26 @@
     <% end %>
     <div id="list-campaigns-sidebar">
       <% if @sub_oigame %>
-        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn primary large" %></h2>
+        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn btn-primary btn-large" %></h2>
         <br />
-        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => 'btn large success' %></h2> 
+        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => 'btn btn-large btn-success' %></h2> 
         <br />
         <% if can? :moderated, Campaign %>
           <br />
-          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn large danger" %></h2>
+          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn btn-large btn-danger" %></h2>
         <% end %>
       <% else %>
-        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path, :class => "btn primary large" %></h2>
+        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path, :class => "btn btn-primary btn-large" %></h2>
         <br />
-        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_campaigns_path, :class => 'btn large success' %></h2> 
+        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_campaigns_path, :class => 'btn btn-large btn-success' %></h2> 
         <br />
         <% if can? :moderated, Campaign %>
           <br />
-          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn large danger" %></h2>
+          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn btn-large btn-danger" %></h2>
         <% end %>
       <% end %>
       <br /><br />
-      <h2>Etiquetas más usadas</h2>
+      <h2><%= I18n.t(:tags_most_used) %></h2>
       <% unless @archived %>
         <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
           <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
