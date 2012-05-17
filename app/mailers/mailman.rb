@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
-
+  
   layout "email"
   default from: "oigame@oiga.me"
 
