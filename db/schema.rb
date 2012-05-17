@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321075726) do
+ActiveRecord::Schema.define(:version => 20120517141102) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20120321075726) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "logo"
+    t.text     "logobase64"
   end
 
   create_table "taggings", :force => true do |t|
@@ -103,6 +105,32 @@ ActiveRecord::Schema.define(:version => 20120321075726) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "tolk_locales", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tolk_locales", ["name"], :name => "index_tolk_locales_on_name", :unique => true
+
+  create_table "tolk_phrases", :force => true do |t|
+    t.text     "key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tolk_translations", :force => true do |t|
+    t.integer  "phrase_id"
+    t.integer  "locale_id"
+    t.text     "text"
+    t.text     "previous_text"
+    t.boolean  "primary_updated", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tolk_translations", ["phrase_id", "locale_id"], :name => "index_tolk_translations_on_phrase_id_and_locale_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",     :null => false

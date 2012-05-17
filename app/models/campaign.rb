@@ -75,9 +75,9 @@ class Campaign < ActiveRecord::Base
 
   def recipients=(args)
     addresses = args.gsub(/\s+/, ',').split(',')
-    addresses.each {|address| address.downcase! }.uniq!
-    # FIXME: undefined method `downcase!' for nil:NilClass
+    # arreglar el bug del strip
     # addresses.each {|address| address.strip!.downcase! }.uniq!
+    addresses.each {|address| address.downcase! }.uniq!
     addresses.delete_if {|a| a.blank? }
     self.emails = addresses
   end
