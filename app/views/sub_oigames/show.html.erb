@@ -7,12 +7,14 @@
 
       <h2>Diseño</h2>
 
-      <p>
-        <h3>Logo</h3>  
-        <pre>
-          <%= image_tag @sub_oigame.logo %>
-        </pre>
-      </p>
+      <% unless @sub_oigame.logo.blank? then %>
+        <p>
+          <h3>Logo</h3>  
+          <pre>
+            <%= image_tag @sub_oigame.logo %>
+          </pre>
+        </p>
+      <% end %>
 
       <p>
         <h3>Header (HTML)</h3>  
