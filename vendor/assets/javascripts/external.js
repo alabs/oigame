@@ -19,3 +19,4 @@
 //= require bootstrap
 // require translate
 //= require jquery.mailcheck.min
+//= require highlight.pack

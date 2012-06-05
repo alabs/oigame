@@ -194,6 +194,9 @@ class CampaignsController < ApplicationController
       render
     end
   end
+
+  def integrate
+  end
   
   def validated
     @stats_data = generate_stats_for_petition(@campaign)

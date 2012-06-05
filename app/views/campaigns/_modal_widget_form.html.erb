@@ -1,14 +1,15 @@
 <div id="modal-widget-window" class="hide">
   <h1><%= I18n.t(:integrate_form) %></h1>
   <div id="modal-widget-window-main">
-    <div class="span8">
+    <div class="span4">
       <div class="well">
-        <b><%= I18n.t(:option) %> 1</b>
         <p><%= I18n.t(:integrate_form_explanation_1) %></p><br />
-        <textarea><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></textarea>
+        <pre><code><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></code></pre>
       </div><!-- well -->
+      <div> 
+      En caso de que no te funcione, puedes probar con la opción ...
+      </div>
       <div class="well" style="height:19em;">
-        <b><%= I18n.t(:option) %> 2</b>
         <p><%= I18n.t(:integrate_form_explanation_2) %></p><br />
           <textarea id="modal-widget-html" class="grid_9" rows="10"> </textarea>
       </div><!-- well -->

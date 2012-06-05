@@ -179,7 +179,7 @@
         <%= render :partial => 'modal_widget_form' %>
         <div id="diffusion">
           <%= I18n.t(:spread_info) %>
-          <a id="show-modal-widget" href="#" class="btn btn-large btn-primary center"><%= I18n.t(:spread_form) %></a>
+          <%= link_to t(:spread_form), integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
         </div>
 
         <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>

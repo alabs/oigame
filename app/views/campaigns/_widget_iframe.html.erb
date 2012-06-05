@@ -14,10 +14,11 @@
             <%= label_tag t(:your_email) %>
             <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
           </div>
-          Puedes también escribir tu propio mensaje y ver más información de la campaña 
+          Puedes también escribir tu propio mensaje y ver más información de la campaña en <%= link_to "oiga.me", @campaign %>.
           <div class="form-actions">
             <%= submit_tag t(:send_message), :class => 'btn primary' %>
           </div>
+          <%= link_to image_tag("logo.png"), root_path %>
         </fieldset>
       <% end %>
     <% elsif @campaign.ttype == 'petition' %>
