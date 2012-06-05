@@ -42,8 +42,9 @@ gem 'newrelic_rpm'
 gem 'httparty'
 gem 'sitemap_generator'
 gem 'redis-store'
+gem 'redis-rails'
 gem 'honeypot-captcha'
 
-gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
+#gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
 
 gem 'minitest'
