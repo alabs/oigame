@@ -19,8 +19,10 @@ gem 'capistrano-ext'
 #gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
+  gem 'minitest'
+  gem 'capybara'
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn'
 end
 
 group :development do
@@ -47,4 +49,3 @@ gem 'honeypot-captcha'
 
 #gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
 
-gem 'minitest'
