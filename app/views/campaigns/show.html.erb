@@ -32,60 +32,6 @@
           </div>
         </div><!-- campaing-information -->
       </div>
-      <div id="action-buttons">
-        <p>
-          <% if can?(:moderated, @campaign) %>
-            <span class="label warning">
-              <a href="mailto:<%= @campaign.user.email %>"><%= I18n.t(:contact) %></a>
-            </span>
-          <% end %>
-          <% if @campaign.status == 'archived' %>
-          <% elsif @campaign.status == 'active' %>
-            <% if can?(:archive, @campaign) %>
-              &nbsp;&nbsp;
-              <span class="label">
-                <%= link_to t(:archive), @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
-              </span>
-            <% end %>
-            <% if can?(:moderated, @campaign) && @campaign.moderated? %>
-              &nbsp;&nbsp;
-              <span class="label success">
-                <%= link_to t(:activate), @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
-              </span>
-            <% end %>
-            <% if can?(:deactivate, @campaign) && @campaign.published? %>
-              &nbsp;&nbsp;
-              <span class="label success">
-                <%= link_to t(:deactivate), @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
-              </span>
-            <% end %>
-            <% if can? :update, @campaign %>
-              &nbsp;&nbsp;
-              <span class="label notice">
-                <%= link_to t(:edit), @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) %>
-              </span>
-            <% end %>
-            <% if can? :priority, @campaign %>
-              &nbsp;&nbsp;
-              <% unless @campaign.priority == true %>
-                <span class="label" style="background-color:#088A85;">
-                  <%= link_to t(:prioritize), @sub_oigame ? prioritize_sub_oigame_campaign_path(@sub_oigame) : prioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
-                </span>
-              <% else %>
-                <span class="label" style="background-color:#088A85;">
-                  <%= link_to t(:deprioritize), @sub_oigame ? deprioritize_sub_oigame_campaign_path(@sub_oigame) : deprioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
-                </span>
-              <% end %> 
-            <% end %>
-            <% if can? :destroy, @campaign %>
-              &nbsp;&nbsp;
-              <span class="label important">
-                <%= link_to t(:delete), @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => t(:are_you_sure), :method => :delete %>
-              </span>
-            <% end %>
-          <% end %>
-        </p>
-      </div>
     </div>
 
           <% if @campaign.image.to_s %>
@@ -105,6 +51,53 @@
           <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
         </li>
       <% end %>
+      <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">Opciones <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                <% if can?(:moderated, @campaign) %>
+                    <a href="mailto:<%= @campaign.user.email %>"><%= I18n.t(:contact) %></a>
+                <% end %>
+              </li>
+              <% if @campaign.status == 'archived' %>
+              <% elsif @campaign.status == 'active' %>
+                <li>
+                  <% if can?(:archive, @campaign) %>
+                    <%= link_to t(:archive), @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can?(:moderated, @campaign) && @campaign.moderated? %>
+                    <%= link_to t(:activate), @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can?(:deactivate, @campaign) && @campaign.published? %>
+                    <%= link_to t(:deactivate), @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can? :update, @campaign %>
+                    <%= link_to t(:edit), @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can? :priority, @campaign %>
+                    <% unless @campaign.priority == true %>
+                      <%= link_to t(:prioritize), @sub_oigame ? prioritize_sub_oigame_campaign_path(@sub_oigame) : prioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                    <% else %>
+                      <%= link_to t(:deprioritize), @sub_oigame ? deprioritize_sub_oigame_campaign_path(@sub_oigame) : deprioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                    <% end %> 
+                  <% end %> 
+                </li>
+                <li>
+                  <% if can? :destroy, @campaign %>
+                    <%= link_to t(:delete), @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => t(:are_you_sure), :method => :delete %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul><!-- .dropdown-menu -->
+      </li><!-- .dropdown -->
     </ul><!-- tabs -->
     <div class="tab-content">
       <div id="description" class="active tab-pane">
@@ -123,6 +116,7 @@
                 <li><%= dest %></li>
               <% end %>
             </ul>
+            <hr />
             <h2><%= I18n.t(:message) %></h2>
             <b><%= I18n.t(:subject) %></b>: <%= @campaign.default_message_subject %> 
           <p>
