@@ -87,8 +87,9 @@ class Campaign < ActiveRecord::Base
   end
 
   def to_html(field)
-    markdown = Redcarpet.new(field)
-    markdown.to_html
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+      :autolink => true, :space_after_headers => true)
+    markdown.render(field).html_safe
   end
 
   def activate!
