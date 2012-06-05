@@ -53,43 +53,67 @@
             <ul class="dropdown-menu">
               <li>
                 <% if can?(:moderated, @campaign) %>
-                    <a href="mailto:<%= @campaign.user.email %>"><%= I18n.t(:contact) %></a>
+                  <a href="mailto:<%= @campaign.user.email %>">
+                    <i class="icon-envelope"></i>
+                    <%= I18n.t(:contact) %>
+                  </a>
                 <% end %>
               </li>
               <% if @campaign.status == 'archived' %>
               <% elsif @campaign.status == 'active' %>
                 <li>
                   <% if can?(:archive, @campaign) %>
-                    <%= link_to t(:archive), @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                    <%= link_to @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                      <i class="icon-file"></i>
+                      <%= t(:archive) %>
+                    <% end %>
                   <% end %>
                 </li>
                 <li>
                   <% if can?(:moderated, @campaign) && @campaign.moderated? %>
-                    <%= link_to t(:activate), @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                    <%= link_to @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                      <i class="icon-ok-circle"></i>
+                      <%= t(:activate) %>
+                    <% end %>
                   <% end %>
                 </li>
                 <li>
                   <% if can?(:deactivate, @campaign) && @campaign.published? %>
-                    <%= link_to t(:deactivate), @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                    <%= link_to @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                      <i class="icon-remove-circle"></i>
+                      <%= t(:deactivate) %>
+                    <% end %>
                   <% end %>
                 </li>
                 <li>
                   <% if can? :update, @campaign %>
-                    <%= link_to t(:edit), @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) %>
+                    <%= link_to @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) do %>
+                      <i class="icon-pencil"></i>
+                      <%= t(:edit) %>
+                    <% end %>
                   <% end %>
                 </li>
                 <li>
                   <% if can? :priority, @campaign %>
                     <% unless @campaign.priority == true %>
-                      <%= link_to t(:prioritize), @sub_oigame ? prioritize_sub_oigame_campaign_path(@sub_oigame) : prioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                      <%= link_to @sub_oigame ? prioritize_sub_oigame_campaign_path(@sub_oigame) : prioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                        <i class="icon-star"></i>
+                        <%= t(:prioritize) %>
+                      <% end %>
                     <% else %>
-                      <%= link_to t(:deprioritize), @sub_oigame ? deprioritize_sub_oigame_campaign_path(@sub_oigame) : deprioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post %>
+                      <%= link_to @sub_oigame ? deprioritize_sub_oigame_campaign_path(@sub_oigame) : deprioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                        <i class="icon-star-empty"></i>
+                        <%= t(:deprioritize) %>
+                      <% end %>
                     <% end %> 
                   <% end %> 
                 </li>
                 <li>
                   <% if can? :destroy, @campaign %>
-                    <%= link_to t(:delete), @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => t(:are_you_sure), :method => :delete %>
+                    <%= link_to @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => t(:are_you_sure), :method => :delete do %>
+                      <i class="icon-trash"></i>
+                      <%= t(:delete) %>
+                    <% end %>
                   <% end %>
                 </li>
               <% end %>
