@@ -24,6 +24,7 @@ es:
   forgot_your_password: '¿Olvidaste tu contraseña?'
   didnt_receive_confirmation_instructions: '¿No recibiste instrucciones de confirmación?'
   please_fill_the_form: 'Por favor rellena el formulario'
+  download_participants: 'Descargar listado con participantes'
   request_new_password: 'Solicitar nueva contraseña'
   resend_confirmation_instructions: 'Reenviar instrucciones de confirmación'
   my_account: 'Mi cuenta'

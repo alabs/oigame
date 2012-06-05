@@ -20,6 +20,7 @@ class Ability
       can :widget_iframe, Campaign, :moderated => false
       can :petition, Campaign, :moderated => false
       can :validate, Campaign, :moderated => false
+      can :participants, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
       # sub_oigames
@@ -32,6 +33,7 @@ class Ability
       can :read, Campaign, :status => 'archived'
       can :create, Campaign
       can :update, Campaign, :moderated => false, :user_id => user.id
+      can :participants, Campaign, :moderated => false, :user_id => user.id
       can :widget, Campaign, :moderated => false 
       can :widget_iframe, Campaign, :moderated => false
       can :petition, Campaign, :moderated => false

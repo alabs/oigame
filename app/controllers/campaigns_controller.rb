@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
   before_filter :protect_from_spam, :only => [:message, :petition]
   protect_from_forgery :except => [:message, :petition]
   layout 'application', :except => [:widget, :widget_iframe]
-  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate]
+  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :csv]
 
   # para cancan
   load_resource :find_by => :slug
@@ -58,6 +58,24 @@ class CampaignsController < ApplicationController
 
   def edit
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+  end
+
+  def participants
+    # Descarga un fichero con el listado de participantes
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    # para que funcione el botón de facebook
+    @cause = true
+    if @sub_oigame
+      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame.id}).first
+    else
+      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => nil}).first
+    end
+    recipients = @campaign.messages.map {|m| m.email}.sort.uniq
+    file = @campaign.name.strip.gsub(" ", "_")
+    response = ""
+    recipients.each {|r| response += r + "\n" }
+    send_data response, :type => "text/plain", 
+      :filename=>"#{file}.txt", :disposition => 'attachment'
   end
 
   def create

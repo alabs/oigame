@@ -86,6 +86,14 @@
                   <% end %>
                 </li>
                 <li>
+                  <% if can? :participants, @campaign %>
+                    <%= link_to participants_campaign_path(@campaign) do %>
+                      <i class="icon-user"></i>
+                      <%= t(:download_participants) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
                   <% if can? :update, @campaign %>
                     <%= link_to @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) do %>
                       <i class="icon-pencil"></i>
