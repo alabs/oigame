@@ -12,27 +12,29 @@
         <tr id="page" bgcolor="white" style="border: 1px solid #E8E8E8; border-radius: 10px 10px 10px 10px; padding: 10px;">
           <td id="page-info" cellspacing="25" style="padding:30px">
             <img alt="" style="margin-left:auto; margin-rgiht:auto; display:block;" src="data:image/jpeg;base64,<%= get_base64logo(@campaign) %>" />
-      <%= yield %>
-<p>Saludos,<br />
-El equipo de <a href="http://oiga.me" style="color: #BE0411;" >oiga.me</a></p>
-    </td><!-- page-info -->
-  </tr><!-- page -->
-    <tr id="links-wrapper">
-      <td id="links">
-        <div id="links-message">
-          <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
-        </div>
-        <div id="links-social">
-          <span>Síguenos en:</span><br />
-          <a style="color: #BE0411;" href="<%= APP_CONFIG[:domain] %>/campaigns/feed"><img alt="Rss" src="/assets/rss-33fbafd3b4dd40883b4b9d3b0ad52357.png" /></a>
-          <a style="color: #BE0411;" href="https://plus.google.com/109609067558669990733/?prsrc=3"><img alt="Google" src="/assets/google-dc391495f8223dd689b9e3ae03a355b8.png" /></a>
-          <a style="color: #BE0411;" href="https://www.facebook.com/oiga.me"><img alt="Facebook" src="/assets/facebook-4e63c774b62c232d74c1a877b02272b1.png" /></a>
-          <a style="color: #BE0411;" href="https://twitter.com/oigame"><img alt="Twitter" src="/assets/twitter-4f4f047dff147f4c2516433da5772fe0.png" /></a>
-          <a style="color: #BE0411;" href="https://identi.ca/oigame"><img alt="Identica" src="/assets/identica-5f3238228acf9da8de7ee7b5164a59af.png" /></a>
-        </div>
-      </td>
-    </tr><!-- links-wrapper -->
-  </table>
+
+            <%= yield %>
+
+            <p>Saludos,<br />
+            El equipo de <a href="http://oiga.me" style="color: #BE0411;" >oiga.me</a></p>
+          </td><!-- page-info -->
+        </tr><!-- page -->
+        <tr id="links-wrapper">
+          <td id="links">
+            <div id="links-message">
+              <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
+            </div>
+            <div id="links-social">
+              <span>Síguenos en:</span><br />
+              <a style="color: #BE0411;" href="<%= APP_CONFIG[:domain] %>/campaigns/feed"><img alt="Rss" src="/assets/rss-33fbafd3b4dd40883b4b9d3b0ad52357.png" /></a>
+              <a style="color: #BE0411;" href="https://plus.google.com/109609067558669990733/?prsrc=3"><img alt="Google" src="/assets/google-dc391495f8223dd689b9e3ae03a355b8.png" /></a>
+              <a style="color: #BE0411;" href="https://www.facebook.com/oiga.me"><img alt="Facebook" src="/assets/facebook-4e63c774b62c232d74c1a877b02272b1.png" /></a>
+              <a style="color: #BE0411;" href="https://twitter.com/oigame"><img alt="Twitter" src="/assets/twitter-4f4f047dff147f4c2516433da5772fe0.png" /></a>
+              <a style="color: #BE0411;" href="https://identi.ca/oigame"><img alt="Identica" src="/assets/identica-5f3238228acf9da8de7ee7b5164a59af.png" /></a>
+            </div>
+          </td>
+        </tr><!-- links-wrapper -->
+      </tbody>
+    </table>
   </body>
 </html>
-
