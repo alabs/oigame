@@ -6,38 +6,35 @@
       <div id="show-campaign-detail-main">
       <h2><%= @campaign.name %></h2>
       <div class="grid_8">
-        <% unless @campaign.status == 'archived' %>
-          <p><strong><%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
-            <%= I18n.t(:time_left) %> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= I18n.t(:days) %></strong></p>
-        <% else %>
-          <p><strong><%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
-            <%= I18n.t(:archived_campaign) %></strong></p>
-        <% end %>
+        <p><strong>
+          <% unless @campaign.status == 'archived' %>
+            <p><strong><%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+              <%= I18n.t(:time_left) %> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= I18n.t(:days) %> |
+           <% else %>
+            <%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+              <%= I18n.t(:archived_campaign) %> |
+          <% end %>
+            <span id="participants">
+            <% if @campaign.ttype == 'mailing' %>
+              <%= @campaign.messages.validated.count %>
+            <% elsif @campaign.ttype == 'petition' %>
+              <%= @campaign.petitions.validated.count %>
+            <% end %>
+          </span> <%= I18n.t(:of) %> <span id="participants-target"><%= @campaign.target %></span> <%= I18n.t(:participants) %>
+          </strong></p>
       </div>
       <div class="clear"></div>
       <div class="grid_12">
         <div id="campaign-information">
-          <div class="thermometer">
-            <div class="thermocontainer">
-              <div class="signatures-needed">
-                <% if @campaign.ttype == 'mailing' %>
-                  <span id="participants" class="big strong"><%= @campaign.messages.validated.count %></span>
-                <% elsif @campaign.ttype == 'petition' %>
-                  <span id="participants" class="big strong"><%= @campaign.petitions.validated.count %></span>
-                <% end %>
-                <span class="small weak"><%= I18n.t(:of) %></span>
-                <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> <%= I18n.t(:participants) %>
-            </div>
-            <div style="width: 0%" class="mercury"></div>
+          <div class="progress progress-striped progress-danger active">
+            <div class="bar" style="width: 0%;"></div>
           </div>
         </div><!-- campaing-information -->
       </div>
-    </div>
 
-          <% if @campaign.image.to_s %>
-            <%= image_tag(@campaign.image_url.to_s) %>
-          <% end %>
-
+      <% if @campaign.image.to_s %>
+        <%= image_tag(@campaign.image_url.to_s) %>
+      <% end %>
 
     <ul id="campaign-tab" class="nav nav-tabs">
       <li class="active">

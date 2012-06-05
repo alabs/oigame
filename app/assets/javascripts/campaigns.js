@@ -226,7 +226,7 @@ $(function() {
   var participants_target = $("#participants-target").text();
   var percent_raw = (participants * 100) / participants_target;
   var percent = Math.round(percent_raw);
-  $(".thermocontainer .mercury").css("width", percent + "%")
+  $(".progress .bar").css("width", percent + "%")
   // thermometer end
 
   $('#campaign_duedate_at').datePicker({clickInput:true})
