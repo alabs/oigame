@@ -31,5 +31,7 @@ $(function(){
     window.setInterval("simpleSlideAction('.right-button', " + related_group + ");", 10000);
   }); 
   ///////////////////////// slideshow slogans - end
+
+  hljs.initHighlightingOnLoad();
   
 });

@@ -189,7 +189,7 @@ $(function() {
   });
 
   var html_clean =  jQuery.trim( $("#modal-widget-window-example").html() );
-  $("#modal-widget-html").val(html_clean);
+  $("#modal-widget-html").text(html_clean);
 
   $("#show-modal-widget").click(function(event) {
     $("#modal-widget-window").parent().addClass("modal-large");

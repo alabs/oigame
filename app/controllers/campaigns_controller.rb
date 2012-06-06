@@ -4,13 +4,13 @@ class CampaignsController < ApplicationController
   before_filter :protect_from_spam, :only => [:message, :petition]
   protect_from_forgery :except => [:message, :petition]
   layout 'application', :except => [:widget, :widget_iframe]
-  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :csv]
+  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants]
 
   # para cancan
   load_resource :find_by => :slug
   skip_load_resource :only => [:index, :tag, :tags_archived, :message, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed]
+  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate]
 
   def index
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
