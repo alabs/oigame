@@ -4,7 +4,7 @@
 <div id="campaign-message-wrapper">
   <div id="campaign-message-info">
     <h2><%= @campaign.name %></h2>
-    <p><%= @campaign.intro %></p>
+    <p><%= @campaign.to_html(@campaign.intro).html_safe %></p>
   </div><!-- campaign-message-info -->
   <div id="campaign-message-form" class="form-stacked">
     <% if @campaign.ttype == 'mailing' %>

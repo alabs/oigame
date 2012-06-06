@@ -11,7 +11,6 @@
 //= require jquery.simpleSlide
 //= require date
 //= require date_es
-//= require jquery.datePicker
 //= require jquery.tableofcontents
 //= require Markdown.Converter
 //= require Markdown.Editor
@@ -20,3 +19,4 @@
 // require translate
 //= require jquery.mailcheck.min
 //= require highlight.pack
+//= require jquery.ui.all

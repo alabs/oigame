@@ -1392,7 +1392,7 @@
                 button.appendChild(buttonImage);
                 button.title = title;
                 button.XShift = XShift;
-                buttonImage.style.width = "10px";
+                buttonImage.style.width = "20px";
                 if (textOp)
                     button.textOp = textOp;
                 setupButton(button, true);

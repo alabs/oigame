@@ -135,11 +135,11 @@ $(function() {
   }); 
 
   ////////////////////////// modal-send-message start
-  $("#modal-send-message").dialog2({
-    removeOnClose: false,
-    modal: true,
-    autoOpen: false
-  });
+//  $("#modal-send-message").dialog2({
+//    removeOnClose: false,
+//    modal: true,
+//    autoOpen: false
+//  });
   
   function copy_input_to_modal(input_id){
     $("#modal-send-message #" + input_id).val($("#show-campaign-sidebar #" + input_id).val());
@@ -229,7 +229,7 @@ $(function() {
   $(".progress .bar").css("width", percent + "%")
   // thermometer end
 
-  $('#campaign_duedate_at').datePicker({clickInput:true})
+  $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
   // al hacer click en /campaigns en cualquier campania va directamente a esta misma
   $(".campaign-info").click( function(){
