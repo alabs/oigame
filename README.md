@@ -15,6 +15,10 @@ Toda colaboración en bienvenida. Si tienes ganas de participar como desarrollad
 
 https://listas.alabs.es/mailman/listinfo/oigame-dev
 
+Aplicación para ver excepciones
+===============================
+http://sentry.alabs.es:9100/oigame/
+
 Instalación de entorno de desarrollo
 ====================================
 

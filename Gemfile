@@ -18,7 +18,7 @@ gem 'capistrano-ext'
 # To use debugger
 #gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
+group :test, :development do
   gem 'minitest'
   gem 'capybara'
   # Pretty printed test output
@@ -49,3 +49,4 @@ gem 'honeypot-captcha'
 
 #gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
 
+gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git"
