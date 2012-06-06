@@ -18,7 +18,7 @@ gem 'capistrano-ext'
 # To use debugger
 #gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
+group :test, :development do
   gem 'minitest'
   gem 'capybara'
   # Pretty printed test output
