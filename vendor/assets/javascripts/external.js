@@ -5,12 +5,13 @@
 //= require jquery.dialog2
 //= require jquery.simpleSlide
 //= require jquery.mailcheck.min
-//= require jquery.ui.datepicker
+//= require jquery.ui.all
 //= require bootstrap
 //= require Markdown.Converter
 //= require Markdown.Editor
 //= require Markdown.Sanitizer
 //= require highlight.pack
+// require tag-it
 // require translate
 // require jquery.tableofcontents
 // require jqplot
