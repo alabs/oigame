@@ -14,10 +14,10 @@
 // require tag-it
 // require translate
 // require jquery.tableofcontents
-// require jqplot
-// require jqplot/plugins/jqplot.canvasAxisLabelRenderer
-// require jqplot/plugins/jqplot.dateAxisRenderer
-// require jqplot/plugins/jqplot.canvasTextRenderer
-// require jqplot/plugins/jqplot.highlighter
+//= require jqplot
+//= require jqplot/plugins/jqplot.canvasAxisLabelRenderer
+//= require jqplot/plugins/jqplot.dateAxisRenderer
+//= require jqplot/plugins/jqplot.canvasTextRenderer
+//= require jqplot/plugins/jqplot.highlighter
 // require date
 // require date_es

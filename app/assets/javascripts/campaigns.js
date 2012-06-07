@@ -32,6 +32,62 @@ function switch_campaign_type(ctype) {
 ////////////////////////// switch_campaign_type - start 
 
 
+////////////////////////// chart_draw: jqplot helper  - start
+
+function chart_draw(items, chart_id, color, minimal_date){
+  // seleccionamos el valor del ultimo item para saber cual tiene 
+  // que ser el tickInterval 
+  var last_item = items[items.length-1][1];
+  if (last_item > 0){
+    var tick_interval = Math.ceil(last_item / 4);
+  } else {
+    var tick_interval = 1;
+  }
+  $.jqplot(chart_id, [items], {
+    seriesDefaults: {
+      fill: true,
+      fillAndStroke: true,
+      fillAlpha: 0.5,
+      shadow: false
+    },
+    highlighter: {
+      tooltipAxes: 'y',
+    },
+    grid: {
+        backgroundColor: 'white',
+        borderColor: 'white',
+        drawGridlines: false,
+      shadow: false
+    },
+    axes: {
+      xaxis: {
+        label:'Fecha (Día-Mes)',
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+        renderer:$.jqplot.DateAxisRenderer,
+        tickOptions:{formatString:'%d-%m'},
+        min: minimal_date
+      },
+      yaxis: {
+        min: 0,
+        tickInterval: tick_interval,
+        tickOptions:{
+          formatString:'%d'
+        },
+        label:'Mensajes enviados',
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+      }
+    },
+    series: [{
+      color: color,
+      lineWidth:4
+    }]
+  }); 
+}
+
+////////////////////////// chart_draw: jqplot helper  - end
+
+
+
 ////////////////////////// check_own_message  - start
 function check_own_message($selector){
   // function que comprueba el checkbox de "Quiero escribir mi propio mensaje" 
@@ -121,12 +177,12 @@ $(function() {
   check_own_message($('#own_message'));
 
   // mostrar stats al cambiar de tab
-//  $('a[data-toggle="tab"]').on('shown', function (e) {
-//    console.log();
-//    if ( $(this).attr('href') === "#stats" ){ 
-//      draw_stats_chart();
-//    };
-//  });
+  $('a[data-toggle="tab"]').on('shown', function (e) {
+    if ( $(this).attr('href') === "#stats" ){ 
+      $.jqplot.config.enablePlugins = true;
+      draw_stats_chart();
+    };
+  });
 
 
   // al darle al submit en el form, comprobamos el correo
