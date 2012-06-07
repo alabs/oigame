@@ -20,14 +20,14 @@
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="form-field">
-      <%= f.label t(:name_of_campaign) %>
+      <%= f.label :name, t(:name_of_campaign) %>
       <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_of_campaign) %>
       <% unless @campaign.errors[:name].blank? %>
         <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
       <% end %>
     </div>
     <div class="form-field">
-      <%= f.label t(:image_of_campaign) %>
+      <%= f.label :image, t(:image_of_campaign) %>
       <%= f.file_field :image, :class => 'input-file' %>
       <p><%= I18n.t(:minimal_size) %></p>
       <% unless @campaign.errors[:image].blank? %>
@@ -35,7 +35,7 @@
       <% end %>
     </div>
     <div class="form-field">
-      <%= f.label t(:intro_of_campaign) %>
+      <%= f.label :intro, t(:intro_of_campaign) %>
       <div class="wmd-panel">
         <div id="wmd-button-bar"></div>
         <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span6', :required => true, :placeholder => t(:intro_of_campaign_help), :maxlength => 500 %>
@@ -50,7 +50,7 @@
       <% end %>
     </div>
     <div class="form-field">
-      <%= f.label t(:body_of_campaign) %>
+      <%= f.label :body, t(:body_of_campaign) %>
       <div class="wmd-panel">
         <div id="wmd-button-bar-second"></div>
         <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span6', :required => true, :placeholder => t(:body_of_campaign_help) %>
@@ -64,27 +64,27 @@
       <% end %>
     </div>
     <div class="form-field">
-      <%= f.label t(:type_of_campaign) %>
+      <%= f.label :ttype, t(:type_of_campaign) %>
       <%= select(:campaign, :ttype, Campaign::TYPES.select {|k,v| [k,v]}.invert, {:prompt => t(:type_of_campaign_prompt)}) %>
     </div>
     <div class="form-field form-campaign hide">
-      <%= f.label t(:recipients) %>
+      <%= f.label :recipients, t(:recipients) %>
       <%= f.text_area :recipients, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:recipients_help) %>
     </div>
     <div class="form-field form-campaign hide">
-      <%= f.label t(:default_message_subject) %>
+      <%= f.label :default_message_subject, t(:default_message_subject) %>
       <%= f.text_field :default_message_subject, :class => 'span6', :required => true, :placeholder => t(:default_message_subject) %>
     </div>
     <div class="form-field form-campaign hide">
-      <%= f.label t(:default_message_body) %>
+      <%= f.label :default_message_body, t(:default_message_body) %>
       <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
     </div>
     <div class="form-field">
-      <%= f.label t(:number_of_people) %>
+      <%= f.label :target, t(:number_of_people) %>
       <%= f.text_field :target, :class => 'span6', :placeholder => t(:number_of_people) %>
     </div>
     <div class="form-field">
-      <%= f.label t(:due_date_of_campaign) %>
+      <%= f.label :duedate_at, t(:due_date_of_campaign) %>
       <%= f.text_field :duedate_at, :class => "datepicker", :required => true %>
       <% unless @campaign.errors[:duedate_at].blank? %>
         <br />
@@ -92,7 +92,7 @@
       <% end %>
     </div>
     <div class="form-field">
-      <%= f.label t(:tags) %>
+      <%= f.label :tag_list, t(:tags) %>
       <%= f.text_field :tag_list, :class => 'span6', :placeholder => 'Lista de etiquetas separadas por comas' %>
     </div>
     <div id="form-actions">
