@@ -82,10 +82,10 @@ class CampaignsController < ApplicationController
     @campaign.user = current_user
     @campaign.target = @campaign.target.gsub(/\./, '')
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-    redirect_url = campaigns_url 
     if @sub_oigame
-      @campaign.sub_oigame = @sub_oigame 
-      redirect_url = sub_oigame_campaigns_url(@suboigame)
+      redirect_url = sub_oigame_campaigns_url(@sub_oigame)
+    else 
+      redirect_url = campaigns_url 
     end
     if @campaign.save
       if @sub_oigame
