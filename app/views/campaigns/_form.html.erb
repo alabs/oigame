@@ -1,6 +1,6 @@
 <%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
 
-<% if params[:action] == "create" %>
+<% if params[:action] == "new" %>
   <% if @sub_oigame %>
     <% url = url_for(:action=> "create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
   <% else %>
@@ -96,7 +96,7 @@
       <%= f.text_field :tag_list, :class => 'span6', :placeholder => 'Lista de etiquetas separadas por comas' %>
     </div>
     <div id="form-actions">
-      <%= f.submit @page_title, :class => 'btn btn-primary' %>
+      <%= f.submit @page_title, :class => 'btn btn-primary btn-large' %>
     </div>
   </fieldset>
 <% end %>
