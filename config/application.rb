@@ -47,8 +47,8 @@ module Oigame
     config.assets.version = '1.0'
 
     config.to_prepare do
-        Devise::Mailer.layout "email" # email.haml or email.erb
-        ActionMailer::Base.helper "application"
+      Devise::Mailer.layout "email" # email.haml or email.erb
+      Devise::Mailer.helper :application
     end
   end
 end
