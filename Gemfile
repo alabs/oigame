@@ -16,7 +16,6 @@ gem 'capistrano'
 gem 'capistrano-ext'
 
 # To use debugger
-#gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test, :development do
   gem 'minitest'
@@ -27,6 +26,7 @@ end
 
 group :development do
   #gem 'pry-rails'
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 gem 'devise'
