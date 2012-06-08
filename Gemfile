@@ -26,7 +26,8 @@ end
 
 group :development do
   #gem 'pry-rails'
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  # no me arranca el unicorn con ruby-debug19 (apardo)
+  #gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 gem 'devise'

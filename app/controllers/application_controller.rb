@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -11,5 +12,4 @@ class ApplicationController < ActionController::Base
   def set_http_cache(period, visibility = false)
     expires_in period, :public => visibility, 'max-stale' => 0
   end
-
 end

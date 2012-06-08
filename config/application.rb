@@ -50,6 +50,5 @@ module Oigame
         Devise::Mailer.layout "email" # email.haml or email.erb
         ActionMailer::Base.helper "application"
     end
-
   end
 end
