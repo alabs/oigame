@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517141102) do
+ActiveRecord::Schema.define(:version => 20120608231155) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(:version => 20120517141102) do
     t.boolean  "priority"
   end
 
+  add_index "campaigns", ["sub_oigame_id"], :name => "index_campaigns_on_sub_oigame_id"
+  add_index "campaigns", ["user_id"], :name => "index_campaigns_on_user_id"
+
   create_table "contacts", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -56,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20120517141102) do
     t.string   "subject"
   end
 
+  add_index "messages", ["campaign_id"], :name => "index_messages_on_campaign_id"
+
   create_table "petitions", :force => true do |t|
     t.integer  "campaign_id"
     t.string   "email"
@@ -65,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20120517141102) do
     t.string   "token"
     t.string   "name"
   end
+
+  add_index "petitions", ["campaign_id"], :name => "index_petitions_on_campaign_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -88,6 +95,8 @@ ActiveRecord::Schema.define(:version => 20120517141102) do
     t.string   "logo"
     t.text     "logobase64"
   end
+
+  add_index "sub_oigames", ["user_id"], :name => "index_sub_oigames_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
