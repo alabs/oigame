@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609031703) do
+ActiveRecord::Schema.define(:version => 20120609032128) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20120609031703) do
   end
 
   add_index "petitions", ["campaign_id"], :name => "index_petitions_on_campaign_id"
+  add_index "petitions", ["validated"], :name => "index_petitions_on_validated"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
