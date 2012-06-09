@@ -187,6 +187,8 @@
           <button class="close-dialog btn primary">Cerrar</button>
       </div>
     </div>
-    <%= query_review_output %>
+    <% if Rails.env == 'development' || Rails.env == 'staging' %>
+      <%= query_review_output %>
+    <% end %>
   </body>
 </html>
