@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609033041) do
+ActiveRecord::Schema.define(:version => 20120609034751) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120609033041) do
   end
 
   add_index "campaigns", ["moderated"], :name => "index_campaigns_on_moderated"
+  add_index "campaigns", ["slug"], :name => "index_campaigns_on_slug"
   add_index "campaigns", ["sub_oigame_id"], :name => "index_campaigns_on_sub_oigame_id"
   add_index "campaigns", ["user_id"], :name => "index_campaigns_on_user_id"
 
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20120609033041) do
     t.text     "logobase64"
   end
 
+  add_index "sub_oigames", ["slug"], :name => "index_sub_oigames_on_slug"
   add_index "sub_oigames", ["user_id"], :name => "index_sub_oigames_on_user_id"
 
   create_table "taggings", :force => true do |t|
