@@ -53,3 +53,5 @@ gem 'honeypot-captcha'
 gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git"
 
 gem 'jquery-ui-rails'
+
+gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"

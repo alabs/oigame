@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608231155) do
+ActiveRecord::Schema.define(:version => 20120609031703) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
     t.string   "slug"
     t.text     "intro"
     t.text     "body"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120608231155) do
     t.boolean  "priority"
   end
 
+  add_index "campaigns", ["moderated"], :name => "index_campaigns_on_moderated"
   add_index "campaigns", ["sub_oigame_id"], :name => "index_campaigns_on_sub_oigame_id"
   add_index "campaigns", ["user_id"], :name => "index_campaigns_on_user_id"
 
@@ -43,15 +44,15 @@ ActiveRecord::Schema.define(:version => 20120608231155) do
     t.string   "email"
     t.string   "subject"
     t.text     "body"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "mailing",    :default => false
   end
 
   create_table "messages", :force => true do |t|
     t.integer  "campaign_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email"
     t.boolean  "validated",   :default => false
     t.string   "token"
@@ -64,8 +65,8 @@ ActiveRecord::Schema.define(:version => 20120608231155) do
   create_table "petitions", :force => true do |t|
     t.integer  "campaign_id"
     t.string   "email"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "validated",   :default => false
     t.string   "token"
     t.string   "name"
@@ -76,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20120608231155) do
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
@@ -89,8 +90,8 @@ ActiveRecord::Schema.define(:version => 20120608231155) do
     t.text     "html_header"
     t.text     "html_footer"
     t.text     "html_style"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "logo"
     t.text     "logobase64"
@@ -116,12 +117,12 @@ ActiveRecord::Schema.define(:version => 20120608231155) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",     :null => false
-    t.string   "encrypted_password",     :default => "",     :null => false
+    t.string   "email",                                 :default => "",     :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",     :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -129,18 +130,14 @@ ActiveRecord::Schema.define(:version => 20120608231155) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.string   "authentication_token"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.boolean  "mailing",                :default => false
-    t.string   "role",                   :default => "user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "mailing",                               :default => false
+    t.string   "role",                                  :default => "user"
     t.string   "name"
     t.string   "vat"
   end
 
-  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
-  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 

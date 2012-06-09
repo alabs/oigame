@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/nesquena/query_reviewer.git
+  revision: 7422e5cbcf601d8844b97135d4919c5f06c823bf
+  specs:
+    query_reviewer (0.1.5)
+
+GIT
   remote: https://github.com/coderanger/raven-ruby.git
   revision: 7852ae8ac501188fe85d72a4f5c919deb54bcb0a
   specs:
@@ -241,6 +247,7 @@ DEPENDENCIES
   minitest
   mysql2
   newrelic_rpm
+  query_reviewer!
   rails (= 3.2.5)
   redcarpet
   redis-rails
