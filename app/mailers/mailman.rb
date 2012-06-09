@@ -3,6 +3,7 @@ class Mailman < ActionMailer::Base
 
   layout "email"
   default from: "oigame@oiga.me"
+  helper :application
 
   def send_message_to_user(to, subject, message, campaign)
     @message_to = to
