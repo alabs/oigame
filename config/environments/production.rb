@@ -70,8 +70,8 @@ Oigame::Application.configure do
   }
   
   # Para notificar excepciones
-  #config.middleware.use ExceptionNotifier,
-  #  :email_prefix => "[oiga.me exception] ",
-  #  :sender_address => %{"notifier" <notifier@oiga.me>},
-  #  :exception_recipients => %w{debug@alabs.es}
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[oiga.me exception] ",
+    :sender_address => %{"notifier" <notifier@oiga.me>},
+    :exception_recipients => %w{debug@alabs.es}
 end

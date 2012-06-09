@@ -31,7 +31,7 @@ group :development do
 end
 
 gem 'devise'
-#gem 'exception_notification', :require => 'exception_notifier'
+gem 'exception_notification', :require => 'exception_notifier'
 gem 'acts-as-taggable-on'
 gem 'rmagick'
 gem 'carrierwave'
