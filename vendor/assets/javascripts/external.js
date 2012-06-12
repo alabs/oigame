@@ -1,6 +1,5 @@
 //= require jquery.min
 //= require jquery_ujs
-//= require jquery.jgrowl
 //= require jquery-scrolltofixed
 //= require jquery.dialog2
 //= require jquery.simpleSlide
@@ -11,6 +10,7 @@
 //= require Markdown.Editor
 //= require Markdown.Sanitizer
 //= require highlight.pack
+//= require jquery.jgrowl
 // require tag-it
 // require translate
 // require jquery.tableofcontents
