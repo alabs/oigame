@@ -65,11 +65,11 @@ es:
   amount_select: "Selecciona la cantidad"
   accepted_cards: "Tarjetas aceptadas"
   thanks_for_your_donation: 'Gracias por tu donación'
-  thanks_for_your_donation_text: 'Te damos las más sinceras gracias por tu donación a <strong>oiga.me</strong>. Con aportaciones como la tuya este proyecto puede seguir adelante.'
-  greetings: 'Un fuerte abrazo del equipo de oiga.me y <a href="http://alabs.es/">aLabs</a>.'
-  donation_problem: '<p>Hubo un problema con tu donación a <strong>oiga.me</strong> y la transacción no ha podido realizarse con éxito por lo que <strong>no se ha cargado ninguna cantidad en tu cuenta</strong>. Prueba a repetir de nuevo el proceso, si sigue habiendo problemas ponte en contacto con el equipo de <strong>aLabs</strong> en la dirección de correo donaciones[arroba]alabs.es.</p>'
+  thanks_for_your_donation_text: 'Te damos las más sinceras gracias por tu donación a oiga.me. Con aportaciones como la tuya este proyecto puede seguir adelante.'
+  greetings: 'Un fuerte abrazo del equipo de oiga.me y aLabs.'
+  donation_problem: 'Hubo un problema con tu donación a oiga.me y la transacción no ha podido realizarse con éxito por lo que no se ha cargado ninguna cantidad en tu cuenta. Prueba a repetir de nuevo el proceso, si sigue habiendo problemas ponte en contacto con el equipo de aLabs en la dirección de correo donaciones[arroba]alabs.es.'
   donation_info_1: 'oiga.me mantiene un equipo de trabajo reducido al máximo para mantener sus costes bajos. Practicamos una política de transparencia económica, cada año publicaremos un resumen con lo recaudado en donaciones y el destino de las mismas.'
-  donation_info_2: 'Como organización independiente y sin ánimo de lucro <strong>aLabs</strong> destina todo el dinero de cada donación recibida en <strong>oiga.me</strong> a mantener y potenciar esta plataforma. Con tu apoyo podemos conseguir que muchas personas puedan alzar su voz y coordinarse para cambiar el mundo, tu donación colabora directamente para que miles de personas puedan organizarse y realizar acciones de gran impacto.'
+  donation_info_2: 'Como organización independiente y sin ánimo de lucro aLabs destina todo el dinero de cada donación recibida en oiga.me a mantener y potenciar esta plataforma. Con tu apoyo podemos conseguir que muchas personas puedan alzar su voz y coordinarse para cambiar el mundo, tu donación colabora directamente para que miles de personas puedan organizarse y realizar acciones de gran impacto.'
   donation_secure: 'Donación segura'
   donation_secure_info: 'La asociación aLabs no almacena ningún dato de las tarjetas de crédito de los usuarios que realizan las donaciones, las transacciones con tarjetas de crédito son procesadas en línea directamente usando el TPV de pago de Banesto. Con este sistema seguro de pago la información viaja cifrada antes de ser enviada usando el certificado SSL. Si encuentras algún problema usando el sistema, tienes alguna duda o alguna recomendación, por favor contacta con aLabs a través del correo donaciones[arroba]alabs.es.'
   donate_oigame: 'Realizar una donación a oiga.me'
@@ -101,8 +101,8 @@ es:
   thank_you_petition: "Gracias por unirte a esta campaña a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
   thank_you_confirmed: "Tu adhesión ha sido confirmada con éxito, muchas gracias por participar en esta campaña."
   join_myself: "Unirme"
-  may_your_voice_signed: "¡Que se escuche tu voz! Para participar en la campaña haz click en el boton <strong>unirme</strong>."
-  may_your_voice: "¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón <strong>unirme</strong>."
+  may_your_voice_signed: "¡Que se escuche tu voz! Para participar en la campaña haz click en el boton unirme."
+  may_your_voice: "¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón unirme."
   are_you_sure: "¿Estas seguro?"
   created_at: "Creada hace"
   time_left: "Nos quedan"
