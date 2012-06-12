@@ -180,6 +180,7 @@ class CampaignsController < ApplicationController
   end
 
   def petition
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     if request.post?
       if user_signed_in?
         if current_user.name.blank?
@@ -190,7 +191,12 @@ class CampaignsController < ApplicationController
       campaign = Campaign.published.find_by_slug(params[:id])
       petition = Petition.create(:campaign => campaign, :name => params[:name], :email => to, :token => generate_token )
       Mailman.send_message_to_validate_petition(to, campaign, petition).deliver
-      redirect_to petition_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+      if @sub_oigame
+        redirect_url = petition_sub_oigame_campaign_path
+      else
+        redirect_url = petition_campaign_path
+      end
+      redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
 
       return
     end
