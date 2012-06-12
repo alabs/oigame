@@ -40,9 +40,11 @@
       <li class="active">
         <a data-toggle="tab" href="#description"><%= I18n.t(:description) %></a>
       </li>
-      <li>
-        <a data-toggle="tab" href="#message"><%= I18n.t(:message) %></a>
-      </li>
+      <% if @campaign.ttype == 'mailing' %>
+        <li>
+          <a data-toggle="tab" href="#message"><%= I18n.t(:message) %></a>
+        </li>
+      <% end %>
       <% unless @campaign.status == 'archived' %>
         <li data-tab-type="stats">
           <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
