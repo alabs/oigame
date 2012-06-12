@@ -48,6 +48,9 @@
           <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
         </li>
       <% end %>
+
+    <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
+    <% if can? :moderated, @campaign or (can? :moderated, @campaign && @campaign.moderated?) or (can? :deactivate, @campaign && @campaign.published?) or (can? :participants, @campaign && @campaign.messages.count > 0) or (can? :update, @campaign) or (can? :priority, @campaign) or (can? :destroy, @campaign) %>
       <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">Opciones <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -127,6 +130,7 @@
               <% end %>
             </ul><!-- .dropdown-menu -->
       </li><!-- .dropdown -->
+      <% end %>
     </ul><!-- tabs -->
     <div class="tab-content">
       <div id="description" class="active tab-pane">
@@ -187,7 +191,7 @@
         <%= render :partial => 'modal_widget_form' %>
         <div id="diffusion">
           <%= I18n.t(:spread_info) %>
-          <%= link_to t(:spread_form), integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
+          <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
         </div>
 
         <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
