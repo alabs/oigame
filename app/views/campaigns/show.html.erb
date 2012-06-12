@@ -86,7 +86,7 @@
                   <% end %>
                 </li>
                 <li>
-                  <% if can? :participants, @campaign %>
+                  <% if can? :participants, @campaign and @campaign.messages.count > 0 %>
                     <%= link_to participants_campaign_path(@campaign) do %>
                       <i class="icon-user"></i>
                       <%= t(:download_participants) %>
