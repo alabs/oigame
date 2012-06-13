@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.6'
 gem 'mysql2'
 
 group :assets do
