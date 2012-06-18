@@ -68,23 +68,6 @@ $(function() {
     }
   });
   
-  // Para la barra de navegación del login
-  // cuando se está conectado
-  $(".signin").click(function(e) {
-    e.preventDefault();
-    $("#session-menu").toggle();
-  });
-
-  $("#session-menu").mouseup(function() {
-    return false;
-  });
-
-  $(document).mouseup(function(e) {
-    if ($(e.target).parent("a.signin").length==0) {
-      $("#session-menu").hide();
-    }
-  });
-
   $("#user_email").focus();
   $("#campaign_name").focus();
   $("#contact_name").focus();
