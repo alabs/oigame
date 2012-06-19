@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
-  default_from = "oigame@oiga.me"
+  default :from = "oigame@oiga.me"
   layout "email"
   helper :application
 
@@ -44,17 +44,16 @@ class Mailman < ActionMailer::Base
       prefix = "[#{campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-      from = @sub_oigame.from if @sub_oigame.from
+      from = @sub_oigame.from
     else
       prefix = "[oiga.me]"
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    if from
-      mail :from => from, :to => to, :subject => subject
-    else
-      mail :to => to, :subject => subject
+    unless defined? from || !from.nil?
+      from = "oigame@oiga.me"
     end
+    mail :from => from :to => to, :subject => subject
   end
 
   def send_message_to_validate_petition(to, campaign, petition)
@@ -64,17 +63,16 @@ class Mailman < ActionMailer::Base
       prefix = "[#{campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-      from = @sub_oigame.from if @sub_oigame.from
+      from = @sub_oigame.from
     else
       prefix = "[oiga.me]"
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    if from
-      mail :from => from, :to => to, :subject => subject
-    else
-      mail :to => to, :subject => subject
+    unless defined? from || !from.nil?
+      from = "oigame@oiga.me"
     end
+    mail :from => from, :to => to, :subject => subject
   end
 
   def inform_campaign_activated(campaign)
