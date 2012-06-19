@@ -44,7 +44,7 @@ class Mailman < ActionMailer::Base
       prefix = "[#{campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-      from = @sub_oigame.from if @sub_oigame.from
+      from = @sub_oigame.from
     else
       prefix = "[oiga.me]"
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
@@ -63,7 +63,7 @@ class Mailman < ActionMailer::Base
       prefix = "[#{campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-      from = @sub_oigame.from if @sub_oigame.from
+      from = @sub_oigame.from
     else
       prefix = "[oiga.me]"
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
