@@ -50,7 +50,7 @@ class Mailman < ActionMailer::Base
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    unless from
+    unless defined? from
       from = "oigame@oiga.me"
     end
     mail :from => from :to => to, :subject => subject
@@ -69,7 +69,7 @@ class Mailman < ActionMailer::Base
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    unless from
+    unless defined? from
       from = "oigame@oiga.me"
     end
     mail :from => from, :to => to, :subject => subject
