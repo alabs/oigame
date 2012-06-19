@@ -29,9 +29,9 @@
     </div>
 
     <div class="form-field">
-      <%= f.label :user_id, "Correo del usuario administrador" %>
+      <%= f.label :sub_oigames_users, "Correo del usuario administrador" %>
       <div class="clearfix">
-        <%= f.select :user_id, User.all.collect {|u| [ u.email, u.id ] } %>
+        <%= collection_select :sub_oigame, :user_ids, User.find(:all, :order => 'email ASC'), :id, :email, { }, { :multiple => true } -%>
       </div>
     </div>
   </fieldset>

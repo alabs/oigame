@@ -3,11 +3,11 @@ class SubOigame < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_many :campaigns
 
-  attr_accessible :name, :slug, :html_header, :html_footer, :html_style, :logo, :from, :user_id
+  attr_accessible :name, :slug, :html_header, :html_footer, :html_style, :logo, :from, :user_ids
 
   before_save :generate_slug
 
-  validates :name, :user, :presence => true
+  validates :name, :presence => true
 
   mount_uploader :logo, LogoUploader
 
