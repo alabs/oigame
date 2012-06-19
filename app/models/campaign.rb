@@ -1,6 +1,8 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
 
+  acts_as_paranoid
+
   belongs_to :user
   belongs_to :sub_oigame
   has_many :messages

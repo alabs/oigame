@@ -147,6 +147,8 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
+    rails3_acts_as_paranoid (0.2.4)
+      activerecord (~> 3.2)
     railties (3.2.6)
       actionpack (= 3.2.6)
       activesupport (= 3.2.6)
@@ -246,6 +248,7 @@ DEPENDENCIES
   newrelic_rpm
   query_reviewer!
   rails (= 3.2.6)
+  rails3_acts_as_paranoid (~> 0.2.0)
   redcarpet
   redis-rails
   redis-store
