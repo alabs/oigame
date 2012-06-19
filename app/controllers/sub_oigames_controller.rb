@@ -11,8 +11,7 @@ class SubOigamesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sub_oigames }
-    end
-  end
+    end end
 
   # GET /o/1
   # GET /o/1.json
@@ -83,6 +82,13 @@ class SubOigamesController < ApplicationController
       format.html { redirect_to sub_oigames_url }
       format.json { head :ok }
     end
+  end
+
+  def widget
+  end
+
+  def widget_iframe
+    render :partial => "widget_iframe"
   end
 
 end
