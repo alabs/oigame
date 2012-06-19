@@ -25,7 +25,10 @@ class Ability
       can :archived, Campaign, :status => 'archived'
       # sub_oigames
       can :read, SubOigame
-      can :update, SubOigame, :user_id => user.sub_oigame
+      #can :update, SubOigame, :user_id => user.sub_oigame
+      can :update, SubOigame do |sub|
+        sub.users.include? user
+      end
     end
 
     if user.role? :user
@@ -42,7 +45,10 @@ class Ability
       can :archived, Campaign, :status => 'archived'
       # sub_oigames
       can :read, SubOigame
-      can :update, SubOigame, :user_id => user.id
+      #can :update, SubOigame, :user_id => user.id
+      can :update, SubOigame do |sub|
+        sub.users.include? user
+      end
       #cannot :index, SubOigame
     end
   end
