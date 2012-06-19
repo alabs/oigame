@@ -50,11 +50,10 @@ class Mailman < ActionMailer::Base
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    if from
-      mail :from => from, :to => to, :subject => subject
-    else
-      mail :to => to, :subject => subject
+    unless from
+      from = "oigame@oiga.me"
     end
+    mail :from => from :to => to, :subject => subject
   end
 
   def send_message_to_validate_petition(to, campaign, petition)
@@ -70,11 +69,10 @@ class Mailman < ActionMailer::Base
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    if from
-      mail :from => from, :to => to, :subject => subject
-    else
-      mail :to => to, :subject => subject
+    unless from
+      from = "oigame@oiga.me"
     end
+    mail :from => from, :to => to, :subject => subject
   end
 
   def inform_campaign_activated(campaign)
