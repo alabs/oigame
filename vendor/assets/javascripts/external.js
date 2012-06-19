@@ -11,6 +11,7 @@
 //= require Markdown.Sanitizer
 //= require highlight.pack
 //= require jquery.jgrowl
+//= require jquery.multi-select
 // require tag-it
 // require translate
 // require jquery.tableofcontents

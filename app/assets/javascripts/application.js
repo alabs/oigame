@@ -33,5 +33,7 @@ $(function(){
   ///////////////////////// slideshow slogans - end
 
   hljs.initHighlightingOnLoad();
+
+  $(".multiselect").multiSelect();
   
 });
