@@ -53,7 +53,7 @@ class Mailman < ActionMailer::Base
     unless defined? from || !from.nil?
       from = "oigame@oiga.me"
     end
-    mail :from => from :to => to, :subject => subject
+    mail :from => from, :to => to, :subject => subject
   end
 
   def send_message_to_validate_petition(to, campaign, petition)
