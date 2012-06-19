@@ -105,19 +105,16 @@
                   <% end %>
                 </div><!-- signin-container -->
               <% else %>
-                <div id="signin-container">
-                  <div id="topnav" class="topnav">
-                    <a href="#" class="signin">
-                      <strong><%= current_user.email %></strong>
-                    </a>
-                  </div><!-- topnav -->
-                  <div id="session-menu">
-                    <ul>
+                <ul class="nav pull-right">
+                  <li id="fat-menu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="top:-0.5em; position:relative;">
+                      <strong><%= current_user.email %></strong><b class="caret"></b></a>
+                    <ul class="dropdown-menu" id="session-menu">
                       <li><%= link_to 'Configuración',  edit_user_registration_path %></li>
                       <li><%= link_to 'Desconectar', destroy_user_session_path, :method => :delete %></li>
                     </ul>
-                  </div><!-- session-menu -->
-                </div><!-- signin-container -->
+                  </li>
+                </ul>
               <% end %>
             </ul><!-- secondary-nav -->
           </div><!-- topbar-wrapper -->

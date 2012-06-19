@@ -1,8 +1,9 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
+  default_from = "oigame@oiga.me"
   layout "email"
-  default from: "oigame@oiga.me"
+  default from: default_from
   helper :application
 
   def send_message_to_user(to, subject, message, campaign)
@@ -23,7 +24,7 @@ class Mailman < ActionMailer::Base
   def send_campaign_to_sub_oigame_admin(sub_oigame, campaign)
     @campaign = campaign
     @sub_oigame = sub_oigame
-    subject = "[oiga.me] [#{@sub_oigame.name}] #{@campaign.name}"
+    subject = "[#{@sub_oigame.name}] #{@campaign.name}"
     mail :to => @sub_oigame.user.email, :subject => subject
   end
 
@@ -38,15 +39,37 @@ class Mailman < ActionMailer::Base
   def send_message_to_validate_message(to, campaign, message)
     @campaign = campaign
     @token = message.token
-    subject = "[oiga.me] Valida tu adhesion a la campaña: #{@campaign.name}"
-    mail :to => to, :subject => subject
+    # TODO: esto que viene no es muy DRY que digamos 
+    # seguro que hay alguna forma elegante con un before o alguna cosas de estas
+    if defined? campaign.sub_oigame then
+      prefix = "[#{campaign.sub_oigame.name}]"
+      @sub_oigame = @campaign.sub_oigame
+      @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+      from = @sub_oigame.from ? @sub_oigame.from : default_from
+    else
+      prefix = "[oiga.me]"
+      @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
+      from = default_from
+    end
+    subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
+    mail :from => from, :to => to, :subject => subject
   end
 
   def send_message_to_validate_petition(to, campaign, petition)
     @campaign = campaign
     @token = petition.token
-    subject = "[oiga.me] Valida tu adhesion a la campaña: #{@campaign.name}"
-    mail :to => to, :subject => subject
+    if defined? campaign.sub_oigame then
+      prefix = "[#{campaign.sub_oigame.name}]"
+      @sub_oigame = @campaign.sub_oigame
+      @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+      from = @sub_oigame.from ? @sub_oigame.from : default_from
+    else
+      prefix = "[oiga.me]"
+      @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
+      from = default_from
+    end
+    subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
+    mail :from => from, :to => to, :subject => subject
   end
 
   def inform_campaign_activated(campaign)

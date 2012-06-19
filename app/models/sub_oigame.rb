@@ -2,6 +2,8 @@ class SubOigame < ActiveRecord::Base
   belongs_to :user
   has_many :campaigns
 
+  attr_accessible :name, :slug, :html_header, :html_footer, :html_style, :logo, :from, :user_id
+
   before_save :generate_slug
 
   validates :name, :user, :presence => true
