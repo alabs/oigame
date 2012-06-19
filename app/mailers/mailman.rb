@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
-  default :from = "oigame@oiga.me"
+  default :from => "oigame@oiga.me"
   layout "email"
   helper :application
 
