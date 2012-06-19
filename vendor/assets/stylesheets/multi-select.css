@@ -1,5 +1,5 @@
 .ms-container{
-  background: transparent url('../img/arrow.png') no-repeat 175px 83px;
+  background: transparent url('/assets/jquery.multiselect/arrow.png') no-repeat 227px 104px;
 }
 
 .ms-container:after{
@@ -58,13 +58,13 @@
 
 .ms-container .ms-optgroup-label{
   padding: 5px 0px 0px 20px;
-  background: transparent url('../img/plus.png') no-repeat 5px 10px;
+  background: transparent url('/assets/jquery.multiselect/plus.png') no-repeat 5px 10px;
   cursor: pointer;
   color: #999;
 }
 
 .ms-container .ms-optgroup-label.ms-collapse{
-  background-image: url('../img/minus.png');
+  background-image: url('/assets/jquery.multiselect/minus.png');
 }
 
 .ms-container li.ms-elem-selectable:not(.disabled):hover,
@@ -75,5 +75,5 @@
 }
 
 .ms-container .ms-selection li:not(.disabled):hover{
-  background: #eee url('../img/delete.png') no-repeat 3px 3px;
+  background: #eee url('/assets/jquery.multiselect/delete.png') no-repeat 3px 3px;
 }

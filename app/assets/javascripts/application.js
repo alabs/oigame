@@ -34,6 +34,9 @@ $(function(){
 
   hljs.initHighlightingOnLoad();
 
-  $(".multiselect").multiSelect();
+  $(".multiselect").multiSelect({
+    selectableHeader: '<h4>Todos los usuarios</h4>',
+    selectedHeader: '<h4>Admins</h4>'
+  });
   
 });
