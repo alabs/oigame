@@ -38,6 +38,7 @@ class Mailman < ActionMailer::Base
   def send_message_to_validate_message(to, campaign, message)
     @campaign = campaign
     @token = message.token
+    from = ""
     # TODO: esto que viene no es muy DRY que digamos 
     # seguro que hay alguna forma elegante con un before o alguna cosas de estas
     if defined? campaign.sub_oigame then
@@ -50,8 +51,8 @@ class Mailman < ActionMailer::Base
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    unless defined? from || !from.nil?
-      from = "oigame@oiga.me"
+    if from.nil?
+      from = default[:from]
     end
     mail :from => from, :to => to, :subject => subject
   end
@@ -59,6 +60,7 @@ class Mailman < ActionMailer::Base
   def send_message_to_validate_petition(to, campaign, petition)
     @campaign = campaign
     @token = petition.token
+    from = ""
     if defined? campaign.sub_oigame then
       prefix = "[#{campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
@@ -69,8 +71,8 @@ class Mailman < ActionMailer::Base
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    unless defined? from || !from.nil?
-      from = "oigame@oiga.me"
+    if from.nil?
+      from = default[:from]
     end
     mail :from => from, :to => to, :subject => subject
   end
