@@ -27,6 +27,9 @@ Oigame::Application.routes.draw do
         get 'archived'
       end
     end
+    get 'integrate'
+    get 'widget'
+    get 'widget-iframe.html' => 'sub_oigames#widget_iframe', :as => 'widget_iframe'
   end
 
   get 'donate' => 'donate#index', :as => 'donate'
