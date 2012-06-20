@@ -2,7 +2,9 @@ class SubOigamesController < ApplicationController
   # para cancan
   load_resource :find_by => :slug
   authorize_resource
- 
+
+  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
+
   # GET /o
   # GET /o.json
   def index
@@ -11,8 +13,7 @@ class SubOigamesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sub_oigames }
-    end
-  end
+    end end
 
   # GET /o/1
   # GET /o/1.json
@@ -83,6 +84,19 @@ class SubOigamesController < ApplicationController
       format.html { redirect_to sub_oigames_url }
       format.json { head :ok }
     end
+  end
+
+  def widget
+    @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id])
+  end
+
+  def widget_iframe
+    @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id])
+    render :partial => "widget_iframe"
+  end
+
+  def integrate
+    @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id])
   end
 
 end

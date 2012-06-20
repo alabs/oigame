@@ -1,6 +1,6 @@
 var el = document.createElement('iframe'); 
-el.setAttribute('id', 'ifrm-campaign-<%= @campaign.id %>');
-el.setAttribute('src', '<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>/widget-iframe.html');
+el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');
+el.setAttribute('src', '<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html');
 el.setAttribute('width', '100%');
 el.setAttribute('scrolling', 'no');
 el.setAttribute('frameborder', '0');

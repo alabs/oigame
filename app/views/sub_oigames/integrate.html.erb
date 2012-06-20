@@ -1,0 +1,23 @@
+<% @page_title = "Integrar SubOigame de " + @sub_oigame.name %>
+
+<div id="campaigns-wrapper">
+  <div id="show-campaign">
+    <div id="show-campaign-detail">
+      <div id="show-campaign-detail-main">
+      <h1><%= @page_title %></h1>
+      <hr />
+      <p><%= I18n.t(:sub_integrate_form_explanation_1) %></p><br />
+      <pre><code class="html"><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/o/#{@sub_oigame.slug}/widget.js\"></script>" %></code></pre>
+      </div>
+    </div>
+    <div id="show-campaign-sidebar" class="grid_8">
+      <p class="label"><%= I18n.t(:result) %></p>
+      <div id="modal-widget-window-example">
+        <%= render :partial => "widget_iframe" %>
+      </div><!-- modal-widget-window-example -->
+    </div><!-- span5 -->
+  </div><!-- modal-widget-window-wrapper -->
+  </div>
+  </div>
+  </div>
+  </div>
