@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
-  default :from = "oigame@oiga.me"
+  default :from => "oigame@oiga.me"
   layout "email"
   helper :application
 
@@ -38,40 +38,40 @@ class Mailman < ActionMailer::Base
   def send_message_to_validate_message(to, campaign, message)
     @campaign = campaign
     @token = message.token
+    from = Mailman.default[:from]
     # TODO: esto que viene no es muy DRY que digamos 
     # seguro que hay alguna forma elegante con un before o alguna cosas de estas
     if defined? campaign.sub_oigame then
       prefix = "[#{campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-      from = @sub_oigame.from
+      if @sub_oigame.from
+        from = @sub_oigame.from
+      end
     else
       prefix = "[oiga.me]"
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    unless defined? from || !from.nil?
-      from = "oigame@oiga.me"
-    end
-    mail :from => from :to => to, :subject => subject
+    mail :from => from, :to => to, :subject => subject
   end
 
   def send_message_to_validate_petition(to, campaign, petition)
     @campaign = campaign
     @token = petition.token
+    from = Mailman.default[:from]
     if defined? campaign.sub_oigame then
       prefix = "[#{campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-      from = @sub_oigame.from
+      if @sub_oigame.from
+        from = @sub_oigame.from
+      end
     else
       prefix = "[oiga.me]"
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    unless defined? from || !from.nil?
-      from = "oigame@oiga.me"
-    end
     mail :from => from, :to => to, :subject => subject
   end
 

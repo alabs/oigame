@@ -33,7 +33,7 @@ development:
     enabled: true
 
 staging:
-  enabled: true
+  enabled: false
 
 production:
     enabled: false
