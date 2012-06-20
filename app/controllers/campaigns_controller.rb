@@ -151,11 +151,12 @@ class CampaignsController < ApplicationController
       if campaign
         if params[:own_message] == "1" 
           message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+          Mailman.send_message_to_validate_message(from, campaign, message).deliver
         else
           # mensaje por defecto
           message = Message.create(:campaign => campaign, :email => from, :subject => campaign.default_message_subject, :body => campaign.default_message_body, :token => generate_token)
+          Mailman.send_message_to_validate_message(from, campaign, message).deliver
         end
-        Mailman.send_message_to_validate_message(from, campaign, message).deliver
         @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
         if @sub_oigame.nil?
           redirect_to message_campaign_path
@@ -310,6 +311,7 @@ class CampaignsController < ApplicationController
       dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
       data = []
       messages = 0
+      require Rails.root.to_s+'/app/models/message'
       dates.each do |date|
         count = Rails.cache.fetch("s4m_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
         messages += count
@@ -323,6 +325,7 @@ class CampaignsController < ApplicationController
       dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
       data = []
       petitions = 0
+      require Rails.root.to_s+'/app/models/petition'
       dates.each do |date|
         count = Rails.cache.fetch("s4p_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
         petitions += count
