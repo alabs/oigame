@@ -1,0 +1,8 @@
+var el = document.createElement("iframe");
+el.setAttribute('id', 'ifrm');
+el.setAttribute('src', '<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html');
+el.setAttribute('width', '300px');
+el.setAttribute('height', '550px');
+el.setAttribute('scrolling', 'no');
+el.setAttribute('frameborder', '0');
+document.body.appendChild(el);

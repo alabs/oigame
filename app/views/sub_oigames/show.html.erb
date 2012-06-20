@@ -32,8 +32,9 @@
       </div>
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar" class="grid_8">
-      <p><%= link_to 'Editar', edit_sub_oigame_path(@sub_oigame), :class => "btn primary" %></p>
-      <p><%= link_to 'Campañas', sub_oigame_campaigns_path(@sub_oigame), :class => "btn success" %></p>
+      <p><%= link_to 'Editar', edit_sub_oigame_path(@sub_oigame), :class => "btn btn-primary" %></p>
+      <p><%= link_to 'Ver campañas activadas', sub_oigame_campaigns_path(@sub_oigame), :class => "btn btn-success" %></p>
+      <p><%= link_to 'Integración', sub_oigame_integrate_path(@sub_oigame), :class => "btn btn-info" %></p>
     </div>
   </div>
 </div>

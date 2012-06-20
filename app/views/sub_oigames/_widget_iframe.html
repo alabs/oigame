@@ -1,0 +1,42 @@
+<style type="text/css">
+<!-- TODO: poner estilos correctos -->
+</style>
+<div id="campaign-message-wrapper">
+  <div id="campaign-message-info">
+    <h2><%= @campaign.name %></h2>
+    <p><%= @campaign.to_html(@campaign.intro).html_safe %></p>
+  </div><!-- campaign-message-info -->
+  <div id="campaign-message-form" class="form-stacked">
+    <% if @campaign.ttype == 'mailing' %>
+      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message", :honeypot => true do %>
+        <fieldset>
+          <div class="form-field">
+            <%= label_tag :email, t(:your_email) %>
+            <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+          </div>
+          Puedes también escribir tu propio mensaje y ver más información de la campaña en <%= link_to "oiga.me", @campaign %>.
+          <div class="form-actions">
+            <%= submit_tag t(:send_message), :class => 'btn primary' %>
+          </div>
+          <%= link_to image_tag("logo-small.png", :style => "margin:auto; display:block;"), root_path %>
+        </fieldset>
+      <% end %>
+    <% elsif @campaign.ttype == 'petition' %>
+      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition", :honeypot => true do %>
+        <fieldset>
+          <div class="form-field">
+            <%= label_tag :name, t(:name_and_surname) %>
+            <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name_and_surname), :class => 'span5' %>
+          </div>
+          <div class="form-field">
+            <%= label_tag :email, t(:your_email) %>
+            <%= email_field_tag :email, nil, :required => true, :placeholder => t(:your_email), :class => 'span5' %>
+          </div>
+          <div class="form-actions">
+            <%= submit_tag t(:join_myself), :class => 'btn primary' %>
+          </div>
+        </fieldset>
+      <% end %>
+    <% end %>
+  </div><!-- campaign-message-form -->
+</div><!-- campaign-message-wrapper -->

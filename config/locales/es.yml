@@ -127,6 +127,7 @@ es:
   option: "Opción"
   integrate_form_explanation_1: 'Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:'
   integrate_form_explanation_2: 'En caso que el código no te funcione, puedes probar con la versión sin Javascript ni iframes, en HTML limpio:'
+  sub_integrate_form_explanation_1: 'Para integrar tu SubOigame en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:'
   close: "Cerrar"
   result: "Resultado"
   if_you_write: "si escribes:"
