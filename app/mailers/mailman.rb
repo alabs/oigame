@@ -41,8 +41,8 @@ class Mailman < ActionMailer::Base
     from = Mailman.default[:from]
     # TODO: esto que viene no es muy DRY que digamos 
     # seguro que hay alguna forma elegante con un before o alguna cosas de estas
-    if defined? campaign.sub_oigame then
-      prefix = "[#{campaign.sub_oigame.name}]"
+    unless @campaign.sub_oigame.nil?
+      prefix = "[#{@campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
       if @sub_oigame.from
@@ -60,8 +60,8 @@ class Mailman < ActionMailer::Base
     @campaign = campaign
     @token = petition.token
     from = Mailman.default[:from]
-    if defined? campaign.sub_oigame then
-      prefix = "[#{campaign.sub_oigame.name}]"
+    unless @campaign.sub_oigame.nil?
+      prefix = "[#{@campaign.sub_oigame.name}]"
       @sub_oigame = @campaign.sub_oigame
       @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
       if @sub_oigame.from
