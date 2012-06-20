@@ -311,7 +311,7 @@ class CampaignsController < ApplicationController
       data = []
       messages = 0
       dates.each do |date|
-        count = Rails.cache.fetch('stats_for_mailing', :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id) }.all.count
+        count = Rails.cache.fetch("stats_for_mailing_#{campaign.id}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id) }.all.count
         messages += count
         data.push([date.strftime('%Y-%m-%d'), messages])
       end
@@ -324,7 +324,7 @@ class CampaignsController < ApplicationController
       data = []
       petitions = 0
       dates.each do |date|
-        count = Rails.cache.fetch('stats_for_petition', :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id) }.all.count
+        count = Rails.cache.fetch("stats_for_petition_#{campaign.id}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id) }.all.count
         petitions += count
         data.push([date.strftime('%Y-%m-%d'), petitions])
       end
