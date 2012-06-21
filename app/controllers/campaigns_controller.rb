@@ -18,11 +18,11 @@ class CampaignsController < ApplicationController
     if @sub_oigame.nil? 
       # si no es de un suboigame
       @campaigns = Campaign.where(:sub_oigame_id => nil).includes(:messages, :petitions).last_campaigns
-      @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
+      @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
     else
       # si es de un suboigame
       @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).includes(:messages, :petitions).last_campaigns
-      @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
+      @tags = Rails.cache.fetch("tags_campaigns_index_with_sub_#{@sub_oigame.id}", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
     end
   end
 
