@@ -45,4 +45,6 @@ Oigame::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.log_tags = [:uuid, :remote_ip]
+
+  config.active_record.logger = Logger.new(Rails.root.to_s + "/log/development_sql.log")
 end
