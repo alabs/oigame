@@ -36,6 +36,7 @@ class Campaign < ActiveRecord::Base
 
   class << self
 
+    # Estudiar esta query para que no haga un MySQL filesort
     def last_campaigns(limit = nil)
       order('priority DESC').order('published_at DESC').published.limit(limit).all
     end
