@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621110711) do
+ActiveRecord::Schema.define(:version => 20120621112938) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -104,7 +104,8 @@ ActiveRecord::Schema.define(:version => 20120621110711) do
     t.time     "deleted_at"
   end
 
-  add_index "sub_oigames", ["slug"], :name => "index_sub_oigames_on_slug", :length => {"slug"=>254}
+  add_index "sub_oigames", ["deleted_at"], :name => "index_on_sub_oigames_deleted_at"
+  add_index "sub_oigames", ["slug"], :name => "index_sub_oigames_on_slug", :unique => true, :length => {"slug"=>254}
 
   create_table "sub_oigames_users", :id => false, :force => true do |t|
     t.integer "sub_oigame_id"
