@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621090553) do
+ActiveRecord::Schema.define(:version => 20120621100626) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(:version => 20120621090553) do
     t.boolean  "priority"
   end
 
+  add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
   add_index "campaigns", ["moderated"], :name => "index_campaigns_on_moderated"
   add_index "campaigns", ["slug"], :name => "index_campaigns_on_slug"
+  add_index "campaigns", ["status"], :name => "index_on_campaigns_status"
   add_index "campaigns", ["sub_oigame_id"], :name => "index_campaigns_on_sub_oigame_id"
   add_index "campaigns", ["user_id"], :name => "index_campaigns_on_user_id"
 
