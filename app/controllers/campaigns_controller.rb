@@ -134,8 +134,15 @@ class CampaignsController < ApplicationController
   end
 
   def tag
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
     @campaigns = Campaign.last_campaigns_by_tag(params[:id])
-    @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
+
+    if @sub_oigame.nil?
+      @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
+    else
+      @tags = Rails.cache.fetch('tags_campaigns_index_with_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
+    end
   end
 
   def tags_archived
