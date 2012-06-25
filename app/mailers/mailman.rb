@@ -25,7 +25,9 @@ class Mailman < ActionMailer::Base
     @campaign = campaign
     @sub_oigame = sub_oigame
     subject = "[#{@sub_oigame.name}] #{@campaign.name}"
-    mail :to => @sub_oigame.user.email, :subject => subject
+    @sub_oigame.users.each do |user|
+      mail :to => user.email, :subject => subject
+    end
   end
 
   def send_contact_message(message)
