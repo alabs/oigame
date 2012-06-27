@@ -295,7 +295,7 @@ class CampaignsController < ApplicationController
     @archived = true
     if @sub_oigame.nil?
       @campaigns = Campaign.archived_campaigns
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires_in => 3.hours) { Campaign.archived.tag_counts_on(:tags) }
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(nil).archived.tag_counts_on(:tags) }
     else
       @campaigns = Campaign.archived_campaigns(@sub_oigame)
       @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).archived.tag_counts_on(:tags) }
