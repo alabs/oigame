@@ -151,10 +151,10 @@ class CampaignsController < ApplicationController
 
     if @sub_oigame.nil?
       @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id])
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires => 3.hours) { Campaign.archived.tag_counts_on(:tags) }
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub-b", :expires => 3.hours) { Campaign.archived.tag_counts_on(:tags) }
     else
       @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id], @sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).archived.tag_counts_on(:tags) }
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub-b", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).archived.tag_counts_on(:tags) }
     end
   end
 
@@ -291,14 +291,15 @@ class CampaignsController < ApplicationController
   end
 
   def archived
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     @archived = true
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+
     if @sub_oigame.nil?
       @campaigns = Campaign.archived_campaigns
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(nil).archived.tag_counts_on(:tags) }
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub-a", :expires_in => 3.hours) { Campaign.archived.tag_counts_on(:tags) }
     else
       @campaigns = Campaign.archived_campaigns(@sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).archived.tag_counts_on(:tags) }
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub-a", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).archived.tag_counts_on(:tags) }
     end
   end
 
