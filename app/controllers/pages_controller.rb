@@ -5,7 +5,6 @@ class PagesController < ApplicationController
     @users = User.count
     @users += Message.validated.count
     @users += Petition.validated.count
-    a
   end
 
   def help
