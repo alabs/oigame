@@ -50,7 +50,7 @@ gem 'honeypot-captcha'
 
 #gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
 
-gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git"
+gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git", :ref => "aad856a8a4"
 
 gem 'jquery-ui-rails'
 

@@ -3,7 +3,9 @@ class SubOigamesController < ApplicationController
   load_resource :find_by => :slug
   authorize_resource
 
+  layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
+  skip_authorize_resource :only => [:widget, :widget_iframe]
 
   # GET /o
   # GET /o.json
@@ -49,7 +51,7 @@ class SubOigamesController < ApplicationController
 
     respond_to do |format|
       if @sub_oigame.save
-        format.html { redirect_to @sub_oigame, notice: 'Sub oigame was successfully created.' }
+        format.html { redirect_to @sub_oigame, notice: 'Has creado el SubOigame.' }
         format.json { render json: @sub_oigame, status: :created, location: @sub_oigame }
       else
         format.html { render action: "new" }
@@ -65,7 +67,7 @@ class SubOigamesController < ApplicationController
 
     respond_to do |format|
       if @sub_oigame.update_attributes(params[:sub_oigame])
-        format.html { redirect_to @sub_oigame, notice: 'Sub oigame was successfully updated.' }
+        format.html { redirect_to @sub_oigame, notice: 'Has actualizado el SubOigame.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
