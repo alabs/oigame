@@ -6,6 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/coderanger/raven-ruby.git
+  revision: aad856a8a44a73f262c763f16ff930f586350abc
   ref: aad856a8a4
   specs:
     sentry-raven (0.2)
