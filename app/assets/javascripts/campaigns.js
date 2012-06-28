@@ -1,37 +1,36 @@
 
+function draw_stats_chart(){
+  var items_messages = JSON.parse($('#stats-data').text());
+  var minimal_date = $("#stats-minimal_date").text();
+  chart_draw(items_messages, 'chart_messages', '#F78181', minimal_date);
+}
 ////////////////////////// switch_campaign_type - start 
 
 function switch_campaign_type(ctype) {
   switch (ctype) {
     case "petition": 
-      $("#crecipients").hide("slow");
-      $("#campaign_recipients").removeAttr("required"); 
+      $(".form-campaign")
+        .hide("slow");
+      $(".form-campaign input, .form-campaign textarea")
+        .removeAttr("required"); 
       break;
     case "mailing":
-      $("#crecipients").show("slow");
-      $("#crecipients").removeClass("hide");
-      $("#campaign_recipients").attr("required", "required");
+      $(".form-campaign")
+        .show("slow")
+        .removeClass("hide");
+      $(".form-campaign input, .form-campaign textarea")
+        .attr("required", "required");
       break;
     default:
-      $("#crecipients").hide('slow');
+      $(".form-campaign")
+        .hide("slow");
+      $(".form-campaign input, .form-campaign textarea")
+        .removeAttr("required"); 
       break;
   }
 }
 ////////////////////////// switch_campaign_type - start 
 
-////////////////////////// jquery.DatePicker cutomizations - start
-
-$.dpText = {
-  TEXT_PREV_YEAR    : 'Año anterior',
-  TEXT_PREV_MONTH   : 'Mes anterior',
-  TEXT_NEXT_YEAR    : 'Próximo año',
-  TEXT_NEXT_MONTH   : 'Próximo mes',
-  TEXT_CLOSE      : 'Cerrar',
-  TEXT_CHOOSE_DATE: '',
-  HEADER_FORMAT   : 'mmmm yyyy'
-}
-
-////////////////////////// jquery.DatePicker cutomizations - end
 
 ////////////////////////// chart_draw: jqplot helper  - start
 
@@ -87,7 +86,32 @@ function chart_draw(items, chart_id, color, minimal_date){
 
 ////////////////////////// chart_draw: jqplot helper  - end
 
+
+
+////////////////////////// check_own_message  - start
+function check_own_message($selector){
+  // function que comprueba el checkbox de "Quiero escribir mi propio mensaje" 
+  // muestra o esconde unos campos de formularios dependiendo de eso 
+  if ( $selector.attr('checked') == "checked" ){
+    $('.form-message')
+      .slideDown('slow')
+      .removeClass('hide');
+      $('.form-message input, .form-message textarea').attr('required', 'required');
+  } else {
+    $('.form-message')
+      .slideUp('slow')
+      .addClass('hide');
+      $('.form-message input, .form-message textarea').removeAttr('required');
+  }
+}
+
+////////////////////////// check_own_message  - end
+
 $(function() {
+
+  $("#campaign_duedate_at").datepicker({
+    dateFormat: "yy-mm-dd"
+  });
 
   // Al hacer click en unirse a una campaña, hacer el scroll
   // y poner foco en el campo nombre
@@ -102,82 +126,12 @@ $(function() {
     $("#campaign-message-form #email").focus();
   }); 
 
-  ////////////////////////// modal-send-message start
-  $("#modal-send-message").dialog2({
-    removeOnClose: false,
-    modal: true,
-    autoOpen: false
-  });
-  
   function copy_input_to_modal(input_id){
     $("#modal-send-message #" + input_id).val($("#show-campaign-sidebar #" + input_id).val());
   }
 
-  $("#show-modal-send-message").click(function(event) {
-    event.preventDefault();
-    $("#modal-campaign-message-form").html($("#campaign-message-form").html());
-    $("#modal-send-message").parent().addClass("modal-large");
-    $("#modal-campaign-message-form .form-actions").hide();
-    $("#modal-campaign-message-form .form-field").addClass('clearfix').removeClass('form-field');
-    $("#modal-campaign-message-form .span5").addClass('span9').removeClass('span5');
-    $("#modal-campaign-message-form input, #modal-campaign-message-form textarea").wrap('<div class="input" />');
-    copy_input_to_modal('email'); 
-    copy_input_to_modal('subject'); 
-    copy_input_to_modal('body'); 
-    $(".modal-send-form").click( function(){ $("#modal-campaign-message-form form").submit() } );
-    $("#modal-send-message").dialog2("open");
-  });
-  ////////////////////////// modal-send-message end
-
-
-  ////////////////////////// modal-stats-window start
-  $.jqplot.config.enablePlugins = true;
-
-  // comprobamos que se encuentre la data
-  if ( $('#stats-data').text().length != 0 ) {
-    var items_messages = JSON.parse($('#stats-data').text());
-    var minimal_date = $("#stats-minimal_date").text();
-    chart_draw(items_messages, 'chart_messages', '#F78181', minimal_date);
-  }
-
-  $("#modal-stats-window").dialog2({
-    removeOnClose: false,
-    modal: true,
-    autoOpen: false
-  });
-
-  $("#show-modal-stats-window").click(function(event) {
-    event.preventDefault();
-    $("#modal-stats-window").dialog2("open");
-  });
-  ////////////////////////// modal-stats-window end
-  
-  // modal-widget start
-  $("#modal-widget-window").dialog2({
-    removeOnClose: false,
-    autoOpen: false
-  });
-
   var html_clean =  jQuery.trim( $("#modal-widget-window-example").html() );
-  $("#modal-widget-html").val(html_clean);
-
-  $("#show-modal-widget").click(function(event) {
-    $("#modal-widget-window").parent().addClass("modal-large");
-    event.preventDefault();
-    $("#modal-widget-window").dialog2("open");
-  });
-  // modal-widget end
-
-//  if ( $("#campaign-actions").length > 0 ) {
-//    // comment-form floating start
-//    $('#show-campaign-sidebar').scrollToFixed({
-//      marginTop:
-//        $('#header').outerHeight() + 10,
-//      limit:
-//        $('#campaign-actions').offset().top - $('#show-campaign-sidebar').outerHeight() - 10
-//    });
-//    // comment-form floating end
-//  }
+  $("#modal-widget-html").text(html_clean);
 
   $(".show_markdown_help").click( function(event){
     event.preventDefault();
@@ -196,10 +150,9 @@ $(function() {
   var participants_target = $("#participants-target").text();
   var percent_raw = (participants * 100) / participants_target;
   var percent = Math.round(percent_raw);
-  $(".thermocontainer .mercury").css("width", percent + "%")
+  $(".progress .bar").css("width", percent + "%")
   // thermometer end
 
-  $('#campaign_duedate_at').datePicker({clickInput:true})
 
   // al hacer click en /campaigns en cualquier campania va directamente a esta misma
   $(".campaign-info").click( function(){
@@ -215,5 +168,36 @@ $(function() {
     var ctype_new = $(this).val();
     switch_campaign_type(ctype_new);
   });
+
+  // comprueba si esta marcada la casilla de escribir el propio mensaje
+  $('#own_message').bind('click', function(){
+    check_own_message($(this));
+  });
+
+  check_own_message($('#own_message'));
+
+  // mostrar stats al cambiar de tab
+  $('a[data-toggle="tab"]').on('shown', function (e) {
+    if ( $(this).attr('href') === "#stats" ){ 
+      $.jqplot.config.enablePlugins = true;
+      draw_stats_chart();
+    };
+  });
+
+
+  // al darle al submit en el form, comprobamos el correo
+  $('#js-message-campaign').submit(function(e){
+    var $form = $(this);
+    var domains = ['hotmail.com', 'gmail.com', 'aol.com', 'yahoo.com'];
+  
+    $('#js-message-check-email').mailcheck({ 
+      domains: domains,
+      suggested: function(element, suggestion) {
+         notify("Hemos encontrado un error en tu correo, quizás quisiste decir " + suggestion.domain, "error");
+         e.preventDefault(); //evitamos que el formulario se submitee
+      },
+      empty: function(element) { return true; }
+    })
+  })
 
 });

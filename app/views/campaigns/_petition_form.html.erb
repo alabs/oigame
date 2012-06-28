@@ -1,19 +1,21 @@
 <h2 class="jtc">Únete</h2>
 
 <div id="campaign-message-form" class="form-stacked">
-  <%= form_tag petition_campaign_path do %>
+  <%= form_tag @sub_oigame ? petition_sub_oigame_campaign_path(@sub_oigame) : petition_campaign_path, :honeypot => true do %>
     <fieldset>
       <% unless user_signed_in? %>
-        <p>¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón <strong>unirme</strong>.</p>
+        <p><%= I18n.t(:may_your_voice) %></p>
         <br />
       <% else %>
-        <p>¡Que se escuche tu voz! Para participar en la campaña haz click en el boton <strong>unirme</strong>.</p>
+        <p><%= I18n.t(:may_your_voice_signed) %></p>
         <br />
       <% end %>
+      <% unless user_signed_in? and current_user.name != "" %>
         <div class="form-field">
           <%= label_tag t(:name_and_surname) %>
           <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos' %>
         </div>
+      <% end %>
       <% unless user_signed_in? %>
         <div class="form-field">
           <%= label_tag t(:your_email) %>
@@ -21,7 +23,7 @@
         </div>
       <% end %>
       <div class="form-actions">
-        <%= submit_tag 'Unirme', :class => 'btn primary large center' %>
+        <%= submit_tag t(:join_myself), :class => 'btn btn-primary btn-large btn-center' %>
       </div>
     </fieldset>
   <% end %>

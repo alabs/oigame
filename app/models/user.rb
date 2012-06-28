@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat
 
   has_many :campaigns, :dependent => :destroy
+  has_and_belongs_to_many :sub_oigames
 
   class << self
 

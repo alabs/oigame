@@ -27,11 +27,11 @@ set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEA
 
 default_environment["RAILS_ENV"] = 'staging'
 
-# Use our ruby-1.9.2-p290@my_site gemset
-default_environment["PATH"]         = "/home/ruby-data/.rvm/gems/ruby-1.9.2-p290@oigame/bin:/home/ruby-data/.rvm/gems/ruby-1.9.2-p290@global/bin:/home/ruby-data/.rvm/rubies/ruby-1.9.2-p290/bin:/home/ruby-data/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
-default_environment["GEM_HOME"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.2-p290@oigame"
-default_environment["GEM_PATH"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.2-p290@oigame:/home/ruby-data/.rvm/gems/ruby-1.9.2-p290@global"
-default_environment["RUBY_VERSION"] = "ruby-1.9.2-p290"
+# Use our ruby-1.9.3-p194@oigame
+default_environment["PATH"]         = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@oigame/bin:/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@global/bin:/home/ruby-data/.rvm/rubies/ruby-1.9.3-p194/bin:/home/ruby-data/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+default_environment["GEM_HOME"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@oigame"
+default_environment["GEM_PATH"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@oigame:/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@global"
+default_environment["RUBY_VERSION"] = "ruby-1.9.3-p194"
 
 default_run_options[:shell] = 'bash'
 
@@ -89,6 +89,7 @@ namespace :deploy do
       ln -sf #{shared_path}/system #{latest_release}/public/system &&
       ln -sf #{shared_path}/pids #{latest_release}/tmp/pids &&
       ln -sf #{shared_path}/config/database.yml #{latest_release}/config/database.yml &&
+      ln -sf #{shared_path}/config/raven.staging.rb #{latest_release}/config/initializers/raven.rb &&
       ln -sf #{shared_path}/uploads #{latest_release}/public &&
       ln -sf #{shared_path}/config/app_config.yml #{latest_release}/config/app_config.yml &&
       ln -sf #{shared_path}/config/newrelic.yml #{latest_release}/config/newrelic.yml &&

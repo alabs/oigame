@@ -12,3 +12,4 @@ config/newrelic.yml
 public/sitemap*
 .idea
 .rvmrc
+config/locales/log/*

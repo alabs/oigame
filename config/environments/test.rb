@@ -47,4 +47,7 @@ Oigame::Application.configure do
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => false
   }
+
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
 end

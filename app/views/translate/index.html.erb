@@ -1,0 +1,100 @@
+<div id="page-wrapper">
+  <div id="page">
+    <div id="page-info">
+      <%
+      @page_title = t('translate.translations') 
+      show_filters = [t('translate.all'), t('translate.untranslated'), t('translate.translated')]
+      show_filters << t('translate.changed') if @from_locale != @to_locale
+      %>
+      <h1><%= I18n.t('translate.translations') %></h1>
+
+      <fieldset>
+        <p class="hits">
+        <%= I18n.t('translate.found') %> <strong><%= @total_entries %></strong> <%= I18n.t('translate.messages') %>
+        </p>
+        <p>
+          <%= link_to t('translate.reload'), translate_reload_path %>
+        </p>
+      </fieldset>
+    </form>
+
+
+      <div class="paging">
+        <%= render :partial => 'pagination', :locals => {:total_entries => @total_entries, :per_page => per_page} %>
+      </div>
+
+      <% if @total_entries > 0 %>
+        <%= form_tag(translate_path) do %>
+          <div>
+            <%= hidden_field_tag(:filter, params[:filter], :id => "hid_filter") %>
+            <%= hidden_field_tag(:key_type, params[:key_type], :id => "hid_key_type") %>
+            <%= hidden_field_tag(:key_pattern, params[:key_pattern], :id => "hid_key_pattern") %>
+            <%= hidden_field_tag(:text_type, params[:text_type], :id => "hid_text_type") %>
+            <%= hidden_field_tag(:text_pattern, params[:text_pattern], :id => "hid_text_pattern") %>
+          </div>
+          <div class="translations">
+            <h2><%= I18n.t('translate.translations_from') %> <%= @from_locale %> <%= I18n.t('translate.to') %> <%= @to_locale %></h2>
+            <p class="translate">
+              <%= submit_tag t('translate.save') %>
+            </p>
+            <% @paginated_keys.each do |key| %>
+              <%= 
+              from_text = lookup(@from_locale, key)
+              render (from_text.is_a?(Array) ? 'array_form' : 'string_form'), {
+                :from_locale => @from_locale,
+                :to_locale => @to_locale,
+                :key => key,
+              }
+            %>
+            <% end %>
+            <p class="translate">
+              <%= submit_tag "Save Translations" %>
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="paging">
+        <%= render :partial => 'pagination', :locals => {:total_entries => @total_entries, :per_page => per_page} %>
+      </div>
+    </div>
+    <div id="page-sidebar">
+      <fieldset>
+        <legend><%= I18n.t('translate.search_filter') %></legend>
+        <div class="clearfix">
+          <label><%= I18n.t('translate.show') %>:</label>
+          <div style="padding-top: 8px; padding-left:11em;">
+            <%=  raw simple_filter(show_filters) %>
+          </div>
+        </div>
+        <%= form_tag(params, :method => :get) do %>
+          <div id="languages" class="clearfix">
+            <p>
+              <%= hidden_field_tag(:filter, params[:filter]) %>
+              <label><%= I18n.t('translate.translate_from') %> </label>
+              <%= select_tag(:from_locale, options_for_select(from_locales, @from_locale.to_sym)) %> <span><%= I18n.t('translate.to') %></span>
+              <%= select_tag(:to_locale, options_for_select(to_locales, @to_locale.to_sym)) %>
+              <%= submit_tag t('translate.display'), :class => "btn primary" %>
+            </p>
+          </div>
+          <div id="filter-pattern">
+            <p>
+              <label for="key_pattern_value"><%= I18n.t('translate.key') %></label>
+              <%= select_tag(:key_type, options_for_select([["contains", 'contains'], ["starts with", 'starts_with']], params[:key_type])) %>
+              <%= text_field_tag(:key_pattern, params[:key_pattern], :size => 50, :id => "key_pattern_value", :class => "text-default") %>
+            </p>
+            <p>
+              <label for="text_pattern_value"><%= I18n.t('translate.text') %></label>
+              <%= select_tag(:text_type, options_for_select(['contains', 'equals'], params[:text_type])) %>
+              <%= text_field_tag(:text_pattern, params[:text_pattern], :size => 50, :id => "text_pattern_value", :class => "text-default") %>	     
+            </p>
+            <p>
+              <%= submit_tag t('translate.search'), :class => "btn primary" %>
+              <%= link_to t('translate.clear'), params.merge({:text_pattern => nil, :key_pattern => nil}) %>
+            </p>
+          </div>
+        <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>

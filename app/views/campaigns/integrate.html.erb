@@ -1,0 +1,31 @@
+<% @page_title = "Integrar campaña de " + @campaign.name %>
+
+<div id="campaigns-wrapper">
+  <div id="show-campaign">
+    <div id="show-campaign-detail">
+      <div id="show-campaign-detail-main">
+      <h1><%= @page_title %></h1>
+      <hr />
+      <h2> <%= t(:option) %> 1</h2>
+      <p><%= I18n.t(:integrate_form_explanation_1) %></p><br />
+      <pre><code class="html"><%=h "<script type=\"text\/javascript\" src=\"#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/widget.js\"></script>" %></code></pre>
+      </div>
+      <hr />
+      <h2> <%= t(:option) %> 2</h2>
+      <p><%= I18n.t(:integrate_form_explanation_2) %></p><br />
+      <div class="alert alert-info">
+        <strong>¡Cuidado!</strong> Cuando esta campaña se cierre seguirás teniendo el formulario en tu web, así que deberías entrar a revisar cada tanto para que tus usuarios no vean un formulario que no funciona. 
+      </div>
+      <pre><code class="html" id="modal-widget-html"></code></pre>
+    </div>
+    <div id="show-campaign-sidebar" class="grid_8">
+      <p class="label"><%= I18n.t(:result) %></p>
+      <div id="modal-widget-window-example">
+        <%= render :partial => "widget_iframe" %>
+      </div><!-- modal-widget-window-example -->
+    </div><!-- span5 -->
+  </div><!-- modal-widget-window-wrapper -->
+  </div>
+  </div>
+  </div>
+  </div>

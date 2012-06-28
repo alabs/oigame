@@ -1,5 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  helper :application
+
   protected
 
   def after_update_path_for(resource)

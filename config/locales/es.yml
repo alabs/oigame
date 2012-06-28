@@ -24,6 +24,7 @@ es:
   forgot_your_password: '¿Olvidaste tu contraseña?'
   didnt_receive_confirmation_instructions: '¿No recibiste instrucciones de confirmación?'
   please_fill_the_form: 'Por favor rellena el formulario'
+  download_participants: 'Descargar listado con participantes'
   request_new_password: 'Solicitar nueva contraseña'
   resend_confirmation_instructions: 'Reenviar instrucciones de confirmación'
   my_account: 'Mi cuenta'
@@ -33,13 +34,19 @@ es:
   name_of_campaign: 'Nombre de la campaña'
   cancel: 'Cancelar'
   intro_of_campaign: 'Introducción de la campaña'
+  intro_of_campaign_help: 'Entradilla de la campaña, este texto aparece en el listado de campañas.'
   body_of_campaign: 'Cuerpo de la campaña'
+  body_of_campaign_help: 'Texto desarrollado de la campaña'
   tags: 'Etiquetas'
+  tags_most_used: 'Etiquetas más usadas'
   recipients: 'Destinatarios'
+  recipients_help: 'Lista de direcciones de correo de destinatarios, una por línea.'
+  recipients_show: 'Tu mensaje se enviará a las siguientes personas'
   image_of_campaign: 'Imágen de la campaña'
   edit: 'Editar'
   subject: 'Asunto'
   message: 'Mensaje'
+  message_info: 'Para hacer efectiva la campaña te recomendamos que tu mensaje sea con respeto, se puede ser firme pero asertivo y nuestra experiencia nos indica que quienes reciben los mensajes son mucho más receptivos si se les trata respetuosamente. Cuéntales que no estás de acuerdo con lo que están haciendo y por qué, cuéntales cómo te gustaría que actuaran realmente'
   send_message: 'Enviar mensaje'
   your_email: 'Tu correo electrónico'
   campaign_stats: 'Estadísticas de la campaña'
@@ -55,7 +62,17 @@ es:
   moderate_campaigns: 'Moderar campañas'
   edit_campaign: 'Editar campaña'
   amount_to_donate: 'Cantidad a donar'
+  amount_select: "Selecciona la cantidad"
+  accepted_cards: "Tarjetas aceptadas"
   thanks_for_your_donation: 'Gracias por tu donación'
+  thanks_for_your_donation_text: 'Te damos las más sinceras gracias por tu donación a oiga.me. Con aportaciones como la tuya este proyecto puede seguir adelante.'
+  greetings: 'Un fuerte abrazo del equipo de oiga.me y aLabs.'
+  donation_problem: 'Hubo un problema con tu donación a oiga.me y la transacción no ha podido realizarse con éxito por lo que no se ha cargado ninguna cantidad en tu cuenta. Prueba a repetir de nuevo el proceso, si sigue habiendo problemas ponte en contacto con el equipo de aLabs en la dirección de correo donaciones[arroba]alabs.es.'
+  donation_info_1: 'oiga.me mantiene un equipo de trabajo reducido al máximo para mantener sus costes bajos. Practicamos una política de transparencia económica, cada año publicaremos un resumen con lo recaudado en donaciones y el destino de las mismas.'
+  donation_info_2: 'Como organización independiente y sin ánimo de lucro aLabs destina todo el dinero de cada donación recibida en oiga.me a mantener y potenciar esta plataforma. Con tu apoyo podemos conseguir que muchas personas puedan alzar su voz y coordinarse para cambiar el mundo, tu donación colabora directamente para que miles de personas puedan organizarse y realizar acciones de gran impacto.'
+  donation_secure: 'Donación segura'
+  donation_secure_info: 'La asociación aLabs no almacena ningún dato de las tarjetas de crédito de los usuarios que realizan las donaciones, las transacciones con tarjetas de crédito son procesadas en línea directamente usando el TPV de pago de Banesto. Con este sistema seguro de pago la información viaja cifrada antes de ser enviada usando el certificado SSL. Si encuentras algún problema usando el sistema, tienes alguna duda o alguna recomendación, por favor contacta con aLabs a través del correo donaciones[arroba]alabs.es.'
+  donate_oigame: 'Realizar una donación a oiga.me'
   there_was_a_problem: 'Hubo un problema'
   deactivate: 'Desactivar'
   target: 'Objetivo de mensajes enviados'
@@ -68,5 +85,83 @@ es:
   message_received: 'Mensaje recibido'
   go_to_home: 'Volver al inicio'
   type_of_campaign: 'Tipo de campaña'
+  type_of_campaign_prompt: 'Selecciona tipo de campaña'
   archive: 'Archivar'
   archived_campaigns: 'Campañas archivadas'
+  default_message: 'Mensaje por defecto'
+  own_message: 'Quiero escribir mi propio mensaje'
+  default_message_subject: 'Asunto del mensaje por defecto'
+  default_message_body: 'Cuerpo del mensaje por defecto'
+  default_message_body_help: 'Mensaje por defecto que se enviará en la campaña por los participantes que no quieran escribir su propio mensaje.'
+  minimal_size: "Debe tener un tamaño de 500x400"
+  markdown_help_show: "ver ayuda de marcado"
+  number_of_people: 'Número de personas que piensas que se unirán a la campaña'
+  thank_you: "Gracias"
+  thank_you_message: "Gracias por enviar tu mensaje a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
+  thank_you_petition: "Gracias por unirte a esta campaña a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
+  thank_you_confirmed: "Tu adhesión ha sido confirmada con éxito, muchas gracias por participar en esta campaña."
+  join_myself: "Unirme"
+  may_your_voice_signed: "¡Que se escuche tu voz! Para participar en la campaña haz click en el boton unirme."
+  may_your_voice: "¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón unirme."
+  are_you_sure: "¿Estas seguro?"
+  created_at: "Creada hace"
+  time_left: "Nos quedan"
+  archived_campaign: "Campaña archivada"
+  days: "días"
+  participants: "participantes"
+  of: "de"
+  contact: "Contacto"
+  contact_to: "ponte en contacto"
+  description: "Descripción"
+  stats: "Estadísticas"
+  spread: "Difunde"
+  spread_info: "Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña."
+  spread_form: "Pon el formulario en tu web"
+  token_invalid_title: "Hubo un problema"
+  token_invalid_body: "No encontramos una adhesión con ese token, revisa el correo que te enviamos y si te sigue sin funcionar con"
+  communicate: "Comunícate"
+  participate: "Participa"
+  maximize: "Maximizar"
+  listen_your_voice: "¡Que se escuche tu voz! Para participar en la campaña escribe aquí tu mensaje, nosotros nos encargamos de que llegue de forma eficaz a todos los responsables."
+  integrate_form: "Integrar formulario"
+  option: "Opción"
+  integrate_form_explanation_1: 'Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:'
+  integrate_form_explanation_2: 'En caso que el código no te funcione, puedes probar con la versión sin Javascript ni iframes, en HTML limpio:'
+  sub_integrate_form_explanation_1: 'Para integrar tu SubOigame en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:'
+  close: "Cerrar"
+  result: "Resultado"
+  if_you_write: "si escribes:"
+  you_will_get: "quedará:"
+  italic: "cursiva"
+  bold: "negrita"
+  quoted: "texto citado"
+  another_format: "La líneas que empiezan con cuatro espacios son tratadas con otro formato:"
+  prioritize: "Dar prioridad"
+  deprioritize: "Quitar prioridad"
+  intro_limit: "Tiene un límite de 500 caracteres"
+  translate:
+    translations: "Traducciones"
+    all: "todos"
+    translated: "traducidas"
+    untranslated: "sin traducir"
+    changed: "cambiada"
+    search_filter: "Filtrado de busqueda"
+    show: "Mostrar"
+    sort_by: "Ordenar por"
+    translate_from: "Traducir desde"
+    translations_from: "Traducciones desde"
+    key: 'clave'
+    text: 'texto'
+    display: 'Mostrar'
+    search: 'Buscar'
+    found: 'Se han encontrado'
+    messages: 'mensajes'
+    clear: 'limpiar'
+    reload: 'Recargar mensajes'
+    pages: 'Páginas'
+    page: 'Página'
+    to: 'hacia'
+    save: 'Guardar'
+  unauthorized:
+    default: "No estás autorizado a acceder a esta página"
+

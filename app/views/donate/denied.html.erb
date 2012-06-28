@@ -4,8 +4,8 @@
   <div id="page">
     <div id="page-info">
       <h2><%= @page_title %></h2>
-      <p>Hubo un problema con tu donación a <strong>oiga.me</strong> y la transacción no ha podido realizarse con éxito por lo que <strong>no se ha cargado ninguna cantidad en tu cuenta</strong>. Prueba a repetir de nuevo el proceso, si sigue habiendo problemas ponte en contacto con el equipo de <strong>aLabs</strong> en la dirección de correo donaciones[arroba]alabs.es.</p>
-      <p><%= link_to 'Volver', donate_init_path %> a la página de donaciones.</p>
+      <p><%= I18n.t(:donation_problem) %></p>
+      <p><%= link_to t(:back), donate_init_path %></p>
     </div><!-- page-info -->
   </div><!-- page -->
 </div><!-- page-wrapper -->

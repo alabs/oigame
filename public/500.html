@@ -1,44 +1,79 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
   <head>
     <meta charset="utf-8" />
     <title>Error en la aplicación - oiga.me</title>
-    <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="/assets/favicon.png" />
-    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="http://oiga.me/campaigns/feed" />
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-19861474-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script> 
+    <link href="/assets/application-614d5051a32ea1b9883b851a8d1c0f67.css" media="screen" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="/assets/favicon-166790741e3496c0b4a2442efd47819b.png" />
+    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="http://beta.oiga.me/campaigns/feed" />
+    <meta property="og:title" content="Inicio - oiga.me" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="http://beta.oiga.me/assets/logo-small-a5f2bed5b6bea4ab60f628d3f95d3ddb.png" />
+      <link rel="image_src" type="image/png" href="http://beta.oiga.me/assets/logo-small-a5f2bed5b6bea4ab60f628d3f95d3ddb.png" />
+    <meta property="og:url" content="http://beta.oiga.me/" />
+    <meta property="og:description" content="Inicio - oiga.me" />
+      <meta name="description" content="Plataforma de movilización ciudadana a través de la web - oiga.me" />
+      <meta name="keywords" content="oiga.me, plataforma, movilización, web, campaña, campañas" />
+    <script src="/assets/application-b87f8e2f8508dd660de24def214edfec.js" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="Z2H7fzLwtNO9LKAokdeFSScxGC+4MTPND3Xz8w+1JJ8=" name="csrf-token" />
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+        {lang: 'es'}
+    </script>
+    <meta name="generator" content="oiga.me - staging" />
+    <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
   </head>
   <body>
-    <div id="header-wrapper">
-      <div class="topbar">
-        <div class="fill">
-          <div id="topbar-wrapper">
-            <div id="logo">
+    <header id="header-wrapper">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div id="container">
+            <span id="logo">
               <a href="/">oiga.me</a>
-            </div><!-- logo -->
-            <div id="corner">
+            </span><!-- logo -->
+            <span id="corner">
               <a href="/">peta</a>
-            </div><!-- corner -->
+            </span><!-- corner -->
             <ul class="first-nav nav">
+                <li id="header-signup"><a href="/users/signup">¡Únete a oiga.me!</a></li>
               <li id="header-campaigns"><a href="/campaigns">Campañas</a></li>
               <li id="header-community"><a href="http://community.oiga.me/">Comunidad</a></li>
               <li id="header-donate"><a href="/donate">Donar</a></li>
-              <li id="header-answers"><a href="/answers">Respuestas</a></li>
+              <li id="header-help"><a href="/help">Ayuda</a></li>
+              <li id="header-tutorial"><a href="/tutorial"><span class="translation_missing" title="translation missing: es.tutorial">Tutorial</span></a></li>
             </ul>
+            <ul class="nav secondary-nav">
+                <div id="signin-container">
+                  <div id="topnav" class="topnav">
+                    <a href="#" class="signin">
+                      <em>¿Tienes una cuenta?</em>
+                      <strong>Iniciar sesión</strong>
+                    </a>
+                  </div><!-- topnav -->
+                  <form accept-charset="UTF-8" action="/users/login" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="Z2H7fzLwtNO9LKAokdeFSScxGC+4MTPND3Xz8w+1JJ8=" /></div>
+                    <fieldset id="signin-menu">
+                      <div class="form-field">
+                        <label for="Correo_electr_nico">Correo electrónico</label>
+                        <input autocomplete="on" id="email" name="user[email]" required="required" type="email" />
+                      </div>
+                      <div class="form-field">
+                        <label for="Contrase_a">Contraseña</label>
+                        <input id="password" name="user[password]" required="required" type="password" />
+                      </div>
+                      <div class="form-field">
+                        <input id="remember_me" name="remember_me" type="checkbox" value="1" /> <span class="remember">Recuerda mis datos</span>
+                      </div>
+                      <input class="btn" name="commit" type="submit" value="Iniciar sesión" />
+                      <p><a href="/users/password/new">¿Olvidaste tu contraseña?</a></p>
+                    </fieldset>
+</form>                </div><!-- signin-container -->
+            </ul><!-- secondary-nav -->
           </div><!-- topbar-wrapper -->
         </div><!-- fill -->
-      </div><!-- topbar -->
-    </div><!-- header-wrapper -->
-    <div id="page-wrapper">
+      </div><!-- navbar -->
+    </header><!-- header-wrapper -->
+
+   <div id="page-wrapper">
       <div id="page">
         <div id="page-info">
           <h2>Error en la aplicación</h2>
@@ -47,34 +82,55 @@
         </div><!-- page-info -->
       </div><!-- page -->
     </div><!-- page-wrapper -->
+
     <div id="links-wrapper">
       <div id="links">
         <div id="links-logo">
-          <img src="/assets/logo-small.png" />
+          <img alt="Logo-small" src="/assets/logo-small-a5f2bed5b6bea4ab60f628d3f95d3ddb.png" />
         </div>
         <div id="links-message">
           <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
         </div>
         <div id="links-social">
           <span>Síguenos en:</span><br />
-          <a href="/campaigns/feed"><img src="/assets/rss.png" /></a>
-          <a href="https://www.facebook.com/oiga.me"><img src="/assets/facebook.png" /></a>
-          <a href="https://twitter.com/oigame"><img src="/assets/twitter.png" /></a>
-          <a href="https://identi.ca/oigame"><img src="/assets/identica.png" /></a>
+          <a href="/campaigns/feed"><img alt="Rss" src="/assets/rss-c6a5c94afb21b5f1a604204239eecd22.png" /></a>
+          <a href="https://plus.google.com/109609067558669990733/?prsrc=3"><img alt="Google" src="/assets/google-ab9d37d541d393fb471f811d252e700e.png" /></a>
+          <a href="https://www.facebook.com/oiga.me"><img alt="Facebook" src="/assets/facebook-898910015e67f058513dbf677c3486ed.png" /></a>
+          <a href="https://twitter.com/oigame"><img alt="Twitter" src="/assets/twitter-12e7bb412cd51bc448c6741b9e33c818.png" /></a>
+          <a href="https://identi.ca/oigame"><img alt="Identica" src="/assets/identica-4ce1cc78c8ff0a9813b0409f70d54549.png" /></a>
         </div>
       </div>
     </div><!-- links-wrapper -->
     <div id="footer-wrapper">
       <div id="footer-main">
         <div id="info-links">
-          <p><span style="color:#fff;">&copy; 2010-2011 Algunos derechos reservados</span> | <a href="/privacy-policy">Política de privacidad</a> | <a href="https://github.com/alabs/oigame">Desarrolladores</a> | <a href="/contact">Contacto</a></p>
+          <p><span style="color:#fff;">&copy; 2010-2012 Algunos derechos reservados</span> | <a href="/privacy-policy">Política de privacidad</a> | <a href="https://github.com/alabs/oigame">Desarrolladores</a> | <a href="/contact">Contacto</a></p>
           <p style="color: #fff;">Mientras no se exprese lo contrario, el contenido de este sitio tiene <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES" style="color:red;">esta licencia</a> Creative Commons.</p>
         </div>
         <div id="footer-donate">
           <p style="color:#fff;">Creado y mantenido por:</p>
-          <p><a href="http://alabs.es/"><img src="/assets/logo-alabs.png" /></a></p>
+          <p><a href="http://alabs.es/"><img alt="Logo-alabs" src="/assets/logo-alabs-9985d1f2c181a0ff381a8205a3ab568e.png" /></a></p>
         </div>
       </div><!-- footer -->
     </div><!-- footer-wrapper -->
+    <div id="modal-beta-notice" style="display:none;">
+      <h1>Aviso importante</h1>
+      <p style="font-size: 120%;">
+        Te damos la bienvenida a oiga.me, la plataforma creada por <a
+          href="http://alabs.es/">aLabs</a> para crear campañas de movilización
+        social. Esta web que estas viendo es una versión beta, que aunque
+        funcional no es operativa todavía. Por lo tanto los usuarios que te
+        crees y el contenido que subas al servidor podrá ser borrado en
+        cualquier momento. La primera versión estable estará disponible en la
+        dirección web: <a href="http://oiga.me/">http://oiga.me/</a>
+      </p>
+
+      <p style="font-size: 120%;">
+        Disfruta y fluye por el sitio.
+      </p>
+      <div class="actions">
+          <button class="close-dialog btn primary">Cerrar</button>
+      </div>
+    </div>
   </body>
 </html>

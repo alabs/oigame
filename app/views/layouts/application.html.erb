@@ -57,16 +57,16 @@
         <%= content_tag :p, msg, :class => "#{name}" %>
       </div>
     <% end %>
-    <div id="header-wrapper">
-      <div class="topbar">
-        <div class="fill">
-          <div id="topbar-wrapper">
-            <div id="logo">
+    <div id="header-wrapper" class="">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div id="container">
+            <span id="logo">
               <%= link_to 'oiga.me', root_path %>
-            </div><!-- logo -->
-            <div id="corner">
+            </span><!-- logo -->
+            <span id="corner">
               <%= link_to 'peta', root_path %>
-            </div><!-- corner -->
+            </span><!-- corner -->
             <ul class="first-nav nav">
               <% unless user_signed_in? %>
                 <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
@@ -74,7 +74,8 @@
               <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
               <li id="header-community"><%= link_to t(:community), 'http://community.oiga.me/' %></li>
               <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
-              <li id="header-answers"><%= link_to t(:answers), answers_path %></li>
+              <li id="header-help"><%= link_to t(:help), help_path %></li>
+              <li id="header-tutorial"><%= link_to t(:tutorial), tutorial_path %></li>
             </ul>
             <ul class="nav secondary-nav">
               <% unless user_signed_in? %>
@@ -98,34 +99,42 @@
                       <div class="form-field">
                         <%= check_box_tag :remember_me %> <span class="remember">Recuerda mis datos</span>
                       </div>
-                      <div class="form-actions">
-                        <%= submit_tag 'Iniciar sesión' %>
-                      </div>
+                      <%= submit_tag 'Iniciar sesión', :class => "btn" %>
                       <p><%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %></p>
                     </fieldset>
                   <% end %>
                 </div><!-- signin-container -->
               <% else %>
-                <div id="signin-container">
-                  <div id="topnav" class="topnav">
-                    <a href="#" class="signin">
-                      <strong><%= current_user.email %></strong>
-                    </a>
-                  </div><!-- topnav -->
-                  <div id="session-menu">
-                    <ul>
+                <ul class="nav pull-right">
+                  <li id="fat-menu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="top:-0.5em; position:relative;">
+                      <strong><%= current_user.email %></strong><b class="caret"></b></a>
+                    <ul class="dropdown-menu" id="session-menu">
                       <li><%= link_to 'Configuración',  edit_user_registration_path %></li>
                       <li><%= link_to 'Desconectar', destroy_user_session_path, :method => :delete %></li>
                     </ul>
-                  </div><!-- session-menu -->
-                </div><!-- signin-container -->
+                  </li>
+                </ul>
               <% end %>
             </ul><!-- secondary-nav -->
           </div><!-- topbar-wrapper -->
         </div><!-- fill -->
-      </div><!-- topbar -->
+      </div><!-- navbar -->
     </div><!-- header-wrapper -->
+    <% unless @sub_oigame.nil? %>
+      <style>
+        <%= @sub_oigame.html_style %>
+      </style>
+      <div id="sub_oigame-header">
+        <%= sanitize @sub_oigame.html_header, :tags => %(a img div span p br table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
     <%= yield %>
+    <% unless @sub_oigame.nil? %>
+      <div id="sub_oigame-footer">
+        <%= sanitize @sub_oigame.html_footer, :tags => %(a img div span p br table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
     <div id="links-wrapper">
       <div id="links">
         <div id="links-logo">
@@ -175,5 +184,11 @@
           <button class="close-dialog btn primary">Cerrar</button>
       </div>
     </div>
+    <% if Rails.env == 'development' %>
+      <%= query_review_output %>
+      <div id="debug">
+        <%= debug(params) %>
+      </div>
+    <% end %>
   </body>
 </html>

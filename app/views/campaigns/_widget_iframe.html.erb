@@ -1,161 +1,39 @@
 <style type="text/css">
-  body {
-      color: #404040;
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-size: 13px;
-      font-weight: normal;
-      line-height: 18px;
-  }
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td {
-    border: 0 none;
-    font-family: inherit;
-    font-size: 100%;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #404040;
-    font-weight: bold;
-}
-h2 {
-    font-size: 24px;
-    line-height: 36px;
-}
-  form {
-    margin-bottom: 18px;
-  }
-  label {
-    color: #404040;
-    float: left;
-    font-size: 13px;
-    line-height: 18px;
-    padding-top: 6px;
-    text-align: right;
-    width: 130px;
-  }
-  label, input, select, textarea {
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-size: 13px;
-      font-weight: normal;
-      line-height: normal;
-  }
-  input[type="button"], input[type="reset"], input[type="submit"] {
-    height: auto;
-    width: auto;
-  }
-  button, input[type="button"], input[type="reset"], input[type="submit"] {
-    cursor: pointer;
-  }
-fieldset {
-    margin-bottom: 18px;
-    padding-top: 18px;
-}
-  #campaign-message-wrapper {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    line-height: 18px;
-  }
-  .form-stacked {
-    padding-left: 20px;
-  }
-  .form-stacked label {
-    display: block;
-    float: none;
-    font-weight: bold;
-    line-height: 20px;
-    padding-top: 0;
-    text-align: left;
-    width: auto;
-  }
-  :-moz-placeholder {
-    color: #BFBFBF;
-  }
-  .btn.primary {
-    background-color: #0064CD;
-    background-image: -moz-linear-gradient(center top , #049CDB, #0064CD);
-    background-repeat: repeat-x;
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    color: #FFFFFF;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  }
-  .btn {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    -moz-transition: all 0.1s linear 0s;
-    background-color: #E6E6E6;
-    background-image: -moz-linear-gradient(center top , white, white 25%, #E6E6E6);
-    background-repeat: no-repeat;
-    border-color: #CCCCCC #CCCCCC #BBBBBB;
-    border-radius: 4px 4px 4px 4px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    color: #333333;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 13px;
-    line-height: normal;
-    padding: 5px 14px 6px;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  }
-
-  .form-stacked fieldset {
-      padding-top: 9px;
-  }
-  input.span5, textarea.span5, select.span5 {
-      display: inline-block;
-      float: none;
-      margin-left: 0;
-      width: 270px;
-  }
+<!-- TODO: poner estilos correctos -->
 </style>
 <div id="campaign-message-wrapper">
   <div id="campaign-message-info">
     <h2><%= @campaign.name %></h2>
-    <p><%= @campaign.intro %></p>
+    <p><%= @campaign.to_html(@campaign.intro).html_safe %></p>
   </div><!-- campaign-message-info -->
   <div id="campaign-message-form" class="form-stacked">
     <% if @campaign.ttype == 'mailing' %>
-      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message" do %>
+      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message", :honeypot => true do %>
         <fieldset>
           <div class="form-field">
-            <%= label_tag t(:your_email) %>
+            <%= label_tag :email, t(:your_email) %>
             <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
           </div>
-          <div class="form-field">
-            <%= label_tag t(:subject) %>
-            <%= text_field_tag :subject, nil, :required => true, :placeholder => 'Asunto del mensaje', :class => 'span5' %>
-          </div>
-          <div class="form-field">
-            <%= label_tag t(:message) %>
-            <%= text_area_tag :body, nil, :required => true, :placeholder => 'Mensaje a enviar', :class => 'span5', :rows => 10 %>
-          </div>
+          Puedes también escribir tu propio mensaje y ver más información de la campaña en <%= link_to "oiga.me", @campaign %>.
           <div class="form-actions">
             <%= submit_tag t(:send_message), :class => 'btn primary' %>
           </div>
+          <%= link_to image_tag("logo-small.png", :style => "margin:auto; display:block;"), root_path %>
         </fieldset>
       <% end %>
     <% elsif @campaign.ttype == 'petition' %>
-      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition" do %>
+      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition", :honeypot => true do %>
         <fieldset>
           <div class="form-field">
-            <%= label_tag t(:name_and_surname) %>
-            <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos', :class => 'span5' %>
+            <%= label_tag :name, t(:name_and_surname) %>
+            <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name_and_surname), :class => 'span5' %>
           </div>
           <div class="form-field">
-            <%= label_tag t(:your_email) %>
-            <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+            <%= label_tag :email, t(:your_email) %>
+            <%= email_field_tag :email, nil, :required => true, :placeholder => t(:your_email), :class => 'span5' %>
           </div>
           <div class="form-actions">
-            <%= submit_tag 'Unirme', :class => 'btn primary' %>
+            <%= submit_tag t(:join_myself), :class => 'btn primary' %>
           </div>
         </fieldset>
       <% end %>

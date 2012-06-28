@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.1'
+gem 'rails', '3.2.6'
 gem 'mysql2'
 
 group :assets do
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'sass-rails', '~> 3.1.4'
+gem 'sass-rails', '3.2.3'
 
 gem 'jquery-rails'
 
@@ -16,15 +16,18 @@ gem 'capistrano'
 gem 'capistrano-ext'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
+group :test, :development do
+  gem 'minitest'
+  gem 'capybara'
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn'
 end
 
 group :development do
-  gem 'pry-rails'
+  #gem 'pry-rails'
+  # no me arranca el unicorn con ruby-debug19 (apardo)
+  #gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 gem 'devise'
@@ -42,3 +45,15 @@ gem 'newrelic_rpm'
 gem 'httparty'
 gem 'sitemap_generator'
 gem 'redis-store'
+gem 'redis-rails'
+gem 'honeypot-captcha'
+
+#gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
+
+gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git", :ref => "aad856a8a4"
+
+gem 'jquery-ui-rails'
+
+gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
+
+gem "rails3_acts_as_paranoid", "~>0.2.0"

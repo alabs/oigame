@@ -2,13 +2,13 @@
 
 <p>Para validar la adhesión a la campaña "<%= @campaign.name %>" tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:</p>
 
-<h2><a href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>/validate/<%= @token %>">Sigue este enlace</a></h2>
+<h2><a href="<%= @url %>/validate/<%= @token %>"><%= @url %>/validate/<%= @token %></a></h2>
 
 <p>Si no has sido tú quien se adherió a esta campaña puede ignorar este mensaje.</p>
 
 <p>Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:</p>
 
-<p>Incluye la campaña en tu página web para que tus visitas puedan participar: <a href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>"><%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %></a>. Es muy sencillo, tardarás menos de 1 minuto.</p>
+<p>Incluye la campaña en tu página web para que tus visitas puedan participar: <a href="<%= @url %>"><%= @url %></a>. Es muy sencillo, tardarás menos de 1 minuto.</p>
 
 <p>Difunde al máximo la campaña en las redes sociales.</p>
 

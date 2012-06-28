@@ -1,21 +1,26 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
 
+  acts_as_paranoid
+
   belongs_to :user
+  belongs_to :sub_oigame
   has_many :messages
   has_many :petitions
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype
-  attr_accessor :recipients
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body
+  attr_accessor :recipient
+
+#  validate :validate_minimum_image_size
+  attr_accessor :image_width, :image_height
 
   serialize :emails, Array
 
   TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo' }
 
-  validates_presence_of :name, :intro, :body, :ttype
-  validates_uniqueness_of :name
-  validates_presence_of :duedate_at
-  validates_presence_of :image
+  validates :name, :uniqueness => { :scope => :sub_oigame_id }
+  validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
+  validates :intro, :length => { :maximum => 500 }
 
   acts_as_taggable
 
@@ -27,27 +32,30 @@ class Campaign < ActiveRecord::Base
   scope :published, where(:moderated => false, :status => 'active')
   scope :not_published, where(:moderated => true, :status => 'active')
   scope :archived, where(:status => 'archived')
+  scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
+
 
   class << self
 
+    # Estudiar esta query para que no haga un MySQL filesort
     def last_campaigns(limit = nil)
-      order('published_at DESC').published.limit(limit).all
+      order('priority DESC').order('published_at DESC').published.limit(limit).all
     end
 
     def last_campaigns_by_tag(tag, limit = nil)
       tagged_with(tag).order('published_at DESC').published.limit(limit).all
     end
 
-    def last_campaigns_by_tag_archived(tag, limit = nil)
-      tagged_with(tag).order('published_at DESC').archived.limit(limit).all
+    def last_campaigns_by_tag_archived(tag, sub_oigame = nil, limit = nil)
+      where(:sub_oigame_id => sub_oigame).tagged_with(tag).order('published_at DESC').archived.limit(limit).all
     end
 
     def last_campaigns_moderated
       order('created_at DESC').where('moderated = ?', true).all  
     end
 
-    def archived_campaigns
-      order('published_at DESC').archived.all
+    def archived_campaigns(sub_oigame = nil)
+      where(:sub_oigame_id => sub_oigame).order('published_at DESC').archived.all
     end
   end
 
@@ -71,7 +79,9 @@ class Campaign < ActiveRecord::Base
 
   def recipients=(args)
     addresses = args.gsub(/\s+/, ',').split(',')
-    addresses.each {|address| address.strip!.downcase! }.uniq!
+    # arreglar el bug del strip
+    # addresses.each {|address| address.strip!.downcase! }.uniq!
+    addresses.each {|address| address.downcase! }.uniq!
     addresses.delete_if {|a| a.blank? }
     self.emails = addresses
   end
@@ -81,8 +91,9 @@ class Campaign < ActiveRecord::Base
   end
 
   def to_html(field)
-    markdown = Redcarpet.new(field)
-    markdown.to_html
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+      :autolink => true, :space_after_headers => true)
+    markdown.render(field).html_safe
   end
 
   def activate!
@@ -136,4 +147,13 @@ class Campaign < ActiveRecord::Base
     end
     Twitter.update(self.name + ' - ' + "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
   end
+
+  # custom validation for image width & height minimum dimensions
+  def validate_minimum_image_size
+    if self.image_width < 500 && self.image_height < 200
+      errors.add :image, "debe tener 500px de ancho y 200px de largo como mínimo" 
+    end
+  end
+
+
 end

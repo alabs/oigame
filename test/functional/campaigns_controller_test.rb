@@ -3,6 +3,11 @@ require 'test_helper'
 class CampaignsControllerTest < ActionController::TestCase
   setup do
     @campaign = campaigns(:one)
+    @user = users(:normal)
+    @user.confirm!
+    @admin = users(:admin)
+    @admin.role = :admin
+    @admin.confirm!
   end
 
   test "should get index" do
@@ -11,13 +16,25 @@ class CampaignsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:campaigns)
   end
 
-  test "should get new" do
+  test "should get new as user" do
+    sign_in @user
     get :new
     assert_response :success
   end
 
-  test "should create campaign" do
+  test "should redirect on new as anon" do
+    get :new
+    assert_response :redirect
+  end
+
+  test "should redirect on create campaign as anon" do
+    post :create, campaign: @campaign.attributes
+    assert_response :redirect
+  end
+
+  test "should create campaign as user" do
     assert_difference('Campaign.count') do
+      sign_in @user
       post :create, campaign: @campaign.attributes
     end
 
@@ -25,13 +42,14 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should show campaign" do
+    debugger
     get :show, id: @campaign.to_param
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should redirect on edit as anon" do
     get :edit, id: @campaign.to_param
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should update campaign" do
@@ -41,6 +59,7 @@ class CampaignsControllerTest < ActionController::TestCase
 
   test "should destroy campaign" do
     assert_difference('Campaign.count', -1) do
+      sign_in @admin
       delete :destroy, id: @campaign.to_param
     end
 

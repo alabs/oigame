@@ -1,0 +1,40 @@
+<% @page_title = "#{@sub_oigame.name} SubOigame" %>
+
+<div id="campaigns-wrapper">
+  <div id="show-campaign">
+    <div id="show-campaign-detail">
+      <h1><%= @page_title %></h1>
+
+      <h2>Diseño</h2>
+
+      <% unless @sub_oigame.logo.blank? then %>
+        <p>
+          <h3>Logo</h3>  
+          <pre>
+            <%= image_tag @sub_oigame.logo %>
+          </pre>
+        </p>
+      <% end %>
+
+      <div style="margin-top:2em;">
+        <h3>Header (HTML)</h3>  
+        <pre><code class="html"><%= @sub_oigame.html_header %></code></pre>
+      </div>
+
+      <div style="margin-top:2em;">
+        <h3>Footer (HTML)</h3>
+        <pre><code class="html"><%= @sub_oigame.html_footer %></code></pre>
+      </div>
+
+      <div style="margin-top:2em;">
+        <h3>Estilos (CSS)</h3>
+        <pre><code class="css"><%= @sub_oigame.html_style %></code></pre>
+      </div>
+    </div><!-- show-campaign-detail -->
+    <div id="show-campaign-sidebar" class="grid_8">
+      <p><%= link_to 'Editar', edit_sub_oigame_path(@sub_oigame), :class => "btn btn-primary" %></p>
+      <p><%= link_to 'Ver campañas activadas', sub_oigame_campaigns_path(@sub_oigame), :class => "btn btn-success" %></p>
+      <p><%= link_to 'Integración', sub_oigame_integrate_path(@sub_oigame), :class => "btn btn-info" %></p>
+    </div>
+  </div>
+</div>

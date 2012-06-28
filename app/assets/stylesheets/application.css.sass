@@ -1,10 +1,15 @@
 @import "960"
-@import "bootstrap-1.3.0.min"
+@import "bootstrap"
 @import "wisiwisi-editor"
+@import "highlight.zenburn"
 @import "jquery.dialog2"
 @import "jquery.jqplot"
 @import "jquery.jgrowl"
 @import "jquery.datePicker"
+@import "jquery.ui.all"
+@import "jquery.tagit.css"
+@import "multi-select"
+//import "translate"
 
 
 $main-color: #be0411
@@ -61,18 +66,27 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
   font-size: 1.2em
 
 .flash-notice
-  background-color: #5fba29 !important
+  background: #5fba29 !important
+  color: white
   font-weight: bold
+  border: black
 
 .flash-error, .flash-alert
-  background-color: #f40919 !important
+  color: white
+  background: #f40919 !important
   font-weight: bold
+  border: black
 
-.topbar
+.navbar
   position: inherit
 
-#topbar-wrapper
-  @extend .container_24
+.navbar
+  width: 100%
+  margin-bottom: 0
+
+  #container 
+    width: 960px
+    margin: auto
 
   #corner
     background-color: #AA0000
@@ -122,14 +136,22 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     strong
       font-size: 1.1em
 
+  .secondary-nav
+    float: right
+    margin-top: 0.7em
+    a
+      color: #999999
+    fieldset
+      border: 0
+
   form
     @extend .form-stacked
 
     #signin-menu
       display: none
       position: absolute
-      margin-top: -6px
-      margin-left: -50px
+      margin-top: 9px
+      margin-left: -39px
       padding: 12px
       width: 240px
       background-color: #222
@@ -151,9 +173,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
         color: #fff
 
   #session-menu
-    display: none
-    position: absolute
-    background-color: #222
+    background-color: grey
     a
       color: #fff
 
@@ -230,6 +250,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
       .c-image-and-title
         overflow: hidden
         height: 235px
+        overflow: hidden
         img
           z-index: 2
         .ctitle
@@ -238,7 +259,7 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
           background: #fff
           padding: 5px
           z-index: 3
-          top: 187px
+          top: 189px
           left: 0
           width: 290px
           h2
@@ -683,9 +704,9 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
 
 .modal-large
   @extend .modal
-  top: 10%
-  left: 40%
-  width: 760px
+  top: 5%
+  left: 28%
+  width: 97%
 
   #modal-widget-window-main
     @extend .container_24
@@ -771,17 +792,17 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
           box-shadow: 0 0 4px $border-shadow
         label, input, textarea
           font-size: 1em
+          display: inline
       .error_message
         font-size: small
         color: #f00
       .field_with_errors input[type=text], .field_with_errors input[type=email], .field_with_errors textarea
         border: 1px solid #f00
-      .form-actions
-        .center
-          margin: 0 auto
-          display: block
-        .btn 
-          width: 80%
+      .center
+        margin: 0 auto
+        display: block
+      .btn 
+        width: 80%
 
   ul#social-buttons
     margin-left: 0
@@ -849,3 +870,10 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer
     margin-top: -3px
     cursor: pointer
 
+<<<<<<< HEAD
+=======
+
+#button-home-signup
+  margin-top: -8px
+
+>>>>>>> develop

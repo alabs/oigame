@@ -1,5 +1,6 @@
 class ChangeStatusFieldToActive < ActiveRecord::Migration
   def up
+    add_column :campaigns, :deleted_at, :time
     Campaign.all.each do |campaign|
       campaign.status = 'active'
       campaign.save
@@ -11,5 +12,6 @@ class ChangeStatusFieldToActive < ActiveRecord::Migration
       campaign.status = nil
       campaign.save
     end
+    remove_column :campaigns, :deleted_at
   end
 end

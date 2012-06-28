@@ -6,87 +6,171 @@
       <div id="show-campaign-detail-main">
       <h2><%= @campaign.name %></h2>
       <div class="grid_8">
-        <% unless @campaign.status == 'archived' %>
-          <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
-            Nos quedan <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> días</strong></p>
-        <% else %>
-          <p><strong>Creada hace <%= time_ago_in_words(@campaign.created_at) %> |
-            Campaña archivada</strong></p>
-        <% end %>
+        <p><strong>
+          <% unless @campaign.status == 'archived' %>
+            <%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+            <%= I18n.t(:time_left) %> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= I18n.t(:days) %> |
+          <% else %>
+            <%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+            <%= I18n.t(:archived_campaign) %> |
+          <% end %>
+            <span id="participants">
+            <% if @campaign.ttype == 'mailing' %>
+              <%= @campaign.messages.validated.count %>
+            <% elsif @campaign.ttype == 'petition' %>
+              <%= @campaign.petitions.validated.count %>
+            <% end %>
+          </span> <%= I18n.t(:of) %> <span id="participants-target"><%= @campaign.target %></span> <%= I18n.t(:participants) %>
+          </strong></p>
       </div>
       <div class="clear"></div>
-      <div class="grid_9">
+      <div class="grid_12">
         <div id="campaign-information">
-          <div class="thermometer">
-            <div class="thermocontainer">
-              <div class="signatures-needed">
-                <% if @campaign.ttype == 'mailing' %>
-                  <span id="participants" class="big strong"><%= @campaign.messages.validated.count %></span>
-                <% elsif @campaign.ttype == 'petition' %>
-                  <span id="participants" class="big strong"><%= @campaign.petitions.validated.count %></span>
-                <% end %>
-                <span class="small weak">de</span>
-                <span id="participants-target" class="big strong weak"><%= @campaign.target %></span> participantes
-            </div>
-            <div style="width: 0%" class="mercury"></div>
+          <div class="progress progress-striped progress-danger active">
+            <div class="bar" style="width: 0%;"></div>
           </div>
         </div><!-- campaing-information -->
       </div>
-      <div id="action-buttons">
-        <p>
-          <% if can?(:moderated, @campaign) %>
-            <span class="label warning">
-              <a href="mailto:<%= @campaign.user.email %>">Contacto</a>
-            </span>
-          <% end %>
-          <% if @campaign.status == 'archived' %>
-          <% elsif @campaign.status == 'active' %>
-            <% if can?(:archive, @campaign) %>
-              &nbsp;&nbsp;
-              <span class="label">
-                <%= link_to t(:archive), archive_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
-              </span>
-            <% end %>
-            <% if can?(:moderated, @campaign) && @campaign.moderated? %>
-              &nbsp;&nbsp;
-              <span class="label success">
-                <%= link_to t(:activate), activate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
-              </span>
-            <% end %>
-            <% if can?(:deactivate, @campaign) && @campaign.published? %>
-              &nbsp;&nbsp;
-              <span class="label success">
-                <%= link_to t(:deactivate), deactivate_campaign_path, :confirm => '¿Estas seguro?', :method => :post %>
-              </span>
-            <% end %>
-            <% if can? :update, @campaign %>
-              &nbsp;&nbsp;
-              <span class="label notice">
-                <%= link_to t(:edit), edit_campaign_path(@campaign) %>
-              </span>
-            <% end %>
-            <% if can? :destroy, @campaign %>
-              &nbsp;&nbsp;
-              <span class="label important">
-                <%= link_to t(:delete), @campaign, :confirm => '¿Estas seguro?', :method => :delete %>
-              </span>
-            <% end %>
-          <% end %>
-        </p>
-      </div>
-    </div>
+
       <% if @campaign.image.to_s %>
         <%= image_tag(@campaign.image_url.to_s) %>
       <% end %>
-      <div id="campaign-info">
-        <%= @campaign.to_html(@campaign.intro).html_safe %> 
-        <%= @campaign.to_html(@campaign.body).html_safe %> 
-      </div>
+
+    <ul id="campaign-tab" class="nav nav-tabs">
+      <li class="active">
+        <a data-toggle="tab" href="#description"><%= I18n.t(:description) %></a>
+      </li>
+      <% if @campaign.ttype == 'mailing' %>
+        <li>
+          <a data-toggle="tab" href="#message"><%= I18n.t(:message) %></a>
+        </li>
+      <% end %>
+      <% unless @campaign.status == 'archived' %>
+        <li data-tab-type="stats">
+          <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
+        </li>
+      <% end %>
+
+    <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
+    <% if can? :moderated, @campaign or (can? :moderated, @campaign && @campaign.moderated?) or (can? :deactivate, @campaign && @campaign.published?) or (can? :participants, @campaign && @campaign.messages.count > 0) or (can? :update, @campaign) or (can? :priority, @campaign) or (can? :destroy, @campaign) %>
+      <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">Opciones <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li>
+                <% if can?(:moderated, @campaign) %>
+                  <a href="mailto:<%= @campaign.user.email %>">
+                    <i class="icon-envelope"></i>
+                    <%= I18n.t(:contact) %>
+                  </a>
+                <% end %>
+              </li>
+              <% if @campaign.status == 'archived' %>
+              <% elsif @campaign.status == 'active' %>
+                <li>
+                  <% if can?(:archive, @campaign) %>
+                    <%= link_to @sub_oigame ? archive_sub_oigame_campaign_path(@sub_oigame) : archive_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                      <i class="icon-file"></i>
+                      <%= t(:archive) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can?(:moderated, @campaign) && @campaign.moderated? %>
+                    <%= link_to @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                      <i class="icon-ok-circle"></i>
+                      <%= t(:activate) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can?(:deactivate, @campaign) && @campaign.published? %>
+                    <%= link_to @sub_oigame ? deactivate_sub_oigame_campaign_path(@sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                      <i class="icon-remove-circle"></i>
+                      <%= t(:deactivate) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can? :participants, @campaign and @campaign.messages.count > 0 %>
+                    <%= link_to participants_campaign_path(@campaign) do %>
+                      <i class="icon-user"></i>
+                      <%= t(:download_participants) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can? :update, @campaign %>
+                    <%= link_to @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) do %>
+                      <i class="icon-pencil"></i>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can? :priority, @campaign %>
+                    <% unless @campaign.priority == true %>
+                      <%= link_to @sub_oigame ? prioritize_sub_oigame_campaign_path(@sub_oigame) : prioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                        <i class="icon-star"></i>
+                        <%= t(:prioritize) %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to @sub_oigame ? deprioritize_sub_oigame_campaign_path(@sub_oigame) : deprioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                        <i class="icon-star-empty"></i>
+                        <%= t(:deprioritize) %>
+                      <% end %>
+                    <% end %> 
+                  <% end %> 
+                </li>
+                <li>
+                  <% if can? :destroy, @campaign %>
+                    <%= link_to @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => t(:are_you_sure), :method => :delete do %>
+                      <i class="icon-trash"></i>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul><!-- .dropdown-menu -->
+      </li><!-- .dropdown -->
+      <% end %>
+    </ul><!-- tabs -->
+    <div class="tab-content">
+      <div id="description" class="active tab-pane">
+        <div id="campaign-info">
+          <h2>Descripción</h2>
+          <%= @campaign.to_html(@campaign.intro).html_safe %> 
+          <%= @campaign.to_html(@campaign.body).html_safe %> 
+        </div>
+      </div><!-- description -->
+      <div id="message" class="tab-pane fade">
+        <div id="campaign-info">
+          <h2><%= I18n.t(:recipients) %></h2>
+          <p><%= I18n.t(:recipients_show) %></p>
+            <ul>
+              <% @campaign.recipients.gsub('@', '[arroba]').split(' ').each do |dest| %> 
+                <li><%= dest %></li>
+              <% end %>
+            </ul>
+            <hr />
+            <h2><%= I18n.t(:message) %></h2>
+            <b><%= I18n.t(:subject) %></b>: <%= @campaign.default_message_subject %> 
+          <p>
+            <pre>
+              <%= @campaign.default_message_body %>
+            </pre>
+          </p>
+        </div>
+      </div><!-- message -->
+      <% unless @campaign.status == 'archived' %>
+        <div id="stats" class="tab-pane fade">
+          <%= render :partial => "stats_chart" %>
+        </div><!-- message -->
+      <% end %>
+
+    </div><!-- tab-content -->
+
     </div><!-- show-campaign-detail-main -->
         
-      <% unless @campaign.status == 'archived' %>
-        <%= render :partial => "stats_chart" %>
-      <% end %>
 
     </div><!-- show-campaign-detail -->
     <div id="show-campaign-sidebar" class="grid_8">
@@ -105,14 +189,14 @@
           </div>
         <% end %>
         
-        <h2 class="jtc">Difunde</h2>
+        <h2 class="jtc"><%= I18n.t(:spread) %></h2>
         <%= render :partial => 'modal_widget_form' %>
         <div id="diffusion">
-          Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.
-          <a id="show-modal-widget" href="#" class="btn large primary center">Pon el formulario en tu web</a>
+          <%= I18n.t(:spread_info) %>
+          <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
         </div>
 
-        <%= render :partial => "communication" %>
+        <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
 
       <% end %>
 
