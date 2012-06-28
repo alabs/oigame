@@ -3,17 +3,17 @@
   <div id="show-campaign">
     <div id="show-campaign-detail">
       <h1><%= @page_title %></h1>
-      <table>
-        <tr>
-          <th>SubOigame</th>
-          <th colspan="3">Campañas</th>
-        </tr>
-        <tr>
-          <th>Nombre</th>
-          <th>Activadas</th>
-          <th>Archivadas</th>
-          <th>Moderadas</th>
-        </tr>
+      <table class="table table-striped table-bordered table-condensed" style="margin-top:25px;">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Activadas</th>
+            <th>Archivadas</th>
+            <th>Moderadas</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
       <% @sub_oigames.each do |sub_oigame| %>
         <tr>
           <td><%= link_to sub_oigame.name, sub_oigame %></td>
@@ -33,6 +33,7 @@
           </td>
         </tr>
       <% end %>
+    </tbody>
       </table>
 
       <br />
