@@ -3,7 +3,9 @@ class SubOigamesController < ApplicationController
   load_resource :find_by => :slug
   authorize_resource
 
+  layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
+  skip_authorize_resource :only => [:widget, :widget_iframe]
 
   # GET /o
   # GET /o.json
