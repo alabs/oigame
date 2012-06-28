@@ -27,19 +27,7 @@ class Ability
     end
     
     if user.role? :editor
-      can :read, Campaign, :moderated => false
-      can :read, Campaign, :status => 'archived'
-      can :create, Campaign
-      can :update, Campaign, :moderated => false
-      can :widget, Campaign, :moderated => false 
-      can :widget_iframe, Campaign, :moderated => false
-      can :petition, Campaign, :moderated => false
-      can :validate, Campaign, :moderated => false
-      can :participants, Campaign, :moderated => false
-      can :validated, Campaign, :moderated => false
-      can :archived, Campaign, :status => 'archived'
-      can :activate, Campaign, :moderated => false
-      can :deactivate, Campaign, :moderated => true
+      can :manage, Campaign
       # sub_oigames
       cannot :read, SubOigame
       can :manage, SubOigame do |sub|
