@@ -4,7 +4,7 @@
 $(function(){
 
   // edit-user clean password
-  $("#user_edit #user_password").val("")
+  $("#user_edit #user_password").val("");
 
   var isInIFrame = (window.location != window.parent.location) ? true : false;
   if (isInIFrame) {
