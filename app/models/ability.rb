@@ -23,6 +23,7 @@ class Ability
       can :manage, SubOigame do |sub|
         sub.users.include? user
       end
+      cannot :index, SubOigame
     end
     
     if user.role? :editor
@@ -42,6 +43,7 @@ class Ability
       can :manage, SubOigame do |sub|
         sub.users.include? user
       end
+      cannot :index, SubOigame
     end
 
     if user.role? :admin

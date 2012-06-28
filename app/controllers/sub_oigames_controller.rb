@@ -11,6 +11,7 @@ class SubOigamesController < ApplicationController
   # GET /o.json
   def index
     @sub_oigames = SubOigame.all
+    authorize! :index, SubOigame
 
     respond_to do |format|
       format.html # index.html.erb
