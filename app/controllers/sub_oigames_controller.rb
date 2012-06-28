@@ -51,7 +51,7 @@ class SubOigamesController < ApplicationController
 
     respond_to do |format|
       if @sub_oigame.save
-        format.html { redirect_to @sub_oigame, notice: 'Sub oigame was successfully created.' }
+        format.html { redirect_to @sub_oigame, notice: 'Has creado el SubOigame.' }
         format.json { render json: @sub_oigame, status: :created, location: @sub_oigame }
       else
         format.html { render action: "new" }
@@ -67,7 +67,7 @@ class SubOigamesController < ApplicationController
 
     respond_to do |format|
       if @sub_oigame.update_attributes(params[:sub_oigame])
-        format.html { redirect_to @sub_oigame, notice: 'Sub oigame was successfully updated.' }
+        format.html { redirect_to @sub_oigame, notice: 'Has actualizado el SubOigame.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
