@@ -4,7 +4,7 @@ class SubOigamesController < ApplicationController
   authorize_resource
 
   layout 'application', :except => [:widget, :widget_iframe]
-  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :authenticate_user!, :only => [:index, :show, :new, :edit, :create, :update, :destroy]
   skip_authorize_resource :only => [:widget, :widget_iframe]
 
   # GET /o

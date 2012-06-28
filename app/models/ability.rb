@@ -6,9 +6,26 @@ class Ability
 
     user ||= User.new
 
-    if user.role? :admin
-      can :manage, Campaign
-      can :manage, SubOigame
+    if user.role? :user
+      can :read, Campaign, :moderated => false
+      can :read, Campaign, :status => 'archived'
+      can :create, Campaign
+      can :update, Campaign, :moderated => false, :user_id => user.id
+      can :participants, Campaign, :moderated => false, :user_id => user.id
+      can :widget, Campaign, :moderated => false 
+      can :widget_iframe, Campaign, :moderated => false
+      can :petition, Campaign, :moderated => false
+      can :validate, Campaign, :moderated => false
+      can :validated, Campaign, :moderated => false
+      can :archived, Campaign, :status => 'archived'
+      # sub_oigames
+      can :update, SubOigame do |sub|
+        sub.users.include? user
+      end
+      cannot :read, SubOigame
+      can :read, SubOigame do |sub|
+        sub.users.include? user
+      end
     end
     
     if user.role? :editor
@@ -24,32 +41,17 @@ class Ability
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
       # sub_oigames
-      can :read, SubOigame
-      #can :update, SubOigame, :user_id => user.sub_oigame
       can :update, SubOigame do |sub|
+        sub.users.include? user
+      end
+      cannot :read, SubOigame
+      can :read, SubOigame do |sub|
         sub.users.include? user
       end
     end
 
-    if user.role? :user
-      can :read, Campaign, :moderated => false
-      can :read, Campaign, :status => 'archived'
-      can :create, Campaign
-      can :update, Campaign, :moderated => false, :user_id => user.id
-      can :participants, Campaign, :moderated => false, :user_id => user.id
-      can :widget, Campaign, :moderated => false 
-      can :widget_iframe, Campaign, :moderated => false
-      can :petition, Campaign, :moderated => false
-      can :validate, Campaign, :moderated => false
-      can :validated, Campaign, :moderated => false
-      can :archived, Campaign, :status => 'archived'
-      # sub_oigames
-      can :read, SubOigame
-      #can :update, SubOigame, :user_id => user.id
-      can :update, SubOigame do |sub|
-        sub.users.include? user
-      end
-      #cannot :index, SubOigame
+    if user.role? :admin
+      can :manage, :all
     end
   end
 end
