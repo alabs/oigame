@@ -38,6 +38,8 @@ class Ability
       can :participants, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
+      can :activate, Campaign, :moderated => false
+      can :deactivate, Campaign, :moderated => true
       # sub_oigames
       cannot :read, SubOigame
       can :manage, SubOigame do |sub|
