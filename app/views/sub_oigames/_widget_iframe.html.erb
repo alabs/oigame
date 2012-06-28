@@ -1,61 +1,67 @@
-<style type="text/css">
-body {
-    color: #333333;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 13px;
-    line-height: 18px;
-}
-h2 {
-    font-size: 24px;
-    line-height: 36px;
-}
-h1, h2, h3, h4, h5, h6 {
-    color: inherit;
-    font-family: inherit;
-    font-weight: bold;
-    margin: 0;
-    text-rendering: optimizelegibility;
-}
-hr {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: #EEEEEE -moz-use-text-color #FFFFFF;
-    border-left: 0 none;
-    border-right: 0 none;
-    border-style: solid none;
-    border-width: 1px 0;
-    margin: 18px 0;
-}
-p {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 13px;
-    line-height: 18px;
-    margin: 0 0 9px;
-}
-a, a:hover {
-    color: #BE0411;
-}
-a {
-    color: #0088CC;
-    text-decoration: none;
-}
-/* estilos del suboigame */
-<%= @sub_oigame.html_style %>
-</style>
-<div id="sub-oigame-wrapper">
-  <div id="sub-oigame">
-    <h2><%= @sub_oigame.name %></h2>
-    Estas son las campañas que tenemos ahora mismo abiertas. ¡Participa!
-    <hr>
-    <% @sub_oigame.campaigns.published.each do |camp| %>
-      <p>
-        <%= link_to camp.name, sub_oigame_campaign_path(@sub_oigame, camp) %>
-        <%= camp.to_html(camp.intro).html_safe %>
-      </p>
-      <hr>
-    <% end %>
-  </div><!-- campaign-message-form -->
-</div><!-- campaign-message-wrapper -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+    body {
+        color: #333333;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+        line-height: 18px;
+    }
+    h2 {
+        font-size: 24px;
+        line-height: 36px;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: inherit;
+        font-family: inherit;
+        font-weight: bold;
+        margin: 0;
+        text-rendering: optimizelegibility;
+    }
+    hr {
+        -moz-border-bottom-colors: none;
+        -moz-border-image: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+        border-left: 0 none;
+        border-right: 0 none;
+        border-style: solid none;
+        border-width: 1px 0;
+        margin: 18px 0;
+    }
+    p {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 13px;
+        line-height: 18px;
+        margin: 0 0 9px;
+    }
+    a, a:hover {
+        color: #BE0411;
+    }
+    a {
+        color: #0088CC;
+        text-decoration: none;
+    }
+    </style>
+    <base target="_blank" />
+  </head>
+  <body>
+    <div id="sub-oigame-wrapper">
+      <div id="sub-oigame">
+        <h2><%= @sub_oigame.name %></h2>
+        Estas son las campañas que tenemos ahora mismo abiertas. ¡Participa!
+        <hr>
+        <% @sub_oigame.campaigns.published.each do |camp| %>
+          <p>
+            <%= link_to camp.name, sub_oigame_campaign_path(@sub_oigame, camp) %>
+            <%= camp.to_html(camp.intro).html_safe %>
+          </p>
+          <hr>
+        <% end %>
+      </div><!-- campaign-message-form -->
+    </div><!-- campaign-message-wrapper -->
+  </body>
+</html>
