@@ -30,6 +30,10 @@ class Ability
       can :manage, Campaign do |campaign|
         campaign.sub_oigame.nil?
       end
+      cannot :participants, Campaign
+      can :participants, Campaign do |campaign|
+        campaign.user == user
+      end
       # sub_oigames
       cannot :read, SubOigame
       can :manage, SubOigame do |sub|
