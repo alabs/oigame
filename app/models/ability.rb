@@ -19,11 +19,8 @@ class Ability
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
       # sub_oigames
-      can :update, SubOigame do |sub|
-        sub.users.include? user
-      end
       cannot :read, SubOigame
-      can :read, SubOigame do |sub|
+      can :manage, SubOigame do |sub|
         sub.users.include? user
       end
     end
@@ -41,11 +38,8 @@ class Ability
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
       # sub_oigames
-      can :update, SubOigame do |sub|
-        sub.users.include? user
-      end
       cannot :read, SubOigame
-      can :read, SubOigame do |sub|
+      can :manage, SubOigame do |sub|
         sub.users.include? user
       end
     end
