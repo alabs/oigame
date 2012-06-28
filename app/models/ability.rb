@@ -27,7 +27,9 @@ class Ability
     end
     
     if user.role? :editor
-      can :manage, Campaign
+      can :manage, Campaign do |campaign|
+        campaign.sub_oigame.nil?
+      end
       # sub_oigames
       cannot :read, SubOigame
       can :manage, SubOigame do |sub|
