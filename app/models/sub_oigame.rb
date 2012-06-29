@@ -33,5 +33,29 @@ class SubOigame < ActiveRecord::Base
       self.logobase64 = base64
     end
   end
+
+  def admin_users
+    data = []
+    users.each do |user|
+      data << user.email
+    end
+
+    return data.join("\r\n")
+  end
+
+  def admin_users=(args)
+    addresses = args.gsub(/\s+/, ',').split(',')
+    # arreglar el bug del strip
+    # addresses.each {|address| address.strip!.downcase! }.uniq!
+    addresses.each {|address| address.downcase! }.uniq!
+    addresses.delete_if {|a| a.blank? }
+
+    users.clear
+
+    addresses.each do |address|
+      user = User.where(:email => address).first
+      users << user
+    end
+  end
 end
 
