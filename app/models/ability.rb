@@ -8,6 +8,11 @@ class Ability
 
     if user.role? :user
       can :read, Campaign, :moderated => false
+      can :read, Campaign do |campaign|
+        unless campaign.sub_oigame.nil?
+          campaign.sub_oigame.users.include? user
+        end
+      end
       can :read, Campaign, :status => 'archived'
       can :create, Campaign
       can :update, Campaign, :moderated => false, :user_id => user.id
@@ -18,6 +23,16 @@ class Ability
       can :validate, Campaign, :moderated => false
       can :validated, Campaign, :moderated => false
       can :archived, Campaign, :status => 'archived'
+      can :moderated, Campaign do |campaign|
+        unless campaign.sub_oigame.nil?
+          campaign.sub_oigame.users.include? user
+        end
+      end
+      can :manage, Campaign do |campaign|
+        unless campaign.sub_oigame.nil?
+          campaign.sub_oigame.users.include? user
+        end
+      end
       # sub_oigames
       cannot :read, SubOigame
       can :manage, SubOigame do |sub|
@@ -33,6 +48,16 @@ class Ability
       cannot :participants, Campaign
       can :participants, Campaign do |campaign|
         campaign.user == user
+      end
+      can :moderated, Campaign do |campaign|
+        unless campaign.sub_oigame.nil?
+          campaign.sub_oigame.users.include? user
+        end
+      end
+      can :manage, Campaign do |campaign|
+        unless campaign.sub_oigame.nil?
+          campaign.sub_oigame.users.include? user
+        end
       end
       # sub_oigames
       cannot :read, SubOigame
