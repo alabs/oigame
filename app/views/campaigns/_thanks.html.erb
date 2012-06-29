@@ -4,7 +4,7 @@
         <h2><%= page_title %></h2>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
         <br />
-        <% url = sub_oigame ? sub_oigame_campaign_path(sub_oigame, campaign) : campaign %>
+        <% url = sub_oigame ? sub_oigame_campaign_path(sub_oigame, campaign) : campaign_path %>
         <p><%= link_to t(:back), url, :class => "btn btn-primary" %>
         <hr />
 
