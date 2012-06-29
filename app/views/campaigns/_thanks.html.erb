@@ -2,7 +2,7 @@
   <div id="list-campaigns">
       <div id="list-campaigns-info">
         <h2><%= page_title %></h2>
-        <div class="alert alert-<%= message_type %>" style="font-size:1.5em; line-height:1.1em;"><%= message %></div>
+        <div class="alert alert-<%= message_type %>" style="font-size:1.5em; line-height:1.1em; margin-top:1.5em; padding:1em;"><%= message %></div>
         <br />
         <% url = sub_oigame ? sub_oigame_campaign_path(sub_oigame, campaign) : campaign_path %>
         <p><%= link_to t(:back), url, :class => "btn btn-primary" %>
