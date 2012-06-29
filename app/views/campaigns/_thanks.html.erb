@@ -2,14 +2,14 @@
   <div id="list-campaigns">
       <div id="list-campaigns-info">
         <h2><%= page_title %></h2>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <div class="alert alert-<%= message_type %>" style="font-size:1.5em; line-height:1.1em; margin-top:1.5em; padding:1em;"><%= message %></div>
         <br />
-        <% url = sub_oigame ? sub_oigame_campaign_path(sub_oigame, campaign) : campaign %>
+        <% url = sub_oigame ? sub_oigame_campaign_path(sub_oigame, campaign) : campaign_path %>
         <p><%= link_to t(:back), url, :class => "btn btn-primary" %>
         <hr />
 
         <% if campaigns.count > 0 %>
-            <h2>Otras campañas</h2>
+            <h2>Participa en estas otras campañas</h2>
             <% campaigns.each do |campaign| %>
               <%= render :partial => "show_campaign", :locals => { :sub_oigame => sub_oigame, :campaign => campaign } %>
             <% end %>
@@ -32,7 +32,11 @@
           </div>
           <script type="text/javascript">
             var addthis_share = {
-              "url": "<%= APP_CONFIG[:domain] + url %>"
+              "url": "<%= APP_CONFIG[:domain] + url %>",
+              "title": "<%= campaign.name.strip %>",
+              templates: {
+                twitter: '{{title}} - {{url}} vía @oigame',
+              }
             }
             var addthis_config = {
               "services_exclude":"print"
