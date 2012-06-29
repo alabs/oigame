@@ -1,6 +1,7 @@
 .bundle
 db/*.sqlite3
 log/*.log
+log/*.pid
 tmp/
 .sass-cache/
 *.swp
@@ -13,3 +14,4 @@ public/sitemap*
 .idea
 .rvmrc
 config/locales/log/*
+db/sphinx
