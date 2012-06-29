@@ -132,6 +132,16 @@ class Campaign < ActiveRecord::Base
     save!
   end
 
+  def other_campaigns
+    # devuelve otras campaigns similares a la que estamos seleccionando, quitando la que usamos
+    # tiene en cuenta el sub
+    if self.sub_oigame.nil?
+      return Campaign.published.find(:all, :conditions => ["id != ?", self.id], :limit => 5)
+    else
+      return Campaign.published.find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 5)
+    end
+  end
+
   private
 
   def generate_slug

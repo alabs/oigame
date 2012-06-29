@@ -1,0 +1,27 @@
+<% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
+<% if campaign.priority == true %>
+  <div class="campaign-info well">
+<% else %>
+  <div class="campaign-info">
+<% end %>
+  <div class="cinfo">
+    <h3><%= link_to campaign.name, url %></h3>
+    <div class="campaign-image">
+      <% if campaign.image.to_s %>
+        <%= link_to image_tag(campaign.image_url(:thumb)), url %>
+      <% end %>
+    </div><!-- campaign-image -->
+    <div class="campaign-text">
+      <%= campaign.to_html(campaign.intro).html_safe %>
+      <div class="campaign-text-links">
+        <%= link_to t(:join_this_campaign), url %>
+        <% if campaign.ttype == 'mailing' %>
+          <strong><%= campaign.messages.validated.count %></strong> personas ya lo han hecho
+        <% elsif campaign.ttype == 'petition' %>
+          <strong><%= campaign.petitions.validated.count %></strong> personas ya lo han hecho
+        <% end %>
+      </div><!-- campaign-text-links -->
+    </div><!-- campaign-text -->
+  </div><!-- cinfo -->
+  <div class="clear"></div>
+</div><!-- campaign-info -->

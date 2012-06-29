@@ -1,24 +1,10 @@
 <% @page_title = t(:token_invalid_title) %>
 
-<div id="page-wrapper">
-  <div id="page">
-    <div id="page-info">
-      <h2><%= @page_title %></h2>
-      <p class="thanks-message"><%= I18n.t(:token_invalid_body) %> <%= link_to t(:contact_to), contact_path %>oiga.me</p>
-      <br />
-      <p><%= link_to t(:back), @campaign, :class => "btn btn-primary" %>
-      <br /><br />
-
-      <%= render :partial => "stats_chart" %>
-
-    </div><!-- page-info -->
-    <div id="page-sidebar">
-      <div id="show-campaign-sidebar">
-        <%= render :partial => "communication" %>
-      </div><!-- show-campaign-sidebar -->
-    </div><!-- page-sidebar -->
-  </div><!-- page -->
-</div><!-- page-wrapper -->
-
-<!-- preguntar a anders que hace esto aquí -->
-<%= render :partial => "modal_widget_form" %>
+<%= render :partial => "thanks", :locals => {
+  :page_title => @page_title,
+  :campaign => @campaign,
+  :sub_oigame => @sub_oigame,
+  :campaigns => @campaigns,
+  :message_type => "error",
+  :message => I18n.t(:token_invalid_body)
+} %>

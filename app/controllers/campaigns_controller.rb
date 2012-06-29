@@ -159,17 +159,18 @@ class CampaignsController < ApplicationController
   end
 
   def message
+    @campaign = Campaign.published.find_by_slug(params[:id])
+    @campaigns = @campaign.other_campaigns
     if request.post?
       from = user_signed_in? ? current_user.email : params[:email]
-      campaign = Campaign.published.find_by_slug(params[:id])
-      if campaign
+      if @campaign
         if params[:own_message] == "1" 
-          message = Message.create(:campaign => campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
-          Mailman.send_message_to_validate_message(from, campaign, message).deliver
+          message = Message.create(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+          Mailman.send_message_to_validate_message(from, @campaign, message).deliver
         else
           # mensaje por defecto
-          message = Message.create(:campaign => campaign, :email => from, :subject => campaign.default_message_subject, :body => campaign.default_message_body, :token => generate_token)
-          Mailman.send_message_to_validate_message(from, campaign, message).deliver
+          message = Message.create(:campaign => @campaign, :email => from, :subject => @campaign.default_message_subject, :body => @campaign.default_message_body, :token => generate_token)
+          Mailman.send_message_to_validate_message(from, @campaign, message).deliver
         end
         @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
         if @sub_oigame.nil?
@@ -196,6 +197,8 @@ class CampaignsController < ApplicationController
 
   def petition
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    @campaign = Campaign.published.find_by_slug(params[:id])
+    @campaigns = @campaign.other_campaigns
     if request.post?
       if user_signed_in?
         if current_user.name.blank?
@@ -203,23 +206,22 @@ class CampaignsController < ApplicationController
         end
       end
       to = user_signed_in? ? current_user.email : params[:email]
-      campaign = Campaign.published.find_by_slug(params[:id])
-      petition = Petition.create(:campaign => campaign, :name => params[:name], :email => to, :token => generate_token )
-      Mailman.send_message_to_validate_petition(to, campaign, petition).deliver
+      petition = Petition.create(:campaign => @campaign, :name => params[:name], :email => to, :token => generate_token )
+      Mailman.send_message_to_validate_petition(to, @campaign, petition).deliver
       if @sub_oigame
         redirect_url = petition_sub_oigame_campaign_path
       else
         redirect_url = petition_campaign_path
       end
       redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-
       return
     end
-    @campaign = Campaign.published.find_by_slug(params[:id])
-    @stats_data = generate_stats_for_petition(@campaign)
   end
 
   def validate
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    @campaign = Campaign.published.find_by_slug(params[:id])
+    @campaigns = @campaign.other_campaigns
     model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
     if model
       model.update_attributes(:validated => true, :token => nil)
@@ -239,7 +241,9 @@ class CampaignsController < ApplicationController
   end
   
   def validated
-    @stats_data = generate_stats_for_petition(@campaign)
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    @campaign = Campaign.find(:all, :conditions => {:slug => params[:id]}).first
+    @campaigns = @campaign.other_campaigns
   end
 
   def moderated

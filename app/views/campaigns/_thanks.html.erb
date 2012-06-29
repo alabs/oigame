@@ -1,0 +1,49 @@
+<div id="campaigns-wrapper">
+  <div id="list-campaigns">
+      <div id="list-campaigns-info">
+        <h2><%= page_title %></h2>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <br />
+        <% url = sub_oigame ? sub_oigame_campaign_path(sub_oigame, campaign) : campaign %>
+        <p><%= link_to t(:back), url, :class => "btn btn-primary" %>
+        <hr />
+
+        <% if campaigns.count > 0 %>
+            <h2>Otras campañas</h2>
+            <% campaigns.each do |campaign| %>
+              <%= render :partial => "show_campaign", :locals => { :sub_oigame => sub_oigame, :campaign => campaign } %>
+            <% end %>
+        <% end %>
+      </div><!-- list-campaigns-info -->
+
+      <div id="list-campaigns-sidebar">
+        <h2>Difunde</h2>
+        <p> Puedes ayudar a esta campaña difundiendola en tus redes sociales</p>
+        <ul id="social-buttons" style="margin-top:1em;">
+          <!-- AddThis Button BEGIN -->
+          <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+          <a class="addthis_button_preferred_1"></a>
+          <a class="addthis_button_preferred_2"></a>
+          <a class="addthis_button_preferred_3"></a>
+          <a class="addthis_button_preferred_4"></a>
+          <a class="addthis_button_preferred_5"></a>
+          <a class="addthis_button_compact"></a>
+          <a class="addthis_counter addthis_bubble_style"></a>
+          </div>
+          <script type="text/javascript">
+            var addthis_share = {
+              "url": "<%= APP_CONFIG[:domain] + url %>"
+            }
+            var addthis_config = {
+              "services_exclude":"print"
+            };
+          </script>
+          <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa7698516f53413"></script>
+          <!-- AddThis Button END -->
+          <div class="clear"></div>
+        </ul><!-- social-buttons -->
+        <hr />
+      </div><!-- list-campaigns-sidebar -->
+
+  </div><!-- list-campaigns -->
+</div><!-- campaigns-wrapper -->

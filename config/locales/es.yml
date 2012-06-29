@@ -118,7 +118,7 @@ es:
   spread_info: "Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña."
   spread_form: "Pon el formulario en tu web"
   token_invalid_title: "Hubo un problema"
-  token_invalid_body: "No encontramos una adhesión con ese token, revisa el correo que te enviamos y si te sigue sin funcionar con"
+  token_invalid_body: "No encontramos una adhesión con ese token, revisa el correo que te enviamos y si te sigue sin funcionar avísanos a hola@oiga.me"
   communicate: "Comunícate"
   participate: "Participa"
   maximize: "Maximizar"
