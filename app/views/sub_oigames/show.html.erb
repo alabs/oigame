@@ -5,6 +5,26 @@
     <div id="show-campaign-detail">
       <h1><%= @page_title %></h1>
 
+      <h2>Correo electrónico</h2>
+
+    <% if @sub_oigame.from %>
+      <p>
+        <h3>Dirección de envío</h3>  
+        <p>
+          <%= @sub_oigame.from %>
+        </p>
+      </p>
+    <% end %>
+
+    <% if @sub_oigame.mail_message %>
+      <p>
+        <h3>Mensaje</h3>  
+        <p>
+          <%= raw(@sub_oigame.mail_message.gsub(/\n/, '<br>')) %>
+        </p>
+      </p>
+    <% end %>
+
       <h2>Diseño</h2>
 
       <% unless @sub_oigame.logo.blank? then %>

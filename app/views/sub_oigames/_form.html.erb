@@ -22,6 +22,17 @@
     </div>
 
     <div class="form-field">
+      <%= f.label :sub_oigames_users, "Usuarios administradores" %>
+      <div class="clearfix">
+        <%= collection_select :sub_oigame, :user_ids, User.find(:all, :order => 'email ASC'), :id, :email, { }, { :multiple => true, :class => "multiselect" } -%>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+
+    <legend>Correo electrónico</legend>
+
+    <div class="form-field">
       <%= f.label :from, "Dirección de envio" %>
       <div class="clearfix">
         <%= f.text_field :from, :placeholder => "noreply@oiga.me" %>
@@ -29,12 +40,15 @@
     </div>
 
     <div class="form-field">
-      <%= f.label :sub_oigames_users, "Usuarios administradores" %>
+      <%= f.label :mail_message, "Mensaje" %>
       <div class="clearfix">
-        <%= collection_select :sub_oigame, :user_ids, User.find(:all, :order => 'email ASC'), :id, :email, { }, { :multiple => true, :class => "multiselect" } -%>
+        <%= f.text_area :mail_message, :class => "span6", :placeholder => "Pon aquí el mensaje que quieres que vean tus usuarios en el correo de adhesión" %>
       </div>
     </div>
+
+
   </fieldset>
+
   <fieldset>
 
     <legend>Diseño</legend>

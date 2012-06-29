@@ -6,6 +6,10 @@
 
 <p>Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.</p>
 
+<% if @sub_oigame and @sub_oigame.mail_message %>
+  <%= raw(@sub_oigame.mail_message.gsub(/\n/, '<br>')) %>
+<% end %>
+
 <p>Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:</p>
 
 <p>Incluye la campaña en tu página web para que tus visitas puedan participar: <a href="<%= @url %>"><%= @url %></a>. Es muy sencillo, tardarás menos de 1 minuto.</p>
