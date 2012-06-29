@@ -9,7 +9,7 @@
         <hr />
 
         <% if campaigns.count > 0 %>
-            <h2>Otras campañas</h2>
+            <h2>Particípa también en estas otras campañas</h2>
             <% campaigns.each do |campaign| %>
               <%= render :partial => "show_campaign", :locals => { :sub_oigame => sub_oigame, :campaign => campaign } %>
             <% end %>
@@ -32,7 +32,8 @@
           </div>
           <script type="text/javascript">
             var addthis_share = {
-              "url": "<%= APP_CONFIG[:domain] + url %>"
+              "url": "<%= APP_CONFIG[:domain] + url %>",
+              "title": "<%= campaign.name.strip %>"
             }
             var addthis_config = {
               "services_exclude":"print"
