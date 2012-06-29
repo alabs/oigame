@@ -23,9 +23,7 @@
 
     <div class="form-field">
       <%= f.label :sub_oigames_users, "Usuarios administradores" %>
-      <div class="clearfix">
-        <%= collection_select :sub_oigame, :user_ids, User.find(:all, :order => 'email ASC'), :id, :email, { }, { :multiple => true, :class => "multiselect" } -%>
-      </div>
+      <%= f.text_area :admin_users, :rows => 10, :class => 'span6', :required => true, :placeholder => 'Administradores del sub oiga.me' %>
     </div>
   </fieldset>
   <fieldset>
@@ -45,7 +43,6 @@
         <%= f.text_area :mail_message, :class => "span6", :placeholder => "Pon aquí el mensaje que quieres que vean tus usuarios en el correo de adhesión" %>
       </div>
     </div>
-
 
   </fieldset>
 
