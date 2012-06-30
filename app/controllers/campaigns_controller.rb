@@ -165,12 +165,24 @@ class CampaignsController < ApplicationController
       from = user_signed_in? ? current_user.email : params[:email]
       if @campaign
         if params[:own_message] == "1" 
-          message = Message.create(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
-          Mailman.send_message_to_validate_message(from, @campaign, message).deliver
+          message = Message.new(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
+          if message.save
+            Mailman.send_message_to_validate_message(from, @campaign, message).deliver
+          else
+            flash.now[:error] = "No puedes participar más de una vez por campaña"
+            render :action => :show
+            return
+          end
         else
           # mensaje por defecto
-          message = Message.create(:campaign => @campaign, :email => from, :subject => @campaign.default_message_subject, :body => @campaign.default_message_body, :token => generate_token)
-          Mailman.send_message_to_validate_message(from, @campaign, message).deliver
+          message = Message.new(:campaign => @campaign, :email => from, :subject => @campaign.default_message_subject, :body => @campaign.default_message_body, :token => generate_token)
+          if message.save
+            Mailman.send_message_to_validate_message(from, @campaign, message).deliver
+          else
+            flash.now[:error] = "No puedes participar más de una vez por campaña"
+            render :action => :show
+            return
+          end
         end
         @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
         if @sub_oigame.nil?
