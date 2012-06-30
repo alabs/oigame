@@ -34,6 +34,16 @@ class Campaign < ActiveRecord::Base
   scope :archived, where(:status => 'archived')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
 
+  # thinking sphinx
+  define_index do
+    # fields
+    indexes name, :sortable => true
+    indexes intro
+    
+    # attributes
+    has created_at, updated_at
+  end
+
 
   class << self
 
