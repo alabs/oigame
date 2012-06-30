@@ -216,7 +216,7 @@ class CampaignsController < ApplicationController
         end
         redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
       else
-        flash[:error] = 'No puedes participar más de una vez por campaña'
+        flash.now[:error] = 'No puedes participar más de una vez por campaña'
         render :action => :show 
       end
     end
