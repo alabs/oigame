@@ -334,6 +334,7 @@ class CampaignsController < ApplicationController
   end
 
   def search
+    @campaigns = Campaign.search params[:q]
   end
 
   private
