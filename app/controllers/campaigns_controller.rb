@@ -206,15 +206,19 @@ class CampaignsController < ApplicationController
         end
       end
       to = user_signed_in? ? current_user.email : params[:email]
-      petition = Petition.create(:campaign => @campaign, :name => params[:name], :email => to, :token => generate_token )
-      Mailman.send_message_to_validate_petition(to, @campaign, petition).deliver
-      if @sub_oigame
-        redirect_url = petition_sub_oigame_campaign_path
+      petition = Petition.new(:campaign => @campaign, :name => params[:name], :email => to, :token => generate_token )
+      if petition.save
+        Mailman.send_message_to_validate_petition(to, @campaign, petition).deliver
+        if @sub_oigame
+          redirect_url = petition_sub_oigame_campaign_path
+        else
+          redirect_url = petition_campaign_path
+        end
+        redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
       else
-        redirect_url = petition_campaign_path
+        flash[:error] = 'No puedes participar más de una vez por campaña'
+        render :action => :show 
       end
-      redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-      return
     end
   end
 
