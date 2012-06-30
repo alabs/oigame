@@ -3,13 +3,6 @@ class Campaign < ActiveRecord::Base
 
   acts_as_paranoid
 
-  define_index do
-    # fields
-    indexes :name
-    indexes :intro
-    indexes :body
-  end
-
   belongs_to :user
   belongs_to :sub_oigame
   has_many :messages

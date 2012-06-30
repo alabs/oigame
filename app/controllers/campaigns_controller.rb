@@ -329,6 +329,9 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def search
+  end
+
   private
 
     def generate_stats_for_mailing(campaign)

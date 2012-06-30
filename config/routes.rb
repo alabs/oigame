@@ -25,6 +25,7 @@ Oigame::Application.routes.draw do
         get 'moderated'
         get 'feed', :defaults => { :format => 'rss' }
         get 'archived'
+        get 'search' => 'campaigns#search'
       end
     end
     get 'integrate'
@@ -69,6 +70,7 @@ Oigame::Application.routes.draw do
       get 'moderated'
       get 'feed', :defaults => { :format => 'rss' }
       get 'archived'
+      get 'search' => 'campaigns#search'
     end
   end
 

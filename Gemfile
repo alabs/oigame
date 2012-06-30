@@ -25,7 +25,7 @@ group :test, :development do
 end
 
 group :development do
-  #gem 'pry-rails'
+  gem 'pry-rails'
   # no me arranca el unicorn con ruby-debug19 (apardo)
   #gem 'ruby-debug19', :require => 'ruby-debug'
 end
@@ -52,5 +52,3 @@ gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git", :ref
 gem 'jquery-ui-rails'
 gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
 gem "rails3_acts_as_paranoid", "~>0.2.0"
-#gem 'thinking-sphinx', '2.0.10'
-gem 'thinking-sphinx'
