@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require 'thinking_sphinx/deploy/capistrano'
 
 set :scm,             :git
 set :repository,      "gitolite@git.alabs.es:oiga.me.git"
@@ -146,3 +147,14 @@ def run_rake(cmd)
   run "cd #{current_path}; #{rake} #{cmd}"
 end
 
+before 'deploy:update_code', 'thinking_sphinx:stop'
+after 'deploy:update_code', 'thinking_sphinx:start'
+
+namespace :sphinx do
+  desc "Symlink Sphinx indexes"
+  task :symlink_indexes, :roles => [:app] do
+    run "ln -nfs #{shared_path}/db/sphinx_staging #{release_path}/db/sphinx"
+  end
+end
+
+after 'deploy:finalize_update', 'sphinx:symlink_indexes'
