@@ -1,9 +1,11 @@
 staging:
   pid_file: /var/www/beta.oiga.me/shared/pids/search_staging.pid
-  searchd_file_path: /var/www/beta.oigame/shared/db/sphinx_staging 
+  searchd_file_path: /var/www/beta.oiga.me/shared/db/sphinx_staging 
+  query_log_file: /var/www/beta.oiga.me/shared/log/searchd.query.log"
   port: 9312
 
 production:
   pid_file: /var/www/oiga.me/shared/pids/search_production.pid
-  searchd_file_path: /var/www/oigame/shared/db/sphinx_production 
+  searchd_file_path: /var/www/oiga.me/shared/db/sphinx_production 
+  query_log_file: /var/www/oiga.me/shared/log/searchd.query.log"
   port: 9313
