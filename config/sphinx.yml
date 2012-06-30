@@ -1,0 +1,7 @@
+staging:
+  pid_file: /var/www/beta.oiga.me/shared/pids/search_staging.pid
+  searchd_file_path: /var/www/beta.oigame/shared/db/sphinx_staging 
+
+production:
+  pid_file: /var/www/oiga.me/shared/pids/search_production.pid
+  searchd_file_path: /var/www/oigame/shared/db/sphinx_production 
