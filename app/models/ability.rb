@@ -26,15 +26,11 @@ class Ability
       can :moderated, Campaign do |campaign|
         unless campaign.sub_oigame.nil?
           campaign.sub_oigame.users.include? user
-        else
-          false
         end
       end
       can :manage, Campaign do |campaign|
         unless campaign.sub_oigame.nil?
           campaign.sub_oigame.users.include? user
-        else
-          false
         end
       end
       # sub_oigames
@@ -53,18 +49,9 @@ class Ability
       can :participants, Campaign do |campaign|
         campaign.user == user
       end
-      can :moderated, Campaign do |campaign|
-        unless campaign.sub_oigame.nil?
-          campaign.sub_oigame.users.include? user
-        else
-          false
-        end
-      end
       can :manage, Campaign do |campaign|
         unless campaign.sub_oigame.nil?
           campaign.sub_oigame.users.include? user
-        else
-          false
         end
       end
       # sub_oigames
