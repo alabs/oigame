@@ -37,12 +37,17 @@ class Campaign < ActiveRecord::Base
   # thinking sphinx
   define_index do
     # fields
-    indexes name, :sortable => true
-    indexes intro
+    indexes :name, :sortable => true
+    indexes :intro
+    indexes :status
     
     # attributes
-    has created_at, updated_at
+    has moderated, created_at, updated_at
   end
+
+  sphinx_scope(:active) {
+    { :with  =>  { :moderated => false } }
+  }
 
 
   class << self

@@ -346,7 +346,7 @@ class CampaignsController < ApplicationController
   end
 
   def search
-    @campaigns = Campaign.search params[:q]
+    @campaigns = Campaign.active.search params[:q] #, :order => :created_at, :sort => :asc
   end
 
   private
