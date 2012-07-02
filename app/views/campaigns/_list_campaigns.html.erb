@@ -3,12 +3,6 @@
     <% if @campaigns.count > 0 %>
       <div id="list-campaigns-info">
         <h2><%= @page_title %></h2>
-      <div id="search-div">
-        <form class="well form-search" method="get" action="/campaigns/search">
-          <input name="q" type="text" style="width: 400px;" class="input-medium search-query" value="<%= params[:q] %>">
-          <button type="submit" style="padding: 8px; width: 70px;" class="btn">Buscar</button>
-        </form>
-      </div>
         <% @campaigns.each do |campaign| %>
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         <% end %>
@@ -38,6 +32,8 @@
           <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn btn-large btn-danger" %></h2>
         <% end %>
       <% end %>
+      <br /><br />
+      <%= render :partial => "search_form", :locals => { :term => params[:q] } %>
       <br /><br />
       <h2><%= I18n.t(:tags_most_used) %></h2>
       <% unless @archived %>
