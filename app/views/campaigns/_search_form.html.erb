@@ -1,5 +1,6 @@
+      <% search_url = @sub_oigame ? search_sub_oigame_campaigns_path(@sub_oigame) : search_campaigns_path %>
       <div id="search-div" style="margin-top:2em; margin-right: 2em;">
-        <form class="well" method="get" action="/campaigns/search">
+        <form class="well" method="get" action="<%= search_url %>">
           <input name="q" type="text" style="width: 90%;" class="input-medium search-query" value="<%= term %>">
           <button type="submit" style="padding: 8px; width: 70px;" class="btn">Buscar</button>
         </form>

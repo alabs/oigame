@@ -40,8 +40,14 @@ class Campaign < ActiveRecord::Base
     indexes :name, :sortable => true
     indexes :intro
     indexes :status
+    indexes :sub_oigame_id
     
+    # a little hack para que podamos buscar por nil
+    # https://groups.google.com/forum/?fromgroups#!topic/thinking-sphinx/CUwd3m_4cLQ
+    has "sub_oigame_id IS NULL", :type => :boolean, :as => :no_sub
+
     # attributes
+    #has sub_oigame_id, moderated, created_at, updated_at
     has moderated, created_at, updated_at
   end
 

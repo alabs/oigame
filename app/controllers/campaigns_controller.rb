@@ -346,7 +346,13 @@ class CampaignsController < ApplicationController
   end
 
   def search
-    @campaigns = Campaign.active.search params[:q] #, :order => :created_at, :sort => :asc
+    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    if @sub_oigame.nil?
+      # mirar en la deficion de indices lo del no_sub
+      @campaigns = Campaign.active.search params[:q], :with => {:no_sub => true }  #, :order => :created_at, :sort => :asc
+    else 
+      @campaigns = Campaign.active.search params[:q], :conditions => {:sub_oigame_id => @sub_oigame.id}
+    end
   end
 
   private
