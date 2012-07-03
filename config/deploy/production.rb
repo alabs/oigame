@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require 'thinking_sphinx/deploy/capistrano'
 
 set :scm,             :git
 set :repository,      "gitolite@git.alabs.es:oiga.me.git"
