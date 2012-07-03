@@ -1,5 +1,278 @@
 <style type="text/css">
-<!-- TODO: poner estilos correctos -->
+input {
+height: 2em !important;
+}
+
+body {
+    color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: inherit;
+    font-family: inherit;
+    font-weight: bold;
+    margin: 0;
+    text-rendering: optimizelegibility;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 36px;
+}
+
+p {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0 0 9px;
+}
+
+#show-campaign-sidebar #campaign-message-form {
+    padding-left: 0;
+}
+
+form {
+    margin: 0 0 18px;
+}
+
+#show-campaign-sidebar #campaign-message-form form fieldset {
+    background-color: #F1F2F1;
+    border: 1px solid #D2D2D2;
+    padding: 10px;
+}
+
+fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+
+#show-campaign-sidebar #campaign-message-form form .form-field {
+    margin-bottom: 10px;
+}
+
+a, a:hover {
+    color: #BE0411;
+}
+
+
+#show-campaign-sidebar #campaign-message-form form .form-field label, #show-campaign-sidebar #campaign-message-form form .form-field input, #show-campaign-sidebar #campaign-message-form form .form-field textarea {
+    display: inline;
+    font-size: 1em;
+}
+
+label {
+    color: #333333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+#show-campaign-sidebar #campaign-message-form form .form-field input[type="text"], #show-campaign-sidebar #campaign-message-form form .form-field textarea, #show-campaign-sidebar #campaign-message-form form .form-field input[type="email"] {
+    border: 1px solid #D2D2D2;
+    font-weight: normal;
+    padding: 5px;
+    width: 300px;
+}
+
+.form-actions:after {
+    clear: both;
+}
+
+.form-actions:before, .form-actions:after {
+    content: "";
+    display: table;
+}
+
+.form-actions:before, .form-actions:after {
+    content: "";
+    display: table;
+}
+
+.form-actions {
+    background-color: #F5F5F5;
+    border-top: 1px solid #DDDDDD;
+    margin-bottom: 18px;
+    margin-top: 18px;
+    padding: 17px 20px 18px;
+}
+
+#show-campaign-sidebar #campaign-message-form form .btn, #show-campaign-sidebar #campaign-message-form .navbar form #signin-menu .form-actions input[type="submit"], .navbar #show-campaign-sidebar #campaign-message-form form #signin-menu .form-actions input[type="submit"] {
+    width: 80%;
+}
+
+button.btn, input.btn[type="submit"], .navbar form #signin-menu .form-actions input[type="submit"][type="submit"] {
+}
+
+.btn:first-child, .navbar form #signin-menu .form-actions input[type="submit"]:first-child {
+}
+
+input[type="button"], input[type="reset"], input[type="submit"] {
+    height: auto;
+    width: auto;
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+
+.btn, .navbar form #signin-menu .form-actions input[type="submit"] {
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.btn, .navbar form #signin-menu .form-actions input[type="submit"] {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F5F5F5;
+    background-image: -moz-linear-gradient(center top , white, #E6E6E6);
+    background-repeat: repeat-x;
+    border-color: #E6E6E6 #E6E6E6 #B3B3B3;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 0;
+    padding: 4px 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+input, textarea, .uneditable-input {
+    margin-left: 0;
+}
+
+input, textarea {
+    -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+input, textarea, select, .uneditable-input {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    padding: 4px;
+    width: 210px;
+}
+
+input, button, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+button, input {
+    line-height: normal;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: middle;
+}
+
+#show-campaign-sidebar #campaign-message-form form .form-field input[type="text"], #show-campaign-sidebar #campaign-message-form form .form-field textarea, #show-campaign-sidebar #campaign-message-form form .form-field input[type="email"] {
+    border: 1px solid #D2D2D2;
+    font-weight: normal;
+    padding: 5px;
+    width: 300px;
+}
+
+#show-campaign-sidebar #campaign-message-form form .form-field label, #show-campaign-sidebar #campaign-message-form form .form-field input, #show-campaign-sidebar #campaign-message-form form .form-field textarea {
+    display: inline;
+    font-size: 1em;
+}
+
+input.span5, textarea.span5, .uneditable-input.span5 {
+    width: 370px;
+}
+
+input[class*="span"], select[class*="span"], textarea[class*="span"], .uneditable-input[class*="span"], .row-fluid input[class*="span"], .row-fluid select[class*="span"], .row-fluid textarea[class*="span"], .row-fluid .uneditable-input[class*="span"] {
+    float: none;
+    margin-left: 0;
+}
+
+:-moz-placeholder {
+    color: #999999;
+}
+
+.span5 {
+    width: 380px;
+}
+
+[class*="span"] {
+    float: left;
+    margin-left: 20px;
+}
+
+input, textarea, .uneditable-input {
+    margin-left: 0;
+}
+
+input, textarea {
+    -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+input, textarea, select, .uneditable-input {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #555555;
+    display: inline-block;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 9px;
+    padding: 4px;
+    width: 210px;
+}
+
+input, button, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+label, input, button, select, textarea {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+button, input {
+    line-height: normal;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: middle;
+}
 </style>
 <div id="campaign-message-wrapper">
   <div id="campaign-message-info">
@@ -8,17 +281,19 @@
   </div><!-- campaign-message-info -->
   <div id="campaign-message-form" class="form-stacked">
     <% if @campaign.ttype == 'mailing' %>
-      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message", :honeypot => true do %>
+      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message", :honeypot => true, :target => "_blank" do %>
         <fieldset>
           <div class="form-field">
             <%= label_tag :email, t(:your_email) %>
             <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
           </div>
-          Puedes también escribir tu propio mensaje y ver más información de la campaña en <%= link_to "oiga.me", @campaign %>.
+          Puedes también escribir tu propio mensaje y ver más información de la campaña en <%= link_to "oiga.me", @campaign, :target => "page" %>.
           <div class="form-actions">
             <%= submit_tag t(:send_message), :class => 'btn primary' %>
           </div>
-          <%= link_to image_tag("logo-small.png", :style => "margin:auto; display:block;"), root_path %>
+          <%= link_to root_url, :target => "page" do %>
+            <img src="<%= APP_CONFIG[:domain] + image_path("logo-small.png") %>" alt="oiga.me" style="margin:auto; display:block;">
+          <% end %>
         </fieldset>
       <% end %>
     <% elsif @campaign.ttype == 'petition' %>
