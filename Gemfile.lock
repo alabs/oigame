@@ -94,6 +94,7 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     ffi (1.0.11)
+    gravatar_image_tag (1.1.3)
     hashie (1.2.0)
     highline (1.6.13)
     hike (1.2.1)
@@ -256,6 +257,7 @@ DEPENDENCIES
   devise
   exception_notification
   execjs
+  gravatar_image_tag
   honeypot-captcha
   httparty
   jquery-rails

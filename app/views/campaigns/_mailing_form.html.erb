@@ -8,7 +8,7 @@
       <% unless user_signed_in? %>
         <div class="form-field">
           <%= label_tag t(:your_email) %>
-          <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:your_email) %>
+          <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => "tunombre@dominio.com" %>
         </div>
       <% end %>
       <div class="form-field">

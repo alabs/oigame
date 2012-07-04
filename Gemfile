@@ -55,3 +55,4 @@ gem "rails3_acts_as_paranoid", "~>0.2.0"
 
 gem 'thinking-sphinx', '2.0.10'
 
+gem 'gravatar_image_tag'

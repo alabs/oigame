@@ -19,7 +19,7 @@
       <% unless user_signed_in? %>
         <div class="form-field">
           <%= label_tag t(:your_email) %>
-          <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico' %>
+          <%= email_field_tag :email, nil, :required => true, :placeholder => "tunombre@dominio.com" %>
         </div>
       <% end %>
       <div class="form-actions">
