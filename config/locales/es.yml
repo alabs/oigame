@@ -105,6 +105,7 @@ es:
   may_your_voice: "¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón unirme."
   are_you_sure: "¿Estas seguro?"
   created_at: "Creada hace"
+  published_at: "Publicada hace"
   time_left: "Nos quedan"
   archived_campaign: "Campaña archivada"
   days: "días"

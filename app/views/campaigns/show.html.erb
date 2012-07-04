@@ -8,10 +8,10 @@
       <div class="grid_8">
         <p><strong>
           <% unless @campaign.status == 'archived' %>
-            <%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+            <%= I18n.t(:published_at) %> <%= time_ago_in_words(@campaign.published_at) %> |
             <%= I18n.t(:time_left) %> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= I18n.t(:days) %> |
           <% else %>
-            <%= I18n.t(:created_at) %> <%= time_ago_in_words(@campaign.created_at) %> |
+            <%= I18n.t(:published_at) %> <%= time_ago_in_words(@campaign.published_at) %> |
             <%= I18n.t(:archived_campaign) %> |
           <% end %>
             <span id="participants">
