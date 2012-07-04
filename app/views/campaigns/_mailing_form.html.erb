@@ -1,8 +1,4 @@
-<h2 class="jtc"><%= I18n.t(:participate) %>
-  <a id="show-modal-send-message" href="#" title="<%= I18n.t(:maximize) %>">
-    <img style="float:right;" src="/assets/view-fullscreen.png" alt="<%= I18n.t(:maximize) %>" />
-  </a>
-</h2>
+<h2 class="jtc"><%= I18n.t(:participate) %></h2>
 
 <div id="campaign-message-form" class="form-stacked">
   <%= form_tag message_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
@@ -31,12 +27,3 @@
     </fieldset>
   <% end %>
 </div><!-- campaign-message-form -->
-
-<div id="modal-send-message" class="hide">
-  <h1><%= t(:join_this_campaign) %></h1>
-  <div id="modal-campaign-message-form"></div>
-  <div class="actions">
-    <%= submit_tag t(:send_message), :class => 'btn primary center modal-send-form' %>
-  </div>
-</div><!-- modal-send-message -->
-
