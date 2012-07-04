@@ -192,7 +192,7 @@ class Campaign < ActiveRecord::Base
     page = page[0]
 
     page.feed!(
-      :message => self.name
+      :message => self.name,
       :link => "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}",
       :description => self.intro[0..280]
     )
