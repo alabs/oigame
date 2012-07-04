@@ -156,7 +156,7 @@
           <h2>Descripción</h2>
           <%= @campaign.to_html(@campaign.intro).html_safe %> 
           <% if @campaign.image.to_s %>
-            <%= image_tag(@campaign.image_url.to_s, :style => "float: right;") %>
+            <%= image_tag(@campaign.image_url(:thumb).to_s, :style => "float: right;") %>
           <% end %>
           <%= @campaign.to_html(@campaign.body).html_safe %> 
         </div>
