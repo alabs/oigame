@@ -191,11 +191,7 @@ class Campaign < ActiveRecord::Base
     end
     page = page[0]
 
-    page.feed!(
-      :message => self.name,
-      :link => "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}",
-      :description => self.intro[0..280]
-    )
+    page.feed!(:message => self.name, :link => "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}", :description => self.intro[0..280])
   end
 
   # custom validation for image width & height minimum dimensions
