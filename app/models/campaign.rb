@@ -125,6 +125,9 @@ class Campaign < ActiveRecord::Base
     if Rails.env == 'production'
       tweet_campaign
     end
+    if Rails.env == 'staging'
+      facebook_it
+    end
     Mailman.inform_campaign_activated(self).deliver
   end
 
@@ -178,6 +181,21 @@ class Campaign < ActiveRecord::Base
       config.oauth_token_secret = APP_CONFIG[:twitter_oauth_token_secret]
     end
     Twitter.update(self.name + ' - ' + "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
+  end
+
+  def facebook_it
+    pages = FbGraph::User.me(APP_CONFIG[:facebook_token]).accounts
+    page = []
+    pages.each do |p|
+      page << p if p.name == 'oiga.me'
+    end
+    page = page[0]
+
+    page.feed!(
+      :message => self.name
+      :link => "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}",
+      :description => self.intro[0..280]
+    )
   end
 
   # custom validation for image width & height minimum dimensions
