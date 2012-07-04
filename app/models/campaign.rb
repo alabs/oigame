@@ -30,6 +30,7 @@ class Campaign < ActiveRecord::Base
 
   # Scope para solo mostrar la campañas que han sido moderadas
   scope :published, where(:moderated => false, :status => 'active')
+  scope :archived, where(:status => 'archived')
   scope :not_published, where(:moderated => true, :status => 'active')
   scope :archived, where(:status => 'archived')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
