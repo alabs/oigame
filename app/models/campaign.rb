@@ -124,7 +124,7 @@ class Campaign < ActiveRecord::Base
     save!
     if Rails.env == 'production'
       tweet_campaign
-      facebook_it
+      #facebook_it
     end
     Mailman.inform_campaign_activated(self).deliver
   end
