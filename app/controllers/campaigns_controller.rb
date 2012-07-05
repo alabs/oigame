@@ -5,6 +5,9 @@ class CampaignsController < ApplicationController
   protect_from_forgery :except => [:message, :petition]
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants]
+  
+  # comienza la refactorización a muerte
+  before_filter :get_sub_oigame
 
   # para cancan
   load_resource :find_by => :slug
@@ -13,8 +16,6 @@ class CampaignsController < ApplicationController
   skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate]
 
   def index
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-
     if @sub_oigame.nil? 
       # si no es de un suboigame
       @campaigns = Campaign.where(:sub_oigame_id => nil).includes(:messages, :petitions).last_campaigns
@@ -27,7 +28,6 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     # para que funcione el botón de facebook
     @cause = true
     if @sub_oigame
@@ -53,16 +53,14 @@ class CampaignsController < ApplicationController
   end
 
   def new
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
   end
 
   def edit
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
   end
 
   def participants
     # Descarga un fichero con el listado de participantes
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    #
     # para que funcione el botón de facebook
     @cause = true
     if @sub_oigame
@@ -81,7 +79,6 @@ class CampaignsController < ApplicationController
   def create
     @campaign.user = current_user
     @campaign.target = @campaign.target.gsub(/\./, '')
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     if @sub_oigame
       @campaign.sub_oigame = @sub_oigame
       redirect_url = sub_oigame_campaigns_url(@sub_oigame)
@@ -104,7 +101,6 @@ class CampaignsController < ApplicationController
   def update
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = 'La campaña fué actualizada con éxito.'
-      @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
       if @sub_oigame
         redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign)
       else
@@ -117,7 +113,6 @@ class CampaignsController < ApplicationController
 
   def destroy
     @campaign.destroy
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     flash[:notice] = 'La campaña se eliminió con éxito'
     if @sub_oigame.nil?
       redirect_to campaigns_url
@@ -134,8 +129,6 @@ class CampaignsController < ApplicationController
   end
 
   def tag
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-
     @campaigns = Campaign.last_campaigns_by_tag(params[:id])
 
     if @sub_oigame.nil?
@@ -147,7 +140,6 @@ class CampaignsController < ApplicationController
 
   def tags_archived
     @archived = true
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
 
     if @sub_oigame.nil?
       @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id])
@@ -184,7 +176,6 @@ class CampaignsController < ApplicationController
             return
           end
         end
-        @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
         if @sub_oigame.nil?
           redirect_to message_campaign_path
         else
@@ -208,7 +199,6 @@ class CampaignsController < ApplicationController
   end
 
   def petition
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     @campaign = Campaign.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
     if request.post?
@@ -235,7 +225,6 @@ class CampaignsController < ApplicationController
   end
 
   def validate
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     @campaign = Campaign.published.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
     model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
@@ -257,14 +246,11 @@ class CampaignsController < ApplicationController
   end
   
   def validated
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     @campaign = Campaign.find(:all, :conditions => {:slug => params[:id]}).first
     @campaigns = @campaign.other_campaigns
   end
 
   def moderated
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-
     if @sub_oigame.nil? 
       @campaigns = Campaign.where(:sub_oigame_id => nil).last_campaigns_moderated
       @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
@@ -276,7 +262,6 @@ class CampaignsController < ApplicationController
 
   def activate
     @campaign.activate!
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
 
     if @sub_oigame.nil? 
       redirect_to @campaign, :notice => 'La campaña se ha activado con éxito'
@@ -302,7 +287,6 @@ class CampaignsController < ApplicationController
 
   def archive
     @campaign.archive
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido archivada con éxito'
     else
@@ -312,7 +296,6 @@ class CampaignsController < ApplicationController
 
   def archived
     @archived = true
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
 
     if @sub_oigame.nil?
       @campaigns = Campaign.archived_campaigns
@@ -326,7 +309,6 @@ class CampaignsController < ApplicationController
   def prioritize
     @campaign.priority = true
     @campaign.save!
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido marcada con prioridad'
     else
@@ -337,7 +319,6 @@ class CampaignsController < ApplicationController
   def deprioritize
     @campaign.priority = false
     @campaign.save!
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido desmarcada con prioridad'
     else
@@ -346,7 +327,6 @@ class CampaignsController < ApplicationController
   end
 
   def search
-    @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
     if @sub_oigame.nil?
       # mirar en la deficion de indices lo del no_sub
       @campaigns = Campaign.active.search params[:q], :with => {:no_sub => true }  #, :order => :created_at, :sort => :asc
@@ -356,6 +336,10 @@ class CampaignsController < ApplicationController
   end
 
   private
+
+    def get_sub_oigame
+      @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+    end
 
     def generate_stats_for_mailing(campaign)
       dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
@@ -401,6 +385,4 @@ class CampaignsController < ApplicationController
         format.any  { head :not_found }
       end
     end
-
- 
 end
