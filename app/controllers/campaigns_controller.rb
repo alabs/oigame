@@ -159,7 +159,7 @@ class CampaignsController < ApplicationController
   end
 
   def message
-    @campaign = Campaign.published.find_by_slug(params[:id])
+    @campaign = Campaign.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
     if request.post?
       from = user_signed_in? ? current_user.email : params[:email]
@@ -209,7 +209,7 @@ class CampaignsController < ApplicationController
 
   def petition
     @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-    @campaign = Campaign.published.find_by_slug(params[:id])
+    @campaign = Campaign.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
     if request.post?
       if user_signed_in?

@@ -10,7 +10,8 @@
           <dl class="dl-horizontal">
             <% unless @campaign.status == 'archived' %>
               <dt><%= I18n.t(:published_at) %></dt>
-                <dd><%= time_ago_in_words(@campaign.published_at) %></dd>
+              <% # published_at no es correcto aquí, da error si la campaña no ha sido publicada todavía %>
+                <dd><%= time_ago_in_words(@campaign.created_at) %></dd>
               <dt><%= I18n.t(:time_left) %></dt>
                 <dd><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= I18n.t(:days) %></dd>
             <% else %>

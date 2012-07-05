@@ -30,6 +30,7 @@ class Campaign < ActiveRecord::Base
 
   # Scope para solo mostrar la campañas que han sido moderadas
   scope :published, where(:moderated => false, :status => 'active')
+  scope :archived, where(:status => 'archived')
   scope :not_published, where(:moderated => true, :status => 'active')
   scope :archived, where(:status => 'archived')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
@@ -123,6 +124,7 @@ class Campaign < ActiveRecord::Base
     save!
     if Rails.env == 'production'
       tweet_campaign
+      #facebook_it
     end
     Mailman.inform_campaign_activated(self).deliver
   end
@@ -185,6 +187,21 @@ class Campaign < ActiveRecord::Base
       config.oauth_token_secret = APP_CONFIG[:twitter_oauth_token_secret]
     end
     Twitter.update(self.name + ' - ' + "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
+  end
+
+  def facebook_it
+    pages = FbGraph::User.me(APP_CONFIG[:facebook_token]).accounts
+    page = []
+    pages.each do |p|
+      page << p if p.name == 'oiga.me'
+    end
+    page = page[0]
+
+    page.feed!(
+      :message => self.name,
+      :link => "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}",
+      :description => self.intro[0..280]
+    )
   end
 
   # custom validation for image width & height minimum dimensions
