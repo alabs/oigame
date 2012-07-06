@@ -186,7 +186,7 @@ class Campaign < ActiveRecord::Base
       config.oauth_token = APP_CONFIG[:twitter_oauth_token]
       config.oauth_token_secret = APP_CONFIG[:twitter_oauth_token_secret]
     end
-    Twitter.update(self.name + ' - ' + "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}")
+    Twitter.update(self.name + ' - ' + get_absolute_url)
   end
 
   def facebook_it
@@ -199,7 +199,7 @@ class Campaign < ActiveRecord::Base
 
     page.feed!(
       :message => self.name,
-      :link => "#{APP_CONFIG[:domain]}/campaigns/#{self.slug}",
+      :link => get_absolute_url,
       :description => self.intro[0..280]
     )
   end
