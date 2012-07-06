@@ -22,7 +22,9 @@ class Campaign < ActiveRecord::Base
 
   validates :name, :uniqueness => { :scope => :sub_oigame_id }
   validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
-  validates :intro, :length => { :maximum => 500 }
+  # validación desactivada porque genera excepción al manipular objetos
+  # antiguos que tienen una intro de mas de 500 caracteres
+  #validates :intro, :length => { :maximum => 500 }
 
   acts_as_taggable
 
