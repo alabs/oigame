@@ -33,6 +33,7 @@ class Campaign < ActiveRecord::Base
   # Scope para solo mostrar la campañas que han sido moderadas
   scope :published, where(:moderated => false, :status => 'active')
   scope :on_archive, where(:status => 'archived')
+  scope :_archived, where(:status => 'archived')
   scope :not_published, where(:moderated => true, :status => 'active')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
 
@@ -74,7 +75,7 @@ class Campaign < ActiveRecord::Base
     end
 
     def last_campaigns_by_tag_archived(tag, page = 1, sub_oigame = nil, limit = nil)
-      where(:sub_oigame_id => sub_oigame).tagged_with(tag).order('published_at DESC').archived.limit(limit).page(page)
+      where(:sub_oigame_id => sub_oigame).tagged_with(tag).order('published_at DESC')._archived.limit(limit).page(page)
     end
 
     def last_campaigns_moderated(page = 1, sub_oigame = nil)
