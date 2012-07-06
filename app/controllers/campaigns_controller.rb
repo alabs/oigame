@@ -18,13 +18,10 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
+    @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
     if @sub_oigame.nil? 
-      # si no es de un suboigame
-      @campaigns = Campaign.where(:sub_oigame_id => nil).includes(:messages, :petitions).last_campaigns
       @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
     else
-      # si es de un suboigame
-      @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).includes(:messages, :petitions).last_campaigns
       @tags = Rails.cache.fetch("tags_campaigns_index_with_sub_#{@sub_oigame.id}", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
     end
 
@@ -34,11 +31,7 @@ class CampaignsController < ApplicationController
   def show
     # para que funcione el botón de facebook
     @cause = true
-    if @sub_oigame
-      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame.id}).first
-    else
-      @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => nil}).first
-    end
+    @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
 
     if @campaign.nil?
       render_404 
@@ -149,10 +142,10 @@ class CampaignsController < ApplicationController
 
     if @sub_oigame.nil?
       @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id])
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires => 3.hours) { Campaign.where(:sub_oigame_id => nil).archived.tag_counts_on(:tags) }
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires => 3.hours) { Campaign.where(:sub_oigame_id => nil).on_archive.tag_counts_on(:tags) }
     else
       @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id], @sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).archived.tag_counts_on(:tags) }
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).on_archive.tag_counts_on(:tags) }
     end
   end
 
@@ -257,11 +250,10 @@ class CampaignsController < ApplicationController
   end
 
   def moderated
+    @campaigns = Campaign.last_campaigns_moderated params[:page], @sub_oigame
     if @sub_oigame.nil? 
-      @campaigns = Campaign.where(:sub_oigame_id => nil).last_campaigns_moderated
       @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
     else
-      @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).last_campaigns_moderated
       @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
     end
   end
@@ -304,11 +296,11 @@ class CampaignsController < ApplicationController
     @archived = true
 
     if @sub_oigame.nil?
-      @campaigns = Campaign.archived_campaigns
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).archived.tag_counts_on(:tags) }
+      @campaigns = Campaign.archived_campaigns params[:page]
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).on_archive.tag_counts_on(:tags) }
     else
-      @campaigns = Campaign.archived_campaigns(@sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).archived.tag_counts_on(:tags) }
+      @campaigns = Campaign.archived_campaigns(params[:page], @sub_oigame)
+      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).on_archive.tag_counts_on(:tags) }
     end
   end
 

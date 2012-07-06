@@ -1,6 +1,8 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
 
+  paginates_per 5
+
   acts_as_paranoid
 
   belongs_to :user, :counter_cache => true
@@ -30,9 +32,8 @@ class Campaign < ActiveRecord::Base
 
   # Scope para solo mostrar la campañas que han sido moderadas
   scope :published, where(:moderated => false, :status => 'active')
-  scope :archived, where(:status => 'archived')
+  scope :on_archive, where(:status => 'archived')
   scope :not_published, where(:moderated => true, :status => 'active')
-  scope :archived, where(:status => 'archived')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
 
   # thinking sphinx
@@ -60,8 +61,8 @@ class Campaign < ActiveRecord::Base
   class << self
 
     # Estudiar esta query para que no haga un MySQL filesort
-    def last_campaigns(limit = nil)
-      order('priority DESC').order('published_at DESC').published.limit(limit).all
+    def last_campaigns(page = 1, sub_oigame = nil, limit = nil)
+      includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => sub_oigame).published.limit(limit).page(page)
     end
 
     def last_campaigns_by_tag(tag, limit = nil)
@@ -72,12 +73,12 @@ class Campaign < ActiveRecord::Base
       where(:sub_oigame_id => sub_oigame).tagged_with(tag).order('published_at DESC').archived.limit(limit).all
     end
 
-    def last_campaigns_moderated
-      order('created_at DESC').where('moderated = ?', true).all  
+    def last_campaigns_moderated(page = 1, sub_oigame = nil)
+      where(:sub_oigame_id => sub_oigame).order('created_at DESC').where('moderated = ?', true).page(page)  
     end
 
-    def archived_campaigns(sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).order('published_at DESC').archived.all
+    def archived_campaigns(page = 1, sub_oigame = nil)
+      where(:sub_oigame_id => sub_oigame).order('published_at DESC').on_archive.page(page)
     end
   end
 

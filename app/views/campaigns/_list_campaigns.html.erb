@@ -6,6 +6,9 @@
         <% @campaigns.each do |campaign| %>
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         <% end %>
+        <div class="center">
+          <%= paginate @campaigns %>
+        </div>
       </div><!-- list-campaigns-info -->
     <% else %>
       <div id="list-campaigns-info">
