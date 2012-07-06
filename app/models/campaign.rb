@@ -69,12 +69,12 @@ class Campaign < ActiveRecord::Base
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').published.limit(limit)
     end
 
-    def last_campaigns_by_tag(tag, limit = nil)
-      tagged_with(tag).order('published_at DESC').published.limit(limit).all
+    def last_campaigns_by_tag(tag, page = 1, limit = nil)
+      tagged_with(tag).order('published_at DESC').published.limit(limit).page(page)
     end
 
-    def last_campaigns_by_tag_archived(tag, sub_oigame = nil, limit = nil)
-      where(:sub_oigame_id => sub_oigame).tagged_with(tag).order('published_at DESC').archived.limit(limit).all
+    def last_campaigns_by_tag_archived(tag, page = 1, sub_oigame = nil, limit = nil)
+      where(:sub_oigame_id => sub_oigame).tagged_with(tag).order('published_at DESC').archived.limit(limit).page(page)
     end
 
     def last_campaigns_moderated(page = 1, sub_oigame = nil)
