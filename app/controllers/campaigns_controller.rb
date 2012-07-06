@@ -158,6 +158,18 @@ class CampaignsController < ApplicationController
         if params[:own_message] == "1" 
           message = Message.new(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
           if message.save
+            # si está registrado no pedirle confirmación de unión a la campaña
+            if user_signed_in?
+              message.update_attributes(:validated => true, :token => nil)
+              if @sub_oigame.nil?
+                redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+              else
+                redirect_to message_sub_oigame_campaign_path(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+              end
+
+              return
+
+            end
             Mailman.send_message_to_validate_message(from, @campaign, message).deliver
           else
             flash.now[:error] = "No puedes participar más de una vez por campaña"
@@ -168,6 +180,18 @@ class CampaignsController < ApplicationController
           # mensaje por defecto
           message = Message.new(:campaign => @campaign, :email => from, :subject => @campaign.default_message_subject, :body => @campaign.default_message_body, :token => generate_token)
           if message.save
+            # si está registrado no pedirle confirmación de unión a la campaña
+            if user_signed_in?
+              message.update_attributes(:validated => true, :token => nil)
+              if @sub_oigame.nil?
+                redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+              else
+                redirect_to message_sub_oigame_campaign_path(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+              end
+
+              return
+
+            end
             Mailman.send_message_to_validate_message(from, @campaign, message).deliver
           else
             flash.now[:error] = "No puedes participar más de una vez por campaña"
@@ -207,9 +231,22 @@ class CampaignsController < ApplicationController
         end
       end
       to = user_signed_in? ? current_user.email : params[:email]
-      petition = Petition.new(:campaign => @campaign, :name => params[:name], :email => to, :token => generate_token )
-      if petition.save
-        Mailman.send_message_to_validate_petition(to, @campaign, petition).deliver
+      @petition = Petition.new(:campaign => @campaign, :name => params[:name], :email => to, :token => generate_token )
+      if @petition.save
+        # si está registado no enviar mensaje de confirmación
+        if user_signed_in?
+          @petition.update_attributes(:validated => true, :token => nil)
+          if @sub_oigame
+            redirect_url = petition_sub_oigame_campaign_path
+          else
+            redirect_url = petition_campaign_path
+          end
+          redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
+
+          return
+
+        end
+        Mailman.send_message_to_validate_petition(to, @campaign, @petition).deliver
         if @sub_oigame
           redirect_url = petition_sub_oigame_campaign_path
         else

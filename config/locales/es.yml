@@ -97,8 +97,8 @@ es:
   markdown_help_show: "ver ayuda de marcado"
   number_of_people: 'Número de personas que piensas que se unirán a la campaña'
   thank_you: "Gracias"
-  thank_you_message: "Gracias por enviar tu mensaje a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
-  thank_you_petition: "Gracias por unirte a esta campaña a través de oiga.me. Recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
+  thank_you_message: "Gracias por enviar tu mensaje a través de oiga.me. Si no estas registrado/a en oiga.me recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
+  thank_you_petition: "Gracias por unirte a esta campaña a través de oiga.me. Si no estas registrado/a en oiga.me recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
   thank_you_confirmed: "Tu adhesión ha sido confirmada con éxito, muchas gracias por participar en esta campaña."
   join_myself: "Unirme"
   may_your_voice_signed: "¡Que se escuche tu voz! Para participar en la campaña haz click en el boton unirme."
