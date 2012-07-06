@@ -273,6 +273,23 @@ button, input, select, textarea {
     margin: 0;
     vertical-align: middle;
 }
+
+.alert-danger, .alert-error {
+    color: #B94A48;
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+}
+.alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 18px;
+    color: #C09853;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #FCF8E3;
+    border: 1px solid #FBEED5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
 </style>
 <div id="campaign-message-wrapper">
   <div id="campaign-message-info">
@@ -280,38 +297,47 @@ button, input, select, textarea {
     <p><%= @campaign.to_html(@campaign.intro).html_safe %></p>
   </div><!-- campaign-message-info -->
   <div id="campaign-message-form" class="form-stacked">
-    <% if @campaign.ttype == 'mailing' %>
-      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message", :honeypot => true, :target => "_blank" do %>
-        <fieldset>
-          <div class="form-field">
-            <%= label_tag :email, t(:your_email) %>
-            <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
-          </div>
-          Puedes también escribir tu propio mensaje y ver más información de la campaña en <%= link_to "oiga.me", @campaign, :target => "page" %>.
-          <div class="form-actions">
-            <%= submit_tag t(:send_message), :class => 'btn primary' %>
-          </div>
-          <%= link_to root_url, :target => "page" do %>
-            <img src="<%= APP_CONFIG[:domain] + image_path("logo-small.png") %>" alt="oiga.me" style="margin:auto; display:block;">
-          <% end %>
-        </fieldset>
+    <% if @campaign.status == 'active' %>
+      <% if @campaign.ttype == 'mailing' %>
+        <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/message", :honeypot => true, :target => "_blank" do %>
+          <fieldset>
+            <div class="form-field">
+              <%= label_tag :email, t(:your_email) %>
+              <%= email_field_tag :email, nil, :required => true, :placeholder => 'Tu correo electrónico', :class => 'span5' %>
+            </div>
+            Puedes también escribir tu propio mensaje y ver más información de la campaña en <%= link_to "oiga.me", @campaign, :target => "page" %>.
+            <div class="form-actions">
+              <%= submit_tag t(:send_message), :class => 'btn primary' %>
+            </div>
+            <%= link_to root_url, :target => "page" do %>
+              <img src="<%= APP_CONFIG[:domain] + image_path("logo-small.png") %>" alt="oiga.me" style="margin:auto; display:block;">
+            <% end %>
+          </fieldset>
+        <% end %>
+      <% elsif @campaign.ttype == 'petition' %>
+        <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition", :honeypot => true do %>
+          <fieldset>
+            <div class="form-field">
+              <%= label_tag :name, t(:name_and_surname) %>
+              <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name_and_surname), :class => 'span5' %>
+            </div>
+            <div class="form-field">
+              <%= label_tag :email, t(:your_email) %>
+              <%= email_field_tag :email, nil, :required => true, :placeholder => t(:your_email), :class => 'span5' %>
+            </div>
+            <div class="form-actions">
+              <%= submit_tag t(:join_myself), :class => 'btn primary' %>
+            </div>
+          </fieldset>
+        <% end %>
       <% end %>
-    <% elsif @campaign.ttype == 'petition' %>
-      <%= form_tag "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/petition", :honeypot => true do %>
-        <fieldset>
-          <div class="form-field">
-            <%= label_tag :name, t(:name_and_surname) %>
-            <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name_and_surname), :class => 'span5' %>
-          </div>
-          <div class="form-field">
-            <%= label_tag :email, t(:your_email) %>
-            <%= email_field_tag :email, nil, :required => true, :placeholder => t(:your_email), :class => 'span5' %>
-          </div>
-          <div class="form-actions">
-            <%= submit_tag t(:join_myself), :class => 'btn primary' %>
-          </div>
-        </fieldset>
-      <% end %>
+    <% elsif @campaign.status = "archived" %>
+      <div class="alert alert-error">
+          <p>
+          <strong>Esta campaña ya no esta activa</strong>.
+          Puedes ver más información en <%= link_to "oiga.me", @campaign, :target => "page" %>.
+          </p>
+      </div>
     <% end %>
   </div><!-- campaign-message-form -->
 </div><!-- campaign-message-wrapper -->
