@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706011515) do
+ActiveRecord::Schema.define(:version => 20120706011738) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120706011515) do
     t.string   "default_message_subject"
     t.text     "default_message_body"
     t.boolean  "priority"
+    t.integer  "messages_count"
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
