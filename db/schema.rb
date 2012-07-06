@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706011928) do
+ActiveRecord::Schema.define(:version => 20120706022948) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120706011928) do
     t.string   "default_message_subject"
     t.text     "default_message_body"
     t.boolean  "priority"
-    t.integer  "messages_count"
-    t.integer  "petitions_count"
+    t.integer  "messages_count",          :default => 0
+    t.integer  "petitions_count",         :default => 0
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
@@ -98,14 +98,14 @@ ActiveRecord::Schema.define(:version => 20120706011928) do
     t.text     "html_header"
     t.text     "html_footer"
     t.text     "html_style"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "logo"
     t.text     "logobase64"
     t.string   "from"
     t.time     "deleted_at"
     t.text     "mail_message"
-    t.integer  "campaigns_count"
+    t.integer  "campaigns_count", :default => 0
   end
 
   add_index "sub_oigames", ["deleted_at"], :name => "index_on_sub_oigames_deleted_at"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(:version => 20120706011928) do
     t.string   "role",                   :default => "user"
     t.string   "name"
     t.string   "vat"
-    t.integer  "campaigns_count"
+    t.integer  "campaigns_count",        :default => 0
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true, :length => {"authentication_token"=>254}
