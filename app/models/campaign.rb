@@ -64,6 +64,10 @@ class Campaign < ActiveRecord::Base
     def last_campaigns(page = 1, sub_oigame = nil, limit = nil)
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => sub_oigame).published.limit(limit).page(page)
     end
+    
+    def last_campaigns_for_home(limit = nil)
+      includes(:messages, :petitions).order('priority DESC').order('published_at DESC').published.limit(limit)
+    end
 
     def last_campaigns_by_tag(tag, limit = nil)
       tagged_with(tag).order('published_at DESC').published.limit(limit).all

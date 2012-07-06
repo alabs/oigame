@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-    @campaigns = Campaign.includes(:messages, :petitions).where(:sub_oigame_id => nil).last_campaigns(3)
+    @campaigns = Campaign.last_campaigns_for_home(3)
     @users = User.count
     @users += Message.validated.count
     @users += Petition.validated.count
