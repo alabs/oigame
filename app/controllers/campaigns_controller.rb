@@ -15,6 +15,8 @@ class CampaignsController < ApplicationController
   authorize_resource
   skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate]
 
+  respond_to :html, :json
+
   def index
     if @sub_oigame.nil? 
       # si no es de un suboigame
@@ -25,6 +27,8 @@ class CampaignsController < ApplicationController
       @campaigns = Campaign.where(:sub_oigame_id => @sub_oigame).includes(:messages, :petitions).last_campaigns
       @tags = Rails.cache.fetch("tags_campaigns_index_with_sub_#{@sub_oigame.id}", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
     end
+
+    respond_with(@campaigns)
   end
 
   def show
@@ -50,6 +54,8 @@ class CampaignsController < ApplicationController
     @image_file = @campaign.image.file.file
     @description = @campaign.name
     @keywords = @campaign.tag_list.join(', ')
+
+    respond_with(@campaign)
   end
 
   def new
