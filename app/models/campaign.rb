@@ -3,8 +3,8 @@ class Campaign < ActiveRecord::Base
 
   acts_as_paranoid
 
-  belongs_to :user
-  belongs_to :sub_oigame
+  belongs_to :user, :counter_cache => true
+  belongs_to :sub_oigame, :counter_cache => true
   has_many :messages
   has_many :petitions
   
