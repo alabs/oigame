@@ -52,14 +52,19 @@
     <div id="sub-oigame-wrapper">
       <div id="sub-oigame">
         <h2><%= @sub_oigame.name %></h2>
-        Estas son las campañas que tenemos ahora mismo abiertas. ¡Participa!
-        <hr>
-        <% @sub_oigame.campaigns.published.each do |camp| %>
-          <p>
-            <%= link_to camp.name, sub_oigame_campaign_path(@sub_oigame, camp) %>
-            <%= camp.to_html(camp.intro).html_safe %>
-          </p>
+
+        <% if @sub_oigame.campaigns.empty? %>
+          Ahora mismo no tenemos ninguna campaña abierta.
+        <% else %>
+          Estas son las campañas que tenemos ahora mismo abiertas. ¡Participa!
           <hr>
+          <% @sub_oigame.campaigns.published.each do |camp| %>
+            <p>
+              <%= link_to camp.name, sub_oigame_campaign_path(@sub_oigame, camp) %>
+              <%= camp.to_html(camp.intro).html_safe %>
+            </p>
+            <hr>
+          <% end %>
         <% end %>
       </div><!-- campaign-message-form -->
     </div><!-- campaign-message-wrapper -->

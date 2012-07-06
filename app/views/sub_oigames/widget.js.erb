@@ -2,6 +2,7 @@ var el = document.createElement('iframe');
 el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');
 el.setAttribute('src', '<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html');
 el.setAttribute('width', '100%');
+el.setAttribute('height', '10px');
 el.setAttribute('scrolling', 'no');
 el.setAttribute('frameborder', '0');
 // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
