@@ -82,6 +82,30 @@
                 <% end %>
               </li>
               <% if @campaign.status == 'archived' %>
+                <li>
+                  <% if can?(:moderated, @campaign) %>
+                    <%= link_to @sub_oigame ? activate_sub_oigame_campaign_path(@sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+                      <i class="icon-ok-circle"></i>
+                      <%= t(:activate) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can? :update, @campaign %>
+                    <%= link_to @sub_oigame ? edit_sub_oigame_campaign_path(@sub_oigame) : edit_campaign_path(@campaign) do %>
+                      <i class="icon-pencil"></i>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
+                  <% if can? :destroy, @campaign %>
+                    <%= link_to @sub_oigame ? sub_oigame_campaign_path(@sub_oigame) : @campaign, :confirm => t(:are_you_sure), :method => :delete do %>
+                      <i class="icon-trash"></i>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </li>
               <% elsif @campaign.status == 'active' %>
                 <li>
                   <% if can?(:archive, @campaign) %>

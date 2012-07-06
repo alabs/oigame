@@ -125,6 +125,7 @@ class Campaign < ActiveRecord::Base
 
   def activate!
     self.moderated = false
+    self.status = 'active'
     self.published_at = Time.now
     save!
     if Rails.env == 'production'
