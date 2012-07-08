@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-    @campaigns = Campaign.last_campaigns_for_home(3)
+    @campaigns = Campaign.last_campaigns_without_pagination(3)
     @users = User.count
     @users += Message.validated.count
     @users += Petition.validated.count

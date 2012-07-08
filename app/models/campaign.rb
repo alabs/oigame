@@ -68,7 +68,7 @@ class Campaign < ActiveRecord::Base
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => sub_oigame).published.limit(limit).page(page)
     end
     
-    def last_campaigns_for_home(limit = nil)
+    def last_campaigns_without_pagination(limit = nil)
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').published.limit(limit)
     end
 
