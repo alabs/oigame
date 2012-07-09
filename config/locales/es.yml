@@ -62,8 +62,8 @@ es:
   moderate_campaigns: 'Moderar campañas'
   edit_campaign: 'Editar campaña'
   amount_to_donate: 'Cantidad a donar'
-  amount_select: "Selecciona la cantidad"
-  accepted_cards: "Tarjetas aceptadas"
+  amount_select: 'Selecciona la cantidad'
+  accepted_cards: 'Tarjetas aceptadas'
   thanks_for_your_donation: 'Gracias por tu donación'
   thanks_for_your_donation_text: 'Te damos las más sinceras gracias por tu donación a oiga.me. Con aportaciones como la tuya este proyecto puede seguir adelante.'
   greetings: 'Un fuerte abrazo del equipo de oiga.me y aLabs.'
