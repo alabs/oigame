@@ -1,9 +1,14 @@
-function setIframeHeight()
-{
-    var elt = document.getElementById('testIframe');
-    if(elt.contentWindow){
-        document.getElementById('testIframe').height = elt.contentWindow.document.body.scrollHeight + 30;
+function autoResize(id){
+    var newheight;
+    var newwidth;
+
+    if(document.getElementById){
+        newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
+        newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
     }
+
+    document.getElementById(id).height= (newheight) + "px";
+    document.getElementById(id).width= (newwidth) + "px";
 }
 var el = document.createElement('iframe'); 
 el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');
@@ -17,7 +22,7 @@ el.setAttribute('hspace', '0');
 el.setAttribute('marginheight', '0');
 el.setAttribute('marginwidth', '0');
 el.setAttribute('noresize', '1');
-el.setAttribute('onload', 'setIframeHeight();');
+el.setAttribute('onload', "autoResize('ifrm-sub-oigame-<%= @sub_oigame.id %>');");
 // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
 var scripts = document.getElementsByTagName('script');
 var script = scripts[scripts.length-1];
