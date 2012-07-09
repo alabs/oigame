@@ -9,5 +9,6 @@ el.setAttribute('frameborder', '0');
 var scripts = document.getElementsByTagName('script');
 var script = scripts[scripts.length-1];
 script.parentNode.insertBefore(el, script);
+alert(document.getElementById('sub-oigame-wrapper').height);
 // paran no tener que hardcodear un height, ni que nos aparezca el tipico de 200px, lo hacemos dinamico
 el.setAttribute('height', el.offsetTop + 'px');
