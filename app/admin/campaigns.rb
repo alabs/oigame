@@ -14,10 +14,10 @@ ActiveAdmin.register Campaign do
     default_actions
   end
 
-  filter :name
-  filter :moderated
-  filter :ttype
-  filter :status
+  filter :name, :label => 'Nombre'
+  filter :moderated, :label => 'Moderada', :as => :select
+  filter :ttype, :label => 'Tipo', :as => :select, :collection => proc { Campaign::TYPES }
+  filter :status, :as => :select, :collection => proc { Campaign::STATUS }
 
   before_filter do
     @campaign = Campaign.find_by_slug(params[:id])
