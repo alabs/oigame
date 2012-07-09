@@ -1,14 +1,6 @@
-function autoResize(id){
-    var newheight;
-    var newwidth;
-
-    if(document.getElementById){
-        newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
-        newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
-    }
-
-    document.getElementById(id).height= (newheight) + "px";
-    document.getElementById(id).width= (newwidth) + "px";
+function alertsize(pixels){
+    pixels+=32;
+    document.getElementById('ifrm-sub-oigame-<%= @sub_oigame.id %>').style.height=pixels+"px";
 }
 var el = document.createElement('iframe'); 
 el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');

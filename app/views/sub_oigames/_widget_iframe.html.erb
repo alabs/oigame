@@ -48,7 +48,7 @@
     </style>
     <base target="_blank" />
   </head>
-  <body>
+  <body onload="parent.alertsize(document.body.scrollHeight);">
     <div id="sub-oigame-wrapper">
       <div id="sub-oigame">
         <h2><%= @sub_oigame.name %></h2>
