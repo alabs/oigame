@@ -19,6 +19,7 @@ class Campaign < ActiveRecord::Base
   serialize :emails, Array
 
   TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo' }
+  STATUS = %w[active archived deleted]
 
   validates :name, :uniqueness => { :scope => :sub_oigame_id }
   validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
