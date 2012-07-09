@@ -6,7 +6,7 @@ ActiveAdmin.register User do
     column :id
     column :email
     column 'Rol', :role
-    column 'Fecha de registro', :created_at
+    column 'Registro', :created_at
     default_actions
   end
   

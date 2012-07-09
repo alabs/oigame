@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
     def get_mailing_users
       where('mailing = ?', true).all
     end
+
+    def recent(limit = nil)
+      order('created_at DESC').limit(limit)
+    end
   end
   
   ROLES = %w[user editor admin]

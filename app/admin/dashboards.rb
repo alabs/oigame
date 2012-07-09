@@ -1,3 +1,4 @@
+# encoding: utf-8
 ActiveAdmin::Dashboards.build do
 
   # Define your dashboard sections here. Each block will be
@@ -14,7 +15,21 @@ ActiveAdmin::Dashboards.build do
   #       end
   #     end
   #   end
-  
+  section 'Campañas Recientes', :priority => 1  do
+    ul do
+      Campaign.last_campaigns_without_pagination(10).collect do |campaign|
+        li link_to(campaign.name, admin_campaign_path(campaign))
+      end
+    end
+  end
+
+  section 'Usuarios Recientes', :priority => 2 do
+    ul do
+      User.recent(10).collect do |user|
+        li link_to(user.email, admin_user_path(user))
+      end
+    end
+  end
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can
   # easily render a partial rather than build content in ruby.
