@@ -22,7 +22,7 @@ el.setAttribute('hspace', '0');
 el.setAttribute('marginheight', '0');
 el.setAttribute('marginwidth', '0');
 el.setAttribute('noresize', '1');
-el.setAttribute('onload', "autoResize('ifrm-sub-oigame-<%= @sub_oigame.id %>');");
+el.setAttribute('onload', "this.style.height=ifrm-sub-oigame-<%= @sub_oigame.id %>.document.body.scrollHeight + 5;");
 // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
 var scripts = document.getElementsByTagName('script');
 var script = scripts[scripts.length-1];
