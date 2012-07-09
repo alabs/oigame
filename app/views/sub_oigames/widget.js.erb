@@ -1,8 +1,10 @@
-function resizeIframe(obj) {
- obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
- obj.style.width = obj.contentWindow.document.body.scrollWidth + 'px';                        
+function setIframeHeight()
+{
+    var elt = document.getElementById('testIframe');
+    if(elt.contentWindow){
+        document.getElementById('testIframe').height = elt.contentWindow.document.body.scrollHeight + 30;
+    }
 }
-
 var el = document.createElement('iframe'); 
 el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');
 el.setAttribute('src', '<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html');
@@ -15,7 +17,7 @@ el.setAttribute('hspace', '0');
 el.setAttribute('marginheight', '0');
 el.setAttribute('marginwidth', '0');
 el.setAttribute('noresize', '1');
-el.setAttribute('onload', 'javascript:resizeIframe(this);');
+el.setAttribute('onload', 'setIframeHeight();');
 // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
 var scripts = document.getElementsByTagName('script');
 var script = scripts[scripts.length-1];
@@ -23,5 +25,3 @@ script.parentNode.insertBefore(el, script);
 // paran no tener que hardcodear un height, ni que nos aparezca el tipico de 200px, lo hacemos dinamico
 //alert(el.offsetTop);
 //el.setAttribute('height', el.offsetTop + 'px');
-
-
