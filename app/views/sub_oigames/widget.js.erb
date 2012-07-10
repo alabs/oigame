@@ -48,7 +48,7 @@ var cont = document.getElementById("container-ifrm-sub-oigame-<%= @sub_oigame.id
         }
       },
       onMessage: function(message, origin){
-          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].style.height = message + 10 + "px";
       }
   });
 
