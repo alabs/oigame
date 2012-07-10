@@ -35,11 +35,12 @@ function createIframe(){
 //  el.setAttribute('scrolling', 'no');
 //  el.setAttribute('frameborder', '0');
 
-//var cont = document.getElementById("container-ifrm-sub-oigame-<%= @sub_oigame.id %>");
+var cont = document.getElementById("container-ifrm-sub-oigame-<%= @sub_oigame.id %>");
 //console.log(cont);
 
   new easyXDM.Socket({
       remote: "<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html",
+      container = cont,
       props: {
         style: {
           width: "100%"
