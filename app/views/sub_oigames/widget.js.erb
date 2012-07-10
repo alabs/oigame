@@ -42,6 +42,7 @@ var cont = document.getElementById("container-ifrm-sub-oigame-<%= @sub_oigame.id
       remote: "<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html",
       container: cont,
       props: {
+        scrolling: "no",
         style: {
           width: "100%"
         }
