@@ -101,6 +101,7 @@
                       </div>
                       <%= submit_tag 'Iniciar sesión', :class => "btn" %>
                       <p><%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %></p>
+                      <p><%= link_to 'Iniciar sesión con Facebook', user_omniauth_authorize_path('facebook') %></p>
                     </fieldset>
                   <% end %>
                 </div><!-- signin-container -->
