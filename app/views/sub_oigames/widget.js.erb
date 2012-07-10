@@ -40,7 +40,7 @@ var cont = document.getElementById("container-ifrm-sub-oigame-<%= @sub_oigame.id
 
   new easyXDM.Socket({
       remote: "<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html",
-      container = cont,
+      container: cont,
       props: {
         style: {
           width: "100%"
