@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+<script src="http://consumer.easyxdm.net/current/easyXDM.debug.js"></script>
     <style type="text/css">
     body {
         color: #333333;
@@ -48,7 +49,7 @@
     </style>
     <base target="_blank" />
   </head>
-  <body onload="parent.alertsize(document.body.scrollHeight);">
+  <body>
     <div id="sub-oigame-wrapper">
       <div id="sub-oigame">
         <h2><%= @sub_oigame.name %></h2>
@@ -69,4 +70,14 @@
       </div><!-- campaign-message-form -->
     </div><!-- campaign-message-wrapper -->
   </body>
+  <script>
+var socket = new easyXDM.Socket({
+    onReady:  function(){
+        socket.postMessage(document.body.scrollHeight)
+   }
+});
+
+
+    //document.contentWindow.resizeIframe("100%", document.getElementById('sub-oigame-wrapper').offsetHeight);
+  </script>
 </html>
