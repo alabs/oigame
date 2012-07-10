@@ -40,14 +40,13 @@ console.log(cont);
 
   new easyXDM.Socket({
       remote: "<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html",
-      container: cont,
       props: {
         style: {
           width: "100%"
         }
       },
       onMessage: function(message, origin){
-          this.container.getElementsByTagName("iframe")[0].style.height = message + "px";
+          this.container.getElementsByTagName("iframe")[0].style.height = message + 20 + "px";
       }
   });
 
