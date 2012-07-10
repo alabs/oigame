@@ -19,14 +19,14 @@ function loadScript(url, callback) {
 function createIframe(){
   // crea el iframe para el sub
 
-//  var container = document.createElement('div'); 
-//  container.setAttribute('id', 'container-ifrm-sub-oigame-<%= @sub_oigame.id %>');
-//
-//  // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
-//  var scripts = document.getElementsByTagName('script');
-//  var script = scripts[scripts.length-1];
-//  script.parentNode.insertBefore(container, script);
-//
+  var container = document.createElement('div'); 
+  container.setAttribute('id', 'container-ifrm-sub-oigame-<%= @sub_oigame.id %>');
+
+  // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
+  var scripts = document.getElementsByTagName('script');
+  var script = scripts[scripts.length-1];
+  script.parentNode.insertBefore(container, script);
+
 //  var el = document.createElement('iframe'); 
 //  el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');
 //  el.setAttribute('src', ');
