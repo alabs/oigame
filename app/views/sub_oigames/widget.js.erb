@@ -1,14 +1,57 @@
-var el = document.createElement('iframe'); 
-el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');
-el.setAttribute('src', '<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html');
-el.setAttribute('width', '100%');
-el.setAttribute('height', '10px');
-el.setAttribute('scrolling', 'no');
-el.setAttribute('frameborder', '0');
-// para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
-var scripts = document.getElementsByTagName('script');
-var script = scripts[scripts.length-1];
-script.parentNode.insertBefore(el, script);
-// paran no tener que hardcodear un height, ni que nos aparezca el tipico de 200px, lo hacemos dinamico
-el.setAttribute('height', document.getElementById('sub-oigame-wrapper').height + 'px');
-//el.setAttribute('height', el.offsetTop + 'px');
+
+// vamos a utilizar easyXDM, asi que primero necesitamos agregar el javascript 
+function loadScript(url, callback) {
+  // adding the script tag to the head as suggested before
+  var head = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = url;
+
+  // then bind the event to the callback function 
+  // there are several events for cross browser compatibility
+  script.onreadystatechange = callback;
+  script.onload = callback;
+
+  // fire the loading
+  head.appendChild(script);
+}
+
+function createIframe(){
+  // crea el iframe para el sub
+
+  var container = document.createElement('div'); 
+  container.setAttribute('id', 'container-ifrm-sub-oigame-<%= @sub_oigame.id %>');
+
+  // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
+  var scripts = document.getElementsByTagName('script');
+  var script = scripts[scripts.length-1];
+  script.parentNode.insertBefore(container, script);
+
+//  var el = document.createElement('iframe'); 
+//  el.setAttribute('id', 'ifrm-sub-oigame-<%= @sub_oigame.id %>');
+//  el.setAttribute('src', ');
+//  el.setAttribute('width', '100%');
+//  //el.setAttribute('height', '10px');
+//  el.setAttribute('scrolling', 'no');
+//  el.setAttribute('frameborder', '0');
+
+var cont = document.getElementById("container-ifrm-sub-oigame-<%= @sub_oigame.id %>");
+//console.log(cont);
+
+  new easyXDM.Socket({
+      remote: "<%= APP_CONFIG[:domain] %>/o/<%= @sub_oigame.slug %>/widget-iframe.html",
+      container: cont,
+      props: {
+        scrolling: "no",
+        style: {
+          width: "100%"
+        }
+      },
+      onMessage: function(message, origin){
+          this.container.getElementsByTagName("iframe")[0].style.height = message + 10 + "px";
+      }
+  });
+
+}
+
+loadScript("http://consumer.easyxdm.net/current/easyXDM.debug.js", createIframe);
