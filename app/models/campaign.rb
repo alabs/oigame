@@ -10,7 +10,7 @@ class Campaign < ActiveRecord::Base
   has_many :messages
   has_many :petitions
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size
