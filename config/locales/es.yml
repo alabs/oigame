@@ -140,6 +140,7 @@ es:
   prioritize: "Dar prioridad"
   deprioritize: "Quitar prioridad"
   intro_limit: "Tiene un límite de 500 caracteres"
+  enable_comments: 'Habilitar comentarios'
   translate:
     translations: "Traducciones"
     all: "todos"

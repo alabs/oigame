@@ -1,4 +1,5 @@
 en: 
+  enable_comments: 'Enable comments'
   accepted_cards: "Accepted cards"
   access_your_account: "Log into your account"
   activate: Activate
