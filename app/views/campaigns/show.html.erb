@@ -69,6 +69,11 @@
           <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
         </li>
       <% end %>
+      <% if @campaign.commentable %>
+        <li data-tab-type="comments">
+          <a data-toggle="tab" href="#comments">Comentarios</a>
+        </li>
+      <% end %>
 
     <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
     <% if can? :moderated, @campaign or (can? :moderated, @campaign && @campaign.moderated?) or (can? :deactivate, @campaign && @campaign.published?) or (can? :participants, @campaign && @campaign.messages.count > 0) or (can? :update, @campaign) or (can? :priority, @campaign) or (can? :destroy, @campaign) %>
@@ -188,9 +193,10 @@
           <%= @campaign.to_html(@campaign.body).html_safe %> 
 
           <p style="margin-bottom:30px;"></p>
-
-        <% if @campaign.commentable %>
-
+        </div>
+      </div><!-- description -->
+      <% if @campaign.commentable %>
+        <div id="comments" class="tab-pane fade">
           <div id="disqus_thread"></div>
           <script type="text/javascript">
               /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -204,12 +210,8 @@
               })();
           </script>
           <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-        <% end %>
-        
-
-        </div>
-      </div><!-- description -->
+        </div><!-- comments -->
+      <% end %>
       <div id="message" class="tab-pane fade">
         <div id="campaign-info">
           <h2><%= I18n.t(:recipients) %></h2>
