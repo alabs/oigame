@@ -18,6 +18,10 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
+    if @sub_oigame == 'not found'
+      render_404
+      return false
+    end
     @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
     if @sub_oigame.nil? 
       @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
@@ -373,7 +377,14 @@ class CampaignsController < ApplicationController
   private
 
     def get_sub_oigame
-      @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+      unless params[:sub_oigame_id].nil?
+        @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+        if @sub_oigame.nil?
+          return @sub_oigame = 'not found'
+        end
+      else
+        return @sub_oigame = nil
+      end
     end
 
     def generate_stats_for_mailing(campaign)
