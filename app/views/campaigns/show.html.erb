@@ -188,7 +188,9 @@
           <h2>Descripción</h2>
           <%= @campaign.to_html(@campaign.intro).html_safe %> 
           <% if @campaign.image.to_s %>
+            <p style="text-align:center;margin:15px 0px;">
             <%= image_tag(@campaign.image_url.to_s) %>
+            </p>
           <% end %>
           <%= @campaign.to_html(@campaign.body).html_safe %> 
 
