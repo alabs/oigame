@@ -74,4 +74,7 @@ Oigame::Application.configure do
     :email_prefix => "[oiga.me exception] ",
     :sender_address => %{"notifier" <notifier@oiga.me>},
     :exception_recipients => %w{debug@alabs.es}
+
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
 end
