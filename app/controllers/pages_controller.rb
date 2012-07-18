@@ -21,7 +21,7 @@ class PagesController < ApplicationController
       @contact = Contact.new(params[:contact])
       if @contact.save
         Mailman.send_contact_message(@contact).deliver
-        redirect_to contact_received_path, :notice => 'Mensaje recibido, pronto nos pondremos en contacto'
+        redirect_to contact_received_url, :notice => 'Mensaje recibido, pronto nos pondremos en contacto'
 
         return
       else
