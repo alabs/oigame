@@ -2,7 +2,7 @@
 
 <p>A continuación tienes la información de la campaña:</p>
 
-<h1><%= link_to @campaign.name, sub_oigame_campaign_path(@sub_oigame, @campaign) %></h1>
+<h1><%= link_to @campaign.name, sub_oigame_campaign_url(@sub_oigame, @campaign) %></h1>
 
 <%= @campaign.to_html(@campaign.intro).html_safe %>
 
