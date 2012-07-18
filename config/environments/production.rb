@@ -74,4 +74,7 @@ Oigame::Application.configure do
     :email_prefix => "[oiga.me exception] ",
     :sender_address => %{"notifier" <notifier@oiga.me>},
     :exception_recipients => %w{debug@alabs.es}
+
+  # SSL en todo el sitio
+  config.force_ssl = true
 end
