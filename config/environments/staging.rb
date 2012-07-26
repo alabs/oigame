@@ -62,6 +62,9 @@ Oigame::Application.configure do
   
   # Para Devise
   config.action_mailer.default_url_options = { :host => 'beta.oiga.me' }
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
   
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
