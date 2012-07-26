@@ -42,6 +42,8 @@ class CampaignsController < ApplicationController
       return false
     end
 
+    @participants = @campaign.participants
+
     if @campaign.ttype == 'petition'
       @stats_data = generate_stats_for_petition(@campaign)
     elsif @campaign.ttype == 'mailing'

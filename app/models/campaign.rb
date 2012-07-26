@@ -104,6 +104,13 @@ class Campaign < ActiveRecord::Base
     slug
   end
 
+  def participants
+    petitions = self.petitions
+    mailings = self.messages
+
+    return petitions + mailings
+  end
+
   def recipients
     self.emails.join("\r\n")
   end

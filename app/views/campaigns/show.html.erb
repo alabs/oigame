@@ -269,6 +269,14 @@
 
       <% end %>
 
+      <h2 class="jtc" style="margin-bottom:10px;"><%= I18n.t(:participants) %></h2>
+      <div id="participants">
+        <% @participants.each do |p| %>
+          <%= image_tag avatar_url(p.email) %>
+          &nbsp;
+        <% end %>
+      </div>
+
     </div><!-- show-campaign-sidebar -->
   </div><!-- show-campaign -->
 </div><!-- campaigns-wrapper -->
