@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 es:
+  some_participants: 'Algunos participantes'
   home: 'Inicio'
   there_are_currently: 'En estos momentos hay'
   members: 'miembros'
