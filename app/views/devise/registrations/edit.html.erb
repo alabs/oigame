@@ -22,6 +22,9 @@
             <%= f.text_field :vat, :placeholder => 'Solo necesario para donaciones' %>
           </div>
           <div class="form-field">
+            <%= f.check_box :mailing %> <span class="note">Deseo recibir noticias de oiga.me</span>
+          </div>
+          <div class="form-field">
             <%= f.label t(:current_password) %> <span class="note">(necesitamos tu contraseña actual para realizar los cambios)</span>
             <%= f.password_field :current_password, :required => true %>
             <% unless resource.errors[:current_password].blank? %>

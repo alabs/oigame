@@ -18,6 +18,10 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
+    if @sub_oigame == 'not found'
+      render_404
+      return false
+    end
     @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
     if @sub_oigame.nil? 
       @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
@@ -101,7 +105,7 @@ class CampaignsController < ApplicationController
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = 'La campaña fué actualizada con éxito.'
       if @sub_oigame
-        redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign)
+        redirect_to sub_oigame_campaign_url(@sub_oigame, @campaign)
       else
         redirect_to @campaign
       end
@@ -162,9 +166,9 @@ class CampaignsController < ApplicationController
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
               if @sub_oigame.nil?
-                redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+                redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
-                redirect_to message_sub_oigame_campaign_path(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+                redirect_to message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
               end
 
               return
@@ -184,9 +188,9 @@ class CampaignsController < ApplicationController
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
               if @sub_oigame.nil?
-                redirect_to message_campaign_path, :notice => 'Gracias por unirte a esta campaña'
+                redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
-                redirect_to message_sub_oigame_campaign_path(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+                redirect_to message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
               end
 
               return
@@ -200,15 +204,15 @@ class CampaignsController < ApplicationController
           end
         end
         if @sub_oigame.nil?
-          redirect_to message_campaign_path
+          redirect_to message_campaign_url
         else
-          redirect_to message_sub_oigame_campaign_path(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+          redirect_to message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
         end
 
         return
       else
         flash[:error] = "Esta campaña ya no está activa."
-        redirect_to campaigns_path
+        redirect_to campaigns_url
       end
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
@@ -216,7 +220,7 @@ class CampaignsController < ApplicationController
         @stats_data = generate_stats_for_mailing(@campaign)
       else
         flash[:error] = "Esta campaña ya no está activa."
-        redirect_to campaigns_path
+        redirect_to campaigns_url
       end
     end
   end
@@ -237,9 +241,9 @@ class CampaignsController < ApplicationController
         if user_signed_in?
           @petition.update_attributes(:validated => true, :token => nil)
           if @sub_oigame
-            redirect_url = petition_sub_oigame_campaign_path
+            redirect_url = petition_sub_oigame_campaign_url
           else
-            redirect_url = petition_campaign_path
+            redirect_url = petition_campaign_url
           end
           redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
 
@@ -248,9 +252,9 @@ class CampaignsController < ApplicationController
         end
         Mailman.send_message_to_validate_petition(to, @campaign, @petition).deliver
         if @sub_oigame
-          redirect_url = petition_sub_oigame_campaign_path
+          redirect_url = petition_sub_oigame_campaign_url
         else
-          redirect_url = petition_campaign_path
+          redirect_url = petition_campaign_url
         end
         redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
       else
@@ -270,7 +274,7 @@ class CampaignsController < ApplicationController
       if model.class.name == 'Message'
         Mailman.send_message_to_recipients(model).deliver
       end
-      redirect_to validated_campaign_path, :notice => 'Tu adhesión se ha ejecutado con éxito'
+      redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
 
       return
     else
@@ -301,7 +305,7 @@ class CampaignsController < ApplicationController
     if @sub_oigame.nil? 
       redirect_to @campaign, :notice => 'La campaña se ha activado con éxito'
     else
-      redirect_to sub_oigame_campaign_path( @sub_oigame, @campaign ), :notice => 'La campaña se ha activado con éxito'
+      redirect_to sub_oigame_campaign_url( @sub_oigame, @campaign ), :notice => 'La campaña se ha activado con éxito'
     end
   end
 
@@ -311,7 +315,7 @@ class CampaignsController < ApplicationController
     if @sub_oigame.nil? 
       redirect_to @campaign, :notice => 'Campaña desactivada con éxito'
     else
-      redirect_to sub_oigame_campaign_path( @sub_oigame, @campaign ), :notice => 'Campaña desactivada con éxito'
+      redirect_to sub_oigame_campaign_url( @sub_oigame, @campaign ), :notice => 'Campaña desactivada con éxito'
     end
   end
 
@@ -325,7 +329,7 @@ class CampaignsController < ApplicationController
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido archivada con éxito'
     else
-      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido archivada con éxito'
+      redirect_to sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'La campaña ha sido archivada con éxito'
     end
   end
 
@@ -347,7 +351,7 @@ class CampaignsController < ApplicationController
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido marcada con prioridad'
     else
-      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido marcada con prioridad'
+      redirect_to sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'La campaña ha sido marcada con prioridad'
     end
   end
 
@@ -357,7 +361,7 @@ class CampaignsController < ApplicationController
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido desmarcada con prioridad'
     else
-      redirect_to sub_oigame_campaign_path(@sub_oigame, @campaign), :notice => 'La campaña ha sido desmarcada con prioridad'
+      redirect_to sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'La campaña ha sido desmarcada con prioridad'
     end
   end
 
@@ -373,7 +377,14 @@ class CampaignsController < ApplicationController
   private
 
     def get_sub_oigame
-      @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+      unless params[:sub_oigame_id].nil?
+        @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
+        if @sub_oigame.nil?
+          return @sub_oigame = 'not found'
+        end
+      else
+        return @sub_oigame = nil
+      end
     end
 
     def generate_stats_for_mailing(campaign)

@@ -10,7 +10,7 @@ class Campaign < ActiveRecord::Base
   has_many :messages
   has_many :petitions
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body
+  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size
@@ -169,9 +169,9 @@ class Campaign < ActiveRecord::Base
     # devuelve otras campaigns similares a la que estamos seleccionando, quitando la que usamos
     # tiene en cuenta el sub
     if self.sub_oigame.nil?
-      return Campaign.published.order('published_at DESC').find(:all, :conditions => ["id != ?", self.id], :limit => 5)
+      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ?", self.id], :limit => 5)
     else
-      return Campaign.published.order('published_at DESC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 5)
+      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 5)
     end
   end
 

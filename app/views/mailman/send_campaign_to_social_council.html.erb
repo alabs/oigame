@@ -2,7 +2,7 @@
 
 <p>A continuación tenéis la información de la campaña:</p>
 
-<h1><%= @campaign.name %></h1>
+<h1><%= link_to @campaign.name, campaign_url(@campaign) %></h1>
 
 <%= @campaign.to_html(@campaign.intro).html_safe %>
 
