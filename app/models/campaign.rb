@@ -111,7 +111,7 @@ class Campaign < ActiveRecord::Base
     data = petitions + mailings
     data = data.collect { data.slice!(rand data.length) }
 
-    return data[0,20]
+    return data[0,26]
   end
 
   def recipients
