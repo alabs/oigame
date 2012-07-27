@@ -197,7 +197,7 @@
           <div id="participants">
             <% if @participants.size > 0 %>
               <% @participants.each do |p| %>
-                <%= image_tag avatar_url(p.email) %>
+                <%= image_tag avatar_url(p.email), :title => p.name %>
                 &nbsp;
               <% end %>
             <% else %>

@@ -2,7 +2,7 @@ class Message < ActiveRecord::Base
 
   belongs_to :campaign, :counter_cache => true
 
-  attr_accessible :campaign, :email, :subject, :body, :token, :validated
+  attr_accessible :campaign, :email, :subject, :body, :token, :validated, :name
 
   scope :validated, where(:validated => true)
 
