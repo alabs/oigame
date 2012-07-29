@@ -38,7 +38,7 @@
           <% if not @campaign.user.name.blank? %>
             <dt>Creada por</dt>
               <dd style="text-align:center">
-                <%= gravatar_image_tag(@campaign.user.email, :alt => @campaign.user.name, :gravatar => { :size => 50 }, :style => "margin-bottom: 1px;") %>
+                <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name, :style => 'margin-bottom: 1px;' %>
                 <%= @campaign.user.name %>
               </dd>
           <% end %>
