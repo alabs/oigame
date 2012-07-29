@@ -195,7 +195,7 @@
           <%= @campaign.to_html(@campaign.body).html_safe %> 
           <h2 style="margin-bottom:10px;margin-top: 35px;"><%= I18n.t(:some_participants) %></h2>
           <div id="participants">
-            <% unless @participants.nil?
+            <% unless @participants.nil? %>
               <% if @participants.size > 0 %>
                 <% @participants.each do |p| %>
                   <%= image_tag avatar_url(p.email), :title => p.name %>
