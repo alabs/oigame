@@ -323,7 +323,13 @@ class CampaignsController < ApplicationController
 
   def feed
     @campaigns = Campaign.last_campaigns_without_pagination(10)
+
     set_http_cache(3.hours, visibility = true)
+
+    respond_to do |format|
+      format.rss # feed.rss.builder
+      format.json { render json: @campaigns }
+    end
   end
 
   def archive
