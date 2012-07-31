@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     end
 
     def find_for_facebook_oauth(auth, signed_in_resource=nil)
-      user = where(:provider => auth.provider, :uid => auth.uid).first
+      user = self.where(:provider => auth.provider, :uid => auth.uid).first || self.where(:email => auth.info.email).first
       unless user
         user = User.new
         user.name = auth.extra.raw_info.name
