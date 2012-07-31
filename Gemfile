@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.7'
 gem 'mysql2'
 
 group :assets do
@@ -53,7 +53,6 @@ gem 'jquery-ui-rails'
 gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
 gem "rails3_acts_as_paranoid", "~>0.2.0"
 gem 'thinking-sphinx', '2.0.10'
-gem 'gravatar_image_tag'
 gem 'fb_graph'
 gem 'kaminari'
 gem 'omniauth-facebook'
