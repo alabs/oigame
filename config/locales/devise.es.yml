@@ -34,6 +34,8 @@ es:
       send_paranoid_instructions: 'Si tu correo existe en nuestra base de datos, vas a recibir un correo con instrucciones sobre cómo confirmar tu cuenta en unos pocos minutos.'
       confirmed: 'Tu cuenta fue confirmada. Ya iniciaste sesión.'
     registrations:
+      user:
+        signed: 'Cuenta creada, revisa tu correo para confirmarla.'
       signed_up: 'Bienvenido. Tu cuenta fue creada.'
       inactive_signed_up: 'Tu cuenta fue creada. Sin embargo, no podemos iniciar tu sesión porque tu cuenta está %{reason}. Revisa tu correo para activarla.'
       updated: 'Tu cuenta fue actualizada.'
