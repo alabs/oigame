@@ -2,7 +2,9 @@
 
 <p>Puedes confirmar tu cuenta a través del siguiente enlace:</p>
 
-<p><%= link_to 'Confirmar mi cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>.</p>
+<p>
+<%= link_to confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+</p>
 
 <p>Puedes seguir a <a href="http://twitter.com/oigame">@oigame</a> en Twitter y en <a href="http://www.facebook.com/oiga.me">Facebook</a>.</p>
 

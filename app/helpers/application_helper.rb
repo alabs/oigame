@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  def avatar_url(email)
+    gravatar_id = Digest::MD5::hexdigest(email).downcase
+    "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=48&d=mm"
+  end
+
   def generate_from_for_validate(default_from, sub_oigame = nil)
     if sub_oigame.nil?
       return default_from

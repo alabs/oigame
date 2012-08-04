@@ -47,7 +47,7 @@ Oigame::Application.routes.draw do
   get 'contact' => 'pages#contact', :as => 'contact'
   post 'contact' => 'pages#contact', :as => 'contact'
   get 'contact/received' => 'pages#contact_received', :as => 'contact_received'
-  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }, :controllers => { :registrations => "users/registrations" }
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }, :controllers => { :registrations => "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :campaigns do
     member do

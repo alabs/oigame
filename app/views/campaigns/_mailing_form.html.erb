@@ -7,6 +7,10 @@
       <br />
       <% unless user_signed_in? %>
         <div class="form-field">
+          <%= label_tag t(:name_and_surname) %>
+          <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos' %>
+        </div>
+        <div class="form-field">
           <%= label_tag t(:your_email) %>
           <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => "tunombre@dominio.com" %>
         </div>

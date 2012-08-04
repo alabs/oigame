@@ -38,7 +38,7 @@
           <% if not @campaign.user.name.blank? %>
             <dt>Creada por</dt>
               <dd style="text-align:center">
-                <%= gravatar_image_tag(@campaign.user.email, :alt => @campaign.user.name, :gravatar => { :size => 50 }, :style => "margin-bottom: 1px;") %>
+                <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name, :style => 'margin-bottom: 1px;' %>
                 <%= @campaign.user.name %>
               </dd>
           <% end %>
@@ -188,9 +188,24 @@
           <h2>Descripción</h2>
           <%= @campaign.to_html(@campaign.intro).html_safe %> 
           <% if @campaign.image.to_s %>
-            <%= image_tag(@campaign.image_url(:thumb).to_s, :style => "float: right;") %>
+            <p style="text-align:center;margin:15px 0px;">
+            <%= image_tag(@campaign.image_url.to_s) %>
+            </p>
           <% end %>
           <%= @campaign.to_html(@campaign.body).html_safe %> 
+          <div id="participants">
+            <% unless @participants.nil? %>
+              <h2 style="margin-bottom:10px;margin-top: 35px;"><%= I18n.t(:some_participants) %></h2>
+              <% if @participants.size > 0 %>
+                <% @participants.each do |p| %>
+                  <%= image_tag avatar_url(p.email), :title => p.name %>
+                  &nbsp;
+                <% end %>
+              <% else %>
+                <p>Todavía no hay participantes</p>
+              <% end %>
+            <% end %>
+          </div>
 
           <p style="margin-bottom:30px;"></p>
         </div>
@@ -205,7 +220,7 @@
               /* * * DON'T EDIT BELOW THIS LINE * * */
               (function() {
                   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
                   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
               })();
           </script>
@@ -266,6 +281,7 @@
         <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
 
       <% end %>
+
 
     </div><!-- show-campaign-sidebar -->
   </div><!-- show-campaign -->

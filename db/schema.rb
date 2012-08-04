@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713121721) do
+ActiveRecord::Schema.define(:version => 20120727040731) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20120713121721) do
     t.integer  "messages_count",          :default => 0
     t.integer  "petitions_count",         :default => 0
     t.boolean  "commentable",             :default => true
+    t.string   "youtube"
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120713121721) do
     t.string   "token"
     t.text     "body"
     t.string   "subject"
+    t.string   "name"
   end
 
   add_index "messages", ["campaign_id"], :name => "index_messages_on_campaign_id"

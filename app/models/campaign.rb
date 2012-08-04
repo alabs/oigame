@@ -104,6 +104,16 @@ class Campaign < ActiveRecord::Base
     slug
   end
 
+  def participants
+    petitions = self.petitions
+    mailings = self.messages
+
+    data = petitions + mailings
+    data = data.collect { data.slice!(rand data.length) }
+
+    return data[0,27]
+  end
+
   def recipients
     self.emails.join("\r\n")
   end

@@ -101,6 +101,8 @@
                       </div>
                       <%= submit_tag 'Iniciar sesión', :class => "btn" %>
                       <p><%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %></p>
+                      <p><%= link_to 'Iniciar sesión con Facebook', user_omniauth_authorize_path(:facebook) %></p>
+                      <p><%= link_to 'Iniciar sesión con Twitter', user_omniauth_authorize_path(:twitter) %></p>
                     </fieldset>
                   <% end %>
                 </div><!-- signin-container -->
@@ -174,7 +176,7 @@
         funcional no es operativa todavía. Por lo tanto los usuarios que te
         crees y el contenido que subas al servidor podrá ser borrado en
         cualquier momento. La primera versión estable estará disponible en la
-        dirección web: <a href="http://oiga.me/">http://oiga.me/</a>
+        dirección web: <a href="https://oiga.me/">https://oiga.me/</a>
       </p>
 
       <p style="font-size: 120%;">

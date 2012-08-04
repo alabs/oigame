@@ -7,9 +7,9 @@ class DonateController < ApplicationController
 
   def init
     unless current_user.ready_for_donation
-      session[:redirect_to_donate] = "https://oiga.me/donate/init"
+      session[:redirect_to_donate] = "#{APP_CONFIG[:domain]}/donate/init"
       flash[:error] = 'Necesitamos que nos digas tu nombre y NIF para donar'
-      redirect_to edit_user_registration_path
+      redirect_to edit_user_registration_url
 
       return
     end

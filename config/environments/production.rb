@@ -62,6 +62,9 @@ Oigame::Application.configure do
   
   # Para Devise
   config.action_mailer.default_url_options = { :host => 'oiga.me' }
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
   
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
@@ -74,4 +77,7 @@ Oigame::Application.configure do
     :email_prefix => "[oiga.me exception] ",
     :sender_address => %{"notifier" <notifier@oiga.me>},
     :exception_recipients => %w{debug@alabs.es}
+
+  # SSL en todo el sitio
+  config.force_ssl = true
 end
