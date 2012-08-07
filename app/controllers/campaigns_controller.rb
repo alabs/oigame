@@ -44,6 +44,14 @@ class CampaignsController < ApplicationController
 
     @participants = @campaign.participants
 
+    # comprobamos si este usuario ya ha participado en este campaña
+    participants_emails = @participants.map {|x| x.email}
+    if participants_emails.include? current_user.email
+      @has_participated = true
+    else
+      @has_participated = false
+    end
+
     if @campaign.ttype == 'petition'
       @stats_data = generate_stats_for_petition(@campaign)
     elsif @campaign.ttype == 'mailing'
@@ -164,6 +172,10 @@ class CampaignsController < ApplicationController
         if params[:own_message] == "1" 
           message = Message.new(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
           if message.save
+            # TODO: vamos a setearle al usuario anonimo una cookie con que ya ha participado de esta campaña 
+            # cookies["camp_" + @campaign.id] = "has_participated"
+            # esto se comprueba en el show de la camapaña, para mostrarle el has_participated
+
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)

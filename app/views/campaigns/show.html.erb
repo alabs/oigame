@@ -260,16 +260,26 @@
       
       <% unless @campaign.status == 'archived' %>
 
-        <% if @campaign.ttype == 'petition' %>
-          <div id="show-campaign-petition">
-            <%= render :partial => 'petition_form' %>
-          </div>
-        <% end %>
+        <% if @has_participated %>
 
-        <% if @campaign.ttype == 'mailing' %>
-          <div id="show-campaign-mailing">
-            <%= render :partial => 'mailing_form' %>
+          <div id="show-campaign-petition">
+            <%= render :partial => 'has_participated' %>
           </div>
+
+        <% else %>
+
+          <% if @campaign.ttype == 'petition' %>
+            <div id="show-campaign-petition">
+              <%= render :partial => 'petition_form' %>
+            </div>
+          <% end %>
+  
+          <% if @campaign.ttype == 'mailing' %>
+            <div id="show-campaign-mailing">
+              <%= render :partial => 'mailing_form' %>
+            </div>
+          <% end %>
+
         <% end %>
         
         <h2 class="jtc"><%= I18n.t(:spread) %></h2>
