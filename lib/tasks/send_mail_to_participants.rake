@@ -1,3 +1,4 @@
+# encoding: utf-8
 namespace :oigame do
   desc "Enviar mensaje a los participantes de una campaña"
   task(:mailing_for_participants => :environment) do
