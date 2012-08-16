@@ -1,6 +1,5 @@
-# encoding: utf-8
 namespace :oigame do
-  desc "Enviar mensaje a los participantes de una campaña"
+  desc "Enviar mensaje a los participantes de una campana"
   task(:mailing_for_participants => :environment) do
     message = File.open(ENV['FILENAME'], 'r').read
     subject = ENV['SUBJECT']
