@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727040731) do
+ActiveRecord::Schema.define(:version => 20120820093118) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20120727040731) do
     t.integer  "sub_oigame_id"
     t.string   "default_message_subject"
     t.text     "default_message_body"
-    t.boolean  "priority"
+    t.boolean  "priority",                :default => false
     t.integer  "messages_count",          :default => 0
     t.integer  "petitions_count",         :default => 0
     t.boolean  "commentable",             :default => true
