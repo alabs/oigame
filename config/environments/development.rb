@@ -25,8 +25,8 @@ Oigame::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  # Expands the lines which load the assets
-  config.assets.debug = true
+  # Para no ver los estaticos en el log
+  config.assets.debug = false
 
   # Para Devise
   config.action_mailer.default_url_options = { :host => 'localhost:8080' }
