@@ -206,7 +206,7 @@ class CampaignsController < ApplicationController
               if @sub_oigame.nil?
                 redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
-                redirect_to message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+                redirect_to message_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
               end
 
               return
@@ -222,7 +222,7 @@ class CampaignsController < ApplicationController
         if @sub_oigame.nil?
           redirect_to message_campaign_url
         else
-          redirect_to message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+          redirect_to message_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
         end
 
         return
