@@ -169,14 +169,17 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
     if request.post?
+      if not user_signed_in?
+        # si no esta registrado seteamos las cookies para no volver a preguntar 
+        # su nombre y su correo - si esta registrado nos da igual
+        cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
+        cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
+      end
       from = user_signed_in? ? current_user.email : params[:email]
       if @campaign
         if params[:own_message] == "1" 
           message = Message.new(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
           if message.save
-            # TODO: vamos a setearle al usuario anonimo una cookie con que ya ha participado de esta campaña 
-            # cookies["camp_" + @campaign.id] = "has_participated"
-            # esto se comprueba en el show de la camapaña, para mostrarle el has_participated
 
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
@@ -188,7 +191,6 @@ class CampaignsController < ApplicationController
               end
 
               return
-
             end
             Mailman.send_message_to_validate_message(from, @campaign, message).deliver
           else
