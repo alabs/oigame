@@ -45,11 +45,13 @@ class CampaignsController < ApplicationController
     @participants = @campaign.participants
 
     # comprobamos si este usuario ya ha participado en este campaña
-    participants_emails = @participants.map {|x| x.email}
-    if participants_emails.include? current_user.email
-      @has_participated = true
-    else
-      @has_participated = false
+    if defined? current_user.email
+      participants_emails = @participants.map {|x| x.email}
+      if participants_emails.include? current_user.email
+        @has_participated = true
+      else
+        @has_participated = false
+      end
     end
 
     if @campaign.ttype == 'petition'
