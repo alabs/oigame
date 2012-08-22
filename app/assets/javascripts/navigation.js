@@ -36,6 +36,7 @@ function notify(message, theme){
   $.jGrowl(message, { 
     sticky: true, 
     theme: "flash-" + theme,
+    closerTemplate: '<div>[ cerrar notificaciones ]</div>',
     open: function() { $(this).click( function(){ $(this).fadeOut(); }) }
   });
 }
