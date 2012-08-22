@@ -1,0 +1,9 @@
+Hola consejo social, se ha creado una campaña nueva en oiga.me con el nombre: "<%= @campaign.name %>". Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si os parece muy interesante comentadlo en la lista y lo debatimos.
+
+A continuación tenéis la información de la campaña:
+
+<%= link_to @campaign.name, campaign_url(@campaign) %>
+
+<%= @campaign.to_html(@campaign.intro).html_safe %>
+
+<%= @campaign.to_html(@campaign.body).html_safe %>
