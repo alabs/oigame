@@ -23,4 +23,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
+
+  def passthru
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end
