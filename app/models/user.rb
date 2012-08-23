@@ -37,11 +37,19 @@ class User < ActiveRecord::Base
       user
     end
 
-    def find_for_twitter_oauth(provider, uid, signed_in_resource=nil)
-      user = self.where(:provider => provider, :uid => uid).first
+    def find_for_twitter_oauth(auth, signed_in_resource=nil)
+      user = self.where(:provider => auth["provider"], :uid => auth["uid"]).first
       unless user
         user = User.new
+        user.name = auth["info"]["name"]
+        user.provider = auth["provider"]
+        user.uid = auth["uid"]
+        user.email = nil
+        user.password = Devise.friendly_token[0,20]
+        user.confirmed_at = DateTime.now
+        user.skip_confirmation!
       end
+      user
     end
 
     def new_with_session(params, session)
