@@ -57,3 +57,5 @@ gem 'fb_graph'
 gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+
+gem 'rails_admin'

@@ -7,6 +7,8 @@ class Ability
     user ||= User.new
 
     if user.role? :user
+      cannot :access, :rails_admin   # revoke access to rails_admin
+      cannot :dashboard              # revoke access to the dashboard
       can :read, Campaign, :moderated => false
       can :read, Campaign do |campaign|
         unless campaign.sub_oigame.nil?
@@ -42,6 +44,8 @@ class Ability
     end
     
     if user.role? :editor
+      cannot :access, :rails_admin   # revoke access to rails_admin
+      cannot :dashboard              # revoke access to the dashboard
       can :manage, Campaign do |campaign|
         campaign.sub_oigame.nil?
       end
@@ -63,6 +67,8 @@ class Ability
     end
 
     if user.role? :admin
+      can :access, :rails_admin   # grant access to rails_admin
+      can :dashboard              # grant access to the dashboard
       can :manage, :all
     end
   end
