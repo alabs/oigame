@@ -14,6 +14,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def twitter
     auth = env["omniauth.auth"]
+    logger.debug "DEBUG: " + auth.inspect
     @user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.new
     if @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Twitter"
@@ -22,5 +23,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session["devise.twitter_uid"] = auth["uid"]
       redirect_to new_user_registration_url
     end
+  end
+
+  def passthru
+    raise ActionController::RoutingError.new('Not Found')
   end
 end

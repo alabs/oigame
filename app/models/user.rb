@@ -36,6 +36,13 @@ class User < ActiveRecord::Base
       user
     end
 
+    def find_for_twitter_oauth(provider, uid, signed_in_resource=nil)
+      user = self.where(:provider => provider, :uid => uid).first
+      unless user
+        user = User.new
+      end
+    end
+
     def new_with_session(params, session)
       super.tap do |user|
         if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
