@@ -3,8 +3,21 @@
 
 RailsAdmin.config do |config|
 
+
+ config.model User do
+   update do
+     configure :role do
+       partial "user_role"
+     end
+   end
+ end
+
+ config.attr_accessible_role { :admin }
+
   # https://github.com/sferik/rails_admin/wiki/CanCan
-  config.authorize_with :cancan
+  # FIXME: da este error - 
+  # The accessible_by call cannot be used with a block 'can' definition. The SQL cannot be determined for :index Campaign(id: integer, name: string, slug: string, intro: text, body: text, created_at: datetime, updated_at: datetime, user_id: integer, image: string, emails: text, moderated: boolean, published_at: datetime, target: string, duedate_at: datetime, ttype: string, status: string, sub_oigame_id: integer, default_message_subject: string, default_message_body: text, priority: boolean, deleted_at: time, messages_count: integer, petitions_count: integer, commentable: boolean)
+  #config.authorize_with :cancan
 
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
   # require 'i18n'
@@ -18,10 +31,7 @@ RailsAdmin.config do |config|
   # Or with a PaperTrail: (you need to install it first)
   # config.audit_with :paper_trail, User
 
-  # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['oiga.me', 'Admin']
-  # or for a dynamic name:
-  # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
 
   #  ==> Global show view settings
