@@ -25,6 +25,7 @@ Oigame::Application.routes.draw do
         post 'prioritize'
         post 'deprioritize'
         post 'archive'
+        post 'new_comment'
       end
       collection do
         get 'tag'
@@ -73,6 +74,7 @@ Oigame::Application.routes.draw do
       post 'prioritize'
       post 'deprioritize'
       post 'archive'
+      post 'new_comment'
     end
     collection do
       get 'tag'

@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
   load_resource :find_by => :slug
   skip_load_resource :only => [:index, :tag, :tags_archived, :message, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate]
+  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate, :new_comment]
 
   respond_to :html, :json
 
@@ -396,6 +396,12 @@ class CampaignsController < ApplicationController
     else 
       @campaigns = Campaign.active.search params[:q], :conditions => {:sub_oigame_id => @sub_oigame.id}
     end
+  end
+
+  def new_comment
+    @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
+    Mailman.inform_new_comment(@campaign).deliver
+    redirect_to @campaign
   end
 
   private
