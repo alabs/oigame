@@ -194,19 +194,8 @@
           <% end %>
           <%= @campaign.to_html(@campaign.body).html_safe %> 
           <div id="participants">
-            <% unless @participants.nil? %>
-              <h2 style="margin-bottom:10px;margin-top: 35px;"><%= I18n.t(:some_participants) %></h2>
-              <% if @participants.size > 0 %>
-                <% @participants.each do |p| %>
-                  <%= image_tag avatar_url(p.email), :title => p.name %>
-                  &nbsp;
-                <% end %>
-              <% else %>
-                <p>Todavía no hay participantes</p>
-              <% end %>
-            <% end %>
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=<%= CGI::escape campaign_url %>&amp;width=500&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:550px; height:258px;" allowTransparency="true"></iframe>
           </div>
-
           <p style="margin-bottom:30px;"></p>
         </div>
       </div><!-- description -->
