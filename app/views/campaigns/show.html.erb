@@ -194,7 +194,16 @@
           <% end %>
           <%= @campaign.to_html(@campaign.body).html_safe %> 
           <div id="participants">
-            <iframe src="//www.facebook.com/plugins/likebox.php?href=<%= CGI::escape campaign_url %>&amp;width=500&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:550px; height:258px;" allowTransparency="true"></iframe>
+            <!-- FB LIKEBOOX -->
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-like-box" data-href="<%= campaign_url %>" data-width="515" data-show-faces="true" data-stream="false" data-header="false"></div>
           </div>
           <p style="margin-bottom:30px;"></p>
         </div>
