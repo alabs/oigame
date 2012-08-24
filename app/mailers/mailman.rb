@@ -93,4 +93,13 @@ class Mailman < ActionMailer::Base
     recipients = message.campaign.emails
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
+
+  def inform_new_comment(campaign)
+    @message_to = campaign.user.email
+    @campaign_name = campaign.name
+    @campaign_slug = campaign.slug
+    subject = "[oiga.me] Nuevo mensaje en tu campaña #{ @campaign_name }"
+    mail :to => @message_to, :subject => subject
+  end
+
 end

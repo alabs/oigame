@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid, :role, as: :admin
 
   has_many :campaigns, :dependent => :destroy
   has_and_belongs_to_many :sub_oigames
@@ -32,6 +33,21 @@ class User < ActiveRecord::Base
         user.confirmed_at = DateTime.now
         user.skip_confirmation!
         user.save
+      end
+      user
+    end
+
+    def find_for_twitter_oauth(auth, signed_in_resource=nil)
+      user = self.where(:provider => auth["provider"], :uid => auth["uid"]).first
+      unless user
+        user = User.new
+        user.name = auth["info"]["name"]
+        user.provider = auth["provider"]
+        user.uid = auth["uid"]
+        user.email = nil
+        user.password = Devise.friendly_token[0,20]
+        user.confirmed_at = DateTime.now
+        user.skip_confirmation!
       end
       user
     end

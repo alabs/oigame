@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
   load_resource :find_by => :slug
   skip_load_resource :only => [:index, :tag, :tags_archived, :message, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate]
+  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate, :new_comment]
 
   respond_to :html, :json
 
@@ -250,6 +250,10 @@ class CampaignsController < ApplicationController
       if user_signed_in?
         if current_user.name.blank?
           current_user.update_attributes(:name => params[:name])
+          # si no esta registrado seteamos las cookies para no volver a preguntar 
+          # su nombre y su correo - si esta registrado nos da igual
+          cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
+          cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
         end
       end
       to = user_signed_in? ? current_user.email : params[:email]
@@ -396,6 +400,12 @@ class CampaignsController < ApplicationController
     else 
       @campaigns = Campaign.active.search params[:q], :conditions => {:sub_oigame_id => @sub_oigame.id}
     end
+  end
+
+  def new_comment
+    @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
+    Mailman.inform_new_comment(@campaign).deliver
+    redirect_to @campaign
   end
 
   private

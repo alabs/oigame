@@ -21,6 +21,8 @@ Oigame::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.initialize_on_precompile = false
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
@@ -46,6 +48,8 @@ Oigame::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+  # http://stackoverflow.com/questions/9346822/rails-3-1-why-is-rails-admin-causing-rake-assetprecompile-to-fail
+  config.assets.precompile += ['rails_admin/rails_admin.css', 'rails_admin/rails_admin.js']
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
