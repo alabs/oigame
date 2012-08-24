@@ -250,6 +250,10 @@ class CampaignsController < ApplicationController
       if user_signed_in?
         if current_user.name.blank?
           current_user.update_attributes(:name => params[:name])
+          # si no esta registrado seteamos las cookies para no volver a preguntar 
+          # su nombre y su correo - si esta registrado nos da igual
+          cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
+          cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
         end
       end
       to = user_signed_in? ? current_user.email : params[:email]
