@@ -1,11 +1,7 @@
 Oigame::Application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
-  devise_for :users
-
-  #ActiveAdmin.routes(self)
-  #devise_for :admin_users, ActiveAdmin::Devise.config
+  # solucionar el tema de acceso por rol
+  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :sub_oigames, :path => "o" do
     resources :campaigns do
