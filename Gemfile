@@ -58,6 +58,6 @@ gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
-gem 'rails_admin'
+#gem 'rails_admin'
 gem 'mailcatcher'
 
