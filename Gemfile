@@ -22,6 +22,9 @@ group :test, :development do
   gem 'capybara'
   # Pretty printed test output
   gem 'turn'
+  gem 'spork-testunit'
+  gem 'spork-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -60,4 +63,6 @@ gem 'omniauth-twitter'
 
 #gem 'rails_admin'
 gem 'mailcatcher'
+
+
 

@@ -2,7 +2,9 @@ require 'test_helper'
 
 class CampaignsControllerTest < ActionController::TestCase
   setup do
-    @campaign = campaigns(:one)
+    @campaign = FactoryGirl.build(:campaign)
+
+    # distintos roles de usuarios
     @user = users(:normal)
     @user.confirm!
     @admin = users(:admin)
@@ -13,7 +15,7 @@ class CampaignsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:campaigns)
+    assert_not_nil assigns(@campaigns)
   end
 
   test "should get new as user" do
@@ -37,7 +39,6 @@ class CampaignsControllerTest < ActionController::TestCase
       sign_in @user
       post :create, campaign: @campaign.attributes
     end
-
     assert_redirected_to campaign_path(assigns(:campaign))
   end
 
@@ -60,7 +61,7 @@ class CampaignsControllerTest < ActionController::TestCase
   test "should destroy campaign" do
     assert_difference('Campaign.count', -1) do
       sign_in @admin
-      delete :destroy, id: @campaign.to_param
+      delete :destroy, id: @campaign.id
     end
 
     assert_redirected_to campaigns_path
