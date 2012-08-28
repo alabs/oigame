@@ -25,6 +25,7 @@ group :test, :development do
   gem 'spork-testunit'
   gem 'spork-rails'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 group :development do
