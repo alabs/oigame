@@ -1,7 +1,8 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
 
-  paginates_per 5
+
+  self.per_page = 5
 
   acts_as_paranoid
 

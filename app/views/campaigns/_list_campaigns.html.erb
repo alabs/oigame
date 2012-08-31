@@ -7,7 +7,7 @@
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         <% end %>
         <div class="center">
-          <%= paginate @campaigns %>
+          <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
         </div>
       </div><!-- list-campaigns-info -->
     <% else %>
