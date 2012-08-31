@@ -38,3 +38,13 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
+
+# Para el problema de: Can't mass-assign protected attributes
+def unprotected_attributes(obj)
+  attributes = {}
+  obj._accessible_attributes[:default].each do |attribute|
+    attributes[attribute] = obj.send(attribute) unless attribute.blank?
+  end
+  attributes
+end
+

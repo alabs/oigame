@@ -30,14 +30,14 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should redirect on create campaign as anon" do
-    post :create, campaign: @campaign.attributes
+    post :create, campaign: @campaign.attributes.slice("name", "intro", "body")
     assert_response :redirect
   end
 
   test "should create campaign as user" do
     assert_difference('Campaign.count') do
       sign_in @user
-      post :create, campaign: @campaign.attributes
+      post :create, campaign: @campaign.attributes.slice("name", "intro", "body")
     end
     assert_redirected_to campaign_path(assigns(:campaign))
   end
@@ -54,7 +54,7 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should update campaign" do
-    put :update, id: @campaign.to_param, campaign: @campaign.attributes
+    put :update, id: @campaign.to_param, campaign: @campaign.attributes.slice("name", "intro", "body")
     assert_redirected_to campaign_path(assigns(:campaign))
   end
 

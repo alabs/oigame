@@ -10,5 +10,4 @@ FactoryGirl.define do
   #  ttype 	"petition"
   #  image       { fixture_file_upload("test/fixtures/files/campaign.gif", "image/gif") }
   end
-
 end
