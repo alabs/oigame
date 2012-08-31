@@ -26,8 +26,6 @@ Oigame::Application.routes.draw do
         post 'new_comment'
       end
       collection do
-        get 'tag'
-        get 'tags-archived' => 'campaigns#tags_archived', :as => 'tags_archived'
         get 'moderated'
         get 'feed', :defaults => { :format => 'rss' }
         get 'archived'
@@ -75,8 +73,6 @@ Oigame::Application.routes.draw do
       post 'new_comment'
     end
     collection do
-      get 'tag'
-      get 'tags-archived' => 'campaigns#tags_archived', :as => 'tags_archived'
       get 'moderated'
       get 'feed', :defaults => { :format => 'rss' }
       get 'archived'

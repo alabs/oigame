@@ -11,9 +11,9 @@ class CampaignsController < ApplicationController
 
   # para cancan
   load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :tag, :tags_archived, :message, :moderated, :feed, :archived]
+  skip_load_resource :only => [:index, :message, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate, :new_comment]
+  skip_authorize_resource :only => [:index, :message, :feed, :integrate, :new_comment]
 
   respond_to :html, :json
 
@@ -23,11 +23,6 @@ class CampaignsController < ApplicationController
       return false
     end
     @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
-    if @sub_oigame.nil? 
-      @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
-    else
-      @tags = Rails.cache.fetch("tags_campaigns_index_with_sub_#{@sub_oigame.id}", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
-    end
 
     respond_with(@campaigns)
   end
@@ -62,7 +57,6 @@ class CampaignsController < ApplicationController
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
     @description = @campaign.name
-    @keywords = @campaign.tag_list.join(', ')
 
     respond_with(@campaign)
   end
@@ -141,28 +135,6 @@ class CampaignsController < ApplicationController
 
   def widget_iframe
     render :partial => "widget_iframe"
-  end
-
-  def tag
-    @campaigns = Campaign.last_campaigns_by_tag(params[:id], params[:page])
-
-    if @sub_oigame.nil?
-      @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
-    else
-      @tags = Rails.cache.fetch("tags_campaigns_index_with_sub_#{@sub_oigame.id}", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
-    end
-  end
-
-  def tags_archived
-    @archived = true
-
-    if @sub_oigame.nil?
-      @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id], params[:page])
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires => 3.hours) { Campaign.where(:sub_oigame_id => nil).on_archive.tag_counts_on(:tags) }
-    else
-      @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id], params[:page], @sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).on_archive.tag_counts_on(:tags) }
-    end
   end
 
   def message
@@ -314,11 +286,6 @@ class CampaignsController < ApplicationController
 
   def moderated
     @campaigns = Campaign.last_campaigns_moderated params[:page], @sub_oigame
-    if @sub_oigame.nil? 
-      @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
-    else
-      @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
-    end
   end
 
   def activate
@@ -366,10 +333,8 @@ class CampaignsController < ApplicationController
 
     if @sub_oigame.nil?
       @campaigns = Campaign.archived_campaigns params[:page]
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).on_archive.tag_counts_on(:tags) }
     else
       @campaigns = Campaign.archived_campaigns(params[:page], @sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).on_archive.tag_counts_on(:tags) }
     end
   end
 
