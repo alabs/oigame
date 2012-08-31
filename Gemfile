@@ -57,7 +57,7 @@ gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
 gem "rails3_acts_as_paranoid", "~>0.2.0"
 gem 'thinking-sphinx', '2.0.10'
 gem 'fb_graph'
-gem 'kaminari'
+#gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
@@ -67,3 +67,6 @@ gem 'mailcatcher'
 gem 'geocoder'
 
 gem 'tolk'
+
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
