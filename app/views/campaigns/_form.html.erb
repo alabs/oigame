@@ -95,10 +95,6 @@
         <span class="error_message"><%= @campaign.errors[:duedate_at].to_sentence %></span>
       <% end %>
     </div>
-    <div class="form-field">
-      <%= f.label :tag_list, t(:tags) %>
-      <%= f.text_field :tag_list, :class => 'span6', :placeholder => 'Lista de etiquetas separadas por comas' %>
-    </div>
     <div id="form-actions">
       <%= f.submit @page_title, :class => 'btn btn-primary btn-large' %>
     </div>

@@ -11,23 +11,18 @@ class CampaignsController < ApplicationController
 
   # para cancan
   load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :tag, :tags_archived, :message, :moderated, :feed, :archived]
+  skip_load_resource :only => [:index, :message, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :tag, :tags_archived, :message, :feed, :integrate, :new_comment]
+  skip_authorize_resource :only => [:index, :message, :feed, :integrate, :new_comment]
 
   respond_to :html, :json
 
   def index
-    if @sub_oigame == 'not found'
-      render_404
-      return false
-    end
+    #if @sub_oigame == 'not found'
+    #  render_404
+    #  return false
+    #end
     @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
-    if @sub_oigame.nil? 
-      @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
-    else
-      @tags = Rails.cache.fetch("tags_campaigns_index_with_sub_#{@sub_oigame.id}", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
-    end
 
     respond_with(@campaigns)
   end
@@ -37,32 +32,18 @@ class CampaignsController < ApplicationController
     @cause = true
     @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
 
-    if @campaign.nil?
-      render_404 
-      return false
-    end
-
     @participants = @campaign.participants
 
-    # comprobamos si este usuario ya ha participado en este campaña
-    if defined? current_user.email
-      participants_emails = @participants.map {|x| x.email}
-      if participants_emails.include? current_user.email
-        @has_participated = true
-      else
-        @has_participated = false
-      end
-    end
+    @has_participated = @campaign.user_has_participated?(current_user)
 
     if @campaign.ttype == 'petition'
-      @stats_data = generate_stats_for_petition(@campaign)
+      @stats_data = @campaign.generate_stats_for_petition(@campaign)
     elsif @campaign.ttype == 'mailing'
-      @stats_data = generate_stats_for_mailing(@campaign)
+      @stats_data = @campaign.generate_stats_for_mailing(@campaign)
     end
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
     @description = @campaign.intro
-    @keywords = @campaign.tag_list.join(', ')
 
     respond_with(@campaign)
   end
@@ -143,28 +124,6 @@ class CampaignsController < ApplicationController
     render :partial => "widget_iframe"
   end
 
-  def tag
-    @campaigns = Campaign.last_campaigns_by_tag(params[:id], params[:page])
-
-    if @sub_oigame.nil?
-      @tags = Rails.cache.fetch('tags_campaigns_index_no_sub', :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags) }
-    else
-      @tags = Rails.cache.fetch("tags_campaigns_index_with_sub_#{@sub_oigame.id}", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags) }
-    end
-  end
-
-  def tags_archived
-    @archived = true
-
-    if @sub_oigame.nil?
-      @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id], params[:page])
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires => 3.hours) { Campaign.where(:sub_oigame_id => nil).on_archive.tag_counts_on(:tags) }
-    else
-      @campaigns = Campaign.last_campaigns_by_tag_archived(params[:id], params[:page], @sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).on_archive.tag_counts_on(:tags) }
-    end
-  end
-
   def message
     @campaign = Campaign.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
@@ -235,7 +194,7 @@ class CampaignsController < ApplicationController
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
       if @campaign
-        @stats_data = generate_stats_for_mailing(@campaign)
+        @stats_data = @campaign.generate_stats_for_mailing(@campaign)
       else
         flash[:error] = "Esta campaña ya no está activa."
         redirect_to campaigns_url
@@ -314,11 +273,6 @@ class CampaignsController < ApplicationController
 
   def moderated
     @campaigns = Campaign.last_campaigns_moderated params[:page], @sub_oigame
-    if @sub_oigame.nil? 
-      @tags = Campaign.where(:sub_oigame_id => nil).published.tag_counts_on(:tags)
-    else
-      @tags = Campaign.where(:sub_oigame_id => @sub_oigame).published.tag_counts_on(:tags)
-    end
   end
 
   def activate
@@ -366,10 +320,8 @@ class CampaignsController < ApplicationController
 
     if @sub_oigame.nil?
       @campaigns = Campaign.archived_campaigns params[:page]
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_no_sub", :expires_in => 3.hours) { Campaign.where(:sub_oigame_id => nil).on_archive.tag_counts_on(:tags) }
     else
       @campaigns = Campaign.archived_campaigns(params[:page], @sub_oigame)
-      @tags = Rails.cache.fetch("tags_campaigns_tags_archived_with_sub", :expires_in => 3.hours) { Campaign.by_sub_oigame(@sub_oigame).on_archive.tag_counts_on(:tags) }
     end
   end
 
@@ -419,43 +371,6 @@ class CampaignsController < ApplicationController
       else
         return @sub_oigame = nil
       end
-    end
-
-    def generate_stats_for_mailing(campaign)
-      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-      data = []
-      messages = 0
-      require Rails.root.to_s+'/app/models/message'
-      dates.each do |date|
-        count = Rails.cache.fetch("s4m_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
-        messages += count
-        data.push([date.strftime('%Y-%m-%d'), messages])
-      end
-      
-      return data
-    end
-    
-    def generate_stats_for_petition(campaign)
-      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-      data = []
-      petitions = 0
-      require Rails.root.to_s+'/app/models/petition'
-      dates.each do |date|
-        count = Rails.cache.fetch("s4p_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
-        petitions += count
-        data.push([date.strftime('%Y-%m-%d'), petitions])
-      end
-      
-      return data
-    end
-
-    def generate_token
-      secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
-    end
-
-    def secure_digest(*args)
-      require 'digest/sha1'
-      Digest::SHA1.hexdigest(args.flatten.join('--'))
     end
 
     def render_404

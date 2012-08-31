@@ -26,11 +26,7 @@
     <% else %>
       <meta name="description" content="Plataforma de movilización ciudadana a través de la web - oiga.me" />
     <% end %>
-    <% if @keywords %>
-      <meta name="keywords" content="<%= @keywords %>" />
-    <% else %>
-      <meta name="keywords" content="oiga.me, plataforma, movilización, web, campaña, campañas" />
-    <% end %>
+    <meta name="keywords" content="oiga.me, plataforma, movilización, web, campaña, campañas" />
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <% if Rails.env == 'production' %>

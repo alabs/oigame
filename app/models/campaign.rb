@@ -11,7 +11,7 @@ class Campaign < ActiveRecord::Base
   has_many :messages
   has_many :petitions
   
-  attr_accessible :name, :intro, :body, :recipients, :tag_list, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable
+  attr_accessible :name, :intro, :body, :recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size
@@ -27,8 +27,6 @@ class Campaign < ActiveRecord::Base
   # validación desactivada porque genera excepción al manipular objetos
   # antiguos que tienen una intro de mas de 500 caracteres
   #validates :intro, :length => { :maximum => 500 }
-
-  acts_as_taggable
 
   mount_uploader :image, CampaignImageUploader
 
@@ -72,14 +70,6 @@ class Campaign < ActiveRecord::Base
     
     def last_campaigns_without_pagination(limit = nil)
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => nil).published.limit(limit)
-    end
-
-    def last_campaigns_by_tag(tag, page = 1, limit = nil)
-      tagged_with(tag).order('published_at DESC').published.limit(limit).page(page)
-    end
-
-    def last_campaigns_by_tag_archived(tag, page = 1, sub_oigame = nil, limit = nil)
-      where(:sub_oigame_id => sub_oigame).tagged_with(tag).order('published_at DESC')._archived.limit(limit).page(page)
     end
 
     def last_campaigns_moderated(page = 1, sub_oigame = nil)
@@ -192,6 +182,46 @@ class Campaign < ActiveRecord::Base
       return APP_CONFIG[:domain] + "/campaigns/" + self.slug
     else 
       return APP_CONFIG[:domain] + "/o/" + self.sub_oigame.name + "/campaigns/" + self.slug
+    end
+  end
+
+  def generate_stats_for_mailing(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    messages = 0
+    require Rails.root.to_s+'/app/models/message'
+    dates.each do |date|
+      count = Rails.cache.fetch("s4m_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      messages += count
+      data.push([date.strftime('%Y-%m-%d'), messages])
+    end
+    
+    return data
+  end
+  
+  def generate_stats_for_petition(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    petitions = 0
+    require Rails.root.to_s+'/app/models/petition'
+    dates.each do |date|
+      count = Rails.cache.fetch("s4p_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      petitions += count
+      data.push([date.strftime('%Y-%m-%d'), petitions])
+    end
+    
+    return data
+  end
+
+  def user_has_participated?(user)
+    # comprobamos si este usuario ya ha participado en este campaña
+    if defined? user.email
+      participants_emails = self.participants.map {|x| x.email}
+      if participants_emails.include? user.email
+        return true
+      else
+        return false
+      end
     end
   end
 
