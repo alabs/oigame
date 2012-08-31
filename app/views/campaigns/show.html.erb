@@ -206,45 +206,6 @@
           <p style="margin-bottom:30px;"></p>
         </div>
       </div><!-- description -->
-      <% if @campaign.commentable %>
-        <div id="disqus_thread" class="tab-pane fade">
-          <script type="text/javascript">
-              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-              var disqus_shortname = 'oigame'; // required: replace example with your forum shortname
-
-            <% if ENV["RAILS_ENV"] == "development" or ENV["RAILS_ENV"] == "staging" %>
-              var disqus_developer = 1; // developer mode is on
-            <% end %>
-
-              function disqus_config() {
-                this.callbacks.onNewComment = [function() {
-                  $.ajax({ url: "<%= @sub_oigame ? new_comment_sub_oigame_campaign_path(@sub_oigame) : new_comment_campaign_path %>",
-                    type: 'POST',
-                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
-                  });
-                }];
-              }
-
-              // comment form
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-
-             // comment count
-             /* * * DON'T EDIT BELOW THIS LINE * * */
-             (function () {
-                 var s = document.createElement('script'); s.async = true;
-                 s.type = 'text/javascript';
-                 s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
-                 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-             }());
-          </script>
-          <noscript>Por favor habilita Javascript para ver <a href="http://disqus.com/?ref_noscript">los comentarios de Disqus.</a></noscript>
-        </div><!-- comments -->
-      <% end %>
       <div id="message" class="tab-pane fade">
         <div id="campaign-info">
           <h2><%= I18n.t(:recipients) %></h2>
