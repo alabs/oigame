@@ -1,7 +1,9 @@
 Oigame::Application.routes.draw do
 
+#  mount Tolk::Engine => '/translate', :as => 'tolk'
+
   # solucionar el tema de acceso por rol
-  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :sub_oigames, :path => "o" do
     resources :campaigns do
