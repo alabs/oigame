@@ -61,7 +61,7 @@ class CampaignsController < ApplicationController
     end
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
-    @description = @campaign.name
+    @description = @campaign.intro
     @keywords = @campaign.tag_list.join(', ')
 
     respond_with(@campaign)

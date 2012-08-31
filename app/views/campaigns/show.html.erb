@@ -69,11 +69,6 @@
           <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
         </li>
       <% end %>
-      <% if @campaign.commentable %>
-        <li data-tab-type="disqus_thread">
-          <a data-toggle="tab" href="#disqus_thread">Comentarios</a>
-        </li>
-      <% end %>
 
     <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
     <% if can? :moderated, @campaign or (can? :moderated, @campaign && @campaign.moderated?) or (can? :deactivate, @campaign && @campaign.published?) or (can? :participants, @campaign && @campaign.messages.count > 0) or (can? :update, @campaign) or (can? :priority, @campaign) or (can? :destroy, @campaign) %>
@@ -193,8 +188,11 @@
             </p>
           <% end %>
           <%= @campaign.to_html(@campaign.body).html_safe %> 
+
+      <% if @campaign.commentable %>
+          <p style="margin-bottom:30px;"></p>
           <div id="participants">
-            <!-- FB LIKEBOOX -->
+            <!-- FB COMMENTS -->
             <div id="fb-root"></div>
             <script>(function(d, s, id) {
               var js, fjs = d.getElementsByTagName(s)[0];
@@ -203,50 +201,12 @@
               js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
-            <div class="fb-like-box" data-href="<%= campaign_url %>" data-width="515" data-show-faces="true" data-stream="false" data-header="false"></div>
-          </div>
-          <p style="margin-bottom:30px;"></p>
+            <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="2" data-width="500"></div>
+          </div><!-- participants -->
+      <% end %>
+        <p style="margin-bottom:30px;"></p>
         </div>
       </div><!-- description -->
-      <% if @campaign.commentable %>
-        <div id="disqus_thread" class="tab-pane fade">
-          <script type="text/javascript">
-              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-              var disqus_shortname = 'oigame'; // required: replace example with your forum shortname
-
-            <% if ENV["RAILS_ENV"] == "development" or ENV["RAILS_ENV"] == "staging" %>
-              var disqus_developer = 1; // developer mode is on
-            <% end %>
-
-              function disqus_config() {
-                this.callbacks.onNewComment = [function() {
-                  $.ajax({ url: "<%= @sub_oigame ? new_comment_sub_oigame_campaign_path(@sub_oigame) : new_comment_campaign_path %>",
-                    type: 'POST',
-                    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
-                  });
-                }];
-              }
-
-              // comment form
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-              })();
-
-             // comment count
-             /* * * DON'T EDIT BELOW THIS LINE * * */
-             (function () {
-                 var s = document.createElement('script'); s.async = true;
-                 s.type = 'text/javascript';
-                 s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
-                 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-             }());
-          </script>
-          <noscript>Por favor habilita Javascript para ver <a href="http://disqus.com/?ref_noscript">los comentarios de Disqus.</a></noscript>
-        </div><!-- comments -->
-      <% end %>
       <div id="message" class="tab-pane fade">
         <div id="campaign-info">
           <h2><%= I18n.t(:recipients) %></h2>
