@@ -66,3 +66,5 @@ gem 'rails_admin'
 gem 'mailcatcher'
 
 gem 'geocoder'
+
+gem 'tolk'

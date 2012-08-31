@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="<%= Tolk::Locale.primary_locale_name %>">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Traducciones - oiga.me</title>
+
+  <%= javascript_include_tag "tolk/application" %>
+  <%= stylesheet_link_tag "tolk/application" %>
+  <%= yield :head %>
+</head>
+
+<body>
+  <div id="container">
+    <div id="head">
+    
+      <h1><%= image_tag('logo.png') %><span class="home"><%= link_to "Traducciones", root_path %></span><% if @locale.present? %><span class="locale"><%= link_to @locale.language_name, locale_path(@locale) %></span><% end %></h1>
+    </div>
+    <%= yield %>
+  </div>
+
+  <script type="text/javascript">
+    $$('td textarea').each(function(element) {
+      element.setStyle({height: element.up('td').measure('height')+'px'});
+    });
+  </script>
+</body>
+</html>
