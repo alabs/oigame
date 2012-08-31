@@ -12,4 +12,13 @@ class ApplicationController < ActionController::Base
   def set_http_cache(period, visibility = false)
     expires_in period, :public => visibility, 'max-stale' => 0
   end
+    
+  def generate_token
+    secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+  end
+
+  def secure_digest(*args)
+    require 'digest/sha1'
+    Digest::SHA1.hexdigest(args.flatten.join('--'))
+  end
 end

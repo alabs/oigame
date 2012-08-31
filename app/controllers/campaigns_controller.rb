@@ -18,10 +18,10 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
-    if @sub_oigame == 'not found'
-      render_404
-      return false
-    end
+    #if @sub_oigame == 'not found'
+    #  render_404
+    #  return false
+    #end
     @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
 
     respond_with(@campaigns)
@@ -31,11 +31,6 @@ class CampaignsController < ApplicationController
     # para que funcione el botón de facebook
     @cause = true
     @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
-
-    if @campaign.nil?
-      render_404 
-      return false
-    end
 
     @participants = @campaign.participants
 
@@ -50,9 +45,9 @@ class CampaignsController < ApplicationController
     end
 
     if @campaign.ttype == 'petition'
-      @stats_data = generate_stats_for_petition(@campaign)
+      @stats_data = @campaign.generate_stats_for_petition(@campaign)
     elsif @campaign.ttype == 'mailing'
-      @stats_data = generate_stats_for_mailing(@campaign)
+      @stats_data = @campaign.generate_stats_for_mailing(@campaign)
     end
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
@@ -207,7 +202,7 @@ class CampaignsController < ApplicationController
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
       if @campaign
-        @stats_data = generate_stats_for_mailing(@campaign)
+        @stats_data = @campaign.generate_stats_for_mailing(@campaign)
       else
         flash[:error] = "Esta campaña ya no está activa."
         redirect_to campaigns_url
@@ -384,43 +379,6 @@ class CampaignsController < ApplicationController
       else
         return @sub_oigame = nil
       end
-    end
-
-    def generate_stats_for_mailing(campaign)
-      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-      data = []
-      messages = 0
-      require Rails.root.to_s+'/app/models/message'
-      dates.each do |date|
-        count = Rails.cache.fetch("s4m_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
-        messages += count
-        data.push([date.strftime('%Y-%m-%d'), messages])
-      end
-      
-      return data
-    end
-    
-    def generate_stats_for_petition(campaign)
-      dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
-      data = []
-      petitions = 0
-      require Rails.root.to_s+'/app/models/petition'
-      dates.each do |date|
-        count = Rails.cache.fetch("s4p_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
-        petitions += count
-        data.push([date.strftime('%Y-%m-%d'), petitions])
-      end
-      
-      return data
-    end
-
-    def generate_token
-      secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
-    end
-
-    def secure_digest(*args)
-      require 'digest/sha1'
-      Digest::SHA1.hexdigest(args.flatten.join('--'))
     end
 
     def render_404

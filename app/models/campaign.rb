@@ -185,6 +185,34 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def generate_stats_for_mailing(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    messages = 0
+    require Rails.root.to_s+'/app/models/message'
+    dates.each do |date|
+      count = Rails.cache.fetch("s4m_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      messages += count
+      data.push([date.strftime('%Y-%m-%d'), messages])
+    end
+    
+    return data
+  end
+  
+  def generate_stats_for_petition(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    petitions = 0
+    require Rails.root.to_s+'/app/models/petition'
+    dates.each do |date|
+      count = Rails.cache.fetch("s4p_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      petitions += count
+      data.push([date.strftime('%Y-%m-%d'), petitions])
+    end
+    
+    return data
+  end
+
   private
 
   def generate_slug
