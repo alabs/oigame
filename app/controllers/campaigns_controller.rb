@@ -34,15 +34,7 @@ class CampaignsController < ApplicationController
 
     @participants = @campaign.participants
 
-    # comprobamos si este usuario ya ha participado en este campaña
-    if defined? current_user.email
-      participants_emails = @participants.map {|x| x.email}
-      if participants_emails.include? current_user.email
-        @has_participated = true
-      else
-        @has_participated = false
-      end
-    end
+    @has_participated = @campaign.user_has_participated?(current_user)
 
     if @campaign.ttype == 'petition'
       @stats_data = @campaign.generate_stats_for_petition(@campaign)

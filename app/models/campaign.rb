@@ -213,6 +213,18 @@ class Campaign < ActiveRecord::Base
     return data
   end
 
+  def user_has_participated?(user)
+    # comprobamos si este usuario ya ha participado en este campaña
+    if defined? user.email
+      participants_emails = self.participants.map {|x| x.email}
+      if participants_emails.include? user.email
+        return true
+      else
+        return false
+      end
+    end
+  end
+
   private
 
   def generate_slug
