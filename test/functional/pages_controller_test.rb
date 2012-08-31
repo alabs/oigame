@@ -27,9 +27,5 @@ class PagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get donate" do
-    get :donate
-    assert_response :success
-  end
 
 end
