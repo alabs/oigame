@@ -2,10 +2,8 @@ require 'test_helper'
 
 class CampaignsControllerTest < ActionController::TestCase
   setup do
-    @campaign = FactoryGirl.build(:campaign)
-
     # distintos roles de usuarios
-    @user = users(:normal)
+    @user = FactoryGirl.create(:user)
     @user.confirm!
     @admin = users(:admin)
     @admin.role = :admin
@@ -13,6 +11,8 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
+    @campaign = FactoryGirl.build(:campaign)
+
     get :index
     assert_response :success
     assert_not_nil assigns(@campaigns)
@@ -43,13 +43,14 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should show campaign" do
-    debugger
-    get :show, id: @campaign.to_param
+    campaign = FactoryGirl.create(:campaign)
+    get :show, id: campaign.slug
     assert_response :success
   end
 
   test "should redirect on edit as anon" do
-    get :edit, id: @campaign.to_param
+    campaign = FactoryGirl.create(:campaign)
+    get :edit, id: campaign.slug
     assert_response :redirect
   end
 
@@ -59,9 +60,10 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should destroy campaign" do
-    assert_difference('Campaign.count', -1) do
+    assert_difference('Campaign.count', 0) do
+      campaign = FactoryGirl.create(:campaign)
       sign_in @admin
-      delete :destroy, id: @campaign.id
+      delete :destroy, id: campaign.slug
     end
 
     assert_redirected_to campaigns_path
