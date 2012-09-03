@@ -1,7 +1,5 @@
 Oigame::Application.routes.draw do
 
-  #mount Tolk::Engine => '/translate', :as => 'tolk'
-
   # solucionar el tema de acceso por rol
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -51,6 +49,11 @@ Oigame::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }, :controllers => { :registrations => "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+  end
+
+  # http://dev.af83.com/2012/06/04/request-authentication-from-the-router-with-devise.html
+  authenticate :user do
+    mount Tolk::Engine => '/translate', :as => 'tolk'
   end
 
   resources :campaigns do
