@@ -9,9 +9,7 @@
               <h3><%= link_to locale.language_name, locale %></h3>
               <p>
                 <div class="span4">
-                  <% if missing_count > 0 %>
-                    <span class="badge badge-important missing_translations"><%= locale.count_phrases_without_translation %></span>
-                  <% end %>
+                  <span class="badge badge-important missing_translations"><%= locale.count_phrases_without_translation %></span>
                 </div>
                 <div class="span3">
                   <%= link_to "Traducir", locale, :class => "btn btn-primary" %>
