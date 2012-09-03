@@ -34,12 +34,12 @@ class CampaignsController < ApplicationController
 
     @participants = @campaign.participants
 
-    @has_participated = @campaign.user_has_participated?(current_user)
+    @has_participated = @campaign.has_participated?(current_user)
 
     if @campaign.ttype == 'petition'
-      @stats_data = @campaign.generate_stats_for_petition(@campaign)
+      @stats_data = @campaign.stats_for_petition(@campaign)
     elsif @campaign.ttype == 'mailing'
-      @stats_data = @campaign.generate_stats_for_mailing(@campaign)
+      @stats_data = @campaign.stats_for_mailing(@campaign)
     end
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
@@ -128,69 +128,8 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
     if request.post?
-      if not user_signed_in?
-        # si no esta registrado seteamos las cookies para no volver a preguntar 
-        # su nombre y su correo - si esta registrado nos da igual
-        cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
-        cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
-      end
-      from = user_signed_in? ? current_user.email : params[:email]
-      if @campaign
-        if params[:own_message] == "1" 
-          message = Message.new(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
-          if message.save
-
-            # si está registrado no pedirle confirmación de unión a la campaña
-            if user_signed_in?
-              message.update_attributes(:validated => true, :token => nil)
-              if @sub_oigame.nil?
-                redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
-              else
-                redirect_to message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
-              end
-
-              return
-            end
-            Mailman.send_message_to_validate_message(from, @campaign, message).deliver
-          else
-            flash.now[:error] = "No puedes participar más de una vez por campaña"
-            render :action => :show
-            return
-          end
-        else
-          # mensaje por defecto
-          message = Message.new(:campaign => @campaign, :email => from, :subject => @campaign.default_message_subject, :body => @campaign.default_message_body, :token => generate_token)
-          if message.save
-            # si está registrado no pedirle confirmación de unión a la campaña
-            if user_signed_in?
-              message.update_attributes(:validated => true, :token => nil)
-              if @sub_oigame.nil?
-                redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
-              else
-                redirect_to message_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
-              end
-
-              return
-
-            end
-            Mailman.send_message_to_validate_message(from, @campaign, message).deliver
-          else
-            flash.now[:error] = "No puedes participar más de una vez por campaña"
-            render :action => :show
-            return
-          end
-        end
-        if @sub_oigame.nil?
-          redirect_to message_campaign_url
-        else
-          redirect_to message_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
-        end
-
-        return
-      else
-        flash[:error] = "Esta campaña ya no está activa."
-        redirect_to campaigns_url
-      end
+      # proccess message
+      process_message
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
       if @campaign
@@ -206,42 +145,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:id])
     @campaigns = @campaign.other_campaigns
     if request.post?
-      if user_signed_in?
-        if current_user.name.blank?
-          current_user.update_attributes(:name => params[:name])
-          # si no esta registrado seteamos las cookies para no volver a preguntar 
-          # su nombre y su correo - si esta registrado nos da igual
-          cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
-          cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
-        end
-      end
-      to = user_signed_in? ? current_user.email : params[:email]
-      @petition = Petition.new(:campaign => @campaign, :name => params[:name], :email => to, :token => generate_token )
-      if @petition.save
-        # si está registado no enviar mensaje de confirmación
-        if user_signed_in?
-          @petition.update_attributes(:validated => true, :token => nil)
-          if @sub_oigame
-            redirect_url = petition_sub_oigame_campaign_url
-          else
-            redirect_url = petition_campaign_url
-          end
-          redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-
-          return
-
-        end
-        Mailman.send_message_to_validate_petition(to, @campaign, @petition).deliver
-        if @sub_oigame
-          redirect_url = petition_sub_oigame_campaign_url
-        else
-          redirect_url = petition_campaign_url
-        end
-        redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-      else
-        flash.now[:error] = 'No puedes participar más de una vez por campaña'
-        render :action => :show 
-      end
+      process_petition
     end
   end
 
@@ -361,17 +265,6 @@ class CampaignsController < ApplicationController
   end
 
   private
-
-    def get_sub_oigame
-      unless params[:sub_oigame_id].nil?
-        @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-        if @sub_oigame.nil?
-          return @sub_oigame = 'not found'
-        end
-      else
-        return @sub_oigame = nil
-      end
-    end
 
     def render_404
       respond_to do |format|
