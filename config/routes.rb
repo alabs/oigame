@@ -1,6 +1,6 @@
 Oigame::Application.routes.draw do
 
-  scope "/:locale", :locale => /en|es/ do
+  scope "(:locale)", :locale => /en|es/ do
     # solucionar el tema de acceso por rol
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
@@ -88,8 +88,8 @@ Oigame::Application.routes.draw do
   
   end
 
-  #match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
-  match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" }, constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+  match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
+    constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
 
   match '', to: redirect("/#{I18n.default_locale}")
 
