@@ -98,6 +98,11 @@
               <li id="header-tutorial"><%= link_to t(:tutorial), tutorial_path %></li>
             </ul>
             <ul class="nav secondary-nav">
+              <% if I18n.locale === :es %>
+                <%= link_to 'English', url_for( :locale => 'en' ) %>
+              <% else %>
+                <%= link_to 'Español', url_for( :locale => 'es' ) %>
+              <% end %>
               <% unless user_signed_in? %>
                 <div id="signin-container">
                   <div id="topnav" class="topnav">
