@@ -7,9 +7,12 @@
 
   <%= javascript_include_tag "tolk/application" %>
   <%= stylesheet_link_tag "tolk/application" %>
-  <%= stylesheet_link_tag "bootstrap" %>
+  <%= stylesheet_link_tag "application" %>
   <%= yield :head %>
 <style>
+html {
+  background: white !important;
+}
 div#container{
   padding: 0px !important;
 }
