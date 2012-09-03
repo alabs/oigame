@@ -41,13 +41,13 @@
         <% end %>
       </table>
       <div class="table_submit">
-        <p><%= locale_form.submit "Save changes" %></p>
+        <p><%= locale_form.submit "Guardar cambios" %></p>
       </div>
     <% end %>
     <div class="paginate">
-      <%= will_paginate @phrases %>
+      <%= will_paginate(@phrases, :renderer => BootstrapPagination::Rails) %>
     </div>
   <% else %>
-    <p style="text-align: left">No search results.</p>
+    <p style="text-align: left">Sin resultados.</p>
   <% end %>
 </div>
