@@ -12,10 +12,10 @@
                   <% missing_count = locale.count_phrases_without_translation %>
                   <% translated_count = total_count - missing_count  %>
                   <div class="progress progress-striped active">
-                    <div class="bar" style="width: <%= translated_count * 100 / missing_count  %>%;"></div>
+                    <div class="bar" style="width: <%= translated_count * 100 / total_count  %>%;"></div>
                   </div>
                 <div class="span4">
-                      <%= translated_count * 100 / missing_count  %>%
+                      <%= translated_count * 100 / total_count  %>%
                 </div>
                 <div class="span4">
                   <% if missing_count > 0 %>
