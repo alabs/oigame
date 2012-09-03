@@ -9,17 +9,17 @@
         <div class="grid_6">  
           <dl class="dl-horizontal">
             <% unless @campaign.status == 'archived' %>
-              <dt><%= I18n.t(:published_at) %></dt>
+              <dt><%= t(:published_at) %></dt>
               <% # published_at no es correcto aquí, da error si la campaña no ha sido publicada todavía %>
                 <dd><%= time_ago_in_words(@campaign.created_at) %></dd>
-              <dt><%= I18n.t(:time_left) %></dt>
-                <dd><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= I18n.t(:days) %></dd>
+              <dt><%= t(:time_left) %></dt>
+                <dd><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
             <% else %>
-              <dt><%= I18n.t(:published_at) %></dt>
+              <dt><%= t(:published_at) %></dt>
                 <dd>hace <%= time_ago_in_words(@campaign.published_at) %></dd>
-              <dt><%= I18n.t(:archived_campaign) %></dt>
+              <dt><%= t(:archived_campaign) %></dt>
             <% end %>
-            <dt> <%= I18n.t(:participants) %> </dt>
+            <dt> <%= t(:participants) %> </dt>
               <dd>
                 <span id="participants">
                   <% if @campaign.ttype == 'mailing' %>
@@ -28,7 +28,7 @@
                     <%= @campaign.petitions.validated.count %>
                   <% end %>
                 </span>
-                <%= I18n.t(:of) %>
+                <%= t(:of) %>
                 <span id="participants-target"><%= @campaign.target %></span>
               </dd>
           </dl>
@@ -57,16 +57,16 @@
 
     <ul id="campaign-tab" class="nav nav-tabs">
       <li class="active">
-        <a data-toggle="tab" href="#description"><%= I18n.t(:description) %></a>
+        <a data-toggle="tab" href="#description"><%= t(:description) %></a>
       </li>
       <% if @campaign.ttype == 'mailing' %>
         <li>
-          <a data-toggle="tab" href="#message"><%= I18n.t(:message) %></a>
+          <a data-toggle="tab" href="#message"><%= t(:message) %></a>
         </li>
       <% end %>
       <% unless @campaign.status == 'archived' %>
         <li data-tab-type="stats">
-          <a data-toggle="tab" href="#stats"><%= I18n.t(:stats) %></a>
+          <a data-toggle="tab" href="#stats"><%= t(:stats) %></a>
         </li>
       <% end %>
 
@@ -105,16 +105,16 @@
       </div><!-- description -->
       <div id="message" class="tab-pane fade">
         <div id="campaign-info">
-          <h2><%= I18n.t(:recipients) %></h2>
-          <p><%= I18n.t(:recipients_show) %></p>
+          <h2><%= t(:recipients) %></h2>
+          <p><%= t(:recipients_show) %></p>
             <ul>
               <% @campaign.recipients.gsub('@', '[arroba]').split(' ').each do |dest| %> 
                 <li><%= dest %></li>
               <% end %>
             </ul>
             <hr />
-            <h2><%= I18n.t(:message) %></h2>
-            <b><%= I18n.t(:subject) %></b>: <%= @campaign.default_message_subject %> 
+            <h2><%= t(:message) %></h2>
+            <b><%= t(:subject) %></b>: <%= @campaign.default_message_subject %> 
           <p>
             <pre><%= @campaign.default_message_body %></pre>
           </p>
@@ -158,9 +158,9 @@
 
         <% end %>
         
-        <h2 class="jtc"><%= I18n.t(:spread) %></h2>
+        <h2 class="jtc"><%= t(:spread) %></h2>
         <div id="diffusion">
-          <%= I18n.t(:spread_info) %>
+          <%= t(:spread_info) %>
           <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
         </div>
 
