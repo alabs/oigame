@@ -1,10 +1,26 @@
-<%= form_tag tolk.search_path, :method => :get do %>
+<%= form_tag tolk.search_path, :method => :get, :class => "form-horizontal", :style => "margin-top:2em;" do %>
   <%= hidden_field_tag :locale, locale.name %>
-  Search for
-  <%= scope_selector_for(@locale) %>
-  phrase:
-  <%= text_field_tag :q, params[:q] %>
-  within key:
-  <%= text_field_tag :k, params[:k] %>
-  <%= submit_tag "Search", :name => nil %>
+  <div class="control-group">
+    <label class="control-label" for="scope">Buscar en</label>
+    <div class="controls">
+      <%= scope_selector_for(@locale) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="q">frase</label>
+    <div class="controls">
+      <%= text_field_tag :q, params[:q] %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="k">clave</label>
+    <div class="controls">
+      <%= text_field_tag :k, params[:k] %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= submit_tag "Buscar", :name => nil, :class => "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>
