@@ -191,5 +191,26 @@ es:
   search: 'Buscar'
   other_campaigns: 'Participa en estas otras campañas'
   you_can_help: 'Puedes ayudar a esta campaña difundiendola en tus redes sociales'
-  
-  
+  user_create: 'Si quieres proponer campañas o recibir noticias de oiga.me, create una cuenta de usuario.'
+  i_want_to_receive_news: 'Deseo recibir noticias de oiga.me'
+  we_need_your_pass: 'necesitamos tu contraseña actual para realizar los cambios'
+  only_for_donations: 'Solo necesario para donaciones'
+  cancel_account: 'Cancelar mi cuenta'
+  this_link: 'este enlace'
+  hi: 'Hola'
+  inform_campaign_activate: "Te escribimos para informarte que la campaña con nombre '#{ campaign_name }' que creaste en oiga.me, ha sido publicada y está disponible en la siguiente URL:"
+  inform_new_comment: "Te escribimos para informarte que has recibido un nuevo comentario en la campaña con nombre '#{ campaign_name }' que creaste en oiga.me."
+  inform_campaign_social_council: "Hola consejo social, se ha creado una campaña nueva en oiga.me con el nombre: '#{ campaign_name }'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si os parece muy interesante comentadlo en la lista y lo debatimos."
+  inform_campaign_sub_admin: "Hola, se ha creado una campaña nueva en tu SubOigame '#{ sub_name }' con el nombre: '#{ campaign_name }'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si te parece muy interesante puedes activarla."
+  next_you_have_info: 'A continuación tenéis la información de la campaña'
+  thanks_for_participating: 'Gracias por participar en oiga.me.'
+  mail_validate_1: "Validar adhesión a la campaña: #{ campaign_name }"
+  mail_validate_2: "Para validar la adhesión a la campaña #{ campaign_name } tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
+  mail_validate_3: 'Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.'
+  mail_validate_4: 'Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:'
+  mail_validate_5: "Incluye la campaña en tu página web para que tus visitas puedan participar: #{url}. Es muy sencillo, tardarás menos de 1 minuto."
+  mail_validate_6: 'Difunde al máximo la campaña en las redes sociales.'
+  mail_validate_7: 'Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).'
+  mail_validate_8: "oiga.me es un proyecto de la asociación . Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{donate_url})."
+  mail_validate_9: "Sigue a #{oigame_twitter} en Twitter y en #{oigame_facebook}."
+  mail_validate_10: "oiga.me es un proyecto de la asociación #{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{url_donate})."

@@ -1,7 +1,7 @@
-<p>Hola <%= @message_to %>,</p>
+<p><%= t(:hi) %> <%= @message_to %>,</p>
 
-<p>Te escribimos para informarte que la campaña con nombre '<%= @campaign_name %>' que creaste en oiga.me, ha sido publicada y está disponible en la siguiente URL:</p>
+<p><%= t(:inform_campaign_activate, :campaign_name => @campaign_name %></p>
 
 <a href="<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign_slug %>"><%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign_slug %></a>
 
-<p>Gracias por participar en oiga.me.</p>
+<p><%= t(:thanks_for_participating) %></p>

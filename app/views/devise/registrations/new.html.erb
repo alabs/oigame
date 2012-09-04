@@ -7,7 +7,7 @@
         <fieldset>
           <legend><%= @page_title %></legend>
           <p>
-            Si quieres proponer campañas o recibir noticias de oiga.me, create una cuenta de usuario.
+            <%= t(:user_create) %>
           </p>
           <div class="form-field">
             <%= f.label t(:email) %>
@@ -32,7 +32,7 @@
             <%= f.password_field :password_confirmation %>
           </div>
           <div class="form-field">
-            <%= f.check_box :mailing, :checked => true %> <span class="note">Deseo recibir noticias de oiga.me</span>
+            <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
           </div>
           <div class="form-actions">
             <%= f.submit @page_title, :class => 'btn primary' %>
