@@ -6,21 +6,21 @@
       <%= image_tag("home-subscribe-3.jpg", :width => 462, :height => 359) %>
     </div>
     <div id="subscribe-form">
-      <p class="msg">NO ODIES AL<br />
-      LOBBY, ¡CÓMETELO!</p>
-      <p class="user-count"><%= @users %> PERSONAS</p>
-      <p class="do-it">YA LO HAN HECHO</p>
+      <p class="msg"><%= t(:slogan_1) %><br />
+      <%= t(:slogan_2) %></p>
+      <p class="user-count"><%= @users %> <%= t(:slogan_3) %></p>
+      <p class="do-it"><%= t(:slogan_4) %></p>
       <% if user_signed_in? %>
         <br >
         <br />
-        <%= link_to "Ver todas las campañas", campaigns_path, :class => "btn btn-primary btn-large" %>
+        <%= link_to t(:view_all_campaigns), campaigns_path, :class => "btn btn-primary btn-large" %>
         <%= link_to t(:propose_campaign), new_campaign_path, :class => "btn btn-primary btn-large", :style => "margin-left:2em" %>
       <% else %>
         <br >
         <br />
         <form id="pre-signup" action="/users/signup" method="get">
-          <input type="email" name="email" placeholder="tunombre@dominio.com" required="true" />
-          <button id="button-home-signup" type="submit" class="btn-primary btn btn-large">Hazte miembro ahora</button>
+          <input type="email" name="email" placeholder="<%= t(:example_email) %>" required="true" />
+          <button id="button-home-signup" type="submit" class="btn-primary btn btn-large"><%= t(:make_member) %></button>
         </form>
       <% end %>
     </div>
@@ -31,25 +31,25 @@
       <div class="simpleSlide-window" rel="1">
         <div class="simpleSlide-tray" rel="1">
             <div class="simpleSlide-slide" rel="1" alt="1">
-              <div> Plataforma de movilización ciudadana a través de la web </div>
+              <div> <%= t(:description) %> </div>
             </div>
             <div class="simpleSlide-slide" rel="1" alt="2">
-              <div> Un altavoz para que los poderosos te escuchen </div>
+              <div> <%= t(:slide_1) %> </div>
             </div>
             <div class="simpleSlide-slide" rel="1" alt="3">
-              <div> Crea el lobby más importante del mundo. Somos el 99% </div>
+              <div> <%= t(:slide_2) %> </div>
             </div>
             <div class="simpleSlide-slide" rel="1" alt="4">
-              <div> ¿Crees que puedes cambiar el mundo? ¡Hazlo!  </div>
+              <div> <%= t(:slide_3) %> </div>
             </div>
             <div class="simpleSlide-slide" rel="1" alt="5">
-              <div> Somos el 99%, juntos cambiamos el mundo </div>
+              <div> <%= t(:slide_4) %> </div>
             </div>
             <div class="simpleSlide-slide" rel="1" alt="6">
-              <div> Lo consiguieron porque no sabían que era imposible </div>
+              <div> <%= t(:slide_5) %> </div>
             </div>
             <div class="simpleSlide-slide" rel="1" alt="7">
-              <div> Te queremos, ¡únete!  </div>
+              <div> <%= t(:slide_6) %> </div>
             </div>
         </div><!-- simpleSlide-tray -->
       </div><!-- simpleSlide-window -->
@@ -62,21 +62,21 @@
   &nbsp;
   <% if @campaigns.count >= 3 %>
     <div id="campaigns-info">
-      <div id="last-campaigns-ribbon">últimas campañas</div>
+      <div id="last-campaigns-ribbon"><%= t(:last_campaigns) %></div>
       <% @campaigns.each do |campaign| %>
         <div class="campaign-home-detail">
           <div class="c-image-and-title">
             <div class="ctitle"><h2><%= link_to truncate(campaign.name, :length => 37), campaign %></h2></div>
             <% if campaign.image.to_s %>
-              <%= link_to image_tag(campaign.image_url(:home)), campaign %>
+              <%= link_to image_tag(campaign.image_url(:home), :alt => campaign.name), campaign, :title => campaign.name %>
             <% end %>
           </div>
           <div class="c-text-and-link">
             <%= campaign.to_html(truncate(campaign.intro, :length => 225)).html_safe %>
             <% if campaign.ttype == 'mailing' %>
-              <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.messages.validated.count %> personas ya lo han hecho</p>
+              <p><strong><%= link_to "> #{t(:join_this_campaign)}", campaign, :title => campaign.name %></strong><br /><%= campaign.messages.validated.count %> <%= t(:have_already_made) %></p>
             <% elsif campaign.ttype == 'petition' %>
-              <p><strong><%= link_to '> Únete a esta campaña', campaign %></strong><br /><%= campaign.petitions.validated.count %> personas ya lo han hecho</p>
+              <p><strong><%= link_to "> #{t(:join_this_campaign)}", campaign, :title => campaign.name %></strong><br /><%= campaign.petitions.validated.count %> <%= t(:have_already_made) %></p>
             <% end %>
           </div>
         </div><!-- campaign-home-detail -->
@@ -86,22 +86,22 @@
   <% end %>
   <div id="home-info">
     <div id="sayit">
-      <h2>Dilo</h2>
-      <p>Que se escuche tu voz. <strong>oiga.me</strong> es una plataforma en la que puedes montar campañas online en las que el mundo entero puede participar.</p>
-      <p><strong><%= link_to '> Aprende a usar oiga.me', tutorial_path %></strong></p>
-      <%= link_to image_tag('sayit.jpg'), tutorial_path %>
+      <h2><%= t(:sayit_title) %></h2>
+      <p><%= t(:sayit_1) %> <strong>oiga.me</strong> <%= t(:sayit_2) %></p>
+      <p><strong><%= link_to "> #{ t(:sayit_link) }", tutorial_path, :title => t(:sayit_link) %></strong></p>
+      <%= link_to image_tag('sayit.jpg', :alt => t(:sayit_link)), tutorial_path, :title => t(:sayit_link) %>
     </div>
     <div id="repeat">
-      <h2>Repítelo</h2>
-      <p>Súmate a la protesta, úne tu voz a las otras. Participa enviando millones de correos de forma efectiva, sin que te filtren, sin que puedan taparse los oídos.</p>
-      <p><strong><%= link_to '> Últimas campañas', campaigns_path %></strong></p>
-      <%= link_to image_tag('repeat.jpg'), campaigns_path %>
+      <h2><%= t(:repeat_title) %></h2>
+      <p><%= t(:repeat_1) %></p>
+      <p><strong><%= link_to "> #{ t(:repeat_link) }", campaigns_path, :title => t(:repeat_link) %></strong></p>
+      <%= link_to image_tag('repeat.jpg', :alt => t(:repeat_link)), campaigns_path, :title => t(:repeat_link) %>
     </div>
     <div id="doit">
-      <h2>Hazlo posible</h2>
-      <p>Haz posible que en <strong>oiga.me</strong> podamos hacer campañas de miles de llamadas de teléfono a los poderosos, que podamos enviar cientos de faxes. Mejora, dona, difunde, escribe código.</p>
-      <p><strong><%= link_to '> Infórmate como donar', donate_path %></strong></p>
-      <%= link_to image_tag('doit.jpg'), donate_path %>
+      <h2><%= t(:doit_title) %></h2>
+      <p><%= t(:doit_1) %> <strong>oiga.me</strong> <%= t(:doit_2) %></p>
+      <p><strong><%= link_to "> #{ t(:doit_link) }", donate_path, :title => t(:doit_link) %></strong></p>
+      <%= link_to image_tag('doit.jpg', :alt => t(:doit_link)), donate_path, :title => t(:doit_link) %>
     </div>
   </div><!-- home-info -->
 </div><!-- home-info-wrapper -->
