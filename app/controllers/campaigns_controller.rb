@@ -43,7 +43,7 @@ class CampaignsController < ApplicationController
     end
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
-    @description = @campaign.intro
+    @description = @campaign.to_html(@campaign.intro).html_safe
 
     respond_with(@campaign)
   end
