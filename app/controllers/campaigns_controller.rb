@@ -194,7 +194,7 @@ class CampaignsController < ApplicationController
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
       if @campaign
-        @stats_data = @campaign.generate_stats_for_mailing(@campaign)
+        @stats_data = @campaign.stats_for_mailing(@campaign)
       else
         flash[:error] = "Esta campaña ya no está activa."
         redirect_to campaigns_url
