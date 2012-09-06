@@ -16,10 +16,10 @@
 
 <p><%= t(:mail_validate_6) %></p>
 
-<p><%= t(:follow, :oigame_twitter => '<a href="http://twitter.com/oigame">@oigame</a>', :oigame_facebook: '<a href="http://www.facebook.com/oiga.me">Facebook</a>' %></p>
+<p><%= t(:follow, :oigame_twitter => '<a href="http://twitter.com/oigame">@oigame</a>', :oigame_facebook => '<a href="http://www.facebook.com/oiga.me">Facebook</a>') %></p>
 
 <% if @sub_oigame.nil? %>
-  <p> <%= t(:mail_validate_8), :url_donate => "<a href='#{ APP_CONFIG[:domain] }/donate'>donando al proyecto</a>", :url_alabs => "<a href='http://alabs.es/'>aLabs</a>" %> </p>
+  <p> <%= t(:mail_validate_8, :url_donate => "<a href='#{ APP_CONFIG[:domain] }/donate'>donando al proyecto</a>", :url_alabs => "<a href='http://alabs.es/'>aLabs</a>" ) %> </p>
 <% end %>
 
 <p><%= t(:thanks_for_participating) %></p>
