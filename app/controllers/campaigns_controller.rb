@@ -11,9 +11,9 @@ class CampaignsController < ApplicationController
 
   # para cancan
   load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :message, :moderated, :feed, :archived]
+  skip_load_resource :only => [:index, :message, :petition, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :message, :feed, :integrate, :new_comment]
+  skip_authorize_resource :only => [:index, :message, :petition, :feed, :integrate, :new_comment]
 
   respond_to :html, :json
 
