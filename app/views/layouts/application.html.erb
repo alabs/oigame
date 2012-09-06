@@ -20,11 +20,12 @@
     <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
     <% end %>
     <meta property="og:url" content="<%= url_for :only_path => false %>" />
-    <meta property="og:description" content="<%= @page_title %> - oiga.me" />
     <% if @description %>
-    <meta name="description" content="<%= @description %> - oiga.me" />
+      <meta property="og:description" content="<%= strip_tags(@description) %> - oiga.me" />
+      <meta name="description" content="<%= strip_tags(@description) %> - oiga.me" />
     <% else %>
-    <meta name="description" content="<%= t(:description) %> - oiga.me" />
+      <meta property="og:description" content="<%= t(:description) %> - oiga.me" />
+      <meta name="description" content="<%= t(:description) %> - oiga.me" />
     <% end %>
     <meta name="keywords" content="<%= t(:keywords) %>" />
     <meta property="fb:app_id" content="<%= APP_CONFIG[:facebook_app_id] %>"/>
