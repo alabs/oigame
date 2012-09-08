@@ -247,19 +247,24 @@ class CampaignsController < ApplicationController
 
   def validate
     @campaign = Campaign.published.find_by_slug(params[:id])
-    @campaigns = @campaign.other_campaigns
-    model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
-    if model
-      model.update_attributes(:validated => true, :token => nil)
-      # Enviar el mensaje si model es Message
-      if model.class.name == 'Message'
-        Mailman.send_message_to_recipients(model).deliver
-      end
-      redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
+    if @campaign
+      @campaigns = @campaign.other_campaigns
+      model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
+      if model
+        model.update_attributes(:validated => true, :token => nil)
+        # Enviar el mensaje si model es Message
+        if model.class.name == 'Message'
+          Mailman.send_message_to_recipients(model).deliver
+        end
+        redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
 
-      return
+        return
+      else
+        render
+      end
     else
-      render
+      flash[:notice] = "Esa campaña ya no está activa"
+      redirect_to campaigns_url
     end
   end
 
