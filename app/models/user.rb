@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid, :roles, as: :admin
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid, :role, :roles, as: :admin
 
   has_many :campaigns, :dependent => :destroy
   has_and_belongs_to_many :sub_oigames
@@ -66,18 +66,18 @@ class User < ActiveRecord::Base
     end
   end
   
-  def role=(roles)
-    roles=(roles)
-  end
+  #def role=(roles)
+  #  roles=(roles)
+  #end
+
+  #def role
+  #  roles
+  #end
 
   def roles=(roles)
     self.roles_mask = (roles & USER_ROLES).map { |r| 2**USER_ROLES.index(r) }.inject(0, :+)
   end
   
-  def role
-    roles
-  end
-
   def roles
     USER_ROLES.reject do |r|
       ((roles_mask || 0) & 2**USER_ROLES.index(r)).zero?
