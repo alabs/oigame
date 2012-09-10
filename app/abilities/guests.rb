@@ -32,8 +32,8 @@ Canard::Abilities.for(:guest) do
   end
   can :read, Campaign, :status => 'archived'
   can :create, Campaign
-  can :update, Campaign, :moderated => false, :user_id => user.id
-  can :participants, Campaign, :moderated => false, :user_id => user.id
+  can :update, Campaign, :moderated => false, :user => user
+  can :participants, Campaign, :moderated => false, :user => user
   can :widget, Campaign, :moderated => false 
   can :widget_iframe, Campaign, :moderated => false
   can :petition, Campaign, :moderated => false
