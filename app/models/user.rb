@@ -6,10 +6,15 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid, :role, as: :admin
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid, :roles, as: :admin
 
   has_many :campaigns, :dependent => :destroy
   has_and_belongs_to_many :sub_oigames
+
+  USER_ROLES = %w[user editor admin]
+  
+  # Para Canard
+  acts_as_user roles: USER_ROLES
 
   class << self
 
@@ -61,14 +66,42 @@ class User < ActiveRecord::Base
     end
   end
   
-  ROLES = %w[user editor admin]
+  def role=(roles)
+    roles=(roles)
+  end
+
+  def roles=(roles)
+    self.roles_mask = (roles & USER_ROLES).map { |r| 2**USER_ROLES.index(r) }.inject(0, :+)
+  end
   
-  def role?(base_role)
-    ROLES.index(base_role.to_s) <= ROLES.index(role)
+  def role
+    roles
+  end
+
+  def roles
+    USER_ROLES.reject do |r|
+      ((roles_mask || 0) & 2**USER_ROLES.index(r)).zero?
+    end
+  end
+
+  def is?(role)
+    roles.include?(role.to_s)
   end
 
   def ready_for_donation
     name.blank? || vat.blank? ? false : true
   end
 
+  # Métodos para Canard
+  def user?
+    self.role == 'user'
+  end
+
+  def editor?
+    self.role == 'editor'
+  end
+
+  def admin?
+    self.role == 'admin'
+  end
 end

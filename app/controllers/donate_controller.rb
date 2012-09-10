@@ -29,11 +29,4 @@ class DonateController < ApplicationController
 
   def denied
   end
-  
-  private
-  
-  def secure_digest(*args)
-    require 'digest/sha1'
-    Digest::SHA1.hexdigest(args.flatten.join('--'))
-  end
 end

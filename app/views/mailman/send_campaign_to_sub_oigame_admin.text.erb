@@ -1,6 +1,6 @@
-Hola, se ha creado una campaña nueva en tu SubOigame <%= @sub_oigame.name %> con el nombre: "<%= @campaign.name %>". Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si te parece muy interesante puedes activarla.
+<%= t(:inform_campaign_sub_admin, :sub_name => @sub_oigame.name, :campaign_name => @campaign.name) %>
 
-A continuación tienes la información de la campaña:
+<%= t(:next_you_have_info) %>
 
 <%= link_to @campaign.name, sub_oigame_campaign_url(@sub_oigame, @campaign) %>
 

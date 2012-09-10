@@ -8,42 +8,43 @@
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <meta property="og:title" content="<%= @page_title %> - oiga.me" />
     <% if @cause %>
-      <meta property="og:type" content="cause" />
+    <meta property="og:type" content="cause" />
     <% else %>
-      <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" />
     <% end %>
     <% if @image_src %>
-      <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
-      <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
-      <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
-      <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
     <% end %>
     <meta property="og:url" content="<%= url_for :only_path => false %>" />
-    <meta property="og:description" content="<%= @page_title %> - oiga.me" />
     <% if @description %>
-      <meta name="description" content="<%= @description %> - oiga.me" />
+      <meta property="og:description" content="<%= strip_tags(@description) %> - oiga.me" />
+      <meta name="description" content="<%= strip_tags(@description) %> - oiga.me" />
     <% else %>
-      <meta name="description" content="Plataforma de movilización ciudadana a través de la web - oiga.me" />
+      <meta property="og:description" content="<%= t(:description) %> - oiga.me" />
+      <meta name="description" content="<%= t(:description) %> - oiga.me" />
     <% end %>
-    <meta name="keywords" content="oiga.me, plataforma, movilización, web, campaña, campañas" />
+    <meta name="keywords" content="<%= t(:keywords) %>" />
     <meta property="fb:app_id" content="<%= APP_CONFIG[:facebook_app_id] %>"/>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <% if Rails.env == 'production' %>
-      <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-19861474-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-      </script> 
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19861474-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script> 
     <% end %>
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-        {lang: 'es'}
+      {lang: 'es'}
     </script>
     <meta name="generator" content="oiga.me - <%= Rails.env %>" />
     <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
@@ -73,9 +74,9 @@
   </head>
   <body>
     <% flash.each do |name, msg| %>
-      <div class="flash-messages">
-        <%= content_tag :p, msg, :class => "#{name}" %>
-      </div>
+    <div class="flash-messages">
+      <%= content_tag :p, msg, :class => "#{name}" %>
+    </div>
     <% end %>
     <div id="header-wrapper" class="">
       <div class="navbar">
@@ -97,13 +98,22 @@
               <li id="header-help"><%= link_to t(:help), help_path %></li>
               <li id="header-tutorial"><%= link_to t(:tutorial), tutorial_path %></li>
             </ul>
-            <ul class="nav secondary-nav">
+            <ul class="nav">
+              <li>
+              <% if I18n.locale === :es %>
+                <%= link_to 'English', url_for( :locale => 'en' ) %>
+              <% else %>
+                <%= link_to 'Español', url_for( :locale => 'es' ) %>
+              <% end %>
+              </li>
+            </ul>
+            <ul class="secondary-nav nav">
               <% unless user_signed_in? %>
                 <div id="signin-container">
                   <div id="topnav" class="topnav">
                     <a href="#" class="signin">
-                      <em>¿Tienes una cuenta?</em>
-                      <strong>Iniciar sesión</strong>
+                      <em><%= t(:have_account) %></em>
+                      <strong><%= t(:login) %></strong>
                     </a>
                   </div><!-- topnav -->
                   <%= form_tag user_session_path do %>
@@ -117,14 +127,14 @@
                         <input id="password" name="user[password]" required="required" type="password" />
                       </div>
                       <div class="form-field">
-                        <%= check_box_tag :remember_me %> <span class="remember">Recuerda mis datos</span>
+                        <%= check_box_tag :remember_me %> <span class="remember"><%= t(:remember_me) %></span>
                       </div>
-                      <%= submit_tag 'Iniciar sesión', :class => "btn" %>
-                      <p><%= link_to '¿Olvidaste tu contraseña?', new_user_password_path %></p>
+                      <%= submit_tag t(:login), :class => "btn" %>
+                      <p><%= link_to t(:forgot_your_password), new_user_password_path %></p>
                       <p>
                         <%= link_to user_omniauth_authorize_path(:facebook) do %>
                           <i class="glyphicon-facebook"></i>
-                          Iniciar sesión con Facebook
+                          <%= t(:sign_in_facebook) %>
                         <% end %>
                       </p>
                     </fieldset>
@@ -136,8 +146,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="top:-0.5em; position:relative;">
                       <strong><%= current_user.email %></strong><b class="caret"></b></a>
                     <ul class="dropdown-menu" id="session-menu">
-                      <li><%= link_to 'Configuración',  edit_user_registration_path %></li>
-                      <li><%= link_to 'Desconectar', destroy_user_session_path, :method => :delete %></li>
+                      <li><%= link_to t(:configuration),  edit_user_registration_path %></li>
+                      <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
                     </ul>
                   </li>
                 </ul>
@@ -167,7 +177,7 @@
           <%= image_tag('logo-small.png') %>
         </div>
         <div id="links-message">
-          <p>Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.</p>
+          <p><%= t(:our_social_council) %></p>
         </div>
         <div id="links-social">
           <span>Síguenos en:</span><br />
@@ -182,29 +192,26 @@
     <div id="footer-wrapper">
       <div id="footer-main">
         <div id="info-links">
-          <p><span style="color:#fff;">&copy; 2010-<%= Time.now.year %> Algunos derechos reservados</span> | <%= link_to t(:privacy_policy), privacy_policy_path %> | <%= link_to t(:developers), 'https://github.com/alabs/oigame' %> | <%=link_to t(:contact), contact_path %></p>
-          <p style="color: #fff;">Mientras no se exprese lo contrario, el contenido de este sitio tiene <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES" style="color:red;">esta licencia</a> Creative Commons.</p>
+          <p><span style="color:#fff;">&copy; 2010-<%= Time.now.year %> <%= t(:some_reserved_rights) %></span> | <%= link_to t(:privacy_policy), privacy_policy_path %> | <%= link_to t(:developers), 'https://github.com/alabs/oigame' %> | <%=link_to t(:contact), contact_path %></p>
+          <p style="color: #fff;"><%= t(:license_pre) %> <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES" style="color:red;"><%= t(:this_license) %></a> Creative Commons.</p>
         </div>
         <div id="footer-donate">
-          <p style="color:#fff;">Creado y mantenido por:</p>
+          <p style="color:#fff;"><%= t(:created_and_maintened) %>:</p>
           <p><%= link_to image_tag('logo-alabs.png'), 'http://alabs.es/' %></p>
         </div>
       </div><!-- footer -->
     </div><!-- footer-wrapper -->
     <div id="modal-beta-notice" style="display:none;">
-      <h1>Aviso importante</h1>
+      <h1><%= t(:important_notice) %></h1>
       <p style="font-size: 120%;">
-        Te damos la bienvenida a oiga.me, la plataforma creada por <a
-          href="http://alabs.es/">aLabs</a> para crear campañas de movilización
-        social. Esta web que estas viendo es una versión beta, que aunque
-        funcional no es operativa todavía. Por lo tanto los usuarios que te
-        crees y el contenido que subas al servidor podrá ser borrado en
-        cualquier momento. La primera versión estable estará disponible en la
-        dirección web: <a href="https://oiga.me/">https://oiga.me/</a>
+        <%= t(:welcome_you) %>
+        <a href="http://alabs.es/">aLabs</a>
+        <%= t(:welcome_message) %>
+        <a href="https://oiga.me/">https://oiga.me/</a>
       </p>
 
       <p style="font-size: 120%;">
-        Disfruta y fluye por el sitio.
+        <%= t(:welcome_bye) %>
       </p>
       <div class="actions">
           <button class="close-dialog btn primary">Cerrar</button>

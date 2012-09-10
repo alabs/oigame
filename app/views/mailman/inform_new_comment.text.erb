@@ -1,7 +1,7 @@
-Hola <%= @message_to %>,
+<%= t(:hi) %> <%= @message_to %>,
 
-Te escribimos para informarte que has recibido un nuevo comentario en la campaña con nombre '<%= @campaign_name %>' que creaste en oiga.me.
+<%= t(:inform_new_comment) %>
 
 <%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign_slug %>
 
-Gracias por participar en oiga.me.
+<%= t(:thanks_for_participating) %>

@@ -1,10 +1,9 @@
-<div class="hero-unit">
 <% if @locales.any? %>
     <% total_count = Tolk::Locale.first.translations.count %>
     <div class="row-fluid">
       <ul class="thumbnails">
       <% @locales.each do |locale| %>
-        <li class="span5">
+        <li style="width:30%">
           <div class="thumbnail" style="height:10em;">
             <div class="caption">
               <h3><%= link_to locale.language_name, locale %></h3>
@@ -12,19 +11,13 @@
                   <% missing_count = locale.count_phrases_without_translation %>
                   <% translated_count = total_count - missing_count  %>
                   <div class="progress progress-striped active">
-                    <div class="bar" style="width: <%= translated_count * 100 / missing_count  %>%;"></div>
+                    <div class="bar" style="width: <%= translated_count * 100 / total_count  %>%;"></div>
                   </div>
-                <div class="span4">
-                      <%= translated_count * 100 / missing_count  %>%
-                </div>
-                <div class="span4">
+                  <%= link_to "Traducir", locale, :class => "btn btn-primary" %>
+                  <%= translated_count * 100 / total_count  %>%
                   <% if missing_count > 0 %>
                     <span class="badge badge-important missing_translations"><%= locale.count_phrases_without_translation %></span>
                   <% end %>
-                </div>
-                <div class="span3">
-                  <%= link_to "Traducir", locale, :class => "btn btn-primary" %>
-                </div>
               </p>
             </div>
           </div>
@@ -44,10 +37,9 @@
     <select id="select_tolk_locale_name" name="tolk_locale[name]">
       <%= options_for_select tolk_locale_selection %>
     </select>
-    <%= f.submit 'Agregar' %>
+    <%= f.submit 'Agregar', :class => "btn btn-primary" %>
   </p>
 </div>
 <% end %>
 
 
-</div>

@@ -1,25 +1,25 @@
-<h1>Validar adhesión a la campaña: <%= @campaign.name %></h1>
+<h1><%= t(:mail_validate_1, :campaign_name => @campaign.name) %></h1>
 
-<p>Para validar la adhesión a la campaña "<%= @campaign.name %>" tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:</p>
+<p><%= t(:mail_validate_2, :campaign_name => @campaign.name) %></p>
 
 <h2><a href="<%= @url %>/validate/<%= @token %>"><%= @url %>/validate/<%= @token %></a></h2>
 
-<p>Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.</p>
+<p><%= t(:mail_validate_3) %></p>
 
 <% if @sub_oigame and @sub_oigame.mail_message %>
   <%= raw(@sub_oigame.mail_message.gsub(/\n/, '<br>')) %>
 <% end %>
 
-<p>Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:</p>
+<p><%= t(:mail_validate_4) %></p>
 
-<p>Incluye la campaña en tu página web para que tus visitas puedan participar: <a href="<%= @url %>"><%= @url %></a>. Es muy sencillo, tardarás menos de 1 minuto.</p>
+<p><%= t(:mail_validate_5, :url => @url) %></p>
 
-<p>Difunde al máximo la campaña en las redes sociales.</p>
+<p><%= t(:mail_validate_6) %></p>
 
-<p>Sigue a <a href="http://twitter.com/oigame">@oigame</a> en Twitter y en <a href="http://www.facebook.com/oiga.me">Facebook</a>.</p>
+<p><%= t(:follow, :oigame_twitter => '<a href="http://twitter.com/oigame">@oigame</a>', :oigame_facebook => '<a href="http://www.facebook.com/oiga.me">Facebook</a>') %></p>
 
 <% if @sub_oigame.nil? %>
-  <p>oiga.me es un proyecto de la asociación <a href="http://alabs.es/">aLabs</a>. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa <a href="<%= APP_CONFIG[:domain] %>/donate">donando al proyecto</a>.</p>
+  <p> <%= t(:mail_validate_8, :url_donate => "<a href='#{ APP_CONFIG[:domain] }/donate'>donando al proyecto</a>", :url_alabs => "<a href='http://alabs.es/'>aLabs</a>") %> </p>
 <% end %>
 
-<p>Gracias por participar en oiga.me.</p>
+<p><%= t(:thanks_for_participating) %></p>

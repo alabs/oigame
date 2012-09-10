@@ -11,9 +11,9 @@ class CampaignsController < ApplicationController
 
   # para cancan
   load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :message, :moderated, :feed, :archived]
+  skip_load_resource :only => [:index, :message, :petition, :moderated, :feed, :archived]
   authorize_resource
-  skip_authorize_resource :only => [:index, :message, :feed, :integrate, :new_comment]
+  skip_authorize_resource :only => [:index, :message, :petition, :feed, :integrate, :new_comment]
 
   respond_to :html, :json
 
@@ -34,16 +34,16 @@ class CampaignsController < ApplicationController
 
     @participants = @campaign.participants
 
-    @has_participated = @campaign.user_has_participated?(current_user)
+    @has_participated = @campaign.has_participated?(current_user)
 
     if @campaign.ttype == 'petition'
-      @stats_data = @campaign.generate_stats_for_petition(@campaign)
+      @stats_data = @campaign.stats_for_petition(@campaign)
     elsif @campaign.ttype == 'mailing'
-      @stats_data = @campaign.generate_stats_for_mailing(@campaign)
+      @stats_data = @campaign.stats_for_mailing(@campaign)
     end
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
-    @description = @campaign.intro
+    @description = @campaign.to_html(@campaign.intro).html_safe
 
     respond_with(@campaign)
   end
@@ -194,7 +194,7 @@ class CampaignsController < ApplicationController
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
       if @campaign
-        @stats_data = @campaign.generate_stats_for_mailing(@campaign)
+        @stats_data = @campaign.stats_for_mailing(@campaign)
       else
         flash[:error] = "Esta campaña ya no está activa."
         redirect_to campaigns_url
@@ -247,19 +247,24 @@ class CampaignsController < ApplicationController
 
   def validate
     @campaign = Campaign.published.find_by_slug(params[:id])
-    @campaigns = @campaign.other_campaigns
-    model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
-    if model
-      model.update_attributes(:validated => true, :token => nil)
-      # Enviar el mensaje si model es Message
-      if model.class.name == 'Message'
-        Mailman.send_message_to_recipients(model).deliver
-      end
-      redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
+    if @campaign
+      @campaigns = @campaign.other_campaigns
+      model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
+      if model
+        model.update_attributes(:validated => true, :token => nil)
+        # Enviar el mensaje si model es Message
+        if model.class.name == 'Message'
+          Mailman.send_message_to_recipients(model).deliver
+        end
+        redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
 
-      return
+        return
+      else
+        render
+      end
     else
-      render
+      flash[:notice] = "Esa campaña ya no está activa"
+      redirect_to campaigns_url
     end
   end
 
@@ -361,17 +366,6 @@ class CampaignsController < ApplicationController
   end
 
   private
-
-    def get_sub_oigame
-      unless params[:sub_oigame_id].nil?
-        @sub_oigame = SubOigame.find_by_slug params[:sub_oigame_id]
-        if @sub_oigame.nil?
-          return @sub_oigame = 'not found'
-        end
-      else
-        return @sub_oigame = nil
-      end
-    end
 
     def render_404
       respond_to do |format|

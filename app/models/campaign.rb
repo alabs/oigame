@@ -185,7 +185,7 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  def generate_stats_for_mailing(campaign)
+  def stats_for_mailing(campaign)
     dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
     messages = 0
@@ -199,7 +199,7 @@ class Campaign < ActiveRecord::Base
     return data
   end
   
-  def generate_stats_for_petition(campaign)
+  def stats_for_petition(campaign)
     dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
     petitions = 0
@@ -213,7 +213,7 @@ class Campaign < ActiveRecord::Base
     return data
   end
 
-  def user_has_participated?(user)
+  def has_participated?(user)
     # comprobamos si este usuario ya ha participado en este campaña
     if defined? user.email
       participants_emails = self.participants.map {|x| x.email}

@@ -4,6 +4,8 @@
 es:
   some_participants: 'Algunas participantes'
   home: 'Inicio'
+  description: 'Plataforma de movilización ciudadana a través de la web'
+  keywords: 'oiga.me, plataforma, movilización, web, campaña, campañas'
   there_are_currently: 'En estos momentos hay'
   members: 'miembros'
   access_your_account: 'Acceder a tu cuenta'
@@ -17,11 +19,15 @@ es:
   email: 'Correo electrónico'
   password: 'Contraseña'
   password_confirmation: 'Confirmar contraseña'
+  configuration: 'Configuración'
+  logout: 'Desconectar'
   login: 'Iniciar sesión'
   last_campaigns: 'Últimas campañas'
   join_this_campaign: 'Únete a esta campaña'
+  join: 'Únete'
   create_account: 'Crear cuenta'
   sign_in: 'Iniciar sesión'
+  sign_in_facebook: 'Iniciar sesión con Facebook'
   forgot_your_password: '¿Olvidaste tu contraseña?'
   didnt_receive_confirmation_instructions: '¿No recibiste instrucciones de confirmación?'
   please_fill_the_form: 'Por favor rellena el formulario'
@@ -94,77 +100,117 @@ es:
   default_message_subject: 'Asunto del mensaje por defecto'
   default_message_body: 'Cuerpo del mensaje por defecto'
   default_message_body_help: 'Mensaje por defecto que se enviará en la campaña por los participantes que no quieran escribir su propio mensaje.'
-  minimal_size: "Debe tener un tamaño de 500x400"
-  markdown_help_show: "ver ayuda de marcado"
+  minimal_size: 'Debe tener un tamaño de 500x400'
+  markdown_help_show: 'ver ayuda de marcado'
   number_of_people: 'Número de personas que piensas que se unirán a la campaña'
-  thank_you: "Gracias"
-  thank_you_message: "Gracias por enviar tu mensaje a través de oiga.me. Si no estas registrado/a en oiga.me recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
-  thank_you_petition: "Gracias por unirte a esta campaña a través de oiga.me. Si no estas registrado/a en oiga.me recibirás un correo electrónico con el último paso a realizar para unirte a la campaña."
-  thank_you_confirmed: "Tu adhesión ha sido confirmada con éxito, muchas gracias por participar en esta campaña."
-  join_myself: "Firma esta campaña"
-  may_your_voice_signed: "¡Que se escuche tu voz! Para participar en la campaña haz click en el boton unirme."
-  may_your_voice: "¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón unirme."
-  are_you_sure: "¿Estas seguro?"
-  created_at: "Creada hace"
-  published_at: "Publicada"
-  time_left: "Quedan"
-  archived_campaign: "Campaña archivada"
-  days: "días"
-  participants: "Participantes"
-  of: "de"
-  contact: "Contacto"
-  contact_to: "ponte en contacto"
-  description: "Descripción"
-  stats: "Estadísticas"
-  spread: "Difunde"
-  spread_info: "Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña."
-  spread_form: "Pon el formulario en tu web"
-  token_invalid_title: "Hubo un problema"
-  token_invalid_body: "No encontramos una adhesión con ese token, revisa el correo que te enviamos y si te sigue sin funcionar avísanos a hola@oiga.me"
-  communicate: "Comunícate"
-  participate: "Participa"
-  maximize: "Maximizar"
-  listen_your_voice: "¡Que se escuche tu voz! Para participar en la campaña escribe aquí tu mensaje, nosotros nos encargamos de que llegue de forma eficaz a todos los responsables."
-  integrate_form: "Integrar formulario"
-  option: "Opción"
+  thank_you: 'Gracias'
+  thank_you_message: 'Gracias por enviar tu mensaje a través de oiga.me. Si no estas registrado/a en oiga.me recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.'
+  thank_you_petition: 'Gracias por unirte a esta campaña a través de oiga.me. Si no estas registrado/a en oiga.me recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.'
+  thank_you_confirmed: 'Tu adhesión ha sido confirmada con éxito, muchas gracias por participar en esta campaña.'
+  join_myself: 'Firma esta campaña'
+  may_your_voice_signed: '¡Que se escuche tu voz! Para participar en la campaña haz click en el boton unirme.'
+  may_your_voice: '¡Que se escuche tu voz! Para unirte a la campaña introduce tu correo electrónico y haz click en el botón unirme.'
+  are_you_sure: '¿Estas seguro?'
+  created_at: 'Creada hace'
+  created_by: 'Creada por'
+  published_at: 'Publicada'
+  time_left: 'Quedan'
+  archived_campaign: 'Campaña archivada'
+  days: 'días'
+  participants: 'Participantes'
+  of: 'de'
+  contact: 'Contacto'
+  contact_to: 'ponte en contacto'
+  descriptions: 'Descripción'
+  stats: 'Estadísticas'
+  spread: 'Difunde'
+  spread_info: 'Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.'
+  spread_form: 'Pon el formulario en tu web'
+  token_invalid_title: 'Hubo un problema'
+  token_invalid_body: 'No encontramos una adhesión con ese token, revisa el correo que te enviamos y si te sigue sin funcionar avísanos a hola@oiga.me'
+  communicate: 'Comunícate'
+  participate: 'Participa'
+  maximize: 'Maximizar'
+  listen_your_voice: '¡Que se escuche tu voz! Para participar en la campaña escribe aquí tu mensaje, nosotros nos encargamos de que llegue de forma eficaz a todos los responsables.'
+  integrate_form: 'Integrar formulario'
+  option: 'Opción'
   integrate_form_explanation_1: 'Para integrar el formulario de esta campaña en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:'
   integrate_form_explanation_2: 'En caso que el código no te funcione, puedes probar con la versión sin Javascript ni iframes, en HTML limpio:'
   sub_integrate_form_explanation_1: 'Para integrar tu SubOigame en tu sitio web copia y pega el siguiente código Javascript donde quieras que se muestre:'
-  close: "Cerrar"
-  result: "Resultado"
-  if_you_write: "si escribes:"
-  you_will_get: "quedará:"
-  italic: "cursiva"
-  bold: "negrita"
-  quoted: "texto citado"
-  another_format: "La líneas que empiezan con cuatro espacios son tratadas con otro formato:"
-  prioritize: "Dar prioridad"
-  deprioritize: "Quitar prioridad"
-  intro_limit: "Tiene un límite de 500 caracteres"
+  close: 'Cerrar'
+  result: 'Resultado'
+  if_you_write: 'si escribes:'
+  you_will_get: 'quedará:'
+  italic: 'cursiva'
+  bold: 'negrita'
+  quoted: 'texto citado'
+  another_format: 'La líneas que empiezan con cuatro espacios son tratadas con otro formato:'
+  prioritize: 'Dar prioridad'
+  deprioritize: 'Quitar prioridad'
+  intro_limit: 'Tiene un límite de 500 caracteres'
   enable_comments: 'Habilitar comentarios'
-  translate:
-    translations: "Traducciones"
-    all: "todos"
-    translated: "traducidas"
-    untranslated: "sin traducir"
-    changed: "cambiada"
-    search_filter: "Filtrado de busqueda"
-    show: "Mostrar"
-    sort_by: "Ordenar por"
-    translate_from: "Traducir desde"
-    translations_from: "Traducciones desde"
-    key: 'clave'
-    text: 'texto'
-    display: 'Mostrar'
-    search: 'Buscar'
-    found: 'Se han encontrado'
-    messages: 'mensajes'
-    clear: 'limpiar'
-    reload: 'Recargar mensajes'
-    pages: 'Páginas'
-    page: 'Página'
-    to: 'hacia'
-    save: 'Guardar'
   unauthorized:
-    default: "No estás autorizado a acceder a esta página"
-
+    default: 'No estás autorizado a acceder a esta página'
+  have_account: '¿Tienes una cuenta'
+  our_social_council: 'Nuestro consejo social advierte: oiga.me puede ser beneficioso para la salud democrática de su estado y elevar sus niveles de participación ciudadana.'
+  some_reserved_rights: 'Algunos derechos reservados'
+  created_and_maintened: 'Creado y mantenido por'
+  license_pre: 'Mientras no se exprese lo contrario, el contenido de este sitio tiene'
+  this_license: 'esta licencia'
+  important_notice: 'Aviso importante'
+  welcome_you: 'Te damos la bienvenida a oiga.me, la plataforma creada por '
+  welcome_message: ' para crear campañas de movilización social. Esta web que estas viendo es una versión beta, que aunque funcional no es operativa todavía. Por lo tanto los usuarios que te crees y el contenido que subas al servidor podrá ser borrado en cualquier momento. La primera versión estable estará disponible en la dirección web:'
+  welcome_bye: 'Disfruta y fluye por el sitio.'
+  slogan_1: 'NO ODIES AL'
+  slogan_2: 'LOBBY, ¡CÓMETELO!'
+  slogan_3: 'PERSONAS'
+  slogan_4: 'YA LO HAN HECHO'
+  view_all_campaigns: "Ver todas las campañas"
+  example_email: 'tunombre@dominio.com'
+  make_member: 'Hazte miembro ahora'
+  slide_1: 'Un altavoz para que los poderosos te escuchen'
+  slide_2: 'Crea el lobby más importante del mundo. Somos el 99%'
+  slide_3: '¿Crees que puedes cambiar el mundo? ¡Hazlo!'
+  slide_4: 'Somos el 99%, juntos cambiamos el mundo'
+  slide_5: 'Lo consiguieron porque no sabían que era imposible'
+  slide_6: 'Te queremos, ¡únete!'
+  have_already_made: 'personas ya lo han hecho'
+  sayit_title: 'Dilo'
+  sayit_1: 'Que se escuche tu voz.'
+  sayit_2: 'es una plataforma en la que puedes montar campañas online en las que el mundo entero puede participar.'
+  sayit_link: 'Aprende a usar oiga.me'
+  repeat_title: 'Repítelo'
+  repeat_1: 'Súmate a la protesta, úne tu voz a las otras. Participa enviando millones de correos de forma efectiva, sin que te filtren, sin que puedan taparse los oídos.'
+  repeat_link: 'Últimas campañas'
+  doit_title: 'Hazlo posible'
+  doit_1: 'Haz posible que en'
+  doit_2: 'podamos hacer campañas de miles de llamadas de teléfono a los poderosos, que podamos enviar cientos de faxes. Mejora, dona, difunde, escribe código.'
+  doit_link: 'Infórmate como donar'
+  already_participated: 'Ya has participado de esta campaña. ¡Muchas gracias!'
+  no_campaigns: 'No hay campañas todavía, puedes proponer una.'
+  search: 'Buscar'
+  other_campaigns: 'Participa en estas otras campañas'
+  you_can_help: 'Puedes ayudar a esta campaña difundiendola en tus redes sociales'
+  user_create: 'Si quieres proponer campañas o recibir noticias de oiga.me, create una cuenta de usuario.'
+  i_want_to_receive_news: 'Deseo recibir noticias de oiga.me'
+  we_need_your_pass: 'necesitamos tu contraseña actual para realizar los cambios'
+  only_for_donations: 'Solo necesario para donaciones'
+  cancel_account: 'Cancelar mi cuenta'
+  this_link: 'este enlace'
+  hi: 'Hola'
+  inform_campaign_activate: "Te escribimos para informarte que la campaña con nombre '#{ campaign_name }' que creaste en oiga.me, ha sido publicada y está disponible en la siguiente URL:"
+  inform_new_comment: "Te escribimos para informarte que has recibido un nuevo comentario en la campaña con nombre '#{ campaign_name }' que creaste en oiga.me."
+  inform_campaign_social_council: "Hola consejo social, se ha creado una campaña nueva en oiga.me con el nombre: '#{ campaign_name }'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si os parece muy interesante comentadlo en la lista y lo debatimos."
+  inform_campaign_sub_admin: "Hola, se ha creado una campaña nueva en tu SubOigame '#{ sub_name }' con el nombre: '#{ campaign_name }'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si te parece muy interesante puedes activarla."
+  next_you_have_info: 'A continuación tenéis la información de la campaña'
+  thanks_for_participating: 'Gracias por participar en oiga.me.'
+  mail_validate_1: "Validar adhesión a la campaña: #{ campaign_name }"
+  mail_validate_2: "Para validar la adhesión a la campaña #{ campaign_name } tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
+  mail_validate_3: 'Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.'
+  mail_validate_4: 'Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:'
+  mail_validate_5: "Incluye la campaña en tu página web para que tus visitas puedan participar: #{url}. Es muy sencillo, tardarás menos de 1 minuto."
+  mail_validate_6: 'Difunde al máximo la campaña en las redes sociales.'
+  mail_validate_7: 'Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).'
+  mail_validate_8: "oiga.me es un proyecto de la asociación . Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{donate_url})."
+  mail_validate_9: "Sigue a #{oigame_twitter} en Twitter y en #{oigame_facebook}."
+  mail_validate_10: "oiga.me es un proyecto de la asociación #{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{url_donate})."

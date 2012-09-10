@@ -12,7 +12,7 @@
         </div>
         <div class="form-field">
           <%= label_tag t(:your_email) %>
-          <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => "tunombre@dominio.com", :value => cookies[:email] %>
+          <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
         </div>
       <% end %>
       <div class="form-field">

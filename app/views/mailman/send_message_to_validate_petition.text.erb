@@ -1,25 +1,25 @@
-Validar adhesión a la campaña: <%= @campaign.name %>
+<%= t(:mail_validate_1, :campaign_name => @campaign.name) %>
 
-Para validar la adhesión a la campaña "<%= @campaign.name %>" tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:
+<%= t(:mail_validate_2, :campaign_name => @campaign.name) %>
 
 <%= @url %>/validate/<%= @token %>
 
-Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.
+<%= t(:mail_validate_3) %>
 
 <% if @sub_oigame and @sub_oigame.mail_message %>
 <%= raw(@sub_oigame.mail_message) %>
 <% end %>
 
-Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:
+<%= t(:mail_validate_4) %>
 
-Incluye la campaña en tu página web para que tus visitas puedan participar: <%= @url %>. Es muy sencillo, tardarás menos de 1 minuto.
+<%= t(:mail_validate_5, :url => @url) %>
 
-Difunde al máximo la campaña en las redes sociales.
+<%= t(:mail_validate_6) %>
 
-Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).
+<%= t(:mail_validate_7) %>
 
 <% if @sub_oigame.nil? %>
-oiga.me es un proyecto de la asociación aLabs (http://alabs.es/). Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (<%= APP_CONFIG[:domain] %>/donate).
+<%= t(:mail_validate_8, :url_donate => "#{ APP_CONFIG[:domain] }/donate") %>
 <% end %>
 
-Gracias por participar en oiga.me.
+<%= t(:thanks_for_participating) %>

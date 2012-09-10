@@ -2,10 +2,10 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= tolk.locale_path(@locale, :format => 'atom') -%>" />
 <% end %>
 
-<h3 class="switch">Phrases missing translation (<%= @locale.count_phrases_without_translation %>) <span>(<%= link_to 'See completed translations', tolk.all_locale_path(@locale) %>)</span></h3>
+<h3 class="switch">Frases sin traducción(<%= @locale.count_phrases_without_translation %>) <span>(<%= link_to 'Ver todas las traducciones terminadas', tolk.all_locale_path(@locale) %>)</span></h3>
 
 <% if @locale.has_updated_translations? && action_name != 'updated' %>
-  <span class="notice">Some phrases have changed. <%= link_to "Update translations", tolk.updated_locale_path(@locale) %>.</span>
+  <span class="notice">Algunas frases han cambiado. <%= link_to "Actualizar traducciones", tolk.updated_locale_path(@locale) %>.</span>
 <% end %>
 
 <div class="search">
@@ -41,11 +41,11 @@
         <% end %>
       </table>
       <div class="table_submit">
-        <p><%= locale_form.submit "Save changes" %></p>
+        <p><%= locale_form.submit "Guardar cambios", :class => "btn btn-primary btn-large" %></p>
       </div>
     <% end %>
     <div class="paginate">
-      <%= will_paginate @phrases %>
+      <%= will_paginate(@phrases, :renderer => BootstrapPagination::Rails) %>
     </div>
   <% else %>
     <p style="text-align: left">There aren't any missing or updated phrases that need translation.</p>
