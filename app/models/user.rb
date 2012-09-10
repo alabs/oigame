@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid, :role, :roles, as: :admin
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :mailing, :name, :vat, :provider, :uid, :roles, as: :admin
 
   has_many :campaigns, :dependent => :destroy
   has_and_belongs_to_many :sub_oigames
+
+  after_create :set_role
 
   USER_ROLES = %w[user editor admin]
   
@@ -103,5 +105,12 @@ class User < ActiveRecord::Base
 
   def admin?
     self.role == 'admin'
+  end
+
+  protected
+
+  def set_role
+    self.roles = ['user']
+    self.save
   end
 end
