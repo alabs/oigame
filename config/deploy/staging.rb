@@ -105,7 +105,7 @@ namespace :deploy do
     end
 
     # precompile assets
-    run "cd #{latest_release}; RAILS_ENV=staging bundle exec rake assets:precompile"
+    #run "cd #{latest_release}; RAILS_ENV=staging bundle exec rake assets:precompile"
   end
 
   #namespace :assets do
