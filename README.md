@@ -39,15 +39,5 @@ $ gem install bundler
 $ bundle # en la carpeta raíz del proyecto
 $ rake db:create
 $ rake db:migrate
-$ unicorn_rails
+$ bundle exec unicorn_rails
 ```
-
-Entrar en http://localhost:8080
-
-Para crear un usuario, entra en http://localhost:8080/users/signup, y tras crear el usuario,
-necesitas confirmarlo, de momento tendrás que comprobar el link que te aparece en log/development.log
-que será algo asi: 
-http://localhost:8080/users/confirmation?confirmation_token==3D92V4YYtKeEL5kZfQTGceQ
-
-(recuerda quitar =3D después de confirmation_token=)
-
