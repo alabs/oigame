@@ -5,6 +5,8 @@ class Petition < ActiveRecord::Base
   attr_accessible :campaign, :email, :token, :validated, :name
 
   scope :validated, where(:validated => true)
+  
+  validates_presence_of :email
 
   # generar método que valie tu un remitente no puede unirse
   # más de una vez a la campaña

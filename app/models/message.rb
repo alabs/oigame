@@ -6,6 +6,8 @@ class Message < ActiveRecord::Base
 
   scope :validated, where(:validated => true)
 
+  validates_presence_of :email
+
   # generar método que valide que un remitente no puede enviar
   # más de un mensaje por campaña
   validates_uniqueness_of :email, :scope => :campaign_id
