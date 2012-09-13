@@ -124,21 +124,21 @@ namespace :deploy do
   desc "Restart the Thin processes"
   task :restart do
     run <<-CMD
-      cd /var/www/beta.oiga.me/current; bundle exec thin restart -C config/thin.yml
+      cd /var/www/beta.oiga.me/current; bundle exec thin restart -C config/thin_staging.yml
     CMD
   end
 
   desc "Start the Thin processes"
   task :start do
     run  <<-CMD
-      cd /var/www/beta.oiga.me/current; bundle exec thin start -C config/thin.yml
+      cd /var/www/beta.oiga.me/current; bundle exec thin start -C config/thin_staging.yml
     CMD
   end
   
   desc "Stop the Thin processes"
   task :stop do
     run <<-CMD
-      cd /var/www/beta.oiga.me/current; bundle exec thin stop -C config/thin.yml
+      cd /var/www/beta.oiga.me/current; bundle exec thin stop -C config/thin_staging.yml
     CMD
   end
 
