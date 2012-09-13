@@ -22,7 +22,7 @@ Oigame::Application.routes.draw do
           post 'prioritize'
           post 'deprioritize'
           post 'archive'
-          post 'new_comment'
+          #post 'new_comment'
         end
         collection do
           get 'moderated'
@@ -74,7 +74,7 @@ Oigame::Application.routes.draw do
         post 'prioritize'
         post 'deprioritize'
         post 'archive'
-        post 'new_comment'
+        #post 'new_comment'
       end
       collection do
         get 'moderated'

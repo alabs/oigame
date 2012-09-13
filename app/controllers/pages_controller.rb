@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  filter_access_to :all
+
   def index
     @campaigns = Campaign.last_campaigns_without_pagination(3)
     @users = User.count

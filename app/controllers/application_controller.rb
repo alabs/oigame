@@ -1,10 +1,19 @@
 class ApplicationController < ActionController::Base
   
+  helper :all
+  
   before_filter :set_locale
   protect_from_forgery
 
+  before_filter { |c| Authorization.current_user = c.current_user }
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
+  end
+
+  def permission_denied
+    flash[:error] = "Sorry, you not allowed to access that page."
+    redirect_to root_url
   end
 
   protected

@@ -107,6 +107,13 @@ class User < ActiveRecord::Base
     self.role == 'admin'
   end
 
+  # para declarative_auth
+  def role_symbols
+    roles.map do |role|
+      role.underscore.to_sym
+    end
+  end
+
   protected
 
   def set_role

@@ -8,12 +8,15 @@ class CampaignsController < ApplicationController
   
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
-
+  
   # para cancan
   load_resource :find_by => :slug
   skip_load_resource :only => [:index, :message, :petition, :moderated, :feed, :archived]
   authorize_resource
   skip_authorize_resource :only => [:index, :message, :petition, :feed, :integrate, :new_comment]
+
+  # para declarative_auth
+  filter_access_to :all
 
   respond_to :html, :json
 
@@ -359,11 +362,11 @@ class CampaignsController < ApplicationController
     end
   end
 
-  def new_comment
-    @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
-    Mailman.inform_new_comment(@campaign).deliver
-    redirect_to @campaign
-  end
+  #def new_comment
+  #  @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
+  #  Mailman.inform_new_comment(@campaign).deliver
+  #  redirect_to @campaign
+  #end
 
   private
 
