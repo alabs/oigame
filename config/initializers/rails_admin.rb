@@ -14,7 +14,7 @@ RailsAdmin.config do |config|
  config.attr_accessible_role { :admin }
 
   config.authorize_with do |controller|
-    redirect_to main_app.root_path unless current_user.role == "admin"
+    redirect_to main_app.root_path unless current_user.roles.include? "admin"
   end
 
   # https://github.com/sferik/rails_admin/wiki/CanCan
