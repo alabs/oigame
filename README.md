@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/alabs/oigame.png)](http://travis-ci.org/alabs/oigame)
+
 oiga.me, Plataforma de movilización ciudadana a través de la web 
 =======================================================
 
