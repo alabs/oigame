@@ -1,6 +1,6 @@
 Oigame::Application.routes.draw do
 
-  scope "(:locale)", :locale => /en|es/ do
+  scope ":locale", :locale => /en|es/ do
     # solucionar el tema de acceso por rol
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
