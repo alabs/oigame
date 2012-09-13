@@ -10,7 +10,8 @@ gem 'sass-rails', '3.2.3'
 
 gem 'jquery-rails'
 
-gem 'unicorn'
+#gem 'unicorn'
+gem 'thin'
 
 gem 'capistrano'
 gem 'capistrano-ext'

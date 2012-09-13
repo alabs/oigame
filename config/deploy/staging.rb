@@ -35,6 +35,7 @@ default_environment["GEM_PATH"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p194
 default_environment["RUBY_VERSION"] = "ruby-1.9.3-p194"
 
 default_run_options[:shell] = 'bash'
+default_run_options[:pty] = true
 
 namespace :deploy do
   desc "Deploy your application"
@@ -120,20 +121,26 @@ namespace :deploy do
   #  end
   #end
 
-  desc "Zero-downtime restart of Unicorn"
-  task :restart, :except => { :no_release => true } do
-    run "kill -s USR2 `cat /tmp/unicorn.oigame_staging.pid`"
+  desc "Restart the Thin processes"
+  task :restart do
+    run <<-CMD
+      cd /var/www/beta.oiga.me/current; bundle exec thin restart -C config/thin.yml
+    CMD
   end
 
-  desc "Start unicorn"
-  task :start, :except => { :no_release => true } do
-    run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn_staging.rb -D"
+  desc "Start the Thin processes"
+  task :start do
+    run  <<-CMD
+      cd /var/www/beta.oiga.me/current; bundle exec thin start -C config/thin.yml
+    CMD
   end
-
-  desc "Stop unicorn"
-  task :stop, :except => { :no_release => true } do
-    run "kill -s QUIT `cat /tmp/unicorn.oigame_staging.pid`"
-  end  
+  
+  desc "Stop the Thin processes"
+  task :stop do
+    run <<-CMD
+      cd /var/www/beta.oiga.me/current; bundle exec thin stop -C config/thin.yml
+    CMD
+  end
 
   namespace :rollback do
     desc "Moves the repo back to the previous version of HEAD"
