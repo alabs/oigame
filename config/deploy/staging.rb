@@ -104,6 +104,7 @@ namespace :deploy do
       run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
     end
 
+    # compilar en local y subir los assets al repo
     # precompile assets
     #run "cd #{latest_release}; RAILS_ENV=staging bundle exec rake assets:precompile"
   end
