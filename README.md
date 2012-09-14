@@ -39,5 +39,5 @@ $ gem install bundler
 $ bundle # en la carpeta raíz del proyecto
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
-$ bundle exec thin start
+$ bundle exec thin start -p 8080
 ```
