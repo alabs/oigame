@@ -11,4 +11,5 @@ class Message < ActiveRecord::Base
   # generar método que valide que un remitente no puede enviar
   # más de un mensaje por campaña
   validates_uniqueness_of :email, :scope => :campaign_id
+  validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 end
