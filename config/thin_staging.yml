@@ -13,3 +13,5 @@ max_persistent_conns: 512
 servers: 2
 daemonize: true
 chdir: /var/www/beta.oiga.me/current
+
+socket: /tmp/thin.staging.sock
