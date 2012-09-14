@@ -37,7 +37,7 @@ y luego crea un archivo .rvmrc en la raiz del proyecto, que contenga: "rvm 1.9.2
 ```shell
 $ gem install bundler
 $ bundle # en la carpeta raíz del proyecto
-$ rake db:create
-$ rake db:migrate
-$ bundle exec unicorn_rails
+$ bundle exec rake db:create
+$ bundle exec rake db:migrate
+$ bundle exec thin start
 ```
