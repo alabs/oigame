@@ -60,7 +60,7 @@ gem 'thinking-sphinx', '2.0.10'
 gem 'fb_graph'
 #gem 'kaminari'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter'
+#gem 'omniauth-twitter'
 
 gem 'rails_admin'
 gem 'mailcatcher'

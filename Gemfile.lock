@@ -165,7 +165,6 @@ GEM
       net-ssh (>= 1.99.1)
     newrelic_rpm (3.4.2)
     nokogiri (1.5.5)
-    oauth (0.4.7)
     oauth2 (0.8.0)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -177,15 +176,9 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
-    omniauth-oauth (1.0.1)
-      oauth
-      omniauth (~> 1.0)
     omniauth-oauth2 (1.1.0)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-twitter (0.0.13)
-      multi_json (~> 1.3)
-      omniauth-oauth (~> 1.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     pry (0.9.10)
@@ -366,7 +359,6 @@ DEPENDENCIES
   mysql2
   newrelic_rpm
   omniauth-facebook
-  omniauth-twitter
   pry-rails
   query_reviewer!
   rails (= 3.2.8)

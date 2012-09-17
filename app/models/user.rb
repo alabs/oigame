@@ -15,9 +15,6 @@ class User < ActiveRecord::Base
 
   USER_ROLES = %w[user editor admin]
   
-  # Para Canard
-  acts_as_user roles: USER_ROLES
-
   class << self
 
     def get_mailing_users
