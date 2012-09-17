@@ -1,6 +1,9 @@
 class DonateController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:init]
+  
+  # para declarative_auth
+  filter_access_to :all
 
   def index
   end

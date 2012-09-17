@@ -11,12 +11,13 @@ class CampaignsController < ApplicationController
   
   # para cancan
   load_resource :find_by => :slug
+  # migration a declarative auth
   skip_load_resource :only => [:index, :message, :petition, :moderated, :feed, :archived]
-  authorize_resource
-  skip_authorize_resource :only => [:index, :message, :petition, :feed, :integrate, :new_comment]
+  #authorize_resource
+  #skip_authorize_resource :only => [:index, :message, :petition, :feed, :integrate, :new_comment]
 
   # para declarative_auth
-  filter_access_to :all
+  filter_access_to :all, :attribute_check => true
 
   respond_to :html, :json
 
