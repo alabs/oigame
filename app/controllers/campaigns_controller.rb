@@ -20,7 +20,7 @@ class CampaignsController < ApplicationController
   filter_access_to :all, :attribute_check => true
   # para que no se haga check del attributo
   # preguntar a enrique como hacer esto más dry
-  filter_access_to :index, :feed, :search
+  filter_access_to :index, :feed, :search, :moderated
 
   respond_to :html, :json
 

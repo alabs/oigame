@@ -24,10 +24,10 @@
             <%= link_to 'Proponer campaña', new_sub_oigame_campaign_path(sub_oigame), :class => "btn" %>
             <br />
             <br />
-            <% if can? :update, sub_oigame %>
+            <% permitted_to? :edit, sub_oigame %>
               <%= link_to 'Editar', edit_sub_oigame_path(sub_oigame), :class => "btn btn-primary" %>
             <% end %>
-            <% if can? :destroy, sub_oigame %>
+            <% permitted_to? :destroy, sub_oigame %>
               <%= link_to 'Eliminar', sub_oigame, confirm: '¿Estas seguro?', method: :delete, :class => "btn btn-danger" %>
             <% end %>
           </td>
@@ -39,7 +39,7 @@
       <br />
     </div>
     <div id="show-campaign-sidebar" class="grid_8">
-      <% if can? :create, SubOigame %>
+      <% permitted_to? :new, SubOigame %>
         <%= link_to 'Crear nuevo SubOigame', new_sub_oigame_path, :class => "btn btn-success btn-large" %>
       <% end %>
     </div>

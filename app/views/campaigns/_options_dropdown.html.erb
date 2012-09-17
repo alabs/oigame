@@ -1,11 +1,10 @@
 <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
-<% if can? :moderated, campaign or (can? :moderated, campaign && campaign.moderated?) or (can? :deactivate, campaign && campaign.published?) or (can? :participants, campaign && campaign.messages.count > 0) or (can? :update, campaign) or (can? :priority, campaign) or (can? :destroy, campaign) %>
-<% if permitted_to? :edit, campaign %>
+<% if permitted_to? :moderated, campaign || (permitted_to? :moderated, campaign && campaign.moderated?) || (permitted_to? :deactivate, campaign && campaign.published?) || (permitted_to? :participants, campaign && campaign.messages.count > 0) || (permitted_to? :edit, campaign) || ((permitted_to? :prioritize, campaign) && (permitted_to? :deprioritize, campaign)) || (permitted_to? :destroy, campaign) %>
 <li class="dropdown">
   <a data-toggle="dropdown" class="dropdown-toggle" href="#">Opciones <b class="caret"></b></a>
     <ul class="dropdown-menu">
       <li>
-	<% if can?(:moderated, campaign) %>
+	<% if permitted_to? :moderated, campaign %>
 	  <a href="mailto:<%= campaign.user.email %>">
 	    <i class="icon-envelope"></i>
 	    <%= I18n.t(:contact) %>
@@ -14,7 +13,7 @@
       </li>
       <% if campaign.status == 'archived' %>
 	<li>
-	  <% if can?(:moderated, campaign) %>
+	  <% if permitted_to? :moderated, campaign %>
 	    <%= link_to sub_oigame ? activate_sub_oigame_campaign_path(sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
 	      <i class="icon-ok-circle"></i>
 	      <%= t(:activate) %>
@@ -22,17 +21,15 @@
 	  <% end %>
 	</li>
 	<li>
-	  <% if can? :update, campaign %>
-    <% if permitted_to? :edit, campaign %>
+	  <% if permitted_to? :edit, campaign %>
 	    <%= link_to sub_oigame ? edit_sub_oigame_campaign_path(sub_oigame) : edit_campaign_path(campaign) do %>
 	      <i class="icon-pencil"></i>
 	      <%= t(:edit) %>
 	    <% end %>
 	  <% end %>
-    <% end %>
 	</li>
 	<li>
-	  <% if can? :destroy, campaign %>
+	  <% if permitted_to? :destroy, campaign %>
 	    <%= link_to sub_oigame ? sub_oigame_campaign_path(sub_oigame) : campaign, :confirm => t(:are_you_sure), :method => :delete do %>
 	      <i class="icon-trash"></i>
 	      <%= t(:delete) %>
@@ -41,7 +38,7 @@
 	</li>
       <% elsif campaign.status == 'active' %>
 	<li>
-	  <% if can?(:archive, campaign) %>
+	  <% if permitted_to? :archive, campaign %>
 	    <%= link_to sub_oigame ? archive_sub_oigame_campaign_path(sub_oigame) : archive_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
 	      <i class="icon-file"></i>
 	      <%= t(:archive) %>
@@ -49,7 +46,7 @@
 	  <% end %>
 	</li>
 	<li>
-	  <% if can?(:moderated, campaign) && campaign.moderated? %>
+	  <% if (permitted_to? :moderated, campaign) && campaign.moderated? %>
 	    <%= link_to sub_oigame ? activate_sub_oigame_campaign_path(sub_oigame) : activate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
 	      <i class="icon-ok-circle"></i>
 	      <%= t(:activate) %>
@@ -57,7 +54,7 @@
 	  <% end %>
 	</li>
 	<li>
-	  <% if can?(:deactivate, campaign) && campaign.published? %>
+	  <% if (permitted_to? :deactivate, campaign) && campaign.published? %>
 	    <%= link_to sub_oigame ? deactivate_sub_oigame_campaign_path(sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
 	      <i class="icon-remove-circle"></i>
 	      <%= t(:deactivate) %>
@@ -65,7 +62,7 @@
 	  <% end %>
 	</li>
 	<li>
-	  <% if can? :participants, campaign and campaign.messages.count > 0 %>
+	  <% if (permitted_to? :participants, campaign) && campaign.messages.count > 0 %>
 	    <%= link_to participants_campaign_path(campaign) do %>
 	      <i class="icon-user"></i>
 	      <%= t(:download_participants) %>
@@ -73,17 +70,15 @@
 	  <% end %>
 	</li>
 	<li>
-	  <% if can? :update, campaign %>
-      <% if permitted_to? :edit, campaign %>
+	  <% if permitted_to? :edit, campaign %>
 	    <%= link_to sub_oigame ? edit_sub_oigame_campaign_path(sub_oigame) : edit_campaign_path(campaign) do %>
 	      <i class="icon-pencil"></i>
 	      <%= t(:edit) %>
 	    <% end %>
 	  <% end %>
-    <% end %>
 	</li>
 	<li>
-	  <% if can? :priority, campaign %>
+	  <% if (permitted_to? :prioritize, campaign) && (permitted_to? :deprioritize, campaign) %>
 	    <% unless campaign.priority == true %>
 	      <%= link_to sub_oigame ? prioritize_sub_oigame_campaign_path(sub_oigame) : prioritize_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
 		<i class="icon-star"></i>
@@ -98,7 +93,7 @@
 	  <% end %> 
 	</li>
 	<li>
-	  <% if can? :destroy, campaign %>
+	  <% if permitted_to? :destroy, campaign %>
 	    <%= link_to sub_oigame ? sub_oigame_campaign_path(sub_oigame) : campaign, :confirm => t(:are_you_sure), :method => :delete do %>
 	      <i class="icon-trash"></i>
 	      <%= t(:delete) %>
@@ -108,5 +103,4 @@
       <% end %>
     </ul><!-- .dropdown-menu -->
 </li><!-- .dropdown -->
-<% end %>
 <% end %>
