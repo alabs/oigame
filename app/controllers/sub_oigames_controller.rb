@@ -1,11 +1,7 @@
 class SubOigamesController < ApplicationController
-  # para cancan
-  load_resource :find_by => :slug
-  authorize_resource
 
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:index, :show, :new, :edit, :create, :update, :destroy]
-  skip_authorize_resource :only => [:widget, :widget_iframe]
   
   # para declarative_auth
   filter_access_to :all

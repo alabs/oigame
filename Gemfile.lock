@@ -53,10 +53,6 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.1.0.0)
     builder (3.0.3)
-    canard (0.4.0)
-      cancan
-      role_model
-    cancan (1.6.8)
     capistrano (2.13.3)
       highline
       net-scp (>= 1.0.0)
@@ -271,7 +267,6 @@ GEM
     remotipart (1.0.2)
     riddle (1.5.3)
     rmagick (2.13.1)
-    role_model (0.7.1)
     rubyzip (0.9.9)
     sass (3.2.1)
     sass-rails (3.2.3)
@@ -349,7 +344,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  canard
   capistrano
   capistrano-ext
   capybara

@@ -9,12 +9,7 @@ class CampaignsController < ApplicationController
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
   
-  # para cancan
-  load_resource :find_by => :slug
-  # migration a declarative auth
-  skip_load_resource :only => [:index, :message, :petition, :moderated, :feed, :archived]
-  #authorize_resource
-  #skip_authorize_resource :only => [:index, :message, :petition, :feed, :integrate, :new_comment]
+  before_filter :get_campaign, :except => [:index, :message, :petition, :feed, :integrate]
 
   # para declarative_auth
   filter_access_to :all, :attribute_check => true
@@ -374,11 +369,15 @@ class CampaignsController < ApplicationController
 
   private
 
-    def render_404
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout => nil }
-        format.xml  { head :not_found }
-        format.any  { head :not_found }
-      end
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout => nil }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
     end
+  end
+
+  def get_campaign
+    @campaign = Campaign.find_by_slug(params[:id])
+  end
 end
