@@ -1,6 +1,6 @@
 <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
 <% if can? :moderated, campaign or (can? :moderated, campaign && campaign.moderated?) or (can? :deactivate, campaign && campaign.published?) or (can? :participants, campaign && campaign.messages.count > 0) or (can? :update, campaign) or (can? :priority, campaign) or (can? :destroy, campaign) %>
-<% if permitted_to? :edit, :campaigns %>
+<% if permitted_to? :edit, campaign %>
 <li class="dropdown">
   <a data-toggle="dropdown" class="dropdown-toggle" href="#">Opciones <b class="caret"></b></a>
     <ul class="dropdown-menu">
@@ -23,7 +23,7 @@
 	</li>
 	<li>
 	  <% if can? :update, campaign %>
-    <% if permitted_to? :edit, :campaigns %>
+    <% if permitted_to? :edit, campaign %>
 	    <%= link_to sub_oigame ? edit_sub_oigame_campaign_path(sub_oigame) : edit_campaign_path(campaign) do %>
 	      <i class="icon-pencil"></i>
 	      <%= t(:edit) %>
@@ -74,7 +74,7 @@
 	</li>
 	<li>
 	  <% if can? :update, campaign %>
-      <% if permitted_to? :edit, :campaigns %>
+      <% if permitted_to? :edit, campaign %>
 	    <%= link_to sub_oigame ? edit_sub_oigame_campaign_path(sub_oigame) : edit_campaign_path(campaign) do %>
 	      <i class="icon-pencil"></i>
 	      <%= t(:edit) %>

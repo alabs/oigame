@@ -18,6 +18,9 @@ class CampaignsController < ApplicationController
 
   # para declarative_auth
   filter_access_to :all, :attribute_check => true
+  # para que no se haga check del attributo
+  # preguntar a enrique como hacer esto más dry
+  filter_access_to :index, :feed, :search
 
   respond_to :html, :json
 

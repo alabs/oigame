@@ -14,12 +14,11 @@ authorization do
   role :user do
     includes :anonymous
     has_permission_on [:campaigns], :to => [:new, :create]
-    has_permission_on [:campaigns], :to => [:show] do
-      if_attribute :user => is { user } 
+    has_permission_on [:campaigns], :to => [:show, :edit, :update, :participants] do
+      if_attribute :user_id => is { user.id } 
     end
-    has_permission_on [:campaigns], :to => [:edit] do
-      if_attribute :user => is { user }
-    end
+    # TODO
+    # crear el permiso para moderated
   end
 
   role :editor do
