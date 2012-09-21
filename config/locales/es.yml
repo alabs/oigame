@@ -214,5 +214,5 @@ es:
   mail_validate_8: "oiga.me es un proyecto de la asociación . Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{donate_url})."
   mail_validate_9: "Sigue a #{oigame_twitter} en Twitter y en #{oigame_facebook}."
   mail_validate_10: "oiga.me es un proyecto de la asociación #{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{url_donate})."
-  category_of_campaign: "Categoría de la camapaña"
+  category_of_campaign: "Categoría de la campaña"
   category: 'Categoría'
