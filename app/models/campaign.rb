@@ -1,7 +1,6 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
 
-
   self.per_page = 5
 
   acts_as_paranoid
@@ -11,6 +10,7 @@ class Campaign < ActiveRecord::Base
   has_many :messages
   has_many :petitions
   belongs_to :category
+  has_many :donations
   
   attr_accessible :name, :intro, :body, :recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id
   attr_accessor :recipient
