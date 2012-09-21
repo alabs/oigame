@@ -8,8 +8,10 @@
       <div class="grid_12">
         <div class="grid_6">  
           <dl class="dl-horizontal">
-            <dt><%= t(:category) %></dt>
-            <dd><%= @campaign.category.name if @category.category %></dd>
+            <% if @campaign.category %>
+              <dt><%= t(:category) %></dt>
+              <dd><%= @campaign.category.name %></dd>
+            <% end %>
             <% unless @campaign.status == 'archived' %>
               <dt><%= t(:published_at) %></dt>
               <% # published_at no es correcto aquí, da error si la campaña no ha sido publicada todavía %>
