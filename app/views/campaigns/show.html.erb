@@ -8,6 +8,8 @@
       <div class="grid_12">
         <div class="grid_6">  
           <dl class="dl-horizontal">
+            <dt>Crédito</dt>
+            <dd><%= @campaign.credit %></dd>
             <% if @campaign.category %>
               <dt><%= t(:category) %></dt>
               <dd><%= @campaign.category.name %></dd>
