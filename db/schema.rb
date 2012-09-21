@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910121854) do
+ActiveRecord::Schema.define(:version => 20120921075031) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120910121854) do
     t.integer  "messages_count",          :default => 0
     t.integer  "petitions_count",         :default => 0
     t.boolean  "commentable",             :default => true
+    t.integer  "category_id"
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
@@ -45,6 +46,12 @@ ActiveRecord::Schema.define(:version => 20120910121854) do
   add_index "campaigns", ["status"], :name => "index_on_campaigns_status"
   add_index "campaigns", ["sub_oigame_id"], :name => "index_campaigns_on_sub_oigame_id"
   add_index "campaigns", ["user_id"], :name => "index_campaigns_on_user_id"
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
