@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 es:
-  some_participants: 'Algunas participantes'
+  some_participants: 'Algunos/as participantes'
   home: 'Inicio'
   description: 'Plataforma de movilización ciudadana a través de la web'
   keywords: 'oiga.me, plataforma, movilización, web, campaña, campañas'
