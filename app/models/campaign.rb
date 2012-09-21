@@ -10,8 +10,9 @@ class Campaign < ActiveRecord::Base
   belongs_to :sub_oigame, :counter_cache => true
   has_many :messages
   has_many :petitions
+  belongs_to :category
   
-  attr_accessible :name, :intro, :body, :recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable
+  attr_accessible :name, :intro, :body, :recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size

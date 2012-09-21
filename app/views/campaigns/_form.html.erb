@@ -64,6 +64,10 @@
       <% end %>
     </div>
     <div class="form-field">
+      <%= f.label :category, t(:category_of_campaign) %>
+      <%= collection_select(:campaign, :category_id, Category.all, :id, :name, :prompt => t(:category_of_campaign) ) %>
+    </div>
+    <div class="form-field">
       <%= f.label :ttype, t(:type_of_campaign) %>
       <%= select(:campaign, :ttype, Campaign::TYPES.select {|k,v| [k,v]}.invert, {:prompt => t(:type_of_campaign_prompt)}) %>
     </div>
