@@ -9,13 +9,13 @@ class CampaignsController < ApplicationController
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
   
-  before_filter :get_campaign, :except => [:index, :message, :petition, :feed, :integrate]
+  before_filter :get_campaign, :except => [:index, :message, :petition, :feed, :integrate, :new, :create]
 
   # para declarative_auth
   filter_access_to :all, :attribute_check => true
   # para que no se haga check del attributo
   # preguntar a enrique como hacer esto más dry
-  filter_access_to :index, :feed, :search, :moderated
+  filter_access_to :index, :feed, :search, :moderated, :new, :create
 
   respond_to :html, :json
 
@@ -51,6 +51,12 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    @campaign = Campaign.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @campaign }
+    end
   end
 
   def edit
@@ -75,6 +81,7 @@ class CampaignsController < ApplicationController
   end
 
   def create
+    @campaign = Campaign.new(params[:campaign])
     @campaign.user = current_user
     @campaign.target = @campaign.target.gsub(/\./, '')
     if @sub_oigame
