@@ -9,7 +9,7 @@
         <div class="grid_6">  
           <dl class="dl-horizontal">
             <dt>Crédito</dt>
-            <dd><%= @campaign.credit %></dd>
+            <dd><%= number_with_precision(@campaign.credit, :precision => 2) %>€</dd>
             <% if @campaign.category %>
               <dt><%= t(:category) %></dt>
               <dd><%= @campaign.category.name %></dd>
