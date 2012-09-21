@@ -11,33 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921075031) do
+ActiveRecord::Schema.define(:version => 20120921092829) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
     t.string   "slug"
     t.text     "intro"
     t.text     "body"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
-    t.boolean  "moderated",               :default => true
+    t.boolean  "moderated",                                              :default => true
     t.datetime "published_at"
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
-    t.string   "status",                  :default => "active"
+    t.string   "status",                                                 :default => "active"
     t.time     "deleted_at"
     t.integer  "sub_oigame_id"
     t.string   "default_message_subject"
     t.text     "default_message_body"
-    t.boolean  "priority",                :default => false
-    t.integer  "messages_count",          :default => 0
-    t.integer  "petitions_count",         :default => 0
-    t.boolean  "commentable",             :default => true
+    t.boolean  "priority",                                               :default => false
+    t.integer  "messages_count",                                         :default => 0
+    t.integer  "petitions_count",                                        :default => 0
+    t.boolean  "commentable",                                            :default => true
     t.integer  "category_id"
+    t.decimal  "credit",                  :precision => 10, :scale => 4, :default => 0.0
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
