@@ -9,13 +9,13 @@ class CampaignsController < ApplicationController
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
   
-  before_filter :get_campaign, :except => [:index, :message, :petition, :feed, :new, :create]
+  before_filter :get_campaign, :except => [:index, :message, :petition, :feed, :new, :create, :archived]
 
   # para declarative_auth
   filter_access_to :all, :attribute_check => true
   # para que no se haga check del attributo
   # preguntar a enrique como hacer esto más dry
-  filter_access_to :index, :feed, :search, :moderated, :new, :create
+  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived
 
   respond_to :html, :json
 
