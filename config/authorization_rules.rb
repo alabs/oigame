@@ -18,8 +18,10 @@ authorization do
     has_permission_on [:campaigns], :to => [:show, :edit, :update, :participants] do
       if_attribute :user_id => is { user.id } 
     end
-    # TODO
     # crear el permiso para moderated teniendo en cuenta el sub_oigame
+    has_permission_on [:campaigns], :to => [:moderated] do
+      if_attribute :sub_oigame => { :users => contains { user } }
+    end
     has_permission_on [:donate], :to => [:init]
     # TODO
     # crear el permiso para los sub_oigames
