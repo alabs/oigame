@@ -33,6 +33,6 @@ authorization do
   end
 
   role :admin do
-    includes :editor
+    has_omnipotence
   end
 end
