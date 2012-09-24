@@ -26,13 +26,12 @@ Instalación de entorno de desarrollo
 
 Instrucciones para Linux y MacOSX
 
-oiga.me necesita ruby 1.9.2, lo mejor es que te instales rvm o rbenv. Para hacerlo con rvm, por 
+oiga.me necesita ruby 1.9, lo mejor es que te instales rvm o rbenv. Para hacerlo con rvm, por 
 ejemplo:
 
 ```shell
-$ bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+$ curl -L https://get.rvm.io | bash -s stable --ruby
 ```
-y luego crea un archivo .rvmrc en la raiz del proyecto, que contenga: "rvm 1.9.2" (sin las comillas)
 
 ```shell
 $ gem install bundler
