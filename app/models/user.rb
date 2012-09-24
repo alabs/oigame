@@ -92,7 +92,6 @@ class User < ActiveRecord::Base
     name.blank? || vat.blank? ? false : true
   end
 
-  # Métodos para Canard
   def user?
     self.roles.include? == 'user'
   end

@@ -23,8 +23,6 @@ authorization do
       if_attribute :sub_oigame => { :users => contains { user } }
     end
     has_permission_on [:donate], :to => [:init]
-    # TODO
-    # crear el permiso para los sub_oigames
   end
 
   role :editor do
