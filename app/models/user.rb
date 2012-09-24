@@ -94,15 +94,15 @@ class User < ActiveRecord::Base
 
   # Métodos para Canard
   def user?
-    self.role == 'user'
+    self.roles.include? == 'user'
   end
 
   def editor?
-    self.role == 'editor'
+    self.roles.include? == 'editor'
   end
 
   def admin?
-    self.role == 'admin'
+    self.roles.include? == 'admin'
   end
 
   # para declarative_auth
