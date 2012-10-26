@@ -18,6 +18,7 @@ class FaxPdf
     pdf.move_down 15
     pdf.font_size 10
     pdf.text @fax.body 
+    pdf.move_down 30
 
     pdf.render
   end
