@@ -55,6 +55,24 @@ class Mailman < ActionMailer::Base
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
     mail :from => from, :to => to, :subject => subject
   end
+  
+  def send_message_to_validate_fax(to, campaign, fax)
+    @campaign = campaign
+    @token = message.token
+    # TODO: esto que viene no es muy DRY que digamos 
+    # seguro que hay alguna forma elegante con un before o alguna cosas de estas
+    unless @campaign.sub_oigame.nil?
+      prefix = "[#{@campaign.sub_oigame.name}]"
+      @sub_oigame = @campaign.sub_oigame
+      @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+    else
+      prefix = "[oiga.me]"
+      @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
+    end
+    from = generate_from_for_validate('oigame@oiga.me', campaign.sub_oigame)
+    subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
+    mail :from => from, :to => to, :subject => subject
+  end
 
   def send_message_to_validate_petition(to, campaign, petition)
     @campaign = campaign
