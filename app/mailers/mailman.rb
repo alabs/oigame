@@ -114,7 +114,7 @@ class Mailman < ActionMailer::Base
   
   def send_message_to_fax_recipients(fax, campaign)
     @password = APP_CONFIG[:our_fax_password]
-    subject =  APP_CONFIG[:our_fax_number]
+    subject = APP_CONFIG[:our_fax_number]
     fax = FaxPdf.new(fax, campaign)
     attachments['fax.pdf'] = fax.generate_pdf
     numbers = campaign.numbers.map {|number| number + "@ecofax.fr"}
