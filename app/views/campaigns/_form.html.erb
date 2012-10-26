@@ -83,6 +83,10 @@
       <%= f.label :default_message_body, t(:default_message_body) %>
       <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
     </div>
+    <div class="form-field form-fax hide">
+      <%= f.label :faxes_recipients, t(:faxes_recipients) %>
+      <%= f.text_area :faxes_recipients, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:faxes_recipients_help) %>
+    </div>
     <div class="form-field">
       <%= f.label :commentable, t(:enable_comments) %>
       <%= f.check_box :commentable, :checked => true %> <span class="note"><%= t(:enable_comments) %></span>

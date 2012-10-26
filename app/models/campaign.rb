@@ -13,7 +13,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   has_many :donations
   
-  attr_accessible :name, :intro, :body, :recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id
+  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size
@@ -106,6 +106,19 @@ class Campaign < ActiveRecord::Base
     data = data.collect { data.slice!(rand data.length) }
 
     return data[0,27]
+  end
+
+  def faxes_recipients
+    self.numbers.join("\r\n")
+  end
+  
+  def faxes_recipients=(args)
+    numbs = args.gsub(/\s+/, ',').split(',')
+    # arreglar el bug del strip
+    # numbs.each {|number| number.strip!.downcase! }.uniq!
+    numbs.each {|number| number.downcase! }.uniq!
+    numbs.delete_if {|n| n.blank? }
+    self.numbers = numbs
   end
 
   def recipients
