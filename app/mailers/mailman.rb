@@ -112,13 +112,12 @@ class Mailman < ActionMailer::Base
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
   
-  def send_message_to_fax_recipients(fax)
-    @message_body = fax.body
+  def send_message_to_fax_recipients(fax, campaign)
     subject =  APP_CONFIG[:our_fax_number]
-    fax = FaxPdf.new(fax)
-    pdf = fax.generate_pdf
-    attachments['fax.pdf'] = pdf
-    mail :to => fax.campaign.numbers, :subject => subject
+    fax = FaxPdf.new(fax, campaign)
+    attachments['fax.pdf'] = fax.generate_pdf
+    numbers = fax.campaign.numbers.map {|number| number + "@ecofax.fr"}
+    mail :to => numbers, :subject => subject
   end
 
   def inform_new_comment(campaign)
@@ -128,5 +127,4 @@ class Mailman < ActionMailer::Base
     subject = "[oiga.me] Nuevo mensaje en tu campaña #{ @campaign_name }"
     mail :to => @message_to, :subject => subject
   end
-
 end

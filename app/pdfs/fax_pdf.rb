@@ -1,7 +1,8 @@
 class FaxPdf
 
-  def initialize(fax)
+  def initialize(fax, campaign)
     @fax = fax
+    @campaign = campaign
   end
 
   def generate_pdf
@@ -13,7 +14,7 @@ class FaxPdf
     pdf.text "Email: #{@fax.email}"
     pdf.move_down 25
     pdf.font_size 16
-    pdf.text @fax.campaign.name
+    pdf.text @campaign.name
     pdf.move_down 15
     pdf.font_size 10
     pdf.text @fax.body 
