@@ -163,6 +163,12 @@
               <%= render :partial => 'mailing_form' %>
             </div>
           <% end %>
+          
+          <% if @campaign.ttype == 'fax' %>
+            <div id="show-campaign-fax">
+              <%= render :partial => 'fax_form' %>
+            </div>
+          <% end %>
 
         <% end %>
         
