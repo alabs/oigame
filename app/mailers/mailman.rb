@@ -111,6 +111,15 @@ class Mailman < ActionMailer::Base
     recipients = message.campaign.emails
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
+  
+  def send_message_to_fax_recipients(fax)
+    @message_body = fax.body
+    subject =  APP_CONFIG[:our_fax_number]
+    fax = FaxPdf.new(fax)
+    pdf = fax.generate_pdf
+    attachments['fax.pdf'] = pdf
+    mail :to => fax.campaign.numbers, :subject => subject
+  end
 
   def inform_new_comment(campaign)
     @message_to = campaign.user.email

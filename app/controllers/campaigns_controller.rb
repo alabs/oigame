@@ -152,6 +152,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_recipients(message).deliver
               if @sub_oigame.nil?
                 redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -173,6 +174,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_recipients(message).deliver
               if @sub_oigame.nil?
                 redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -396,6 +398,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               fax.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_fax_recipients(fax).deliver
               if @sub_oigame.nil?
                 redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -417,6 +420,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               fax.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_fax_recipients(fax).deliver
               if @sub_oigame.nil?
                 redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
