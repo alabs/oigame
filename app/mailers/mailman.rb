@@ -2,7 +2,7 @@
 class Mailman < ActionMailer::Base
 
   default :from => "oigame@oiga.me"
-  layout "email"
+  layout "email", :except => :send_message_to_fax_recipients
   helper :application
   include ApplicationHelper
 
