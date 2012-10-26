@@ -1,21 +1,21 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
-  before_filter :protect_from_spam, :only => [:message, :petition]
-  protect_from_forgery :except => [:message, :petition]
+  before_filter :protect_from_spam, :only => [:message, :petition, :fax]
+  protect_from_forgery :except => [:message, :petition, :fax]
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants]
   
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
   
-  before_filter :get_campaign, :except => [:index, :message, :petition, :feed, :new, :create, :archived]
+  before_filter :get_campaign, :except => [:index, :message, :petition, :fax, :feed, :new, :create, :archived]
 
   # para declarative_auth
   filter_access_to :all, :attribute_check => true
   # para que no se haga check del attributo
   # preguntar a enrique como hacer esto más dry
-  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived, :petition, :message
+  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived, :petition, :message, :fax
 
   respond_to :html, :json
 
@@ -373,6 +373,13 @@ class CampaignsController < ApplicationController
   #  Mailman.inform_new_comment(@campaign).deliver
   #  redirect_to @campaign
   #end
+  
+  def fax
+    @campaign = Campaign.find_by_slug(params[:id])
+    @campaigns = @campaign.other_campaigns
+    if request.post?
+    end
+  end
 
   private
 

@@ -22,7 +22,7 @@ class Campaign < ActiveRecord::Base
   serialize :emails, Array
   serialize :numbers, Array
 
-  TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo' }
+  TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
   STATUS = %w[active archived deleted]
 
   validates :name, :uniqueness => { :scope => :sub_oigame_id }
