@@ -72,6 +72,11 @@
           <a data-toggle="tab" href="#message"><%= t(:message) %></a>
         </li>
       <% end %>
+      <% if @campaign.ttype == 'fax' %>
+        <li>
+          <a data-toggle="tab" href="#fax"><%= t(:Faxes) %></a>
+        </li>
+      <% end %>
       <% unless @campaign.status == 'archived' %>
         <li data-tab-type="stats">
           <a data-toggle="tab" href="#stats"><%= t(:stats) %></a>
@@ -123,6 +128,22 @@
             <hr />
             <h2><%= t(:message) %></h2>
             <b><%= t(:subject) %></b>: <%= @campaign.default_message_subject %> 
+          <p>
+            <pre><%= @campaign.default_message_body %></pre>
+          </p>
+        </div>
+      </div><!-- message -->
+      <div id="fax" class="tab-pane fade">
+        <div id="campaign-info">
+          <h2><%= t(:faxes_recipients) %></h2>
+          <p><%= t(:recipients_show) %></p>
+            <ul>
+              <% @campaign.numbers.each do |number| %> 
+                <li><%= number %></li>
+              <% end %>
+            </ul>
+            <hr />
+            <h2><%= t(:message) %></h2>
           <p>
             <pre><%= @campaign.default_message_body %></pre>
           </p>
