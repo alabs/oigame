@@ -260,12 +260,14 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.published.find_by_slug(params[:id])
     if @campaign
       @campaigns = @campaign.other_campaigns
-      model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
+      model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token]) || Fax.find_by_token(params[:token])
       if model
         model.update_attributes(:validated => true, :token => nil)
-        # Enviar el mensaje si model es Message
-        if model.class.name == 'Message'
+        case model.class.name
+        when 'Message'
           Mailman.send_message_to_recipients(model).deliver
+        when 'Fax'
+          Mailman.send_message_to_fax_recipients(model, @campaign).deliver
         end
         redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
 
