@@ -335,6 +335,9 @@ GEM
     uuidtools (2.1.3)
     warden (1.2.1)
       rack (>= 1.0)
+    wicked (0.2.0)
+      activesupport (>= 3.0.7)
+      rails (>= 3.0.7)
     will_paginate (3.0.3)
     will_paginate-bootstrap (0.2.1)
       will_paginate (>= 3.0.3)
@@ -392,6 +395,7 @@ DEPENDENCIES
   turn
   twitter
   uglifier (>= 1.0.3)
+  wicked
   will_paginate
   will_paginate-bootstrap
   yaml_db

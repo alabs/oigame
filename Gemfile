@@ -75,3 +75,5 @@ gem 'will_paginate-bootstrap'
 #gem 'canard'
 gem 'declarative_authorization'
 gem 'prawn'
+
+gem 'wicked'

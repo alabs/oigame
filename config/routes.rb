@@ -8,6 +8,7 @@ Oigame::Application.routes.draw do
   
     resources :sub_oigames, :path => "o" do
       resources :campaigns do
+        resources :wizard
         member do
           post 'petition'
           get 'petition'
@@ -62,6 +63,7 @@ Oigame::Application.routes.draw do
     end
   
     resources :campaigns do
+      resources :wizard
       member do
         post 'petition'
         get 'petition'
