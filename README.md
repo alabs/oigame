@@ -41,3 +41,7 @@ $ rake db:create
 $ rake db:migrate
 $ bundle exec unicorn_rails
 ```
+
+Se necesitan las siguientes dependencias: 
+
+sudo aptitude install libmysqlclient-dev libmagick-dev libmagickwand-dev
