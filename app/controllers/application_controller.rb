@@ -7,13 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_filter { |c| Authorization.current_user = c.current_user }
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
-  end
-
   def permission_denied
-    flash[:error] = "Sorry, you not allowed to access that page."
-    redirect_to root_url
+    redirect_to root_url, :alert => 'Sorry, you not allowed to access that page'
   end
 
   protected
@@ -51,10 +46,3 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 end
-
-# Esto peta
-#class Devise::Mailer
-#  def default_url_options(options={})
-#    { :locale => I18n.locale }
-#  end
-#end

@@ -2,7 +2,7 @@
 class Mailman < ActionMailer::Base
 
   default :from => "oigame@oiga.me"
-  layout "email"
+  layout "email", :except => :send_message_to_fax_recipients
   helper :application
   include ApplicationHelper
 
@@ -39,6 +39,24 @@ class Mailman < ActionMailer::Base
   end
 
   def send_message_to_validate_message(to, campaign, message)
+    @campaign = campaign
+    @token = message.token
+    # TODO: esto que viene no es muy DRY que digamos 
+    # seguro que hay alguna forma elegante con un before o alguna cosas de estas
+    unless @campaign.sub_oigame.nil?
+      prefix = "[#{@campaign.sub_oigame.name}]"
+      @sub_oigame = @campaign.sub_oigame
+      @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+    else
+      prefix = "[oiga.me]"
+      @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
+    end
+    from = generate_from_for_validate('oigame@oiga.me', campaign.sub_oigame)
+    subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
+    mail :from => from, :to => to, :subject => subject
+  end
+  
+  def send_message_to_validate_fax(to, campaign, fax)
     @campaign = campaign
     @token = message.token
     # TODO: esto que viene no es muy DRY que digamos 
@@ -93,6 +111,15 @@ class Mailman < ActionMailer::Base
     recipients = message.campaign.emails
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
+  
+  def send_message_to_fax_recipients(fax, campaign)
+    @password = APP_CONFIG[:our_fax_password]
+    subject = APP_CONFIG[:our_fax_number]
+    fax = FaxPdf.new(fax, campaign)
+    attachments['fax.pdf'] = fax.generate_pdf
+    numbers = campaign.numbers.map {|number| number + "@ecofax.fr"}
+    mail :to => numbers, :subject => subject
+  end
 
   def inform_new_comment(campaign)
     @message_to = campaign.user.email
@@ -101,5 +128,4 @@ class Mailman < ActionMailer::Base
     subject = "[oiga.me] Nuevo mensaje en tu campaña #{ @campaign_name }"
     mail :to => @message_to, :subject => subject
   end
-
 end

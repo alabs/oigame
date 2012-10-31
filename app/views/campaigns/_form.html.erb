@@ -64,6 +64,10 @@
       <% end %>
     </div>
     <div class="form-field">
+      <%= f.label :category, t(:category_of_campaign) %>
+      <%= collection_select(:campaign, :category_id, Category.all, :id, :name, :prompt => t(:category_of_campaign) ) %>
+    </div>
+    <div class="form-field">
       <%= f.label :ttype, t(:type_of_campaign) %>
       <%= select(:campaign, :ttype, Campaign::TYPES.select {|k,v| [k,v]}.invert, {:prompt => t(:type_of_campaign_prompt)}) %>
     </div>
@@ -76,6 +80,14 @@
       <%= f.text_field :default_message_subject, :class => 'span6', :required => true, :placeholder => t(:default_message_subject) %>
     </div>
     <div class="form-field form-campaign hide">
+      <%= f.label :default_message_body, t(:default_message_body) %>
+      <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
+    </div>
+    <div class="form-field form-fax hide">
+      <%= f.label :faxes_recipients, t(:faxes_recipients) %>
+      <%= f.text_area :faxes_recipients, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:faxes_recipients_help) %>
+    </div>
+    <div class="form-field form-fax hide">
       <%= f.label :default_message_body, t(:default_message_body) %>
       <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
     </div>

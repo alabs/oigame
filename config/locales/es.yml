@@ -4,7 +4,7 @@
 es:
   some_participants: 'Algunas participantes'
   home: 'Inicio'
-  description: 'Plataforma de movilización ciudadana a través de la web'
+  descriptions: 'Plataforma de movilización ciudadana a través de la web'
   keywords: 'oiga.me, plataforma, movilización, web, campaña, campañas'
   there_are_currently: 'En estos momentos hay'
   members: 'miembros'
@@ -48,6 +48,7 @@ es:
   tags_most_used: 'Etiquetas más usadas'
   recipients: 'Destinatarios'
   recipients_help: 'Lista de direcciones de correo de destinatarios, una por línea.'
+  faxes_recipients_help: "Lista de números de fax, uno por línea."
   recipients_show: 'Tu mensaje se enviará a las siguientes personas'
   image_of_campaign: 'Imágen de la campaña'
   edit: 'Editar'
@@ -105,7 +106,7 @@ es:
   number_of_people: 'Número de personas que piensas que se unirán a la campaña'
   thank_you: 'Gracias'
   thank_you_message: 'Revisa tu correo. En breve recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.'
-  thank_you_petition: 'Revisa tu correo. En breve recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.'
+  thank_you_petition: 'Gracias por participar. Si no estás registrado en oiga.me revisa tu correo, en breve recibirás un correo electrónico con el último paso a realizar para unirte a la campaña.'
   thank_you_confirmed: 'Tu adhesión ha sido confirmada con éxito, muchas gracias por participar en esta campaña.'
   join_myself: 'Firma esta campaña'
   may_your_voice_signed: '¡Que se escuche tu voz! Para participar en la campaña haz click en el boton unirme.'
@@ -121,7 +122,7 @@ es:
   of: 'de'
   contact: 'Contacto'
   contact_to: 'ponte en contacto'
-  descriptions: 'Descripción'
+  description: 'Descripción'
   stats: 'Estadísticas'
   spread: 'En tu web'
   spread_info: 'Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.'
@@ -214,3 +215,6 @@ es:
   mail_validate_8: "oiga.me es un proyecto de la asociación . Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{donate_url})."
   mail_validate_9: "Sigue a #{oigame_twitter} en Twitter y en #{oigame_facebook}."
   mail_validate_10: "oiga.me es un proyecto de la asociación #{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{url_donate})."
+  category_of_campaign: "Categoría de la campaña"
+  category: 'Categoría'
+  faxes_recipients: 'Números de fax de los destinatarios'

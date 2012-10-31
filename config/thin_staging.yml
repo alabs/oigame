@@ -1,9 +1,7 @@
 ---
 pid: tmp/pids/thin.pid
-address: 127.0.0.1
 timeout: 30
 wait: 30
-port: 4000
 log: log/thin.log
 max_conns: 1024
 require: []
@@ -13,3 +11,5 @@ max_persistent_conns: 512
 servers: 2
 daemonize: true
 chdir: /var/www/beta.oiga.me/current
+
+socket: /tmp/thin.staging.sock

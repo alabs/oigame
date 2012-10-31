@@ -1,22 +1,21 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
-  before_filter :protect_from_spam, :only => [:message, :petition]
-  protect_from_forgery :except => [:message, :petition]
+  before_filter :protect_from_spam, :only => [:message, :petition, :fax]
+  protect_from_forgery :except => [:message, :petition, :fax]
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants]
   
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
   
-  # para cancan
-  load_resource :find_by => :slug
-  skip_load_resource :only => [:index, :message, :petition, :moderated, :feed, :archived]
-  authorize_resource
-  skip_authorize_resource :only => [:index, :message, :petition, :feed, :integrate, :new_comment]
+  before_filter :get_campaign, :except => [:index, :message, :petition, :fax, :feed, :new, :create, :archived]
 
   # para declarative_auth
-  filter_access_to :all
+  filter_access_to :all, :attribute_check => true
+  # para que no se haga check del attributo
+  # preguntar a enrique como hacer esto más dry
+  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived, :petition, :message, :fax
 
   respond_to :html, :json
 
@@ -52,6 +51,12 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    @campaign = Campaign.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @campaign }
+    end
   end
 
   def edit
@@ -76,6 +81,7 @@ class CampaignsController < ApplicationController
   end
 
   def create
+    @campaign = Campaign.new(params[:campaign])
     @campaign.user = current_user
     @campaign.target = @campaign.target.gsub(/\./, '')
     if @sub_oigame
@@ -146,6 +152,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_recipients(message).deliver
               if @sub_oigame.nil?
                 redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -167,6 +174,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_recipients(message).deliver
               if @sub_oigame.nil?
                 redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -252,12 +260,14 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.published.find_by_slug(params[:id])
     if @campaign
       @campaigns = @campaign.other_campaigns
-      model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token])
+      model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token]) || Fax.find_by_token(params[:token])
       if model
         model.update_attributes(:validated => true, :token => nil)
-        # Enviar el mensaje si model es Message
-        if model.class.name == 'Message'
+        case model.class.name
+        when 'Message'
           Mailman.send_message_to_recipients(model).deliver
+        when 'Fax'
+          Mailman.send_message_to_fax_recipients(model, @campaign).deliver
         end
         redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
 
@@ -367,14 +377,101 @@ class CampaignsController < ApplicationController
   #  Mailman.inform_new_comment(@campaign).deliver
   #  redirect_to @campaign
   #end
+  
+  def fax
+    @campaign = Campaign.find_by_slug(params[:id])
+    @campaigns = @campaign.other_campaigns
+    if request.post?
+      if user_signed_in?
+        if current_user.name.blank?
+          current_user.update_attributes(:name => params[:name])
+          # si no esta registrado seteamos las cookies para no volver a preguntar 
+          # su nombre y su correo - si esta registrado nos da igual
+          cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
+          cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
+        end
+      end
+      from = user_signed_in? ? current_user.email : params[:email]
+      if @campaign
+        if params[:own_message] == "1" 
+          fax = Fax.new(:campaign => @campaign, :email => from, :body => params[:body], :token => generate_token)
+          if fax.save
+
+            # si está registrado no pedirle confirmación de unión a la campaña
+            if user_signed_in?
+              fax.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_fax_recipients(fax, @campaign).deliver
+              if @sub_oigame.nil?
+                redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
+              else
+                redirect_to fax_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+              end
+
+              return
+            end
+            Mailman.send_message_to_validate_fax(from, @campaign, fax).deliver
+          else
+            flash.now[:error] = "No puedes participar más de una vez por campaña"
+            render :action => :show
+            return
+          end
+        else
+          # mensaje por defecto
+          fax = Fax.new(:campaign => @campaign, :email => from, :body => @campaign.default_message_body, :token => generate_token)
+          if fax.save
+            # si está registrado no pedirle confirmación de unión a la campaña
+            if user_signed_in?
+              fax.update_attributes(:validated => true, :token => nil)
+              Mailman.send_message_to_fax_recipients(fax, @campaign).deliver
+              if @sub_oigame.nil?
+                redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
+              else
+                redirect_to fax_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
+              end
+
+              return
+
+            end
+            Mailman.send_message_to_validate_fax(from, @campaign, fax).deliver
+          else
+            flash.now[:error] = "No puedes participar más de una vez por campaña"
+            render :action => :show
+            return
+          end
+        end
+        if @sub_oigame.nil?
+          redirect_to fax_campaign_url
+        else
+          redirect_to fax_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
+        end
+
+        return
+      else
+        flash[:error] = "Esta campaña ya no está activa."
+        redirect_to campaigns_url
+      end
+    else
+      @campaign = Campaign.published.find_by_slug(params[:id])
+      if @campaign
+        @stats_data = @campaign.stats_for_fax(@campaign)
+      else
+        flash[:error] = "Esta campaña ya no está activa."
+        redirect_to campaigns_url
+      end
+    end
+  end
 
   private
 
-    def render_404
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout => nil }
-        format.xml  { head :not_found }
-        format.any  { head :not_found }
-      end
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout => nil }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
     end
+  end
+
+  def get_campaign
+    @campaign = Campaign.find_by_slug(params[:id])
+  end
 end

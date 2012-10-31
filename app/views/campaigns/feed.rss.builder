@@ -10,7 +10,7 @@ xml.rss :version => "2.0" do
         xml.title campaign.name
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
           :autolink => true, :space_after_headers => true)
-        xml.description markdown.render(campaign.intro).html_safe + "<p> " + link_to( t(:join_this_campaign), campaign) + "</p>"
+        xml.description image_tag(campaign.image_url.to_s) + " " + markdown.render(campaign.intro).html_safe + markdown.render(campaign.body).html_safe + link_to( t(:join_this_campaign), campaign)
         xml.pubDate campaign.published_at.to_s(:rfc822)
         xml.link "#{APP_CONFIG[:domain]}/campaigns/#{campaign.slug}"
         xml.guid "#{APP_CONFIG[:domain]}/campaigns/#{campaign.slug}"

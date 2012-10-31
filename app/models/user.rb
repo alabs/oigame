@@ -10,14 +10,12 @@ class User < ActiveRecord::Base
 
   has_many :campaigns, :dependent => :destroy
   has_and_belongs_to_many :sub_oigames
+  has_many :donations
 
   after_create :set_role
 
   USER_ROLES = %w[user editor admin]
   
-  # Para Canard
-  acts_as_user roles: USER_ROLES
-
   class << self
 
     def get_mailing_users
@@ -94,17 +92,16 @@ class User < ActiveRecord::Base
     name.blank? || vat.blank? ? false : true
   end
 
-  # Métodos para Canard
   def user?
-    self.role == 'user'
+    self.roles.include? == 'user'
   end
 
   def editor?
-    self.role == 'editor'
+    self.roles.include? == 'editor'
   end
 
   def admin?
-    self.role == 'admin'
+    self.roles.include? == 'admin'
   end
 
   # para declarative_auth

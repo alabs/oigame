@@ -41343,22 +41343,33 @@ function draw_stats_chart(){
 function switch_campaign_type(ctype) {
   switch (ctype) {
     case "petition": 
-      $(".form-campaign")
+      $(".form-campaign, .form-fax")
         .hide("slow");
-      $(".form-campaign input, .form-campaign textarea")
+      $(".form-campaign input, .form-campaign textarea, .form-fax input, .form-fax textarea")
         .removeAttr("required"); 
       break;
     case "mailing":
+      $(".form-fax")
+        .hide("slow");
       $(".form-campaign")
         .show("slow")
         .removeClass("hide");
-      $(".form-campaign input, .form-campaign textarea")
+      $("form-campaign input, .form-campaign textarea")
+        .attr("required", "required");
+      break;
+    case "fax":
+      $(".form-campaign")
+        .hide("slow");
+      $(".form-fax")
+        .show("slow")
+        .removeClass("hide");
+      $(".form-fax input, .form-fax textarea")
         .attr("required", "required");
       break;
     default:
-      $(".form-campaign")
+      $(".form-campaign, .form-fax")
         .hide("slow");
-      $(".form-campaign input, .form-campaign textarea")
+      $(".form-campaign input, .form-campaign textarea, .form-fax input .form-fax textarea")
         .removeAttr("required"); 
       break;
   }
@@ -41535,6 +41546,11 @@ $(function() {
   })
 
 });
+(function() {
+
+
+
+}).call(this);
 ////////////////////////// goTo start
 /*
  * Go to anchor tag with beauty effect

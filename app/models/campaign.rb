@@ -1,7 +1,6 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
 
-
   self.per_page = 5
 
   acts_as_paranoid
@@ -10,16 +9,20 @@ class Campaign < ActiveRecord::Base
   belongs_to :sub_oigame, :counter_cache => true
   has_many :messages
   has_many :petitions
+  has_many :faxes, :class_name => Fax
+  belongs_to :category
+  has_many :donations
   
-  attr_accessible :name, :intro, :body, :recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable
+  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size
   attr_accessor :image_width, :image_height
 
   serialize :emails, Array
+  serialize :numbers, Array
 
-  TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo' }
+  TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
   STATUS = %w[active archived deleted]
 
   validates :name, :uniqueness => { :scope => :sub_oigame_id }
@@ -103,6 +106,19 @@ class Campaign < ActiveRecord::Base
     data = data.collect { data.slice!(rand data.length) }
 
     return data[0,27]
+  end
+
+  def faxes_recipients
+    self.numbers.join("\r\n")
+  end
+  
+  def faxes_recipients=(args)
+    numbs = args.gsub(/\s+/, ',').split(',')
+    # arreglar el bug del strip
+    # numbs.each {|number| number.strip!.downcase! }.uniq!
+    numbs.each {|number| number.downcase! }.uniq!
+    numbs.delete_if {|n| n.blank? }
+    self.numbers = numbs
   end
 
   def recipients
@@ -193,6 +209,20 @@ class Campaign < ActiveRecord::Base
     dates.each do |date|
       count = Rails.cache.fetch("s4m_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
       messages += count
+      data.push([date.strftime('%Y-%m-%d'), messages])
+    end
+    
+    return data
+  end
+  
+  def stats_for_fax(campaign)
+    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+    data = []
+    faxes = 0
+    require Rails.root.to_s+'/app/models/fax'
+    dates.each do |date|
+      count = Rails.cache.fetch("s4f_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Fax.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      faxes += count
       data.push([date.strftime('%Y-%m-%d'), messages])
     end
     

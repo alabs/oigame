@@ -1,5 +1,7 @@
 Oigame::Application.routes.draw do
 
+  resources :categories
+
   scope ":locale", :locale => /en|es/ do
     # solucionar el tema de acceso por rol
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
@@ -23,6 +25,8 @@ Oigame::Application.routes.draw do
           post 'deprioritize'
           post 'archive'
           #post 'new_comment'
+          get 'fax'
+          post 'fax'
         end
         collection do
           get 'moderated'
@@ -75,6 +79,8 @@ Oigame::Application.routes.draw do
         post 'deprioritize'
         post 'archive'
         #post 'new_comment'
+        get 'fax'
+        post 'fax'
       end
       collection do
         get 'moderated'

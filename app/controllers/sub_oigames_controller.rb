@@ -1,22 +1,21 @@
 class SubOigamesController < ApplicationController
-  # para cancan
-  load_resource :find_by => :slug
-  authorize_resource
 
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:index, :show, :new, :edit, :create, :update, :destroy]
-  skip_authorize_resource :only => [:widget, :widget_iframe]
+  
+  # para declarative_auth
+  filter_access_to :all
 
   # GET /o
   # GET /o.json
   def index
     @sub_oigames = SubOigame.all
-    authorize! :index, SubOigame
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sub_oigames }
-    end end
+    end
+  end
 
   # GET /o/1
   # GET /o/1.json
@@ -101,5 +100,4 @@ class SubOigamesController < ApplicationController
   def integrate
     @sub_oigame = SubOigame.find_by_slug(params[:sub_oigame_id])
   end
-
 end

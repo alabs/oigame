@@ -21,7 +21,7 @@
         <br />
         <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => 'btn btn-large btn-success' %></h2> 
         <br />
-        <% permitted_to? :moderated, Campaign do %>
+        <% permitted_to? :moderated, Campaign.new do %>
           <br />
           <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn btn-large btn-danger" %></h2>
         <% end %>
@@ -30,7 +30,7 @@
         <br />
         <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_campaigns_path, :class => 'btn btn-large btn-success' %></h2> 
         <br />
-        <% permitted_to? :moderated, Campaign do %>
+        <% permitted_to? :moderated, Campaign.new do %>
           <br />
           <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn btn-large btn-danger" %></h2>
         <% end %>

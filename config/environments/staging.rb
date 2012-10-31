@@ -61,7 +61,7 @@ Oigame::Application.configure do
   config.active_support.deprecation = :notify
   
   # Para Devise
-  config.action_mailer.default_url_options = { :host => 'beta.oiga.me' }
+  config.action_mailer.default_url_options = { :host => 'beta.oiga.me', :locale => I18n.locale }
   config.to_prepare { Devise::SessionsController.force_ssl }
   config.to_prepare { Devise::RegistrationsController.force_ssl }
   config.to_prepare { Devise::PasswordsController.force_ssl }

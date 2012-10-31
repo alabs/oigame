@@ -11,32 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910121854) do
+ActiveRecord::Schema.define(:version => 20121026022228) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
     t.string   "slug"
     t.text     "intro"
     t.text     "body"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
-    t.boolean  "moderated",               :default => true
+    t.boolean  "moderated",                                              :default => true
     t.datetime "published_at"
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
-    t.string   "status",                  :default => "active"
+    t.string   "status",                                                 :default => "active"
     t.time     "deleted_at"
     t.integer  "sub_oigame_id"
     t.string   "default_message_subject"
     t.text     "default_message_body"
-    t.boolean  "priority",                :default => false
-    t.integer  "messages_count",          :default => 0
-    t.integer  "petitions_count",         :default => 0
-    t.boolean  "commentable",             :default => true
+    t.boolean  "priority",                                               :default => false
+    t.integer  "messages_count",                                         :default => 0
+    t.integer  "petitions_count",                                        :default => 0
+    t.boolean  "commentable",                                            :default => true
+    t.integer  "category_id"
+    t.decimal  "credit",                  :precision => 10, :scale => 4, :default => 0.0
+    t.text     "numbers"
+    t.integer  "faxes_count",                                            :default => 0
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
@@ -46,6 +50,12 @@ ActiveRecord::Schema.define(:version => 20120910121854) do
   add_index "campaigns", ["sub_oigame_id"], :name => "index_campaigns_on_sub_oigame_id"
   add_index "campaigns", ["user_id"], :name => "index_campaigns_on_user_id"
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "contacts", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -54,6 +64,25 @@ ActiveRecord::Schema.define(:version => 20120910121854) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "mailing",    :default => false
+  end
+
+  create_table "donations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "campaign_id"
+    t.decimal  "amount",      :precision => 10, :scale => 4, :default => 0.0
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  create_table "faxes", :force => true do |t|
+    t.integer  "campaign_id"
+    t.string   "email"
+    t.boolean  "validated"
+    t.string   "token"
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "body"
   end
 
   create_table "messages", :force => true do |t|

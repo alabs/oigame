@@ -8,6 +8,12 @@
       <div class="grid_12">
         <div class="grid_6">  
           <dl class="dl-horizontal">
+            <dt>Crédito</dt>
+            <dd><%= number_with_precision(@campaign.credit, :precision => 2) %>€</dd>
+            <% if @campaign.category %>
+              <dt><%= t(:category) %></dt>
+              <dd><%= @campaign.category.name %></dd>
+            <% end %>
             <% unless @campaign.status == 'archived' %>
               <dt><%= t(:published_at) %></dt>
               <% # published_at no es correcto aquí, da error si la campaña no ha sido publicada todavía %>
@@ -26,6 +32,8 @@
                     <%= @campaign.messages.validated.count %>
                   <% elsif @campaign.ttype == 'petition' %>
                     <%= @campaign.petitions.validated.count %>
+                  <% elsif @campaign.ttype == 'fax' %>
+                    <%= @campaign.faxes.validated.count %>
                   <% end %>
                 </span>
                 <%= t(:of) %>
@@ -57,11 +65,16 @@
 
     <ul id="campaign-tab" class="nav nav-tabs">
       <li class="active">
-        <a data-toggle="tab" href="#description"><%= t(:descriptions) %></a>
+        <a data-toggle="tab" href="#description"><%= t(:description) %></a>
       </li>
       <% if @campaign.ttype == 'mailing' %>
         <li>
           <a data-toggle="tab" href="#message"><%= t(:message) %></a>
+        </li>
+      <% end %>
+      <% if @campaign.ttype == 'fax' %>
+        <li>
+          <a data-toggle="tab" href="#fax"><%= t(:Faxes) %></a>
         </li>
       <% end %>
       <% unless @campaign.status == 'archived' %>
@@ -120,6 +133,22 @@
           </p>
         </div>
       </div><!-- message -->
+      <div id="fax" class="tab-pane fade">
+        <div id="campaign-info">
+          <h2><%= t(:faxes_recipients) %></h2>
+          <p><%= t(:recipients_show) %></p>
+            <ul>
+              <% @campaign.numbers.each do |number| %> 
+                <li><%= number %></li>
+              <% end %>
+            </ul>
+            <hr />
+            <h2><%= t(:message) %></h2>
+          <p>
+            <pre><%= @campaign.default_message_body %></pre>
+          </p>
+        </div>
+      </div><!-- message -->
       <% unless @campaign.status == 'archived' %>
         <div id="stats" class="tab-pane fade">
           <%= render :partial => "stats_chart" %>
@@ -153,6 +182,12 @@
           <% if @campaign.ttype == 'mailing' %>
             <div id="show-campaign-mailing">
               <%= render :partial => 'mailing_form' %>
+            </div>
+          <% end %>
+          
+          <% if @campaign.ttype == 'fax' %>
+            <div id="show-campaign-fax">
+              <%= render :partial => 'fax_form' %>
             </div>
           <% end %>
 

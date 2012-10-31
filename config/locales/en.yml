@@ -300,3 +300,5 @@ en:
       short: "%d %b %H:%M"
     pm: pm
   update: Update
+  category_of_campaign: 'Category of campaign'
+  category: 'Category'
