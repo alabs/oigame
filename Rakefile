@@ -5,3 +5,6 @@
 require File.expand_path('../config/application', __FILE__)
 
 Oigame::Application.load_tasks
+
+# para resque
+require 'resque/tasks'

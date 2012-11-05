@@ -75,3 +75,6 @@ gem 'will_paginate-bootstrap'
 #gem 'canard'
 gem 'declarative_authorization'
 gem 'prawn'
+
+# para el servidor de tareas en background
+gem 'resque'
