@@ -79,3 +79,4 @@ gem 'prawn'
 # para el servidor de tareas en background
 gem 'resque'
 gem 'resque_mailer'
+gem 'ruby_parser'
