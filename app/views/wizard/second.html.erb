@@ -6,7 +6,7 @@
     <div id="create-campaign-form" class="form-stacked">
       <h2><%= @page_title %></h2>
 
-<%= form_for @campaign, :url => wizard_path do |f| %>
+      <%= form_for @campaign, :url => wizard_path, :method => :put do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="form-field">
