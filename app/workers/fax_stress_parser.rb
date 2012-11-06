@@ -14,6 +14,7 @@ class FaxStressParser
     mails = Mail.all
     mails.each do |mail|
       # process_mail
+      # billing_fax 
     end
     # send_report
   end
