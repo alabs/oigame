@@ -1,5 +1,8 @@
 Oigame::Application.routes.draw do
 
+  # para el servidor de tareas en background
+  mount Resque::Server.new, :at => "/jobs"
+
   resources :categories
 
   scope ":locale", :locale => /en|es/ do
