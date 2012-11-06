@@ -11,4 +11,13 @@ class WizardController < ApplicationController
     @campaign = Campaign.new
     render_wizard
   end
+
+  def update
+    @campaign = Campaign.new
+    case step
+    when :first
+      @campaign.update_attributes(params[:campaign])
+    end
+    render_wizard @campaign
+  end
 end
