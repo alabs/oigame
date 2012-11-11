@@ -10,8 +10,8 @@ Oigame::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
     resources :sub_oigames, :path => "o" do
-      resources :wizard
       resources :campaigns do
+        resources :wizard
         member do
           post 'petition'
           get 'petition'
@@ -65,8 +65,8 @@ Oigame::Application.routes.draw do
       mount Tolk::Engine => '/translate', :as => 'tolk'
     end
     
-    resources :wizard
     resources :campaigns do
+      resources :wizard
       member do
         post 'petition'
         get 'petition'

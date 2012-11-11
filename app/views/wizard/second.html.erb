@@ -6,7 +6,7 @@
     <div id="create-campaign-form" class="form-stacked">
       <h2><%= @page_title %></h2>
 
-      <%= form_for @campaign, :url => wizard_path do |f| %>
+<%= form_for @campaign, :url => campaign_wizard_path, :method => :put do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="form-field">
@@ -68,8 +68,8 @@
       <% end %>
     </div>
     <div id="form-actions">
-      <%= link_to 'Anterior paso', previous_wizard_path, :class => 'btn btn-inverse btn-large' %>
-      <%= link_to 'Crear campaña', next_wizard_path, :class => 'btn btn-primary btn-large' %>
+      <%= link_to 'Anterior paso', campaign_wizard_path(@campaign.slug, :first), :class => 'btn btn-inverse btn-large' %>
+      <%= f.submit 'Crear campaña', :class => 'btn btn-primary btn-large' %>
     </div>
   </fieldset>
 <% end %>

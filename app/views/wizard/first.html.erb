@@ -1,21 +1,30 @@
-
 <% @page_title = t(:propose_campaign) %>
 
 <div id="campaigns-wrapper">
   <div id="create-campaigns">
     <div id="create-campaign-form" class="form-stacked">
       <h2><%= @page_title %></h2>
+<%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
 
-<%= form_for @campaign, :url => wizard_path do |f| %>
+<% if params[:action] == "new" %>
+  <% if @sub_oigame %>
+    <% url = url_for(:action=> "create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
+  <% else %>
+    <% url = url_for(:action=> "create", :controller=> "campaigns") %>
+  <% end %>
+<% end %>
+
+<% if params[:action] == "edit" %>
+  <% if @sub_oigame %>
+    <% url = sub_oigame_campaign_path(@sub_oigame, @campaign) %>
+  <% else %>
+    <% url = campaign_path(@campaign) %>
+  <% end %>
+<% end %>
+
+<%= form_for @campaign, :url => campaign_wizard_path, :method => :put do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
-    <div class="form-field">
-      <%= f.label :name, t(:name_of_campaign) %>
-      <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_of_campaign) %>
-      <% unless @campaign.errors[:name].blank? %>
-        <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
-      <% end %>
-    </div>
     <div class="form-field">
       <%= f.label :image, t(:image_of_campaign) %>
       <%= f.file_field :image, :class => 'input-file' %>
@@ -40,13 +49,10 @@
       <% end %>
     </div>
     <div id="form-actions">
-      <%= link_to 'Siguiente paso', next_wizard_path, :class => 'btn btn-primary btn-large' %>
+      <%= link_to 'Siguiente paso', campaign_wizard_path(@campaign.slug, :second), :class => 'btn btn-primary btn-large' %>
     </div>
   </fieldset>
 <% end %>
-
-
-
     </div><!-- create-campaign-form -->
   </div><!-- create-campaigns -->
 </div><!-- campaigns-wrapper -->
@@ -62,4 +68,3 @@
     editor2.run();
   })();
 </script>
-

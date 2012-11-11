@@ -84,19 +84,18 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(params[:campaign])
     @campaign.user = current_user
     #@campaign.target = @campaign.target.gsub(/\./, '')
-    if @sub_oigame
-      @campaign.sub_oigame = @sub_oigame
-      redirect_url = sub_oigame_wizard_index_url(@sub_oigame)
-    else 
-      redirect_url = wizard_index_url
-    end
     if @campaign.save
       if @sub_oigame
-        Mailman.send_campaign_to_sub_oigame_admin(@sub_oigame, @campaign).deliver
-      else
-        Mailman.send_campaign_to_social_council(@campaign).deliver
+        @campaign.sub_oigame = @sub_oigame
+        redirect_url = sub_oigame_wizard_path(@sub_oigame, :first, @campaign.slug)
+      else 
+        redirect_url = campaign_wizard_path(@campaign.slug, :first)
       end
-      session[:campaign_id] = @campaign.id
+      if @sub_oigame
+        #Mailman.send_campaign_to_sub_oigame_admin(@sub_oigame, @campaign).deliver
+      else
+        #Mailman.send_campaign_to_social_council(@campaign).deliver
+      end
       redirect_to redirect_url
     else
       render :action => :new
