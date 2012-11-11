@@ -26,7 +26,10 @@ class Campaign < ActiveRecord::Base
   STATUS = %w[active archived deleted]
 
   validates :name, :uniqueness => { :scope => :sub_oigame_id }
-  validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
+  validates :name, :image, :intro, :presence => true
+  validates_presence_of :body#,  if: :on_second_step?
+  validates_presence_of :ttype#,  if: :on_second_step?
+  validates_presence_of :duedate_at#,  if: :on_second_step?
   # validación desactivada porque genera excepción al manipular objetos
   # antiguos que tienen una intro de mas de 500 caracteres
   #validates :intro, :length => { :maximum => 500 }

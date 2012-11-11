@@ -83,12 +83,12 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(params[:campaign])
     @campaign.user = current_user
-    @campaign.target = @campaign.target.gsub(/\./, '')
+    #@campaign.target = @campaign.target.gsub(/\./, '')
     if @sub_oigame
       @campaign.sub_oigame = @sub_oigame
-      redirect_url = sub_oigame_campaigns_url(@sub_oigame)
+      redirect_url = sub_oigame_wizard_index_url(@sub_oigame)
     else 
-      redirect_url = campaigns_url 
+      redirect_url = wizard_index_url
     end
     if @campaign.save
       if @sub_oigame
@@ -96,7 +96,7 @@ class CampaignsController < ApplicationController
       else
         Mailman.send_campaign_to_social_council(@campaign).deliver
       end
-      flash[:notice] = 'Tu campaña se ha creado con éxito y está pendiente de moderación.'
+      session[:campaign_id] = @campaign.id
       redirect_to redirect_url
     else
       render :action => :new
