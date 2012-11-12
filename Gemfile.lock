@@ -126,8 +126,6 @@ GEM
     jquery-rails (2.1.2)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
-    jquery-turbolinks (0.2.1)
-      rails (>= 3.1.0)
     jquery-ui-rails (1.1.1)
       jquery-rails
       railties (>= 3.1.0)
@@ -336,7 +334,6 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
-    turbolinks (0.5.1)
     turn (0.9.6)
       ansi
     twitter (3.7.0)
@@ -384,7 +381,6 @@ DEPENDENCIES
   honeypot-captcha
   httparty
   jquery-rails
-  jquery-turbolinks
   jquery-ui-rails
   mailcatcher
   minitest
@@ -413,7 +409,6 @@ DEPENDENCIES
   thin
   thinking-sphinx (= 2.0.10)
   tolk
-  turbolinks
   turn
   twitter
   uglifier (>= 1.0.3)

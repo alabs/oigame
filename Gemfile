@@ -83,5 +83,5 @@ gem 'resque'
 gem 'resque_mailer'
 gem 'ruby_parser'
 
-gem 'turbolinks'
-gem 'jquery-turbolinks'
+#gem 'turbolinks'
+#gem 'jquery-turbolinks'
