@@ -81,11 +81,11 @@ class Campaign < ActiveRecord::Base
     end
 
     def last_campaigns_moderated(page = 1, sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).order('created_at DESC').where('moderated = ?', true).where('wstatus = active').page(page)  
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true).page(page)  
     end
 
     def archived_campaigns(page = 1, sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).where('wstatus = active').order('published_at DESC').on_archive.page(page)
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive.page(page)
     end
   end
 
