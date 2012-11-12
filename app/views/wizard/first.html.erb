@@ -1,0 +1,70 @@
+<% @page_title = t(:propose_campaign) %>
+
+<div id="campaigns-wrapper">
+  <div id="create-campaigns">
+    <div id="create-campaign-form" class="form-stacked">
+      <h2><%= @page_title %></h2>
+<%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
+
+<% if params[:action] == "new" %>
+  <% if @sub_oigame %>
+    <% url = url_for(:action=> "create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
+  <% else %>
+    <% url = url_for(:action=> "create", :controller=> "campaigns") %>
+  <% end %>
+<% end %>
+
+<% if params[:action] == "edit" %>
+  <% if @sub_oigame %>
+    <% url = sub_oigame_campaign_path(@sub_oigame, @campaign) %>
+  <% else %>
+    <% url = campaign_path(@campaign) %>
+  <% end %>
+<% end %>
+
+<%= form_for @campaign, :url => campaign_wizard_path, :method => :put do |f| %>
+  <fieldset>
+    <legend><%= t(:please_fill_the_form) %></legend>
+    <div class="form-field">
+      <%= f.label :image, t(:image_of_campaign) %>
+      <%= f.file_field :image, :class => 'input-file' %>
+      <p><%= I18n.t(:minimal_size) %></p>
+      <% unless @campaign.errors[:image].blank? %>
+        <span class="error_message"><%= @campaign.errors[:image].to_sentence %></span>
+      <% end %>
+    </div>
+    <div class="form-field">
+      <%= f.label :intro, t(:intro_of_campaign) %>
+      <div class="wmd-panel">
+        <div id="wmd-button-bar"></div>
+        <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span6', :required => true, :placeholder => t(:intro_of_campaign_help), :maxlength => 500 %>
+        <p><%= I18n.t(:intro_limit) %></p>
+      </div>
+      <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
+      <div class="markdown_help" style="display:none;">
+        <%= render :partial => 'campaigns/markdown_help' %>
+      </div>
+      <% unless @campaign.errors[:intro].blank? %>
+        <span class="error_message"><%= @campaign.errors[:intro].to_sentence %></span>
+      <% end %>
+    </div>
+    <div id="form-actions">
+      <%= f.submit 'Siguiente paso', :class => 'btn btn-primary btn-large' %>
+    </div>
+  </fieldset>
+<% end %>
+    </div><!-- create-campaign-form -->
+  </div><!-- create-campaigns -->
+</div><!-- campaigns-wrapper -->
+
+<script type="text/javascript">
+  (function() {
+    var converter1 = Markdown.getSanitizingConverter();
+    var editor1 = new Markdown.Editor(converter1);
+    editor1.run();
+    
+    var converter2 = Markdown.getSanitizingConverter();
+    var editor2 = new Markdown.Editor(converter2, "-second");
+    editor2.run();
+  })();
+</script>

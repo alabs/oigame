@@ -1,5 +1,8 @@
 Oigame::Application.routes.draw do
 
+  # para el servidor de tareas en background
+  mount Resque::Server.new, :at => "/jobs"
+
   resources :categories
 
   scope ":locale", :locale => /en|es/ do
@@ -8,6 +11,7 @@ Oigame::Application.routes.draw do
   
     resources :sub_oigames, :path => "o" do
       resources :campaigns do
+        resources :wizard
         member do
           post 'petition'
           get 'petition'
@@ -60,8 +64,9 @@ Oigame::Application.routes.draw do
     authenticate :user do
       mount Tolk::Engine => '/translate', :as => 'tolk'
     end
-  
+    
     resources :campaigns do
+      resources :wizard
       member do
         post 'petition'
         get 'petition'

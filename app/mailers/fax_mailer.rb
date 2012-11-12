@@ -1,4 +1,6 @@
 class FaxMailer < ActionMailer::Base
+
+  include Resque::Mailer # para enviar correos en background
   
   default from: "faxbox@oiga.me"
 

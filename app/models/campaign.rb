@@ -13,7 +13,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   has_many :donations
   
-  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id
+  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size
@@ -25,8 +25,13 @@ class Campaign < ActiveRecord::Base
   TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
   STATUS = %w[active archived deleted]
 
+  validates_presence_of :name
   validates :name, :uniqueness => { :scope => :sub_oigame_id }
-  validates :name, :image, :intro, :body, :ttype, :duedate_at, :presence => true
+  validates_presence_of :image, :if => :active_or_image?
+  validates_presence_of :intro, :if => :active_or_intro?
+  validates_presence_of :body,  :if => :active_or_body?
+  validates_presence_of :ttype,  :if => :active_or_ttype?
+  validates_presence_of :duedate_at, :if => :active_or_duedate_at?
   # validación desactivada porque genera excepción al manipular objetos
   # antiguos que tienen una intro de mas de 500 caracteres
   #validates :intro, :length => { :maximum => 500 }
@@ -36,10 +41,10 @@ class Campaign < ActiveRecord::Base
   before_save :generate_slug
 
   # Scope para solo mostrar la campañas que han sido moderadas
-  scope :published, where(:moderated => false, :status => 'active')
-  scope :on_archive, where(:status => 'archived')
-  scope :_archived, where(:status => 'archived')
-  scope :not_published, where(:moderated => true, :status => 'active')
+  scope :published, where(:moderated => false, :status => 'active', :wstatus => 'active')
+  scope :on_archive, where(:status => 'archived', :wstatus => 'active')
+  scope :_archived, where(:status => 'archived', :wstatus => 'active')
+  scope :not_published, where(:moderated => true, :status => 'active', :wstatus => 'inactive')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
 
   # thinking sphinx
@@ -76,11 +81,11 @@ class Campaign < ActiveRecord::Base
     end
 
     def last_campaigns_moderated(page = 1, sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).order('created_at DESC').where('moderated = ?', true).page(page)  
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true).page(page)  
     end
 
     def archived_campaigns(page = 1, sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).order('published_at DESC').on_archive.page(page)
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive.page(page)
     end
   end
 
@@ -253,6 +258,30 @@ class Campaign < ActiveRecord::Base
         return false
       end
     end
+  end
+
+  def active?
+    wstatus == 'active'
+  end
+
+  def active_or_image?
+    wstatus.include?('image') || active?
+  end
+  
+  def active_or_intro?
+    wstatus.include?('intro') || active?
+  end
+
+  def active_or_body?
+    wstatus.include?('body') || active?
+  end
+  
+  def active_or_ttype?
+    wstatus.include?('ttype') || active?
+  end
+  
+  def active_or_duedate_at?
+    wstatus.include?('duedate_at') || active?
   end
 
   private

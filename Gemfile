@@ -75,3 +75,13 @@ gem 'will_paginate-bootstrap'
 #gem 'canard'
 gem 'declarative_authorization'
 gem 'prawn'
+
+gem 'wicked'
+
+# para el servidor de tareas en background
+gem 'resque'
+gem 'resque_mailer'
+gem 'ruby_parser'
+
+#gem 'turbolinks'
+#gem 'jquery-turbolinks'
