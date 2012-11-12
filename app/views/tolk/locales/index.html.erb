@@ -11,10 +11,14 @@
                   <% missing_count = locale.count_phrases_without_translation %>
                   <% translated_count = total_count - missing_count  %>
                   <div class="progress progress-striped active">
-                    <div class="bar" style="width: <%= translated_count * 100 / total_count  %>%;"></div>
+                    <% if translated_count != 0 %>
+                      <div class="bar" style="width: <%= translated_count * 100 / total_count  %>%;"></div>
+                    <% end %>
                   </div>
                   <%= link_to "Traducir", locale, :class => "btn btn-primary" %>
-                  <%= translated_count * 100 / total_count  %>%
+                  <% if translated_count != 0 %>
+                    <%= translated_count * 100 / total_count  %>%
+                  <% end %>
                   <% if missing_count > 0 %>
                     <span class="badge badge-important missing_translations"><%= locale.count_phrases_without_translation %></span>
                   <% end %>
