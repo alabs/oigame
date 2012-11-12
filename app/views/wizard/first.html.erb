@@ -49,7 +49,7 @@
       <% end %>
     </div>
     <div id="form-actions">
-      <%= link_to 'Siguiente paso', campaign_wizard_path(@campaign.slug, :second), :class => 'btn btn-primary btn-large' %>
+      <%= f.submit 'Siguiente paso', :class => 'btn btn-primary btn-large' %>
     </div>
   </fieldset>
 <% end %>

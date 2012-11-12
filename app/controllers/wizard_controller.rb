@@ -30,7 +30,9 @@ class WizardController < ApplicationController
 
   private
 
-  def redirect_to_finish_wizard
-    redirect_to root_url, notice: "Gracias por crear la campaña."
-  end
+  # no rula
+  #def redirect_to_finish_wizard
+  #  flash[:notice] = "Gracias por crear la campaña."
+  #  redirect_to root_url
+  #end
 end
