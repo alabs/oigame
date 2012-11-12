@@ -41,10 +41,10 @@ class Campaign < ActiveRecord::Base
   before_save :generate_slug
 
   # Scope para solo mostrar la campañas que han sido moderadas
-  scope :published, where(:moderated => false, :status => 'active')
-  scope :on_archive, where(:status => 'archived')
-  scope :_archived, where(:status => 'archived')
-  scope :not_published, where(:moderated => true, :status => 'active')
+  scope :published, where(:moderated => false, :status => 'active', :wstatus => 'active')
+  scope :on_archive, where(:status => 'archived', :wstatus => 'active')
+  scope :_archived, where(:status => 'archived', :wstatus => 'active')
+  scope :not_published, where(:moderated => true, :status => 'active', :wstatus => 'inactive')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
 
   # thinking sphinx
@@ -81,11 +81,11 @@ class Campaign < ActiveRecord::Base
     end
 
     def last_campaigns_moderated(page = 1, sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).order('created_at DESC').where('moderated = ?', true).page(page)  
+      where(:sub_oigame_id => sub_oigame).order('created_at DESC').where('moderated = ?', true).where('wstatus = active').page(page)  
     end
 
     def archived_campaigns(page = 1, sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).order('published_at DESC').on_archive.page(page)
+      where(:sub_oigame_id => sub_oigame).where('wstatus = active').order('published_at DESC').on_archive.page(page)
     end
   end
 
