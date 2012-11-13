@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
-  include Resque::Mailer # para enviar correos en background
+  #include Resque::Mailer # para enviar correos en background
 
   default :from => "oigame@oiga.me"
   layout "email", :except => :send_message_to_fax_recipients
