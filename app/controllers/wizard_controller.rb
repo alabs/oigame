@@ -20,13 +20,6 @@ class WizardController < ApplicationController
     params[:campaign][:wstatus] = step.to_s
     params[:campaign][:wstatus] = 'active' if step == steps.last
     @campaign.update_attributes(params[:campaign])
-    if @campaign.wstatus == 'active'
-      if @campaign.sub_oigame
-        Mailman.send_campaign_to_sub_oigame_admin(@campaign.sub_oigame, @campaign).deliver
-      else
-        Mailman.send_campaign_to_social_council(@campaign).deliver
-      end
-    end
     render_wizard @campaign
   end
 
@@ -37,9 +30,15 @@ class WizardController < ApplicationController
 
   private
 
-  # no rula
-  #def redirect_to_finish_wizard
-  #  flash[:notice] = "Gracias por crear la campaña."
-  #  redirect_to root_url
-  #end
+  def finish_wizard_path
+    @campaign = Campaign.find_by_slug(params[:campaign_id])
+    if @campaign.sub_oigame
+      Mailman.send_campaign_to_sub_oigame_admin(@campaign.sub_oigame, @campaign).deliver
+    else
+      Mailman.send_campaign_to_social_council(@campaign).deliver
+    end
+    flash[:notice] = "Gracias por crear la campaña."
+
+    campaigns_path
+  end
 end
