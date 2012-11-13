@@ -39,6 +39,7 @@ class Campaign < ActiveRecord::Base
   mount_uploader :image, CampaignImageUploader
 
   before_save :generate_slug
+  before_save :normalize_target
 
   # Scope para solo mostrar la campañas que han sido moderadas
   scope :published, where(:moderated => false, :status => 'active', :wstatus => 'active')
@@ -141,6 +142,10 @@ class Campaign < ActiveRecord::Base
   
   def recipients_for_message
     self.emails.join(',')
+  end
+
+  def normalize_target
+    self.target = self.target.gsub(/\./, '') unless self.target.blank?
   end
 
   def to_html(field)
