@@ -37,6 +37,9 @@ Oigame::Application.configure do
     :enable_starttls_auto => false
   }
 
+  # para que rule resque mailer
+  config.action_mailer.perform_deliveries = true
+
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
 

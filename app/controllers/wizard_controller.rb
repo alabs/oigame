@@ -35,7 +35,7 @@ class WizardController < ApplicationController
     if @campaign.sub_oigame
       Mailman.send_campaign_to_sub_oigame_admin(@campaign.sub_oigame, @campaign).deliver
     else
-      Mailman.send_campaign_to_social_council(@campaign).deliver
+      Mailman.send_campaign_to_social_council(@campaign.id).deliver
     end
     flash[:notice] = "Gracias por crear la campaña."
 

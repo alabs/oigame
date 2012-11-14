@@ -76,6 +76,9 @@ Oigame::Application.configure do
     :address => 'tron.oiga.me'
   }
   
+  # para que rule resque mailer
+  config.action_mailer.perform_deliveries = true
+  
   # Para notificar excepciones
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[oiga.me exception] ",

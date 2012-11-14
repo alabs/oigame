@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Mailman < ActionMailer::Base
 
-  #include Resque::Mailer # para enviar correos en background
+  include Resque::Mailer # para enviar correos en background
 
   default :from => "oigame@oiga.me"
   layout "email", :except => :send_message_to_fax_recipients
@@ -17,8 +17,8 @@ class Mailman < ActionMailer::Base
     mail :to => to, :subject => subject
   end
 
-  def send_campaign_to_social_council(campaign)
-    @campaign = campaign
+  def send_campaign_to_social_council(campaign_id)
+    @campaign = Campaign.find(campaign_id)
     subject = "[oiga.me] #{@campaign.name}"
     mail :to => APP_CONFIG[:social_council_email], :subject => subject
   end
