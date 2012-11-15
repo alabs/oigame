@@ -33,7 +33,7 @@ class WizardController < ApplicationController
   def finish_wizard_path
     @campaign = Campaign.find_by_slug(params[:campaign_id])
     if @campaign.sub_oigame
-      Mailman.send_campaign_to_sub_oigame_admin(@campaign.sub_oigame, @campaign).deliver
+      Mailman.send_campaign_to_sub_oigame_admin(@campaign.sub_oigame.id, @campaign.id).deliver
     else
       Mailman.send_campaign_to_social_council(@campaign.id).deliver
     end

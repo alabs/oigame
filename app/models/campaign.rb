@@ -164,7 +164,7 @@ class Campaign < ActiveRecord::Base
       # ha empezado a dar error
       # facebook_it
     end
-    Mailman.inform_campaign_activated(self).deliver
+    Mailman.inform_campaign_activated(self.id).deliver
   end
 
   def deactivate!

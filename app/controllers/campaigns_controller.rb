@@ -147,7 +147,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
-              Mailman.send_message_to_recipients(message).deliver
+              Mailman.send_message_to_recipients(message.id).deliver
               if @sub_oigame.nil?
                 redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -156,7 +156,7 @@ class CampaignsController < ApplicationController
 
               return
             end
-            Mailman.send_message_to_validate_message(from, @campaign, message).deliver
+            Mailman.send_message_to_validate_message(from, @campaign.id, message.id).deliver
           else
             flash.now[:error] = "No puedes participar más de una vez por campaña"
             render :action => :show
@@ -169,7 +169,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               message.update_attributes(:validated => true, :token => nil)
-              Mailman.send_message_to_recipients(message).deliver
+              Mailman.send_message_to_recipients(message.id).deliver
               if @sub_oigame.nil?
                 redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -179,7 +179,7 @@ class CampaignsController < ApplicationController
               return
 
             end
-            Mailman.send_message_to_validate_message(from, @campaign, message).deliver
+            Mailman.send_message_to_validate_message(from, @campaign.id, message.id).deliver
           else
             flash.now[:error] = "No puedes participar más de una vez por campaña"
             render :action => :show
@@ -237,7 +237,7 @@ class CampaignsController < ApplicationController
           return
 
         end
-        Mailman.send_message_to_validate_petition(to, @campaign, @petition).deliver
+        Mailman.send_message_to_validate_petition(to, @campaign.id, @petition.id).deliver
         if @sub_oigame
           redirect_url = petition_sub_oigame_campaign_url
         else
@@ -260,9 +260,9 @@ class CampaignsController < ApplicationController
         model.update_attributes(:validated => true, :token => nil)
         case model.class.name
         when 'Message'
-          Mailman.send_message_to_recipients(model).deliver
+          Mailman.send_message_to_recipients(model.id).deliver
         when 'Fax'
-          Mailman.send_message_to_fax_recipients(model, @campaign).deliver
+          Mailman.send_message_to_fax_recipients(model.id, @campaign.id).deliver
         end
         redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
 
@@ -395,7 +395,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               fax.update_attributes(:validated => true, :token => nil)
-              Mailman.send_message_to_fax_recipients(fax, @campaign).deliver
+              Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
               if @sub_oigame.nil?
                 redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -404,7 +404,7 @@ class CampaignsController < ApplicationController
 
               return
             end
-            Mailman.send_message_to_validate_fax(from, @campaign, fax).deliver
+            Mailman.send_message_to_validate_fax(from, @campaign.id, fax.id).deliver
           else
             flash.now[:error] = "No puedes participar más de una vez por campaña"
             render :action => :show
@@ -417,7 +417,7 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               fax.update_attributes(:validated => true, :token => nil)
-              Mailman.send_message_to_fax_recipients(fax, @campaign).deliver
+              Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
               if @sub_oigame.nil?
                 redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               else
@@ -427,7 +427,7 @@ class CampaignsController < ApplicationController
               return
 
             end
-            Mailman.send_message_to_validate_fax(from, @campaign, fax).deliver
+            Mailman.send_message_to_validate_fax(from, @campaign.id, fax.id).deliver
           else
             flash.now[:error] = "No puedes participar más de una vez por campaña"
             render :action => :show

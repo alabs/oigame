@@ -23,7 +23,7 @@ class PagesController < ApplicationController
     if request.post?
       @contact = Contact.new(params[:contact])
       if @contact.save
-        Mailman.send_contact_message(@contact).deliver
+        Mailman.send_contact_message(@contact.id).deliver
         redirect_to contact_received_url, :notice => 'Mensaje recibido, pronto nos pondremos en contacto'
 
         return

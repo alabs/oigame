@@ -8,11 +8,11 @@ class Mailman < ActionMailer::Base
   helper :application
   include ApplicationHelper
 
-  def send_message_to_user(to, subject, message, campaign)
+  def send_message_to_user(to, subject, message, campaign_id)
     @message_to = to
     @message_subject = subject
     @message_body = message
-    @campaign = campaign
+    @campaign = Campaign.find(campaign_id)
     subject = "[oiga.me] Última tarea para unirte a la campaña: #{@campaign.name}"
     mail :to => to, :subject => subject
   end
@@ -23,25 +23,26 @@ class Mailman < ActionMailer::Base
     mail :to => APP_CONFIG[:social_council_email], :subject => subject
   end
 
-  def send_campaign_to_sub_oigame_admin(sub_oigame, campaign)
-    @campaign = campaign
-    @sub_oigame = sub_oigame
+  def send_campaign_to_sub_oigame_admin(sub_oigame_id, campaign_id)
+    @campaign = Campaign.find(campaign_id)
+    @sub_oigame = SubOigame.find(sub_oigame_id)
     subject = "[#{@sub_oigame.name}] #{@campaign.name}"
     @sub_oigame.users.each do |user|
       mail :to => user.email, :subject => subject
     end
   end
 
-  def send_contact_message(message)
-    @message = message
+  def send_contact_message(contact_id)
+    @message = Contact.find(contact_id)
     from = "#{@message.name} <#{@message.email}>"
     subject = "[oiga.me] #{@message.subject}"
     @message_body = @message.body
     mail :from => from, :to => 'hola@oiga.me', :subject => subject
   end
 
-  def send_message_to_validate_message(to, campaign, message)
-    @campaign = campaign
+  def send_message_to_validate_message(to, campaign_id, message_id)
+    @campaign = Campaign.find(campaign_id)
+    message = Message.find(message_id)
     @token = message.token
     # TODO: esto que viene no es muy DRY que digamos 
     # seguro que hay alguna forma elegante con un before o alguna cosas de estas
@@ -58,9 +59,10 @@ class Mailman < ActionMailer::Base
     mail :from => from, :to => to, :subject => subject
   end
   
-  def send_message_to_validate_fax(to, campaign, fax)
-    @campaign = campaign
-    @token = message.token
+  def send_message_to_validate_fax(to, campaign_id, fax_id)
+    @campaign = Campaign.find(campaign_id)
+    fax = Fax.find(fax_id)
+    @token = fax.token
     # TODO: esto que viene no es muy DRY que digamos 
     # seguro que hay alguna forma elegante con un before o alguna cosas de estas
     unless @campaign.sub_oigame.nil?
@@ -76,8 +78,9 @@ class Mailman < ActionMailer::Base
     mail :from => from, :to => to, :subject => subject
   end
 
-  def send_message_to_validate_petition(to, campaign, petition)
-    @campaign = campaign
+  def send_message_to_validate_petition(to, campaign_id, petition_id)
+    @campaign = Campaign.find(campaign_id)
+    petition = Petition.find(petition_id)
     @token = petition.token
     from = Mailman.default[:from]
     unless @campaign.sub_oigame.nil?
@@ -93,7 +96,8 @@ class Mailman < ActionMailer::Base
     mail :from => from, :to => to, :subject => subject
   end
 
-  def inform_campaign_activated(campaign)
+  def inform_campaign_activated(campaign_id)
+    campaign = Campaign.find(campaign_id)
     @message_to = campaign.user.email
     @campaign_name = campaign.name
     @campaign_slug = campaign.slug
@@ -107,14 +111,17 @@ class Mailman < ActionMailer::Base
     mail :to => email, :subject => subject
   end
 
-  def send_message_to_recipients(message)
+  def send_message_to_recipients(message_id)
+    message = Message.find(message_id)
     @message_body = message.body
     subject = message.subject
     recipients = message.campaign.emails
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
   
-  def send_message_to_fax_recipients(fax, campaign)
+  def send_message_to_fax_recipients(fax_id, campaign_id)
+    fax = Fax.find(fax_id)
+    campaign = Campaign.find(campaign_id)
     @password = APP_CONFIG[:our_fax_password]
     subject = APP_CONFIG[:our_fax_number]
     fax = FaxPdf.new(fax, campaign)
@@ -123,7 +130,8 @@ class Mailman < ActionMailer::Base
     mail :to => numbers, :subject => subject
   end
 
-  def inform_new_comment(campaign)
+  def inform_new_comment(campaign_id)
+    campaign = Campaign.find(campaign_id)
     @message_to = campaign.user.email
     @campaign_name = campaign.name
     @campaign_slug = campaign.slug
