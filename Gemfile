@@ -82,6 +82,7 @@ gem 'wicked'
 gem 'resque'
 gem 'resque_mailer'
 gem 'ruby_parser'
+gem 'devise-async'
 
 #gem 'turbolinks'
 #gem 'jquery-turbolinks'
