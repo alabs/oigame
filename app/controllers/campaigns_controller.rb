@@ -60,6 +60,19 @@ class CampaignsController < ApplicationController
   end
 
   def edit
+    @campaign = Campaign.find_by_slug(params[:id])
+    if @campaign.save
+      if @sub_oigame
+        redirect_url = sub_oigame_campaign_wizard_path(@sub_oigame, @campaign.slug, :first)
+      else 
+        redirect_url = campaign_wizard_path(@campaign.slug, :first)
+      end
+      redirect_to redirect_url
+
+      return
+    else
+      render :action => :new
+    end
   end
 
   def participants
