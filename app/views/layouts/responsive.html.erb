@@ -141,12 +141,31 @@
         <div id="myHomeCarousel" class="carousel slide span7">
           <!-- Carousel items -->
           <div class="carousel-inner">
-            <div class="active item"><%= image_tag("afrika.png") %></div>
-            <div class="item"><%= image_tag("doit2.jpg") %></div>
+            <div class="active item">
+              <%= image_tag("bootstrap-mdo-sfmoma-01.jpg") %>
+              <div class="carousel-caption">
+                <h4>Primera campaña de prueba para ver el carrousel</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
+            <div class="item">
+              <%= image_tag("bootstrap-mdo-sfmoma-02.jpg") %>
+              <div class="carousel-caption">
+                <h4>Primera campaña de prueba para ver el carrousel</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
+            <div class="item">
+              <%= image_tag("bootstrap-mdo-sfmoma-03.jpg") %>
+              <div class="carousel-caption">
+                <h4>Primera campaña de prueba para ver el carrousel</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
           </div>
           <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myHomeCarousel" data-slide="prev">&lsaquo;</a>
-          <a class="carousel-control right" href="#myHomeCarousel" data-slide="next">&rsaquo;</a>
+          <a class="carousel-control left" href="#myHomeCarousel" data-slide="prev"><</a>
+          <a class="carousel-control right" href="#myHomeCarousel" data-slide="next">></a>
         </div><!-- myHomeCarousel -->
         <div class="span3 realtime hidden-phone">
                 <ul class="pull-left">
@@ -220,6 +239,39 @@
         </div>
       </div>
     </div><!-- container-fluid -->
+
+    <div id="semi-footer" class="container-fluid">
+      <div class="row-fluid">
+        <div id="home-icons" class="offset1 span5">
+          <h1>1</h1>
+        </div>
+        <div id="home-text" class="span6">
+          <h1>2</h1>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer" class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3 offset1" id="first_footer_a">
+          <ul>
+            <li><%= image_tag('rss-icon.png') %>
+            <li><%= image_tag('twitter_icon.png') %>
+            <li><%= image_tag('googleplus.png') %>
+            <li><%= image_tag('facebook_icon.png') %>
+          </ul>
+        </div>
+        <div class="span4" id="first_footer_b">
+          <ul>
+            <li><a href="#"><%= image_tag("99pk.png") %></a></li>
+            <li><a href="#"><%= image_tag("transparentpk.png") %></a></li>
+            <li><a href="#" style="margin-top:-40px;"><%= image_tag("openpk.png") %></a></li>       
+          </ul>
+        </div>
+        <div class="span4">
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
