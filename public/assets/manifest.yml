@@ -1,7 +1,10 @@
 --- 
 ajax-loader.gif: ajax-loader.gif
+altavozpk.png: altavozpk.png
 arrow-left.png: arrow-left.png
 arrow-right.png: arrow-right.png
+bg-header.png: bg-header.png
+bk.jpg: bk.jpg
 campaign-n.jpg: campaign-n.jpg
 credit-cards.jpg: credit-cards.jpg
 doit.jpg: doit.jpg
@@ -17,6 +20,8 @@ logo-alabs.png: logo-alabs.png
 logo-header.png: logo-header.png
 logo-small.png: logo-small.png
 logo.png: logo.png
+mensajespk.png: mensajespk.png
+pollolevantandolamano.png: pollolevantandolamano.png
 rails.png: rails.png
 repeat.jpg: repeat.jpg
 rss.png: rss.png
@@ -32,6 +37,7 @@ subscribe-wrapper-bg.gif: subscribe-wrapper-bg.gif
 twitter.png: twitter.png
 view-fullscreen.png: view-fullscreen.png
 wmd-buttons.png: wmd-buttons.png
+world.png: world.png
 application.js: application.js
 application.css: application.css
 glyphicon.png: glyphicon.png
@@ -70,6 +76,24 @@ jqplot/jqPlotOptions.txt: jqplot/jqPlotOptions.txt
 jqplot/jsl.conf: jqplot/jsl.conf
 jqplot/optionsTutorial.txt: jqplot/optionsTutorial.txt
 jqplot/usage.txt: jqplot/usage.txt
+Roboto/NOTICE.txt: Roboto/NOTICE.txt
+Roboto/Roboto-Black.ttf: Roboto/Roboto-Black.ttf
+Roboto/Roboto-BlackItalic.ttf: Roboto/Roboto-BlackItalic.ttf
+Roboto/Roboto-Bold.ttf: Roboto/Roboto-Bold.ttf
+Roboto/Roboto-BoldCondensed.ttf: Roboto/Roboto-BoldCondensed.ttf
+Roboto/Roboto-BoldCondensedItalic.ttf: Roboto/Roboto-BoldCondensedItalic.ttf
+Roboto/Roboto-BoldItalic.ttf: Roboto/Roboto-BoldItalic.ttf
+Roboto/Roboto-Condensed.ttf: Roboto/Roboto-Condensed.ttf
+Roboto/Roboto-CondensedItalic.ttf: Roboto/Roboto-CondensedItalic.ttf
+Roboto/Roboto-Italic.ttf: Roboto/Roboto-Italic.ttf
+Roboto/Roboto-Light.ttf: Roboto/Roboto-Light.ttf
+Roboto/Roboto-LightItalic.ttf: Roboto/Roboto-LightItalic.ttf
+Roboto/Roboto-Medium.ttf: Roboto/Roboto-Medium.ttf
+Roboto/Roboto-MediumItalic.ttf: Roboto/Roboto-MediumItalic.ttf
+Roboto/Roboto-Regular.ttf: Roboto/Roboto-Regular.ttf
+Roboto/Roboto-Thin.ttf: Roboto/Roboto-Thin.ttf
+Roboto/Roboto-ThinItalic.ttf: Roboto/Roboto-ThinItalic.ttf
+Roboto/Roboto_Specimen_Book.pdf: Roboto/Roboto_Specimen_Book.pdf
 tolk/application.js: tolk/application.js
 tolk/application.css: tolk/application.css
 rails_admin/aristo/images/bg_fallback.png: rails_admin/aristo/images/bg_fallback.png
