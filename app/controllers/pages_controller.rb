@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  layout :set_layout
+
   filter_access_to :all
 
   def index
@@ -8,6 +10,10 @@ class PagesController < ApplicationController
     @users += Message.validated.count
     @users += Petition.validated.count
     @users += Fax.validated.count
+    # nuevo diseño
+    @total_published_campaigns = Campaign.total_published_campaigns
+    @total_signs = Message.validated.count + Petition.validated.count + Fax.validated.count
+    @total_users = User.all.count
   end
 
   def help

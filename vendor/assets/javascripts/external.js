@@ -7,7 +7,7 @@
 //= require jquery.simpleSlide
 //= require jquery.mailcheck.min
 //= require jquery.ui.all
-//= require bootstrap
+//= require bootstrap.min
 //= require Markdown.Converter
 //= require Markdown.Editor
 //= require Markdown.Sanitizer

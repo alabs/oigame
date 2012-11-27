@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= @page_title %> - oiga.me</title>
+    <%= stylesheet_link_tag 'responsive' %>
+    <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
+    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
+    <meta property="og:title" content="<%= @page_title %> - oiga.me" />
+    <% if @cause %>
+    <meta property="og:type" content="cause" />
+    <% else %>
+    <meta property="og:type" content="website" />
+    <% end %>
+    <% if @image_src %>
+    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <% else %>
+    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <% end %>
+    <meta property="og:url" content="<%= url_for :only_path => false %>" />
+    <% if @description %>
+      <meta property="og:description" content="<%= strip_tags(@description) %> - oiga.me" />
+      <meta name="description" content="<%= strip_tags(@description) %> - oiga.me" />
+    <% else %>
+      <meta property="og:description" content="<%= t(:description) %> - oiga.me" />
+      <meta name="description" content="<%= t(:description) %> - oiga.me" />
+    <% end %>
+    <meta name="keywords" content="<%= t(:keywords) %>" />
+    <meta property="fb:app_id" content="<%= APP_CONFIG[:facebook_app_id] %>"/>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <% if Rails.env == 'production' %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19861474-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script> 
+    <% end %>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+      {lang: 'es'}
+    </script>
+    <meta name="generator" content="oiga.me - <%= Rails.env %>" />
+    <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
+    <!--
+               Esta web está hecha por la asociación aLabs (http://alabs.es). 
+               Puedes ver el código en https://github.com/alabs/oigame/
+       
+                           @@@@              @@@@                 @+` 
+                           @@@@              @@@@               @@@@@`
+                   `..`    @@@@      ,;;,    @@@@ ,;,    `:;:`   ,@@` 
+                 `::::::.  @@@@    .@@@@@@:  @@@@@@@@@  @@@@@@@  @#@@ 
+                 ::::::::  @@@@    @@@@@@@@  @@@@@@@@@`:@@@@@@@#      
+                .:::`,:::. @@@@   :@@@.;@@@; @@@@ @@@@.@@@@ @@@@      
+                ,::: ,:::: @@@@   '@@@.,@@@+ @@@@ @@@@.@@@@ @@@@      
+                :::: ::::; @@@@   '@@@.'@@@# @@@@ @@@@.+@@@@          
+                   .:::::; @@@@      :@@@@@# @@@@ @@@@. @@@@@#        
+                 ,:::::::; @@@@    +@@@@@@@# @@@@ @@@@. .@@@@@@`      
+                `:::;,:::; @@@@   .@@@@,@@@# @@@@ @@@@.   #@@@@@      
+                ,:::`,:::; @@@@   '@@@,,@@@# @@@@ @@@@.#@@@ @@@@      
+                :::: ,:::; @@@@   '@@@.,@@@# @@@@ @@@@.+@@@ #@@@      
+                ,::: ::::; @@@@@@@'@@@.;@@@# @@@@ @@@@`:@@@ @@@@      
+                .::::::::; @@@@@@@.@@@@@@@@# @@@@@@@@@  @@@@@@@@      
+                 ::::::::; @@@@@@@ @@@@'@@@# @@@@#@@@+  .@@@@@@`      
+                  .:                `:`            :`     `::`        
+         
+    -->
+  </head>
+  <body>
+    <div class="navbar" id="header">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <div class="span2 people">
+            <ul class="pull-left">
+              <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> campañas</label></li>
+              <li><%= image_tag("mensajespk.png") %> <label><%= @total_signs %> firmas</label></li>
+              <li><%= image_tag("pollolevantandolamano.png") %> <label><%= @total_users %> usuarios</label></li>
+              <li><%= image_tag("world.png") %> <label>2 idiomas</label></li>   
+            </ul>
+          </div>
+
+          <!-- Everything you want hidden at 940px or less, place within here -->
+          <div class="nav-collapse collapse">
+            <!-- .nav, .navbar-search, .navbar-form, etc -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

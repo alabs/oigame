@@ -88,6 +88,10 @@ class Campaign < ActiveRecord::Base
     def archived_campaigns(page = 1, sub_oigame = nil)
       where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive.page(page)
     end
+
+    def total_published_campaigns
+      where(:published_at => "IS NOT NULL").count
+    end
   end
 
   # Para repartir el envio de mensajes en varios enlaces
