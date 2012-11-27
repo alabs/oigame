@@ -5,7 +5,6 @@ log/*.pid
 tmp/
 .sass-cache/
 *.swp
-#public/assets/*
 public/uploads/
 config/database.yml
 config/app_config.yml

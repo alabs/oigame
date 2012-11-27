@@ -18,9 +18,11 @@ credit-cards.jpg: credit-cards.jpg
 doit.jpg: doit.jpg
 doit2.jpg: doit2.jpg
 facebook.png: facebook.png
+facebook_icon.png: facebook_icon.png
 favicon.png: favicon.png
 geografica.png: geografica.png
 google.png: google.png
+googleplus.png: googleplus.png
 home-subscribe-2.jpg: home-subscribe-2.jpg
 home-subscribe-3.jpg: home-subscribe-3.jpg
 home-subscribe.jpg: home-subscribe.jpg
@@ -38,6 +40,7 @@ pollolevantandolamano.png: pollolevantandolamano.png
 propias.png: propias.png
 rails.png: rails.png
 repeat.jpg: repeat.jpg
+rss-icon.png: rss-icon.png
 rss.png: rss.png
 sayit.jpg: sayit.jpg
 shadow2.png: shadow2.png
@@ -54,12 +57,17 @@ tipologia.png: tipologia.png
 tirarealtime.jpg: tirarealtime.jpg
 transparentpk.png: transparentpk.png
 twitter.png: twitter.png
+twitter_icon.png: twitter_icon.png
 ultimas.png: ultimas.png
 view-fullscreen.png: view-fullscreen.png
 wmd-buttons.png: wmd-buttons.png
 world.png: world.png
 application.js: application.js
 application.css: application.css
+responsive.css: responsive.css
+bootstrap-mdo-sfmoma-01.jpg: bootstrap-mdo-sfmoma-01.jpg
+bootstrap-mdo-sfmoma-02.jpg: bootstrap-mdo-sfmoma-02.jpg
+bootstrap-mdo-sfmoma-03.jpg: bootstrap-mdo-sfmoma-03.jpg
 glyphicon.png: glyphicon.png
 glyphicons-halflings-white.png: glyphicons-halflings-white.png
 glyphicons-halflings.png: glyphicons-halflings.png
