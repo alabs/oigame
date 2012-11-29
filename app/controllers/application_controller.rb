@@ -47,10 +47,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_layout
-    if params[:v] == 'new'
-      "responsive"
-    else
-      "application"
-    end
+    #if params[:v] == 'new'
+    #  "responsive"
+    #else
+    #  "application"
+    #end
+    'responsive'
   end
 end

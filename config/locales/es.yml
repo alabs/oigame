@@ -218,3 +218,6 @@ es:
   category_of_campaign: "Categoría de la campaña"
   category: 'Categoría'
   faxes_recipients: 'Números de fax de los destinatarios'
+  firms: 'Firmas'
+  users: 'Usuarios'
+  languages: 'Idiomas'

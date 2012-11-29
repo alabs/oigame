@@ -55,6 +55,7 @@ Oigame::Application.routes.draw do
     get 'contact' => 'pages#contact', :as => 'contact'
     post 'contact' => 'pages#contact', :as => 'contact'
     get 'contact/received' => 'pages#contact_received', :as => 'contact_received'
+    get 'about' => 'pages#about', :as => 'about'
     devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'signup' }, :controllers => { :registrations => "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
     devise_scope :user do
       get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'

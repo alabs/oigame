@@ -86,10 +86,10 @@
 
           <div class="span2 people">
             <ul class="pull-left">
-              <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> campañas</label></li>
-              <li><%= image_tag("mensajespk.png") %> <label><%= @total_signs %> firmas</label></li>
-              <li><%= image_tag("pollolevantandolamano.png") %> <label><%= @total_users %> usuarios</label></li>
-              <li><%= image_tag("world.png") %> <label>2 idiomas</label></li>   
+              <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> <%= t(:campaigns) %></label></li>
+              <li><%= image_tag("mensajespk.png") %> <label><%= @total_signs %> <%= t(:firms) %></label></li>
+              <li><%= image_tag("pollolevantandolamano.png") %> <label><%= @total_users %> <%= t(:users) %></label></li>
+              <li><%= image_tag("world.png") %> <label>2 <%= t(:languages) %></label></li>   
             </ul>
           </div>
 
@@ -97,13 +97,13 @@
             <%= image_tag('oigame.png') %>
           </div>
           
-          <div class="span2 pull-right idioma">
+          <div class="span3 pull-right idioma">
             <div class="navbar-text pull-right">
-              <a href="#" class="navbar-link">Username</a>
+              <%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %>
             </div>
             <ul class="nav pull-right">              
-              <li><a href="#es">ES</a></li>
-              <li><a href="#contact">EN</a></li>                                       
+              <li><%= link_to 'Castellano', url_for(:locale => 'es') %></li>
+              <li><%= link_to 'English', url_for(:locale => 'en') %></li>                                       
             </ul>
           </div>
 
@@ -111,13 +111,13 @@
           <div class="nav-collapse collapse">
             <!-- .nav, .navbar-search, .navbar-form, etc -->
             <ul class="nav pull-right">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#contact">Search</a></li>
-              <li><a href="#contact">Donate</a></li>
-              <li><a href="#contact">Create</a></li>
-              <li><a href="#contact">Help</a></li>              
+              <li class="active"><%= link_to t(:home), root_path %></li>
+              <li><%= link_to t(:about), about_path %></li>
+              <li><%= link_to t(:contact), contact_path %></li>
+              <li><%= link_to t(:search), '#' %></li>
+              <li><%= link_to t(:donate), donate_path %></li>
+              <li><%= link_to t(:create), new_campaign_path %></li>
+              <li><%= link_to t(:help), help_path %></li>              
             </ul>            
           </div><!-- .nav-collapse -->
         </div><!-- .container-fluid -->

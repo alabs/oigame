@@ -43,4 +43,7 @@ class PagesController < ApplicationController
 
   def contact_received
   end
+
+  def about
+  end
 end
