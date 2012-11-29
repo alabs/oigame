@@ -181,7 +181,7 @@
                       <%= image_tag("jamaica.png") %>
                   </li>
         
-                   <li><a href="#"><%= image_tag("propias.png") %> </a></li>
+                  <li><a href="#"><%= image_tag("propias.png") %></a></li>
                    <li><a href="#"><%= image_tag("calientes.png") %> </a></li>
                    <li><a href="#"><%= image_tag("ultimas.png") %> </a></li>    
                    <li><a href="#"><%= image_tag("tipologia.png") %> </a></li> 
@@ -196,16 +196,27 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span5 offset1 navcampana"> 
-          <ul class="pull-left">
-            <li><a href="#"><%= image_tag("social.png") %> </a></li>
-            <li><a href="#"><%= image_tag("propias.png") %> </a></li>
-            <li><a href="#"><%= image_tag("calientes.png") %> </a></li>
-            <li><a href="#"><%= image_tag("ultimas.png") %> </a></li>    
-            <li><a href="#"><%= image_tag("tipologia.png") %> </a></li> 
-            <li><a href="#"><%= image_tag("activista.png") %> </a></li> 
-            <li><a href="#"><%= image_tag("geografica.png") %> </a></li>       
-          </ul>
+        <div class="span5 offset1"> 
+          <table id="camps-filter" class="pull-left">
+            <tr>
+              <td><a href="#"><%= image_tag("social.png") %></a></td>  
+              <td><a href="#"><%= image_tag("geografica.png") %></a></td>  
+              <td><a href="#"><%= image_tag("activista.png") %></a></td>  
+              <td><a href="#"><%= image_tag("tipologia.png") %></a></td>  
+              <td><a href="#"><%= image_tag("ultimas.png") %></a></td>  
+              <td><a href="#"><%= image_tag("calientes.png") %></a></td>  
+              <td><a href="#"><%= image_tag("propias.png") %></a></td>  
+            </tr>
+            <tr>
+              <td><a href="#">Social</a></td>
+              <td><a href="#">Geográfica</a></td>
+              <td><a href="#">Activista</a></td>
+              <td><a href="#">Tipología</a></td>
+              <td><a href="#">Últimas</a></td>
+              <td><a href="#">Calientes</a></td>
+              <td><a href="#">Propias</a></td>
+            </tr>
+          </table>
         </div>
         <div class="span6 claim">
           <h4>Una herramienta de presión social abierta, horizontal y transparente.</h4>
