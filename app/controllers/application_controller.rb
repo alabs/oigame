@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   
   helper :all
   
-  before_filter :set_locale
+  before_filter :set_locale, :get_header_data
   protect_from_forgery
 
   before_filter { |c| Authorization.current_user = c.current_user }
@@ -53,5 +53,12 @@ class ApplicationController < ActionController::Base
     #  "application"
     #end
     'responsive'
+  end
+
+  def get_header_data
+    # nuevo diseño
+    @total_published_campaigns = Campaign.total_published_campaigns
+    @total_signs = Message.validated.count + Petition.validated.count + Fax.validated.count
+    @total_users = User.all.count
   end
 end
