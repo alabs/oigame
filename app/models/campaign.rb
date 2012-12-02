@@ -90,7 +90,7 @@ class Campaign < ActiveRecord::Base
     end
 
     def total_published_campaigns
-      where(:published_at => "IS NOT NULL")
+      where("published_at IS NOT NULL")
     end
   end
 
