@@ -1,41 +1,53 @@
 <% @page_title = t(:signup) %>
 
-<div id="accounts-wrapper">
-  <div id="accounts">
-    <div id="signup-form" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<div id="accounts-wrapper" class="container-fluid">
+  <div id="accounts" class="row-fluid">
+    <div id="signup-form" class="form-stacked span11 pull-right">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
         <fieldset>
           <legend><%= @page_title %></legend>
           <p>
             <%= t(:user_create) %>
           </p>
-          <div class="form-field">
-            <%= f.label t(:email) %>
-            <% unless params[:email] %>
-              <%= f.email_field :email, :required => true %>
-            <% else %>
-              <%= f.email_field :email, :value => params[:email], :required => true %>
-            <% end %>
-            <% unless resource.errors[:email].blank? %>
-              <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
-            <% end %>
+          <div class="control-group">
+            <%= f.label t(:email), :class => 'control-label' %>
+            <div class="controls">
+              <% unless params[:email] %>
+                <%= f.email_field :email, :required => true %>
+              <% else %>
+                <%= f.email_field :email, :value => params[:email], :required => true %>
+              <% end %>
+              <% unless resource.errors[:email].blank? %>
+                <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+              <% end %>
+            </div>
           </div>
-          <div class="form-field">
-            <%= f.label t(:password) %>
-            <%= f.password_field :password %>
-            <% unless resource.errors[:password].blank? %>
-              <span class="error_message"><%= resource.errors[:password].to_sentence %></span>
-            <% end %>
+          <div class="control-group">
+            <%= f.label t(:password), :class => 'control-label' %>
+            <div class="controls">
+              <%= f.password_field :password %>
+              <% unless resource.errors[:password].blank? %>
+                <span class="error_message"><%= resource.errors[:password].to_sentence %></span>
+              <% end %>
+            </div>
           </div>
-          <div class="form-field">
-            <%= f.label t(:password_confirmation) %>
-            <%= f.password_field :password_confirmation %>
+          <div class="control-group">
+            <%= f.label t(:password_confirmation), :class => 'control-label' %>
+            <div class="controls">
+              <%= f.password_field :password_confirmation %>
+            </div>
           </div>
-          <div class="form-field">
-            <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
+          <div class="control-group">
+            <div class="controls">
+              <label class="checkbox">
+                <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
+              </label>
+            </div>
           </div>
-          <div class="form-actions">
-            <%= f.submit @page_title, :class => 'btn primary' %>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.submit @page_title, :class => 'btn primary' %>
+            </div>
           </div>
         </fieldset>
       <% end %>

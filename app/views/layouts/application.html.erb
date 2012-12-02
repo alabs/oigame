@@ -103,7 +103,7 @@
                 <li><%= link_to 'Castellano', url_for(:locale => 'es') %></li>
                 <li><%= link_to 'English', url_for(:locale => 'en') %></li>                                       
                 <% unless user_signed_in? %>
-                  <li><%= link_to t(:create_account), new_user_registration_path %></li>
+                  <li><%= link_to t(:create_account), new_user_registration_path(:anchor => 'signup-form') %></li>
                   <li id="login-link"><%= link_to t(:login), new_user_session_path(:anchor => 'login-form'), :class => 'navbar-link' %></li>
                 <% else %>
                   <li><%= link_to t(:my_account), edit_user_registration_path %></li>
