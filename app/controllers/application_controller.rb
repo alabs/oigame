@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   
   helper :all
   
-  before_filter :set_locale, :get_header_data
+  before_filter :set_locale, :header_data
   protect_from_forgery
 
   before_filter { |c| Authorization.current_user = c.current_user }
@@ -55,10 +55,11 @@ class ApplicationController < ActionController::Base
     'responsive'
   end
 
-  def get_header_data
+  def header_data
     # cachear esto con redis
     @total_published_campaigns = Campaign.total_published_campaigns.all.count
     @total_signs = (Message.validated.all + Petition.validated.all + Fax.validated.all ).count
     @total_users = User.all.count
+    @slideshow_campaigns = Campaign.last_campaigns_without_pagination(3)
   end
 end

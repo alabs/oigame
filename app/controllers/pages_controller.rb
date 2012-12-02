@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   filter_access_to :all
 
   def index
-    @slideshow_campaigns = Campaign.last_campaigns_without_pagination(3)
   end
 
   def help
