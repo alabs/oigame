@@ -1,20 +1,24 @@
 <% @page_title = t(:resend_confirmation_instructions) %>
 
-<div id="accounts-wrapper">
-  <div id="accounts">
-    <div id="resend-confirmation-instructions" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+<div id="accounts-wrapper" class="container-fluid">
+  <div id="accounts" class="row-fluid">
+    <div id="resend-confirmation-instructions" class="form-stacked span11 pull-right">
+      <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
         <fieldset>
           <legend><%= t(:please_fill_the_form) %></legend>
-          <div class="form-field">
-            <%= f.label t(:email) %>
-            <%= f.email_field :email, :required => true %>
-            <% unless resource.errors[:email].blank? %>
-              <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
-            <% end %>
+          <div class="control-group">
+            <%= f.label t(:email), :class => 'control-label' %>
+            <div class="controls">
+              <%= f.email_field :email, :required => true %>
+              <% unless resource.errors[:email].blank? %>
+                <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+              <% end %>
+            </div>
           </div>
-          <div class="form-actions">
-            <%= f.submit t(:resend_confirmation_instructions), :class => 'btn primary' %>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.submit t(:resend_confirmation_instructions), :class => 'btn primary' %>
+            </div>
           </div>
         </fieldset>
       <% end %>
