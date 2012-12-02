@@ -74,6 +74,11 @@
     -->
   </head>
   <body>
+    <% flash.each do |name, msg| %>
+    <div class="flash-messages">
+      <%= content_tag :p, msg, :class => "flash-#{name}" %>
+    </div>
+    <% end %>
     <div class="navbar" id="header">
       <div class="navbar-inner" id="main-header">
         <div class="container-fluid">
