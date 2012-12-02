@@ -148,11 +148,7 @@
           <!-- Carousel items -->
           <div class="carousel-inner">
             <% @slideshow_campaigns.each do |campaign| %>
-              <% if campaign == Campaign.last %>
-                <div class="active item">
-              <% else %>
                 <div class="item">
-              <% end %>
                 <%= link_to image_tag(campaign.image_url(:home)), campaign %>
                 <div class="carousel-caption">
                   <h4><%= link_to campaign.name, campaign %></h4>

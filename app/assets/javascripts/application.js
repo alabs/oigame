@@ -39,4 +39,7 @@ $(function(){
     selectedHeader: '<h4>Admins</h4>'
   });
   
+  // para el slideshow de la home
+  $("#myHomeCarousel .item:first").addClass("active");
+  
 });
