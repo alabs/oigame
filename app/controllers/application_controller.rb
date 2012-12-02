@@ -56,9 +56,9 @@ class ApplicationController < ActionController::Base
   end
 
   def get_header_data
-    # nuevo diseño
-    @total_published_campaigns = Rails.cache.fetch("ctp_home", :expires_in => 3.hour) { Campaign.total_published_campaigns }
-    @total_signs = Rails.cache.fetch("mvc_home", :expires_in => 3.hour) { Message.validated.count + Petition.validated.count + Fax.validated.count }
-    @total_users = Rails.cache.fetch("uac_home", :expires_in => 3.hour) { User.all.count }
+    # cachear esto con redis
+    @total_published_campaigns = Campaign.total_published_campaigns.all.count
+    @total_signs = (Message.validated.all + Petition.validated.all + Fax.validated.all ).count
+    @total_users = User.all.count
   end
 end
