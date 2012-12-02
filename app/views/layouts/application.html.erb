@@ -108,8 +108,8 @@
                 <li><%= link_to 'Castellano', url_for(:locale => 'es') %></li>
                 <li><%= link_to 'English', url_for(:locale => 'en') %></li>                                       
                 <% unless user_signed_in? %>
-                  <li><%= link_to t(:create_account), new_user_registration_path(:anchor => 'signup-form') %></li>
-                  <li id="login-link"><%= link_to t(:login), new_user_session_path(:anchor => 'login-form'), :class => 'navbar-link' %></li>
+                  <li><%= link_to t(:create_account), new_user_registration_path %></li>
+                  <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
                 <% else %>
                   <li><%= link_to t(:my_account), edit_user_registration_path %></li>
                   <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
@@ -137,91 +137,6 @@
         <%= image_tag("shadow2.png") %> 
       </div>
     </div><!-- .navbar -->
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="diferencial pull-left">
-           <ul class="pull-left">
-            <li><a href="#"><%= image_tag("99pk.png") %> </a></li>
-            <li><a href="#"><%= image_tag("transparentpk.png") %> </a></li>
-            <li><a href="#"><%= image_tag("openpk.png") %> </a></li>       
-          </ul>
-        </div> 
-        <div class="pull-left logo"> 
-          <%= link_to image_tag("altavoz5.png"), root_path %>       
-        </div>
-        <div id="myHomeCarousel" class="carousel slide span7">
-          <!-- Carousel items -->
-          <div class="carousel-inner">
-            <% @slideshow_campaigns.each do |campaign| %>
-                <div class="item">
-                <%= link_to image_tag(campaign.image_url(:home)), campaign %>
-                <div class="carousel-caption">
-                  <h4><%= link_to campaign.name, campaign %></h4>
-                  <p><%= truncate(strip_tags(campaign.intro), :length => 225) %></p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myHomeCarousel" data-slide="prev"><</a>
-          <a class="carousel-control right" href="#myHomeCarousel" data-slide="next">></a>
-        </div><!-- myHomeCarousel -->
-        <div class="span3 realtime hidden-phone">
-                <ul class="pull-left">
-                  <li>
-                    <a href="#">
-                      <%= image_tag("bob.png") %> 
-                    </a>
-        
-                    <a href="#">
-                    <label>Africa:Save Africa from the FMI </label>
-                    </a>
-        
-                      <%= image_tag("jamaica.png") %>
-                  </li>
-        
-                  <li><a href="#"><%= image_tag("propias.png") %></a></li>
-                   <li><a href="#"><%= image_tag("calientes.png") %> </a></li>
-                   <li><a href="#"><%= image_tag("ultimas.png") %> </a></li>    
-                   <li><a href="#"><%= image_tag("tipologia.png") %> </a></li> 
-                   <li><a href="#"><%= image_tag("activista.png") %> </a></li> 
-                   <li><a href="#"><%= image_tag("geografica.png") %> </a></li> 
-                   <li><a href="#"><%= image_tag("geografica.png") %> </a></li>       
-              
-               </ul>
-        </div><!--/.realtime-->
-      </div>
-    </div><!-- container-fluid -->
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span5 offset1"> 
-          <table id="camps-filter" class="pull-left">
-            <tr>
-              <td><a href="#"><%= image_tag("social.png") %></a></td>  
-              <td><a href="#"><%= image_tag("geografica.png") %></a></td>  
-              <td><a href="#"><%= image_tag("activista.png") %></a></td>  
-              <td><a href="#"><%= image_tag("tipologia.png") %></a></td>  
-              <td><a href="#"><%= image_tag("ultimas.png") %></a></td>  
-              <td><a href="#"><%= image_tag("calientes.png") %></a></td>  
-              <td><a href="#"><%= image_tag("propias.png") %></a></td>  
-            </tr>
-            <tr>
-              <td><a href="#">Social</a></td>
-              <td><a href="#">Geográfica</a></td>
-              <td><a href="#">Activista</a></td>
-              <td><a href="#">Tipología</a></td>
-              <td><a href="#">Últimas</a></td>
-              <td><a href="#">Calientes</a></td>
-              <td><a href="#">Propias</a></td>
-            </tr>
-          </table>
-        </div>
-        <div class="span6 claim">
-          <h4>Una herramienta de presión social abierta, horizontal y transparente.</h4>
-        </div>
-      </div>
-    </div><!-- container-fluid -->
 
     <%= yield %>
 

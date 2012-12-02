@@ -1,8 +1,17 @@
 <% @page_title = t(:forgot_your_password) %>
 
-<div id="accounts-wrapper" class="container-fluid">
-  <div id="accounts" class="row-fluid">
-    <div id="forgot-password-form" class="form-stacked span11 pull-right">
+<div class="container-fluid">
+
+<div class="row-fluid">
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+
+  <div class="span9">
+
+<div id="accounts-wrapper">
+  <div id="accounts">
+    <div id="forgot-password-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
         <fieldset>
           <legend><%= t(:please_fill_the_form) %></legend>
@@ -26,3 +35,8 @@
     </div><!-- forgot-passowrd-form -->
   </div>
 </div><!-- accounts-wrapper -->
+  
+</div>
+</div>
+
+</div>

@@ -1,8 +1,17 @@
 <% @page_title = t(:resend_confirmation_instructions) %>
 
-<div id="accounts-wrapper" class="container-fluid">
-  <div id="accounts" class="row-fluid">
-    <div id="resend-confirmation-instructions" class="form-stacked span11 pull-right">
+<div class="container-fluid">
+
+<div class="row-fluid">
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+
+  <div class="span9">
+
+<div id="accounts-wrapper">
+  <div id="accounts">
+    <div id="resend-confirmation-instructions" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
         <fieldset>
           <legend><%= t(:please_fill_the_form) %></legend>
@@ -27,3 +36,8 @@
   </div>
 </div><!-- accounts-wrapper -->
 
+  
+</div>
+</div>
+
+</div>

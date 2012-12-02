@@ -1,8 +1,18 @@
 <% @page_title = t(:login) %>
 
-<div id="accounts-wrapper" class="container-fluid">
-  <div id="accounts" class="row-fluid">
-    <div id="login-form" class="form-stacked span11 pull-right">
+<div class="container-fluid">
+
+<div class="row-fluid">
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+
+  <div class="span9">
+
+
+<div id="accounts-wrapper">
+  <div id="accounts">
+    <div id="login-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
         <fieldset>
           <legend><%= @page_title %></legend>
@@ -33,3 +43,7 @@
   </div><!-- accounts -->
 </div><!-- accounts-wrapper -->
 
+  </div>
+</div>
+
+</div>
