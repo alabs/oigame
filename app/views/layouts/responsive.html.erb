@@ -259,8 +259,6 @@
         <div id="home-text" class="span6">
           <h1>Recogida de firmas</h1>
           <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-          <h1>SMS</h1>
-          <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
           <h1>Mailing masivo</h1>
           <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
           <h1>Fax</h1>
@@ -286,8 +284,22 @@
             <li><a href="#" style="margin-top:-40px;"><%= image_tag("openpk.png") %></a></li>       
           </ul>
         </div>
-        <div class="span4">
+        <div class="span4" style="text-align: right;">
+          <%= image_tag('bandera-greenpeace.png') %>
         </div>
+      </div>
+      <div class="row-fluid" style="text-align: center;">
+        <div class="span12" id="footer-nav">
+        <ul>
+          <li class="active"><%= link_to t(:home), root_path %></li>
+          <li><%= link_to t(:about), about_path %></li>
+          <li><%= link_to t(:contact), contact_path %></li>
+          <li><%= link_to t(:search), '#' %></li>
+          <li><%= link_to t(:donate), donate_path %></li>
+          <li><%= link_to t(:create), new_campaign_path %></li>
+          <li><%= link_to t(:help), help_path %></li>              
+        </ul>            
+      </div>
       </div>
     </div>
 
