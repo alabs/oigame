@@ -97,15 +97,21 @@
             <%= link_to image_tag('oigame.png'), root_path %>
           </div>
           
-          <div class="span3 pull-right idioma">
+          <div class="span4 pull-right idioma">
             <div class="navbar-text pull-right">
-              <%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %>
+              <ul class="nav pull-right">              
+                <li><%= link_to 'Castellano', url_for(:locale => 'es') %></li>
+                <li><%= link_to 'English', url_for(:locale => 'en') %></li>                                       
+                <% unless user_signed_in? %>
+                  <li><%= link_to t(:create_account), new_user_registration_path %></li>
+                  <li><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
+                <% else %>
+                  <li><%= link_to t(:my_account), edit_user_registration_path %></li>
+                  <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+                <% end %>
+                </ul>
+              </div>
             </div>
-            <ul class="nav pull-right">              
-              <li><%= link_to 'Castellano', url_for(:locale => 'es') %></li>
-              <li><%= link_to 'English', url_for(:locale => 'en') %></li>                                       
-            </ul>
-          </div>
 
           <!-- Everything you want hidden at 940px or less, place within here -->
           <div class="nav-collapse collapse">
