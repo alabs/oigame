@@ -147,27 +147,15 @@
         <div id="myHomeCarousel" class="carousel slide span7">
           <!-- Carousel items -->
           <div class="carousel-inner">
-            <div class="active item">
-              <%= image_tag("bootstrap-mdo-sfmoma-01.jpg") %>
-              <div class="carousel-caption">
-                <h4>Primera campaña de prueba para ver el carrousel</h4>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <% @slideshow_campaigns.each do |campaign| %>
+              <div class="active item">
+                <%= link_to image_tag(campaign.image_url(:home)), campaign %>
+                <div class="carousel-caption">
+                  <h4><%= link_to campaign.name, campaign %></h4>
+                  <p><%= strip_tags(campaign.intro) %></p>
+                </div>
               </div>
-            </div>
-            <div class="item">
-              <%= image_tag("bootstrap-mdo-sfmoma-02.jpg") %>
-              <div class="carousel-caption">
-                <h4>Primera campaña de prueba para ver el carrousel</h4>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              </div>
-            </div>
-            <div class="item">
-              <%= image_tag("bootstrap-mdo-sfmoma-03.jpg") %>
-              <div class="carousel-caption">
-                <h4>Primera campaña de prueba para ver el carrousel</h4>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              </div>
-            </div>
+            <% end %>
           </div>
           <!-- Carousel nav -->
           <a class="carousel-control left" href="#myHomeCarousel" data-slide="prev"><</a>
@@ -230,48 +218,7 @@
       </div>
     </div><!-- container-fluid -->
 
-    <div id="home-campaigns" class="container-fluid">
-      <div class="row-fluid">
-        <div class="home-camp span5 offset1">
-          <div class="camp">
-            <%= image_tag('afrika-mini.png') %>
-          </div>
-        </div>
-        <div class="home-camp span6">
-          <div class="camp"> 
-            <%= image_tag('afrika-mini.png') %>
-          </div>
-        </div>
-      </div>
-      <div class="row-fluid">
-        <div class="home-camp span5 offset1">
-          <div class="camp">
-            <%= image_tag('afrika-mini.png') %>
-          </div>
-        </div>
-        <div class="span6 home-camp">
-          <div class="camp">
-            <%= image_tag('afrika-mini.png') %>
-          </div>
-        </div>
-      </div>
-    </div><!-- container-fluid -->
-
-    <div id="semi-footer" class="container-fluid">
-      <div class="row-fluid">
-        <div id="home-icons" class="offset1 span5">
-          <%= link_to image_tag('semi-footer-img1.png'), '#' %>
-        </div>
-        <div id="home-text" class="span6">
-          <h1>Recogida de firmas</h1>
-          <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-          <h1>Mailing masivo</h1>
-          <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-          <h1>Fax</h1>
-          <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-        </div>
-      </div>
-    </div>
+    <%= yield %>
 
     <div id="footer" class="container-fluid">
       <div class="row-fluid">

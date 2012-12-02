@@ -5,11 +5,7 @@ class PagesController < ApplicationController
   filter_access_to :all
 
   def index
-    @campaigns = Campaign.last_campaigns_without_pagination(3)
-    @users = User.count
-    @users += Message.validated.count
-    @users += Petition.validated.count
-    @users += Fax.validated.count
+    @slideshow_campaigns = Campaign.last_campaigns_without_pagination(3)
   end
 
   def help

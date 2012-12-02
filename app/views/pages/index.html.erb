@@ -1,107 +1,44 @@
 <% @page_title = t(:home) %>
 
-<div id="subscribe-wrapper">
-  <div id="subscribe">
-    <div id="subscribe-img">
-      <%= image_tag("home-subscribe-3.jpg", :width => 462, :height => 359) %>
+<div id="home-campaigns" class="container-fluid">
+  <div class="row-fluid">
+    <div class="home-camp span5 offset1">
+      <div class="camp">
+        <%= image_tag('afrika-mini.png') %>
+      </div>
     </div>
-    <div id="subscribe-form">
-      <p class="msg"><%= t(:slogan_1) %><br />
-      <%= t(:slogan_2) %></p>
-      <p class="user-count"><%= @users %> <%= t(:slogan_3) %></p>
-      <p class="do-it"><%= t(:slogan_4) %></p>
-      <% if user_signed_in? %>
-        <br >
-        <br />
-        <%= link_to t(:view_all_campaigns), campaigns_path, :class => "btn btn-primary btn-large" %>
-        <%= link_to t(:propose_campaign), new_campaign_path, :class => "btn btn-primary btn-large", :style => "margin-left:2em" %>
-      <% else %>
-        <br >
-        <br />
-        <form id="pre-signup" action="/users/signup" method="get">
-          <input type="email" name="email" placeholder="<%= t(:example_email) %>" required="true" />
-          <button id="button-home-signup" type="submit" class="btn-primary btn btn-large"><%= t(:make_member) %></button>
-        </form>
-      <% end %>
+    <div class="home-camp span6">
+      <div class="camp"> 
+        <%= image_tag('afrika-mini.png') %>
+      </div>
     </div>
   </div>
-  <div id="simple-slideshow-wrapper">
-    <div id="simpleSlide-slideshow">
-      <div class="left-button" rel="1"></div>
-      <div class="simpleSlide-window" rel="1">
-        <div class="simpleSlide-tray" rel="1">
-            <div class="simpleSlide-slide" rel="1" alt="1">
-              <div> <%= t(:descriptions) %> </div>
-            </div>
-            <div class="simpleSlide-slide" rel="1" alt="2">
-              <div> <%= t(:slide_1) %> </div>
-            </div>
-            <div class="simpleSlide-slide" rel="1" alt="3">
-              <div> <%= t(:slide_2) %> </div>
-            </div>
-            <div class="simpleSlide-slide" rel="1" alt="4">
-              <div> <%= t(:slide_3) %> </div>
-            </div>
-            <div class="simpleSlide-slide" rel="1" alt="5">
-              <div> <%= t(:slide_4) %> </div>
-            </div>
-            <div class="simpleSlide-slide" rel="1" alt="6">
-              <div> <%= t(:slide_5) %> </div>
-            </div>
-            <div class="simpleSlide-slide" rel="1" alt="7">
-              <div> <%= t(:slide_6) %> </div>
-            </div>
-        </div><!-- simpleSlide-tray -->
-      </div><!-- simpleSlide-window -->
-      <div class="right-button" rel="1"></div>
-    </div> <!-- slideshow -->
-    <div class="auto-slider" rel="1"></div>
-  </div><!-- simple-slideshow-wrapper -->
-</div><!-- subscribe-wrapper -->
-<div id="home-info-wrapper">
-  &nbsp;
-  <% if @campaigns.count >= 3 %>
-    <div id="campaigns-info">
-      <div id="last-campaigns-ribbon"><%= t(:last_campaigns) %></div>
-      <% @campaigns.each do |campaign| %>
-        <div class="campaign-home-detail">
-          <div class="c-image-and-title">
-            <div class="ctitle"><h2><%= link_to truncate(campaign.name, :length => 37), campaign %></h2></div>
-            <% if campaign.image.to_s %>
-              <%= link_to image_tag(campaign.image_url(:home), :alt => campaign.name), campaign, :title => campaign.name %>
-            <% end %>
-          </div>
-          <div class="c-text-and-link">
-            <%= campaign.to_html(truncate(campaign.intro, :length => 225)).html_safe %>
-            <% if campaign.ttype == 'mailing' %>
-              <p><strong><%= link_to "> #{t(:join_this_campaign)}", campaign, :title => campaign.name %></strong><br /><%= campaign.messages.validated.count %> <%= t(:have_already_made) %></p>
-            <% elsif campaign.ttype == 'petition' %>
-              <p><strong><%= link_to "> #{t(:join_this_campaign)}", campaign, :title => campaign.name %></strong><br /><%= campaign.petitions.validated.count %> <%= t(:have_already_made) %></p>
-            <% end %>
-          </div>
-        </div><!-- campaign-home-detail -->
-      <% end %>
-      <div class="clear"></div>
-    </div><!-- campaigns-info -->
-  <% end %>
-  <div id="home-info">
-    <div id="sayit">
-      <h2><%= t(:sayit_title) %></h2>
-      <p><%= t(:sayit_1) %> <strong>oiga.me</strong> <%= t(:sayit_2) %></p>
-      <p><strong><%= link_to "> #{ t(:sayit_link) }", tutorial_path, :title => t(:sayit_link) %></strong></p>
-      <%= link_to image_tag('sayit.jpg', :alt => t(:sayit_link)), tutorial_path, :title => t(:sayit_link) %>
+  <div class="row-fluid">
+    <div class="home-camp span5 offset1">
+      <div class="camp">
+        <%= image_tag('afrika-mini.png') %>
+      </div>
     </div>
-    <div id="repeat">
-      <h2><%= t(:repeat_title) %></h2>
-      <p><%= t(:repeat_1) %></p>
-      <p><strong><%= link_to "> #{ t(:repeat_link) }", campaigns_path, :title => t(:repeat_link) %></strong></p>
-      <%= link_to image_tag('repeat.jpg', :alt => t(:repeat_link)), campaigns_path, :title => t(:repeat_link) %>
+    <div class="span6 home-camp">
+      <div class="camp">
+        <%= image_tag('afrika-mini.png') %>
+      </div>
     </div>
-    <div id="doit">
-      <h2><%= t(:doit_title) %></h2>
-      <p><%= t(:doit_1) %> <strong>oiga.me</strong> <%= t(:doit_2) %></p>
-      <p><strong><%= link_to "> #{ t(:doit_link) }", donate_path, :title => t(:doit_link) %></strong></p>
-      <%= link_to image_tag('doit.jpg', :alt => t(:doit_link)), donate_path, :title => t(:doit_link) %>
+  </div>
+</div><!-- container-fluid -->
+
+<div id="semi-footer" class="container-fluid">
+  <div class="row-fluid">
+    <div id="home-icons" class="offset1 span5">
+      <%= link_to image_tag('semi-footer-img1.png'), '#' %>
     </div>
-  </div><!-- home-info -->
-</div><!-- home-info-wrapper -->
+    <div id="home-text" class="span6">
+      <h1>Recogida de firmas</h1>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      <h1>Mailing masivo</h1>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      <h1>Fax</h1>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+    </div>
+  </div>
+</div>
