@@ -59,6 +59,6 @@ class ApplicationController < ActionController::Base
     @total_published_campaigns = Campaign.total_published_campaigns.all.count
     @total_signs = (Message.validated.all + Petition.validated.all + Fax.validated.all ).count
     @total_users = User.all.count
-    @slideshow_campaigns = Campaign.last_campaigns_without_pagination(3)
+    @slideshow_campaigns = Campaign.last_campaigns_without_pagination(4)
   end
 end
