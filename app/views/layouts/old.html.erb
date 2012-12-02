@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+  <head>
+    <meta charset="utf-8" />
+    <title><%= @page_title %> - oiga.me</title>
+    <%= stylesheet_link_tag 'application' %>
+    <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
+    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
+    <meta property="og:title" content="<%= @page_title %> - oiga.me" />
+    <% if @cause %>
+    <meta property="og:type" content="cause" />
+    <% else %>
+    <meta property="og:type" content="website" />
+    <% end %>
+    <% if @image_src %>
+    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <% else %>
+    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <% end %>
+    <meta property="og:url" content="<%= url_for :only_path => false %>" />
+    <% if @description %>
+      <meta property="og:description" content="<%= strip_tags(@description) %> - oiga.me" />
+      <meta name="description" content="<%= strip_tags(@description) %> - oiga.me" />
+    <% else %>
+      <meta property="og:description" content="<%= t(:description) %> - oiga.me" />
+      <meta name="description" content="<%= t(:description) %> - oiga.me" />
+    <% end %>
+    <meta name="keywords" content="<%= t(:keywords) %>" />
+    <meta property="fb:app_id" content="<%= APP_CONFIG[:facebook_app_id] %>"/>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <% if Rails.env == 'production' %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19861474-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script> 
+    <% end %>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+      {lang: 'es'}
+    </script>
+    <meta name="generator" content="oiga.me - <%= Rails.env %>" />
+    <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
+    <!--
+               Esta web está hecha por la asociación aLabs (http://alabs.es). 
+               Puedes ver el código en https://github.com/alabs/oigame/
+       
+                           @@@@              @@@@                 @+` 
+                           @@@@              @@@@               @@@@@`
+                   `..`    @@@@      ,;;,    @@@@ ,;,    `:;:`   ,@@` 
+                 `::::::.  @@@@    .@@@@@@:  @@@@@@@@@  @@@@@@@  @#@@ 
+                 ::::::::  @@@@    @@@@@@@@  @@@@@@@@@`:@@@@@@@#      
+                .:::`,:::. @@@@   :@@@.;@@@; @@@@ @@@@.@@@@ @@@@      
+                ,::: ,:::: @@@@   '@@@.,@@@+ @@@@ @@@@.@@@@ @@@@      
+                :::: ::::; @@@@   '@@@.'@@@# @@@@ @@@@.+@@@@          
+                   .:::::; @@@@      :@@@@@# @@@@ @@@@. @@@@@#        
+                 ,:::::::; @@@@    +@@@@@@@# @@@@ @@@@. .@@@@@@`      
+                `:::;,:::; @@@@   .@@@@,@@@# @@@@ @@@@.   #@@@@@      
+                ,:::`,:::; @@@@   '@@@,,@@@# @@@@ @@@@.#@@@ @@@@      
+                :::: ,:::; @@@@   '@@@.,@@@# @@@@ @@@@.+@@@ #@@@      
+                ,::: ::::; @@@@@@@'@@@.;@@@# @@@@ @@@@`:@@@ @@@@      
+                .::::::::; @@@@@@@.@@@@@@@@# @@@@@@@@@  @@@@@@@@      
+                 ::::::::; @@@@@@@ @@@@'@@@# @@@@#@@@+  .@@@@@@`      
+                  .:                `:`            :`     `::`        
+         
+    -->
+  </head>
+  <body>
+    <% flash.each do |name, msg| %>
+    <div class="flash-messages">
+      <%= content_tag :p, msg, :class => "#{name}" %>
+    </div>
+    <% end %>
+    <div id="header-wrapper" class="">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div id="container">
+            <span id="logo">
+              <%= link_to 'oiga.me', root_path %>
+            </span><!-- logo -->
+            <span id="corner">
+              <%= link_to 'peta', root_path %>
+            </span><!-- corner -->
+            <ul class="first-nav nav">
+              <% unless user_signed_in? %>
+                <li id="header-signup"><%= link_to t(:join_oigame), new_user_registration_path %></li>
+              <% end %>
+              <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
+              <li id="header-community"><%= link_to t(:community), 'http://community.oiga.me/' %></li>
+              <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
+              <li id="header-help"><%= link_to t(:help), help_path %></li>
+              <li id="header-tutorial"><%= link_to t(:tutorial), tutorial_path %></li>
+            </ul>
+            <ul class="nav">
+              <li>
+              <% if I18n.locale === :es %>
+                <%= link_to 'English', url_for( :locale => 'en' ) %>
+              <% else %>
+                <%= link_to 'Español', url_for( :locale => 'es' ) %>
+              <% end %>
+              </li>
+            </ul>
+            <ul class="secondary-nav nav">
+              <% unless user_signed_in? %>
+                <div id="signin-container">
+                  <div id="topnav" class="topnav">
+                    <a href="#" class="signin">
+                      <em><%= t(:have_account) %></em>
+                      <strong><%= t(:login) %></strong>
+                    </a>
+                  </div><!-- topnav -->
+                  <%= form_tag user_session_path do %>
+                    <fieldset id="signin-menu">
+                      <div class="form-field">
+                        <%= label_tag t(:email) %>
+                        <input autocomplete="on" id="email" name="user[email]" required="required" type="email" />
+                      </div>
+                      <div class="form-field">
+                        <%= label_tag t(:password) %>
+                        <input id="password" name="user[password]" required="required" type="password" />
+                      </div>
+                      <div class="form-field">
+                        <%= check_box_tag :remember_me %> <span class="remember"><%= t(:remember_me) %></span>
+                      </div>
+                      <%= submit_tag t(:login), :class => "btn" %>
+                      <p><%= link_to t(:forgot_your_password), new_user_password_path %></p>
+                      <p>
+                        <%= link_to user_omniauth_authorize_path(:facebook) do %>
+                          <i class="glyphicon-facebook"></i>
+                          <%= t(:sign_in_facebook) %>
+                        <% end %>
+                      </p>
+                    </fieldset>
+                  <% end %>
+                </div><!-- signin-container -->
+              <% else %>
+                <ul class="nav pull-right">
+                  <li id="fat-menu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="top:-0.5em; position:relative;">
+                      <strong><%= current_user.email %></strong><b class="caret"></b></a>
+                    <ul class="dropdown-menu" id="session-menu">
+                      <li><%= link_to t(:configuration),  edit_user_registration_path %></li>
+                      <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+                    </ul>
+                  </li>
+                </ul>
+              <% end %>
+            </ul><!-- secondary-nav -->
+          </div><!-- topbar-wrapper -->
+        </div><!-- fill -->
+      </div><!-- navbar -->
+    </div><!-- header-wrapper -->
+    <% unless @sub_oigame.nil? %>
+      <style>
+        <%= @sub_oigame.html_style %>
+      </style>
+      <div id="sub_oigame-header">
+        <%= sanitize @sub_oigame.html_header, :tags => %(a img div span p br table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
+    <%= yield %>
+    <% unless @sub_oigame.nil? %>
+      <div id="sub_oigame-footer">
+        <%= sanitize @sub_oigame.html_footer, :tags => %(a img div span p br table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
+    <div id="links-wrapper">
+      <div id="links">
+        <div id="links-logo">
+          <%= image_tag('logo-small.png') %>
+        </div>
+        <div id="links-message">
+          <p><%= t(:our_social_council) %></p>
+        </div>
+        <div id="links-social">
+          <span>Síguenos en:</span><br />
+          <%= link_to image_tag('rss.png'), feed_campaigns_path %>
+          <%= link_to image_tag('google.png'), 'https://plus.google.com/109609067558669990733/?prsrc=3' %>
+          <%= link_to image_tag('facebook.png'), 'https://www.facebook.com/oiga.me' %>
+          <%= link_to image_tag('twitter.png'), 'https://twitter.com/oigame' %>
+          <%= link_to image_tag('identica.png'), 'https://identi.ca/oigame' %>
+        </div>
+      </div>
+    </div><!-- links-wrapper -->
+    <div id="footer-wrapper">
+      <div id="footer-main">
+        <div id="info-links">
+          <p><span style="color:#fff;">&copy; 2010-<%= Time.now.year %> <%= t(:some_reserved_rights) %></span> | <%= link_to t(:privacy_policy), privacy_policy_path %> | <%= link_to t(:developers), 'https://github.com/alabs/oigame' %> | <%=link_to t(:contact), contact_path %></p>
+          <p style="color: #fff;"><%= t(:license_pre) %> <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_ES" style="color:red;"><%= t(:this_license) %></a> Creative Commons.</p>
+        </div>
+        <div id="footer-donate">
+          <p style="color:#fff;"><%= t(:created_and_maintened) %>:</p>
+          <p><%= link_to image_tag('logo-alabs.png'), 'http://alabs.es/' %></p>
+        </div>
+      </div><!-- footer -->
+    </div><!-- footer-wrapper -->
+    <div id="modal-beta-notice" style="display:none;">
+      <h1><%= t(:important_notice) %></h1>
+      <p style="font-size: 120%;">
+        <%= t(:welcome_you) %>
+        <a href="http://alabs.es/">aLabs</a>
+        <%= t(:welcome_message) %>
+        <a href="https://oiga.me/">https://oiga.me/</a>
+      </p>
+
+      <p style="font-size: 120%;">
+        <%= t(:welcome_bye) %>
+      </p>
+      <div class="actions">
+          <button class="close-dialog btn primary">Cerrar</button>
+      </div>
+    </div>
+    <% if Rails.env == 'development' %>
+      <%# query_review_output %>
+      <div id="debug">
+        <%= debug(params) %>
+      </div>
+    <% end %>
+  </body>
+</html>

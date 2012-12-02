@@ -47,12 +47,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_layout
-    #if params[:v] == 'new'
-    #  "responsive"
-    #else
-    #  "application"
-    #end
-    'responsive'
+    if params[:v] == 'old'
+      "old"
+    else
+      "application"
+    end
   end
 
   def header_data

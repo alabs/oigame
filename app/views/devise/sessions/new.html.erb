@@ -1,25 +1,30 @@
 <% @page_title = t(:login) %>
 
-<div id="accounts-wrapper">
-  <div id="accounts">
-    <div id="login-form" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<div id="accounts-wrapper" class="container-fluid">
+  <div id="accounts" class="row-fluid">
+    <div id="login-form" class="form-stacked span11 pull-right">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
         <fieldset>
           <legend><%= @page_title %></legend>
-          <div class="form-field">
-            <%= f.label t(:email) %>
-            <%= f.email_field :email, :required => true %>
+          <div class="control-group">
+            <%= f.label t(:email), :class => 'control-label' %>
+            <div class="controls">
+              <%= f.email_field :email, :required => true %>
+            </div>
           </div>
-          <div class="form-field">
-            <%= f.label t(:password) %>
-            <%= f.password_field :password %>
+          <div class="control-group">
+            <%= f.label t(:password), :class => 'control-label' %>
+            <div class="controls">
+              <%= f.password_field :password %>
+            </div>
           </div>
-          <div class="form-field">
-            <%= f.check_box :remember_me %>
-            <span class="remember"><%= t(:remember_me) %></span>
-          </div>
-          <div class="form-actions">
-            <%= f.submit @page_title, :class => 'btn primary' %>
+          <div class="control-group">
+            <div class="controls">
+              <label class="checkbox">
+                <%= f.check_box :remember_me %> <%= t(:remember_me) %>
+              </label>
+              <%= f.submit @page_title, :class => 'btn primary' %>
+            </div>
           </div>
         </fieldset>
       <% end %>
