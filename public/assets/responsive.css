@@ -8398,19 +8398,32 @@ body {
 }
 
 /* line 23, ../../app/assets/stylesheets/responsive.css.sass */
+#main-header {
+  background-color: transparent;
+  background: url(/assets/retro_intro.png);
+  background-repeat: repeat;
+  border-bottom: 2px dotted white;
+  box-shadow: 0px 1px 2px #666666;
+}
+/* line 29, ../../app/assets/stylesheets/responsive.css.sass */
+#main-header a {
+  color: #1b5353;
+}
+
+/* line 32, ../../app/assets/stylesheets/responsive.css.sass */
 .people {
   padding-top: 8px;
   margin: 0px;
   width: 140px;
 }
-/* line 26, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 35, ../../app/assets/stylesheets/responsive.css.sass */
 .people ul li {
   display: block;
   padding-top: 0px;
   list-style-type: none;
 }
 
-/* line 33, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 42, ../../app/assets/stylesheets/responsive.css.sass */
 label {
   display: inline;
   color: #eb5e40;
@@ -8419,47 +8432,47 @@ label {
   text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95);
 }
 
-/* line 40, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 49, ../../app/assets/stylesheets/responsive.css.sass */
 .oigame-name {
   margin-left: 7%;
   margin-top: 2%;
 }
 
-/* line 44, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 53, ../../app/assets/stylesheets/responsive.css.sass */
 .idioma {
   font-size: 0.8em;
   padding-right: 15px;
 }
 
-/* line 48, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 57, ../../app/assets/stylesheets/responsive.css.sass */
 .sombra {
   margin: 0px;
   padding: 0px;
 }
 
-/* line 52, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 61, ../../app/assets/stylesheets/responsive.css.sass */
 .diferencial {
   margin-top: 13%;
   margin-left: -20px;
 }
-/* line 56, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 65, ../../app/assets/stylesheets/responsive.css.sass */
 .diferencial ul li {
   list-style-type: none;
 }
 
-/* line 59, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 68, ../../app/assets/stylesheets/responsive.css.sass */
 .logo {
   margin-top: -12%;
   margin-left: -9%;
 }
-/* line 60, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 69, ../../app/assets/stylesheets/responsive.css.sass */
 .logo img {
   width: 100%;
   position: relative;
   z-index: 1;
 }
 
-/* line 67, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 76, ../../app/assets/stylesheets/responsive.css.sass */
 #myHomeCarousel {
   margin-left: -10%;
   position: relative;
@@ -8469,25 +8482,25 @@ label {
   background: url(/assets/bkcarrusel.jpg);
   border: 1px solid #50505a;
 }
-/* line 75, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 84, ../../app/assets/stylesheets/responsive.css.sass */
 #myHomeCarousel img {
   width: 100%;
   max-height: 400px;
 }
 
-/* line 78, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 87, ../../app/assets/stylesheets/responsive.css.sass */
 .carousel-control {
   top: 65%;
 }
 
-/* line 81, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 90, ../../app/assets/stylesheets/responsive.css.sass */
 .realtime {
   width: 22%;
   margin-left: -5px;
   margin-right: 0px;
   margin-top: -7%;
 }
-/* line 87, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 96, ../../app/assets/stylesheets/responsive.css.sass */
 .realtime ul li {
   width: 106%;
   border-radius: 3px;
@@ -8496,46 +8509,49 @@ label {
   border: 1px solid #d7d7d7;
   list-style-type: none;
 }
-/* line 94, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 103, ../../app/assets/stylesheets/responsive.css.sass */
 .realtime label {
   font-size: 0.9em;
 }
 
-/* line 96, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 105, ../../app/assets/stylesheets/responsive.css.sass */
 .verde {
   color: #2d8a8a;
 }
 
-/* line 102, ../../app/assets/stylesheets/responsive.css.sass */
-.navcampana ul li {
-  list-style-type: none;
-  display: inline;
-}
-
-/* line 105, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 108, ../../app/assets/stylesheets/responsive.css.sass */
 .claim {
   color: #1b5353;
 }
 
-/* line 108, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 111, ../../app/assets/stylesheets/responsive.css.sass */
+#camps-filter {
+  text-align: center;
+}
+
+/* line 114, ../../app/assets/stylesheets/responsive.css.sass */
 #home-campaigns {
   margin-top: 1.3em;
 }
-/* line 111, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 117, ../../app/assets/stylesheets/responsive.css.sass */
 #home-campaigns .home-camp {
   margin-bottom: 4em;
 }
-/* line 114, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 119, ../../app/assets/stylesheets/responsive.css.sass */
+#home-campaigns .home-camp .camp {
+  background: url(/assets/bkcarrusel.jpg);
+}
+/* line 121, ../../app/assets/stylesheets/responsive.css.sass */
 #home-campaigns .home-camp .camp img {
-  border: 6px solid black;
+  padding: 30px;
 }
 
-/* line 117, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 124, ../../app/assets/stylesheets/responsive.css.sass */
 #footer {
   margin-top: 5em;
   margin-bottom: 3em;
 }
-/* line 123, ../../app/assets/stylesheets/responsive.css.sass */
+/* line 130, ../../app/assets/stylesheets/responsive.css.sass */
 #footer #first_footer_a ul li, #footer #first_footer_b ul li {
   list-style-type: none;
   display: inline;
