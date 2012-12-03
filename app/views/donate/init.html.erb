@@ -1,11 +1,20 @@
 <% @page_title = t(:donate_oigame) %>
 
+<div class="container-fluid">
+
+  <div class="row-fluid">
+
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+  <div class="span9">
+
 <div id="page-wrapper">
   <div id="page">
     <div id="page-info">
       <h2><%= @page_title %></h2>
       <div id="donate-form" class="form-stacked">
-        <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post">
+        <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post" class="form-horizontal">
           <fieldset>
             <legend><%= I18n.t(:amount_select) %></legend>
             <input type="hidden" name="nombre_comercio" value="ALABS" />
@@ -13,7 +22,8 @@
             <input type="hidden" name="moneda" value="EUR" />
             <input type="hidden" name="project" value="oiga.me" />
             <input type="hidden" name="type" value="donation" />
-            <div class="form-field">
+            <div class="control-group">
+              <div class="controls">
               <select name="coste">
                 <option value=""><%= t(:amount_to_donate) %></option>
                 <option value="10.00">10 Euros</option>
@@ -25,8 +35,11 @@
                 <option value="500.00">500 Euros</option>
               </select>
             </div>
-            <div class="form-actions">
+            </div>
+            <div class="control-group">
+              <div class="controls">
               <input type="submit" name="submit" value="<%= I18n.t(:donate_oigame) %>" class="btn primary" />
+            </div>
             </div>
           </fieldset>
         </form>
@@ -38,3 +51,10 @@
     </div><!-- page-sidebar -->
   </div><!-- page -->
 </div><!-- page-wrapper -->
+
+
+</div>
+
+</div>
+
+</div>

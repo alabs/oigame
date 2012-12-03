@@ -1,11 +1,26 @@
 <% @page_title = t(:thanks_for_your_donation) %>
 
+<div class="container-fluid">
+
+<div class="row-fluid">
+  
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+<div class="span9">
+
 <div id="page-wrapper">
   <div id="page">
     <div id="page-info">
       <h2><%= @page_title %></h2>
-      <p><%= I18n.t(:thanks_for_your_donation_text %></p>
+      <p><%= I18n.t(:thanks_for_your_donation_text) %></p>
       <p><%= I18n.t(:greetings) %></p>
     </div><!-- page-info -->
   </div><!-- page -->
 </div><!-- page-wrapper -->
+
+</div>
+
+</div>
+
+</div>
