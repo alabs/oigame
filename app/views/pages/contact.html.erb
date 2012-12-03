@@ -1,43 +1,64 @@
 <% @page_title = t(:contact) %>
 
+<div class="container-fluid">
+
+  <div class="row-fluid">
+
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+  <div class="span9">
+
 <div id="page-wrapper">
   <div id="page">
     <div id="page-info">
       <h2>Contactar con oiga.me</h2>
       <div id="contact-form" class="form-stacked">
-        <%= form_for @contact, :url => contact_path do |f| %>
+        <%= form_for @contact, :url => contact_path, :html => { :class => 'form-horizontal' } do |f| %>
           <fieldset>
             <legend><%= t(:please_fill_the_form) %></legend>
-            <div class="form-field">
-              <%= f.label t(:name) %>
-              <%= f.text_field :name, :class => 'span8', :required => true, :placeholder => 'Nombre y apellido' %>
-              <% unless @contact.errors[:name].blank? %>
-                <span class="error_message"><%= @contact.errors[:name].to_sentence %></span>
-              <% end %>
+            <div class="control-group">
+              <%= f.label t(:name), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => 'Nombre y apellido' %>
+                <% unless @contact.errors[:name].blank? %>
+                  <span class="error_message"><%= @contact.errors[:name].to_sentence %></span>
+                <% end %>
+              </div>
             </div>
-            <div class="form-field">
-              <%= f.label t(:email) %>
-              <%= f.email_field :email, :class => 'span8', :required => true, :placeholder => 'Tu correo de contacto' %>
-              <% unless @contact.errors[:email].blank? %>
-                <span class="error_message"><%= @contact.errors[:email].to_sentence %></span>
-              <% end %>
+            <div class="control-group">
+              <%= f.label t(:email), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.email_field :email, :class => 'span6', :required => true, :placeholder => 'Tu correo de contacto' %>
+                <% unless @contact.errors[:email].blank? %>
+                  <span class="error_message"><%= @contact.errors[:email].to_sentence %></span>
+                <% end %>
+              </div>
             </div>
-            <div class="form-field">
-              <%= f.label t(:subject) %>
-              <%= f.text_field :subject, :placeholder => 'El asunto del mensaje' %>
+            <div class="control-group">
+              <%= f.label t(:subject), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.text_field :subject, :class => 'span6', :placeholder => 'El asunto del mensaje' %>
+              </div>
             </div>
-            <div class="form-field">
-              <%= f.label t(:message) %>
-              <%= f.text_area :body, :rows => 10, :required => true,  :placeholder => 'Cuéntanos' %>
-              <% unless @contact.errors[:body].blank? %>
-                <span class="error_message"><%= @contact.errors[:body].to_sentence %></span>
-              <% end %>
+            <div class="control-group">
+              <%= f.label t(:message), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.text_area :body, :rows => 10, :class => 'span6', :required => true,  :placeholder => 'Cuéntanos' %>
+                <% unless @contact.errors[:body].blank? %>
+                  <span class="error_message"><%= @contact.errors[:body].to_sentence %></span>
+                <% end %>
+              </div>
             </div>
-            <div class="form-field">
-              <%= f.check_box :mailing, :checked => true %> <span class="note">Deseo recibir noticias de oiga.me</span>
+            <div class="control-group">
+              <div class="controls">
+                <%= f.check_box :mailing, :checked => true %> <span class="note">Deseo recibir noticias de oiga.me</span>
+              </div>
             </div>
-            <div class="form-actions">
-              <%= f.submit t(:send_message), :class => 'btn primary' %>
+            <div class="control-group">
+              <div class="controls">
+                <%= f.submit t(:send_message), :class => 'btn primary' %>
+              </div>
             </div>
           </fieldset>
         <% end %>
@@ -45,3 +66,9 @@
     </div>
   </div>
 </div><!-- page-wrapper -->
+
+</div>
+
+</div>
+
+</div>
