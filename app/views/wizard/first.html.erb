@@ -1,5 +1,14 @@
 <% @page_title = t(:propose_campaign) %>
 
+<div class="container-fluid">
+
+<div class="row-fluid">
+  
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+<div class="span9">
+
 <div id="campaigns-wrapper">
   <div id="create-campaigns">
     <div id="create-campaign-form" class="form-stacked">
@@ -25,16 +34,19 @@
 <%= form_for @campaign, :url => campaign_wizard_path, :method => :put do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
-    <div class="form-field">
-      <%= f.label :image, t(:image_of_campaign) %>
-      <%= f.file_field :image, :class => 'input-file' %>
-      <p><%= I18n.t(:minimal_size) %></p>
-      <% unless @campaign.errors[:image].blank? %>
-        <span class="error_message"><%= @campaign.errors[:image].to_sentence %></span>
-      <% end %>
+    <div class="control-group">
+      <%= f.label :image, t(:image_of_campaign), :class => 'control-label' %>
+      <div class="controls">
+        <%= f.file_field :image, :class => 'input-file' %>
+        <p><%= I18n.t(:minimal_size) %></p>
+        <% unless @campaign.errors[:image].blank? %>
+          <span class="error_message"><%= @campaign.errors[:image].to_sentence %></span>
+        <% end %>
+      </div>
     </div>
-    <div class="form-field">
-      <%= f.label :intro, t(:intro_of_campaign) %>
+    <div class="control-group">
+      <%= f.label :intro, t(:intro_of_campaign), :class => 'control-label' %>
+      <div class="controls">
       <div class="wmd-panel">
         <div id="wmd-button-bar"></div>
         <%= f.text_area :intro, :class => 'wmd-input', :id => 'wmd-input', :rows => 6, :class => 'span6', :required => true, :placeholder => t(:intro_of_campaign_help), :maxlength => 500 %>
@@ -48,8 +60,11 @@
         <span class="error_message"><%= @campaign.errors[:intro].to_sentence %></span>
       <% end %>
     </div>
-    <div id="form-actions">
-      <%= f.submit 'Siguiente paso', :class => 'btn btn-primary btn-large' %>
+  </div>
+    <div id="control-group">
+      <div class="controls">
+        <%= f.submit 'Siguiente paso', :class => 'btn btn-primary btn-large' %>
+      </div>
     </div>
   </fieldset>
 <% end %>
@@ -68,3 +83,9 @@
     editor2.run();
   })();
 </script>
+
+</div>
+
+</div>
+
+</div>

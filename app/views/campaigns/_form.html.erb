@@ -19,15 +19,19 @@
 <%= form_for @campaign do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
-    <div class="form-field">
-      <%= f.label :name, t(:name_of_campaign) %>
-      <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_of_campaign) %>
-      <% unless @campaign.errors[:name].blank? %>
-        <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
-      <% end %>
+    <div class="control-group">
+      <%= f.label :name, t(:name_of_campaign), :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_of_campaign) %>
+        <% unless @campaign.errors[:name].blank? %>
+          <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
+        <% end %>
+      </div>
     </div>
-    <div id="form-actions">
-      <%= f.submit 'Siguiente paso', :class => 'btn btn-primary btn-large' %>
+    <div id="control-group">
+      <div class="controls">
+        <%= f.submit 'Siguiente paso', :class => 'btn btn-primary btn-large' %>
+      </div>
     </div>
   </fieldset>
 <% end %>
