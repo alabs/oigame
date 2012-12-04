@@ -1,46 +1,54 @@
-<% @page_title = "Buscando \"" + params[:q] + '"' %>
+<% if params[:q] %>
+<%  @page_title = "Buscando \"" + params[:q] + '"' %>
+<% else %>
+  <% @page_title = "Buscar" %>
+<% end %>
+<div class="container-fluid">
+
+<div class="row-fluid">
+  
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+<div class="span9">
 
 <div id="campaigns-wrapper">
+
+  <h2>Buscar campañas</h2>
+
+  <div id="search-form-main">
+    <% search_url = @sub_oigame ? search_sub_oigame_campaigns_path(@sub_oigame) : search_campaigns_path %>
+    <form id="form-search" method="get" action="<%= search_url %>">
+      <div class="control-group">
+        <div class="controls">
+          <input class="span4 search-query" id="search" type="text" name="q" value="<%= params[:q] %>" placeholder="Buscar campañas">
+          <button type="submit" class="btn">
+            <i class="icon-search"></i>
+            <%= t(:search) %>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
   <div id="list-campaigns">
-    <% if @campaigns.count > 0 %>
+    <% if @campaigns && @campaigns.count > 0 %>
       <div id="list-campaigns-info">
-        <h2><%= @page_title %></h2>
         <% @campaigns.each do |campaign| %>
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         <% end %>
       </div><!-- list-campaigns-info -->
-    <% else %>
-      <div id="list-campaigns-info">
-        <h2>No se encuentran campañas buscando <%= params[:q] %></h2>
-      </div>
     <% end %>
 
-    <div id="list-campaigns-sidebar">
-
-      <% if @sub_oigame %>
-        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn btn-primary btn-large" %></h2>
-        <br />
-        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => 'btn btn-large btn-success' %></h2> 
-        <br />
-        <% permitted_to? :moderated, Campaign do %>
-          <br />
-          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn btn-large btn-danger" %></h2>
-        <% end %>
-      <% else %>
-        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path, :class => "btn btn-primary btn-large" %></h2>
-        <br />
-        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_campaigns_path, :class => 'btn btn-large btn-success' %></h2> 
-        <br />
-        <h2 style="font-size: 2em;"><%= link_to t(:last_campaigns), campaigns_path, :class => 'btn btn-large btn-info' %></h2> 
-        <br />
-        <% permitted_to? :moderated, Campaign do %>
-          <br />
-          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn btn-large btn-danger" %></h2>
-        <% end %>
-      <% end %>
-
-      <%= render :partial => "search_form", :locals => { :term => params[:q] } %>
-
-    </div><!-- list-campaigns-sidebar -->
   </div><!-- list-campaigns -->
+
+
 </div><!-- campaigns-wrapper -->
+
+
+</div>
+
+</div>
+
+</div>

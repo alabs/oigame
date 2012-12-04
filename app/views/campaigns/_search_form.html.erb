@@ -1,12 +1,12 @@
-      <% search_url = @sub_oigame ? search_sub_oigame_campaigns_path(@sub_oigame) : search_campaigns_path %>
-      <form id="search-form" method="get" action="<%= search_url %>">
-        <div class="control-group">
-          <div class="controls">
-            <input id="search" type="text" name="q" value="<%= term %>">
-            <button type="submit" class="btn">
-              <i class="icon-search"></i>
-              <%= t(:search) %>
-            </button>
-          </div>
-        </div>
-      </form>
+<% search_url = @sub_oigame ? search_sub_oigame_campaigns_path(@sub_oigame) : search_campaigns_path %>
+<form id="search-form" method="get" action="<%= search_url %>">
+  <div class="control-group">
+    <div class="controls">
+      <input id="search" type="text" name="q" value="<%= term %>">
+      <button type="submit" class="btn">
+        <i class="icon-search"></i>
+        <%= t(:search) %>
+      </button>
+    </div>
+  </div>
+</form>

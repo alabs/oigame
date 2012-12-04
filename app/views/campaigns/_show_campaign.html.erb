@@ -6,12 +6,12 @@
 <% end %>
   <div class="cinfo">
     <h3><%= link_to campaign.name, url %></h3>
-    <div class="campaign-image">
+    <div class="campaign-image span2">
       <% if campaign.image.to_s %>
         <%= link_to image_tag(campaign.image_url(:thumb), :alt => campaign.name), url, :title => campaign.name %>
       <% end %>
     </div><!-- campaign-image -->
-    <div class="campaign-text">
+    <div class="campaign-text span6">
       <%= campaign.to_html(campaign.intro).html_safe %>
       <div class="campaign-text-links">
       <% if campaign.status == "archived" %>
@@ -34,5 +34,30 @@
       </div><!-- campaign-text-links -->
     </div><!-- campaign-text -->
   </div><!-- cinfo -->
-  <div class="clear"></div>
+    <div id="list-campaigns-sidebar" class="span1" style="margin-top: -100px;">
+
+      <% if @sub_oigame %>
+        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn btn-primary btn-large" %></h2>
+        <br />
+        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => 'btn btn-large btn-success' %></h2> 
+        <br />
+        <% permitted_to? :moderated, Campaign do %>
+          <br />
+          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn btn-large btn-danger" %></h2>
+        <% end %>
+      <% else %>
+        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path, :class => "btn btn-primary btn-large" %></h2>
+        <br />
+        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_campaigns_path, :class => 'btn btn-large btn-success' %></h2> 
+        <br />
+        <h2 style="font-size: 2em;"><%= link_to t(:last_campaigns), campaigns_path, :class => 'btn btn-large btn-info' %></h2> 
+        <br />
+        <% permitted_to? :moderated, Campaign do %>
+          <br />
+          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn btn-large btn-danger" %></h2>
+        <% end %>
+      <% end %>
+
+
+    </div>
 </div><!-- campaign-info -->

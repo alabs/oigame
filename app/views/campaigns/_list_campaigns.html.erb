@@ -1,3 +1,13 @@
+
+<div class="container-fluid">
+
+<div class="row-fluid">
+  
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+<div class="span9">
+
 <div id="campaigns-wrapper">
   <div id="list-campaigns">
     <% if @campaigns.count > 0 %>
@@ -35,9 +45,12 @@
           <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn btn-large btn-danger" %></h2>
         <% end %>
       <% end %>
-      <br /><br />
-      <%= render :partial => "search_form", :locals => { :term => params[:q] } %>
-      <br /><br />
     </div><!-- list-campaigns-sidebar -->
   </div><!-- list-campaigns -->
 </div><!-- campaigns-wrapper -->
+
+</div>
+
+</div>
+
+</div>
