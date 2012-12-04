@@ -14,7 +14,9 @@
       <div id="list-campaigns-info">
         <h2><%= @page_title %></h2>
         <% @campaigns.each do |campaign| %>
+          <div class="row-fluid">
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
+        </div>
         <% end %>
         <div class="center">
           <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
