@@ -73,7 +73,7 @@ class Mailman < ActionMailer::Base
       prefix = "[oiga.me]"
       @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
     end
-    from = generate_from_for_validate('oigame@oiga.me', campaign.sub_oigame)
+    from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)
     subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
     mail :from => from, :to => to, :subject => subject
   end
