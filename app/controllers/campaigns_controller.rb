@@ -404,7 +404,7 @@ class CampaignsController < ApplicationController
       from = user_signed_in? ? current_user.email : params[:email]
       if @campaign
         if params[:own_message] == "1" 
-          fax = Fax.new(:campaign => @campaign, :email => from, :body => params[:body], :token => generate_token)
+          fax = Fax.new(:campaign => @campaign, :name => params[:name], :email => from, :body => params[:body], :token => generate_token)
           if fax.save
 
             # si está registrado no pedirle confirmación de unión a la campaña
@@ -427,7 +427,7 @@ class CampaignsController < ApplicationController
           end
         else
           # mensaje por defecto
-          fax = Fax.new(:campaign => @campaign, :email => from, :body => @campaign.default_message_body, :token => generate_token)
+          fax = Fax.new(:campaign => @campaign, :name => params[:name], :email => from, :body => @campaign.default_message_body, :token => generate_token)
           if fax.save
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?

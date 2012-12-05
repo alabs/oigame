@@ -177,5 +177,11 @@
       </div>
     </div>
 
+    <% if Rails.env == 'development' || Rails.env == 'staging' %>
+      <%# query_review_output %>
+      <div id="debug">
+        <%= debug(params) %>
+      </div>
+    <% end %>
   </body>
 </html>
