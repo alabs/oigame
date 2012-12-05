@@ -86,3 +86,5 @@ gem 'devise-async'
 
 #gem 'turbolinks'
 #gem 'jquery-turbolinks'
+
+gem 'capistrano-resque'
