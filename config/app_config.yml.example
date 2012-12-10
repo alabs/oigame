@@ -1,8 +1,20 @@
 defaults: &defaults
+  social_council_email: ''
+  gw_domain: ''
   twitter_consumer_key: ''
   twitter_consumer_secret: ''
   twitter_oauth_token: ''
   twitter_oauth_token_secret: ''
+  facebook_token: ''
+  facebook_page_token: ''
+  facebook_app_id: ''
+  facebook_app_secret: ''
+  our_fax_number: ''
+  our_fax_password: ''
+  fax_email_address: ''
+  fax_email_port: 995
+  fax_email_user_name: ''
+  fax_email_password: ''
 
 development:
   <<: *defaults
