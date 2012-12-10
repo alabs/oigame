@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111122824) do
+ActiveRecord::Schema.define(:version => 20121209160402) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -81,9 +81,12 @@ ActiveRecord::Schema.define(:version => 20121111122824) do
     t.boolean  "validated"
     t.string   "token"
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.text     "body"
+    t.datetime "check_date"
+    t.string   "check_message"
+    t.integer  "check_ticket_id"
   end
 
   create_table "messages", :force => true do |t|
