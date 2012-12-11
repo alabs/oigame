@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 require 'thinking_sphinx/deploy/capistrano'
-require "capistrano-resque"
+#require "capistrano-resque"
 
 set :scm,             :git
 set :repository,      "gitolite@git.alabs.es:oiga.me.git"
@@ -19,11 +19,11 @@ role :web,    "beta.oiga.me"
 role :app,    "beta.oiga.me"
 role :db,     "beta.oiga.me", :primary => true
 
-role :resque_worker, "beta.oiga.me"
-role :resque_scheduler, "beta.oiga.me"
+#role :resque_worker, "beta.oiga.me"
+#role :resque_scheduler, "beta.oiga.me"
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
-set :workers, { "mailer" => 2 }
+#set :workers, { "mailer" => 2 }
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
@@ -211,4 +211,4 @@ after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
 before 'deploy:finalize_update', 'deploy:assets:symlink'
 after 'deploy:update_code', 'deploy:assets:precompile'
-after "deploy:restart", "resque:restart"
+#after "deploy:restart", "resque:restart"
