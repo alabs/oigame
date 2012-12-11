@@ -26,10 +26,20 @@ $border-shadow: #b1b1b1
 
 /* Landscape phones and down
 @media (max-width: 480px)
-  .people, .oigame-name
+  #header
+    .people
+      display: none
+    .oigame-name
+      width: 30%
+  .logo
+    position: absolute
+    top: 75px 
+    left: 70px
+    width: 15%
+  #diferencial
     display: none
-  .idioma .nav
-    margin-left: -40px
+  #page-info
+    margin-top: 30px
 
 @font-face 
   font-family: Roboto
@@ -114,7 +124,7 @@ label
   margin: 0px
   padding: 0px
 
-.diferencial
+#diferencial
   margin-top: 13%
   margin-left: -20px
   ul
