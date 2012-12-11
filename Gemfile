@@ -33,6 +33,8 @@ group :development do
   gem 'pry-rails'
   # no me arranca el unicorn con ruby-debug19 (apardo)
   #gem 'ruby-debug19', :require => 'ruby-debug'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 gem 'devise'

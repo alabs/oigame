@@ -52,6 +52,10 @@ GEM
     attr_required (0.0.5)
     bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
+    better_errors (0.2.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.7.0)
+    binding_of_caller (0.6.8)
     bootstrap-sass (2.1.0.0)
     builder (3.0.3)
     capistrano (2.13.4)
@@ -377,6 +381,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   capistrano
   capistrano-ext
   capistrano-resque
