@@ -168,8 +168,11 @@
         <div class="carousel-inner">
 
         <% @campaigns_carousel.each do |campaign| %>
-          <div class="active item"><%= link_to image_tag(campaign.image_url(:home)), campaign %></div>
-        <% end %>
+          <% if campaign == Campaign.last %>
+            <div class="active item"><%= link_to image_tag(campaign.image_url(:home)), campaign %></div>
+          <% else %>
+            <div class="item"><%= link_to image_tag(campaign.image_url(:home)), campaign %></div>
+          <% end %>
         
         
       </div>
