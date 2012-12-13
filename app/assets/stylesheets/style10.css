@@ -11,7 +11,7 @@
    transition: all 1.7s ease-in-out;
 }
 .view-tenth .mask {
-   background-color: rgba(255, 231, 179, 0.3);
+   background-color: rgba(4, 158, 140, 0.65);
    -webkit-transition: all 0.5s linear;
    -moz-transition: all 0.5s linear;
    -o-transition: all 0.5s linear;
