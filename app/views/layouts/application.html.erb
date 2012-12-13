@@ -4,13 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= @page_title %> - oiga.me</title>
-    <!-- <%= stylesheet_link_tag 'responsivejavi' %> -->
-    <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
-         <%= stylesheet_link_tag "demo" %>
-    <%= stylesheet_link_tag "style_common" %>
-    <%= stylesheet_link_tag "style10" %>
     <%= stylesheet_link_tag "responsive" %>
-
+    <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <meta property="og:title" content="<%= @page_title %> - oiga.me" />
     <% if @cause %>
