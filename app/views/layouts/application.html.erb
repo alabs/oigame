@@ -166,19 +166,6 @@
      <div id="myCarousel" class="span7 carousel slide">
       <!-- Carousel items -->
         <div class="carousel-inner">
-<<<<<<< HEAD
-          <div class="active item"><%= image_tag("afrika.png") %> </div>
-        <div class="item"><%= image_tag("doit2.jpg") %></div>
-        
-        
-      </div>
-      <!-- Carousel nav -->
-      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-                    <div class="carousel-caption">
-                      <div id="izquierda" class="span5">                
-                        <h4>Africa: Save Africa from the FMI</h4>                  
-=======
 
         <% @campaigns_carousel.each do |campaign| %>
           <% if campaign == @campaigns_carousel.first %>
@@ -186,7 +173,6 @@
                   <div class="carousel-caption">
                       <div id="izquierda" class="span4">                
                       <h4><%= link_to campaign.name, campaign %></h4>                  
->>>>>>> 61231f29979004a20bd2dc80b32fd3429c253640
                      </div>
 
                     <div id="derecha" class="span3">
