@@ -1,0 +1,381 @@
+@import "normalize.css"
+@import "bootstrap/css/bootstrap.min"
+@import "bootstrap/css/bootstrap-responsive.min"
+
+
+$gris: #d7d7d7
+$verde:#2d8a8a
+$verdoso:#1b5353
+$naranja:#eb5e40
+$morao:#50505a
+$sombrablanca:1px 0px 0px rgba(255, 255, 255, 0.95)
+$sombranegra:1px 0px 2px rgba(0, 0, 0, 0.75)
+
+@font-face 
+  font-family: Roboto
+  src: url('Roboto/Roboto-Light.ttf')
+  
+
+
+body
+  background: url(bk.jpg)
+  font-family: Roboto
+  
+li
+  list-style-type: none  
+
+.navbar-inverse .navbar-inner
+  background-color: transparent
+  background: url(retro_intro.png)
+  background-repeat: repeat
+  border-bottom: 2px dotted white
+  box-shadow: 0px 1px 2px #666
+  a
+    color: $verdoso
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a 
+  color: $verdoso 
+  text-shadow: $sombrablanca
+
+.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus 
+  background: transparent
+  text-shadow: $sombranegra
+
+.idioma
+  font-size: 0.8em
+  padding-right: 15px
+
+label
+  display: inline
+  color: $naranja
+  font-size: 0.8em
+  padding-left: 2px
+  text-shadow: $sombrablanca
+
+.people
+  padding-top: 8px
+  ul
+    li
+      display:block
+      padding-top: 0px
+      list-style-type: none
+  margin: 0px
+  width: 140px
+
+.sombra
+  margin: 0px
+  padding: 0px
+  margin-top: -20px
+  position: relative
+  z-index: 2
+
+.logo
+  position: relative
+  top: -160px
+  img
+    width: 100%
+    position: relative
+    z-index: 5
+    margin-left: -10%
+  
+  
+  
+.diferencial
+  margin-top: 8%
+  margin-left: 0px
+  ul
+    li
+      list-style-type: none
+      a
+        img
+          max-width: 200%
+
+#myCarousel
+  margin-left: -21%
+  position: relative
+  z-index: 0
+  width: 62%
+  margin-top: -7%
+  padding: 10px
+  background: url(bkcarrusel.jpg)
+  border: 1px solid $morao
+  box-shadow: 3px 5px 17px rgba(0, 0, 0, 0.55)
+  img
+    width: 100%
+    max-height: 400px
+.carousel-control
+  top: 86%
+
+.oigame
+  margin-left: 10%
+  margin-top: 2%
+  img
+    width: 100%
+
+#navcampana
+  margin-left: 8.3%
+  ul
+    li
+      list-style-type: none
+      display: inline
+      a
+        text-decoration: none
+        img
+          width: 12%
+.claim
+  color: $verdoso
+
+#realtime
+  
+  margin-left: -0.5%
+  margin-right: 0px
+  margin-top: -6%
+  float: left
+  ul
+    li      
+      border-radius: 3px
+      background: url(tirarealtime.jpg)
+      background-repeat: repeat-x
+      border: 1px solid $gris
+      height: 46px
+      width: 120%
+      margin-top: 3px
+      box-shadow: $sombranegra
+      label
+        text-align: center
+        padding-left: 2%
+
+      img
+        width: auto
+       
+        margin-left: auto
+  label
+    font-size: 0.9em
+.verde
+  color: $verde
+
+.nacionalidad
+  float: right
+  img
+    height: 98%
+.carousel-caption
+  h4
+    color: $naranja
+    float: left
+  top: 200px
+  background: url(bk.jpg)
+  height: 15%
+  border-top: 1px solid $morao
+  border-bottom: 1px solid $morao
+  box-shadow: 1px 1px 10px $morao
+
+#izquierda
+  h4
+    padding-left: 3px  
+  display: inline
+  float: left
+
+#derecha
+  float: right
+  width: 50%
+  border-left: 1px solid $morao
+  height: 100%
+  h4
+    color: $verdoso
+    float: right
+    padding-right: 4%
+
+#avatar
+  img
+    width: 10%
+    display: inline
+    float: right
+    margin-top: -10px
+
+#iconoscampa
+  margin-top: -30px
+  float: right
+  padding-right: 25px  
+  ul
+    li
+      display: inline
+      img
+        width: 25px
+        padding: 2px
+
+.progress-info.progress-striped .bar, .progress-striped .bar-info 
+  background-color: $morao
+  min-height: 20px
+
+.progress
+  height: 15px
+  width: 40%
+  background-image: -webkit-linear-gradient(top, #DEDCEB, $gris)
+  
+.main
+  position:relative 
+  margin: 0 auto 0 5%
+
+.view 
+   
+  height: 300px
+  margin: 10px
+  float: left
+  border: 1px solid $morao
+  overflow: hidden
+  position: relative
+  text-align: center
+  -webkit-box-shadow: 1px 1px 2px #e6e6e6
+  -moz-box-shadow: 1px 1px 2px #e6e6e6
+  box-shadow: 1px 1px 2px #e6e6e6
+  cursor: default
+  background: url(bkcarrusel.jpg)
+  padding: 10px
+  img
+    border: 1px solid $morao
+    width: 100%
+    max-height: 300px
+
+.view .mask,.view .content 
+
+  height: 300px
+  position: absolute
+  overflow: hidden
+  top: 0
+  left: 0
+
+
+@media (max-width: 1107px)
+  .quetepires
+    display: none 
+
+@media (max-width: 1090px)
+  #realtime
+    img
+      height: 40px 
+
+
+@media (max-width: 1050px)
+  .quetepires2
+    display: none 
+
+@media (max-width: 980px)
+  .logo
+    top: -162px
+    img
+      margin-left: 5%
+
+@media (max-width: 970px)
+  .nacionalidad
+    display: none
+
+
+
+@media (max-width: 930px)
+  .quetepires2
+    display: none
+
+@media (max-width: 780px)
+  .quetepires3
+    display: none
+  .oigame
+    img
+      width: 50%
+
+
+@media (max-width: 767px)
+  body 
+    padding-right: 0px
+    padding-left: 0px
+  .logo
+    img
+      width: 30%
+
+  .oigame
+    margin-left: 0px
+  #myCarousel
+    width: 82%
+
+
+@media (max-width: 760px)
+  #myCarousel
+    position: absolute
+    top: 274px
+    margin-left: 16%
+  .diferencial
+    img
+      width: 10%
+  .logo
+    top: -425px
+  #navcampana
+    position: relative
+    margin-top: -30%
+
+
+@media (max-width: 560px)
+  #myCarousel
+    position: absolute
+    top: 38%
+    margin-left: 16%
+  .diferencial
+    margin-top: 0%
+  .logo
+    position: relative
+    margin-top: 20%
+  #navcampana
+    position: relative
+    margin-top: -50%
+
+@media (max-width: 490px)
+  .logo
+    top: -360px
+
+
+@media (max-width: 320px)
+  .logo
+    left: 0%
+    position: absolute
+    top: 40%
+    img
+      width: 48%
+      position: absolute
+      top: -140px
+      left: -20px
+  .diferencial
+    visibility: hidden
+
+  #myCarousel
+    width: 277px
+    height: 165px
+    position: absolute
+    top: 225px
+    margin-left: 5%
+
+
+  .carousel-inner 
+    top: 9px
+
+  #navcampana
+    position: relative
+    top: 15px 
+    width: 318px
+    margin-left: -12px
+    ul
+      li
+        a
+          display: inline
+        img
+          width: 13%
+  .oigame
+    left: 35%
+    top: 4%
+    width: 55%
+    display: block
+    position: absolute
+
+  .people
+    padding-top: 8px
+    margin: 0px
+    width: 140px
+    position: relative
+    left: -24px
