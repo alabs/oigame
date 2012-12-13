@@ -168,7 +168,7 @@
         <div class="carousel-inner">
 
         <% @campaigns_carousel.each do |campaign| %>
-          <% if campaign == Campaign.last %>
+          <% if campaign == @campaigns_carousel.first %>
             <div class="active item"><%= link_to image_tag(campaign.image_url(:home)), campaign %></div>
           <% else %>
             <div class="item"><%= link_to image_tag(campaign.image_url(:home)), campaign %></div>
