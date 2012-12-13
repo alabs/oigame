@@ -155,7 +155,8 @@ namespace :deploy do
   desc "Restart the Thin processes"
   task :restart do
     run <<-CMD
-      cd /var/www/beta.oiga.me/current; bundle exec thin restart -C config/thin_staging.yml
+      cd /var/www/beta.oiga.me/current; bundle exec thin restart -C config/thin_staging.yml &&
+      cd /var/www/beta.oiga.me/current; RAILS_ENV=staging  bundle exec rake assets:precompile
     CMD
   end
 
