@@ -95,11 +95,10 @@
 
       <div class="span2 people">  
         <ul class="pull-left">
-           <li><%= image_tag("altavozpk.png") %> <label>30 campañas</label></li>
-           <li><%= image_tag("mensajespk.png") %> <label>1234 firmas</label></li>
-          <li><%= image_tag("pollolevantandolamano.png") %> <label>3000 usuarios</label></li>
-           <li><%= image_tag("world.png") %> <label>15 nacionalidades</label></li>   
-           
+           <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> <%= t(:campaigns) %></label></li>
+           <li><%= image_tag("mensajespk.png") %> <label><%= @total_signs %> <%= t(:firms) %></label></li>
+           <li><%= image_tag("pollolevantandolamano.png") %> <label><%= @total_users %> <%= t(:users) %></label></li>
+           <li><%= image_tag("world.png") %> <label>2 <%= t(:languages) %></label></li>
         </ul>
       </div>
 
@@ -110,26 +109,33 @@
 
       
       <div class="span2 pull-right idioma">
-                    <div class="navbar-text pull-right">
-              <a href="#" class="navbar-link">Username</a>
+            <div class="navbar-text pull-right">
+              <% unless user_signed_in? %>
+                <li><%= link_to t(:create_account), new_user_registration_path %></li>
+                <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
+              <% else %>
+                <li><%= link_to t(:my_account), edit_user_registration_path %></li>
+                <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+              <% end %>
             </div>
               <ul class="nav pull-right">              
-              <li><a href="#es">ES</a></li>
-              <li><a href="#contact">EN</a></li>                                       
+              <li><%= link_to 'ES', url_for(:locale => 'es') %></li>
+              <li><%= link_to 'EN', url_for(:locale => 'en') %></li>           
             </ul>
 
       </div>
           <div class="nav-collapse collapse">
-            
-            <ul class="nav pull-right">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#contact">Search</a></li>
-              <li><a href="#contact">Donate</a></li>
-              <li><a href="#contact">Create</a></li>
-              <li><a href="#contact">Help</a></li>              
-            </ul>            
+         
+             <ul class="nav pull-right">
+              <li class="active"><%= link_to t(:home), root_path %></li>
+              <li><%= link_to t(:about), about_path %></li>
+              <li><%= link_to t(:create), new_campaign_path %></li>
+              <li><%= link_to t(:campaigns), campaigns_path %></li>
+              <li><%= link_to t(:search), search_campaigns_path %></li>
+              <li><%= link_to t(:donate), donate_path %></li>
+              <li><%= link_to t(:help), help_path %></li>              
+              <li><%= link_to t(:contact), contact_path %></li>
+            </ul>              
           </div><!--/.nav-collapse -->  
                  
         </div>
