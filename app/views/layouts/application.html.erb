@@ -4,8 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= @page_title %> - oiga.me</title>
-    <link href="/assets/responsive.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/responsivejavi.css" media="screen" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
+         <%= stylesheet_link_tag "demo" %>
+    <%= stylesheet_link_tag "style_common" %>
+    <%= stylesheet_link_tag "style10" %>
+    <%= stylesheet_link_tag "responsive" %>
+
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <meta property="og:title" content="<%= @page_title %> - oiga.me" />
     <% if @cause %>
@@ -74,114 +79,304 @@
     -->
   </head>
   <body>
-    <% flash.each do |name, msg| %>
-    <div class="flash-messages">
-      <%= content_tag :p, msg, :class => "flash-#{name}" %>
-    </div>
-    <% end %>
-    <div class="navbar" id="header">
-      <div class="navbar-inner" id="main-header">
+
+
+    <div class="navbar navbar-inverse navbar-top ">
+      <div class="navbar-inner">
         <div class="container-fluid">
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+                        
 
-          <div class="span2 people">
-            <ul class="pull-left">
-              <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> <%= t(:campaigns) %></label></li>
-              <li><%= image_tag("mensajespk.png") %> <label><%= @total_signs %> <%= t(:firms) %></label></li>
-              <li><%= image_tag("pollolevantandolamano.png") %> <label><%= @total_users %> <%= t(:users) %></label></li>
-              <li><%= image_tag("world.png") %> <label>2 <%= t(:languages) %></label></li>   
-            </ul>
-          </div>
+  
 
-          <div class="span4 oigame-name">
-            <%= link_to image_tag('oigame.png'), root_path %>
-          </div>
-          
-          <div class="span4 pull-right idioma">
-            <div class="navbar-text pull-right">
-              <ul class="nav pull-right">              
-                <li><%= link_to 'Castellano', url_for(:locale => 'es') %></li>
-                <li><%= link_to 'English', url_for(:locale => 'en') %></li>                                       
-                <% unless user_signed_in? %>
-                  <li><%= link_to t(:create_account), new_user_registration_path %></li>
-                  <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
-                <% else %>
-                  <li><%= link_to t(:my_account), edit_user_registration_path %></li>
-                  <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
-                <% end %>
-                </ul>
-              </div>
+      <div class="span2 people">  
+        <ul class="pull-left">
+           <li><%= image_tag("altavozpk.png") %> <label>30 campañas</label></li>
+           <li><%= image_tag("mensajespk.png") %> <label>1234 firmas</label></li>
+          <li><%= image_tag("pollolevantandolamano.png") %> <label>3000 usuarios</label></li>
+           <li><%= image_tag("world.png") %> <label>15 nacionalidades</label></li>   
+           
+        </ul>
+      </div>
+
+            <div class="span4 oigame">        
+           <%= image_tag("oigame.png") %>         
+           </div>
+
+
+      
+      <div class="span2 pull-right idioma">
+                    <div class="navbar-text pull-right">
+              <a href="#" class="navbar-link">Username</a>
             </div>
+              <ul class="nav pull-right">              
+              <li><a href="#es">ES</a></li>
+              <li><a href="#contact">EN</a></li>                                       
+            </ul>
 
-          <!-- Everything you want hidden at 940px or less, place within here -->
+      </div>
           <div class="nav-collapse collapse">
-            <!-- .nav, .navbar-search, .navbar-form, etc -->
+            
             <ul class="nav pull-right">
-              <li class="active"><%= link_to t(:home), root_path %></li>
-              <li><%= link_to t(:about), about_path %></li>
-              <li><%= link_to t(:create), new_campaign_path %></li>
-              <li><%= link_to t(:campaigns), campaigns_path %></li>
-              <li><%= link_to t(:search), search_campaigns_path %></li>
-              <li><%= link_to t(:donate), donate_path %></li>
-              <li><%= link_to t(:help), help_path %></li>              
-              <li><%= link_to t(:contact), contact_path %></li>
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#contact">Search</a></li>
+              <li><a href="#contact">Donate</a></li>
+              <li><a href="#contact">Create</a></li>
+              <li><a href="#contact">Help</a></li>              
             </ul>            
-          </div><!-- .nav-collapse -->
-        </div><!-- .container-fluid -->
+          </div><!--/.nav-collapse -->  
+                 
+        </div>
       </div>
-      <div class="row pull-right sombra">  
-        <%= image_tag("shadow2.png") %> 
+    </div>
+
+<div class="row pull-right sombra">  
+  <%= image_tag("shadow2.png") %> 
+</div>
+<div class="row-fluid">
+  <div class="span1 diferencial"> 
+ <ul>
+           <li><a href="#"><%= image_tag("99pk.png") %> </a></li>
+           <li><a href="#"><%= image_tag("transparentpk.png") %> </a></li>
+           <li><a href="#"><%= image_tag("openpk.png") %> </a></li>       
+           
+   </ul>
+ 
+  </div>
+
+  <div class="span3 logo"> 
+       <%= image_tag("altavoz5.png") %>       
+  </div>
+
+ 
+   
+    
+     <div id="myCarousel" class="span7 carousel slide">
+      <!-- Carousel items -->
+        <div class="carousel-inner">
+          <div class="active item"><%= image_tag("afrika.png") %> </div>
+        <div class="item"><%= image_tag("doit2.jpg") %></div>
+        
+        
       </div>
-    </div><!-- .navbar -->
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                    <div class="carousel-caption">
+                      <div id="izquierda" class="span4">                
+                        <h4>Africa: Save Africa from the FMI</h4>                  
+                     </div>
 
-    <%= yield %>
+                    <div id="derecha" class="span3">
+                      <div id="avatar">
+                          <%= image_tag("bob.png") %>
+                         <h4>Nesta Robert Marley</h4>
+                       
+                      </div> 
+                      
+                    </div>
+                    <div class="progress progress-info progress-striped">
+                        <div class="bar" style="width: 50%"></div>
+                    </div>
+                    <div id="iconoscampa" >  
+                                 <ul>
+                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
+   
+                                 </ul>
+                      </div>
+                    </div>
 
-    <div id="footer" class="container-fluid">
+    </div>   
+    <div id="realtime" class="span3 hidden-phone">
+            <ul>
+              <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                <li class="quetepires3">
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                <li class="quetepires2">
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+              <li class="quetepires">
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+
+
+
+     
+          
+           </ul>
+    </div><!--/.realtime-->
+  
+</div> <!--/.row-fluid-->
+  
+
+<div class="row-fluid">
+  <div class="span12">
+    
+      <div class="span5" id="navcampana"> 
+        <ul class="">
+          <li><a href="#"><%= image_tag("social.png") %> </a></li>
+           <li><a href="#"><%= image_tag("propias.png") %> </a></li>
+           <li><a href="#"><%= image_tag("calientes.png") %> </a></li>
+           <li><a href="#"><%= image_tag("ultimas.png") %> </a></li>    
+           <li><a href="#"><%= image_tag("tipologia.png") %> </a></li> 
+           <li><a href="#"><%= image_tag("activista.png") %> </a></li> 
+           <li><a href="#"><%= image_tag("geografica.png") %> </a></li>       
+       </ul>
+     </div>
+      <div class="span6 claim hidden-phone">
+          <h4>
+            Una herramienta de presión social abierta, horizontal y transparente. 
+          </h4>
+      </div>
+    </div>
+  
+</div>
+
+
+<div class="main">
+                  <div class="view view-tenth span6">
+                    <%= image_tag("osos.jpg") %>
+                    <div class="mask">
+                        <h2>Save the artic from the assholes</h2>
+                        <p>Save the artic from the assholes that want to explot it.The Arctic Ocean, located in the Northern Hemisphere and mostly in the Arctic north polar region, is the smallest and shallowest of the world's five major oceanic divisions.[1] The International Hydrographic Organization (IHO) recognizes it as an ocean, although some oceanographers call it the Arctic Mediterranean Sea or simply the Arctic Sea, classifying it a mediterranean sea or an estuary of the Atlantic Ocean.[2][3] Alternatively, the Arctic Ocean can be seen as the northernmost part of the all-encompassing World Ocean.
+
+</p>
+                        <a href="#" class="info">Firmar</a>
+                    </div>
+                </div>
+                <div class="view view-tenth span6">
+                    <%= image_tag("leon.jpg") %>
+                    <div class="mask">
+                        <h2>Hover Style #10</h2>
+                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                        <a href="#" class="info">Read More</a>
+                    </div>
+                </div>
+                <div class="view view-tenth span6">
+                    <%= image_tag("25.jpg") %>
+                    <div class="mask">
+                        <h2>Hover Style #10</h2>
+                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                        <a href="#" class="info">Read More</a>
+                    </div>
+                </div>
+                <div class="view view-tenth span6">
+                    <%= image_tag("ANTIMILITARISMo.png") %>
+                    <div class="mask">
+                        <h2>Hover Style #10</h2>
+                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                        <a href="#" class="info">Read More</a>
+                    </div>
+                </div>
+            </div>
+        
+
+
+
+</div>
+
+<div class="row-fluid">
+    <div id="home-icons" class="offset1 span5">
+      <a href="#"><img alt="Semi-footer-img1" src="/assets/semi-footer-img1.png"></a>
+    </div>
+    <div id="home-text" class="span6">
+      <h1>Recogida de firmas</h1>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      <h1>Mailing masivo</h1>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      <h1>Fax</h1>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+    </div>
+  </div>
+  <div id="footer" class="container-fluid">
       <div class="row-fluid">
         <div class="span3 offset1" id="first_footer_a">
           <ul>
-            <li><%= link_to image_tag('rss-icon.png'), feed_campaigns_path %>
-            <li><%= link_to image_tag('twitter_icon.png'), 'https://twitter.com/oigame' %>
-            <li><%= link_to image_tag('googleplus.png'), 'https://plus.google.com/109609067558669990733/posts' %>
-            <li><%= link_to image_tag('facebook_icon.png'), 'https://www.facebook.com/oiga.me' %>
-          </ul>
+            <li><a href="/es/campaigns/feed"><img alt="Rss-icon" src="/assets/rss-icon.png"></a>
+            </li><li><a href="https://twitter.com/oigame"><img alt="Twitter_icon" src="/assets/twitter_icon.png"></a>
+            </li><li><a href="https://plus.google.com/109609067558669990733/posts"><img alt="Googleplus" src="/assets/googleplus.png"></a>
+            </li><li><a href="https://www.facebook.com/oiga.me"><img alt="Facebook_icon" src="/assets/facebook_icon.png"></a>
+          </li></ul>
         </div>
         <div class="span4" id="first_footer_b">
           <ul>
-            <li><a href="#"><%= image_tag("99pk.png") %></a></li>
-            <li><a href="#"><%= image_tag("transparentpk.png") %></a></li>
-            <li><a href="#" style="margin-top:-40px;"><%= image_tag("openpk.png") %></a></li>       
+            <li><a href="#"><img alt="99pk" src="/assets/99pk.png"></a></li>
+            <li><a href="#"><img alt="Transparentpk" src="/assets/transparentpk.png"></a></li>
+            <li><a href="#" style="margin-top:-40px;"><img alt="Openpk" src="/assets/openpk.png"></a></li>       
           </ul>
         </div>
         <div id="consejo-social" class="span4" style="text-align: right;">
-          <%= image_tag('bandera-greenpeace.png') %>
+          <img alt="Bandera-greenpeace" src="/assets/bandera-greenpeace.png">
         </div>
       </div>
       <div class="row-fluid" style="text-align: center;">
         <div class="span12" id="footer-nav">
         <ul>
-          <li class="active"><%= link_to t(:home), root_path %></li>
-          <li><%= link_to t(:about), about_path %></li>
-          <li><%= link_to t(:contact), contact_path %></li>
-          <li><%= link_to t(:search), '#' %></li>
-          <li><%= link_to t(:donate), donate_path %></li>
-          <li><%= link_to t(:create), new_campaign_path %></li>
-          <li><%= link_to t(:help), help_path %></li>              
+          <li class="active"><a href="/es">Inicio</a></li>
+          <li><a href="/es/about">Acerca de</a></li>
+          <li><a href="/es/contact">Contacto</a></li>
+          <li><a href="#">Buscar</a></li>
+          <li><a href="/es/donate">Donar</a></li>
+          <li><a href="/es/campaigns/new">Crear</a></li>
+          <li><a href="/es/help">Ayuda</a></li>              
         </ul>            
       </div>
       </div>
     </div>
 
-    <% if Rails.env == 'development' || Rails.env == 'staging' %>
-      <%# query_review_output %>
-      <div id="debug">
-        <%= debug(params) %>
-      </div>
-    <% end %>
+    <%= javascript_include_tag "jquery.min" %>
+    <%= javascript_include_tag "csscustom" %>
+    <%= javascript_include_tag "bootstrap.min" %>
+
+
+
   </body>
 </html>

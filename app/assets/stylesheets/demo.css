@@ -1,0 +1,107 @@
+@import url('reset.css');
+/* General Demo Style */
+body{
+    background:#f9f9f9 url(../images/white_texture.jpg) repeat top left;
+
+}
+.container{
+	position:relative;
+}
+a{
+	color: #fff;
+	text-decoration: none;
+}
+.clr{
+	clear: both;
+}
+
+h1{
+	margin:0px;
+	padding:20px 20px 10px 20px;
+	font-size:34px;
+	color:#333;
+    text-shadow:1px 1px 1px #fff;
+	text-align:left;
+	font-weight:400;
+    text-align:center;
+}
+h1 span{
+    display:block;
+	font-size: 14px;
+    font-family: Georgia, serif;
+    font-style: italic;
+	color:#b2891b;
+	padding-top:10px;
+}
+/* Header Style */
+.header{
+	font-family:'Arial Narrow', Arial, sans-serif;
+	line-height: 24px;
+	font-size: 11px;
+	background: #000;
+	opacity: 0.9;
+	text-transform: uppercase;
+	z-index: 9999;
+	position: relative;
+	-moz-box-shadow: 1px 0px 2px #000;
+	-webkit-box-shadow: 1px 0px 2px #000;
+	box-shadow: 1px 0px 2px #000;
+}
+.header a{
+	padding: 0px 10px;
+	letter-spacing: 1px;
+	color: #ddd;
+	display: block;
+	float: left;
+}
+.header a:hover{
+	color: #fff;
+}
+.header span.right{
+	float: right;
+}
+.header span.right a{
+	float: none;
+	display: inline;
+}
+
+.more{
+	position:relative;
+	clear:both;
+	font-family:'Arial Narrow', Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 11px;
+    padding: 5px 0px 10px;
+    width: 540px;
+    margin: 0 auto;
+}
+.more ul{
+	display:block;
+	text-align:center;
+    height: 30px;
+}
+.more ul li{
+	display: block;
+    padding: 4px 2px;
+    float:left;
+}
+.more ul li.selected a,
+.more ul li.selected a:hover{
+	background:#b2891b;
+	color:#fff;
+	text-shadow:none;
+}
+.more ul li a{
+	color:#555;
+    float:left;
+	background:#fff;
+    width:40px;
+	padding: 2px 5px;
+	-moz-box-shadow:1px 1px 2px #aaa;
+	-webkit-box-shadow:1px 1px 2px #aaa;
+	box-shadow:1px 1px 2px #aaa;
+}
+.more ul li a:hover{
+	background:#000;
+	color:#fff;
+}
