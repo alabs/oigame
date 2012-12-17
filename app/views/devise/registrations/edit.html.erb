@@ -1,16 +1,14 @@
 <% @page_title = t(:my_account) %>
 
-<div class="container-fluid">
 
 <div class="row-fluid">
   
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
-<div class="span9">
+<div class="span7">
 
-<div id="accounts-wrapper">
-  <div id="accounts">
+<div id="page-wrapper">
     <div id="edit-account-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
         <fieldset>
@@ -84,6 +82,4 @@
 
 </div>
 
-</div>
 
-</div>

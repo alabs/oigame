@@ -1,7 +1,14 @@
 <% @page_title = "Cambia tu contraseña" %>
 
-<div id="accounts-wrapper">
-  <div id="accounts">
+<div class="row-fluid">
+
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+
+  <div class="span7">
+
+<div id="page-wrapper">
     <div id="edit-account-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
         <fieldset>
@@ -24,4 +31,6 @@
       <%= render :partial => "devise/shared/links" %>
     </div>
   </div>
+</div>
+
 </div>

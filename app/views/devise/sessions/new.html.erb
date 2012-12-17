@@ -1,17 +1,15 @@
 <% @page_title = t(:login) %>
 
-<div class="container-fluid">
 
 <div class="row-fluid">
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
 
-  <div class="span9">
+  <div class="span7">
 
 
-<div id="accounts-wrapper">
-  <div id="accounts">
+<div id="page-wrapper">
     <div id="login-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
         <fieldset>
@@ -41,11 +39,9 @@
         </fieldset>
       <% end %>
       <%= render :partial => "devise/shared/links" %>
-    </div><!-- login-form -->
-  </div><!-- accounts -->
-</div><!-- accounts-wrapper -->
-
+    </div>
   </div>
 </div>
 
-</div>
+  </div>
+
