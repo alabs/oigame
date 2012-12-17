@@ -161,13 +161,13 @@
       <div class="row-fluid" style="text-align: center;">
         <div class="span12" id="footer-nav">
         <ul>
-          <li class="active"><a href="/es">Inicio</a></li>
-          <li><a href="/es/about">Acerca de</a></li>
-          <li><a href="/es/contact">Contacto</a></li>
-          <li><a href="#">Buscar</a></li>
-          <li><a href="/es/donate">Donar</a></li>
-          <li><a href="/es/campaigns/new">Crear</a></li>
-          <li><a href="/es/help">Ayuda</a></li>              
+          <li><%= link_to t(:home), root_path %></li>
+          <li><%= link_to t(:about), about_path %></li>
+          <li><%= link_to t(:create), new_campaign_path %></li>
+          <li><%= link_to t(:search), search_campaigns_path %></li>
+          <li><%= link_to t(:donate), donate_path %></li>
+          <li><%= link_to t(:help), help_path %></li>              
+          <li><%= link_to t(:contact), contact_path %></li>
         </ul>            
       </div>
       </div>
