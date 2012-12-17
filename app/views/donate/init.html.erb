@@ -1,17 +1,14 @@
 <% @page_title = t(:donate_oigame) %>
 
-<div class="container-fluid">
 
   <div class="row-fluid">
 
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
-  <div class="span9">
+  <div class="span7">
 
 <div id="page-wrapper">
-  <div id="page">
-    <div id="page-info">
       <h2><%= @page_title %></h2>
       <div id="donate-form" class="form-stacked">
         <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post" class="form-horizontal">
@@ -47,14 +44,5 @@
         <%= image_tag('credit-cards.jpg') %>
       </div><!-- donate-form -->
     </div><!-- page-info -->
-    <div id="page-sidebar">
-    </div><!-- page-sidebar -->
   </div><!-- page -->
-</div><!-- page-wrapper -->
-
-
-</div>
-
-</div>
-
 </div>

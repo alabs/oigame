@@ -1,17 +1,14 @@
 <% @page_title = t(:donate) %>
 
-<div class="container-fluid">
 
   <div class="row-fluid">
 
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
-  <div class="span9">
+  <div class="span7">
 
 <div id="page-wrapper">
-  <div id="page">
-    <div id="page-info">
       <h2><%= @page_title %></h2>
       <p><%= I18n.t(:donation_info_1) %></p>      
       <p><%= I18n.t(:donation_info_2) %></p>      
@@ -20,13 +17,5 @@
       <br />
       <p><%= link_to t(:donate_oigame), donate_init_path, :class => 'btn btn-primary btn-large' %></p>
     </div><!-- page-info -->
-    <div id="page-sidebar">
-    </div><!-- page-sidebar -->
   </div><!-- page -->
 </div><!-- page-wrapper -->
-
-</div>
-
-</div>
-
-</div>

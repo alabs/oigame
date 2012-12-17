@@ -1,17 +1,14 @@
 <% @page_title = t(:contact) %>
 
-<div class="container-fluid">
 
   <div class="row-fluid">
 
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
-  <div class="span9">
+  <div class="span7">
 
 <div id="page-wrapper">
-  <div id="page">
-    <div id="page-info">
       <h2>Contactar con oiga.me</h2>
       <div id="contact-form" class="form-stacked">
         <%= form_for @contact, :url => contact_path, :html => { :class => 'form-horizontal' } do |f| %>
@@ -67,8 +64,4 @@
   </div>
 </div><!-- page-wrapper -->
 
-</div>
 
-</div>
-
-</div>
