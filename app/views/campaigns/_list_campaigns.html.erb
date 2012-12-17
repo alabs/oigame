@@ -31,7 +31,7 @@
         </div>
       </div>
         <% @campaigns.each do |campaign| %>
-          <div class="row-fluid">
+          <div class="row-fluid mostrar-campaign">
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         </div>
         <% end %>
