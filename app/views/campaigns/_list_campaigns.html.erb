@@ -10,7 +10,28 @@
   <div id="list-campaigns">
     <% if @campaigns.count > 0 %>
       <div id="list-campaigns-info">
-        <h2><%= @page_title %></h2>
+        <div class="row-fluid">
+        <div class="span5">
+          <h2><%= @page_title %></h2>
+        </div>
+        <div class="span2" style="margin-top: 15px;">
+          <div class="btn-group" style="z-index: 9999;">
+            <% if @sub_oigame %>
+              <button class="btn"><%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame) %></button>
+              <button class="btn"><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame) %></button> 
+              <% permitted_to? :moderated, Campaign.new do %>
+                <button><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame) %></button>
+              <% end %>
+            <% else %>
+              <button class="btn"><%= link_to t(:propose_campaign), new_campaign_path %></button>
+              <button class="btn"><%= link_to t(:archived_campaigns), archived_campaigns_path %></button> 
+              <% permitted_to? :moderated, Campaign.new do %>
+                <button class="btn"><%= link_to t(:moderate_campaigns), moderated_campaigns_path %></button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
         <% @campaigns.each do |campaign| %>
           <div class="row-fluid">
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
@@ -25,29 +46,6 @@
         <h2><%= t(:no_campaigns) %></h2>
       </div>
     <% end %>
-    <!--
-    <div id="list-campaigns-sidebar">
-      <% if @sub_oigame %>
-        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn btn-primary btn-large" %></h2>
-        <br />
-        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => 'btn btn-large btn-success' %></h2> 
-        <br />
-        <% permitted_to? :moderated, Campaign.new do %>
-          <br />
-          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn btn-large btn-danger" %></h2>
-        <% end %>
-      <% else %>
-        <h2 style="font-size: 2em;"><%= link_to t(:propose_campaign), new_campaign_path, :class => "btn btn-primary btn-large" %></h2>
-        <br />
-        <h2 style="font-size: 2em;"><%= link_to t(:archived_campaigns), archived_campaigns_path, :class => 'btn btn-large btn-success' %></h2> 
-        <br />
-        <% permitted_to? :moderated, Campaign.new do %>
-          <br />
-          <h2 style="font-size: 2em;"><%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn btn-large btn-danger" %></h2>
-        <% end %>
-      <% end %>
-    </div>
-    -->
   </div><!-- list-campaigns -->
 </div><!-- campaigns-wrapper -->
 
