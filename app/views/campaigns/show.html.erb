@@ -34,7 +34,7 @@
             <%= @campaign.messages.validated.count %>
           <% elsif @campaign.ttype == 'petition' %>
             <%= @campaign.petitions.validated.count %>
-          <% elsif @campaing.ttype == 'fax' %>
+          <% elsif @campaign.ttype == 'fax' %>
             <%= @campaign.faxes.validated.count %>
           <% end %>
         </span>
