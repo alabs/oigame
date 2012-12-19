@@ -114,7 +114,7 @@ es:
   are_you_sure: '¿Estas seguro?'
   created_at: 'Creada hace'
   created_by: 'Creada por'
-  published_at: 'Publicada'
+  published_at: 'Publicada hace'
   time_left: 'Quedan'
   archived_campaign: 'Campaña archivada'
   days: 'días'
