@@ -77,8 +77,8 @@ label
 
 .logo
   position: relative
-  top: -250px
-  left: -50px
+  top: -132px
+  left: -42px
   img
     width: 100%
     position: relative
@@ -266,6 +266,7 @@ label
     border: 1px solid $morao
     width: 100%
     max-height: 300px
+    height: 100%
 
 .view .mask,.view .content 
 
@@ -299,6 +300,10 @@ label
     a
       color: #EB5E40
       text-shadow: 1px 1px 0px white
+
+.navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse .nav-collapse .dropdown-menu a 
+
+  color: $verdoso
 
 @media (max-width: 1107px)
   .quetepires
@@ -352,8 +357,8 @@ label
     padding-left: 0px
   .logo
     img
-      width: 36%
-      top: -327px
+      width: 35%
+      top: -315px
       left: -2px
 
   .oigame
@@ -371,6 +376,7 @@ label
   #navcampana
     position: relative
     margin-top: -20%
+    margin-left: 3px
   .carousel-caption
     height: 23%
     height: 24%
@@ -389,7 +395,9 @@ label
       width: 17%
   #derecha
     height: 30%
-
+  #container
+    margin: 0px
+    padding: 0px
 
 
 @media (max-width: 560px)
@@ -406,32 +414,42 @@ label
     position: relative
     margin-top: -50%
 
-@media (max-width: 490px)
+@media (max-width: 480px)
   .logo
     top: -360px
   #myCarousel
-    top: 23%
+    display: none
 
 
 @media (max-width: 320px)
   .logo
     left: 0%
     position: absolute
-    top: 40%
+    top: 36%
+    height: 30px
     img
-      width: 28%
-      position: absolute
-      top: -227px
-      left: 56px
+      width: 40%
+      position: relative
+      top: -96px
+      left: 26px
+      z-index: 1
   .diferencial
-    visibility: hidden
-
+    margin-top: -139px
+    position: relative
+    left: -9px
+  #navcampana
+    margin-top: 0px
+    #footer-nav 
+      a
+        font-size: 9px  
   #myCarousel
     width: 277px
     height: 165px
     position: absolute
     top: 225px
     margin-left: 5%
+  .view
+    height: auto
 
 
   .carousel-inner 
@@ -439,29 +457,47 @@ label
 
   #navcampana
     position: relative
-    top: 15px 
+    top: -15px 
     width: 318px
     margin-left: -12px
     ul
       li
         a
           display: inline
-        img
-          width: 13%
+          img
+            width: 13%
   .oigame
-    left: 35%
-    top: 4%
-    width: 55%
+    left: 6%
+    top: 10px
     display: block
-    position: absolute
+    img
+      width: 250px
+      position: relative
+      z-index: 4
+      left: 22px
+  #first_footer_a
+    img
+      width: 7%
 
+  #consejo-social
+    img
+      margin-top: -23px
+      margin-bottom: 23px
+  .navbar-inverse .nav-collapse .nav > li > a:hover, .navbar-inverse .nav-collapse .dropdown-menu a:hover
+    background-color: $verdoso
+    color: #f0f0f0
   .people
     padding-top: 8px
     margin: 0px
     width: 140px
     position: relative
     left: -24px
-
+  .idioma
+    font-size: 0.8em
+    padding-right: 0px
+    position: relative
+    top: -158px
+    left: 0px
 
 #page-wrapper
   margin: -100px 0px 30px -40px

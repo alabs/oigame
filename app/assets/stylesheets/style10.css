@@ -4,11 +4,11 @@
    -o-transform: scaleY(1);
    -ms-transform: scaleY(1);
    transform: scaleY(1);
-   -webkit-transition: all 1.7s ease-in-out;
-   -moz-transition: all 1.7s ease-in-out;
-   -o-transition: all 1.7s ease-in-out;
-   -ms-transition: all 1.7s ease-in-out;
-   transition: all 1.7s ease-in-out;
+   -webkit-transition: all 0.1s ease-in-out;
+   -moz-transition: all 0.1s ease-in-out;
+   -o-transition: all 0.1s ease-in-out;
+   -ms-transition: all 0.1s ease-in-out;
+   transition: all 0.1s ease-in-out;
 }
 .view-tenth .mask {
    background-color: rgba(4, 158, 140, 0.65);
