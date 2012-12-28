@@ -6,6 +6,103 @@
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
+  <div id="participate-buttons" class="span2">
+
+<div class='petition-action-box lightgrey-color-scheme bottom-margin-2 banner-box' html='{}'>
+  <div class='padded-2'>
+    <div class='petition-action-box-header'>
+      <div>
+        <h4 class='header-text h2 embossed-text bottom-margin-0 top-margin-0'>
+          <span class='symbol symbol-lock'></span>
+          <span class='symbol symbol-check'></span>
+          <span class='symbol symbol-award'></span>
+          <span class='petition-action-box-header-text'>
+            Firma esta petición
+          </span>
+        </h4>
+        <div class='petition-signature-count bottom-margin-0' data-num_sigs='88901' data-translation_string='with %{num_sigs} supporters' html='{}'>
+          <span class='with-supporters small weak'>
+            0 firmas alcanzadas
+          </span>
+        </div>
+       </div>
+       <div class='thermometer-container bottom-margin-1'>
+        <div class='petition-signatures-thermometer' data-count_down='data-count_down' data-count_text='%{number} NEEDED' data-current_count='88901' data-goal='150000'>
+          <div class='thermometer-reboot rounded-corners-1'>
+            <div class='mercury'></div>
+          </div>
+          <div class='caption extra-small weak polarized-content'>
+            <div class='right count'>
+              SE NECESITAN 150.000 FIRMAS MÁS
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='hidden share-buttons'>
+      <button class='big bottom-margin-1 facebook facebook-button facebook-button-reboot full share-via-facebook' href='' html='{}'>
+        <span class='symbol symbol-facebook-f'></span>
+        <span class='content'>Compartir en Facebook</span>
+        <span class='spinner'></span>
+      </button>
+      <div class='share-links center-content'>
+        <ul class='inline with-separator'>
+          <li>
+            <a class='share-link weak share-via-twitter'>
+              <span class='symbol symbol-twitter-bird'></span>
+              <span>Twittear</span>
+            </a>
+          </li>
+          <li>
+            <a class='share-link weak share-email' href='#'>
+              <span class='symbol symbol-mail'></span>
+              <span>Email</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <form accept-charset="UTF-8" action="http://www.change.org/es/peticiones/ministerio-de-justicia-indulto-para-david-reboredo-3/signatures" class="petition-sign-form international" data-remote="true" data-single-submit="true" html="{}" id="new_signature" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="J/m78KfrL3YldkPTK1uvD0cee9+soiucUcYhFPbrltc=" /></div>
+      <div class='fields-and-info bottom-margin-1'>
+        <div class='slide-container'>
+          <div class='fields'>
+            <label class="string first-name leading-label no-label"><span class="label-text"></span><span class="label-content"><input data-field-name="First Name" id="" name="signature[first_name]" placeholder="Nombre" type="text" /><span class="form-error small" data-for="First Name"></span></span></label>
+            <label class="string last-name leading-label no-label"><span class="label-text"></span><span class="label-content"><input data-field-name="Last Name" id="" name="signature[last_name]" placeholder="Apellido" type="text" /><span class="form-error small" data-for="Last Name"></span></span></label>
+            <label class="string email leading-label no-label"><span class="label-text"></span><span class="label-content"><input data-field-name="Email" id="" name="signature[email]" placeholder="Email" type="text" /><span class="form-error small" data-for="Email"></span></span></label>
+            <input id="" name="signature[form_type]" type="hidden" value="postal_code_only_experiment" />
+            <label class="postal-code-only-experiment-postal-code string postal-code leading-label no-label"><span class="label-text"></span><span class="label-content"><input data-field-name="Postal Code" id="" name="signature[postal_code]" placeholder="Código Postal" type="text" /><span class="form-error small" data-for="Postal Code"></span></span></label>
+            <label class="postal-code-only-experiment-country country country leading-label no-label"><span class="label-text"></span><span class="label-content"><select data-field-name="Country" id="" name="signature[country]"><option value="AX">Åland</option>
+            <option value="AL">Albania</option>
+            <option value="ES" selected="selected">España</option>
+            <option value="US">Estados Unidos</option>
+          </div>
+        </div>
+        <label class="text message leading-label no-label"><span class="label-text"></span><span class="label-content"><textarea cols="" id="" name="signature[message]" placeholder="¿Por qué es esto importante para ti? (Opcional)" rows=""></textarea><span class="form-error small" data-for="Message"></span></span></label>
+      </div>
+      <div class='sign-button bottom-margin-1'>
+        <a class='action button full big submit' data-submitting_value='Firmando' href='?javascript=false'>
+          Firma
+          &nbsp;&nbsp;
+          <span class='symbol symbol-bracket-right'></span>
+        </a>
+        <input data-submitting_value="Enviando ..." id="" name="commit" style="position:absolute;right:9999em" type="submit" value="Enviar" />
+      </div>
+      <div class='optouts-and-info'>
+        <label class="weak small boolean public trailing-label"><input name="signature[public]" type="hidden" value="0" /><input checked="checked" id="" name="signature[public]" type="checkbox" value="1" /><span class="label-content"><span class="label-text">Mostrar públicamente mi firma</span><br /><span class="form-error small" data-for="Public"></span></span></label>
+        <label class="weak small boolean post-to-facebook trailing-label"><input name="signature[post_to_facebook]" type="hidden" value="0" /><input disabled="disabled" id="" name="signature[post_to_facebook]" type="checkbox" value="1" /><span class="label-content"><span class="label-text">Compartir en Facebook</span><span class="form-error small" data-for="Post To Facebook"></span></span></label>
+        <script>
+          //<![CDATA[
+          $('[name="signature[post_to_facebook]"]').prop('disabled', true);
+          //]]>
+        </script>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
   <div class="span7">
 
 <div id="page-wrapper">
