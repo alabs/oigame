@@ -211,4 +211,9 @@ $(function() {
     })
   })
 
+  // form participación pegajoso
+  $(window).bind('scroll resize', function() {
+    $('#participate-buttons').css('top', $(this).scrollTop());
+  });
+
 });
