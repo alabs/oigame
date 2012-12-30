@@ -209,26 +209,6 @@
             <%= render :partial => 'has_participated' %>
           </div>
 
-        <% else %>
-
-          <% if @campaign.ttype == 'petition' %>
-            <div id="show-campaign-petition">
-              <%= render :partial => 'petition_form' %>
-            </div>
-          <% end %>
-  
-          <% if @campaign.ttype == 'mailing' %>
-            <div id="show-campaign-mailing">
-              <%= render :partial => 'mailing_form' %>
-            </div>
-          <% end %>
-          
-          <% if @campaign.ttype == 'fax' %>
-            <div id="show-campaign-fax">
-              <%= render :partial => 'fax_form' %>
-            </div>
-          <% end %>
-
         <% end %>
         
         <h2 class="jtc"><%= t(:spread) %></h2>
@@ -246,8 +226,4 @@
   </div><!-- show-campaign -->
 </div><!-- campaigns-wrapper -->
 
-
-</div>
-
-</div>
 
