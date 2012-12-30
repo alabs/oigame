@@ -46,6 +46,10 @@
 
         <% end %>
       <% end %>
+        <div id="diffusion">
+          <%= t(:spread_info) %>
+          <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
+        </div>
 
 </div>
 
@@ -214,12 +218,6 @@
 
         <% end %>
         
-        <h2 class="jtc"><%= t(:spread) %></h2>
-        <div id="diffusion">
-          <%= t(:spread_info) %>
-          <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
-        </div>
-
       <% end %>
 
 
