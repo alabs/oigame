@@ -91,6 +91,9 @@
         <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name %>
         <%= @campaign.user.name %>
       <% end %>
+      <br />
+      <br />
+      <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
     </div>
   </div>
 
@@ -216,8 +219,6 @@
           <%= t(:spread_info) %>
           <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
         </div>
-
-        <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
 
       <% end %>
 
