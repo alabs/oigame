@@ -118,6 +118,7 @@ function check_own_message($selector){
 
 ////////////////////////// check_own_message  - end
 
+
 $(function() {
 
   $("#campaign_duedate_at").datepicker({
