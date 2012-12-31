@@ -218,5 +218,8 @@ $(function() {
   });
 
   $('#modal-notify-nocredit').modal('show');
+  $('.close-modal-button').click(function() {
+    $('#modal-notify-nocredit').modal('hide');
+  }); 
 
 });
