@@ -217,4 +217,6 @@ $(function() {
     $('#participate-buttons').css('top', $(this).scrollTop());
   });
 
+  $('#modal-notify-nocredit').modal('show');
+
 });
