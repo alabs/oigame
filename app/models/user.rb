@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def ready_for_donation
-    name.blank? || vat.blank? ? false : true
+    name.blank? ? false : true
   end
 
   def user?
