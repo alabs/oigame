@@ -31,6 +31,7 @@ Oigame::Application.routes.draw do
           #post 'new_comment'
           get 'fax'
           post 'fax'
+          get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
         end
         collection do
           get 'moderated'
@@ -87,6 +88,7 @@ Oigame::Application.routes.draw do
         #post 'new_comment'
         get 'fax'
         post 'fax'
+        get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
       end
       collection do
         get 'moderated'

@@ -1,0 +1,46 @@
+
+<% @page_title = t(:add_credit_to_campaign) %>
+
+
+  <div class="row-fluid">
+
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+  <div class="span7">
+
+<div id="page-wrapper">
+      <h2><%= @page_title %></h2>
+      <div id="donate-form" class="form-stacked">
+        <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post" class="form-horizontal">
+          <fieldset>
+            <legend><%= I18n.t(:amount_select) %></legend>
+            <input type="hidden" name="nombre_comercio" value="ALABS" />
+            <input type="hidden" name="referencia" value="<%= @reference %>" />
+            <input type="hidden" name="moneda" value="EUR" />
+            <input type="hidden" name="project" value="oiga.me" />
+            <input type="hidden" name="type" value="addcredit" />
+            <div class="control-group">
+              <div class="controls">
+              <select name="coste">
+                <option value=""><%= t(:amount_to_donate) %></option>
+                <option value="5.00">5 Euros</option>
+                <option value="10.00">10 Euros</option>
+                <option value="30.00">30 Euros</option>
+                <option value="50.00">50 Euros</option>
+              </select>
+            </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+              <input type="submit" name="submit" value="<%= I18n.t(:add_credit_to_campaign) %>" class="btn primary" />
+            </div>
+            </div>
+          </fieldset>
+        </form>
+        <p><%= I18n.t(:accepted_cards) %>:<br />
+        <%= image_tag('credit-cards.jpg') %>
+      </div><!-- donate-form -->
+    </div><!-- page-info -->
+  </div><!-- page -->
+</div>

@@ -471,6 +471,10 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def add_credit
+    @reference = secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+  end
+
   private
 
   def render_404

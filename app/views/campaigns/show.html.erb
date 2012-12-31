@@ -10,8 +10,8 @@
        <p>Esta campaña no dispone de crédito para poder enviar faxes. Si quieres añadir crédito para poder activarla puedes hacerlo pulsando el botón 'añadir crédito'. Esto te enviará al banco con el que opera oiga.me y de esa manera la campaña se podra poner en funcionamiento. Gracias por tu colaboración.</p>
      </div>
      <div class="modal-footer">
-       <a href="#" id="close-modal-button" class="btn">Cerrar</a>
-       <a href="#" class="btn btn-inverse">Añadir crédito</a>
+       <%= link_to t(:close), '#', :id => 'close-modal-button', :class => 'btn' %>
+       <%= link_to t(:add_credit), add_credit_campaign_path, :class => 'btn btn-inverse' %>
      </div>
   </div>
 <% end %>
@@ -65,7 +65,7 @@
       <% end %>
         <div id="diffusion">
           <%= t(:spread_info) %>
-          <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-large btn-primary center" %>
+          <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-inverse" %>
         </div>
 
 </div>
