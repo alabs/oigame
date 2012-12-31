@@ -9,6 +9,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       donate_url = session[:redirect_to_donate]
       session[:redirect_to_donate] = nil
       donate_url
+    elsif session[:redirect_to_add_credit]
+      add_credit_url = session[:redirect_to_add_credit]
+      session[:redirect_to_add_credit] = nil
+      add_credit_url
     else
       super
     end

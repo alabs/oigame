@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
   before_filter :protect_from_spam, :only => [:message, :petition, :fax]
   protect_from_forgery :except => [:message, :petition, :fax]
   layout 'application', :except => [:widget, :widget_iframe]
-  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants]
+  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
   
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
@@ -472,7 +472,21 @@ class CampaignsController < ApplicationController
   end
 
   def add_credit
+    unless current_user.ready_for_add_credit
+      session[:redirect_to_add_credit] = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/add-credit"
+      flash[:error] = 'Necesitamos que nos digas tu nombre para poder añadir crédito'
+      redirect_to edit_user_registration_url
+
+      return
+    end
+
     @reference = secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
+    
+    data = {}
+    data[:reference] = @reference
+    data[:name] = current_user.name
+    data[:email] = current_user.email
+    HTTParty.post("http://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 
   private

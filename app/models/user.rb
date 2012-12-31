@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
   def ready_for_donation
     name.blank? ? false : true
   end
+  
+  def ready_for_add_credit
+    name.blank? ? false : true
+  end
 
   def user?
     self.roles.include? == 'user'
