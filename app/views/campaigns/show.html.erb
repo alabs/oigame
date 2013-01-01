@@ -80,7 +80,7 @@
       <div class="row-fluid">
       <div class="span6">
       <ul>
-        <li><strong><%= t(:credit) %>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€</li>
+        <li><strong><%= t(:credit) %>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€ (<%= link_to t(:add_credit), add_credit_campaign_path %>)</li>
         <% if @campaign.category %>
           <li><strong><%= t(:category) %>:</strong> <%= @campaign.category.name %></li>
         <% end %>
