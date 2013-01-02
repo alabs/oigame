@@ -60,7 +60,7 @@
   <body>
 
     <% flash.each do |name, msg| %>
-      <div class="fade in flash-<%= name %>">
+      <div class="alert alert-<%= name %>">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= msg %> 
       </div>
@@ -75,9 +75,6 @@
             <span class="icon-bar"></span>
           </a>
                         
-
-  
-
       <div class="span2 people">  
         <ul class="pull-left">
            <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> <%= t(:campaigns) %></label></li>
@@ -87,11 +84,9 @@
         </ul>
       </div>
 
-            <div class="span4 oigame">        
-           <%= image_tag("oigame.png") %>         
-           </div>
-
-
+      <div class="span4 oigame">        
+        <%= image_tag("oigame.png") %>         
+      </div>
       
       <div class="span2 pull-right idioma">
             <div class="navbar-text pull-right">
