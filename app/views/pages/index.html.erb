@@ -192,46 +192,18 @@
 </div>
 
 
+
 <div class="main">
-                  <div class="view view-tenth span6">
-                    <%= image_tag("osos.jpg") %>
-                    <div class="mask">
-                        <h2>Save the artic from the assholes</h2>
-                        <p>Save the artic from the assholes that want to explot it.The Arctic Ocean, located in the Northern Hemisphere and mostly in the Arctic north polar region, is the smallest and shallowest of the world's five major oceanic divisions.[1] The International Hydrographic Organization (IHO) recognizes it as an ocean, although some oceanographers call it the Arctic Mediterranean Sea or simply the Arctic Sea, classifying it a mediterranean sea or an estuary of the Atlantic Ocean.[2][3] Alternatively, the Arctic Ocean can be seen as the northernmost part of the all-encompassing World Ocean.
-
-</p>
-                        <a href="#" class="info">Firmar</a>
-                    </div>
-                </div>
-                <div class="view view-tenth span6">
-                    <%= image_tag("leon.jpg") %>
-                    <div class="mask">
-                        <h2>Hover Style #10</h2>
-                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                        <a href="#" class="info">Read More</a>
-                    </div>
-                </div>
-                <div class="view view-tenth span6">
-                    <%= image_tag("25.jpg") %>
-                    <div class="mask">
-                        <h2>Hover Style #10</h2>
-                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                        <a href="#" class="info">Read More</a>
-                    </div>
-                </div>
-                <div class="view view-tenth span6">
-                    <%= image_tag("ANTIMILITARISMo.png") %>
-                    <div class="mask">
-                        <h2>Hover Style #10</h2>
-                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                        <a href="#" class="info">Read More</a>
-                    </div>
-                </div>
-            </div>
-        
-
-
-
+  <% @campaigns_carousel.each do |campaign| %>
+    <div class="view view-tenth span6">
+        <%= image_tag(campaign.image) %>
+        <div class="mask">
+            <h2><%= campaign.name %></h2>
+            <p><%= campaign.intro %></p>
+            <%= link_to "Firmar", campaign, :class => "info" %>
+        </div>
+    </div>
+  <% end %>
 </div>
 
 <div class="row-fluid">
