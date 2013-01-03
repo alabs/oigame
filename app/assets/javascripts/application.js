@@ -41,4 +41,5 @@ $(function(){
   
   // para el slideshow de la home
   $("#myHomeCarousel .item:first").addClass("active");
+
 });

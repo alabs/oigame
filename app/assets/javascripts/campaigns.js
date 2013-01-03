@@ -212,15 +212,8 @@ $(function() {
     })
   })
 
-  // form participación pegajoso
-  $(window).bind('scroll resize', function() {
-    $('#participate-buttons').css('top', $(this).scrollTop());
-  });
+  $('#participate-buttons').scrollToFixed();
 
-  $('#modal-notify-nocredit').modal('show');
-  $('#close-modal-button').click(function(e) {
-    e.preventDefault();
-    $('#modal-notify-nocredit').modal('hide');
-  }); 
+  $('#modal-notify-nocredit').modal({keyboard: true, backdrop: true});
 
 });

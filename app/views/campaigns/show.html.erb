@@ -1,7 +1,7 @@
 <% @page_title = @campaign.name %>
 
 <% if @campaign.ttype == 'fax' && @campaign.credit <= 0 %>
-  <div id="modal-notify-nocredit" class="modal hide fade">
+  <div id="modal-notify-nocredit" data-keyboard="true" class="modal fade">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <h3>Esta campaña no tiene crédito</h3>
@@ -10,28 +10,194 @@
        <p>Esta campaña no dispone de crédito para poder enviar faxes. Si quieres añadir crédito para poder activarla puedes hacerlo pulsando el botón 'añadir crédito'. Esto te enviará al banco con el que opera oiga.me y de esa manera la campaña se podra poner en funcionamiento. Gracias por tu colaboración.</p>
      </div>
      <div class="modal-footer">
-       <%= link_to t(:close), '#', :id => 'close-modal-button', :class => 'btn' %>
+       <%= link_to t(:close), '#', 'data-dismiss' => 'modal', :class => 'btn' %>
        <%= link_to t(:add_credit), add_credit_campaign_path, :class => 'btn btn-inverse' %>
      </div>
   </div>
 <% end %>
 
+<div class="row-fluid">
 
-  <div class="row-fluid">
+  <div class="span7" style="margin-left: 2.12766%; margin-top: -6em;">
 
-    <!-- <%= render :partial => 'partials/diferencial' %> -->
-    <!-- <%= render :partial => 'partials/logo' %> -->
-
-    <div class="span1 diferencial">
-      &nbsp;
+    <div id="show-campaign">
+      <div id="show-campaign-detail">
+        <h2><%= @campaign.name %></h2>
+        <div class="row-fluid">
+        <div class="span6">
+        <ul>
+          <li><strong><%= t(:credit) %>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€ (<%= link_to t(:add_credit), add_credit_campaign_path %>)</li>
+          <% if @campaign.category %>
+            <li><strong><%= t(:category) %>:</strong> <%= @campaign.category.name %></li>
+          <% end %>
+          <% unless @campaign.status == 'archived' %>
+            <li><strong><%= t(:published_at) %>:</strong> <%= time_ago_in_words(@campaign.created_at) %></li>
+            <li><strong><%= t(:time_left) %>:</strong> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
+          <% else %>
+            <li><strong><%= t(:published_at) %>:</strong> <%= time_ago_in_words(@campaign.published_at) %></li>
+            <li><strong><%= t(:archived_campaign) %></strong></li>
+          <% end %>
+          <li>
+            <strong><%= t(:participants) %>:</strong>
+            <span id="participants">
+            <% if @campaign.ttype == 'mailing' %>
+              <%= @campaign.messages.validated.count %>
+            <% elsif @campaign.ttype == 'petition' %>
+              <%= @campaign.petitions.validated.count %>
+            <% elsif @campaign.ttype == 'fax' %>
+              <%= @campaign.faxes.validated.count %>
+            <% end %>
+          </span>
+            <%= t(:of) %>
+            <span id="participants-target"><%= @campaign.target %></span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <% unless @campaign.user.name.blank? %>
+          <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name %>
+          <%= @campaign.user.name %>
+        <% end %>
+        <br />
+        <br />
+        <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
+      </div>
     </div>
 
-    <div class="logo span3">
-      &nbsp;
-    </div> 
+      <div id="campaign-information">
+        <div class="progress progress-striped progress-danger active">
+          <div class="bar" style="width: 0%;"></div>
+        </div>
+      </div><!-- campaing-information -->
 
-    <div id="participate-begin"></div>
-  <div id="participate-buttons" class="span2">
+
+      <ul id="campaign-tab" class="nav nav-tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#description"><%= t(:description) %></a>
+        </li>
+        <% if @campaign.ttype == 'mailing' %>
+          <li>
+            <a data-toggle="tab" href="#message"><%= t(:message) %></a>
+          </li>
+        <% end %>
+        <% if @campaign.ttype == 'fax' %>
+          <li>
+            <a data-toggle="tab" href="#fax"><%= t(:Faxes) %></a>
+          </li>
+        <% end %>
+        <% unless @campaign.status == 'archived' %>
+          <li data-tab-type="stats">
+            <a data-toggle="tab" href="#stats"><%= t(:stats) %></a>
+          </li>
+        <% end %>
+        <% unless @campaign.status == 'archived' %>
+          <li data-tab-type="integrate">
+            <a data-toggle="tab" href="#integrate"><%= t(:integrate) %></a>
+          </li>
+        <% end %>
+
+          <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
+
+      </ul><!-- tabs -->
+      <div class="tab-content">
+        <div id="description" class="active tab-pane">
+          <div id="campaign-info">
+            <h2>Descripción</h2>
+            <%= @campaign.to_html(@campaign.intro).html_safe %> 
+            <% if @campaign.image.to_s %>
+              <p style="text-align:center;margin:15px 0px;">
+              <%= image_tag(@campaign.image_url.to_s) %>
+              </p>
+            <% end %>
+            <%= @campaign.to_html(@campaign.body).html_safe %> 
+
+        <% if @campaign.commentable %>
+            <p style="margin-bottom:30px;"></p>
+            <div id="participants">
+              <!-- FB COMMENTS -->
+              <div id="fb-root"></div>
+              <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
+              <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="2" data-width="500"></div>
+            </div><!-- participants -->
+        <% end %>
+          <p style="margin-bottom:30px;"></p>
+          </div>
+        </div><!-- description -->
+        <div id="message" class="tab-pane fade">
+          <div id="campaign-info">
+            <h2><%= t(:recipients) %></h2>
+            <p><%= t(:recipients_show) %></p>
+              <ul>
+                <% @campaign.recipients.gsub('@', '[arroba]').split(' ').each do |dest| %> 
+                  <li><%= dest %></li>
+                <% end %>
+              </ul>
+              <hr />
+              <h2><%= t(:message) %></h2>
+              <b><%= t(:subject) %></b>: <%= @campaign.default_message_subject %> 
+            <p>
+              <pre><%= @campaign.default_message_body %></pre>
+            </p>
+          </div>
+        </div><!-- message -->
+        <div id="fax" class="tab-pane fade">
+          <div id="campaign-info">
+            <h2><%= t(:faxes_recipients) %></h2>
+            <p><%= t(:recipients_show) %></p>
+              <ul>
+                <% @campaign.numbers.each do |number| %> 
+                  <li><%= number %></li>
+                <% end %>
+              </ul>
+              <hr />
+              <h2><%= t(:message) %></h2>
+            <p>
+              <pre><%= @campaign.default_message_body %></pre>
+            </p>
+          </div>
+        </div><!-- message -->
+        <% unless @campaign.status == 'archived' %>
+          <div id="stats" class="tab-pane fade">
+            <%= render :partial => "stats_chart" %>
+          </div><!-- message -->
+        <% end %>
+        <% unless @campaign.status == 'archived' %>
+          <div id="integrate" class="tab-pane fade">
+            <%= t(:spread_info) %>
+            <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-inverse" %>
+          </div><!-- message -->
+        <% end %>
+
+      </div><!-- tab-content -->
+
+      </div><!-- show-campaign-detail -->
+      <div id="show-campaign-sidebar" class="grid_8">
+        
+        <% unless @campaign.status == 'archived' %>
+
+          <% if @has_participated %>
+
+            <div id="show-campaign-petition">
+              <%= render :partial => 'has_participated' %>
+            </div>
+
+          <% end %>
+          
+        <% end %>
+
+      </div><!-- show-campaign-sidebar -->
+    </div><!-- show-campaign -->
+
+  </div><!-- span7 -->
+
+  <div class="span4">
+    <div id="participate-buttons">
 
       <% unless @campaign.status == 'archived' %>
 
@@ -63,184 +229,8 @@
 
         <% end %>
       <% end %>
-        <div id="diffusion">
-          <%= t(:spread_info) %>
-          <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-inverse" %>
-        </div>
 
-</div>
+    </div> <!-- participate-buttons -->
+  </div> <!-- span4 -->
 
-  <div class="span7">
-
-<div id="page-wrapper">
-  <div id="show-campaign">
-    <div id="show-campaign-detail">
-      <div id="show-campaign-detail-main">
-      <h2><%= @campaign.name %></h2>
-      <div class="row-fluid">
-      <div class="span6">
-      <ul>
-        <li><strong><%= t(:credit) %>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€ (<%= link_to t(:add_credit), add_credit_campaign_path %>)</li>
-        <% if @campaign.category %>
-          <li><strong><%= t(:category) %>:</strong> <%= @campaign.category.name %></li>
-        <% end %>
-        <% unless @campaign.status == 'archived' %>
-          <li><strong><%= t(:published_at) %>:</strong> <%= time_ago_in_words(@campaign.created_at) %></li>
-          <li><strong><%= t(:time_left) %>:</strong> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
-        <% else %>
-          <li><strong><%= t(:published_at) %>:</strong> <%= time_ago_in_words(@campaign.published_at) %></li>
-          <li><strong><%= t(:archived_campaign) %></strong></li>
-        <% end %>
-        <li>
-          <strong><%= t(:participants) %>:</strong>
-          <span id="participants">
-          <% if @campaign.ttype == 'mailing' %>
-            <%= @campaign.messages.validated.count %>
-          <% elsif @campaign.ttype == 'petition' %>
-            <%= @campaign.petitions.validated.count %>
-          <% elsif @campaign.ttype == 'fax' %>
-            <%= @campaign.faxes.validated.count %>
-          <% end %>
-        </span>
-          <%= t(:of) %>
-          <span id="participants-target"><%= @campaign.target %></span>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <% unless @campaign.user.name.blank? %>
-        <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name %>
-        <%= @campaign.user.name %>
-      <% end %>
-      <br />
-      <br />
-      <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
-    </div>
-  </div>
-
-    <div id="campaign-information">
-      <div class="progress progress-striped progress-danger active">
-        <div class="bar" style="width: 0%;"></div>
-      </div>
-    </div><!-- campaing-information -->
-
-
-    <ul id="campaign-tab" class="nav nav-tabs">
-      <li class="active">
-        <a data-toggle="tab" href="#description"><%= t(:description) %></a>
-      </li>
-      <% if @campaign.ttype == 'mailing' %>
-        <li>
-          <a data-toggle="tab" href="#message"><%= t(:message) %></a>
-        </li>
-      <% end %>
-      <% if @campaign.ttype == 'fax' %>
-        <li>
-          <a data-toggle="tab" href="#fax"><%= t(:Faxes) %></a>
-        </li>
-      <% end %>
-      <% unless @campaign.status == 'archived' %>
-        <li data-tab-type="stats">
-          <a data-toggle="tab" href="#stats"><%= t(:stats) %></a>
-        </li>
-      <% end %>
-
-        <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
-
-    </ul><!-- tabs -->
-    <div class="tab-content">
-      <div id="description" class="active tab-pane">
-        <div id="campaign-info">
-          <h2>Descripción</h2>
-          <%= @campaign.to_html(@campaign.intro).html_safe %> 
-          <% if @campaign.image.to_s %>
-            <p style="text-align:center;margin:15px 0px;">
-            <%= image_tag(@campaign.image_url.to_s) %>
-            </p>
-          <% end %>
-          <%= @campaign.to_html(@campaign.body).html_safe %> 
-
-      <% if @campaign.commentable %>
-          <p style="margin-bottom:30px;"></p>
-          <div id="participants">
-            <!-- FB COMMENTS -->
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-            <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="2" data-width="500"></div>
-          </div><!-- participants -->
-      <% end %>
-        <p style="margin-bottom:30px;"></p>
-        </div>
-      </div><!-- description -->
-      <div id="message" class="tab-pane fade">
-        <div id="campaign-info">
-          <h2><%= t(:recipients) %></h2>
-          <p><%= t(:recipients_show) %></p>
-            <ul>
-              <% @campaign.recipients.gsub('@', '[arroba]').split(' ').each do |dest| %> 
-                <li><%= dest %></li>
-              <% end %>
-            </ul>
-            <hr />
-            <h2><%= t(:message) %></h2>
-            <b><%= t(:subject) %></b>: <%= @campaign.default_message_subject %> 
-          <p>
-            <pre><%= @campaign.default_message_body %></pre>
-          </p>
-        </div>
-      </div><!-- message -->
-      <div id="fax" class="tab-pane fade">
-        <div id="campaign-info">
-          <h2><%= t(:faxes_recipients) %></h2>
-          <p><%= t(:recipients_show) %></p>
-            <ul>
-              <% @campaign.numbers.each do |number| %> 
-                <li><%= number %></li>
-              <% end %>
-            </ul>
-            <hr />
-            <h2><%= t(:message) %></h2>
-          <p>
-            <pre><%= @campaign.default_message_body %></pre>
-          </p>
-        </div>
-      </div><!-- message -->
-      <% unless @campaign.status == 'archived' %>
-        <div id="stats" class="tab-pane fade">
-          <%= render :partial => "stats_chart" %>
-        </div><!-- message -->
-      <% end %>
-
-    </div><!-- tab-content -->
-
-    </div><!-- show-campaign-detail-main -->
-        
-
-    </div><!-- show-campaign-detail -->
-    <div id="show-campaign-sidebar" class="grid_8">
-      
-      <% unless @campaign.status == 'archived' %>
-
-        <% if @has_participated %>
-
-          <div id="show-campaign-petition">
-            <%= render :partial => 'has_participated' %>
-          </div>
-
-        <% end %>
-        
-      <% end %>
-
-
-    </div><!-- show-campaign-sidebar -->
-  </div><!-- show-campaign -->
-</div><!-- campaigns-wrapper -->
-
-</div>
-</div>
+</div><!-- row-fluid -->
