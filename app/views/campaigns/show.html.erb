@@ -63,15 +63,7 @@
           <% end %>
           <li>
             <strong><%= t(:participants) %>:</strong>
-            <span id="participants">
-            <% if @campaign.ttype == 'mailing' %>
-              <%= @campaign.messages.validated.count %>
-            <% elsif @campaign.ttype == 'petition' %>
-              <%= @campaign.petitions.validated.count %>
-            <% elsif @campaign.ttype == 'fax' %>
-              <%= @campaign.faxes.validated.count %>
-            <% end %>
-          </span>
+            <span id="participants"><%= @campaign.messages_count %></span>
             <%= t(:of) %>
             <span id="participants-target"><%= @campaign.target %></span>
           </li>
