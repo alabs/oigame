@@ -90,3 +90,5 @@ gem 'devise-async'
 #gem 'jquery-turbolinks'
 
 #gem 'capistrano-resque'
+
+#gem 'bitcoin-ruby', :path => '~/src/bitcoin-ruby'

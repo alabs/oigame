@@ -20,6 +20,7 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
+    add_breadcrumb t(:home), root_path, :title => t(:home)
     #if @sub_oigame == 'not found'
     #  render_404
     #  return false
@@ -486,6 +487,7 @@ class CampaignsController < ApplicationController
     data[:reference] = @reference
     data[:name] = current_user.name
     data[:email] = current_user.email
+    data[:callback] = campaign_url(@campaign)
     HTTParty.post("http://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 
