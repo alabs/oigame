@@ -20,7 +20,6 @@ class CampaignsController < ApplicationController
   respond_to :html, :json
 
   def index
-    add_breadcrumb t(:home), root_path, :title => t(:home)
     #if @sub_oigame == 'not found'
     #  render_404
     #  return false
