@@ -9,6 +9,8 @@ end
 gem 'sass-rails', '3.2.3'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-ui-themes'
 
 #gem 'unicorn'
 gem 'thin'
