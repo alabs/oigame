@@ -194,9 +194,42 @@
 
 
 <div class="main">
-  <% @campaigns_carousel.each do |campaign| %>
+  <div class="explica"><%= image_tag("social.png") %></div>
     <div class="view view-tenth span6">
+        <% @campaigns_carousel.each do |campaign| %>
         <%= image_tag(campaign.image) %>
+
+        <div class="carousel-caption">
+                      <div id="izquierda" class="span4">                
+                      <h4><%= link_to campaign.name, campaign %></h4>                  
+                     </div>
+
+                    <div id="derecha" class="span2">
+                      <div id="avatar">
+                          <%= image_tag(avatar_url(campaign.user.email)) %>
+                         <% if campaign.user.name.blank? %>
+                           <h4>Pobrecito hablador</h4>
+                         <% else %>
+                           <h4><%= campaign.user.name %></h4>
+                         <% end %>
+                       
+                      </div> 
+                      
+                    </div>
+                    <div class="progress progress-info progress-striped">
+                        <div class="bar" style="width: 50%"></div>
+                    </div>
+
+                    <div id="iconoscampa" >  
+                                 <ul>
+                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
+   
+                                 </ul>
+                      </div>
+                    </div><!-- carousel-caption -->
         <div class="mask">
             <h2><%= campaign.name %></h2>
             <p><%= campaign.intro %></p>

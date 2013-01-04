@@ -207,7 +207,9 @@ label
 
 #avatar
   img
-    width: 10%
+    width: 25px
+    height: 25px
+    border: 0px
     display: inline
     float: right
     margin-top: -10px
@@ -221,6 +223,9 @@ label
       display: inline
       img
         width: 25px
+        height: 25px
+        display: inline
+        border: 0px
         padding: 2px
 
 #campaign-information .progress
@@ -257,9 +262,9 @@ label
   overflow: hidden
   position: relative
   text-align: center
-  -webkit-box-shadow: 1px 1px 2px #e6e6e6
-  -moz-box-shadow: 1px 1px 2px #e6e6e6
-  box-shadow: 1px 1px 2px #e6e6e6
+  -webkit-box-shadow: 3px 3px 8px #9E9999
+  -moz-box-shadow: 3px 3px 8px #9E9999
+  box-shadow: 3px 3px 8px #9E9999
   cursor: default
   background: url(bkcarrusel.jpg)
   padding: 10px
@@ -277,6 +282,23 @@ label
   overflow: hidden
   top: 0
   left: 0
+.explica 
+  width: 50px 
+  height: 50px
+  background-image: url('hexellence.png')
+  position: relative
+  z-index: 4
+  transform: rotate(-10deg)
+  -ms-transform: rotate(-10deg) /* IE 9 */
+  -webkit-transform: rotate(-10deg) /* Safari and Chrome */
+  -o-transform: rotate(-10deg) /* Opera */
+  margin-bottom: -60px
+  -moz-border-radius: 50px
+  -webkit-border-radius: 50px
+  border-radius: 50px
+  margin-bottom: -50px
+  
+
 
 #home-text
   text-shadow: 1px 1px 1px #AFD0EB
@@ -452,6 +474,7 @@ label
     margin-left: 5%
   .view
     height: auto
+
 
 
   .carousel-inner 
