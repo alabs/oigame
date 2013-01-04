@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   filter_access_to :all
 
   def index
-    @campaigns_carousel = Campaign.last_campaigns_without_pagination(5)
+    @campaigns_carousel = Campaign.last_campaigns_without_pagination(4)
   end
 
   def help
