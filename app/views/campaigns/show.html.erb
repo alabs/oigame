@@ -17,6 +17,42 @@
 <% end %>
 
 <div class="row-fluid">
+  <div class="span4">
+    <div id="participate-buttons">
+
+      <% unless @campaign.status == 'archived' %>
+
+        <% if @has_participated %>
+
+          <div id="show-campaign-petition">
+            <%= render :partial => 'has_participated' %>
+          </div>
+
+        <% else %>
+
+          <% if @campaign.ttype == 'petition' %>
+            <div id="show-campaign-petition">
+              <%= render :partial => 'petition_form' %>
+            </div>
+          <% end %>
+  
+          <% if @campaign.ttype == 'mailing' %>
+            <div id="show-campaign-mailing">
+              <%= render :partial => 'mailing_form' %>
+            </div>
+          <% end %>
+          
+          <% if @campaign.ttype == 'fax' %>
+            <div id="show-campaign-fax">
+              <%= render :partial => 'fax_form' %>
+            </div>
+          <% end %>
+
+        <% end %>
+      <% end %>
+
+    </div> <!-- participate-buttons -->
+  </div> <!-- span4 -->
 
   <div class="span7" style="margin-left: 2.12766%; margin-top: -6em;">
 
@@ -196,41 +232,5 @@
 
   </div><!-- span7 -->
 
-  <div class="span4">
-    <div id="participate-buttons">
-
-      <% unless @campaign.status == 'archived' %>
-
-        <% if @has_participated %>
-
-          <div id="show-campaign-petition">
-            <%= render :partial => 'has_participated' %>
-          </div>
-
-        <% else %>
-
-          <% if @campaign.ttype == 'petition' %>
-            <div id="show-campaign-petition">
-              <%= render :partial => 'petition_form' %>
-            </div>
-          <% end %>
-  
-          <% if @campaign.ttype == 'mailing' %>
-            <div id="show-campaign-mailing">
-              <%= render :partial => 'mailing_form' %>
-            </div>
-          <% end %>
-          
-          <% if @campaign.ttype == 'fax' %>
-            <div id="show-campaign-fax">
-              <%= render :partial => 'fax_form' %>
-            </div>
-          <% end %>
-
-        <% end %>
-      <% end %>
-
-    </div> <!-- participate-buttons -->
-  </div> <!-- span4 -->
 
 </div><!-- row-fluid -->
