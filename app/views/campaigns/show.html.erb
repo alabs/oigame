@@ -1,6 +1,6 @@
 <% @page_title = @campaign.name %>
 
-<% if @campaign.ttype == 'fax' && @campaign.credit <= 0 %>
+<% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
   <div id="modal-notify-nocredit" data-keyboard="true" class="modal fade">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
