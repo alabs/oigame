@@ -11,6 +11,8 @@ function switch_campaign_type(ctype) {
     case "petition": 
       $(".form-campaign, .form-fax")
         .hide("slow");
+      $("form-fax input, .form-fax textarea")
+        .attr("required", "required");
       $(".form-campaign input, .form-campaign textarea, .form-fax input, .form-fax textarea")
         .removeAttr("required"); 
       break;
@@ -20,7 +22,9 @@ function switch_campaign_type(ctype) {
       $(".form-campaign")
         .show("slow")
         .removeClass("hide");
-      $("form-campaign input, .form-campaign textarea")
+      $(".form-fax input, .form-fax textarea")
+        .removeAttr("required");
+      $(".form-campaign input, .form-campaign textarea")
         .attr("required", "required");
       break;
     case "fax":
@@ -29,6 +33,8 @@ function switch_campaign_type(ctype) {
       $(".form-fax")
         .show("slow")
         .removeClass("hide");
+      $(".form-campaign input, .form-campaign textarea")
+        .removeAttr("required");
       $(".form-fax input, .form-fax textarea")
         .attr("required", "required");
       break;
@@ -193,10 +199,9 @@ $(function() {
   var ctype_old = $("#campaign_ttype").val() 
   switch_campaign_type(ctype_old);
 
-  // para ocultar o mostrar un field en función del select
-  $("#campaign_ttype").change(function() {
-    var ctype_new = $(this).val();
-    switch_campaign_type(ctype_new);
+  // /second: para ocultar o mostrar un field en función del select
+  $('.campaign-ttype input').change( function(){
+    switch_campaign_type($(this).attr('value'));
   });
 
   // comprueba si esta marcada la casilla de escribir el propio mensaje
