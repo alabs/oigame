@@ -10,20 +10,33 @@ function check_current_navbar(section){
   var section = section.split("#")[0];
   switch (section) {
     case "campaigns": 
+      $("#header-home").removeClass("active");
       $("#header-campaigns").addClass("active");
       break;
+    case "about":
+      $("#header-home").removeClass("active");
+      $("#header-about").addClass("active");
+      break;
+    case "contact":
+      $("#header-home").removeClass("active");
+      $("#header-contact").addClass("active");
+      break;
     case "users":
+      $("#header-home").removeClass("active");
       $("#header-signup").addClass("active");
       break;
     case "donate":
+      $("#header-home").removeClass("active");
       $("#header-donate").addClass("active");
       break;
     case "help":
+      $("#header-home").removeClass("active");
       $("#header-help").addClass("active");
       generateTOC("#preguntas");
       if (query) { goTo(query); }
       break;
     case "tutorial":
+      $("#header-home").removeClass("active");
       $("#header-tutorial").addClass("active");
       generateTOC("#tutorial");
       if (query) { goTo(query); }
@@ -73,6 +86,6 @@ $(function() {
   $("#campaign_name").focus();
   $("#contact_name").focus();
 
-  check_current_navbar(document.URL.split('/')[3]);
+  check_current_navbar(document.URL.split('/')[4]);
 
 });

@@ -107,14 +107,13 @@
           <div class="nav-collapse collapse">
          
              <ul class="nav pull-right">
-              <li class="active"><%= link_to t(:home), root_path %></li>
-              <li><%= link_to t(:about), about_path %></li>
-              <li><%= link_to t(:create), new_campaign_path %></li>
-              <li><%= link_to t(:campaigns), campaigns_path %></li>
-              <li><%= link_to t(:search), search_campaigns_path %></li>
-              <li><%= link_to t(:donate), donate_path %></li>
-              <li><%= link_to t(:help), help_path %></li>              
-              <li><%= link_to t(:contact), contact_path %></li>
+              <li id="header-home" class="active"><%= link_to t(:home), root_path %></li>
+              <li id="header-about"><%= link_to t(:about), about_path %></li>
+              <li id="header-create"><%= link_to t(:create), new_campaign_path %></li>
+              <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
+              <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
+              <li id="header-help"><%= link_to t(:help), help_path %></li>              
+              <li id="header-contact"><%= link_to t(:contact), contact_path %></li>
             </ul>              
           </div><!--/.nav-collapse -->  
                  
