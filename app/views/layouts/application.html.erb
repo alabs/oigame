@@ -8,7 +8,7 @@
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <%= show_meta_tags %>
     <% if @image_src %>
-    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <meta property="og:image" content="\\<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
     <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
