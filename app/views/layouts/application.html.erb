@@ -1,35 +1,19 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
-  <head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# oigameapp: http://ogp.me/ns/fb/oigameapp#">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= @page_title %> - oiga.me</title>
     <%= stylesheet_link_tag "responsive" %>
     <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
-    <meta property="og:title" content="<%= @page_title %> - oiga.me" />
-    <% if @cause %>
-    <meta property="og:type" content="cause" />
-    <% else %>
-    <meta property="og:type" content="website" />
-    <% end %>
+    <%= show_meta_tags %>
     <% if @image_src %>
-    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <meta property="og:image" content="<%= image_path(@image_src) %>" />
     <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
     <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
     <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
     <% end %>
-    <meta property="og:url" content="<%= url_for :only_path => false %>" />
-    <% if @description %>
-      <meta property="og:description" content="<%= strip_tags(@description) %> - oiga.me" />
-      <meta name="description" content="<%= strip_tags(@description) %> - oiga.me" />
-    <% else %>
-      <meta property="og:description" content="<%= t(:description) %> - oiga.me" />
-      <meta name="description" content="<%= t(:description) %> - oiga.me" />
-    <% end %>
-    <meta name="keywords" content="<%= t(:keywords) %>" />
-    <meta property="fb:app_id" content="<%= APP_CONFIG[:facebook_app_id] %>"/>
     <%= csrf_meta_tags %>
     <meta name="generator" content="oiga.me - <%= Rails.env %>" />
     <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />

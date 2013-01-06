@@ -36,6 +36,13 @@ class CampaignsController < ApplicationController
     @cause = true
     @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
 
+    # metas for facebook
+    @meta['oigameapp']['type'] = 'campaign'
+    @meta['title'] = @campaign.name
+    @meta['og']['url'] = campaign_url(@campaign,locale:nil)
+    @meta['description'] = @campaign.intro
+    @meta['oigameapp']['end_date'] = @campaign.duedate_at.strftime("%Y-%m-%d")
+
     @participants = @campaign.participants
 
     @has_participated = @campaign.has_participated?(current_user)
