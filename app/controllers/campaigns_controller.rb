@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
-  #include Facebook
+  #include Social::Facebook
 
   before_filter :protect_from_spam, :only => [:message, :petition, :fax]
   protect_from_forgery :except => [:message, :petition, :fax]
@@ -164,10 +164,17 @@ class CampaignsController < ApplicationController
               message.update_attributes(:validated => true, :token => nil)
               Mailman.send_message_to_recipients(message.id).deliver
               if @sub_oigame.nil?
-                redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
+                #redirect_url = message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
+                redirect_url = message_campaign_url
               else
-                redirect_to message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+                #redirect_url = message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+                redirect_url = message_sub_oigame_campaign_url(@campaign, @sub_oigame)
               end
+              session[:fb_sess_campaign] = @campaign.id
+              redirect_to facebook_auth_url
+
+              # revisar y mandar al sitio correcto
+              #redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
 
               return
             end
@@ -247,7 +254,11 @@ class CampaignsController < ApplicationController
           else
             redirect_url = petition_campaign_url
           end
-          redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
+          session[:fb_sess_campaign] = @campaign.id
+          redirect_to facebook_auth_url
+
+          # revisar y mandar al sitio correcto
+          #redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
 
           return
 
@@ -414,11 +425,17 @@ class CampaignsController < ApplicationController
               fax.update_attributes(:validated => true, :token => nil)
               Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
               if @sub_oigame.nil?
-                redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
+                #redirect_url = fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
+                redirect_url = fax_campaign_url
               else
-                redirect_to fax_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+                #redirect_url = fax_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
+                redirect_url = fax_sub_oigame_campaign_url(@campaign, @sub_oigame)
               end
+              session[:fb_sess_campaign] = @campaign.id
+              redirect_to facebook_auth_url
 
+              # revisar y mandar al sitio correcto
+              #redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
               return
             end
             Mailman.send_message_to_validate_fax(from, @campaign.id, fax.id).deliver
