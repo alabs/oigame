@@ -98,6 +98,8 @@ Oigame::Application.routes.draw do
         get 'search' => 'campaigns#search'
       end
     end
+    
+    get 'facebook/callback' => 'facebook#callback', :as => 'facebook_callback'
   
     root :to => 'pages#index'
   

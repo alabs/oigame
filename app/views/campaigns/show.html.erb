@@ -74,14 +74,11 @@
           <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name %>
           <%= @campaign.user.name %>
         <% end %>
-        <br />
-        <br />
-        <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
       </div>
     </div>
 
       <div id="campaign-information">
-        <div class="progress progress-striped progress-danger active">
+        <div class="progress progress-striped progress-danger active" style="margin-left: 22px;">
           <div class="bar" style="width: 0%;"></div>
         </div>
       </div><!-- campaing-information -->
