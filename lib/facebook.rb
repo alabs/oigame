@@ -5,6 +5,7 @@ module Facebook
     @app = @graph.get_object(APP_CONFIG[:FACEBOOK_APP_ID])
     if session[:access_token]
       @fbuser = @graph.get_object("me")
+      logger.debug('DEBUG FB USER: ' + @fbuser.inspect)
     end
   end
 
@@ -20,13 +21,14 @@ module Facebook
   def callback
     session[:access_token] = authenticator.get_access_token(params[:code])
     # ejecutar cosas
-    logger.debug('DEBUG: ' + session[:access_token].inspect)
+    logger.debug('DEBUG ACCESS TOKEN: ' + session[:access_token].inspect)
     init
     campaign_id = session[:fb_sess_campaign]
     session[:fb_sess_campaign] = nil
     campaign = Campaign.find(campaign_id)
-    options = { :query => { :session_token => session[:access_token], :campaign => campaign_url(campaign), "fb:explicitly_shared" => true } }
-    HTTParty.get('https://graph.facebook.com/me/oigameapp:sign', options)
+    options = { :body => { :session_token => session[:access_token], :campaign => campaign_url(campaign), "fb:explicitly_shared" => true } }
+    resp = HTTParty.post('http://graph.facebook.com/me/oigameapp:sign', options)
+    logger.debug('DEBUG HTTP RESPONSE: ' + resp.inspect)
     redirect_to root_path
   end
 
