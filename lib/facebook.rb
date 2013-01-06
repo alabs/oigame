@@ -25,7 +25,7 @@ module Facebook
     campaign_id = session[:fb_sess_campaign]
     session[:fb_sess_campaign] = nil
     campaign = Campaign.find(campaign_id)
-    `curl -F #{session[:access_token]} -F #{campaign_url(campaign)} https://graph.facebook.com/me/oigameapp:sign`
+    `curl -F session_token=#{session[:access_token]} -F campaign=#{campaign_url(campaign)} https://graph.facebook.com/me/oigameapp:sign`
     redirect_to root_path
   end
 
