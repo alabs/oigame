@@ -8,7 +8,7 @@
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <%= show_meta_tags %>
     <% if @image_src %>
-    <meta property="og:image" content="<%= image_path(@image_src) %>" />
+    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
     <% else %>
     <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
@@ -162,8 +162,29 @@
       })();
     </script> 
     <% end %>
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-      {lang: 'es'}
+    <script type="text/javascript">
+        window.___gcfg = {lang: 'es'};
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-35996224-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=<%= APP_CONFIG[:FACEBOOK_APP_ID] %>";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
     </script>
     <%= javascript_include_tag 'application' %>
     <% if Rails.env == 'development' %>
