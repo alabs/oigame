@@ -32,6 +32,9 @@ module Facebook
 
   def callback
 	  session[:access_token] = authenticator.get_access_token(params[:code])
+    logger.debug('DEBUG :' + session[:access_token].inspect)
+    basura
+    redirect_to root_path
   end
 
   def destroy
@@ -42,7 +45,7 @@ module Facebook
   protected
 
   def basura
-    authenticator && @graph = Koala::Facebook::API.new(session[:access_token])
+    @graph = Koala::Facebook::API.new(session[:access_token])
     @app = @graph.get_object(APP_CONFIG[:FACEBOOK_APP_ID])
     if session[:access_token]
       @user    = @graph.get_object("me")
