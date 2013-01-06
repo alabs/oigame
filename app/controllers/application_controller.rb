@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   
   helper :all
   
-  before_filter :set_locale, :header_data
+  before_filter :set_locale, :header_data, :set_meta_defaults
   protect_from_forgery
 
   before_filter { |c| Authorization.current_user = c.current_user }
@@ -60,5 +60,16 @@ class ApplicationController < ActionController::Base
     @total_signs = (Message.validated.all + Petition.validated.all + Fax.validated.all ).count
     @total_users = User.all.count
     @slideshow_campaigns = Campaign.last_campaigns_without_pagination(4)
+  end
+
+  def set_meta_defaults
+    @meta = {} || @meta
+    @meta['title'] = 'oiga.me'
+    @meta['descrition'] = 'Participa y colabora'
+    @meta['og'] = {} || @meta['og']
+    @meta['og']['type'] = 'website'
+    @meta['fb'] = {} || @meta['fb']
+    @meta['fb']['app_id'] = 393525384072095
+    @meta['oigameapp'] = {} || @meta['oigameapp']
   end
 end
