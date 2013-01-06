@@ -99,10 +99,7 @@ Oigame::Application.routes.draw do
       end
     end
     
-    get 'facebook/callback' => 'facebook#callback', :as => 'facebook_callback'
-  
     root :to => 'pages#index'
-  
   end
 
   match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
