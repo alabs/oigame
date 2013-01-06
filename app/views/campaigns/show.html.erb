@@ -76,6 +76,7 @@
         <% end %>
         <br />
         <br />
+        <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
       </div>
     </div>
 
@@ -125,6 +126,8 @@
               </p>
             <% end %>
             <%= @campaign.to_html(@campaign.body).html_safe %> 
+            
+            <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
 
         <% if @campaign.commentable %>
             <p style="margin-bottom:30px;"></p>
