@@ -36,7 +36,7 @@ module ApplicationHelper
     data << "<meta property='og:title' content='#{@meta['title']}' />\n"
     ['fb','og','oigameapp'].each do |tec|
       @meta[tec].each do |key,content|
-        data << "<meta propery='#{tec}:#{key}' content='#{content}' />\n"
+        data << "<meta property='#{tec}:#{key}' content='#{content}' />\n"
       end
     end
     data.html_safe

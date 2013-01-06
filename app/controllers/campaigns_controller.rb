@@ -37,7 +37,6 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
 
     # metas for facebook
-    @meta['oigameapp']['type'] = 'campaign'
     @meta['title'] = @campaign.name
     @meta['og']['url'] = campaign_url(@campaign,locale:nil)
     @meta['description'] = @campaign.intro
