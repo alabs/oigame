@@ -67,6 +67,7 @@ class ApplicationController < ActionController::Base
     @meta['title'] = 'oiga.me'
     @meta['description'] = 'Participa y colabora'
     @meta['og'] = {} || @meta['og']
+    @meta['og']['locale'] = 'es'
     @meta['fb'] = {} || @meta['fb']
     @meta['fb']['app_id'] = APP_CONFIG[:FACEBOOK_APP_ID]
     @meta['oigameapp'] = {} || @meta['oigameapp']
