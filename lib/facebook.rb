@@ -20,6 +20,7 @@ module Facebook
   def callback
     session[:access_token] = authenticator.get_access_token(params[:code])
     # ejecutar cosas
+    logger.debug('DEBUG: ' + session[:access_token].inspect)
     init
     campaign_id = session[:fb_sess_campaign]
     session[:fb_sess_campaign] = nil
