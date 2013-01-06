@@ -27,7 +27,7 @@ module Facebook
 
   def auth
     session[:access_token] = nil
-    redirect authenticator.url_for_oauth_code(:permissions => FACEBOOK_SCOPE)
+    redirect_to authenticator.url_for_oauth_code(:permissions => FACEBOOK_SCOPE)
   end
 
   def callback
@@ -36,7 +36,7 @@ module Facebook
 
   def destroy
     session[:access_token] = nil
-    redirect '/'
+    redirect_to '/'
   end
 
   protected
