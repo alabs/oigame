@@ -40,7 +40,7 @@ class CampaignsController < ApplicationController
     @meta['oigameapp']['type'] = 'campaign'
     @meta['title'] = @campaign.name
     @meta['og']['url'] = campaign_url(@campaign,locale:nil)
-    @meta['descrition'] = @campaign.intro
+    @meta['description'] = @campaign.intro
     @meta['oigameapp']['end_date'] = @campaign.duedate_at.strftime("%Y-%m-%d")
 
     @participants = @campaign.participants
