@@ -1,6 +1,8 @@
 # encoding: utf-8
 class CampaignsController < ApplicationController
 
+  #include Facebook
+
   before_filter :protect_from_spam, :only => [:message, :petition, :fax]
   protect_from_forgery :except => [:message, :petition, :fax]
   layout 'application', :except => [:widget, :widget_iframe]
