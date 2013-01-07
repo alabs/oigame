@@ -106,6 +106,8 @@ Oigame::Application.routes.draw do
     root :to => 'pages#index'
   end
 
+  post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
+
   match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
     constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
 
