@@ -13,19 +13,10 @@
         <%= link_to url do %>
           <span class="label label-warning" style="font-size: 1em;">archivada</span>
         <% end %>
-        <% if campaign.ttype == 'mailing' %>
-          <strong><%= campaign.messages.validated.count %></strong> <%= t(:have_already_made) %>
-        <% elsif campaign.ttype == 'petition' %>
-          <strong><%= campaign.petitions.validated.count %></strong> <%= t(:have_already_made) %>
-        <% end %>
       <% else %>
         <%= link_to t(:join_this_campaign), url, :title => campaign.name %>
-        <% if campaign.ttype == 'mailing' %>
-          <strong><%= campaign.messages.validated.count %></strong>   <%= t(:have_already_made) %>
-        <% elsif campaign.ttype == 'petition' %>
-          <strong><%= campaign.petitions.validated.count %></strong>  <%= t(:have_already_made) %>
-        <% end %>
       <% end %>
+      <strong><%= campaign.messages_count %></strong> <%= t(:have_already_made) %>
       </div><!-- campaign-text-links -->
     </div><!-- campaign-text -->
   </div><!-- cinfo -->

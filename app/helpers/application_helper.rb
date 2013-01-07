@@ -28,4 +28,17 @@ module ApplicationHelper
       return logo_oigame
     end
   end
+
+  def show_meta_tags
+    data = ""
+    data << "<meta property='og:description' content='#{@meta['description']}' />\n"
+    data << "<meta name='description' content='#{@meta['description']}' />\n"
+    data << "<meta property='og:title' content='#{@meta['title']}' />\n"
+    ['fb','og','oigameapp'].each do |tec|
+      @meta[tec].each do |key,content|
+        data << "<meta property='#{tec}:#{key}' content='#{content}' />\n"
+      end
+    end
+    data.html_safe
+  end
 end

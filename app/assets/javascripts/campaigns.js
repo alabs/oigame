@@ -196,8 +196,7 @@ $(function() {
     window.location = destination;
   });
 
-  var ctype_old = $("#campaign_ttype").val() 
-  switch_campaign_type(ctype_old);
+  switch_campaign_type($('input[name="campaign[ttype]"]').filter(':checked').attr('value'));
 
   // /second: para ocultar o mostrar un field en función del select
   $('.campaign-ttype input').change( function(){

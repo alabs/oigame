@@ -1,19 +1,7 @@
 <% @page_title = @campaign.name %>
 
 <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
-  <div id="modal-notify-nocredit" data-keyboard="true" class="modal fade">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3>Esta campaña no tiene crédito</h3>
-    </div>
-     <div class="modal-body">
-       <p>Esta campaña no dispone de crédito para poder enviar faxes. Si quieres añadir crédito para poder activarla puedes hacerlo pulsando el botón 'añadir crédito'. Esto te enviará al banco con el que opera oiga.me y de esa manera la campaña se podra poner en funcionamiento. Gracias por tu colaboración.</p>
-     </div>
-     <div class="modal-footer">
-       <%= link_to t(:close), '#', 'data-dismiss' => 'modal', :class => 'btn' %>
-       <%= link_to t(:add_credit), add_credit_campaign_path, :class => 'btn btn-inverse' %>
-     </div>
-  </div>
+  <%= render :partial => 'no_credit' %>
 <% end %>
 
 <div class="row-fluid">
@@ -75,15 +63,7 @@
           <% end %>
           <li>
             <strong><%= t(:participants) %>:</strong>
-            <span id="participants">
-            <% if @campaign.ttype == 'mailing' %>
-              <%= @campaign.messages.validated.count %>
-            <% elsif @campaign.ttype == 'petition' %>
-              <%= @campaign.petitions.validated.count %>
-            <% elsif @campaign.ttype == 'fax' %>
-              <%= @campaign.faxes.validated.count %>
-            <% end %>
-          </span>
+            <span id="participants"><%= @campaign.messages_count %></span>
             <%= t(:of) %>
             <span id="participants-target"><%= @campaign.target %></span>
           </li>
@@ -94,14 +74,11 @@
           <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name %>
           <%= @campaign.user.name %>
         <% end %>
-        <br />
-        <br />
-        <%= render :partial => "communication", :locals => { :share_url => CGI::escape(APP_CONFIG[:domain]+"/campaigns/"+@campaign.slug) } %>
       </div>
     </div>
 
       <div id="campaign-information">
-        <div class="progress progress-striped progress-danger active">
+        <div class="progress progress-striped progress-danger active" style="margin-left: 22px;">
           <div class="bar" style="width: 0%;"></div>
         </div>
       </div><!-- campaing-information -->
@@ -146,20 +123,13 @@
               </p>
             <% end %>
             <%= @campaign.to_html(@campaign.body).html_safe %> 
+            
+            <%= render :partial => "communication", :locals => { :share_url => campaign_url(@campaign,locale:nil) } %>
 
         <% if @campaign.commentable %>
             <p style="margin-bottom:30px;"></p>
             <div id="participants">
-              <!-- FB COMMENTS -->
-              <div id="fb-root"></div>
-              <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="2" data-width="500"></div>
+              <div class="fb-comments" data-href="<%= campaign_url(locale:nil) %>" data-num-posts="2" data-width="500"></div>
             </div><!-- participants -->
         <% end %>
           <p style="margin-bottom:30px;"></p>

@@ -5,7 +5,7 @@ Oigame::Application.routes.draw do
 
   resources :categories
 
-  scope ":locale", :locale => /en|es/ do
+  scope "(:locale)", :locale => /en|es/ do
     # solucionar el tema de acceso por rol
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
@@ -98,9 +98,10 @@ Oigame::Application.routes.draw do
         get 'search' => 'campaigns#search'
       end
     end
-  
+    
+    get 'facebook/auth' => 'facebook#auth', :as => 'facebook_auth'
+    get 'facebook/callback' => 'facebook#callback', :as => 'facebook_callback'
     root :to => 'pages#index'
-  
   end
 
   match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },

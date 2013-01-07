@@ -293,6 +293,17 @@ class Campaign < ActiveRecord::Base
     wstatus.include?('duedate_at') || active?
   end
 
+  def messages_count
+    case ttype
+    when 'mailing'
+      messages.validated.count
+    when 'peititon'
+      petitions.validated.count
+    when 'fax'
+      faxes.validated.count
+    end
+  end
+
   private
 
   def generate_slug
