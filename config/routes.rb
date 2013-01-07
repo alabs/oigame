@@ -52,6 +52,7 @@ Oigame::Application.routes.draw do
     get 'donate/denied' => 'donate#denied'
     get 'answers' => redirect('/help')
     get 'help' => 'pages#help', :as => 'help'
+    get 'activity' => 'pages#activity', :as => 'activity'
     get 'tutorial' => 'pages#tutorial', :as => 'tutorial'
     get 'privacy-policy' => 'pages#privacy_policy', :as => 'privacy_policy'
     get 'contact' => 'pages#contact', :as => 'contact'

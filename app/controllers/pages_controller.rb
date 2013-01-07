@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   layout :set_layout
 
   filter_access_to :all
+  filter_access_to :activity
 
   def index
     @campaigns_carousel = Campaign.last_campaigns_without_pagination(4)
@@ -38,4 +39,23 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def activity
+    messages_q = Message.find(:all, :order => "created_at asc", :select => "created_at, name, campaign_id, id", :limit => 5).reverse
+    @messages = messages_q.map do |m|
+      camp = Campaign.find(m.campaign_id)
+      {
+        :id        => m.id,
+        :camp_name => camp.name,
+        :camp_url  => camp.get_absolute_url,
+        :part_name => m.name ? m.name : "Anon",
+        :timestamp => m.created_at.to_i,
+      }
+    end
+
+    respond_to do |format|
+      format.json { render json: @messages }
+    end
+  end
+
 end
