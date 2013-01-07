@@ -64,7 +64,9 @@ gem 'thinking-sphinx', '2.0.10'
 gem 'fb_graph'
 #gem 'kaminari'
 gem 'omniauth-facebook'
-#gem 'omniauth-twitter'
+gem 'omniauth-twitter'
+
+gem "koala"
 
 gem 'rails_admin'
 gem 'mailcatcher'
@@ -94,3 +96,4 @@ gem 'devise-async'
 #gem 'capistrano-resque'
 
 #gem 'bitcoin-ruby', :path => '~/src/bitcoin-ruby'
+

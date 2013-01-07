@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   
   helper :all
   
-  before_filter :set_locale, :header_data
+  before_filter :set_locale, :header_data, :set_meta_defaults
   protect_from_forgery
 
   before_filter { |c| Authorization.current_user = c.current_user }
@@ -56,9 +56,20 @@ class ApplicationController < ActionController::Base
 
   def header_data
     # cachear esto con redis
-    @total_published_campaigns = Campaign.total_published_campaigns.all.count
-    @total_signs = (Message.validated.all + Petition.validated.all + Fax.validated.all ).count
-    @total_users = User.all.count
-    @slideshow_campaigns = Campaign.last_campaigns_without_pagination(4)
+    @total_published_campaigns = Rails.cache.fetch("otpc", :expires_in => 3.hours) { Campaign.total_published_campaigns.all.count }
+    @total_signs = Rails.cache.fetch("ots", :expires_in => 3.hours) { (Message.validated.all + Petition.validated.all + Fax.validated.all ).count }
+    @total_users = Rails.cache.fetch("otu", :expires_in => 3.hours) { User.all.count }
+    @slideshow_campaigns = Rails.cache.fetch("osc", :expires_in => 3.minutes) { Campaign.last_campaigns_without_pagination(4) }
+  end
+
+  def set_meta_defaults
+    @meta = {} || @meta
+    @meta['title'] = 'oiga.me'
+    @meta['description'] = 'Participa y colabora'
+    @meta['og'] = {} || @meta['og']
+    @meta['og']['locale'] = 'es'
+    @meta['fb'] = {} || @meta['fb']
+    @meta['fb']['app_id'] = APP_CONFIG[:FACEBOOK_APP_ID]
+    @meta['oigameapp'] = {} || @meta['oigameapp']
   end
 end

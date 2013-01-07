@@ -5,7 +5,7 @@ Oigame::Application.routes.draw do
 
   resources :categories
 
-  scope ":locale", :locale => /en|es/ do
+  scope "(:locale)", :locale => /en|es/ do
     # solucionar el tema de acceso por rol
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
@@ -32,6 +32,7 @@ Oigame::Application.routes.draw do
           get 'fax'
           post 'fax'
           get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
+          get 'credit-added' => 'campaigns#credit_added', :as => 'credit_added'
         end
         collection do
           get 'moderated'
@@ -91,6 +92,7 @@ Oigame::Application.routes.draw do
         get 'fax'
         post 'fax'
         get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
+        get 'credit-added' => 'campaigns#credit_added', :as => 'credit_added'
       end
       collection do
         get 'moderated'
@@ -99,10 +101,13 @@ Oigame::Application.routes.draw do
         get 'search' => 'campaigns#search'
       end
     end
-  
+    
+    get 'facebook/auth' => 'facebook#auth', :as => 'facebook_auth'
+    get 'facebook/callback' => 'facebook#callback', :as => 'facebook_callback'
     root :to => 'pages#index'
-  
   end
+
+  post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
 
   match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
     constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }

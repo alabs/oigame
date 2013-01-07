@@ -1,19 +1,12 @@
-<ul id="social-buttons">
-  <!-- AddThis Button BEGIN -->
-  <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-  <a class="addthis_button_preferred_1"></a>
-  <a class="addthis_button_preferred_2"></a>
-  <a class="addthis_button_preferred_3"></a>
-  <a class="addthis_button_preferred_4"></a>
-  <a class="addthis_button_preferred_5"></a>
-  <a class="addthis_button_compact"></a>
-  <a class="addthis_counter addthis_bubble_style"></a>
-  </div>
-  <script type="text/javascript">
-    var addthis_config = {
-      "services_exclude":"print"
-    };
-  </script>
-  <script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa7698516f53413"></script>
-  <!-- AddThis Button END -->
+<ul id="social-buttons" style="margin: 30px 0px 30px 0px;">
+
+  <li id="g+">
+    <div class="g-plusone" data-size="tall" data-href="<%= share_url %>"></div>
+  </li>
+  <li id="tw">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="He apoyado la petición <%= share_url %> en @oigame" data-lang="es" data-count="vertical" data-related="oigame">Twittear</a>
+  </li>
+  <li id="fb">
+    <div class="fb-like" data-href="<%= share_url %>" data-width="450" data-layout="box_count" data-show-faces="true">
+  </li>
 </ul><!-- social-buttons -->
