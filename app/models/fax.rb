@@ -13,4 +13,9 @@ class Fax < ActiveRecord::Base
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   # comentada para cuando refactoricemos
   validates_presence_of :name
+
+  def self.last_faxes
+    validated.order('created_at DESC').select('created_at, name, campaign_id, id').limit(10)
+  end
+
 end

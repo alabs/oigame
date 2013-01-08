@@ -41,8 +41,8 @@ class PagesController < ApplicationController
   end
 
   def activity
-    messages_q = Message.find(:all, :order => "created_at desc", :select => "created_at, name, campaign_id, id", :limit => 8)
-    @messages = messages_q.map do |m|
+    actions_q = (Petition.last_petitions + Message.last_messages + Fax.last_faxes).sort_by(&:created_at).reverse.first(10)
+    @actions = actions_q.map do |m|
       camp = Campaign.find(m.campaign_id)
       {
         :id        => m.id,
@@ -55,7 +55,7 @@ class PagesController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: @messages }
+      format.json { render json: @actions }
     end
   end
 
