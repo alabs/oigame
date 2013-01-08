@@ -512,7 +512,7 @@ class CampaignsController < ApplicationController
     data[:reference] = @reference
     data[:name] = current_user.name
     data[:email] = current_user.email
-    data[:callback] = campaign_url(@campaign)
+    data[:callback] = credit_added_campaign_url(@campaign)
     HTTParty.post("http://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 

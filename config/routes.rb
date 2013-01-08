@@ -32,6 +32,7 @@ Oigame::Application.routes.draw do
           get 'fax'
           post 'fax'
           get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
+          get 'credit-added' => 'campaigns#credit_added', :as => 'credit_added'
         end
         collection do
           get 'moderated'
@@ -52,6 +53,7 @@ Oigame::Application.routes.draw do
     get 'donate/denied' => 'donate#denied'
     get 'answers' => redirect('/help')
     get 'help' => 'pages#help', :as => 'help'
+    get 'activity' => 'pages#activity', :as => 'activity'
     get 'tutorial' => 'pages#tutorial', :as => 'tutorial'
     get 'privacy-policy' => 'pages#privacy_policy', :as => 'privacy_policy'
     get 'contact' => 'pages#contact', :as => 'contact'
@@ -90,6 +92,7 @@ Oigame::Application.routes.draw do
         get 'fax'
         post 'fax'
         get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
+        get 'credit-added' => 'campaigns#credit_added', :as => 'credit_added'
       end
       collection do
         get 'moderated'
@@ -103,6 +106,8 @@ Oigame::Application.routes.draw do
     get 'facebook/callback' => 'facebook#callback', :as => 'facebook_callback'
     root :to => 'pages#index'
   end
+
+  post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
 
   match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
     constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }

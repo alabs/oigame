@@ -1,73 +1,75 @@
-// activity-realtime: como el What's happening now de getup.org.au, 
-// muestra 10 elementos y va quitando uno de abajo y poniendo otro arriba
+$(function(){
+  if ( $('#realtime').length > 0) activityStream({ itemCount: 7, listSelector: "#realtime ul", streamUrl: "/es/activity.json" }); 
+});
 
-// TODO: request por ajax y continuar procesando hasta el final
-// TODO: CSS bonito
-
-var data = [
-  {"id":33908182,"html":"<span class=\"name\">Wendy</span> signed to <a href=\"/campaigns/coal-seam-gas/csg-ad-petition/dont-risk-coal-seam-gas\">stop coal seam gas mining</a>.","timestamp":"Mon, 19 Sep 2011 14:30:55 GMT"},
-  {"id":33908157,"html":"<span class=\"name\">Yvonne</span> asked the NSW Govt <a href=\"/campaigns/coal-seam-gas/hunter-valley/sign-the-petition\">to protect the Hunter Valley</a>.","timestamp":"Mon, 19 Sep 2011 14:23:21 GMT"},
-  {"id":33908154,"html":"<span class=\"name\">Eric</span> signed to <a href=\"/campaigns/coal-seam-gas/add-your-voice/chip-in\">stop coal seam gas mining</a>.","timestamp":"Mon, 19 Sep 2011 14:22:54 GMT"},
-  {"id":33908152,"html":"<span class=\"name\">John</span> signed to <a href=\"/campaigns/coal-seam-gas/add-your-voice/chip-in\">stop coal seam gas mining</a>.","timestamp":"Mon, 19 Sep 2011 14:22:34 GMT"},
-  {"id":33908136,"html":"<span class=\"name\">Brendan</span> signed to <a href=\"/campaigns/coal-seam-gas/add-your-voice/chip-in\">stop coal seam gas mining</a>.","timestamp":"Mon, 19 Sep 2011 14:18:48 GMT"},
-  {"id":33908077,"html":"<span class=\"name\">Paul</span> signed to <a href=\"/campaigns/coal-seam-gas/add-your-voice/chip-in\">stop coal seam gas mining</a>.","timestamp":"Mon, 19 Sep 2011 14:05:25 GMT"},
-  {"id":33908053,"html":"<span class=\"name\">Nicholas</span> just joined GetUp!","timestamp":"Mon, 19 Sep 2011 14:01:55 GMT"},
-  {"id":33908050,"html":"<span class=\"name\">Bernard</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:40 GMT"},
-  {"id":33908049,"html":"<span class=\"name\">Susannah</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:35 GMT"},
-  {"id":33908048,"html":"<span class=\"name\">Nicholas</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:31 GMT"},
-  {"id":33908047,"html":"<span class=\"name\">Christine</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:28 GMT"},
-  {"id":33908046,"html":"<span class=\"name\">Peter</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:25 GMT"},
-  {"id":33908044,"html":"<span class=\"name\">Deborah</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:21 GMT"},
-  {"id":33908042,"html":"<span class=\"name\">Brian</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:18 GMT"},
-  {"id":33908040,"html":"<span class=\"name\">John</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:14 GMT"},
-  {"id":33908039,"html":"<span class=\"name\">Michelle</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:10 GMT"},
-  {"id":33908038,"html":"<span class=\"name\">Attracta</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:06 GMT"},
-  {"id":33908037,"html":"<span class=\"name\">Andre</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:03 GMT"},
-  {"id":33908036,"html":"<span class=\"name\">Judith</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:01:00 GMT"},
-  {"id":33908034,"html":"<span class=\"name\">Patrick</span> donated to <a href=\"/campaigns/support/fund-hope-not-hate/fund-hope-not-hate\">fund hope not hate</a>.","timestamp":"Mon, 19 Sep 2011 14:00:56 GMT"}
-];
-
-
-function activity_init(){
-  $.each(data, function(i, item) {
-    // mostrar 10 elementos
-    if (i < 5){
-      activity_load(data[i].html);
-    } else {
-      // esto es por el puto sleep en el javascript, hay que estar haciendo movidas por los milisegundos
-      // y para que no sea el mismo para todos :S
-      var t = 2000 * i - 20000;
-      setTimeout(function() { 
-        activity_clean(); 
-        activity_load_pretty(data[i].html);
-      },t);
+function activityStream(e) {
+    function l(e) {
+        var n, r;
+        if (!e) return;
+        n = $("<span style='font-size: 0.8em; float: right;' class='timestamp'>" + distanceOfTimeInWords(e.timestamp) + "</span>");
+        n.data("actualDate", e.timestamp);
+        html = "<li><img style='width: 50px; float: left;' src='" + e.camp_img +"'>";
+        html += "<a href='" + e.camp_url + "'>";
+        html += "<label>" + e.part_name + " ha participado en " + e.camp_name + "</label></a>";
+        r = $(html);
+        r.append(n);
+        r.hide();
+        o.prepend(r);
+        r.show(s);
+        var i = r.find(".activity");
+        i.width() > 300 && (i.width(300), r.append('<div class="ellipsis">...</div>'))
     }
-  });
+    function c() {
+        for (var e = 0; e < r; e++) l(a.pop());
+        u = !0, setTimeout(v, i)
+    }l
+    function h() {
+        var e = o.find("li:last");
+        e.hide(s, function () {
+            e.remove()
+        })
+    }
+    function p() {
+        o.find(".timestamp").each(function (e, t) {
+            var n = $(t),
+                r = n.data("actualDate");
+            n.text(distanceOfTimeInWords(r))
+        })
+    }
+    function d() {
+        setTimeout(g, t)
+    }
+    function v() {
+        p(), l(a.pop()), h(), a.length === 0 ? g() : setTimeout(v, i)
+    }
+    function m(e, t, n) {
+        $.each(e, function (e, t) {
+            $.inArray(t.id, f) === -1 && (f.push(t.id), a.push(t))
+        }), u ? a.length === 0 ? (p(), d()) : v() : c()
+    }
+    function g() {
+        $.getJSON(n, m)
+    }
+    var t = 15e3,
+        n = e.streamUrl,
+        r = e.itemCount || 3,
+        i = e.delayBetweenItems || 4e3,
+        s = e.effect || "blind",
+        o = $(e.listSelector),
+        u = !1,
+        a = [],
+        f = [];
+    g()
 }
 
-function activity_load(html){
-  // agregar 1 -- iniciales
-  $("#activity-realtime ul").prepend("<li>" + html + "</li>");
+function distanceOfTimeInWords(epoch) {
+    var r = Math.round((new Date).getTime() / 1000 - parseInt(epoch));
+    if (r < 60) return "hace " + r + " segundos";
+    if (r < 120) return "hace 1 minuto";
+    if (r < 2700) return "hace " + parseInt(r / 60).toString() + " minutos";
+    if (r < 7200) return "an hour ago";
+    if (r < 86400) return "hace " + parseInt(r / 3600).toString() + " horas";
+    if (r < 172800) return "hace 1 día";
+    var i = parseInt(r / 86400).toString();
+    return "hace " + i + " días"
 }
-
-function activity_load_pretty(html){
-  // agregar 1 -- con efecto de fadeIn
-  $("#activity-realtime ul").prepend($("<li>" + html + "</li>").fadeIn('slow'));
-}
-
-function activity_clean(){
-  // comprueba la actividad visible y si son mas que n va quitando los n+1
-  var $activity_visible = $('#activity-realtime ul li:visible');
-  if ($activity_visible.length > 7) { 
-    $.each($activity_visible, function(i, item) {
-      if ( i > 8 ){
-        $(this).slideDown(400).delay(800).fadeOut(400);  
-      } 
-    });
-  }
-}
-
-
-  // activity-realtime
-  //activity_init();
-
