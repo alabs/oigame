@@ -13,5 +13,5 @@ class Message < ActiveRecord::Base
   validates_uniqueness_of :email, :scope => :campaign_id
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   # comentada para cuando refactoricemos
-  # validates_presence_of :name
+  validates_presence_of :name
 end
