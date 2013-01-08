@@ -1,16 +1,18 @@
-
 $(function(){
-  if ( $('#realtime').length > 0) activityStream({ itemCount: 5, listSelector: "#realtime ul", streamUrl: "/es/activity.json" }); 
+  if ( $('#realtime').length > 0) activityStream({ itemCount: 7, listSelector: "#realtime ul", streamUrl: "/es/activity.json" }); 
 });
 
 function activityStream(e) {
     function l(e) {
         var n, r;
         if (!e) return;
-        n = $("<div class='timestamp'>" + distanceOfTimeInWords(e.timestamp) + "</div>");
+        n = $("<span style='font-size: 0.8em; float: right;' class='timestamp'>" + distanceOfTimeInWords(e.timestamp) + "</span>");
         n.data("actualDate", e.timestamp);
-        r = $("<li><div class='activity'>" + e.part_name + "<a href=" + e.camp_url + " title=" + e.camp_name + "> + " + e.camp_name  + "</div></li>");
-        r.prepend(n);
+        html = "<li><img style='width: 50px; float: left;' src='" + e.camp_img +"'>";
+        html += "<a href='" + e.camp_url + "'>";
+        html += "<label>" + e.part_name + " ha participado en " + e.camp_name + "</label></a>";
+        r = $(html);
+        r.append(n);
         r.hide();
         o.prepend(r);
         r.show(s);
@@ -62,12 +64,12 @@ function activityStream(e) {
 
 function distanceOfTimeInWords(epoch) {
     var r = Math.round((new Date).getTime() / 1000 - parseInt(epoch));
-    if (r < 60) return r + " seconds ago";
-    if (r < 120) return "a minute ago";
-    if (r < 2700) return parseInt(r / 60).toString() + " minutes ago";
+    if (r < 60) return "hace " + r + " segundos";
+    if (r < 120) return "hace 1 minuto";
+    if (r < 2700) return "hace " + parseInt(r / 60).toString() + " minutos";
     if (r < 7200) return "an hour ago";
-    if (r < 86400) return parseInt(r / 3600).toString() + " hours ago";
-    if (r < 172800) return "1 day ago";
+    if (r < 86400) return "hace " + parseInt(r / 3600).toString() + " horas";
+    if (r < 172800) return "hace 1 día";
     var i = parseInt(r / 86400).toString();
-    return i + " days ago"
+    return "hace " + i + " días"
 }

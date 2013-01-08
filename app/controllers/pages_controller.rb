@@ -41,13 +41,14 @@ class PagesController < ApplicationController
   end
 
   def activity
-    messages_q = Message.find(:all, :order => "created_at asc", :select => "created_at, name, campaign_id, id", :limit => 5).reverse
+    messages_q = Message.find(:all, :order => "created_at desc", :select => "created_at, name, campaign_id, id", :limit => 8)
     @messages = messages_q.map do |m|
       camp = Campaign.find(m.campaign_id)
       {
         :id        => m.id,
         :camp_name => camp.name,
         :camp_url  => camp.get_absolute_url,
+        :camp_img  => camp.image_url(:thumb),
         :part_name => m.name ? m.name : "Anon",
         :timestamp => m.created_at.to_i,
       }
