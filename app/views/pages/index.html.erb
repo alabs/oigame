@@ -1,24 +1,34 @@
 <% @page_title = t(:home) %>
 
 <div class="row-fluid">
-  <div class="span1 diferencial"> 
- <ul>
-           <li><a href="#"><%= image_tag("99pk.png") %> </a></li>
-           <li><a href="#"><%= image_tag("transparentpk.png") %> </a></li>
-           <li><%= link_to image_tag('openpk.png'), 'https://github.com/alabs/oigame', :title => 'Github de oiga.me' %></li>
-           
-   </ul>
- 
-  </div>
+  
+<div class="span12">
 
-  <div class="span3 logo"> 
-       <%= image_tag("altavoz5.png") %>       
-  </div>
+      <div class="span5 offset1 people">  
+        <ul class="pull-left">
+           <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> <%= t(:campaigns) %></label></li>
+           <li ><%= image_tag("firma.png") %> <label><%= @total_signs %> <%= t(:firms) %></label></li>
+           <li><%= image_tag("usuario.png") %> <label><%= @total_users %> <%= t(:users) %></label></li>
+           <li><%= image_tag("world.png") %> <label>2 <%= t(:languages) %></label></li>
+        </ul>
+      </div>
+      <div class="span4 " id="navcampana"> 
+        <ul class="">
+          <li><a href="#"><%= image_tag("social.png") %></a></li>
+           <li><a href="#"><%= image_tag("propias.png") %> </a></li>
+           <li><a href="#"><%= image_tag("calientes.png") %> </a></li>
+           <li><a href="#"><%= image_tag("ultimas.png") %> </a></li>    
+           <li><a href="#"><%= image_tag("tipologia.png") %> </a></li> 
+           <li><a href="#"><%= image_tag("activista.png") %> </a></li> 
+           <li><a href="#"><%= image_tag("geografica.png") %> </a></li>       
+       </ul>
+      </div>
+
 
  
-   
-    
-     <div id="myCarousel" class="span7 carousel slide">
+        
+    </div>
+     <div id="myCarousel" class="span10 offset1 carousel slide">
       <!-- Carousel items -->
         <div class="carousel-inner">
 
@@ -104,49 +114,30 @@
 
     </div>   
 
-    <div id="realtime" class="span3 hidden-phone">
-      <h3>¿Que está pasando?</h3>
-      <ul></ul>
-      <!-- ul>
-        <li>
-          <img src="/assets/bob.png">
-          <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-          <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-        </li>
-      </ul -->
-    </div><!--/.realtime-->
+
   
 </div> <!--/.row-fluid-->
   
-
-<div class="row-fluid">
-  <div class="span12">
-    
-      <div class="span5" id="navcampana"> 
-        <ul class="">
-          <li><a href="#"><%= image_tag("social.png") %> </a></li>
-           <li><a href="#"><%= image_tag("propias.png") %> </a></li>
-           <li><a href="#"><%= image_tag("calientes.png") %> </a></li>
-           <li><a href="#"><%= image_tag("ultimas.png") %> </a></li>    
-           <li><a href="#"><%= image_tag("tipologia.png") %> </a></li> 
-           <li><a href="#"><%= image_tag("activista.png") %> </a></li> 
-           <li><a href="#"><%= image_tag("geografica.png") %> </a></li>       
-       </ul>
-     </div>
-      <div class="span6 hidden-phone" id="claim">
-          <h4>
-            Una herramienta de presión social abierta, horizontal y transparente. 
+ <div class="row-fluid hidden-phone" id="claim">
+    <div class="span5 offset1">
+         <%= image_tag("bombilla.png")  %> 
+         <h4>Una herramienta de presión social abierta, horizontal y transparente. 
           </h4>
-      </div>
     </div>
-  
-</div>
+    <div class="span5">
+         <%= image_tag("dedo.png")  %> 
+         <h4> Firma y actúa, comparte con tus amigos y compañeros  y haz llegar tu queja al resto del planeta 
+          </h4>
+    </div>
+   
+  </div>
 
 
 
 <div class="main">
-  <div class="explica"><%= image_tag("social.png") %></div>
-    <div class="view view-tenth span6">
+  <div class="row-fluid offset1 ">
+ 
+    <div class="view view-tenth">
         <% @campaigns_carousel.each do |campaign| %>
         <%= image_tag(campaign.image) %>
 
@@ -187,7 +178,110 @@
             <%= link_to "Firmar", campaign, :class => "info" %>
         </div>
     </div>
+
+
+
+
+
   <% end %>
+  
+    <div class="view view-tenth ">
+        <% @campaigns_carousel.each do |campaign| %>
+        <%= image_tag(campaign.image) %>
+
+        <div class="carousel-caption">
+                      <div id="izquierda" class="span4">                
+                      <h4><%= link_to campaign.name, campaign %></h4>                  
+                     </div>
+
+                    <div id="derecha" class="span2">
+                      <div id="avatar">
+                          <%= image_tag(avatar_url(campaign.user.email)) %>
+                         <% if campaign.user.name.blank? %>
+                           <h4>Pobrecito hablador</h4>
+                         <% else %>
+                           <h4><%= campaign.user.name %></h4>
+                         <% end %>
+                       
+                      </div> 
+                      
+                    </div>
+                    <div class="progress progress-info progress-striped">
+                        <div class="bar" style="width: 50%"></div>
+                    </div>
+
+                    <div id="iconoscampa" >  
+                                 <ul>
+                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
+   
+                                 </ul>
+                      </div>
+                    </div><!-- carousel-caption -->
+        <div class="mask">
+            <h2><%= campaign.name %></h2>
+            <p><%= campaign.intro %></p>
+            <%= link_to "Firmar", campaign, :class => "info" %>
+        </div>
+    </div>
+
+
+
+
+    
+  <% end %>
+ 
+    <div class="view view-tenth ">
+        <% @campaigns_carousel.each do |campaign| %>
+        <%= image_tag(campaign.image) %>
+
+        <div class="carousel-caption">
+                      <div id="izquierda" class="span4">                
+                      <h4><%= link_to campaign.name, campaign %></h4>                  
+                     </div>
+
+                    <div id="derecha" class="span2">
+                      <div id="avatar">
+                          <%= image_tag(avatar_url(campaign.user.email)) %>
+                         <% if campaign.user.name.blank? %>
+                           <h4>Pobrecito hablador</h4>
+                         <% else %>
+                           <h4><%= campaign.user.name %></h4>
+                         <% end %>
+                       
+                      </div> 
+                      
+                    </div>
+                    <div class="progress progress-info progress-striped">
+                        <div class="bar" style="width: 50%"></div>
+                    </div>
+
+                    <div id="iconoscampa" >  
+                                 <ul>
+                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
+                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
+   
+                                 </ul>
+                      </div>
+                    </div><!-- carousel-caption -->
+        <div class="mask">
+            <h2><%= campaign.name %></h2>
+            <p><%= campaign.intro %></p>
+            <%= link_to "Firmar", campaign, :class => "info" %>
+        </div>
+    </div>
+  </div>
+
+
+
+
+    
+  <% end %>
+
 </div>
 
 <div class="row-fluid">

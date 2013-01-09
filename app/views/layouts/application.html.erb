@@ -59,19 +59,12 @@
             <span class="icon-bar"></span>
           </a>
                         
-      <div class="span2 people">  
-        <ul class="pull-left">
-           <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> <%= t(:campaigns) %></label></li>
-           <li><%= image_tag("mensajespk.png") %> <label><%= @total_signs %> <%= t(:firms) %></label></li>
-           <li><%= image_tag("pollolevantandolamano.png") %> <label><%= @total_users %> <%= t(:users) %></label></li>
-           <li><%= image_tag("world.png") %> <label>2 <%= t(:languages) %></label></li>
-        </ul>
-      </div>
+ 
 
-      <div class="span4 oigame">        
+      <div class="span2 offset1 oigame">        
         <%= image_tag("oigame.png") %>         
       </div>
-      
+
       <div class="span2 pull-right idioma">
             <div class="navbar-text pull-right">
               <% unless user_signed_in? %>
