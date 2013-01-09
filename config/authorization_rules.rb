@@ -28,8 +28,8 @@ authorization do
   role :editor do
     includes :user
     has_permission_on [:campaigns], :to => [:participants, :update, :destroy, :moderated, :activate,
-      :deactivate, :archive, :prioritize, :deprioritize, :show, :edit, :update, :participants]
-    has_permission_on [:sub_oigames], :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+      :deactivate, :archive, :prioritize, :deprioritize, :show, :edit, :update, :participants, :programe]
+    has_permission_on [:sub_oigames], :to => [:index, :show, :new, :edit, :create, :update, :destroy, :programe]
   end
 
   role :admin do
