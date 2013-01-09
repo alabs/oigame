@@ -93,6 +93,17 @@
 	  <% end %> 
 	</li>
 	<li>
+	  <% if (permitted_to? :programe, campaign) %>
+	    <% if true %>
+	      <%= link_to sub_oigame ? programe_sub_oigame_campaign_path(sub_oigame) : programe_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
+		<i class="icon-arrow-up"></i>
+		<%= t(:programe) %>
+	      <% end %>
+	    <% else %>
+	    <% end %> 
+	  <% end %> 
+	</li>
+	<li>
 	  <% if permitted_to? :destroy, campaign %>
 	    <%= link_to sub_oigame ? sub_oigame_campaign_path(sub_oigame) : campaign, :confirm => t(:are_you_sure), :method => :delete do %>
 	      <i class="icon-trash"></i>
