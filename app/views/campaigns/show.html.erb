@@ -115,7 +115,7 @@
       <div class="tab-content">
         <div id="description" class="active tab-pane">
           <div id="campaign-info">
-            <h2>Descripción</h2>
+            <h2><%= t(:description) %></h2>
             <%= @campaign.to_html(@campaign.intro).html_safe %> 
             <% if @campaign.image.to_s %>
               <p style="text-align:center;margin:15px 0px;">
