@@ -35,7 +35,7 @@
         <% @campaigns_carousel.each do |campaign| %>
           <% if campaign == @campaigns_carousel.first %>
             <div class="active item"><%= link_to image_tag(campaign.image_url(:home)), campaign %>
-                  <div class="carousel-caption">
+                  <div class="carousel-caption" id="big">
                       <div id="izquierda" class="span8">                
                       <h4><%= link_to campaign.name, campaign %></h4>                  
                      </div>
@@ -119,20 +119,14 @@
 </div> <!--/.row-fluid-->
   
  <div class="span12 hidden-phone" id="claim">
-    <div class="span5 offset1">
-       
+    <div class="span10 offset1">
+       <i class="icon-hand-right icon-3x circle"></i>
       <i class="icon-lightbulb icon-3x circle"></i>
-         <h4>Una herramienta de presión social abierta, horizontal y transparente. 
+         <h4>Una herramienta de presión social abierta, horizontal y transparente.Crea tus campañas,firma, actúa, y comparte. 
           </h4>
-    </div>
-    <div class="span5">
-      <i class="icon-hand-right icon-3x circle"></i>
-         
-         <h4> Firma y actúa, comparte con tus amigos y compañeros  y haz llegar tu queja al resto del planeta 
-          </h4>
-        <div  id="crea">
+          
         <button class="btn btn-large" type="button">Crea tu Campaña</button>
-        </div>  
+        
     </div>
    
   </div>
@@ -167,15 +161,7 @@
                         <div class="bar" style="width: 50%"></div>
                     </div>
 
-                    <div id="iconoscampa" >  
-                                 <ul>
-                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
-   
-                                 </ul>
-                      </div>
+               
                     </div><!-- carousel-caption -->
         <div class="mask">
             <h2><%= campaign.name %></h2>
@@ -215,15 +201,7 @@
                         <div class="bar" style="width: 50%"></div>
                     </div>
 
-                    <div id="iconoscampa" >  
-                                 <ul>
-                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
-   
-                                 </ul>
-                      </div>
+               
                     </div><!-- carousel-caption -->
         <div class="mask">
             <h2><%= campaign.name %></h2>
@@ -263,15 +241,7 @@
                         <div class="bar" style="width: 50%"></div>
                     </div>
 
-                    <div id="iconoscampa" >  
-                                 <ul>
-                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
-   
-                                 </ul>
-                      </div>
+                   
                     </div><!-- carousel-caption -->
         <div class="mask">
             <h2><%= campaign.name %></h2>
