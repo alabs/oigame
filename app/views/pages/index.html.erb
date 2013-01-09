@@ -12,15 +12,15 @@
            <li><%= image_tag("world.png") %> <label>2 <%= t(:countries) %></label></li>
         </ul>
       </div>
-      <div class="span4 " id="navcampana"> 
+      <div class="span5" id="navcampana"> 
         <ul class="">
-          <li><a href="#"><%= image_tag("social.png") %></a></li>
-           <li><a href="#"><%= image_tag("propias.png") %> </a></li>
-           <li><a href="#"><%= image_tag("calientes.png") %> </a></li>
-           <li><a href="#"><%= image_tag("ultimas.png") %> </a></li>    
-           <li><a href="#"><%= image_tag("tipologia.png") %> </a></li> 
-           <li><a href="#"><%= image_tag("activista.png") %> </a></li> 
-           <li><a href="#"><%= image_tag("geografica.png") %> </a></li>       
+          <li><a href="#"><%= image_tag("calientes.png") %>calientes </a></li>
+          <li><a href="#"><%= image_tag("ultimas.png") %>últimas</a></li> <li><a href="#"><%= image_tag("geografica.png") %>país</a></li><li><a href="#"><%= image_tag("social.png") %>social</a></li>
+           <li><a href="#"><%= image_tag("propias.png") %>propias</a></li>     
+              
+           <li><a href="#"><%= image_tag("tipologia.png") %>tipología</a></li> 
+           <li><a href="#"><%= image_tag("activista.png") %>activista</a></li> 
+                 
        </ul>
       </div>
 
@@ -118,14 +118,16 @@
   
 </div> <!--/.row-fluid-->
   
- <div class="row-fluid hidden-phone" id="claim">
+ <div class="span12 hidden-phone" id="claim">
     <div class="span5 offset1">
-         <%= image_tag("bombilla.png")  %> 
+       
+      <i class="icon-lightbulb icon-3x circle"></i>
          <h4>Una herramienta de presión social abierta, horizontal y transparente. 
           </h4>
     </div>
     <div class="span5">
-         <%= image_tag("dedo.png")  %> 
+      <i class="icon-hand-right icon-3x circle"></i>
+         
          <h4> Firma y actúa, comparte con tus amigos y compañeros  y haz llegar tu queja al resto del planeta 
           </h4>
     </div>
@@ -135,13 +137,13 @@
 
 
 <div class="main">
-  <div class="row-fluid offset1 ">
+  <div class="span11 offset1 ">
  
-    <div class="view view-tenth">
+    <div class="view view-tenth span3">
         <% @campaigns_carousel.each do |campaign| %>
         <%= image_tag(campaign.image) %>
 
-        <div class="carousel-caption">
+        <div class="carousel-caption ">
                       <div id="izquierda" class="span4">                
                       <h4><%= link_to campaign.name, campaign %></h4>                  
                      </div>
@@ -185,7 +187,7 @@
 
   <% end %>
   
-    <div class="view view-tenth ">
+    <div class="view view-tenth span3">
         <% @campaigns_carousel.each do |campaign| %>
         <%= image_tag(campaign.image) %>
 
@@ -233,7 +235,7 @@
     
   <% end %>
  
-    <div class="view view-tenth ">
+    <div class="view view-tenth span3">
         <% @campaigns_carousel.each do |campaign| %>
         <%= image_tag(campaign.image) %>
 
@@ -284,17 +286,39 @@
 
 </div>
 
+<div class="span11 offset1" id="crea">
+<h4>Crea tu campaña y súmate al cambio</h4>
+<button class="btn btn-large offset2" type="button">Crea tu Campaña</button>
+</div>  
+
 <div class="row-fluid">
-    <div id="home-icons" class="offset1 span5">
-      <a href="#"><img alt="Semi-footer-img1" src="/assets/semi-footer-img1.png"></a>
+  
+    <div id="home-text" class="span12 row-fluid ">
+      <div class="span3">
+      <i class="icon-pencil icon-4x offset4"></i>  
+        
+      <h3>Recogida de firmas</h3>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      </div>
+
+      <div class="span3">
+       <i class="icon-envelope icon-4x offset4"></i> 
+      <h3>Mailing</h3>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      </div>
+
+      <div class="span3">
+      <i class="icon-print icon-4x offset4"></i>
+      <h3>Fax</h3>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      </div>
+      <div class="span3">
+      <i class="icon-mobile-phone icon-4x offset5"></i>
+      <h3>Telefonía</h3>
+      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+      </div>
+
     </div>
-    <div id="home-text" class="span6">
-      <h2>Recogida de firmas</h2>
-      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-      <h2>Mailing masivo</h2>
-      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-      <h2>Fax</h2>
-      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-    </div>
+
   </div>
 
