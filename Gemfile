@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 gem 'mysql2'
+# prepare for upgrade to postgres
+#gem 'pg'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
