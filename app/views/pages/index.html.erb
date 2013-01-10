@@ -11,31 +11,17 @@
            <li><%= image_tag("usuario.png") %> <label><%= @total_users %> <%= t(:users) %></label></li>
            <li><%= image_tag("world.png") %> <label>2 <%= t(:countries) %></label></li>
         </ul>
-      </div>
-      <div class="span5" id="navcampana"> 
-        <ul class="">
-          <li><a href="#"><%= image_tag("calientes.png") %>calientes </a></li>
-          <li><a href="#"><%= image_tag("ultimas.png") %>últimas</a></li> <li><a href="#"><%= image_tag("geografica.png") %>país</a></li><li><a href="#"><%= image_tag("social.png") %>social</a></li>
-           <li><a href="#"><%= image_tag("propias.png") %>propias</a></li>     
-              
-           <li><a href="#"><%= image_tag("tipologia.png") %>tipología</a></li> 
-           <li><a href="#"><%= image_tag("activista.png") %>activista</a></li> 
-                 
-       </ul>
-      </div>
-
-
- 
-        
+      </div>        
     </div>
-     <div id="myCarousel" class="span10 offset1 carousel slide">
+
+     <div id="myCarousel" class="offset1 carousel slide">
       <!-- Carousel items -->
         <div class="carousel-inner">
 
         <% @campaigns_carousel.each do |campaign| %>
           <% if campaign == @campaigns_carousel.first %>
             <div class="active item"><%= link_to image_tag(campaign.image_url(:home)), campaign %>
-                  <div class="carousel-caption" id="big">
+                  <div class="carousel-caption span7" id="big">
                       <div id="izquierda" class="span8">                
                       <h4><%= link_to campaign.name, campaign %></h4>                  
                      </div>
@@ -56,15 +42,7 @@
                         <div class="bar" style="width: 50%"></div>
                     </div>
 
-                    <div id="iconoscampa" >  
-                                 <ul>
-                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
-   
-                                 </ul>
-                      </div>
+
                     </div><!-- carousel-caption -->
             </div>
           <% else %>
@@ -103,45 +81,38 @@
             </div>
           <% end %>
         <% end %>
-        
-        
-      </div>
+     </div>
       <!-- Carousel nav -->
       <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
       <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-
-
-
     </div>   
+
 
 
   
 </div> <!--/.row-fluid-->
   
- <div class="span12 hidden-phone" id="claim">
-    <div class="span10 offset1">
+<div class="span12 hidden-phone offset1" id="claim">
+    
        <i class="icon-hand-right icon-3x circle"></i>
-      <i class="icon-lightbulb icon-3x circle"></i>
+     
          <h4>Una herramienta de presión social abierta, horizontal y transparente.Crea tus campañas,firma, actúa, y comparte. 
           </h4>
           
-        <button class="btn btn-large" type="button">Crea tu Campaña</button>
-        
-    </div>
-   
-  </div>
+        <button class="btn" type="button" >Crear Campaña</button>
+</div>
 
 
 
 <div class="main">
-  <div class="span11 offset1 ">
+  <div class="span12 offset1 ">
  
     <div class="view view-tenth span3">
         <% @campaigns_carousel.each do |campaign| %>
         <%= image_tag(campaign.image) %>
 
         <div class="carousel-caption ">
-                      <div id="izquierda" class="span4">                
+                      <div id="izquierda" >                
                       <h4><%= link_to campaign.name, campaign %></h4>                  
                      </div>
 
@@ -181,7 +152,7 @@
         <%= image_tag(campaign.image) %>
 
         <div class="carousel-caption">
-                      <div id="izquierda" class="span4">                
+                      <div id="izquierda" >                
                       <h4><%= link_to campaign.name, campaign %></h4>                  
                      </div>
 
@@ -221,11 +192,11 @@
         <%= image_tag(campaign.image) %>
 
         <div class="carousel-caption">
-                      <div id="izquierda" class="span4">                
+                      <div id="izquierda" >                
                       <h4><%= link_to campaign.name, campaign %></h4>                  
                      </div>
 
-                    <div id="derecha" class="span2">
+                    <div id="derecha">
                       <div id="avatar">
                           <%= image_tag(avatar_url(campaign.user.email)) %>
                          <% if campaign.user.name.blank? %>
@@ -237,9 +208,7 @@
                       </div> 
                       
                     </div>
-                    <div class="progress progress-info progress-striped">
-                        <div class="bar" style="width: 50%"></div>
-                    </div>
+                  
 
                    
                     </div><!-- carousel-caption -->
