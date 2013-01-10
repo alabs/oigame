@@ -6,18 +6,24 @@
 @import "style10"
 @import "jquery.ui.all"
 @import "jquery-ui/blitzer"
+@import "font-awesome"
 
+$blanco: #f0f0f0
 $gris: #d7d7d7
 $verde:#2d8a8a
 $verdoso:#1b5353
-$naranja:#eb5e40
+$naranja:#EB5E40
+$rojo:#bf2633
 $morao:#50505a
+$marron:#d9cead
 $sombrablanca:1px 0px 0px rgba(255, 255, 255, 0.95)
 $sombranegra:1px 0px 2px rgba(0, 0, 0, 0.75)
 
 @font-face 
   font-family: Roboto
-  src: url('Roboto/Roboto-Light.ttf')
+  src: url('/Roboto/Roboto-Light.ttf')
+p
+  text-align: justify
   
 .center
   text-align: center 
@@ -42,11 +48,11 @@ a
   border-bottom: 2px dotted white
   box-shadow: 0px 1px 2px #666
   a
-    color: $verdoso
+    color: $blanco
 
 .navbar-inverse .brand, .navbar-inverse .nav > li > a 
-  color: $verdoso 
-  text-shadow: $sombrablanca
+  color: #f0f0f0 
+  text-shadow: $sombranegra
 
 .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus 
   background: transparent
@@ -67,11 +73,14 @@ label
   padding-top: 8px
   ul
     li
-      display:block
+      display: inline
       padding-top: 0px
       list-style-type: none
+      img
+        width: 25px
+        height: 25px
   margin: 0px
-  width: 140px
+  
 
 .sombra
   margin: 0px
@@ -79,6 +88,7 @@ label
   margin-top: -20px
   position: relative
   z-index: 2
+  height: 40px
 
 .logo
   position: relative
@@ -103,11 +113,10 @@ label
           max-width: 200%
 
 #myCarousel
-  margin-left: -21%
+  margin-top: 70px
   position: relative
   z-index: 0
-  width: 62%
-  margin-top: -7%
+  width: 77%  
   padding: 10px
   background: url(bkcarrusel.jpg)
   border: 1px solid $morao
@@ -119,30 +128,61 @@ label
   top: 86%
 
 .oigame
-  margin-left: 10%
+  
   margin-top: 2%
+  margin-bottom: 1%
   img
     width: 100%
-
+#menu
+  padding-top: 2%
 #navcampana
-  margin-left: 8.3%
-  margin-bottom: 2%
+
   ul
+
     li
       list-style-type: none
-      display: inline
+      display: inline-block
+      width: 12%
+      padding: 3px
+      
       a
         text-decoration: none
+        text-align: center
+        font-size: 12px
+
+        
         img
-          width: 12%
+          width: 50px
+          display: block
+          
 #claim
+  padding: 25px
   color: $verdoso
   line-height: 26px
   text-shadow: 1px 1px 0px #AFD0EB
   h4
-    font-size: 20px
-    margin-left: -5%
-    margin-top: 3%
+    font-size: 18px
+    text-align: center
+    display: inline
+    margin-left: 1%
+  img
+    width: 40px
+
+.btn
+  margin-left: 1%
+  background: $verdoso
+  color: $blanco
+  text-shadow: $sombranegra
+#crea
+  padding: 30px
+  padding-left: 0px
+  h4
+    display: inline
+
+  button
+    display: inline 
+    border: 1px solid $naranja
+        
 #consejo-social
   margin-top: -3px
   img
@@ -181,17 +221,41 @@ label
   float: right
   img
     height: 98%
-.carousel-caption
+#big
   h4
     color: $naranja
     float: left
-  top: 200px
+    font-size: 14px
+    text-align: left
+  top: 180px
   background: url(bk.jpg)
-  height: 20%
+  height: 120px
   border-top: 1px solid $morao
   border-bottom: 1px solid $morao
   box-shadow: 1px 1px 10px $morao
 
+.carousel-caption
+  h4
+    color: $naranja
+    float: left
+    font-size: 12px
+    text-align: left
+  top: 120px
+  background: url(bk.jpg)
+  height: 62%
+  border-top: 1px solid $morao
+  border-bottom: 1px solid $morao
+  box-shadow: 1px 1px 10px $morao
+  position: absolute
+
+.circle
+  width: 140px
+  height: 140px
+  background: $naranja
+  -moz-border-radius: 70px 
+  -webkit-border-radius: 70px 
+  border-radius: 70px
+  padding: 10px
 #izquierda
   h4
     padding-left: 3px  
@@ -201,22 +265,25 @@ label
 #derecha
   float: right
   width: 30%
-  border-left: 1px solid $morao
-  height: 100%
+  margin-top: 4px
+  
   h4
     color: $verdoso
     float: right
     padding-right: 4%
 
 #avatar
+  display: inline
   img
-    width: 10%
+    width: 25px
+    height: 25px
+    border: 0px
     display: inline
     float: right
     margin-top: -10px
 
 #iconoscampa
-  margin-top: -7%
+  margin-top: -4%
   float: right
   padding-right: 25px  
   ul
@@ -224,6 +291,9 @@ label
       display: inline
       img
         width: 25px
+        height: 25px
+        display: inline
+        border: 0px
         padding: 2px
 
 #campaign-information .progress
@@ -234,9 +304,9 @@ label
   min-height: 20px
 
 .progress
-  margin-top: 5%
+  margin-top: 65px
   height: 15px
-  width: 40%
+  width: 100%
   background-image: -webkit-linear-gradient(top, #DEDCEB, $gris)
 #first_footer_a
   margin-top: 3%
@@ -252,26 +322,47 @@ label
   margin: 0 auto 0 2%
 
 .view 
-   
-  height: 300px
-  margin: 4px
+  
+  height: 200px
+  width: 30%
   float: left
   border: 1px solid $morao
   overflow: hidden
   position: relative
   text-align: center
-  -webkit-box-shadow: 1px 1px 2px #e6e6e6
-  -moz-box-shadow: 1px 1px 2px #e6e6e6
-  box-shadow: 1px 1px 2px #e6e6e6
+  -webkit-box-shadow: 3px 3px 8px #9E9999
+  -moz-box-shadow: 3px 3px 8px #9E9999
+  box-shadow: 3px 3px 8px #9E9999
   cursor: default
   background: url(bkcarrusel.jpg)
   padding: 10px
+  margin-left: 0px
+  h2
+    font-size: 10px
+    line-height: 16px
+    font-family: Roboto
+    margin-top: 3px
+    width: 260px
+    text-align: justify
+  p
+    font-size: 10px
+    line-height: 13px
+    font-family: Roboto
+    margin-bottom: 0px
+    padding: 15px 
+    padding-bottom: 8px
+    text-align: justify
+
+  a
+    height: 18px
+  
   
   img
     border: 1px solid $morao
     width: 100%
     max-height: 300px
     height: 100%
+    
 
 .view .mask,.view .content 
 
@@ -281,10 +372,23 @@ label
   top: 0
   left: 0
 
+  
+.icon-3x
+  color: $blanco
+
 #home-text
   text-shadow: 1px 1px 1px #AFD0EB
-  padding: 25px
-  margin-top: 2%
+  padding: 10%
+  padding-top: 4%
+  padding-botom: 0px
+  background-image: url('herramientasbk.jpg')
+  h3
+    text-align: center
+    font-size: 20px
+  i
+    box-orient:horizontal
+    box-pack:center
+    box-align:center
 #home-icons
   margin-left: 0%
   margin-top: 10%
@@ -297,8 +401,11 @@ label
   li
     display: inline
     padding: 4px
-  border-top: 2px dotted #EC6042
-  background: url(bkcarrusel.jpg)
+  border-top: 2px dotted #C9C1C0
+  background: url(semi-footer-img1.png)
+  background-position: 0px
+  background-size: 220px
+  background-repeat: no-repeat
 
 
   #footer-nav 
@@ -308,7 +415,7 @@ label
 
 .navbar-inverse .nav-collapse .nav > li > a, .navbar-inverse .nav-collapse .dropdown-menu a 
 
-  color: $verdoso
+  color: $blanco
 
 @media (max-width: 1107px)
   .quetepires
@@ -457,6 +564,7 @@ label
     height: auto
 
 
+
   .carousel-inner 
     top: 9px
 
@@ -506,7 +614,7 @@ label
 
 #page-wrapper
   /* margin: -100px 0px 30px -40px */
-  margin: -100px 0px 0px 50px 
+  margin: 0px 0px 0px 50px 
 
 .flash-notice
   background: #5fba29 !important
