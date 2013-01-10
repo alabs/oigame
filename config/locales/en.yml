@@ -1,61 +1,203 @@
+--- 
 en: 
-  enable_comments: 'Enable comments'
+  about: About
   accepted_cards: "Accepted cards"
   access_your_account: "Log into your account"
   activate: Activate
   activerecord: 
     errors: 
       full_messages: 
-        format: ""
+        format: " %{attribute} %{message} "
       messages: 
-        accepted: ""
-        blank: ""
-        confirmation: ""
-        empty: ""
-        equal_to: ""
-        even: ""
-        exclusion: ""
-        greater_than: ""
-        greater_than_or_equal_to: ""
-        inclusion: ""
-        invalid: ""
-        less_than: ""
-        less_than_or_equal_to: ""
-        not_a_number: ""
-        not_an_integer: ""
-        odd: ""
+        accepted: "must be accepted"
+        blank: "can't be blank"
+        confirmation: "doesn't match confirmation"
+        empty: "can't be empty"
+        equal_to: "must be equal to {{count}}"
+        even: "must be even"
+        exclusion: "is reserved"
+        greater_than: "must be greater than {{count}}"
+        greater_than_or_equal_to: "must be greater than or equal to {{count}}"
+        inclusion: "is not included in the list"
+        invalid: "is invalid"
+        less_than: "must be less than {{count}}"
+        less_than_or_equal_to: "must be less than or equal to {{count}}"
+        not_a_number: "is not a number"
+        not_an_integer: "must be an integer"
+        odd: "must be odd"
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
-        too_long: ""
-        too_short: ""
-        wrong_length: ""
+        too_long: "is too long (maximum is {{count}} characters)"
+        too_short: "is too short (minimum is {{count}} characters)"
+        wrong_length: "is the wrong length (should be {{count}} characters)"
       template: 
-        body: ""
+        body: "There were problems with the following fields"
         header: 
-          one: ""
-          other: ""
-  amount_select: ""
-  amount_to_donate: ""
-  another_format: ""
-  answers: ""
+          one: "1 error prohibited this {{model}} from being saved"
+          other: "{{count}} errors prohibited this {{model}} from being saved"
+  add_credit: "Add credit"
+  admin: 
+    actions: 
+      bulk_delete: 
+        breadcrumb: "Delete multiple"
+        bulk_link: "Delete selected %{model_label_plural}"
+        menu: "Delete multiple"
+        title: "Delete %{model_label_plural}"
+      dashboard: 
+        breadcrumb: Dashboard
+        menu: Dashboard
+        title: "Site administration"
+      delete: 
+        breadcrumb: Delete
+        done: deleted
+        link: "Delete '%{object_label}'"
+        menu: Delete
+        title: "Delete %{model_label} '%{object_label}'"
+      edit: 
+        breadcrumb: Edit
+        done: updated
+        link: "Edit this %{model_label}"
+        menu: Edit
+        title: "Edit %{model_label} '%{object_label}'"
+      export: 
+        breadcrumb: Export
+        bulk_link: "Export selected %{model_label_plural}"
+        done: exported
+        link: "Export found %{model_label_plural}"
+        menu: Export
+        title: "Export %{model_label} "
+      history_index: 
+        breadcrumb: History
+        menu: History
+        title: "History for %{model_label_plural}"
+      history_show: 
+        breadcrumb: History
+        menu: History
+        title: "History for %{model_label} '%{object_label}'"
+      index: 
+        breadcrumb: "%{model_label_plural}"
+        menu: List
+        title: "List of %{model_label_plural}"
+      new: 
+        breadcrumb: New
+        done: created
+        link: "Add a new %{model_label}"
+        menu: "Add new"
+        title: "New %{model_label}"
+      show: 
+        breadcrumb: "%{object_label}"
+        menu: Show
+        title: "Details for %{model_label} '%{object_label}'"
+      show_in_app: 
+        menu: "Show in app"
+    export: 
+      click_to_reverse_selection: "Click to reverse selection"
+      confirmation: "Export to %{name}"
+      csv: 
+        col_sep: "Column separator"
+        col_sep_help: "Leave blank for default ('%{value}')"
+        default_col_sep: ","
+        encoding_to: "Encode to"
+        encoding_to_help: "Choose output encoding. Leave empty to let current input encoding untouched: (%{name})"
+        header_for_association_methods: "%{name} [%{association}]"
+        header_for_root_methods: "%{name}"
+        skip_header: "No header"
+        skip_header_help: "Do not output a header (no fields description)"
+      display: "Display %{name}: %{type}"
+      empty_value_for_associated_objects: <empty>
+      fields_from: "Fields from %{name}"
+      fields_from_associated: "Fields from associated %{name}"
+      options_for: "Options for %{name}"
+      select: "Select fields to export"
+    flash: 
+      error: "%{name} failed to be %{action}"
+      model_not_found: "Model '%{model}' could not be found"
+      noaction: "No actions were taken"
+      object_not_found: "%{model} with id '%{id}' could not be found"
+      successful: "%{name} successfully %{action}"
+    form: 
+      all_of_the_following_related_items_will_be_deleted: "? The following related items may be deleted or orphaned:"
+      are_you_sure_you_want_to_delete_the_object: "Are you sure you want to delete this %{model_name}"
+      basic_info: "Basic info"
+      bulk_delete: "The following objects will be deleted, which may delete or orphan some of their related dependencies:"
+      cancel: Cancel
+      char_length_of: "length of"
+      char_length_up_to: "length up to"
+      confirmation: "Yes, I'm sure"
+      new_model: "%{name} (new)"
+      one_char: character
+      optional: Optional
+      required: Required
+      save: Save
+      save_and_add_another: "Save and add another"
+      save_and_edit: "Save and edit"
+    home: 
+      name: Home
+    misc: 
+      add_filter: "Add filter"
+      add_new: "Add new"
+      ago: ago
+      bulk_menu_title: "Selected items"
+      chose_all: "Choose all"
+      chosen: "Chosen %{name}"
+      clear_all: "Clear all"
+      down: Down
+      filter: Filter
+      filter_date_format: mm/dd/yy
+      log_out: "Log out"
+      navigation: Navigation
+      navigation_static_label: Links
+      refresh: Refresh
+      remove: Remove
+      search: Search
+      show_all: "Show all"
+      up: Up
+    pagination: 
+      next: "Next &raquo;"
+      previous: "&laquo; Prev"
+      truncate: …
+    table_headers: 
+      changes: Changes
+      created_at: Date/Time
+      item: Item
+      last_used: "Last used"
+      message: Message
+      model_name: "Model name"
+      records: Records
+      username: User
+  already_participated: "You have already participated in this campaign. Thank you!"
+  amount_select: "Select the amount"
+  amount_to_donate: "Amount to donate"
+  another_format: "The lines starting with four spaces are treated in a different format:"
+  answers: Answers
   archive: Archivate
-  archived_campaign: ""
-  archived_campaigns: ""
-  are_you_sure: ""
-  back: ""
-  body_of_campaign: ""
-  body_of_campaign_help: ""
-  bold: ""
-  campaign_stats: ""
-  campaigns: ""
-  cancel: ""
-  close: ""
-  communicate: ""
-  community: ""
-  contact: ""
-  contact_to: ""
-  create_account: ""
-  create_campaign: ""
+  archived_campaign: "Archived campaign"
+  archived_campaigns: "Archived campaigns"
+  are_you_sure: "Are you sure?"
+  back: Back
+  body_of_campaign: "Campaign body"
+  body_of_campaign_help: "Body of campaign"
+  bold: bold
+  campaign_stats: "Campaign stats"
+  campaigns: Campaigns
+  cancel: Cancel
+  cancel_account: "Cancel my account"
+  category: Category
+  category_of_campaign: "Category of campaign"
+  close: Close
+  communicate: Communicate
+  community: Community
+  configuration: Settings
+  contact: Contact
+  contact_to: "Contact to"
+  countries: Countries
+  create: Create
+  create_account: "Sign up"
+  create_campaign: "Create campaign"
+  created_and_maintened: "Created and maintaned by"
+  created_at: "Created at"
+  created_by: "Created by"
+  current_password: "Current password"
   date: 
     abbr_day_names: 
       - Sun
@@ -152,7 +294,17 @@ en:
       month: Month
       second: Seconds
       year: Year
+  days: days
+  deactivate: Deactivate
+  default_message: "Default message"
+  default_message_body: "Default message body"
+  default_message_body_help: "Default message to be sent in the campaign for participants who do not want to write their own message."
   default_message_subject: "Default mesage"
+  delete: Delete
+  deprioritize: Deprioritize
+  description: Description
+  descriptions: "Platform for citizen mobilization through the web"
+  developers: Developers
   devise: 
     confirmations: 
       confirmed: "Your account was successfully confirmed. You are now signed in."
@@ -191,6 +343,8 @@ en:
         unconfirmed: unconfirmed
       signed_up: "Welcome! You have signed up successfully."
       updated: "You updated your account successfully."
+      user: 
+        signed_up_but_unconfirmed: "Account created, check your email to confirm it."
     sessions: 
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
@@ -198,15 +352,30 @@ en:
       send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
       unlocked: "Your account was successfully unlocked. You are now signed in."
-  donation_problem: ""
+  didnt_receive_confirmation_instructions: "Did not receive confirmation instructions?"
+  doit_1: "Beam may in"
+  doit_2: "can make thousands of phone calls to the powerful, we can send hundreds of faxes. Improve it, donate, spread, write code."
+  doit_link: "Find out how to donate"
+  doit_title: "Make it possible"
+  donate: Donate
+  donate_oigame: "Make a donation to oiga.me"
+  donation_info_1: "oiga.me maintains a small team to keep their costs down. We practice a policy of economic transparency, each year we will publish a summary of the proceeds from donations and their destination."
+  donation_info_2: "As an independent, nonprofit aLabs all money spent each donation received in oiga.me to maintain and enhance this platform. With your support we can get that many people can speak out and coordinated to change the world, your donation directly helps thousands of people which can organize and conduct high-impact actions."
+  donation_problem: "There was a problem with your donation to oiga.me and the transaction could not be completed successfully so we didn't charge any amount in your account. Try to repeat the process again if problems persist contact aLabs team in the e-mail donaciones [at] alabs.es."
+  donation_secure: "Secure donation"
+  donation_secure_info: "The aLabs association does not store any credit card users who make donations, credit card transactions are processed directly online using the TPV payment of Banesto. With this secure payment system information is encrypted before it is sent using an SSL certificate. If you encounter any problems using the system, you have a question or a recommendation, please contact via e aLabs donaciones [at] alabs.es."
+  download_participants: "Download participants list"
+  due_date_of_campaign: "Due date of the campaign"
+  edit: Edit
+  edit_campaign: "Edit campaign"
+  email: Email
+  enable_comments: "Enable comments"
   errors: 
     format: "%{attribute} %{message}"
     messages: 
       accepted: "must be accepted"
       already_confirmed: "was already confirmed, please try signing in"
       blank: "can't be blank"
-      carrierwave_integrity_error: "is not an allowed file type"
-      carrierwave_processing_error: "failed to be processed"
       confirmation: "doesn't match confirmation"
       empty: "can't be empty"
       equal_to: "must be equal to %{count}"
@@ -230,15 +399,89 @@ en:
       too_long: "is too long (maximum is %{count} characters)"
       too_short: "is too short (minimum is %{count} characters)"
       wrong_length: "is the wrong length (should be %{count} characters)"
-  hello: "Hello world"
+  example_email: yourname@domain.com
+  faxes_recipients: "Fax numbers of recipients"
+  faxes_recipients_help: "List of fax numbers, one per line."
+  firms: Firms
+  forgot_your_password: "Forgot your password?"
+  go_to_home: "Return to top"
+  greetings: "A big hug from oiga.me and aLabs teams."
+  have_account: "Have an account?"
+  have_already_made: "people have already done"
   help: Help
   helpers: 
+    page_entries_info: 
+      more_pages: 
+        display_entries: "Showing %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> total"
+      one_page: 
+        display_entries: 
+          one: "Displaying <b>1</b> %{entry_name} "
+          other: "Showing <b> all the %{count}</b> %{entry_name} "
+          zero: "Did not match %{entry_name}"
     select: 
       prompt: "Please select"
     submit: 
       create: "Create %{model}"
       submit: "Save %{model}"
       update: "Update %{model}"
+  hi: Hi
+  home: Home
+  i_want_to_receive_news: "I want to receive oiga.me news "
+  if_you_write: "if you write:"
+  image_of_campaign: "Campaign image"
+  important_notice: "Important notice"
+  inform_campaign_activate: "We write to you to inform you that the campaign with name '#{ campaign_name }'  that you've created on oiga.me has been published and is available in the next URL:"
+  inform_campaign_social_council: "Hi social council, there's a new campaign created on oiga.me with the name '#{ campaign_name }'. For the moment it's moderated so it isn't public. You can revise it and assess it, if you think is interesting you can comment on the list and we can discus it. "
+  inform_campaign_sub_admin: "Hi, there's a new campaign in your SubOigame '#{ sub_name }' called '#{ campaign_name }'. For the moment it's moderated so it isn't public yet. You can revise and assess it, if you thinks it's interesting you can activate it. "
+  inform_new_comment: "We write you to inform you that you have received a new comment in your campaign called '#{ campaign_name }' that you have created on oiga.me"
+  integrate_form: "Integrate form"
+  integrate_form_explanation_1: "To integrate form this campaign on your website copy and paste the following Javascript code where you want to display it:"
+  integrate_form_explanation_2: "If the code will not work, you can try the version without Javascript and iframes; in HTML:"
+  intro_limit: "500 characters limit"
+  intro_of_campaign: "Campaign intro"
+  intro_of_campaign_help: "Campaign intro, this text appears in the list of campaigns."
+  italic: italic
+  join: Join
+  join_myself: Signature
+  join_oigame: "Join oiga.me!"
+  join_this_campaign: "Join this campaign"
+  keywords: "oiga.me, platform, mobilization, web, campaign, campaigns"
+  languages: Languages
+  last_campaigns: "Last campaigns"
+  last_moderated_campaigns: "Last moderated campaigns"
+  license_pre: "Until otherwise noted, content on this site is licensed "
+  listen_your_voice: "Let your voice be heard! To participate in the campaign enter your message, we will take care of effectively reaching all those responsible."
+  login: Login
+  logout: Logout
+  mail_validate_1: "Validate your support to the campaign #{ campaign_name }"
+  mail_validate_10: "oiga.me is a proyect from aLabs association (#{url_alabs}). As a non-proffit association, aLabs intended all donations it receives to oiga.me to improve the platform and add functionality to ease the participation of citizens in political life and the issues we care about. You can help keep collaboratively donating to the project (#{url_donate})."
+  mail_validate_2: "To validate your support to the campaign #{ campaign_name } we need to check that it was you who did it. To complete the process:"
+  mail_validate_3: "If it was not you who joined this campaign you can ignore this message."
+  mail_validate_4: "It is very important to spread the campaign, so we encourage you to be the center of the action:"
+  mail_validate_5: "Includes the campaign on your website so that your visitors can participate: #{url}. It's simple, it takes less than 1 minute."
+  mail_validate_6: "Spread the campaign on social networks."
+  mail_validate_7: "Follow @oigame on Twitter (http://twitter.com/oigame) and Facebook (http://www.facebook.com/oiga.me)."
+  mail_validate_8: "oiga.me is a proyect from aLabs association (#{url_alabs}). As a non-proffit association, aLabs intended all donations it receives to oiga.me to improve the platform and add functionality to ease the participation of citizens in political life and the issues we care about. You can help keep collaboratively donating to the project (#{url_donate})."
+  mail_validate_9: "Follow @oigame on Twitter #{oigame_twitter} and Facebook #{oigame_facebook}. "
+  make_member: "Sign up now"
+  markdown_help_show: "see markup help"
+  maximize: Maximize
+  may_your_voice: "Let your voice be heard! To join the campaign, please enter your email and click the join button."
+  may_your_voice_signed: "Let your voice be heard! To join the campaign click the join button."
+  media: Media
+  members: members
+  message: Message
+  message_info: "To enforce the campaign we recommend that your message is with respect, you can be firm but assertive and our experience tells us that those who receive the messages are much more receptive if they are treated respectfully. Tell them that you do not agree with what they are doing and why, tell them how you really want them to act."
+  message_received: "Message received"
+  minimal_size: "It must have a size of 500x400"
+  moderate_campaigns: "Moderate campaigns"
+  my_account: "My account"
+  name: "First name"
+  name_and_surname: "Name and Surname/s:"
+  name_of_campaign: "Campaign name"
+  next_you_have_info: "Here you have the information campaign"
+  no_account_yet: "Do not have an account yet?"
+  no_campaigns: "No campaigns yet, you can propose one."
   number: 
     currency: 
       format: 
@@ -246,15 +489,11 @@ en:
         format: "%u%n"
         precision: 2
         separator: "."
-        significant: false
-        strip_insignificant_zeros: false
         unit: $
     format: 
       delimiter: ","
       precision: 3
       separator: "."
-      significant: false
-      strip_insignificant_zeros: false
     human: 
       decimal_units: 
         format: "%n %u"
@@ -264,9 +503,9 @@ en:
           quadrillion: Quadrillion
           thousand: Thousand
           trillion: Trillion
-          unit: ""
+          unit: "\"\""
       format: 
-        delimiter: ""
+        delimiter: "."
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -282,16 +521,85 @@ en:
           tb: TB
     percentage: 
       format: 
-        delimiter: ""
+        delimiter: "\"\""
     precision: 
       format: 
-        delimiter: ""
+        delimiter: "\"\""
+  number_of_people: "Number of people who you think they join the campaign"
+  of: of
+  only_for_donations: "Only needed for donations "
+  option: Alternative
+  other_campaigns: "Participate in these other campaigns"
+  our_social_council: "Our Social Council warns oiga.me can be beneficial for the democratic health of their country and increase their levels of participation."
+  own_message: "I want to write my own message"
+  participants: Participants
+  participate: Participate
+  password: Password
+  password_confirmation: "Confirm password"
+  please_fill_the_form: "Please fill the form"
+  prioritize: Prioritize
+  privacy_policy: "Privacy policy"
+  propose_campaign: "Propose campaign"
+  published_at: "Published at"
+  quoted: quoted
+  recipients: Recipients
+  recipients_help: "List of email recipients, one per line."
+  recipients_show: "Your message will be sent to the following individuals"
+  remember_me: "Remember me"
+  repeat_1: "Be part of the protest, rally your voice to the other. Participate by sending millions of e effectively, without being filtered, without being able to cover their ears."
+  repeat_link: "Latest campaigns"
+  repeat_title: Repeat
+  request_new_password: "Request new password"
+  resend_confirmation_instructions: "Resend confirmation instructions"
+  result: Result
+  sayit_1: "Let your voice be heard."
+  sayit_2: "is a platform on which you can mount online campaigns in which the world can participate."
+  sayit_link: "Learn how to use oiga.me"
+  sayit_title: "Say it"
+  search: Search
+  send_message: "Send message"
+  sign_in: Login
+  sign_in_facebook: "Login with Facebook"
+  signup: Signup
+  slide_1: "A powerful speaker that you hear"
+  slide_2: "Create the world's biggest lobby. We are the 99%"
+  slide_3: "You think you can change the world? Do it!"
+  slide_4: "We are the 99%, we change the world together"
+  slide_5: "They succeeded because they knew it was impossible"
+  slide_6: "We love you, join!"
+  slogan_1: "DON'T HATE THE"
+  slogan_2: "LOBBY, EAT IT!"
+  slogan_3: PEOPLE
+  slogan_4: "HAVE ALREADY DONE"
+  some_participants: "Some participants"
+  some_reserved_rights: "Some rights reserved"
+  spread: "In your web"
+  spread_form: "Put the form on your web"
+  spread_info: "If you want to spread this campaign on your blog or website, you can do so by adding the following HTML or Javascript code. This makes it possible for more people to participate in the campaign."
+  stats: Stats
+  sub_integrate_form_explanation_1: "To integrate your SubOigame in your website you must copy and paste the following Javascript code where you want to display it:"
   subject: Subject
   support: 
     array: 
       last_word_connector: ", and "
       two_words_connector: " and   "
       words_connector: ", "
+    select: 
+      prompt: "Please select"
+  tags: Tags
+  tags_most_used: "Most used tags"
+  target: "Messages sent target"
+  thank_you: "Thank you"
+  thank_you_confirmed: "Your membership has been confirmed successfully, thank you very much for participating in this campaign."
+  thank_you_message: "Check your email. You will shortly receive an email with the last step to take to join the campaign."
+  thank_you_petition: "Thanks for participating. If you are not registered in oiga.me check your email, you should shortly receive an email with the last step to take to join the campaign."
+  thanks_for_participating: "Thanks for participating in oiga.me."
+  thanks_for_your_donation: "Thank you for your donation"
+  thanks_for_your_donation_text: "We give heartfelt thanks for your donation to oiga.me. With contributions like yours this project can go ahead."
+  there_are_currently: "There are currently"
+  there_was_a_problem: "There was a problem"
+  this_license: "this license"
+  this_link: "this link"
   time: 
     am: am
     formats: 
@@ -299,13 +607,28 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+  time_left: Are
+  token_invalid_body: "We found no adhesion with the token, check the email we sent you and if you still does not work let us know at hola@oiga.me"
+  token_invalid_title: "There was a problem"
+  type_of_campaign: "Campaign type"
+  type_of_campaign_prompt: "Select campaign type"
+  unauthorized: 
+    default: "You are not authorized to access this page"
   update: Update
-  category_of_campaign: 'Category of campaign'
-  category: 'Category'
-  firms: 'Firms'
-  users: 'Users'
-  languages: 'Languages'
-  about: 'About'
-  create: 'Create'
-  published_at: 'Published at'
-  add_credit: 'Add credit'
+  user_create: "If you want to propose campaigns or receive oiga.me news, create a user account."
+  users: Users
+  view_all_campaigns: "See all campaigns"
+  views: 
+    pagination: 
+      first: "&laquo; First"
+      last: "Last &raquo; "
+      next: "Next &rsaquo;"
+      previous: "&lsaquo; Previous"
+      truncate: "..."
+  we_need_your_pass: "we need your current password to make changes"
+  welcome_bye: "Enjoy the site and flow."
+  welcome_message: "to create social mobilization campaigns. This site you are looking at is a beta version, which although functional is not operational yet. So users and content you upload to the server can be deleted at any time. The first stable version will be available at the URL:"
+  welcome_you: "Welcome to oiga.me, the platform created by"
+  you_can_help: "You can help this campaign spreading it on your social networks"
+  you_will_get: "will:"
+  your_email: "Your email"
