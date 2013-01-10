@@ -37,6 +37,9 @@
               <% end -%>
               <span class="key" title="<%= phrase.key %>"><%= truncate(phrase.key, :length => 100) %></span>
             </td>
+            <td>
+              <%= link_to "Buscar", "#", :class => "search_translate" %>
+            </td>
           </tr>
         <% end %>
       </table>

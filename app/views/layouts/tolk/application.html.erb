@@ -6,6 +6,7 @@
   <title>Traducciones - oiga.me</title>
 
   <%= javascript_include_tag "tolk/application" %>
+  <%= javascript_include_tag "jquery" %>
   <%= stylesheet_link_tag "tolk/application" %>
   <%= stylesheet_link_tag "application" %>
   <%= yield :head %>
@@ -49,5 +50,6 @@ div#head span:last-child {
       element.setStyle({height: element.up('td').measure('height')+'px'});
     });
   </script>
+  <%= javascript_include_tag "translate" %>
 </body>
 </html>
