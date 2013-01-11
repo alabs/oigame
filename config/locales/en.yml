@@ -527,6 +527,50 @@ en:
         delimiter: "\"\""
   number_of_people: "Number of people who you think they join the campaign"
   of: of
+  oigame: 
+    privacy: 
+      consent_1: "Users are not required to provide any personal information to use the Website. However, they can provide a range of personal information will vary depending on different projects that aLabs engaged at all times. This information must be truthful."
+      consent_title: Consent
+      data_reg_1: "When you register as a user of oiga.me, you voluntarily supply certain personal data will be stored, protected and used only for the purposes provided in this website."
+      data_reg_2: "By participating in a campaign through this website, a record is kept of the number of participants and actions for statistical purposes. The user expressly authorizes aLabs association to provide the data you enter in the form of the campaign (Full name, surname and email) to the person or entity that promotes and manages the campaign for the sole and exclusive purpose of presenting before the end entity to which the request is directed."
+      data_reg_title: "What happens to my data when registering?, What about when I participate in a campaign?"
+      donation_1: "If you want to donate to aLabs, the information of your credit card and other bank, will be used only once and for a single transaction through our secure payment system on the Internet. aLabs not retain credit card information or other data bank."
+      donation_title: "Special mention to the data accompanying donations"
+      final: "If you have any questions you can contact us through the address info [at] oiga.me"
+      legal_notice_1: "This privacy policy applies to the user's relationship with all those pages under the domain oiga.me (hereinafter the 'website') operated by the nonprofit Association aLabs (hereinafter 'aLabs') and any its partners or that control and make use of the information obtained using the Website."
+      legal_notice_2: "aLabs through the website, gives users access to certain contents provided by a third party or Labs."
+      legal_notice_3: "Navigating the website attributes the condition of user and implies the full and unreserved acceptance of the legal notice and the terms and conditions listed below."
+      legal_notice_title: Disclaimer
+      link_1: "can bind aLabs interact with other websites. Obviously, these websites operated by third parties have their own privacy policies and terms of use out of control by aLabs. We can not be responsible, therefore, content, advertising, products or other materials that are contained in those other websites. Haciedo using this website you agree that aLabs not liable for direct or indirect damages resulting from such content teceros."
+      link_2: "Finally, we remind you that you can contact us for questions via the address info [at] alabs.es."
+      link_title: Links
+      lopd_cancel_1: "Users may exercise their rights of access, correction or deletion of data and revocation of consent by a request sent to email aLabs provided for this purpose."
+      lopd_cancel_2: "The email address is bringing these actions lopd [at] alabs.es"
+      lopd_cancel_3: "Also, you can contact aLabs through the following website address: C/Embajadores 35 , local 6, 28012, Madrid."
+      lopd_cancel_title: "Cancellation and correction data"
+      lopd_resp_1: "aLabs is manager of the data you provide, and the use thereof shall be solely for the purposes of the Site itself or that the user is assigned."
+      lopd_resp_title: "Responsible for personal data"
+      minors_1: "aLabs understands the importance of protecting the privacy of children online. No part of our policy to collect any personal data concerning users under 13. If you are under, I suggest asking your parents help and we ask you not to use the email tool or application to make donations."
+      minors_title: Minors
+      policy_1: "aLabs is committed to protecting your personal data through all the technological means at their disposal and use them exclusively for the purposes of own website and those for you to give your express consent. This commitment we made to you, you have another set of conditions that you must know."
+      policy_title: "Privacy Policy"
+      relevant_info_1: "Cookies: aLabs controls access statistics and could use cookies to implement them. If you wish to disable cookies, you may do so in your browser settings, but it may not be able to access different parts after the Website."
+      relevant_info_2: "Traces: In order to provide better service to the users, we study the data traffic on the Website. We used a IP Cams to help us better understand the origin of visitors and consequently, the services we can offer."
+      relevant_info_3: "In some emails sent by aLabs also will contain locators URL, which identify people who choose to interact on the Website."
+      relevant_info_title: "Useful information"
+      terms_1: "aLabs may modify the terms and conditions at any time, deploying these effects from the time of its publication on this page. You must be aware of the possible content updates. The last revision was published on 28/07/2012."
+      terms_2: "You agree to use the website only for lawful purposes, and in a manner that does not restrict or inhibit the use and enjoyment of it by others."
+      terms_3: "The brand names, trademarks and service marks on this website other than the ownership of aLabs be governed by the provisions of law applicable to the license to adhere. aLabs not responsible for the possible use of the ususarios can do the same."
+      terms_4: "Notwithstanding the above, permission is granted to copy, distribute and / or modify the contents published (text, photographs, graphics, images, icons, software, graphic design, source code, etc..) In any of the pages under the domain of aLabs and are of their ownership, unless otherwise expressly stated, under the terms of the Creative Commons (CC BY-SA 3.0)."
+      terms_5: "aLabs not responsible for the content of external internet sites that may be linked to this website."
+      terms_6: "Any communication or material you transmit or post on, any public area of ​​this website including data, questions, comments, suggestions, or the like, will be treated as non-confidential and non-proprietary."
+      terms_7: "These terms and conditions shall be governed and construed in accordance with the laws of the Spanish state. Any disputes shall be subject to the exclusive jurisdiction of the Spanish courts, without prejudice to any cause at issue could be resolved through arbitration law."
+      terms_8: "If you do not accept these terms and conditions in full, you must terminate your use of this site immediately."
+      terms_title: "Terms and conditions"
+    wizard: 
+      create_campaign: "Create Campaign"
+      next_step: "Next step"
+      previous_step: "Previous step"
   only_for_donations: "Only needed for donations "
   option: Alternative
   other_campaigns: "Participate in these other campaigns"
