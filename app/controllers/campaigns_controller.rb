@@ -47,11 +47,7 @@ class CampaignsController < ApplicationController
 
     @has_participated = @campaign.has_participated?(current_user)
 
-    if @campaign.ttype == 'petition'
-      @stats_data = @campaign.stats_for_petition(@campaign)
-    elsif @campaign.ttype == 'mailing'
-      @stats_data = @campaign.stats_for_mailing(@campaign)
-    end
+    @stats_data = @campaign.stats
     @image_src = @campaign.image_url.to_s
     @image_file = @campaign.image.file.file
     @description = @campaign.to_html(@campaign.intro).html_safe
@@ -229,7 +225,7 @@ class CampaignsController < ApplicationController
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
       if @campaign
-        @stats_data = @campaign.stats_for_mailing(@campaign)
+        @stats_data = @campaign.stats
       else
         flash[:error] = "Esta campaña ya no está activa."
         redirect_to campaigns_url
@@ -489,7 +485,7 @@ class CampaignsController < ApplicationController
     else
       @campaign = Campaign.published.find_by_slug(params[:id])
       if @campaign
-        @stats_data = @campaign.stats_for_fax(@campaign)
+        @stats_data = @campaign.stats
       else
         flash[:error] = "Esta campaña ya no está activa."
         redirect_to campaigns_url

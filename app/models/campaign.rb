@@ -185,6 +185,14 @@ class Campaign < ActiveRecord::Base
   end
 
   def stats
+    case ttype
+    when 'mailing'
+      stats_for_mailing
+    when 'peititon'
+      stats_for_petition
+    when 'fax'
+      stats_for_fax
+    end
   end
 
   def archive
@@ -215,13 +223,13 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  def stats_for_mailing(campaign)
-    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+  def stats_for_mailing
+    dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
     messages = 0
     require Rails.root.to_s+'/app/models/message'
     dates.each do |date|
-      count = Rails.cache.fetch("s4m_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      count = Rails.cache.fetch("s4m_#{id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
       messages += count
       data.push([date.strftime('%Y-%m-%d'), messages])
     end
@@ -229,13 +237,13 @@ class Campaign < ActiveRecord::Base
     return data
   end
   
-  def stats_for_fax(campaign)
-    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+  def stats_for_fax
+    dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
     faxes = 0
     require Rails.root.to_s+'/app/models/fax'
     dates.each do |date|
-      count = Rails.cache.fetch("s4f_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Fax.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      count = Rails.cache.fetch("s4f_#{id}_#{date.to_s}", :expires_in => 3.hour) { Fax.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
       faxes += count
       data.push([date.strftime('%Y-%m-%d'), messages])
     end
@@ -243,13 +251,13 @@ class Campaign < ActiveRecord::Base
     return data
   end
   
-  def stats_for_petition(campaign)
-    dates = (campaign.created_at.to_date..Date.today).map{ |date| date.to_date }
+  def stats_for_petition
+    dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
     petitions = 0
     require Rails.root.to_s+'/app/models/petition'
     dates.each do |date|
-      count = Rails.cache.fetch("s4p_#{campaign.id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => campaign.id).all }.count
+      count = Rails.cache.fetch("s4p_#{id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
       petitions += count
       data.push([date.strftime('%Y-%m-%d'), petitions])
     end
