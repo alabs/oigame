@@ -22,7 +22,25 @@ class Campaign < ActiveRecord::Base
   serialize :emails, Array
   serialize :numbers, Array
 
-  TYPES = { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
+  TYPES = {
+    :petition =>
+      {
+        :name => I18n.t('oigame.campaigns.type.petition'),
+        :img  => 'icon-pencil',
+      },
+    :mailing =>
+      {
+        :name => I18n.t('oigame.campaigns.type.mailing'),
+        :img  => 'icon-envelope',
+      },
+    :fax =>
+      {
+        :name => I18n.t('oigame.campaigns.type.fax'),
+        :img  => 'icon-print',
+      },
+  }
+   # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
+
   STATUS = %w[active archived deleted]
 
   validates_presence_of :name

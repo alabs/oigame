@@ -528,6 +528,11 @@ en:
   number_of_people: "Number of people who you think they join the campaign"
   of: of
   oigame: 
+    campaigns: 
+      type: 
+        fax: Faxing
+        mailing: Mailing
+        petition: "Online Petition"
     privacy: 
       consent_1: "Users are not required to provide any personal information to use the Website. However, they can provide a range of personal information will vary depending on different projects that aLabs engaged at all times. This information must be truthful."
       consent_title: Consent

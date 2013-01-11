@@ -573,6 +573,11 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    campaigns:
+      type:
+        petition: "Petición online"
+        mailing: "Envío de correo"
+        fax: "Envío de fax"
     wizard:
       next_step: "Paso siguiente"
       previous_step: "Paso anterior"

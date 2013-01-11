@@ -45,8 +45,8 @@
       <% Campaign::TYPES.select do |k,v| %>
         <div class="controls">
           <%= f.radio_button :ttype, k %>
-          <%= image_tag "activista.png" %>
-          <%= f.label :ttype, v, :value => k %>
+          <i class="<%= v[:img] %> icon-4x"></i>
+          <%= f.label :ttype, v[:name], :value => k %>
         </div>
       <% end %>
     </div>
