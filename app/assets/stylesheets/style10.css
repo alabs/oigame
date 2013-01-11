@@ -28,6 +28,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
    filter: alpha(opacity=0);
    opacity: 0;
+   width: 100%
 }
 .view-tenth h2 {
    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
@@ -108,5 +109,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 .view-tenth #izquierda {
 
-   margin-left: -17px;
+   margin-left: 0px;
 }			
