@@ -5,48 +5,16 @@
 <% end %>
 
 <div class="row-fluid">
-  <div class="span4">
-    <div id="participate-buttons">
-
-      <% unless @campaign.status == 'archived' %>
-
-        <% if @has_participated %>
-
-          <div id="show-campaign-petition">
-            <%= render :partial => 'has_participated' %>
-          </div>
-
-        <% else %>
-
-          <% if @campaign.ttype == 'petition' %>
-            <div id="show-campaign-petition">
-              <%= render :partial => 'petition_form' %>
-            </div>
-          <% end %>
-  
-          <% if @campaign.ttype == 'mailing' %>
-            <div id="show-campaign-mailing">
-              <%= render :partial => 'mailing_form' %>
-            </div>
-          <% end %>
-          
-          <% if @campaign.ttype == 'fax' %>
-            <div id="show-campaign-fax">
-              <%= render :partial => 'fax_form' %>
-            </div>
-          <% end %>
-
-        <% end %>
-      <% end %>
-
-    </div> <!-- participate-buttons -->
-  </div> <!-- span4 -->
-
-  <div class="span7" style="margin-left: 2.12766%; margin-top: -6em;">
+  <div class="span6 offset1" >
 
     <div id="show-campaign">
       <div id="show-campaign-detail">
         <h2><%= @campaign.name %></h2>
+         <% if @campaign.image.to_s %>
+              <p style="text-align:center;margin:15px 0px;">
+              <%= image_tag(@campaign.image_url.to_s) %>
+              </p>
+            <% end %>
         <div class="row-fluid">
         <div class="span6">
         <ul>
@@ -117,11 +85,7 @@
           <div id="campaign-info">
             <h2>Descripción</h2>
             <%= @campaign.to_html(@campaign.intro).html_safe %> 
-            <% if @campaign.image.to_s %>
-              <p style="text-align:center;margin:15px 0px;">
-              <%= image_tag(@campaign.image_url.to_s) %>
-              </p>
-            <% end %>
+           
             <%= @campaign.to_html(@campaign.body).html_safe %> 
             
             <%= render :partial => "communication", :locals => { :share_url => campaign_url(@campaign,locale:nil) } %>
@@ -201,6 +165,93 @@
     </div><!-- show-campaign -->
 
   </div><!-- span7 -->
+  <div class="span4">
+    <div id="participate-buttons">
 
+      <% unless @campaign.status == 'archived' %>
 
+        <% if @has_participated %>
+
+          <div id="show-campaign-petition">
+            <%= render :partial => 'has_participated' %>
+          </div>
+
+        <% else %>
+
+          <% if @campaign.ttype == 'petition' %>
+            <div id="show-campaign-petition">
+              <%= render :partial => 'petition_form' %>
+            </div>
+          <% end %>
+  
+          <% if @campaign.ttype == 'mailing' %>
+            <div id="show-campaign-mailing">
+              <%= render :partial => 'mailing_form' %>
+            </div>
+          <% end %>
+          
+          <% if @campaign.ttype == 'fax' %>
+            <div id="show-campaign-fax">
+              <%= render :partial => 'fax_form' %>
+            </div>
+          <% end %>
+
+        <% end %>
+      <% end %>
+
+    </div> <!-- participate-buttons -->
+  </div> <!-- span4 -->
+  <div id="realtime" class="span3 hidden-phone">
+            <ul>
+              <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                            <li>
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                <li class="quetepires3">
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+                <li class="quetepires2">
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li>
+              <li class="quetepires">
+                <%= image_tag("bob.png") %>
+                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
+                  
+                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
+              </li> 
+          
+           </ul>
+    </div><!--/.realtime-->
 </div><!-- row-fluid -->
