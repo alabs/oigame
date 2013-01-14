@@ -71,3 +71,19 @@ Para facilitar la traducción a personas externas del proyecto, se ha creado un 
 * pass: emagio
 
 Por lo que las personas externas pueden traducir iniciando sesión en https://beta.oiga.me/translate 
+
+
+Resque 
+======
+
+Para las tareas asíncronas utilizamos Resque. Para que funcione es necesario tener instalado y corriendo el servidor de redis
+
+```shell
+$ sudo aptitude install redis-server
+```
+
+Una vez esté levantado hay que levantar los workers del resque.
+
+```shell
+$ QUEUE=* rake resque:work
+```
