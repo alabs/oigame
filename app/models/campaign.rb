@@ -13,7 +13,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   has_many :donations
   
-  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus
+  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :postal_code, :identity_card, :state
   attr_accessor :recipient
 
 #  validate :validate_minimum_image_size
