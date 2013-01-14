@@ -1,15 +1,4 @@
 GIT
-  remote: git://github.com/capistrano/capistrano.git
-  revision: b1e2c2387c3c6bc0162909f4df34680f79875c17
-  specs:
-    capistrano (2.14.1)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-
-GIT
   remote: git://github.com/nesquena/query_reviewer.git
   revision: da0a6fcc7749704a199ca6ca710782be4832435f
   specs:
@@ -69,6 +58,12 @@ GEM
     binding_of_caller (0.6.8)
     bootstrap-sass (2.1.0.0)
     builder (3.0.4)
+    capistrano (2.14.1)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
     capybara (1.1.2)
@@ -395,7 +390,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  capistrano!
+  capistrano
   capistrano-ext
   capybara
   carrierwave

@@ -18,8 +18,8 @@ gem 'jquery-ui-themes'
 #gem 'unicorn'
 gem 'thin'
 
-#gem 'capistrano'
-gem 'capistrano', :github => 'capistrano/capistrano'
+gem 'capistrano'
+#gem 'capistrano', :github => 'capistrano/capistrano'
 gem 'capistrano-ext'
 
 # To use debugger
