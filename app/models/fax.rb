@@ -1,6 +1,6 @@
 class Fax < ActiveRecord::Base
 
-  attr_accessible :campaign, :email, :name, :token, :validated, :body
+  attr_accessible :campaign, :email, :name, :token, :validated, :body, :identity_card, :postal_code, :state
 
   belongs_to :campaign, :counter_cache => true
 

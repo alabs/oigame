@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105180207) do
+ActiveRecord::Schema.define(:version => 20130114162117) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -92,18 +92,24 @@ ActiveRecord::Schema.define(:version => 20130105180207) do
     t.datetime "check_date"
     t.string   "check_message"
     t.integer  "check_ticket_id"
+    t.string   "identity_card"
+    t.string   "postal_code"
+    t.string   "state"
   end
 
   create_table "messages", :force => true do |t|
     t.integer  "campaign_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "email"
-    t.boolean  "validated",   :default => false
+    t.boolean  "validated",     :default => false
     t.string   "token"
     t.text     "body"
     t.string   "subject"
     t.string   "name"
+    t.string   "identity_card"
+    t.string   "postal_code"
+    t.string   "state"
   end
 
   add_index "messages", ["campaign_id"], :name => "index_messages_on_campaign_id"
@@ -112,11 +118,14 @@ ActiveRecord::Schema.define(:version => 20130105180207) do
   create_table "petitions", :force => true do |t|
     t.integer  "campaign_id"
     t.string   "email"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "validated",   :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "validated",     :default => false
     t.string   "token"
     t.string   "name"
+    t.string   "identity_card"
+    t.string   "postal_code"
+    t.string   "state"
   end
 
   add_index "petitions", ["campaign_id"], :name => "index_petitions_on_campaign_id"
