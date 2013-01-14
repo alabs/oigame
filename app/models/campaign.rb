@@ -9,7 +9,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :sub_oigame, :counter_cache => true
   has_many :messages
   has_many :petitions
-  has_many :faxes, :class_name => Fax
+  has_many :faxes, :class_name => 'Fax'
   belongs_to :category
   has_many :donations
   
