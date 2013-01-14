@@ -44,7 +44,7 @@
   <body>
 
     <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name %>">
+      <div class="alert alert-<%= name %>" style="display: none;">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= msg %> 
       </div>
