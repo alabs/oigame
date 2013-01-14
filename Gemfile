@@ -7,6 +7,7 @@ gem 'mysql2'
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'turbo-sprockets-rails3'
 end
 gem 'sass-rails', '3.2.3'
 
@@ -17,7 +18,8 @@ gem 'jquery-ui-themes'
 #gem 'unicorn'
 gem 'thin'
 
-gem 'capistrano'
+#gem 'capistrano'
+gem 'capistrano', :github => 'capistrano/capistrano'
 gem 'capistrano-ext'
 
 # To use debugger
