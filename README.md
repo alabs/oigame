@@ -44,3 +44,30 @@ $ bundle exec thin start -p 8080
 Se necesitan las siguientes dependencias: 
 
 sudo aptitude install libmysqlclient-dev libmagick-dev libmagickwand-dev
+
+
+Traducciones
+============
+
+Para manejar las traducciones utilizamos tolk: 
+
+https://github.com/tolk/tolk
+
+El acceso a la interfaz administrativa es a través de /translate. Esto deja las traducciones en la base de datos, pudiendo exportarla a los ficheros de config/locales/*.yml con el comando: 
+
+```shell
+$ rake tolk:dump_all
+```
+
+Otra acción común a realizar es sincronizar los cambios en estos ficheros con los de la base de datos, por ejemplo al agregar nuevas cadenas o modificar antiguas en el locale por defecto (config/locales/es.yml).
+
+```shell
+$ rake tolk:sync
+```
+
+Para facilitar la traducción a personas externas del proyecto, se ha creado un usuario en https://beta.oiga.me con las siguientes credenciales: 
+
+* user: beta@oiga.me
+* pass: emagio
+
+Por lo que las personas externas pueden traducir iniciando sesión en https://beta.oiga.me/translate 
