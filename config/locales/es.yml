@@ -621,3 +621,76 @@ es:
       link_1: "aLabs se puede enlazar recíprocamente con otros sitios web. Evidentemente, estos sitios web operados por terceras partes tienen sus propias políticas de privacidad y términos de uso fuera de todo control por parte de aLabs. No podemos hacernos responsables, por tanto, del contenido, publicidad, productos u otros materiales que se contengan en esos otros sitios web. Haciedo uso de este Sitio web aceptas que aLabs no se hace responsable directo o indirecto de los daños o perjuicios derivado de dichos contenidos de teceros."
       link_2: "Por último, te recordamos que puedes ponerte en contacto con nosotras para solucionar cualquier duda a través de la dirección info[arroba]alabs.es."
       final: "Si tienes cualquier duda puedes ponerte en contacto con nosotras a través de la dirección info[arroba]oiga.me"
+  errors:
+    messages:
+      expired: "ha expirado, por favor solicita una nueva"
+      not_found: "no se encontró"
+      already_confirmed: "ya fue confirmado, por favor intenta iniciar sesión"
+      not_locked: "no estaba bloqueado"
+      not_saved:
+        one: "Un error ocurrió al tratar de guardar %{resource}:"
+        other: "%{count} errores ocurrieron al tratar de guardar %{resource}:"
+
+  devise:
+    failure:
+      already_authenticated: 'Ya has iniciado una sesión.'
+      unauthenticated: 'Tienes que iniciar sesión o registrarte para poder continuar.'
+      unconfirmed: 'Tienes que confirmar tu cuenta para poder continuar.'
+      locked: 'Tu cuenta está bloqueada.'
+      invalid: 'Contraseña o correo inválidos.'
+      invalid_token: 'Código de autenticación inválido.'
+      timeout: 'Tu sesión expiró, por favor inicia sesión nuevamente para continuar.'
+      inactive: 'Tu cuenta aún no ha sido activada.'
+    sessions:
+      signed_in: 'Sesión iniciada.'
+      signed_out: 'Sesión finalizada.'
+    passwords:
+      send_instructions: 'Vas a recibir un correo con instrucciones sobre cómo resetear tu contraseña en unos pocos minutos.'
+      updated: 'Tu contraseña fue cambiada. Ya iniciaste sesión.'
+      updated_not_active: 'Tu contraseña fue cambiada.'
+      send_paranoid_instructions: "Si tu correo existe en nuestra base de datos, vas a recibir un correo con instrucciones sobre cómo resetear tu contraseña en tu bandeja de entrada."
+    confirmations:
+      send_instructions: 'Vas a recibir un correo con instrucciones sobre cómo confirmar tu cuenta en unos pocos minutos.'
+      send_paranoid_instructions: 'Si tu correo existe en nuestra base de datos, vas a recibir un correo con instrucciones sobre cómo confirmar tu cuenta en unos pocos minutos.'
+      confirmed: 'Tu cuenta fue confirmada. Ya iniciaste sesión.'
+    registrations:
+      user:
+        signed_up_but_unconfirmed: 'Cuenta creada, revisa tu correo para confirmarla.'
+      signed_up: 'Bienvenido. Tu cuenta fue creada.'
+      inactive_signed_up: 'Tu cuenta fue creada. Sin embargo, no podemos iniciar tu sesión porque tu cuenta está %{reason}. Revisa tu correo para activarla.'
+      updated: 'Tu cuenta fue actualizada.'
+      destroyed: 'Fue grato tenerte con nosotros. Tu cuenta fue cancelada.'
+      reasons:
+        inactive: 'inactiva'
+        unconfirmed: 'sin confirmar'
+        locked: 'bloqueada'
+    unlocks:
+      send_instructions: 'Vas a recibir instrucciones para desbloquear tu cuenta en unos pocos minutos.'
+      unlocked: 'Tu cuenta fue desbloqueada. Ya iniciaste sesión.'
+      send_paranoid_instructions: 'Si tu cuenta existe, vas a recibir instrucciones para desbloquear tu cuenta en unos pocos minutos.'
+    omniauth_callbacks:
+      success: 'Has sido autorizado satisfactoriamente de la cuenta %{kind}.'
+      failure: 'No has sido autorizado en la cuenta %{kind} porque "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: '[oiga.me] Instrucciones de confirmación'
+      reset_password_instructions:
+        subject: '[oiga.me] Instrucciones de recuperación de contraseña'
+      unlock_instructions:
+        subject: '[oiga.me] Instrucciones para desbloquear'
+  views:
+    pagination:
+      first: "&laquo; Primera"
+      last: "Última &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Siguiente &rsaquo;"
+      truncate: "..."
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No se han encontrado %{entry_name}"
+          one: "Mostrando <b>1</b> %{entry_name}"
+          other: "Mostrando <b>todas las %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Mostrando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> en total"
