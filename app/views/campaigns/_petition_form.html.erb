@@ -18,6 +18,24 @@
           <%= email_field_tag :email, nil, :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
         </div>
       <% end %>
+      <% if @campaign.identity_card %>
+        <div class="form-field">
+          <%= label_tag t(:your_identity_card) %>
+          <%= text_field_tag :identity_card, nil, :required => true, :placeholder => t(:your_identity_card) %>
+        </div>
+      <% end %>
+      <% if @campaign.postal_code %>
+        <div class="form-field">
+          <%= label_tag t(:your_postal_code) %>
+          <%= text_field_tag :postal_code, nil, :required => true, :placeholder => t(:your_postal_code) %>
+        </div>
+      <% end %>
+      <% if @campaign.state %>
+        <div class="form-field">
+          <%= label_tag t(:your_state) %>
+          <%= text_field_tag :state, nil, :required => true, :placeholder => t(:your_state) %>
+        </div>
+      <% end %>
       <div class="form-actions">
         <%= button_tag t(:join_myself), :class => 'btn btn-inverse btn-large center' %>
       </div>

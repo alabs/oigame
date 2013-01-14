@@ -81,7 +81,19 @@
       <%= f.label :default_message_body, t(:default_message_body), :class => 'control-label' %>
       <div class="controls">
       <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
+      </div>
     </div>
+    <div class="control-group form-field">
+      <%= f.label :identity_card, t(:request_identity_card), :class => 'control-label' %>
+      <%= f.check_box :identity_card, :checked => false %> <span class="note"><%= t(:request_identity_card) %></span>
+    </div>
+    <div class="control-group form-field">
+      <%= f.label :postal_code, t(:request_postal_code), :class => 'control-label' %>
+      <%= f.check_box :postal_code, :checked => false %> <span class="note"><%= t(:request_postal_code) %></span>
+    </div>
+    <div class="control-group form-field">
+      <%= f.label :state, t(:request_state), :class => 'control-label' %>
+      <%= f.check_box :state, :checked => false %> <span class="note"><%= t(:request_state) %></span>
     </div>
     <div class="control-group form-field">
       <%= f.label :commentable, t(:enable_comments), :class => 'control-label' %>
