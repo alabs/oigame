@@ -1,5 +1,5 @@
 
-$.noConflict();
+//$.noConflict();
 
 jQuery.fn.directText = function(settings) {
    settings = jQuery.extend({},jQuery.fn.directText.defaults, settings);
