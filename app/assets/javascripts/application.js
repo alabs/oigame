@@ -42,6 +42,6 @@ $(function(){
   // para el slideshow de la home
   $("#myHomeCarousel .item:first").addClass("active");
 
-  $('.alert').slideDown(1000).show();
+  $('.alert').hide().slideDown(1000).show();
 
 });
