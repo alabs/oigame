@@ -49,6 +49,9 @@ module Oigame
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # para las fuentes de otra gente
+    config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
+
     # Esto peta, no existen esos métodos en Devise::Mailer
     #config.to_prepare do
     #  Devise::Mailer.layout "email" # email.haml or email.erb
