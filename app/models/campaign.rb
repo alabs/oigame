@@ -343,7 +343,11 @@ class Campaign < ActiveRecord::Base
       config.oauth_token = APP_CONFIG[:twitter_oauth_token]
       config.oauth_token_secret = APP_CONFIG[:twitter_oauth_token_secret]
     end
-    Twitter.update(self.name + ' - ' + get_absolute_url)
+    if self.hashtag
+      Twitter.update(self.name[0,100] + ' - ' + get_absolute_url + ' - ' + self.hashtag)
+    else
+      Twitter.update(self.name + ' - ' + get_absolute_url)
+    end
   end
 
   def facebook_it
