@@ -95,8 +95,8 @@ Oigame::Application.routes.draw do
         get 'fax'
         post 'fax'
         get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
-        get 'credit-added' => 'campaigns#credit_added', :as => 'credit_added'
-        get 'credit-denied' => 'campaigns#credit_denied', :as => 'credit_denied'
+        get 'transaction-accepted' => 'campaigns#credit_added', :as => 'credit_added'
+        get 'transaction-denied' => 'campaigns#credit_denied', :as => 'credit_denied'
       end
       collection do
         get 'moderated'
