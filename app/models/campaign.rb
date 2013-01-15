@@ -12,6 +12,7 @@ class Campaign < ActiveRecord::Base
   has_many :faxes, :class_name => 'Fax'
   belongs_to :category
   has_many :donations
+  has_many :updates
   
   attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype, :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :postal_code, :identity_card, :state, :hashtag
   attr_accessor :recipient

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115035749) do
+ActiveRecord::Schema.define(:version => 20130115093446) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -207,6 +207,13 @@ ActiveRecord::Schema.define(:version => 20130115035749) do
   end
 
   add_index "tolk_translations", ["phrase_id", "locale_id"], :name => "index_tolk_translations_on_phrase_id_and_locale_id", :unique => true
+
+  create_table "updates", :force => true do |t|
+    t.text     "body"
+    t.integer  "campaign_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
