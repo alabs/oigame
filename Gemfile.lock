@@ -46,6 +46,10 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    acts_as_unvlogable (1.0.0)
+      hpricot
+      xml-simple
+      youtube_it
     addressable (2.3.2)
     ansi (1.4.3)
     arel (3.0.2)
@@ -122,6 +126,7 @@ GEM
     highline (1.6.15)
     hike (1.2.1)
     honeypot-captcha (0.0.2)
+    hpricot (0.8.6)
     httparty (0.9.0)
       multi_json (~> 1.0)
       multi_xml
@@ -378,16 +383,25 @@ GEM
     will_paginate (3.0.3)
     will_paginate-bootstrap (0.2.1)
       will_paginate (>= 3.0.3)
+    xml-simple (1.1.2)
     xpath (0.1.4)
       nokogiri (~> 1.3)
     ya2yaml (0.31)
     yajl-ruby (1.1.0)
     yaml_db (0.2.3)
+    youtube_it (2.1.10)
+      builder
+      faraday (~> 0.8)
+      nokogiri (~> 1.5.2)
+      oauth (~> 0.4.4)
+      oauth2 (~> 0.6)
+      simple_oauth (>= 0.1.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_unvlogable
   better_errors
   binding_of_caller
   capistrano
