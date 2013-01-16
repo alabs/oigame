@@ -164,8 +164,13 @@
       </div><!-- show-campaign-sidebar -->
     </div><!-- show-campaign -->
 
+
   </div><!-- span7 -->
-  <div class="span4">
+  
+  
+  <% unless @campaign.credit == 0 %>
+    
+    <div class="span4">
     <div id="participate-buttons">
 
       <% unless @campaign.status == 'archived' %>
@@ -201,6 +206,8 @@
 
     </div> <!-- participate-buttons -->
   </div> <!-- span4 -->
+
+<% end %>
   <div id="realtime" class="span3 hidden-phone">
             <ul>
               <li>
