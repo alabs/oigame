@@ -1,6 +1,6 @@
 class SendFax
 
-  @queue = :send_faxes
+  @queue = :faxer
 
   def self.perform fax_id
     campaign = Fax.find(fax_id).campaign

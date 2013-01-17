@@ -430,7 +430,7 @@ class CampaignsController < ApplicationController
               fax.update_attributes(:validated => true, :token => nil)
               # Ahora usamos el worker
               #Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
-              SendFax.enqueue(Fax, fax.id)
+              Resque.enqueue(SendFax, fax.id)
               if @sub_oigame.nil?
                 #redirect_url = fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
                 redirect_url = fax_campaign_url
