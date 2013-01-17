@@ -2,7 +2,7 @@ Authorization.default_role = :anonymous
 
 authorization do
   role :anonymous do
-    has_permission_on [:campaigns], :to => [:index, :widget ,:widget_iframe, :message, :petition, :fax,
+    has_permission_on [:campaigns], :to => [:index, :widget ,:widget_iframe, :message_sign, :petition_sign, :signed, :fax_send,
       :validate, :integrate, :validated, :feed, :archived, :search, :add_credit]
     has_permission_on [:campaigns], :to => [:show] do
       if_attribute :moderated => is { false }
