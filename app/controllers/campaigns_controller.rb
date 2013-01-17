@@ -3,23 +3,27 @@ class CampaignsController < ApplicationController
 
   #include Social::Facebook
 
-  before_filter :protect_from_spam, :only => [:message, :petition_create, :fax_send]
-  protect_from_forgery :except => [:message, :petition_create, :fax_send]
+  methods_for_actions = [:fax_send,:petition_sign,:message_sign]
+
+  before_filter :protect_from_spam, :only => methods_for_actions
+  protect_from_forgery :except => methods_for_actions
   layout 'application', :except => [:widget, :widget_iframe]
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
-  before_filter :set_user_blank_parameters, only: [:fax_send, :petition_create, :message]
+  before_filter :set_user_blank_parameters, only: methods_for_actions
   before_filter :get_campaign_with_other_campaigns, only: [:signed]
   
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
   
-  before_filter :get_campaign, :except => [:index, :message, :feed, :new, :create, :archived]
+  before_filter :get_campaign, :except => [:index, :feed, :new, :create, :archived]
+  # TODO: Activate again open graph
+  # before_filter :open_graph_facebook, only: methods_for_actions
 
   # para declarative_auth
   filter_access_to :all, :attribute_check => true
   # para que no se haga check del attributo
   # preguntar a enrique como hacer esto más dry
-  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived, :petition, :message, :fax_send
+  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived
 
   respond_to :html, :json
 
@@ -151,72 +155,26 @@ class CampaignsController < ApplicationController
   end
 
   # Types of petitions when singing
-  def message
+  def message_sign
     from = user_signed_in? ? current_user.email : params[:email]
+
     if @campaign
-      if params[:own_message] == "1"
-        message = Message.new(:campaign => @campaign, :email => from, :subject => params[:subject], :body => params[:body], :token => generate_token)
-        if message.save
+      body_message = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
+      message = Message.new(:campaign => @campaign, :email => from, :subject => body_message, :body => params[:body], :token => generate_token)
 
-          # si está registrado no pedirle confirmación de unión a la campaña
-          if user_signed_in?
-            message.update_attributes(:validated => true, :token => nil)
-            Mailman.send_message_to_recipients(message.id).deliver
-            if @sub_oigame.nil?
-              #redirect_url = message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
-              redirect_url = message_campaign_url
-            else
-              #redirect_url = message_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
-              redirect_url = message_sub_oigame_campaign_url(@campaign, @sub_oigame)
-            end
-            session[:fb_sess_campaign] = @campaign.id
-            redirect_to facebook_auth_url
-
-            # revisar y mandar al sitio correcto
-            #redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-
-            return
-          end
-          Mailman.send_message_to_validate_message(from, @campaign.id, message.id).deliver
-        else
-          flash.now[:error] = "No puedes participar más de una vez por campaña"
-          render :action => :show
-          return
+      if message.save
+        # si está registrado no pedirle confirmación de unión a la campaña
+        if user_signed_in?
+          message.validate
+          Mailman.send_message_to_recipients(message.id).deliver
         end
+        Mailman.send_message_to_validate_message(from, @campaign.id, message.id).deliver
       else
-        # mensaje por defecto
-        message = Message.new(:campaign => @campaign, :email => from, :subject => @campaign.default_message_subject, :body => @campaign.default_message_body, :token => generate_token)
-        if message.save
-          # si está registrado no pedirle confirmación de unión a la campaña
-          if user_signed_in?
-            message.update_attributes(:validated => true, :token => nil)
-            Mailman.send_message_to_recipients(message.id).deliver
-            if @sub_oigame.nil?
-              redirect_to message_campaign_url, :notice => 'Gracias por unirte a esta campaña'
-            else
-              redirect_to message_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
-            end
-
-            return
-
-          end
-          Mailman.send_message_to_validate_message(from, @campaign.id, message.id).deliver
-        else
-          flash.now[:error] = "No puedes participar más de una vez por campaña"
-          render :action => :show
-          return
-        end
+        redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
       end
-      if @sub_oigame.nil?
-        redirect_to message_campaign_url
-      else
-        redirect_to message_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
-      end
-
-      return
+      redirector_to :signed
     else
-      flash[:error] = "Esta campaña ya no está activa."
-      redirect_to campaigns_url
+      redirector_to :campaigns, error: "Esta campaña ya no está activa."
     end
   end
 
@@ -226,20 +184,9 @@ class CampaignsController < ApplicationController
     if @petition.save
       # si está registado no enviar mensaje de confirmación
       if user_signed_in?
-        @petition.update_attributes(:validated => true, :token => nil)
-        if @sub_oigame
-          redirect_url = petition_sub_oigame_campaign_url
-        else
-          redirect_url = petition_campaign_url
-        end
+        @petition.validate
         session[:fb_sess_campaign] = @campaign.id
         redirect_to facebook_auth_url
-
-        # revisar y mandar al sitio correcto
-        #redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-
-        return
-
       end
       Mailman.send_message_to_validate_petition(to, @campaign.id, @petition.id).deliver
       if @sub_oigame
@@ -251,9 +198,6 @@ class CampaignsController < ApplicationController
     else
       redirect_to :back, error: 'No puedes participar más de una vez por campaña'
     end
-  end
-
-  def signed
   end
 
   def fax_send
@@ -322,6 +266,9 @@ class CampaignsController < ApplicationController
       flash[:error] = "Esta campaña ya no está activa."
       redirect_to campaigns_url
     end
+  end
+
+  def signed
   end
 
   def validate
@@ -495,5 +442,18 @@ class CampaignsController < ApplicationController
         cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
       end
     end
+  end
+
+  def open_graph_facebook
+    session[:fb_sess_campaign] = @campaign.id
+    redirect_to facebook_auth_url
+  end
+
+  def redirector_to site, *params
+    t_sub_oigame = @sub_oigame.nil? ? '' : 'sub_oigame_'
+    urls[:campaigns] = "#{t_sub_oigame}campaigns_url".to_s
+    urls[:signed] = "signed_#{t_sub_oigame}campaign_url".to_s
+    urls[:campaign] = "#{t_sub_oigame}campaign_url".to_s
+    redirect_to self.send(urls[site]), params
   end
 end
