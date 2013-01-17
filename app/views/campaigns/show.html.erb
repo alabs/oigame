@@ -171,7 +171,7 @@
   </div><!-- span7 -->
   
   
-  <% unless @campaign.credit <= 0.5 %>
+  <% unless @campaign.credit < 0.5 %>
     
     <div class="span4">
     <div id="participate-buttons">
@@ -205,10 +205,18 @@
           <% end %>
 
         <% end %>
-      <% end %>
+        </div> <!-- participate-buttons -->
+      </div> <!-- span4 -->
 
-    </div> <!-- participate-buttons -->
-  </div> <!-- span4 -->
+      <% else %>
+
+        <div class="span4">
+          <div id="participate-buttons">
+          <p>Esta campaña está en modo standby</p>
+        </div>
+        </div>
+
+    <% end %>
 
 <% end %>
   <div id="realtime" class="span3 hidden-phone">
