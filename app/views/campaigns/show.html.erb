@@ -171,7 +171,7 @@
   </div><!-- span7 -->
   
   
-  <% unless @campaign.credit < 0.5 %>
+  <% if @campaign.credit > 0.5 || @campaign.ttype != 'fax' %>
     
     <div class="span4">
     <div id="participate-buttons">
