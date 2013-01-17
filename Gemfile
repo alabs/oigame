@@ -61,7 +61,7 @@ gem 'redis-rails'
 gem 'honeypot-captcha'
 #gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
 gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git", :ref => "aad856a8a4"
-gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
+#gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
 gem "rails3_acts_as_paranoid", "~>0.2.0"
 gem 'thinking-sphinx', '2.0.10'
 gem 'fb_graph'

@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/nesquena/query_reviewer.git
-  revision: da0a6fcc7749704a199ca6ca710782be4832435f
-  specs:
-    query_reviewer (0.1.5)
-
-GIT
   remote: https://github.com/coderanger/raven-ruby.git
   revision: aad856a8a44a73f262c763f16ff930f586350abc
   ref: aad856a8a4
@@ -432,7 +426,6 @@ DEPENDENCIES
   omniauth-twitter
   prawn
   pry-rails
-  query_reviewer!
   rails (= 3.2.11)
   rails3_acts_as_paranoid (~> 0.2.0)
   rails_admin
