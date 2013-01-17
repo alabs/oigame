@@ -44,6 +44,15 @@
       </div>
     </div>
     <div class="control-group">
+      <%= f.label :video_url, t(:video_url), :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :video_url, :class => 'input-file' %>
+        <% unless @campaign.errors[:video_url].blank? %>
+          <span class="error_message"><%= @campaign.errors[:video_url].to_sentence %></span>
+        <% end %>
+      </div>
+    </div>
+    <div class="control-group">
       <%= f.label :intro, t(:intro_of_campaign), :class => 'control-label' %>
       <div class="controls">
       <div class="wmd-panel">

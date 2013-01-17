@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115093446) do
+ActiveRecord::Schema.define(:version => 20130117055155) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130115093446) do
     t.boolean  "state",                                                  :default => false
     t.boolean  "postal_code",                                            :default => false
     t.string   "hashtag"
+    t.string   "video_url"
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"

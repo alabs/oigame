@@ -52,6 +52,8 @@ class CampaignsController < ApplicationController
     @image_file = @campaign.image.file.file
     @description = @campaign.to_html(@campaign.intro).html_safe
 
+    @videotron = UnvlogIt.new(@campaign.video_url)
+
     respond_with(@campaign)
   end
 

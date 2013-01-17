@@ -11,10 +11,13 @@
       <div id="show-campaign-detail">
         <h2><%= @campaign.name %></h2>
          <% if @campaign.image.to_s %>
-              <p style="text-align:center;margin:15px 0px;">
-              <%= image_tag(@campaign.image_url.to_s) %>
-              </p>
-            <% end %>
+           <p style="text-align:center;margin:15px 0px;">
+           <%= image_tag(@campaign.image_url.to_s) %>
+           </p>
+         <% end %>
+         <% if @campaign.video_url %>
+           <%= raw @videotron.embed_html %>
+         <% end %>
         <div class="row-fluid">
         <div class="span6">
         <ul>
