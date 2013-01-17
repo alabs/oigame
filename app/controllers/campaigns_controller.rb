@@ -210,7 +210,8 @@ class CampaignsController < ApplicationController
           # si está registrado no pedirle confirmación de unión a la campaña
           if user_signed_in?
             fax.update_attributes(:validated => true, :token => nil)
-            Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
+            # Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
+            Resque.enqueue(SendFax, fax.id)
             if @sub_oigame.nil?
               #redirect_url = fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
               redirect_url = fax_campaign_url
@@ -394,6 +395,7 @@ class CampaignsController < ApplicationController
   #  Mailman.inform_new_comment(@campaign).deliver
   #  redirect_to @campaign
   #end
+
   def add_credit
     unless current_user.ready_for_add_credit
       session[:redirect_to_add_credit] = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}/add-credit"
