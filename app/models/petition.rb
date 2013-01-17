@@ -19,4 +19,8 @@ class Petition < ActiveRecord::Base
     validated.order('created_at DESC').select('created_at, name, campaign_id, id').limit(10)
   end
 
+  def validate
+    update_attributes(:validated => true, :token => nil)
+  end
+
 end
