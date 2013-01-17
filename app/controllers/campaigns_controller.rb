@@ -428,7 +428,9 @@ class CampaignsController < ApplicationController
             # si está registrado no pedirle confirmación de unión a la campaña
             if user_signed_in?
               fax.update_attributes(:validated => true, :token => nil)
-              Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
+              # Ahora usamos el worker
+              #Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
+              SendFax.enqueue(Fax, fax.id)
               if @sub_oigame.nil?
                 #redirect_url = fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
                 redirect_url = fax_campaign_url
