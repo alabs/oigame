@@ -21,5 +21,6 @@ class Message < ActiveRecord::Base
 
   def validate!
     update_attributes(:validated => true, :token => nil)
+    Mailman.send_message_to_recipients(self.id).deliver
   end
 end
