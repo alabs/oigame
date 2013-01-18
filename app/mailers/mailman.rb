@@ -40,60 +40,26 @@ class Mailman < ActionMailer::Base
     mail :from => from, :to => 'hola@oiga.me', :subject => subject
   end
 
-  def send_message_to_validate_message(to, campaign_id, message_id)
-    @campaign = Campaign.find(campaign_id)
-    message = Message.find(message_id)
-    @token = message.token
-    # TODO: esto que viene no es muy DRY que digamos 
-    # seguro que hay alguna forma elegante con un before o alguna cosas de estas
-    unless @campaign.sub_oigame.nil?
-      prefix = "[#{@campaign.sub_oigame.name}]"
-      @sub_oigame = @campaign.sub_oigame
-      @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-    else
-      prefix = "[oiga.me]"
-      @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
-    end
-    from = generate_from_for_validate('oigame@oiga.me', campaign.sub_oigame)
-    subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    mail :from => from, :to => to, :subject => subject
-  end
-  
-  def send_message_to_validate_fax(to, campaign_id, fax_id)
-    @campaign = Campaign.find(campaign_id)
-    fax = Fax.find(fax_id)
-    @token = fax.token
-    # TODO: esto que viene no es muy DRY que digamos 
-    # seguro que hay alguna forma elegante con un before o alguna cosas de estas
-    unless @campaign.sub_oigame.nil?
-      prefix = "[#{@campaign.sub_oigame.name}]"
-      @sub_oigame = @campaign.sub_oigame
-      @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-    else
-      prefix = "[oiga.me]"
-      @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
-    end
-    from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)
-    subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    mail :from => from, :to => to, :subject => subject
-  end
+  [:message, :fax, :petition].each do |meth|
+    define_method "send_message_to_validate_#{meth}".to_s do |to, campaign_id, signed_id|
+      sign_model = meth.to_s.capitalize.constantize
+      @campaign = Campaign.find(campaign_id)
+      petition = sign_model.find(signed_id)
+      @token = petition.token
 
-  def send_message_to_validate_petition(to, campaign_id, petition_id)
-    @campaign = Campaign.find(campaign_id)
-    petition = Petition.find(petition_id)
-    @token = petition.token
-    from = Mailman.default[:from]
-    unless @campaign.sub_oigame.nil?
-      prefix = "[#{@campaign.sub_oigame.name}]"
-      @sub_oigame = @campaign.sub_oigame
-      @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
-    else
-      prefix = "[oiga.me]"
-      @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
+      unless @campaign.sub_oigame.nil?
+        prefix = "[#{@campaign.sub_oigame.name}]"
+        @sub_oigame = @campaign.sub_oigame
+        @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+      else
+        prefix = "[oiga.me]"
+        @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
+      end
+
+      from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)
+      subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
+      mail :from => from, :to => to, :subject => subject
     end
-    from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)
-    subject = "#{prefix} Valida tu adhesion a la campaña: #{@campaign.name}"
-    mail :from => from, :to => to, :subject => subject
   end
 
   def inform_campaign_activated(campaign_id)
