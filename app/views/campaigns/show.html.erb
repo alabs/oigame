@@ -179,31 +179,13 @@
       <% unless @campaign.status == 'archived' %>
 
         <% if @has_participated %>
-
           <div id="show-campaign-petition">
             <%= render :partial => 'has_participated' %>
           </div>
-
         <% else %>
-
-          <% if @campaign.ttype == 'petition' %>
-            <div id="show-campaign-petition">
-              <%= render :partial => 'petition_form' %>
-            </div>
-          <% end %>
-  
-          <% if @campaign.ttype == 'mailing' %>
-            <div id="show-campaign-mailing">
-              <%= render :partial => 'mailing_form' %>
-            </div>
-          <% end %>
-          
-          <% if @campaign.ttype == 'fax' %>
-            <div id="show-campaign-fax">
-              <%= render :partial => 'fax_form' %>
-            </div>
-          <% end %>
-
+                <div id="show-campaign-<%= @campaign.ttype == 'petition' %>">
+                    <%= render :partial => 'sign_form' %>
+                </div>
         <% end %>
         </div> <!-- participate-buttons -->
       </div> <!-- span4 -->
