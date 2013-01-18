@@ -4,7 +4,7 @@ Oigame::Application.routes.draw do
     member do
       # Controllers for sign the petitions
       post 'petition' => 'campaigns#petition_sign'
-      post 'message' => 'campaigns#meesage_sign'
+      post 'message' => 'campaigns#message_sign'
       post 'fax' => 'campaigns#fax_send'
       get 'signed'
 

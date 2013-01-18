@@ -154,25 +154,36 @@ class CampaignsController < ApplicationController
               :filename=>"#{file}.txt", :disposition => 'attachment'
   end
 
-  # Types of petitions when singing
+  # Types of petitions when {sending, singing}
   def message_sign
     from = user_signed_in? ? current_user.email : params[:email]
+    user_name = user_signed_in? ? current_user.name : params[:name]
 
     if @campaign
-      body_message = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
-      message = Message.new(:campaign => @campaign, :email => from, :subject => body_message, :body => params[:body], :token => generate_token)
+      body_message = (params[:own_message] == 1) ? params[:body] : @campaign.default_message_body
+      subject_message = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
+      attributes = {
+          :campaign => @campaign,
+          :email => from,
+          :subject => subject_message,
+          :body => body_message,
+          :token => generate_token,
+          :name => user_name
+      }
+
+      message = Message.new(attributes)
 
       if message.save
         # si está registrado no pedirle confirmación de unión a la campaña
         if user_signed_in?
-          message.validate
+          message.validate!
           Mailman.send_message_to_recipients(message.id).deliver
         end
         Mailman.send_message_to_validate_message(from, @campaign.id, message.id).deliver
+        redirector_to :signed
       else
         redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
       end
-      redirector_to :signed
     else
       redirector_to :campaigns, error: "Esta campaña ya no está activa."
     end
@@ -451,8 +462,9 @@ class CampaignsController < ApplicationController
     redirect_to facebook_auth_url
   end
 
-  def redirector_to site, *params
+  def redirector_to site, params = {}
     t_sub_oigame = @sub_oigame.nil? ? '' : 'sub_oigame_'
+    urls = {}
     urls[:campaigns] = "#{t_sub_oigame}campaigns_url".to_s
     urls[:signed] = "signed_#{t_sub_oigame}campaign_url".to_s
     urls[:campaign] = "#{t_sub_oigame}campaign_url".to_s
