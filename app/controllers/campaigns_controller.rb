@@ -5,16 +5,18 @@ class CampaignsController < ApplicationController
 
   methods_for_actions = [:fax_send,:petition_sign,:message_sign]
 
-  before_filter :protect_from_spam, :only => methods_for_actions
   protect_from_forgery :except => methods_for_actions
   layout 'application', :except => [:widget, :widget_iframe]
+
+  before_filter :protect_from_spam, :only => methods_for_actions
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
+
   before_filter :set_user_blank_parameters, only: methods_for_actions
   before_filter :get_campaign_with_other_campaigns, only: [:signed]
   
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
-  
+
   before_filter :get_campaign, :except => [:index, :feed, :new, :create, :archived]
   # TODO: Activate again open graph
   # before_filter :open_graph_facebook, only: methods_for_actions
@@ -155,128 +157,45 @@ class CampaignsController < ApplicationController
   end
 
   # Types of petitions when {sending, singing}
-  def message_sign
-    from = user_signed_in? ? current_user.email : params[:email]
-    user_name = user_signed_in? ? current_user.name : params[:name]
+  [:message_sign, :petition_sign, :fax_send].each do |meth|
+    define_method meth do
+      # Call the model
+      model_name = meth.to_s.split('_')[0]
+      modelk = model_name.camelize.constantize
 
-    if @campaign
-      body_message = (params[:own_message] == 1) ? params[:body] : @campaign.default_message_body
-      subject_message = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
-      attributes = {
-          :campaign => @campaign,
-          :email => from,
-          :subject => subject_message,
-          :body => body_message,
-          :token => generate_token,
-          :name => user_name
-      }
+      from = user_signed_in? ? current_user.email : params[:email]
+      user_name = user_signed_in? ? current_user.name : params[:name]
 
-      message = Message.new(attributes)
+      if @campaign
+        # Create the instance of the methok
+        instanke = modelk.new
+        instanke.campaign = @campaign
+        instanke.email = from
+        instanke.token = generate_token
+        instanke.name = user_name
 
-      if message.save
-        # si está registrado no pedirle confirmación de unión a la campaña
-        if user_signed_in?
-          message.validate!
-          Mailman.send_message_to_recipients(message.id).deliver
+        if instanke.respond_to? :body
+          instanke.body = (params[:own_message] == 1) ? params[:body] : @campaign.default_message_body
         end
-        Mailman.send_message_to_validate_message(from, @campaign.id, message.id).deliver
-        redirector_to :signed
-      else
-        redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
-      end
-    else
-      redirector_to :campaigns, error: "Esta campaña ya no está activa."
-    end
-  end
 
-  def petition_sign
-    to = user_signed_in? ? current_user.email : params[:email]
-    @petition = Petition.new(:campaign => @campaign, :name => params[:name], :email => to, :token => generate_token )
-    if @petition.save
-      # si está registado no enviar mensaje de confirmación
-      if user_signed_in?
-        @petition.validate
-        session[:fb_sess_campaign] = @campaign.id
-        redirect_to facebook_auth_url
-      end
-      Mailman.send_message_to_validate_petition(to, @campaign.id, @petition.id).deliver
-      if @sub_oigame
-        redirect_url = signed_sub_oigame_campaign_url
-      else
-        redirect_url = signed_campaign_url
-      end
-      redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-    else
-      redirect_to :back, error: 'No puedes participar más de una vez por campaña'
-    end
-  end
+        if instanke.respond_to? :subject
+          instanke.subject = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
+        end
 
-  def fax_send
-    from = user_signed_in? ? current_user.email : params[:email]
-    if @campaign
-      if params[:own_message] == "1"
-        fax = Fax.new(:campaign => @campaign, :name => params[:name], :email => from, :body => params[:body], :token => generate_token)
-        if fax.save
-
-          # si está registrado no pedirle confirmación de unión a la campaña
+        if instanke.save
           if user_signed_in?
-            fax.update_attributes(:validated => true, :token => nil)
-            # Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
-            Resque.enqueue(SendFax, fax.id)
-            if @sub_oigame.nil?
-              #redirect_url = fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
-              redirect_url = fax_campaign_url
-            else
-              #redirect_url = fax_sub_oigame_campaign_url(@campaign, @sub_oigame), :notice => 'Gracias por unirte a esta campaña'
-              redirect_url = fax_sub_oigame_campaign_url(@campaign, @sub_oigame)
-            end
-            session[:fb_sess_campaign] = @campaign.id
-            redirect_to facebook_auth_url
-
-            # revisar y mandar al sitio correcto
-            #redirect_to redirect_url, :notice => 'Gracias por unirte a esta campaña'
-            return
+            instanke.validate!
+          else
+            validation = "send_message_to_validate_#{model_name}".to_s
+            Mailman.send(validation, from, @campaign.id, instanke.id).deliver
           end
-          Mailman.send_message_to_validate_fax(from, @campaign.id, fax.id).deliver
+          redirector_to :signed
         else
-          flash.now[:error] = "No puedes participar más de una vez por campaña"
-          render :action => :show
-          return
+          redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
         end
       else
-        # mensaje por defecto
-        fax = Fax.new(:campaign => @campaign, :name => params[:name], :email => from, :body => @campaign.default_message_body, :token => generate_token)
-        if fax.save
-          # si está registrado no pedirle confirmación de unión a la campaña
-          if user_signed_in?
-            fax.update_attributes(:validated => true, :token => nil)
-            Mailman.send_message_to_fax_recipients(fax.id, @campaign.id).deliver
-            if @sub_oigame.nil?
-              redirect_to fax_campaign_url, :notice => 'Gracias por unirte a esta campaña'
-            else
-              redirect_to fax_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
-            end
-
-            return
-
-          end
-          Mailman.send_message_to_validate_fax(from, @campaign.id, fax.id).deliver
-        else
-          flash.now[:error] = "No puedes participar más de una vez por campaña"
-          render :action => :show
-          return
-        end
+        redirector_to :campaigns, error: "Esta campaña ya no está activa."
       end
-      if @sub_oigame.nil?
-        redirect_to fax_campaign_url
-      else
-        redirect_to fax_sub_oigame_campaign_url(@sub_oigame, @campaign), :notice => 'Gracias por unirte a esta campaña'
-      end
-
-      return
-    else
-      flash[:error] = "Esta campaña ya no está activa."
-      redirect_to campaigns_url
     end
   end
 
@@ -284,36 +203,23 @@ class CampaignsController < ApplicationController
   end
 
   def validate
-    @campaign = Campaign.published.find_by_slug(params[:id])
     if @campaign
-      @campaigns = @campaign.other_campaigns
-      model = Message.find_by_token(params[:token]) || Petition.find_by_token(params[:token]) || Fax.find_by_token(params[:token])
-      if model
-        model.update_attributes(:validated => true, :token => nil)
-        case model.class.name
-        when 'Message'
-          Mailman.send_message_to_recipients(model.id).deliver
-        when 'Fax'
-          Mailman.send_message_to_fax_recipients(model.id, @campaign.id).deliver
-        end
-        redirect_to validated_campaign_url, :notice => 'Tu adhesión se ha ejecutado con éxito'
+      type_camp = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize
+      model = type_camp.find_by_token(params[:token])
 
-        return
+      if model
+        model.validate!
+        redirector_to :signed
       else
-        render
+        redirector_to :campaign, error: 'El token de validación ya no es válido'
       end
+
     else
-      flash[:notice] = "Esa campaña ya no está activa"
-      redirect_to campaigns_url
+      redirector_to :campaigns, error: 'Está campaña ya no esa activa'
     end
   end
 
   def integrate
-  end
-  
-  def validated
-    @campaign = Campaign.find(:all, :conditions => {:slug => params[:id]}).first
-    @campaigns = @campaign.other_campaigns
   end
 
   def moderated
