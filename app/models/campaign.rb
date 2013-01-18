@@ -31,16 +31,19 @@ class Campaign < ActiveRecord::Base
       {
         :name => I18n.t('oigame.campaigns.type.petition'),
         :img  => 'icon-pencil',
+        :model_name => 'Petition'
       },
     :mailing =>
       {
         :name => I18n.t('oigame.campaigns.type.mailing'),
         :img  => 'icon-envelope',
+        :model_name => 'Message'
       },
     :fax =>
       {
         :name => I18n.t('oigame.campaigns.type.fax'),
         :img  => 'icon-print',
+        :model_name => 'Fax'
       },
   }
    # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
@@ -113,6 +116,10 @@ class Campaign < ActiveRecord::Base
 
     def total_published_campaigns
       where("published_at IS NOT NULL")
+    end
+
+    def types
+      TYPES
     end
   end
 
