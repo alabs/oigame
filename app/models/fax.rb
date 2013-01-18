@@ -18,4 +18,9 @@ class Fax < ActiveRecord::Base
     validated.order('created_at DESC').select('created_at, name, campaign_id, id').limit(10)
   end
 
+  def validate!
+    update_attributes(:validated => true, :token => nil)
+    Resque.enqueue(SendFax, fax.id)
+  end
+
 end
