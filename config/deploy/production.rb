@@ -14,9 +14,9 @@ set :user,            "ruby-data"
 set :group,           "ruby-data"
 set :use_sudo,        false
 
-role :web,    "beta.oiga.me"
-role :app,    "beta.oiga.me"
-role :db,     "beta.oiga.me", :primary => true
+role :web,    "polar.oiga.me"
+role :app,    "polar.oiga.me"
+role :db,     "polar.oiga.me", :primary => true
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
@@ -29,10 +29,10 @@ set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEA
 default_environment["RAILS_ENV"] = 'production'
 
 # Use our ruby-1.9.3-p194@oigame
-default_environment["PATH"]         = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@oigame/bin:/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@global/bin:/home/ruby-data/.rvm/rubies/ruby-1.9.3-p194/bin:/home/ruby-data/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
-default_environment["GEM_HOME"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@oigame"
-default_environment["GEM_PATH"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@oigame:/home/ruby-data/.rvm/gems/ruby-1.9.3-p194@global"
-default_environment["RUBY_VERSION"] = "ruby-1.9.3-p194"
+default_environment["PATH"]         = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@oigame/bin:/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@global/bin:/home/ruby-data/.rvm/rubies/ruby-1.9.3-p362/bin:/home/ruby-data/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+default_environment["GEM_HOME"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@oigame"
+default_environment["GEM_PATH"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@oigame:/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@global"
+default_environment["RUBY_VERSION"] = "ruby-1.9.3-p362"
 
 default_run_options[:shell] = 'bash'
 

@@ -33,6 +33,7 @@ group :test, :development do
   gem 'spork-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'minitest-spec-rails'
 end
 
 group :development do
@@ -101,3 +102,5 @@ gem 'devise-async'
 #gem 'bitcoin-ruby', :path => '~/src/bitcoin-ruby'
 
 gem 'acts_as_unvlogable'
+
+gem 'countries'
