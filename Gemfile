@@ -102,3 +102,5 @@ gem 'devise-async'
 #gem 'bitcoin-ruby', :path => '~/src/bitcoin-ruby'
 
 gem 'acts_as_unvlogable'
+
+gem 'countries'
