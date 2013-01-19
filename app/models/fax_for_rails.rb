@@ -1,0 +1,14 @@
+class FaxForRails < ActiveRecord::Base
+  
+  attr_accessible :country, :rate, :credit, :reference
+
+  TAX = 4
+
+  #before_save :calculate_credit
+
+  #class << self
+  #end
+
+  #def calculate_credit 
+  #end
+end
