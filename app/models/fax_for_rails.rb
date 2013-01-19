@@ -1,6 +1,6 @@
 class FaxForRails < ActiveRecord::Base
   
-  attr_accessible :country, :rate, :credit
+  attr_accessible :country, :rate, :credit, :reference
 
   TAX = 4
 
