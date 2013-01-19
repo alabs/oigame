@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117055155) do
+ActiveRecord::Schema.define(:version => 20130118170833) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(:version => 20130117055155) do
     t.datetime "created_at",                                                  :null => false
     t.datetime "updated_at",                                                  :null => false
   end
+
+  create_table "fax_for_rails", :force => true do |t|
+    t.string   "country"
+    t.integer  "rate"
+    t.integer  "credit"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "reference"
+  end
+
+  add_index "fax_for_rails", ["reference"], :name => "index_fax_for_rails_on_reference"
 
   create_table "faxes", :force => true do |t|
     t.integer  "campaign_id"
