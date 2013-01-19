@@ -11,6 +11,4 @@ class FaxForRails < ActiveRecord::Base
 
   def calculate_credit 
   end
-
-  protected
 end
