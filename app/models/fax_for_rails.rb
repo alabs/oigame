@@ -13,7 +13,4 @@ class FaxForRails < ActiveRecord::Base
   end
 
   protected
-
-  def ...
-  end
 end
