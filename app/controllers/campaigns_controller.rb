@@ -6,16 +6,15 @@ class CampaignsController < ApplicationController
   protect_from_forgery :except => :sign
   layout 'application', :except => [:widget, :widget_iframe]
 
-  before_filter :protect_from_spam, :only => :sign
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
-
-  before_filter :set_user_blank_parameters, only: :sign
   before_filter :get_campaign_with_other_campaigns, only: [:signed]
-  
+  before_filter :get_campaign, :except => [:index, :feed, :new, :create, :archived]
+  before_filter :protect_from_spam, :only => :sign
+  before_filter :set_user_blank_parameters, only: :sign
+
   # comienza la refactorización a muerte
   before_filter :get_sub_oigame
 
-  before_filter :get_campaign, :except => [:index, :feed, :new, :create, :archived]
   # TODO: Activate again open graph
   # before_filter :open_graph_facebook, only: methods_for_actions
 
@@ -349,13 +348,13 @@ class CampaignsController < ApplicationController
 
   def set_user_blank_parameters
     if user_signed_in?
-      if current_user.name.blank?
-        current_user.update_attributes(:name => params[:name])
-        # si no esta registrado seteamos las cookies para no volver a preguntar
-        # su nombre y su correo - si esta registrado nos da igual
-        cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
-        cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
-      end
+      current_user.update_attributes(:name => params[:name]) if current_user.name.blank?
+      current_user.update_attributes(:email => params[:email]) if current_user.name.blank?
+    else
+      # si no esta registrado seteamos las cookies para no volver a preguntar
+      # su nombre y su correo - si esta registrado nos da igual
+      cookies[:name] = { :value => params[:name], :expires => 1.year.from_now }
+      cookies[:email] = { :value => params[:email], :expires => 1.year.from_now }
     end
   end
 

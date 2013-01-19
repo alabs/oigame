@@ -103,3 +103,8 @@ gem 'devise-async'
 gem 'acts_as_unvlogable'
 
 gem 'countries'
+
+# Login for facebook and twitter
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
