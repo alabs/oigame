@@ -4,11 +4,6 @@ class FaxForRails < ActiveRecord::Base
 
   TAX = 4
 
-  #before_save :calculate_credit
-
-  #class << self
-  #end
-
-  #def calculate_credit 
-  #end
+  def hello_world(*args)
+  end
 end
