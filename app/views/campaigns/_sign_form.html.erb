@@ -1,5 +1,5 @@
 <div id="campaign-message-form" class="form-stacked">
-  <%= form_tag @sub_oigame ? message_sub_oigame_campaign_path(@sub_oigame, @campaign) : message_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
+  <%= form_tag @sub_oigame ? sign_sub_oigame_campaign_path(@sub_oigame, @campaign) : sign_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
     <fieldset>
       <p><%= I18n.t(:listen_your_voice) %></p>
         <% if !user_signed_in? || current_user.name.blank? %>

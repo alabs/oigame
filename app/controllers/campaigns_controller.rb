@@ -3,15 +3,13 @@ class CampaignsController < ApplicationController
 
   #include Social::Facebook
 
-  methods_for_actions = [:fax_send,:petition_sign,:message_sign]
-
-  protect_from_forgery :except => methods_for_actions
+  protect_from_forgery :except => :sign
   layout 'application', :except => [:widget, :widget_iframe]
 
-  before_filter :protect_from_spam, :only => methods_for_actions
+  before_filter :protect_from_spam, :only => :sign
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
 
-  before_filter :set_user_blank_parameters, only: methods_for_actions
+  before_filter :set_user_blank_parameters, only: :sign
   before_filter :get_campaign_with_other_campaigns, only: [:signed]
   
   # comienza la refactorización a muerte
@@ -157,45 +155,43 @@ class CampaignsController < ApplicationController
   end
 
   # Types of petitions when {sending, singing}
-  [:message_sign, :petition_sign, :fax_send].each do |meth|
-    define_method meth do
-      # Call the model
-      model_name = meth.to_s.split('_')[0]
-      modelk = model_name.camelize.constantize
+  def sign
+    # Call the model
+    model_name = Campaign.types[@campaign.ttype.to_sym][:model_name]
+    modelk = model_name.constantize
 
-      from = user_signed_in? ? current_user.email : params[:email]
-      user_name = user_signed_in? ? current_user.name : params[:name]
+    from = user_signed_in? ? current_user.email : params[:email]
+    user_name = user_signed_in? ? current_user.name : params[:name]
 
-      if @campaign
-        # Create the instance of the methok
-        instanke = modelk.new
-        instanke.campaign = @campaign
-        instanke.email = from
-        instanke.token = generate_token
-        instanke.name = user_name
+    if @campaign
+      # Create the instance of the methok
+      instanke = modelk.new
+      instanke.campaign = @campaign
+      instanke.email = from
+      instanke.token = generate_token
+      instanke.name = user_name
 
-        if instanke.respond_to? :body
-          instanke.body = (params[:own_message] == 1) ? params[:body] : @campaign.default_message_body
-        end
-
-        if instanke.respond_to? :subject
-          instanke.subject = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
-        end
-
-        if instanke.save
-          if user_signed_in?
-            instanke.validate!
-          else
-            validation = "send_message_to_validate_#{model_name}".to_s
-            Mailman.send(validation, from, @campaign.id, instanke.id).deliver
-          end
-          redirector_to :signed
-        else
-          redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
-        end
-      else
-        redirector_to :campaigns, error: "Esta campaña ya no está activa."
+      if instanke.respond_to? :body
+        instanke.body = (params[:own_message] == 1) ? params[:body] : @campaign.default_message_body
       end
+
+      if instanke.respond_to? :subject
+        instanke.subject = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
+      end
+
+      if instanke.save
+        if user_signed_in?
+          instanke.validate!
+        else
+          validation = "send_message_to_validate_#{model_name.downcase}".to_s
+          Mailman.send(validation, from, @campaign.id, instanke.id).deliver
+        end
+        redirector_to :signed
+      else
+        redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
+      end
+    else
+      redirector_to :campaigns, error: "Esta campaña ya no está activa."
     end
   end
 

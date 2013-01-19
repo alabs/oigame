@@ -3,9 +3,13 @@ Oigame::Application.routes.draw do
     resources :wizard
     member do
       # Controllers for sign the petitions
-      post 'petition' => 'campaigns#petition_sign'
-      post 'message' => 'campaigns#message_sign'
-      post 'fax' => 'campaigns#fax_send'
+      # LEGACY <-----
+      post 'petition' => 'campaigns#sign'
+      post 'message' => 'campaigns#sign'
+      post 'fax' => 'campaigns#sign'
+
+      # New controller for signing
+      post 'sign' => 'campaigns#sign'
       get 'signed'
 
       # Validation controller
