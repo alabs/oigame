@@ -19,8 +19,8 @@ gem 'jquery-ui-themes'
 gem 'thin'
 
 gem 'capistrano'
-#gem 'capistrano', :github => 'capistrano/capistrano'
 gem 'capistrano-ext'
+gem 'capistrano-resque'
 
 # To use debugger
 
@@ -97,7 +97,6 @@ gem 'devise-async'
 #gem 'turbolinks'
 #gem 'jquery-turbolinks'
 
-#gem 'capistrano-resque'
 
 #gem 'bitcoin-ruby', :path => '~/src/bitcoin-ruby'
 
