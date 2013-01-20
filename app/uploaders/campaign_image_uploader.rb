@@ -32,7 +32,7 @@ class CampaignImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :scale => [500, 400]
+  process :scale => [357, 189]
   
   def scale(width, height)
     resize_to_limit(width, height)
