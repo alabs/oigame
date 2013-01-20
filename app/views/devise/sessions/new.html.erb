@@ -1,47 +1,35 @@
 <% @page_title = t(:login) %>
 
-
-<div class="row-fluid">
-
-
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
-  <div class="span7">
-
-
 <div id="page-wrapper">
     <div id="login-form" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
-        <fieldset>
-          <legend><%= @page_title %></legend>
-          <div class="control-group">
-            <%= f.label t(:email), :class => 'control-label' %>
-            <div class="controls">
-              <%= f.email_field :email, :required => true %>
-            </div>
-          </div>
-          <div class="control-group">
-            <%= f.label t(:password), :class => 'control-label' %>
-            <div class="controls">
-              <%= f.password_field :password %>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.check_box :remember_me %> <span class="note"><%= t(:remember_me) %></span>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.submit @page_title, :class => 'btn btn-inverse primary' %>
-            </div>
-          </div>
-        </fieldset>
-      <% end %>
-      <%= render :partial => "devise/shared/links" %>
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
+          <fieldset>
+              <legend><%= @page_title %></legend>
+              <div class="control-group">
+                  <%= f.label t(:email), :class => 'control-label' %>
+                  <div class="controls">
+                      <%= f.email_field :email, :required => true %>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <%= f.label t(:password), :class => 'control-label' %>
+                  <div class="controls">
+                      <%= f.password_field :password %>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <div class="controls">
+                      <%= f.check_box :remember_me %> <span class="note"><%= t(:remember_me) %></span>
+                  </div>
+              </div>
+              <div class="control-group">
+                  <div class="controls">
+                      <%= f.submit @page_title, :class => 'btn btn-inverse primary' %>
+                  </div>
+              </div>
+          </fieldset>
+        <% end %>
+        <%= render :partial => "devise/shared/links" %>
     </div>
-  </div>
 </div>
-
-  </div>
-
+</div>
