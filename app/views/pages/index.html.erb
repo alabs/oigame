@@ -1,64 +1,61 @@
 <% @page_title = t(:home) %>
 
-<div class="carrousel c">
-    <div class="carro">
-        <div class='iosSlider'>
-            <div class='slider'>
-                <div class='item' id='item1'>
-                    <div class='image'>
-                        <div class='bg'></div>
-                    </div>
-                    <div class='text'>
-                        <div class='bg'></div>
-                        <div class='title'>
-                            <span>Touch Me.</span>
-                        </div>
-                        <div class='desc'>
-                            <span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
-                        </div>
-                        <div class='button'>
-                            <span>Firmar</span>
-                        </div>
-                    </div>
+<div class="carro">
+    <div class='iosSlider'>
+        <div class='slider'>
+            <div class='item' id='item1'>
+                <div class='image'>
+                    <div class='bg'></div>
                 </div>
-
-                <div class='item' id='item2'>
-                    <div class='image'>
-                        <div class='bg'></div>
+                <div class='text'>
+                    <div class='bg'></div>
+                    <div class='title'>
+                        <span>Touch Me.</span>
                     </div>
-                    <div class='text'>
-                        <div class='bg'></div>
-                        <div class='title'>
-                            <span>Open Source</span>
-                        </div>
-                        <div class='desc'>
-                            <span>Si eres desarrollador y quieres participar apúntate en</span>
-                        </div>
-                        <div class='button'>
-                            <span>Firmar</span>
-                        </div>
+                    <div class='desc'>
+                        <span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
+                    </div>
+                    <div class='button'>
+                        <span>Firmar</span>
                     </div>
                 </div>
             </div>
-            <div class='prevButton'></div>
-            <div class='nextButton'></div>
-            <div class='iosSliderButtons'>
-                <div class='button'></div>
-                <div class='button'></div>
-                <div class='button'></div>
-                <div class='button'></div>
+
+            <div class='item' id='item2'>
+                <div class='image'>
+                    <div class='bg'></div>
+                </div>
+                <div class='text'>
+                    <div class='bg'></div>
+                    <div class='title'>
+                        <span>Open Source</span>
+                    </div>
+                    <div class='desc'>
+                        <span>Si eres desarrollador y quieres participar apúntate en</span>
+                    </div>
+                    <div class='button'>
+                        <span>Firmar</span>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-        <div class="sidecarro">
-            <i class="icon-bullhorn">campañas 33</i>
-            <i class="icon-pencil">Firmas 1000</i>
-            <i class=" icon-user">Usuarios 29</i>
-            <i class=" icon-globe">Países 5</i>
+        <div class='prevButton'></div>
+        <div class='nextButton'></div>
+        <div class='iosSliderButtons'>
+            <div class='button'></div>
+            <div class='button'></div>
         </div>
-        <!-- sidecarro -->
     </div>
+
+
+    <div class="sidecarro">
+        <i class="icon-bullhorn">campañas 33</i>
+        <i class="icon-pencil">Firmas 1000</i>
+        <i class=" icon-user">Usuarios 29</i>
+        <i class=" icon-globe">Países 5</i>
+    </div>
+    <!-- sidecarro -->
+</div>
 </div><!-- carrousel -->
 
 <div class="welcome c">
@@ -77,18 +74,20 @@
         <% @campaigns_carousel.each do |campaign| %>
           <li>
               <div class="view view-tenth">
-                  <%= image_tag campaign.image_url(:home) %>
+                  <%= link_to image_tag(campaign.image_url(:home)), campaign %>
                   <div class="carousel-caption">
 
                       <div id="izquierda" >
-                          <h4><%= campaign.name %></h4>
+                          <h4><%= link_to campaign.name, campaign %></h4>
                       </div>
 
                       <div id="derecha">
-                          <div id="avatar">
-                              <img src="https://secure.gravatar.com/avatar/f33f470a3e2dfa3087feee286021d96f.png?s=48&d=mm" alt="creador de campaña"/>
-                              <h4>Antonio Pardo</h4>
-                          </div>
+                          <%= link_to(campaign) do %>
+                            <div id="avatar">
+                                <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+                                <h4><%= campaign.user.name %></h4>
+                            </div>
+                          <% end %>
                       </div>
 
                   </div><!-- carousel-caption -->
@@ -125,7 +124,7 @@
         <div class="threecolumns">
             <span><i class="icon-pencil"></i></span>
             <h3>Recogida de firmas</h3>
-            <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+            <p>Firma una petición para mostrar tu apoyo y adhesión a una campaña. Las firmas entran en un fichero protegido bajo <b>nuestra política de protección de datos.</b></p>
         </div><!-- threecolumns -->
         <div class="threecolumns">
             <span><i class="icon-envelope"></i></span>
@@ -140,7 +139,7 @@
         <div class="threecolumns">
             <span><i class="icon-mobile-phone"></i></span>
             <h3>Telefonía</h3>
-            <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+            <p>Contacta directamente con los destinatarios de la campaña mediante un sistema gratuito de telefonía.</p>
         </div><!-- threecolumns -->
     </div><!-- cthreecolumns -->
 </div><!-- topfooter -->

@@ -25,3 +25,4 @@
 //= require jquery-scrolltofixed
 //= require jquery.ui.all
 //= require jquery_ujs
+//= require jquery.iosslider

@@ -1,6 +1,6 @@
 //= require external
 //= require_tree
-    
+
 $(function(){
 
   // edit-user clean password

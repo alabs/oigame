@@ -35,7 +35,7 @@ class CampaignImageUploader < CarrierWave::Uploader::Base
   process :resize_to_fit => [357, 189]
   
   def scale(width, height)
-    resize_to_limit(width, height)
+    resize_to_fit(width, height)
   end
 
   # Create different versions of your uploaded files:
@@ -44,7 +44,7 @@ class CampaignImageUploader < CarrierWave::Uploader::Base
   end
   
   version :home do
-    process :resize_to_limit => [300, 300]
+    process :scale => [357, 189]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
