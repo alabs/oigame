@@ -15,7 +15,7 @@
            <%= image_tag(@campaign.image_url.to_s) %>
            </p>
          <% end %>
-         <% if @campaign.video_url %>
+         <% unless @campaign.video_url.blank? %>
            <%= raw @videotron.embed_html %>
          <% end %>
         <div class="row-fluid">
