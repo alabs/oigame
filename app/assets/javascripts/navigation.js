@@ -86,6 +86,6 @@ $(function() {
   $("#campaign_name").focus();
   $("#contact_name").focus();
 
-  check_current_navbar(document.URL.split('/')[4]);
+  //check_current_navbar(document.URL.split('/')[4]);
 
 });
