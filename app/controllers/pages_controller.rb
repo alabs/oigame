@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   filter_access_to :activity
 
   def index
-    @campaigns_carousel = Campaign.last_campaigns_without_pagination(4)
+    @campaigns_carousel = Campaign.last_campaigns_without_pagination(6)
   end
 
   def help

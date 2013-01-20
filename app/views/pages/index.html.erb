@@ -1,263 +1,146 @@
 <% @page_title = t(:home) %>
 
-<div class="row-fluid">
-  
-<div class="span12">
-
-      <div class="span5 offset1 people">  
-        <ul class="pull-left">
-           <li><%= image_tag("altavozpk.png") %> <label><%= @total_published_campaigns %> <%= t(:campaigns) %></label></li>
-           <li ><%= image_tag("firma.png") %> <label><%= @total_signs %> <%= t(:firms) %></label></li>
-           <li><%= image_tag("usuario.png") %> <label><%= @total_users %> <%= t(:users) %></label></li>
-           <li><%= image_tag("world.png") %> <label>2 <%= t(:countries) %></label></li>
-        </ul>
-      </div>        
-    </div>
-
-     <div id="myCarousel" class="offset1 carousel slide">
-      <!-- Carousel items -->
-        <div class="carousel-inner">
-
-        <% @campaigns_carousel.each do |campaign| %>
-          <% if campaign == @campaigns_carousel.first %>
-            <div class="active item"><%= link_to image_tag(campaign.image_url(:home)), campaign %>
-                  <div class="carousel-caption span7" id="big">
-                      <div id="izquierda" class="span8">                
-                      <h4><%= link_to campaign.name, campaign %></h4>                  
-                     </div>
-
-                    <div id="derecha" class="span2">
-                      <div id="avatar">
-                          <%= image_tag(avatar_url(campaign.user.email)) %>
-                         <% if campaign.user.name.blank? %>
-                           <h4>Pobrecito hablador</h4>
-                         <% else %>
-                           <h4><%= campaign.user.name %></h4>
-                         <% end %>
-                       
-                      </div> 
-                      
+<div class="carrousel c">
+    <div class="carro">
+        <div class='iosSlider'>
+            <div class='slider'>
+                <div class='item' id='item1'>
+                    <div class='image'>
+                        <div class='bg'></div>
                     </div>
-                    <div class="progress progress-info progress-striped">
-                        <div class="bar" style="width: 50%"></div>
+                    <div class='text'>
+                        <div class='bg'></div>
+                        <div class='title'>
+                            <span>Touch Me.</span>
+                        </div>
+                        <div class='desc'>
+                            <span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
+                        </div>
+                        <div class='button'>
+                            <span>Firmar</span>
+                        </div>
                     </div>
+                </div>
 
-
-                    </div><!-- carousel-caption -->
+                <div class='item' id='item2'>
+                    <div class='image'>
+                        <div class='bg'></div>
+                    </div>
+                    <div class='text'>
+                        <div class='bg'></div>
+                        <div class='title'>
+                            <span>Open Source</span>
+                        </div>
+                        <div class='desc'>
+                            <span>Si eres desarrollador y quieres participar apúntate en</span>
+                        </div>
+                        <div class='button'>
+                            <span>Firmar</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          <% else %>
-            <div class="item"><%= link_to image_tag(campaign.image_url(:home)), campaign %>
+            <div class='prevButton'></div>
+            <div class='nextButton'></div>
+            <div class='iosSliderButtons'>
+                <div class='button'></div>
+                <div class='button'></div>
+                <div class='button'></div>
+                <div class='button'></div>
+            </div>
+        </div>
+
+
+        <div class="sidecarro">
+            <i class="icon-bullhorn">campañas 33</i>
+            <i class="icon-pencil">Firmas 1000</i>
+            <i class=" icon-user">Usuarios 29</i>
+            <i class=" icon-globe">Países 5</i>
+        </div>
+        <!-- sidecarro -->
+    </div>
+</div><!-- carrousel -->
+
+<div class="welcome c">
+    <div class="welinfo">
+        <span class="circle"><i class="icon-lightbulb icon-2x"></i></span>
+        Una herramienta de movilización ciudadana a través de la red, <a href="">crea tu propia campaña</a>
+    </div><!-- welinfo -->
+    <div class="welinfo">
+        <span class="circle"><i class="icon-hand-right icon-2x"></i> </span>
+        Una herramienta de presión social abierta, horizontal y transparente.
+    </div><!-- welinfo -->
+</div><!-- welcome -->
+
+<div class="campaing c">
+    <ul class="photo">
+        <% @campaigns_carousel.each do |campaign| %>
+          <li>
+              <div class="view view-tenth">
+                  <%= image_tag campaign.image_url(:home) %>
                   <div class="carousel-caption">
-                      <div id="izquierda" class="span6">                
-                      <h4><%= link_to campaign.name, campaign %></h4>                  
-                     </div>
 
-                    <div id="derecha" class="span2">
-                      <div id="avatar">
-                          <%= image_tag(avatar_url(campaign.user.email)) %>
-                         <% if campaign.user.name.blank? %>
-                           <h4>Pobrecito hablador</h4>
-                         <% else %>
-                           <h4><%= campaign.user.name %></h4>
-                         <% end %>
-                       
-                      </div> 
-                      
-                    </div>
-                    <div class="progress progress-info progress-striped">
-                        <div class="bar" style="width: 50%"></div>
-                    </div>
-
-                    <div id="iconoscampa" >  
-                                 <ul>
-                                    <li><a href="#"><%= image_tag("world.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("agro.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("politics.png") %> </a></li>
-                                     <li><a href="#"><%= image_tag("budget.png") %> </a></li>    
-   
-                                 </ul>
+                      <div id="izquierda" >
+                          <h4><%= campaign.name %></h4>
                       </div>
-                    </div><!-- carousel-caption -->
-            </div>
-          <% end %>
+
+                      <div id="derecha">
+                          <div id="avatar">
+                              <img src="https://secure.gravatar.com/avatar/f33f470a3e2dfa3087feee286021d96f.png?s=48&d=mm" alt="creador de campaña"/>
+                              <h4>Antonio Pardo</h4>
+                          </div>
+                      </div>
+
+                  </div><!-- carousel-caption -->
+
+                  <div class="mask">
+                      <h4><%= campaign.name %></h4>
+                      <p><%= campaign.intro %></p>
+                      <%= link_to 'Firmar campaña', campaign %>
+                  </div>
+
+              </div>
+          </li>
         <% end %>
-     </div>
-      <!-- Carousel nav -->
-      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div>   
+    </ul>
+</div><!-- campaing -->
 
+<div class="entra c">
+    <div class="smsentra">
+        Crea tus campañas,firma, actúa, y compartela con tus redes.
+        <p class="min">No odies al lobby, ¡cómetelo!</p>
 
+    </div><!-- smsentra -->
 
-  
-</div> <!--/.row-fluid-->
-  
-<div class="span12 hidden-phone offset1" id="claim">
-    
-       <i class="icon-hand-right icon-3x circle"></i>
-     
-         <h4>Una herramienta de presión social abierta, horizontal y transparente.Crea tus campañas,firma, actúa, y comparte. 
-          </h4>
-          
-        <button class="btn" type="button" >Crear Campaña</button>
-</div>
+    <div class="buttonentra">
+        <i  class="icon-share-alt icon-3x"></i>
 
+        <input type="button" name="" value="Crear campaña" class="btn"></input>
 
+    </div><!-- button -->
+</div><!-- entra -->
 
-<div class="main">
-  <div class="span12 offset1 ">
- 
-    <div class="view view-tenth span3">
-        <% @campaigns_carousel.each do |campaign| %>
-        <%= image_tag(campaign.image) %>
-
-        <div class="carousel-caption ">
-                      <div id="izquierda" >                
-                      <h4><%= link_to campaign.name, campaign %></h4>                  
-                     </div>
-
-                    <div id="derecha" class="span2">
-                      <div id="avatar">
-                          <%= image_tag(avatar_url(campaign.user.email)) %>
-                         <% if campaign.user.name.blank? %>
-                           <h4>Pobrecito hablador</h4>
-                         <% else %>
-                           <h4><%= campaign.user.name %></h4>
-                         <% end %>
-                       
-                      </div> 
-                      
-                    </div>
-                    <div class="progress progress-info progress-striped">
-                        <div class="bar" style="width: 50%"></div>
-                    </div>
-
-               
-                    </div><!-- carousel-caption -->
-        <div class="mask">
-            <h2><%= campaign.name %></h2>
-            <p><%= campaign.intro %></p>
-            <%= link_to "Firmar", campaign, :class => "info" %>
-        </div>
-    </div>
-
-
-
-
-
-  <% end %>
-  
-    <div class="view view-tenth span3">
-        <% @campaigns_carousel.each do |campaign| %>
-        <%= image_tag(campaign.image) %>
-
-        <div class="carousel-caption">
-                      <div id="izquierda" >                
-                      <h4><%= link_to campaign.name, campaign %></h4>                  
-                     </div>
-
-                    <div id="derecha" class="span2">
-                      <div id="avatar">
-                          <%= image_tag(avatar_url(campaign.user.email)) %>
-                         <% if campaign.user.name.blank? %>
-                           <h4>Pobrecito hablador</h4>
-                         <% else %>
-                           <h4><%= campaign.user.name %></h4>
-                         <% end %>
-                       
-                      </div> 
-                      
-                    </div>
-                    <div class="progress progress-info progress-striped">
-                        <div class="bar" style="width: 50%"></div>
-                    </div>
-
-               
-                    </div><!-- carousel-caption -->
-        <div class="mask">
-            <h2><%= campaign.name %></h2>
-            <p><%= campaign.intro %></p>
-            <%= link_to "Firmar", campaign, :class => "info" %>
-        </div>
-    </div>
-
-
-
-
-    
-  <% end %>
- 
-    <div class="view view-tenth span3">
-        <% @campaigns_carousel.each do |campaign| %>
-        <%= image_tag(campaign.image) %>
-
-        <div class="carousel-caption">
-                      <div id="izquierda" >                
-                      <h4><%= link_to campaign.name, campaign %></h4>                  
-                     </div>
-
-                    <div id="derecha">
-                      <div id="avatar">
-                          <%= image_tag(avatar_url(campaign.user.email)) %>
-                         <% if campaign.user.name.blank? %>
-                           <h4>Pobrecito hablador</h4>
-                         <% else %>
-                           <h4><%= campaign.user.name %></h4>
-                         <% end %>
-                       
-                      </div> 
-                      
-                    </div>
-                  
-
-                   
-                    </div><!-- carousel-caption -->
-        <div class="mask">
-            <h2><%= campaign.name %></h2>
-            <p><%= campaign.intro %></p>
-            <%= link_to "Firmar", campaign, :class => "info" %>
-        </div>
-    </div>
-  </div>
-
-
-
-
-    
-  <% end %>
-
-</div>
-
-
-
-<div class="row-fluid">
-  
-    <div id="home-text" class="span12 row-fluid ">
-      <div class="span3">
-      <i class="icon-pencil icon-4x offset4"></i>  
-        
-      <h3>Recogida de firmas</h3>
-      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-      </div>
-
-      <div class="span3">
-       <i class="icon-envelope icon-4x offset4"></i> 
-      <h3>Mailing</h3>
-      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-      </div>
-
-      <div class="span3">
-      <i class="icon-print icon-4x offset4"></i>
-      <h3>Fax</h3>
-      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-      </div>
-      <div class="span3">
-      <i class="icon-mobile-phone icon-4x offset5"></i>
-      <h3>Telefonía</h3>
-      <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
-      </div>
-
-    </div>
-
-  </div>
-
+<div class="topfooter">
+    <div class="cthreecolumns c">
+        <div class="threecolumns">
+            <span><i class="icon-pencil"></i></span>
+            <h3>Recogida de firmas</h3>
+            <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+        </div><!-- threecolumns -->
+        <div class="threecolumns">
+            <span><i class="icon-envelope"></i></span>
+            <h3>Mailing</h3>
+            <p>Sed euismod volutpat lorem, id varius lorem blandit in. Nunc non tortor risus. Quisque vitae ligula quis odio malesuada aliquet. Etiam tempor ipsum in tortor semper rhoncus. Nullam laoreet molestie elit, a accumsan velit aliquam nec. </p>
+        </div><!-- threecolumns -->
+        <div class="threecolumns">
+            <span><i class="icon-print"></i></span>
+            <h3>Envío de fax</h3>
+            <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+        </div><!-- threecolumns -->
+        <div class="threecolumns">
+            <span><i class="icon-mobile-phone"></i></span>
+            <h3>Telefonía</h3>
+            <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+        </div><!-- threecolumns -->
+    </div><!-- cthreecolumns -->
+</div><!-- topfooter -->
