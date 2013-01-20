@@ -47,3 +47,5 @@ $(document).ready ->
     onSlideChange: slideContentChange
     onSlideComplete: slideContentComplete
     onSliderLoaded: slideContentLoaded
+    navNextSelector: $('.nextButton')
+    navPrevSelector: $('.prevButton')
