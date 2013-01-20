@@ -1,62 +1,61 @@
 <% @page_title = t(:home) %>
 
-<div class="carrousel c">
-    <div class="carro">
-        <div class='iosSlider'>
-            <div class='slider'>
-                <div class='item' id='item1'>
-                    <div class='image'>
-                        <div class='bg'></div>
-                    </div>
-                    <div class='text'>
-                        <div class='bg'></div>
-                        <div class='title'>
-                            <span>Touch Me.</span>
-                        </div>
-                        <div class='desc'>
-                            <span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
-                        </div>
-                        <div class='button'>
-                            <span>Firmar</span>
-                        </div>
-                    </div>
+<div class="carro">
+    <div class='iosSlider'>
+        <div class='slider'>
+            <div class='item' id='item1'>
+                <div class='image'>
+                    <div class='bg'></div>
                 </div>
-
-                <div class='item' id='item2'>
-                    <div class='image'>
-                        <div class='bg'></div>
+                <div class='text'>
+                    <div class='bg'></div>
+                    <div class='title'>
+                        <span>Touch Me.</span>
                     </div>
-                    <div class='text'>
-                        <div class='bg'></div>
-                        <div class='title'>
-                            <span>Open Source</span>
-                        </div>
-                        <div class='desc'>
-                            <span>Si eres desarrollador y quieres participar apúntate en</span>
-                        </div>
-                        <div class='button'>
-                            <span>Firmar</span>
-                        </div>
+                    <div class='desc'>
+                        <span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
+                    </div>
+                    <div class='button'>
+                        <span>Firmar</span>
                     </div>
                 </div>
             </div>
-            <div class='prevButton'></div>
-            <div class='nextButton'></div>
-            <div class='iosSliderButtons'>
-                <div class='button'></div>
-                <div class='button'></div>
+
+            <div class='item' id='item2'>
+                <div class='image'>
+                    <div class='bg'></div>
+                </div>
+                <div class='text'>
+                    <div class='bg'></div>
+                    <div class='title'>
+                        <span>Open Source</span>
+                    </div>
+                    <div class='desc'>
+                        <span>Si eres desarrollador y quieres participar apúntate en</span>
+                    </div>
+                    <div class='button'>
+                        <span>Firmar</span>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-        <div class="sidecarro">
-            <i class="icon-bullhorn">campañas 33</i>
-            <i class="icon-pencil">Firmas 1000</i>
-            <i class=" icon-user">Usuarios 29</i>
-            <i class=" icon-globe">Países 5</i>
+        <div class='prevButton'></div>
+        <div class='nextButton'></div>
+        <div class='iosSliderButtons'>
+            <div class='button'></div>
+            <div class='button'></div>
         </div>
-        <!-- sidecarro -->
     </div>
+
+
+    <div class="sidecarro">
+        <i class="icon-bullhorn">campañas 33</i>
+        <i class="icon-pencil">Firmas 1000</i>
+        <i class=" icon-user">Usuarios 29</i>
+        <i class=" icon-globe">Países 5</i>
+    </div>
+    <!-- sidecarro -->
+</div>
 </div><!-- carrousel -->
 
 <div class="welcome c">
@@ -85,8 +84,8 @@
                       <div id="derecha">
                           <%= link_to(campaign) do %>
                             <div id="avatar">
-                                <img src="https://secure.gravatar.com/avatar/f33f470a3e2dfa3087feee286021d96f.png?s=48&d=mm" alt="creador de campaña"/>
-                                <h4>Antonio Pardo</h4>
+                                <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+                                <h4><%= campaign.user.name %></h4>
                             </div>
                           <% end %>
                       </div>
