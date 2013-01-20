@@ -77,18 +77,20 @@
         <% @campaigns_carousel.each do |campaign| %>
           <li>
               <div class="view view-tenth">
-                  <%= image_tag campaign.image_url(:home) %>
+                  <%= link_to image_tag(campaign.image_url(:home)), campaign %>
                   <div class="carousel-caption">
 
                       <div id="izquierda" >
-                          <h4><%= campaign.name %></h4>
+                          <h4><%= link_to campaign.name, campaign %></h4>
                       </div>
 
                       <div id="derecha">
-                          <div id="avatar">
-                              <img src="https://secure.gravatar.com/avatar/f33f470a3e2dfa3087feee286021d96f.png?s=48&d=mm" alt="creador de campaña"/>
-                              <h4>Antonio Pardo</h4>
-                          </div>
+                          <%= link_to(campaign) do %>
+                            <div id="avatar">
+                                <img src="https://secure.gravatar.com/avatar/f33f470a3e2dfa3087feee286021d96f.png?s=48&d=mm" alt="creador de campaña"/>
+                                <h4>Antonio Pardo</h4>
+                            </div>
+                          <% end %>
                       </div>
 
                   </div><!-- carousel-caption -->

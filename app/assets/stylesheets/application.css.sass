@@ -17,7 +17,7 @@
 
 @font-face
   font-family: Roboto
-  src: url('font/Roboto/Roboto-Light.ttf')
+  src: url('Roboto/Roboto-Light.ttf')
 
 
 /* Color v
@@ -109,7 +109,7 @@ ul.photo
   li
     width: 33%
     float: left
-    margin: 5px
+    margin: 1px
     position: relative
     -webkit-border-radius: 4px
     -moz-border-radius: 4px
@@ -214,21 +214,26 @@ input
 
 
 ul.photo li
+  .mask
+    display: none
   img
     width: 100%
   a
-    top: 0px
-    opacity: 0
-    width: 100%
-    text-align: center
-    padding: 25% 0px
-    height: 100%
-    position: absolute
-    display: none
-    background: transparent url('orange.png')
-    color: white
     text-decoration: none
-    font-weight: bold
+    color: #1b5353
+    font-size: 12px
+  .legacy
+    a
+      top: 0px
+      opacity: 0
+      width: 100%
+      text-align: center
+      padding: 25% 0px
+      height: 100%
+      background: transparent url('orange.png')
+      color: white
+      text-decoration: none
+      font-weight: bold
 
 /* welcome
 
