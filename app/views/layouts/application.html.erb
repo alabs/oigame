@@ -51,46 +51,72 @@
   </div>
   <!-- cortar -->
 
-  <div id="footer" class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3 offset1" id="first_footer_a">
-          <ul>
-            <li><a href="/es/campaigns/feed"><i class="glyphicon-rss icon-2x"></i></a>
-            </li><li><a href="https://twitter.com/oigame"><i class="icon-twitter-sign icon-2x"></i></a>
-            </li><li><a href="https://plus.google.com/109609067558669990733/posts">
-            <i class="icon-google-plus-sign icon-2x"></i>   
+  <div id="footer">
 
-          </a>
-            </li><li><a href="https://www.facebook.com/oiga.me"><i class="icon-facebook-sign icon-2x"></i> </a>
-          </li></ul>
-        </div>
-        <div class="span4" id="first_footer_b">
+      <div class="" id="first_footer_a">
           <ul>
-            <li><a href="#"><img alt="99pk" src="/assets/99pk.png"></a></li>
-            <li><a href="#"><img alt="Transparentpk" src="/assets/transparentpk.png"></a></li>
-            <li><a href="#" ><img alt="Openpk" src="/assets/openpk.png"></a></li>       
+              <li>
+                  <a href="/es/campaigns/feed">
+                      <i class="glyphicon-rss icon-2x"></i>
+                  </a>
+              </li>
+              <li>
+                  <a href="https://twitter.com/oigame">
+                      <i class="icon-twitter-sign icon-2x"></i>
+                  </a>
+              </li>
+              <li>
+                  <a href="https://plus.google.com/109609067558669990733/posts">
+                      <i class="icon-google-plus-sign icon-2x">
+                      </i>
+                  </a>
+              </li>
+              <li>
+                  <a href="https://www.facebook.com/oiga.me">
+                      <i class="icon-facebook-sign icon-2x"></i>
+                  </a>
+              </li>
+              <li>
+                  <a href="https://github.com/alabs/oigame">
+                      <i class="icon-github-alt icon-2x"></i>
+                  </a>
+              </li>
           </ul>
-        </div>
-        <div id="consejo-social" class="span4" style="text-align: right;">
-        </div>
       </div>
-      <div class="row-fluid" style="text-align: center;">
-        <div class="span12" id="footer-nav">
-        <ul>
-          <li><%= link_to t(:home), root_path %></li>
-          <li><%= link_to t(:about), about_path %></li>
-          <li><%= link_to t(:create), new_campaign_path %></li>
-          <li><%= link_to t(:search), search_campaigns_path %></li>
-          <li><%= link_to t(:donate), donate_path %></li>
-          <li><%= link_to t(:help), help_path %></li>              
-          <li><%= link_to t(:unsubscribe), edit_user_registration_path %></li>
-          <li><%= link_to t(:contact), contact_path %></li>
-        </ul>            
-      </div>
-      </div>
-    </div>
+      <div class="" id="first_footer_c">
+          <!--  <div class="carousel">
+           <ul class="panes">
+               <li>
 
-    <% if Rails.env == 'production' %>
+                     <img src="http://farm5.static.flickr.com/4116/4877345244_6cf40b2d42.jpg" alt="">
+               </li>
+
+               <li>
+
+                   <img src="http://farm5.static.flickr.com/4121/4877354764_7e31588287.jpg" alt="">
+               </li>
+
+               <li>
+
+                   <img src="http://farm5.static.flickr.com/4076/4877358076_9a02fb2f98.jpg" alt="">
+               </li>
+
+               <li>
+
+                   <img src="http://farm7.static.flickr.com/6050/6250747475_bc9f5069a4.jpg" alt="">
+               </li>
+
+               <li>
+
+                   <img src="http://farm7.static.flickr.com/6055/6251268362_c3a1973019.jpg" alt="">
+               </li>
+           </ul>
+         </div> -->
+      </div>
+  </div>
+
+
+  <% if Rails.env == 'production' %>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-19861474-1']);
