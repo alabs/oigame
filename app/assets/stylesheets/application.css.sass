@@ -50,12 +50,17 @@ h1, h2, h3
   width: 80%
   margin: 25px auto
 
+a
+  text-decoration: none
+
 /* heaz
 
 .heaz
   width: 100%
   color: white
-  background-color: #222
+  background-color: transparent
+  background: url("retro_intro.png")
+  border-bottom: 2px dotted white
   padding: 5px 0px
 
 .logo
@@ -64,6 +69,14 @@ h1, h2, h3
 
 a img
   border: 0px
+
+hr
+  border: 0
+  height: 1px
+  background-image: -webkit-linear-gradient(left, transparent, rgba(139, 139, 139, 0.68), transparent)
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))
+  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))
 
 .menuh
   width: 58%
@@ -86,6 +99,25 @@ a img
     text-decoration: none
     padding: 7px
 
+select
+  padding: 3px
+  margin: 0
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+  -webkit-box-shadow: 0 3px 0 #cccccc, 0 -1px white inset
+  -moz-box-shadow: 0 3px 0 #cccccc, 0 -1px white inset
+  box-shadow: 0 3px 0 #cccccc, 0 -1px white inset
+  background: #F8F8F8
+  color: #888
+  border: none
+  outline: none
+  display: inline-block
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  cursor: pointer
+
 .sombra
   margin: 0px
   padding: 0px
@@ -95,27 +127,79 @@ a img
   height: 40px
   float: right
 
-.cheaz
-  margin: 12px auto
+.sombracarta
+  margin: 0px
+  padding: 0px
+  margin-top: 0px
+  position: relative
+  z-index: 2
+  height: 40px
+  float: left
+  width: 65%
+
 /* hidden
 
 .cthreecolumns, .ctopfooter, .welcome, .cheaz
   overflow: hidden
 
-/* photo
+.paper
+  background: #f0f0f0 url('bck.png')
+
+/* photo video
 
 ul.photo
   overflow: hidden
   list-style-type: none
+  margin: 0px
   padding: 0px
   li
     width: 33%
     float: left
-    margin: 1px
     position: relative
     -webkit-border-radius: 4px
     -moz-border-radius: 4px
     border-radius: 4px
+
+.contenedorcampaign
+  width: 56%
+  float: left
+  margin-left: 10%
+
+.text
+  width: 33%
+  float: right
+
+.contenedorcampaign img
+  width: 100%
+  height: 300px
+
+.img-wrap
+  height: 300px
+  overflow: hidden
+  position: relative
+  width: 100%
+
+.img-overlay
+  background: transparent url('transparencia.png')
+  bottom: 0
+  color: white
+  position: absolute
+  width: 50%
+  z-index: 1000
+  height: 100%
+  right: 0
+  h4
+    padding: 0 10px
+  p
+    padding: 0 10px
+    padding: 15px
+    text-align: justify
+  h4
+    font-size: 30px
+    text-shadow: 0 -1px 1px black
+    color: #F0F1F1
+    margin-top: 10px
+    margin-bottom: 5px
 
 #avatar
   img
@@ -188,10 +272,20 @@ input
     font-size: 17px
     text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
     border-radius: 4px
-    border: 1px solid #666
+    border: 1px solid #184B43
     cursor: pointer
-    margin-top: 20px
+    margin-top: 15px
     font-family: Roboto, Helvetica, arial, sans-serif
+    letter-spacing: 2px
+    width: 82%
+    margin-left: 10%
+    margin-right: 10%
+    height: 45px
+    font-size: 24px
+    text-shadow: 1px 0px 0px rgba(0, 0, 0, 0.55)
+    letter-spacing: 2px
+    -webkit-box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
+    box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
     &:hover
       text-decoration: none
 
@@ -200,6 +294,11 @@ input
   font-family: Roboto, Helvetica, arial, sans-serif
 
 /* firefox 19+
+
+.checkfb
+  margin-left: 9%
+  margin-top: 4%
+  margin-bottom: 13px
 
 .view
   .mask, .content
@@ -214,6 +313,15 @@ input
   p
     padding: 2px
 
+.view-tenth:hover img
+  -webkit-transform: scale(1)
+  -moz-transform: scale(1)
+  -o-transform: scale(1)
+  -ms-transform: scale(1)
+  transform: scale(1)
+  -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)"
+  filter: alpha(opacity = 0)
+  opacity: 0
 
 ul.photo li
   .mask
@@ -239,6 +347,9 @@ ul.photo li
 
 /* welcome
 
+.welcome
+  margin: 10px auto
+
 .welinfo
   span.circle
     width: 35px
@@ -261,25 +372,58 @@ span
     width: 30px
     color: white
   &.circle2 i
-    width: 15px
-    height: 15px
-    color: white
-    padding: 6px
     float: left
-    margin: 0px 18px 0px 0px
-    text-align: center
-    display: block
-    background: #EB5E40
-    -webkit-border-radius: 100%
-    -moz-border-radius: 100%
-    border-radius: 100%
-    font-size: 12px
+    padding-right: 3px
+    display: inline
+    color: #EB5E40
+    font-size: 18px
+    vertical-align: middle
+
+.quoted
+  width: 86%
+  margin: 0px 0px
+  text-align: center
+  float: right
+  h3
+    text-shadow: 1px 1px 0px white
+    font-size: 19px
+    margin: 10px 0px
+    color: #222
+  p
+    font-size: 13px
+    padding: 8px 0px
+    margin: 0px 0px 10px 0px
+    color: #666
+    text-align: justify
+    line-height: 17px
+  a
+    text-decoration: none
+    display: inline
+    font-size: 18px
+    color: #1B5353
+  img
+    vertical-align: text-bottom
+  li
+    list-style-type: none
+    color: #1B5353
+  i
+    color: #eb5e40
+    font-size: 35px
+    float: left
+    vertical-align: middle
+    margin-top: -10px
+  h6
+    font-size: 17px
+    display: inline
+    margin: 0px
+    vertical-align: middle
 
 .threecolumns
   width: 25%
   margin: 20px 0px
   text-align: center
   float: left
+  text-align: justify
   h3
     text-shadow: 1px 1px 0px white
     font-size: 18px
@@ -290,7 +434,13 @@ span
     padding: 0px 25px
     margin: 0px 0px 10px 0px
     color: #666
-    text-align: justify
+  a
+    text-decoration: none
+    display: inline
+    font-size: 15px
+    color: #1B5353
+  li
+    list-style-type: none
   i
     color: #eb5e40
     font-size: 50px
@@ -298,8 +448,86 @@ span
 .welinfo
   width: 50%
   float: left
-  font-size: 17px
-  color: #666
+  color: #8C8C91
+  font-size: 0.8em
+  font-size: 18px
+  margin-top: 10px
+  ul li
+    font-size: 12px
+    list-style-type: none
+
+#progressbar
+  width: 35%
+  float: left
+  color: #8C8C91
+  font-size: 0.8em
+  padding-top: 16px
+  ul li
+    font-size: 12px
+    list-style-type: none
+
+#explain
+  width: 35%
+  float: left
+  color: #8C8C91
+  font-size: 14px
+  margin-top: 5px
+  ul
+    padding-left: 0px
+    margin-top: 8px
+    li
+      list-style-type: none
+      strong
+        font-size: 11px
+        padding-right: 3px
+        line-height: 19px
+      a
+        color: #EB5E40
+        font-size: 12px
+  h3
+    font-size: 18px
+    padding-top: 11px
+    color: #828383
+
+/* R E D E S
+
+#redes
+  width: 74%
+  margin-left: 9%
+  margin-top: 4px
+  margin-bottom: 4px
+  ul li
+    font-size: 12px
+    list-style-type: none
+
+.ZRa
+  float: left
+  white-space: nowrap
+
+.Bg
+  background: no-repeat url('sprite4-a67f741843ffc4220554c34bd01bb0bb.png') 0 -720px
+
+.Qo
+  width: 32px
+  height: 20px
+
+.hAa
+  cursor: pointer
+  display: block
+  outline: 0
+  position: relative
+  text-decoration: none
+
+.twitter-hashtag-button
+  margin-left: 5%
+  color: #EB5E40
+  font-size: 12px
+
+#participants
+  width: 70%
+  float: left
+  margin-top: 12px
+  margin-bottom: 10px
 
 input.btn
   color: white
@@ -322,6 +550,59 @@ input.btn
   &:hover
     cursor: pointer
     text-decoration: underline
+
+/* P R O G R E S S B A R
+
+/* Firefox - value portion of progress bar
+
+progress#bar
+  &::-moz-progress-bar
+    background-image: url('../img/brushed_alu.png')
+    background-color: #EB5E40
+    -moz-box-shadow: 1px 1px 1px #333333
+  &::-webkit-progress-value
+    background-image: url('../img/brushed_alu.png')
+    background-color: #EB5E40
+    -webkit-box-shadow: 1px 1px 1px #333333
+  background-color: rgba(240, 240, 240, 0.16)
+  border: solid gray 1px
+  border-radius: 1px
+  -moz-box-shadow: 3px 3px 3px #C0C0C0
+  -webkit-box-shadow: 3px 3px 3px silver
+  box-shadow: 3px 3px 3px silver
+  padding: 4px
+  width: 100%
+  height: 31px
+
+/* Chrome, Safari - value portion of progress bar
+
+/* All other attributes
+
+#recogidas
+  padding-top: 14px
+  font-size: 2em
+  font-family: Roboto, Helvetica, arial, sans-serif
+  line-height: 1em
+  color: #1F7E7E
+  font-weight: bold
+  font-size: 35px
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.79)
+  padding-bottom: 12px
+
+#necesarias
+  font-size: 1.4em
+  text-shadow: 0px -1px 0px rgba(255, 255, 255, 0.75)
+  display: inline
+  vertical-align: middle
+
+.underlined
+  font-size: 20px
+  font-family: Roboto, Helvetica, arial, sans-serif
+  line-height: 1em
+  color: #EB5E40
+  font-weight: bold
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.7)
+  padding: 2px
 
 /* entra
 
@@ -348,10 +629,10 @@ p
     padding: 12px
     background-color: #DADADA
     text-align: justify
-    text-shadow: 1px 1px 1px #f0f0f0
+    text-shadow: 1px 1xpx 1px #f0f0f0
 
 .smsentra
-  width: 76%
+  width: 75%
   color: #222
   font-weight: bold
   font-size: 23px
@@ -379,6 +660,13 @@ p
 .carro
   width: 100%
   overflow: hidden
+
+.carrousel
+  margin: 5px auto
+
+.shadow
+  -webkit-box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
+  box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
 
 ul.jcarorusel
   width: 70%
@@ -452,48 +740,68 @@ ul.jcarorusel li img
   background-repeat: no-repeat
   background-position: center bottom
   background-size: 95%
+  width: 30%
+  float: left
+  background: #444
+  height: 300px
+  background: #f0f0f0 url('../img/az_subtle.png')
+  text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
   form div.textfield input
     display: block
     padding: 0px
     margin: 0px
     margin-top: 10px
-    height: 30px
+    height: 26px
     width: 80%
     margin-left: 10%
     margin-right: 10%
     font-family: Times, serif
-    font-size: 15px
+    font-size: 13px
     color: #667D8B
-    text-align: center
-    background: #fff
+    text-align: left
+    background-color: rgba(255, 255, 255, 0.55)
+    font-family: Roboto, Helvetica, arial, sans-serif
     border: none
     z-index: 30
     position: relative
     top: 0px
-    border-radius: 4px
-    border: 1px solid #1b5353
+    border-radius: 2px
+    border: 1px dotted #1B5353
+    padding-left: 3px
 
 span
   &.checkbox
     display: inline
     margin-left: 10%
   &.checkfblabel
-    font-size: 13px
-    color: #999
+    font-size: 12px
+    color: #757575
     letter-spacing: 0px
     font-weight: normal
     margin: 5px 0px
     display: inline
+
+div.normas
+  font-size: 11px
+  color: #757575
+  letter-spacing: 0px
+  font-weight: normal
+  display: inline
+  margin-left: 9%
+  text-align: justify
+  a
+    color: #1b5353
 
 .comentarea
   width: 80%
   margin-left: 10%
   margin-right: 10%
   margin-top: 10px
-  border-radius: 4px
+  border-radius: 2px
   height: 50px
-  border: 1px solid #1b5353
+  border: 1px dotted #1b5353
   color: #667D8B
+  background-color: rgba(255, 255, 255, 0.55)
 
 .sidecarro i
   display: block
@@ -502,18 +810,228 @@ span
   word-spacing: 3px
   font-size: 12px
   z-index: 3
-  top: 111px
+  top: 140px
   left: 36px
   color: #F0F0F0
   position: relative
 
-.metacampaign ul li
-  font-size: 12px
-  list-style-type: none
+#campaign-info
+  width: 65%
+  float: left
+  padding: 2%
+  padding-right: 3%
+  padding-left: 15px
+  text-align: justify
+  border: 1px dashed #CCC
+  text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
+  line-height: 21px
+  -webkit-border-radius: 0px 0px 0px 6px
+  border-radius: 0px 0px 0px 6px
+  font-size: 1em
+  background: #f0f0f0 url('../img/cream_dust.png')
+  p
+    text-align: justify
+    line-height: 21px
 
-#campaign-info p
+#realtime
   text-align: justify
   line-height: 21px
+  width: 30%
+  float: right
+  li
+    label
+      text-decoration: none
+      display: inline
+      font-size: 11px
+      color: #1b5353
+      padding-left: 4px
+    a label
+      text-decoration: none
+      display: inline
+      font-size: 15px
+      color: #1b5353
+      text-decoration: none
+    list-style-type: none
+    padding-top: 3%
+    padding-bottom: 3%
+  img
+    vertical-align: middle
+    display: inline
+
+/*T a b s
+
+#tabs4
+  font-size: 1em
+  line-height: normal
+  margin-left: 6.8%
+  height: 5px
+  width: 100%
+  ul
+    margin: 0
+    list-style: none
+    width: 100%
+  li
+    width: 10%
+    display: inline
+    margin: 0
+    padding: 0
+  a
+    float: left
+    background: url("../img/tabright4.gif") no-repeat left top
+    margin: 0
+    padding: 0 0 0 7px
+    text-decoration: none
+    border: 1px solid #DDD
+    -webkit-border-top-left-radius: 6px
+    -webkit-border-top-right-radius: 6px
+    -moz-border-radius-topleft: 6px
+    -moz-border-radius-topright: 6px
+    border-top-left-radius: 6px
+    border-top-right-radius: 6px
+    span
+      float: left
+      display: block
+      background: url("../img/tabright4.gif") no-repeat right top
+      padding: 5px 15px 4px 6px
+      color: #1b5353
+      float: none
+    &:hover
+      span
+        color: #EB5E40
+        background-position: 100% -42px
+      background-position: 0% -42px
+
+/* Commented Backslash Hack hides rule from IE5-Mac \
+
+/* End IE5-Mac hack
+
+.topcontent
+  width: 100%
+
+.clearfix mts mlm uiMorePager stat_elem fbFeedbackPager .bar-chart
+  width: 40em
+  height: 24em
+  padding-top: 1em
+  position: relative
+  text-align: left
+
+.bar-chart p em
+  position: absolute
+  bottom: -1em
+  left: 0
+  line-height: 2em
+  width: 40em
+  display: block
+  text-align: center
+  border-top: 1px solid #444
+  &:first-child
+    top: 0
+    left: 0
+    width: 24em
+    height: 1em
+    -moz-transform: rotate(90deg)
+    -webkit-transform: rotate(90deg)
+    -o-transform: rotate(90deg)
+    transform: rotate(90deg)
+    -ms-transform: rotate(90deg)
+    -moz-transform-origin: 0 0
+    -webkit-transform-origin: 0 0
+    -o-transform-origin: 0 0
+    transform-origin: 0 0
+
+.ie9 .bar-chart p em:first-child
+  left: -1.5em
+  height: 1.5em
+
+.bar-chart dl
+  display: block
+  margin: 0 0 0.25em 0
+  height: 2em
+  line-height: 2em
+  white-space: nowrap
+  position: relative
+  dt
+    display: block
+    margin: 0
+  dd
+    display: block
+    margin: 0
+    position: absolute
+    left: 0
+    top: 0
+    color: #fff
+    text-align: right
+    padding-right: 0.5em
+  &.ratio-10
+    dt
+      margin-left: 41em
+    dd
+      width: 40em
+      background: #000
+  &.ratio-9
+    dt
+      margin-left: 37em
+    dd
+      width: 36em
+      background: rgba(0, 0, 0, 0.9)
+  &.ratio-8
+    dt
+      margin-left: 33em
+    dd
+      width: 32em
+      background: rgba(0, 0, 0, 0.8)
+  &.ratio-7
+    dt
+      margin-left: 29em
+    dd
+      width: 28em
+      background: rgba(0, 0, 0, 0.7)
+  &.ratio-6
+    dt
+      margin-left: 25em
+    dd
+      width: 24em
+      background: rgba(0, 0, 0, 0.6)
+  &.ratio-5
+    dt
+      margin-left: 21em
+    dd
+      width: 20em
+      background: rgba(0, 0, 0, 0.5)
+  &.ratio-4
+    dt
+      margin-left: 17em
+    dd
+      width: 16em
+      background: rgba(0, 0, 0, 0.4)
+  &.ratio-3
+    dt
+      margin-left: 13em
+    dd
+      width: 12em
+      background: rgba(0, 0, 0, 0.3)
+  &.ratio-2
+    dt
+      margin-left: 9em
+    dd
+      width: 8em
+      background: rgba(0, 0, 0, 0.2)
+  &.ratio-1
+    dt
+      margin-left: 5em
+    dd
+      width: 4em
+      background: rgba(0, 0, 0, 0.1)
+  &.ratio-0
+    dt
+      margin-left: 2.5em
+    dd
+      width: 2em
+      padding-left: 0.5em
+
+@media print
+  .bar-chart dd
+    border: 1px solid #000
 
 /* Footer
 
@@ -562,6 +1080,21 @@ span
     text-decoration: none
     cursor: pointer
 
+#carta
+  width: 80%
+  background: #f0f0f0 url('lightpaperfibers.png')
+  font-family: Courier, Arial
+  width: 65%
+  float: left
+  padding: 2%
+  padding-right: 3%
+  padding-left: 15px
+  float: left
+  margin-top: 2%
+  color: #6F6F6F
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.05)
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.05)
+
 /*------------------------------------*\
  *    $CAROUSEL
  *\*------------------------------------
@@ -606,7 +1139,8 @@ span
     background-color: rgba(0, 0, 0, 0.75)
 
 @-moz-keyframes carousel
-  left: 0, 0%, 11%
+  0%, 11%
+  left: 0
   12.5%, 23.5%
   left: -100%
   25%, 36%
@@ -697,29 +1231,3 @@ span
   #first_footer_b
     display: block
     width: 100%
-  .iosSlider
-    width: 100%
-
-.nav-tabs
-  background-color: transparent
-  border-bottom-color: #DDD
-  border-bottom-style: solid
-  border-bottom-width: 1px
-  color: #333
-  display: block
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
-  font-size: 13px
-  height: 35px
-  line-height: 18px
-  list-style-image: none
-  list-style-position: outside
-  list-style-type: none
-  margin-bottom: 18px
-  margin-left: 0px
-  margin-right: 0px
-  margin-top: 0px
-  padding-bottom: 0px
-  padding-left: 0px
-  padding-right: 0px
-  padding-top: 0px
-  width: 550px
