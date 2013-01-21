@@ -4,254 +4,157 @@
   <%= render :partial => 'no_credit' %>
 <% end %>
 
-<div class="row-fluid">
-  <div class="span6 offset1" >
-
-    <div id="show-campaign">
-      <div id="show-campaign-detail">
-        <h2><%= @campaign.name %></h2>
-         <% if @campaign.image.to_s %>
-           <p style="text-align:center;margin:15px 0px;">
-           <%= image_tag(@campaign.image_url.to_s) %>
-           </p>
-         <% end %>
-         <% unless @campaign.video_url.blank? %>
-           <%= raw @videotron.embed_html %>
-         <% end %>
-        <div class="row-fluid">
-        <div class="span6">
-        <ul>
-          <li><strong><%= t(:credit) %>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€ (<%= link_to t(:add_credit), add_credit_campaign_path %>)</li>
-          <% if @campaign.category %>
-            <li><strong><%= t(:category) %>:</strong> <%= @campaign.category.name %></li>
-          <% end %>
-          <% unless @campaign.status == 'archived' %>
-            <li><strong><%= t(:published_at) %>:</strong> <%= time_ago_in_words(@campaign.created_at) %></li>
-            <li><strong><%= t(:time_left) %>:</strong> <%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
-          <% else %>
-            <li><strong><%= t(:published_at) %>:</strong> <%= time_ago_in_words(@campaign.published_at) %></li>
-            <li><strong><%= t(:archived_campaign) %></strong></li>
-          <% end %>
-          <li>
-            <strong><%= t(:participants) %>:</strong>
-            <span id="participants"><%= @campaign.messages_count %></span>
-            <%= t(:of) %>
-            <span id="participants-target"><%= @campaign.target %></span>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <% unless @campaign.user.name.blank? %>
-          <%= image_tag avatar_url(@campaign.user.email), :title => @campaign.user.name %>
-          <%= @campaign.user.name %>
-        <% end %>
-      </div>
+<div class="carrousel">
+  <div class = 'image'>
+    <div class = 'bg'></div>
+  </div>
+  <div class = 'text'>
+    <div class='bg'></div>
+    <div class = 'title'>
+      <span>Un Ere para Rato</span>
     </div>
+    <div class = 'desc'>
+      <span>Pídele a Telefónica un ERE para Rato</span>
+        <span>
+            Telefónica ha contratado como asesor a Rodrigo Rato, expresidente del FMI y expresidente de Bankia, imputado por falsificación de cuentas, administración desleal, maquinación para alterar los precios y apropiación indebida.
+        </span>
+    </div>
+  </div>
+</div>
 
-      <div id="campaign-information">
-        <div class="progress progress-striped progress-danger active" style="margin-left: 22px;">
-          <div class="bar" style="width: 0%;"></div>
-        </div>
-      </div><!-- campaing-information -->
+<div class="sidefirma">
+  <form method="post" action="">
+    <div class="textfield">
+      <input type="text" name="password"  placeholder="Nombre y Apellido"  >
+      <input type="text" name="username"  placeholder="Email">
+    </div>
+    <textarea class="comentarea" name="signature[message]" placeholder="Deja tu comentario en el foro"></textarea>
+    <div class="firmando">
+      <input type="submit" name="submit" value="Firmar" class="firma grande">
+    </div>
+    <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
+    <span class="checkfblabel">Compartir con mis amigos en Facebook</span>
+  </form>
+  <div  id="redes">
+    <div class="ZRa"><span id="button" class="hAa Qo Bg" title="" role="button" tabindex="0" aria-label="Click here to publicly +1 this as ." aria-pressed="false"></span></div>
 
+    <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button" data-size="large" data-related="tastytune"> <img src ="assets/img/twiterhash.png"/></a>
+    <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button" data-size="large" data-related="tastytune">#UnEREParaRato</a>
 
-      <ul id="campaign-tab" class="nav nav-tabs">
-        <li class="active">
-          <a data-toggle="tab" href="#description"><%= t(:description) %></a>
-        </li>
-        <% if @campaign.ttype == 'mailing' %>
+  </div>
+  <div class="normas">Firmando, aceptas las
+    <a class="" href="#">Normas de uso</a> de Oiga.me
+  </div>
+</div><!-- sidefirma -->
+
+<div class="welcome">
+  <div id="explain">
+    <span class="circle2"><i class="icon-double-angle-right"></i></span>
+    <strong>Destinatarios: </strong><h3>El Ministerio del los Lannister</h3>
+    <ul>
+      <li>
+        <img  class="creada" alt="" src="assets/img/creador.jpeg" title="Enrique Alvarez Fernandez">
+        <a href=""><strong>Ecologistas en accion</strong></a>
+      </li>
+      <li>
+        <strong>
+          <span class="translation_missing" title="translation missing: es.credit">Credito</span>:
+        </strong>
+        0.00€ (<a href="file:///es/campaigns/mensaje-para-tu-abuela/add-credit">Añadir crédito</a>)
+      </li>
+      <li>
+        <strong>Publicada hace:</strong> 2 dias 23 horas
+      </li>
+      <li>
+        <strong>Quedan:</strong> 300 días
+      </li>
+    </ul>
+  </div><!-- welinfo -->
+
+  <div id="progressbar">
+    <progress id="bar" value="6" max="9">
+      <em>6 of 9 stages completed</em>
+    </progress>
+    <h3 id="recogidas"><span class="highlighted">103,438</span> Firmas</h3>
+        <span class="circle2">
+            <i class="icon-signin"></i>
+        </span>
+    <p id="necesarias">
+      Faltan <span class="underlined">16,562</span> más!
+    </p>
+  </div>
+</div><!-- welcome -->
+
+<div id="tabs" >
+  <ul>
+    <li><a class="tab1" href="http://" title="Descripción"><span>Descripción</span></a></li>
+    <li><a href="http://" title="Mensaje"><span>Mensaje</span></a></li>
+    <li><a href="http://" title="Estadísticas"><span>Estadísticas</span></a></li>
+  </ul>
+</div><!-- tabs -->
+
+<div class="topcontent">
+  <div class="tab-content">
+    <div id="description" class="active tab-pane">
+      <div id="campaign-info">
+        Telefónica ha contratado como asesor a Rodrigo Rato, expresidente del FMI y expresidente de Bankia, imputado por falsificación de cuentas, administración desleal, maquinación para alterar los precios y apropiación indebida. Exijamos a Telefónica que despida a Rodrigo Rato. Si no lo hace, nos daremos de baja o migraremos a otra compañía.</br>
+
+        Telefónica ha contratado a Rodrigo Rato para participar en consejos asesores de Telefónica Latinoamérica y Telefónica Europa. Rato era vicepresidente del Gobierno de España durante el proceso de privatización de la compañía. Además, durante su época como ministro de Economía, fue responsable del crecimiento de la burbuja inmobiliaria, estuvo vinculado al fraude de Gescartera e hizo la ley que permite el fraude de las participaciones preferentes.</br></br>
+
+        Las consecuencias de su gestión son un agujero de más de 3.000 millones de € en Bankia habiendo presentado, semanas antes, unas cuentas que arrojaban 300 millones de beneficios. Su rescate va ya por los 24.000 millones de €. Además, la entidad tiene planeado un ERE contra 6.000 trabajadores.</br>
+
+        No podemos consentir que los responsable del saqueo de Bankia sigan amenazando entidades que hemos financiado de manera colectiva, no es tolerable que un imputado judicial sea contratado por una empresa de telecomunicaciones que aún tiene accionariado público.</br>
+
+        La trayectoria política, profesional y económica dejan patente que el señor Rato es un pésimo gestor y no nos inspira ninguna confianza. Rato es responsable de una estafa fiscal y está siendo procesado por ello, por eso exigimos a telefónica que cese la incorporación de Rodrigo Rato como consejero.</br>
+      </div>
+
+      <div id="realtime" class="">
+        <ul>
           <li>
-            <a data-toggle="tab" href="#message"><%= t(:message) %></a>
+            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
+            <img alt="Bob" src="assets/img/bob.png">
           </li>
-        <% end %>
-        <% if @campaign.ttype == 'fax' %>
+          <hr>
           <li>
-            <a data-toggle="tab" href="#fax"><%= t(:Faxes) %></a>
+            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
+            <img alt="Bob" src="assets/img/bob.png">
           </li>
-        <% end %>
-        <% unless @campaign.status == 'archived' %>
-          <li data-tab-type="stats">
-            <a data-toggle="tab" href="#stats"><%= t(:stats) %></a>
+          <hr>
+          <li>
+            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
+            <img alt="Bob" src="assets/img/bob.png">
           </li>
-        <% end %>
-        <% unless @campaign.status == 'archived' %>
-          <li data-tab-type="integrate">
-            <a data-toggle="tab" href="#integrate"><%= t(:integrate) %></a>
+          <hr>
+          <li>
+            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
+            <img alt="Bob" src="assets/img/bob.png">
           </li>
-        <% end %>
+          <hr>
+          <li>
+            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
+            <img alt="Bob" src="assets/img/bob.png">
+          </li>
+          <hr>
+        </ul>
 
-          <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
+        <div class="quoted">
+          <li>
+            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#">
+              <span>
+                <i class=" icon-quote-left icon-4x"></i>
+              </span>
+              <h6><label>Ecologistas en accion</label></h6>
+            </a>
+          </li>
 
-      </ul><!-- tabs -->
-      <div class="tab-content">
-        <div id="description" class="active tab-pane">
-          <div id="campaign-info">
-            <h2><%= t(:description) %></h2>
-            <%= @campaign.to_html(@campaign.intro).html_safe %> 
-           
-            <%= @campaign.to_html(@campaign.body).html_safe %> 
-            
-            <%= render :partial => "communication", :locals => { :share_url => campaign_url(@campaign,locale:nil) } %>
+          <p>Este es el comentario perosonal escrito por el creador de la campaña.Gracias a todos los Firmantes ,esta campaña es importante.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos.</p>
+        </div><!-- quoted -->
+      </div><!--/.realtime-->
 
-        <% if @campaign.commentable %>
-            <p style="margin-bottom:30px;"></p>
-            <div id="participants">
-              <div class="fb-comments" data-href="<%= campaign_url(locale:nil) %>" data-num-posts="2" data-width="500"></div>
-            </div><!-- participants -->
-        <% end %>
-          <p style="margin-bottom:30px;"></p>
-          </div>
-        </div><!-- description -->
-        <div id="message" class="tab-pane fade">
-          <div id="campaign-info">
-            <h2><%= t(:recipients) %></h2>
-            <p><%= t(:recipients_show) %></p>
-              <ul>
-                <% @campaign.recipients.gsub('@', '[arroba]').split(' ').each do |dest| %> 
-                  <li><%= dest %></li>
-                <% end %>
-              </ul>
-              <hr />
-              <h2><%= t(:message) %></h2>
-              <b><%= t(:subject) %></b>: <%= @campaign.default_message_subject %> 
-            <p>
-              <pre><%= @campaign.default_message_body %></pre>
-            </p>
-          </div>
-        </div><!-- message -->
-        <div id="fax" class="tab-pane fade">
-          <div id="campaign-info">
-            <h2><%= t(:faxes_recipients) %></h2>
-            <p><%= t(:recipients_show) %></p>
-              <ul>
-                <% @campaign.numbers.each do |number| %> 
-                  <li><%= number %></li>
-                <% end %>
-              </ul>
-              <hr />
-              <h2><%= t(:message) %></h2>
-            <p>
-              <pre><%= @campaign.default_message_body %></pre>
-            </p>
-          </div>
-        </div><!-- message -->
-        <% unless @campaign.status == 'archived' %>
-          <div id="stats" class="tab-pane fade">
-            <%= render :partial => "stats_chart" %>
-          </div><!-- message -->
-        <% end %>
-        <% unless @campaign.status == 'archived' %>
-          <div id="integrate" class="tab-pane fade">
-            <%= t(:spread_info) %>
-            <%= link_to t(:spread_form), @sub_oigame ? integrate_sub_oigame_campaign_path(@sub_oigame, @campaign) : integrate_campaign_path(@campaign), :class => "btn btn-inverse" %>
-          </div><!-- message -->
-        <% end %>
+    </div><!-- description -->
+  </div><!-- tab-content -->
+</div><!-- topfooter -->
 
-      </div><!-- tab-content -->
-
-      </div><!-- show-campaign-detail -->
-      <div id="show-campaign-sidebar" class="grid_8">
-        
-        <% unless @campaign.status == 'archived' %>
-
-          <% if @has_participated %>
-
-            <div id="show-campaign-petition">
-              <%= render :partial => 'has_participated' %>
-            </div>
-
-          <% end %>
-          
-        <% end %>
-
-      </div><!-- show-campaign-sidebar -->
-    </div><!-- show-campaign -->
-
-
-  </div><!-- span7 -->
-  
-  
-  <% if @campaign.credit > 0.5 || @campaign.ttype != 'fax' %>
-    
-    <div class="span4">
-    <div id="participate-buttons">
-
-      <% unless @campaign.status == 'archived' %>
-
-        <% if @has_participated %>
-          <div id="show-campaign-petition">
-            <%= render :partial => 'has_participated' %>
-          </div>
-        <% else %>
-                <div id="show-campaign-<%= @campaign.ttype == 'petition' %>">
-                    <%= render :partial => 'sign_form' %>
-                </div>
-        <% end %>
-        </div> <!-- participate-buttons -->
-      </div> <!-- span4 -->
-
-      <% else %>
-
-        <div class="span4">
-          <div id="participate-buttons">
-          <p>Esta campaña está en modo standby</p>
-        </div>
-        </div>
-
-    <% end %>
-
-<% end %>
-  <div id="realtime" class="span3 hidden-phone">
-            <ul>
-              <li>
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li>
-                            <li>
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li>
-                            <li>
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li>
-                            <li>
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li>
-                            <li>
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li>
-                <li class="quetepires3">
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li>
-                <li class="quetepires2">
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li>
-              <li class="quetepires">
-                <%= image_tag("bob.png") %>
-                <a href="#"><label>Africa:Save Africa from the FMI </label></a>
-                  
-                  <a  class="nacionalidad" href="#"><%= image_tag ("jamaica.png")%></a>
-              </li> 
-          
-           </ul>
-    </div><!--/.realtime-->
-</div><!-- row-fluid -->
+<div class="cthreecolumns ">
+  Facebook!
+</div><!-- cthreecolumns -->
