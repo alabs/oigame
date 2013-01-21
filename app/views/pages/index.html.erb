@@ -1,144 +1,175 @@
 <% @page_title = t(:home) %>
 <div class="carro" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-    <div class='iosSlider'>
-        <div class='slider'>
-            <div class='item' id='item1'>
-                <div class='image'>
-                    <div class='bg'></div>
-                </div>
-                <div class='text'>
-                    <div class='bg'></div>
-                    <div class='title'>
-                        <span>Touch Me.</span>
-                    </div>
-                    <div class='desc'>
-                        <span>Hardware accelerated using CSS3 for supported iOS, Android and WebKit</span>
-                    </div>
-                    <div class='button'>
-                        <span>Firmar</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class='item' id='item2'>
-                <div class='image'>
-                    <div class='bg'></div>
-                </div>
-                <div class='text'>
-                    <div class='bg'></div>
-                    <div class='title'>
-                        <span>Open Source</span>
-                    </div>
-                    <div class='desc'>
-                        <span>Si eres desarrollador y quieres participar apúntate en</span>
-                    </div>
-                    <div class='button'>
-                        <span>Firmar</span>
-                    </div>
-                </div>
-            </div>
+  <div class='iosSlider'>
+    <div class='slider'>
+      <div class='item' id='item1'>
+        <div class='image'>
+          <div class='bg'></div>
         </div>
-        <div class='prevButton'></div>
-        <div class='nextButton'></div>
-        <div class='iosSliderButtons'>
-            <div class='button'></div>
-            <div class='button'></div>
+        <div class='text'>
+          <div class='bg'></div>
+          <div class='title'>
+            <span>Inicia el cambio. Activa al lobby ciudadano</span>
+          </div>
         </div>
+      </div>
+
+      <div class='item' id='item2'>
+        <div class='image'>
+          <div class='bg'></div>
+        </div>
+        <div class='text'>
+          <div class='bg'></div>
+          <div class='title'>
+            <span>Actua crea una campaña</span>
+          </div>
+        </div>
+      </div>
+
+      <div class='item' id='item3'>
+        <div class='image'>
+          <div class='bg'></div>
+        </div>
+        <div class='text'>
+          <div class='bg'></div>
+          <div class='title'>
+            <span>Apoya. ¡Firma, haz click, llama!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class='item' id='item4'>
+        <div class='image'>
+          <div class='bg'></div>
+        </div>
+        <div class='text'>
+          <div class='bg'></div>
+          <div class='title'>
+            <span>Software libre para la movilización ciudadana</span>
+          </div>
+          <div class="desc">
+            <span>Tecnología libre para la movilización ciudadana</span>
+          </div>
+        </div>
+      </div>
+
+      <div class='item' id='item5'>
+        <div class='image'>
+          <div class='bg'></div>
+        </div>
+        <div class='text'>
+          <div class='bg'></div>
+          <div class='title'>
+            <span>Plataform sin ánimo de lucra, hecha desde el 99% para el 99%</span>
+          </div>
+        </div>
+      </div>
+     </div>
+    <div class='prevButton'></div>
+    <div class='nextButton'></div>
+    <div class='iosSliderButtons'>
+      <div class='button'></div>
+      <div class='button'></div>
+      <div class='button'></div>
+      <div class='button'></div>
     </div>
+  </div>
 
 
-    <div class="sidecarro">
-        <i class="icon-bullhorn">campañas 33</i>
-        <i class="icon-pencil">Firmas 1000</i>
-        <i class=" icon-user">Usuarios 29</i>
-        <i class=" icon-globe">Países 5</i>
-    </div>
-    <!-- sidecarro -->
+  <div class="sidecarro">
+    <i class="icon-bullhorn">campañas 33</i>
+    <i class="icon-pencil">Firmas 1000</i>
+    <i class=" icon-user">Usuarios 29</i>
+    <i class=" icon-globe">Países 5</i>
+  </div>
+  <!-- sidecarro -->
 </div>
 </div><!-- carrousel -->
 
 <div class="welcome c">
-    <div class="welinfo">
-        <span class="circle"><i class="icon-lightbulb icon-2x"></i></span>
-        Una herramienta de movilización ciudadana a través de la red, <a href="">crea tu propia campaña</a>
-    </div><!-- welinfo -->
-    <div class="welinfo">
-        <span class="circle"><i class="icon-hand-right icon-2x"></i> </span>
-        Una herramienta de presión social abierta, horizontal y transparente.
-    </div><!-- welinfo -->
+  <div class="welinfo">
+    <span class="circle"><i class="icon-lightbulb icon-2x"></i></span>
+    Una herramienta de movilización ciudadana a través de la red, <a href="">crea tu propia campaña</a>
+  </div><!-- welinfo -->
+  <div class="welinfo">
+    <span class="circle"><i class="icon-hand-right icon-2x"></i> </span>
+    Una herramienta de presión social abierta, horizontal y transparente.
+  </div><!-- welinfo -->
 </div><!-- welcome -->
 
 <div class="campaing c">
-    <ul class="photo">
-        <% @campaigns_carousel.each do |campaign| %>
-          <li>
-              <div class="view view-tenth">
-                  <%= link_to image_tag(campaign.image_url(:home)), campaign %>
-                  <div class="carousel-caption">
+  <ul class="photo">
+    <% @campaigns_carousel.each do |campaign| %>
+      <li>
+        <div class="view view-tenth">
+          <%= link_to image_tag(campaign.image_url(:home)), campaign %>
+          <div class="carousel-caption">
 
-                      <div id="izquierda" >
-                          <h4><%= link_to campaign.name, campaign %></h4>
-                      </div>
+            <div id="izquierda" >
+              <h4><%= link_to campaign.name, campaign %></h4>
+            </div>
 
-                      <div id="derecha">
-                          <%= link_to(campaign) do %>
-                            <div id="avatar">
-                                <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
-                                <h4><%= campaign.user.name %></h4>
-                            </div>
-                          <% end %>
-                      </div>
+            <div id="derecha">
+              <%= link_to(campaign) do %>
+                <div id="avatar">
+                  <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+                  <h4><%= campaign.user.name %></h4>
+                </div>
+              <% end %>
+            </div>
 
-                  </div><!-- carousel-caption -->
+          </div><!-- carousel-caption -->
 
-                  <div class="mask">
-                      <h4><%= campaign.name %></h4>
-                      <p><%= campaign.intro %></p>
-                      <%= link_to 'Firmar campaña', campaign %>
-                  </div>
+          <div class="mask">
+            <h4><%= campaign.name %></h4>
+            <p><%= campaign.intro %></p>
+            <%= link_to 'Firmar campaña', campaign %>
+          </div>
 
-              </div>
-          </li>
-        <% end %>
-    </ul>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 </div><!-- campaing -->
-
-<div class="entra c">
+<div class="c">
+  <div class="entra">
     <div class="smsentra">
-        Crea tus campañas, firma, actúa, y compartela con tus redes.
-        <p class="min">No odies al lobby, ¡cómetelo!</p>
+      Crea tus campañas, firma, actúa, y compartela con tus redes.
+      <p class="min">No odies al lobby, ¡cómetelo!</p>
 
     </div><!-- smsentra -->
 
     <div class="buttonentra">
-        <i  class="icon-share-alt icon-3x"></i>
+      <i  class="icon-share-alt icon-3x"></i>
 
-        <input type="button" name="" value="Crear campaña" class="btn"></input>
+      <input type="button" name="" value="Crear campaña" class="btn"/>
 
     </div><!-- button -->
-</div><!-- entra -->
+  </div><!-- entra -->
+</div>
 
 <div class="topfooter">
-    <div class="cthreecolumns c">
-        <div class="threecolumns">
-            <span><i class="icon-pencil"></i></span>
-            <h3>Recogida de firmas</h3>
-            <p>Firma una petición de apoyo y adhesión a una campaña. Las firmas quedan bajo nuestra política de <b>protección de datos.</b></p>
-        </div><!-- threecolumns -->
-        <div class="threecolumns">
-            <span><i class="icon-envelope"></i></span>
-            <h3>Mailing</h3>
-            <p>Haz que tu campaña llegue por email, mediante un sistema de <b>envío seguro</b>, a los <b>responsables</b> de tu petición.</p>
-        </div><!-- threecolumns -->
-        <div class="threecolumns">
-            <span><i class="icon-print"></i></span>
-            <h3>Envío de fax</h3>
-            <p>Envía reclamaciones o <b>quejas</b> mediante FAX a los destinatarios que elijas con un simple <b>click</b>.</p>
-        </div><!-- threecolumns -->
-        <div class="threecolumns">
-            <span><i class="icon-mobile-phone"></i></span>
-            <h3>Telefonía</h3>
-            <p>Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía.</p>
-        </div><!-- threecolumns -->
-    </div><!-- cthreecolumns -->
+  <div class="cthreecolumns c">
+    <div class="threecolumns">
+      <span><i class="icon-pencil"></i></span>
+      <h3>Recogida de firmas</h3>
+      <p>Firma una petición de apoyo y adhesión a una campaña. Las firmas quedan bajo nuestra política de <b>protección de datos.</b></p>
+    </div><!-- threecolumns -->
+    <div class="threecolumns">
+      <span><i class="icon-envelope"></i></span>
+      <h3>Mailing</h3>
+      <p>Haz que tu campaña llegue por email, mediante un sistema de <b>envío seguro</b>, a los <b>responsables</b> de tu petición.</p>
+    </div><!-- threecolumns -->
+    <div class="threecolumns">
+      <span><i class="icon-print"></i></span>
+      <h3>Envío de fax</h3>
+      <p>Envía reclamaciones o <b>quejas</b> mediante FAX a los destinatarios que elijas con un simple <b>click</b>.</p>
+    </div><!-- threecolumns -->
+    <div class="threecolumns">
+      <span><i class="icon-mobile-phone"></i></span>
+      <h3>Telefonía</h3>
+      <p>Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía.</p>
+    </div><!-- threecolumns -->
+  </div><!-- cthreecolumns -->
 </div><!-- topfooter -->
+
