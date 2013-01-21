@@ -11,8 +11,8 @@ set :rails_env,       "production"
 set :deploy_to,       "/var/www/oiga.me"
 set :normalize_asset_timestamps, false
 
-set :user,            "ruby-data"
-set :group,           "ruby-data"
+set :user,            "oigame"
+set :group,           "oigame"
 set :use_sudo,        false
 
 role :web,    "polar.oiga.me"
