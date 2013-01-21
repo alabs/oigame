@@ -59,4 +59,8 @@ class CampaignImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  def recreate_images
+    self.recreate_versions! if self.present?
+  end
+
 end
