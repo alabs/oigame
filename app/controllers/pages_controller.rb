@@ -9,7 +9,7 @@ class PagesController < ApplicationController
     @campaigns_carousel = Campaign.last_campaigns_without_pagination(6)
   end
 
-  def help
+  def faq
   end
 
   def tutorial
