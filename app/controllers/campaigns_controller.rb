@@ -145,12 +145,8 @@ class CampaignsController < ApplicationController
     else
       @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => nil}).first
     end
-    recipients = @campaign.messages.map {|m| m.email}.sort.uniq
-    file = @campaign.name.strip.gsub(" ", "_")
-    response = ""
-    recipients.each {|r| response += r + "\n" }
-    send_data response, :type => "text/plain",
-              :filename=>"#{file}.txt", :disposition => 'attachment'
+    send_data @campaign.participants_list, :type => "text/plain",
+              :filename=>"#{@campaign.slug}.txt", :disposition => 'attachment'
   end
 
   # Types of petitions when {sending, singing}

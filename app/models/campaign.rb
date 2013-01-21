@@ -341,6 +341,13 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def participants_list
+    recipients = self.messages.map {|m| m.email}.sort.uniq
+    response = ""
+    recipients.each {|r| response += r + "\n" }
+    return response
+  end
+
   private
 
   def generate_slug
