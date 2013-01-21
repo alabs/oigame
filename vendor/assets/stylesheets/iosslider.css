@@ -15,6 +15,7 @@
     height: 40px;
     background: url(slider-buttons.png) no-repeat 0 0;
     z-index: 2;
+    margin: 7px;
 }
 
 .iosSlider .nextButton {
@@ -25,6 +26,7 @@
     height: 40px;
     background: url(slider-buttons.png) no-repeat 100% 0;
     z-index: 2;
+    margin: 7px;
 }
 
 .iosSlider .slider {
@@ -161,6 +163,10 @@
 
 .iosSlider .slider #item4 .image {
     background: url(h-slider-4.jpg) no-repeat 50% 50%;
+}
+
+.iosSlider .slider #item5 .image {
+    background: url(h-slider-5.jpg) no-repeat 50% 50%;
 }
 
 .iosSliderButtons {
