@@ -44,7 +44,7 @@ class CampaignImageUploader < CarrierWave::Uploader::Base
   end
   
   version :home do
-    process :scale => [357, 189]
+    process :resize_to_fill => [357, 189]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
