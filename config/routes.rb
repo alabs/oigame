@@ -44,13 +44,6 @@ Oigame::Application.routes.draw do
 
   end
 
-  # para el servidor de tareas en background
-  resque_constraint = lambda do |request|
-    request.env['warden'].authenticate!({ :scope => :admin })
-  end
-  constraints resque_constraint do
-    mount Resque::Server.new, :at => "/jobs"
-  end
 
   resources :categories
 
@@ -100,6 +93,11 @@ Oigame::Application.routes.draw do
   end
 
   post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
+  
+  # para el servidor de tareas en background
+  if request.env['warden'].authenticate? && request.env['warden'].user.admin?
+    mount Resque::Server.new, :at => "/jobs"
+  end
 
   match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
         constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
