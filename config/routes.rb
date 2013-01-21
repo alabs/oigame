@@ -45,7 +45,12 @@ Oigame::Application.routes.draw do
   end
 
   # para el servidor de tareas en background
-  mount Resque::Server.new, :at => "/jobs"
+  resque_constraint = lambda do |request|
+    request.env['warden'].authenticate!({ :scope => :admin })
+  end
+  constraints resque_constraint do
+    mount Resque::Server.new, :at => "/jobs"
+  end
 
   resources :categories
 
