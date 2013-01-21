@@ -3,8 +3,8 @@ require 'thinking_sphinx/deploy/capistrano'
 require "capistrano-resque"
 
 set :scm,             :git
-set :repository,      "gitolite@git.alabs.es:oiga.me.git"
-set :branch,          "origin/develop"
+set :repository,      "git@github.com:alabs/oigame.git"
+set :branch,          "origin/staging"
 set :migrate_target,  :current
 set :ssh_options,     { :forward_agent => true }
 set :rails_env,       "staging"
@@ -19,11 +19,11 @@ role :web,    "polar.oiga.me"
 role :app,    "polar.oiga.me"
 role :db,     "polar.oiga.me", :primary => true
 
-#role :resque_worker, "beta.oiga.me"
-#role :resque_scheduler, "beta.oiga.me"
+role :resque_worker, "polar.oiga.me"
+role :resque_scheduler, "polar.oiga.me"
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
-#set :workers, { "mailer" => 2 }
+set :workers, { "mailer" => 2, "fax" => 2 }
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
@@ -211,4 +211,4 @@ after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
 before 'deploy:finalize_update', 'deploy:assets:symlink'
 after 'deploy:update_code', 'deploy:assets:precompile'
-#after "deploy:restart", "resque:restart"
+after "deploy:restart", "resque:restart"
