@@ -1,8 +1,9 @@
 require "bundler/capistrano"
 require 'thinking_sphinx/deploy/capistrano'
+require "capistrano-resque"
 
 set :scm,             :git
-set :repository,      "gitolite@git.alabs.es:oiga.me.git"
+set :repository,      "git@github.com:alabs/oigame.git"
 set :branch,          "origin/master"
 set :migrate_target,  :current
 set :ssh_options,     { :forward_agent => true }
@@ -10,13 +11,19 @@ set :rails_env,       "production"
 set :deploy_to,       "/var/www/oiga.me"
 set :normalize_asset_timestamps, false
 
-set :user,            "ruby-data"
-set :group,           "ruby-data"
+set :user,            "oigame"
+set :group,           "oigame"
 set :use_sudo,        false
 
 role :web,    "polar.oiga.me"
 role :app,    "polar.oiga.me"
 role :db,     "polar.oiga.me", :primary => true
+
+role :resque_worker, "polar.oiga.me"
+role :resque_scheduler, "polar.oiga.me"
+
+# set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
+set :workers, { "mailer" => 4, "fax" => 8 }
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
@@ -108,20 +115,26 @@ namespace :deploy do
     run "cd #{latest_release}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
-  desc "Zero-downtime restart of Unicorn"
-  task :restart, :except => { :no_release => true } do
-    run "kill -s USR2 `cat /tmp/unicorn.oigame.pid`"
+  desc "Restart the Thin processes"
+  task :restart do
+    run <<-CMD
+      cd /var/www/oiga.me/current; bundle exec thin restart -C config/thin_production.yml
+    CMD
   end
 
-  desc "Start unicorn"
-  task :start, :except => { :no_release => true } do
-    run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D"
+  desc "Start the Thin processes"
+  task :start do
+    run  <<-CMD
+      cd /var/www/oiga.me/current; bundle exec thin start -C config/thin_production.yml
+    CMD
   end
-
-  desc "Stop unicorn"
-  task :stop, :except => { :no_release => true } do
-    run "kill -s QUIT `cat /tmp/unicorn.oigame.pid`"
-  end  
+  
+  desc "Stop the Thin processes"
+  task :stop do
+    run <<-CMD
+      cd /var/www/beta.oiga.me/current; bundle exec thin stop -C config/thin_production.yml
+    CMD
+  end
 
   namespace :rollback do
     desc "Moves the repo back to the previous version of HEAD"
