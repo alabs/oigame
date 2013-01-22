@@ -1,9 +1,7 @@
 <% @page_title = @campaign.name %>
-
 <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
-  <%= render :partial => 'no_credit' %>
-<% end %>
 
+<% end %>
 <div class="contenedorcampaign">
   <div class="img-wrap">
     <%= image_tag @image_src %>
@@ -15,7 +13,13 @@
 </div>
 
 <div class="sidefirma">
-  <%= render partial: 'sign_form' %>
+  <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
+    <%= render partial: 'fax_no_credit' %>
+  <% elsif @campaign.has_participated? current_user %>
+    <%= render partial: 'has_participated' %>
+  <% else %>
+    <%= render partial: 'sign_form' %>
+  <% end %>
 </div><!-- sidefirma -->
 
 <div class="welcome c">
@@ -30,11 +34,11 @@
       </li>
       <% if @campaign.ttype == "fax" %>
         <li>
-        <strong><span>Credito</span>:</strong> <%= @campaign.credit %>€ (<%= link_to 'Añadir crédito',add_credit_campaign_path %>)
+          <strong><span>Credito</span>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€ (<%= link_to 'Añadir crédito',add_credit_campaign_path %>)
         </li>
-        <li><strong>Publicada hace:</strong> 2 dias 23 horas</li>
-        <li><strong>Quedan:</strong> 300 días</li>
       <% end %>
+      <li><strong>Publicada hace:</strong><%= time_ago_in_words(@campaign.created_at) %></li>
+      <li><strong>Quedan:</strong><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
     </ul>
   </div>
 
@@ -65,9 +69,6 @@
 
 
     <div id="description" class="active tab-pane">
-      <div id="campaign-info">
-        <%= @campaign.to_html(@campaign.body).html_safe %>
-      </div>
       <div id="realtime" class="">
         <ul>
 
@@ -83,6 +84,9 @@
           <p>Este es el comentario perosonal escrito por el creador de la campaña.Gracias a todos los Firmantes ,esta campaña es importante.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos.</p>
         </div><!-- quoted -->
       </div><!--/.realtime-->
+      <div id="campaign-info">
+        <%= @campaign.to_html(@campaign.body).html_safe %>
+      </div>
       <% if @message_body || @message_subject %>
         <div id="carta">
           <%= "<p><b>Asunto:</b> #{@message_subject}</p>".html_safe if @message_subject %>
