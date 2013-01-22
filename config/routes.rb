@@ -95,7 +95,7 @@ Oigame::Application.routes.draw do
   post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
   
   # para el servidor de tareas en background
-  if request.env['warden'].authenticate? && request.env['warden'].user.admin?
+  authenticate :user do
     mount Resque::Server.new, :at => "/jobs"
   end
 
