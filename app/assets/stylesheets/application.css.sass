@@ -13,6 +13,7 @@
 @import "prettify"
 @import "iosslider"
 @import "pages"
+@import "campaigns"
 
 
 
@@ -268,12 +269,6 @@ button
       cursor: pointer
       text-decoration: underline
   &.grande
-    width: 80%
-    margin-left: 10%
-    margin-right: 10%
-    height: 45px
-    font-size: 17px
-    text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
     border-radius: 4px
     border: 1px solid #184B43
     cursor: pointer
@@ -880,10 +875,12 @@ fieldset,#campaign-info
   -webkit-border-radius: 0px 0px 0px 6px
   border-radius: 0px 0px 0px 6px
   font-size: 1em
-  background: #f0f0f0 url('cream_dust.png')
+  background: rgba(240, 240, 240, 0.6) url('cream_dust.png')
   p
     text-align: justify
     line-height: 21px
+
+
 
 #realtime
   text-align: justify
@@ -948,9 +945,7 @@ fieldset,#campaign-info
         background-position: 100% -42px
       background-position: 0% -42px
 
-/* Commented Backslash Hack hides rule from IE5-Mac \
 
-/* End IE5-Mac hack
 
 .topcontent
   width: 100%
