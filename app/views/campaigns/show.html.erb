@@ -4,20 +4,12 @@
   <%= render :partial => 'no_credit' %>
 <% end %>
 
-<div class="carrousel">
-  <div class = 'image'>
-    <div class = 'bg'></div>
-  </div>
-  <div class = 'text'>
-    <div class='bg'></div>
-    <div class = 'title'>
-      <span>Un Ere para Rato</span>
-    </div>
-    <div class = 'desc'>
-      <span>Pídele a Telefónica un ERE para Rato</span>
-        <span>
-            Telefónica ha contratado como asesor a Rodrigo Rato, expresidente del FMI y expresidente de Bankia, imputado por falsificación de cuentas, administración desleal, maquinación para alterar los precios y apropiación indebida.
-        </span>
+<div class="contenedorcampaign">
+  <div class="img-wrap">
+    <%= image_tag @image_src %>
+    <div class="img-overlay">
+      <h4><%= @campaign.name.capitalize %></h4>
+      <p><%= @description %></p>
     </div>
   </div>
 </div>
@@ -36,125 +28,97 @@
     <span class="checkfblabel">Compartir con mis amigos en Facebook</span>
   </form>
   <div  id="redes">
+
     <div class="ZRa"><span id="button" class="hAa Qo Bg" title="" role="button" tabindex="0" aria-label="Click here to publicly +1 this as ." aria-pressed="false"></span></div>
 
     <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button" data-size="large" data-related="tastytune"> <img src ="assets/img/twiterhash.png"/></a>
     <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button" data-size="large" data-related="tastytune">#UnEREParaRato</a>
 
+
   </div>
   <div class="normas">Firmando, aceptas las
     <a class="" href="#">Normas de uso</a> de Oiga.me
   </div>
+
 </div><!-- sidefirma -->
 
-<div class="welcome">
+<div class="welcome c">
   <div id="explain">
-    <span class="circle2"><i class="icon-double-angle-right"></i></span>
-    <strong>Destinatarios: </strong><h3>El Ministerio del los Lannister</h3>
     <ul>
       <li>
-        <img  class="creada" alt="" src="assets/img/creador.jpeg" title="Enrique Alvarez Fernandez">
-        <a href=""><strong>Ecologistas en accion</strong></a>
+        <p><b>Creada por:</b></p>
+        <p>
+          <img src="<%= avatar_url(@campaign.user.email) %>" alt="creador de campaña"/>
+          <span><%= @campaign.user.name %></span>
+        </p>
       </li>
-      <li>
-        <strong>
-          <span class="translation_missing" title="translation missing: es.credit">Credito</span>:
-        </strong>
-        0.00€ (<a href="file:///es/campaigns/mensaje-para-tu-abuela/add-credit">Añadir crédito</a>)
-      </li>
-      <li>
-        <strong>Publicada hace:</strong> 2 dias 23 horas
-      </li>
-      <li>
-        <strong>Quedan:</strong> 300 días
-      </li>
+      <% if @campaign.ttype == "fax" %>
+        <li>
+          <strong><span>Credito</span>:</strong> 0.00€ (<a href="#">Añadir crédito</a>)
+        </li>
+        <li><strong>Publicada hace:</strong> 2 dias 23 horas</li>
+        <li><strong>Quedan:</strong> 300 días</li>
+      <% end %>
     </ul>
-  </div><!-- welinfo -->
+  </div>
 
   <div id="progressbar">
-    <progress id="bar" value="6" max="9">
-      <em>6 of 9 stages completed</em>
+    <% objective  = @campaign.target.to_i %>
+    <% gotten = @campaign.messages_count.to_i %>
+    <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
     </progress>
-    <h3 id="recogidas"><span class="highlighted">103,438</span> Firmas</h3>
-        <span class="circle2">
-            <i class="icon-signin"></i>
-        </span>
-    <p id="necesarias">
-      Faltan <span class="underlined">16,562</span> más!
-    </p>
+    <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> Firmas</h3>
+  <span class="circle2"><i class="icon-signin"></i>
+  <p id="necesarias"></span>Faltan<span><%= objective - gotten %></span> más!</p>
   </div>
+
+
 </div><!-- welcome -->
 
-<div id="tabs" >
+
+<div id="tabs4" >
   <ul>
-    <li><a class="tab1" href="http://" title="Descripción"><span>Descripción</span></a></li>
-    <li><a href="http://" title="Mensaje"><span>Mensaje</span></a></li>
+    <li><a class="tab1" href="http://" title="Descripción"><span class="active">Descripción</span></a></li>
+
     <li><a href="http://" title="Estadísticas"><span>Estadísticas</span></a></li>
   </ul>
 </div><!-- tabs -->
-
+<br clear="left">
 <div class="topcontent">
-  <div class="tab-content">
+  <div class="tab-content c">
+
+
     <div id="description" class="active tab-pane">
       <div id="campaign-info">
-        Telefónica ha contratado como asesor a Rodrigo Rato, expresidente del FMI y expresidente de Bankia, imputado por falsificación de cuentas, administración desleal, maquinación para alterar los precios y apropiación indebida. Exijamos a Telefónica que despida a Rodrigo Rato. Si no lo hace, nos daremos de baja o migraremos a otra compañía.</br>
-
-        Telefónica ha contratado a Rodrigo Rato para participar en consejos asesores de Telefónica Latinoamérica y Telefónica Europa. Rato era vicepresidente del Gobierno de España durante el proceso de privatización de la compañía. Además, durante su época como ministro de Economía, fue responsable del crecimiento de la burbuja inmobiliaria, estuvo vinculado al fraude de Gescartera e hizo la ley que permite el fraude de las participaciones preferentes.</br></br>
-
-        Las consecuencias de su gestión son un agujero de más de 3.000 millones de € en Bankia habiendo presentado, semanas antes, unas cuentas que arrojaban 300 millones de beneficios. Su rescate va ya por los 24.000 millones de €. Además, la entidad tiene planeado un ERE contra 6.000 trabajadores.</br>
-
-        No podemos consentir que los responsable del saqueo de Bankia sigan amenazando entidades que hemos financiado de manera colectiva, no es tolerable que un imputado judicial sea contratado por una empresa de telecomunicaciones que aún tiene accionariado público.</br>
-
-        La trayectoria política, profesional y económica dejan patente que el señor Rato es un pésimo gestor y no nos inspira ninguna confianza. Rato es responsable de una estafa fiscal y está siendo procesado por ello, por eso exigimos a telefónica que cese la incorporación de Rodrigo Rato como consejero.</br>
+        <%= @campaign.to_html(@campaign.body).html_safe %>
       </div>
-
       <div id="realtime" class="">
         <ul>
-          <li>
-            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
-            <img alt="Bob" src="assets/img/bob.png">
-          </li>
-          <hr>
-          <li>
-            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
-            <img alt="Bob" src="assets/img/bob.png">
-          </li>
-          <hr>
-          <li>
-            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
-            <img alt="Bob" src="assets/img/bob.png">
-          </li>
-          <hr>
-          <li>
-            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
-            <img alt="Bob" src="assets/img/bob.png">
-          </li>
-          <hr>
-          <li>
-            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#"><label>Menganito Perez Ruiz</label></a><label>España</label><label>3mn</label>
-            <img alt="Bob" src="assets/img/bob.png">
-          </li>
-          <hr>
+
         </ul>
 
         <div class="quoted">
           <li>
-            <a href="file:///home/onrails8/Downloads/campaign%20(1).html#">
-              <span>
-                <i class=" icon-quote-left icon-4x"></i>
-              </span>
-              <h6><label>Ecologistas en accion</label></h6>
-            </a>
-          </li>
+            <span><i class=" icon-quote-left icon-4x"></i></span>
+            <h6>Ecologistas en accion</h6>
 
+
+          </li>
           <p>Este es el comentario perosonal escrito por el creador de la campaña.Gracias a todos los Firmantes ,esta campaña es importante.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos.</p>
         </div><!-- quoted -->
       </div><!--/.realtime-->
+      <% if @message_body || @message_subject %>
+        <div id="carta">
+          <%= "<p><b>Asunto:</b> #{@message_subject}</p>".html_safe if @message_subject %>
+          <p><b>Mensaje:</b></p>
+          <p><%= @message_body %></p>
+        </div>
+        <div class="sombracarta">
+          <%= image_tag 'shadow2.png' %>
+        </div>
+      <% end %>
 
     </div><!-- description -->
   </div><!-- tab-content -->
 </div><!-- topfooter -->
-
-<div class="cthreecolumns ">
-  Facebook!
-</div><!-- cthreecolumns -->
+<br clear="all">

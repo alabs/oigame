@@ -59,6 +59,10 @@ class CampaignsController < ApplicationController
 
     @videotron = UnvlogIt.new(@campaign.video_url) unless @campaign.video_url.blank?
 
+    @instanke = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize.new
+    @message_body = @campaign.default_message_body if @instanke.respond_to?(:body)
+    @message_subject = @campaign.default_message_body if @instanke.respond_to? :subject
+
     respond_with(@campaign)
   end
 
