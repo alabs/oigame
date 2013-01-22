@@ -9,13 +9,14 @@
   <div class="span7">
 
 <div id="page-wrapper">
+  <div class="fondo">
       <h2><%= @page_title %></h2>
       <p><%= I18n.t(:donation_info_1) %></p>      
       <p><%= I18n.t(:donation_info_2) %></p>      
-      <h3><%= I18n.t(:donation_secure) %>.</h3>
+      <h3><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h3>
       <p><%= I18n.t(:donation_secure_info) %></p>      
-      <br />
-      <p><%= link_to t(:donate_oigame), donate_init_path, :class => 'btn btn-inverse' %></p>
+      <p><%= link_to t(:donate_oigame), donate_init_path, :class => 'grande' %></p>
     </div><!-- page-info -->
+    </div><!-- fondo -->
   </div><!-- page -->
 </div><!-- page-wrapper -->
