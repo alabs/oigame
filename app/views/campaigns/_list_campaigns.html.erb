@@ -1,18 +1,45 @@
 
-<div class="row-fluid">
+<div class="">
   
-
-
-<div class="span7">
-
 <div id="page-wrapper">
-    <% if @campaigns.count > 0 %>
-        <div class="row-fluid">
-        <div class="span5">
+
+<div class="campaign-info">
+        <div class="">
           <h2><%= @page_title %></h2>
         </div>
-        <div class="span2" style="margin-top: 15px;">
-          <div class="btn-group" style="z-index: 9999;">
+
+    <% if @campaigns.count > 0 %>      
+
+        <% @campaigns.each do |campaign| %>
+          <div class="mostrar-campaign">
+          <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
+        </div>
+        <% end %>
+        <div class="center">
+          <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
+        </div>
+        <div id="progressbar">
+    <progress id="bar" value="6" max="9">
+      <em>6 of 9 stages completed</em>
+    </progress>
+    <h3 id="recogidas"><span class="highlighted">103,438</span> Firmas</h3>
+        <span class="circle2">
+            <i class="icon-signin"></i>
+        </span>
+    <p id="necesarias">
+      Faltan <span class="underlined">16,562</span> más!
+    </p>
+  </div>
+      </div><!-- list-campaigns-info -->
+    <% else %>
+      <div id="list-campaigns-info">
+        <h2><%= t(:no_campaigns) %></h2>
+      </div>
+    <% end %>
+ <div class="">
+
+        <div class="" style="margin-top: 15px;">
+          <div class="btn-group" >
             <% if @sub_oigame %>
               <%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn" %>
               <%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => "btn" %>
@@ -29,21 +56,6 @@
           </div>
         </div>
       </div>
-        <% @campaigns.each do |campaign| %>
-          <div class="row-fluid mostrar-campaign">
-          <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
-        </div>
-        <% end %>
-        <div class="center">
-          <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
-        </div>
-      </div><!-- list-campaigns-info -->
-    <% else %>
-      <div id="list-campaigns-info">
-        <h2><%= t(:no_campaigns) %></h2>
-      </div>
-    <% end %>
-
 </div>
 
 
