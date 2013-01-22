@@ -19,8 +19,8 @@ role :web,    "polar.oiga.me"
 role :app,    "polar.oiga.me"
 role :db,     "polar.oiga.me", :primary => true
 
-role :resque_worker, "polar.oiga.me"
-role :resque_scheduler, "polar.oiga.me"
+#role :resque_worker, "polar.oiga.me"
+#role :resque_scheduler, "polar.oiga.me"
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
 set :workers, { "mailer" => 2, "fax" => 2 }
@@ -152,27 +152,6 @@ namespace :deploy do
     end
   end
 
-  desc "Restart the Thin processes"
-  task :restart do
-    run <<-CMD
-      cd /var/www/beta.oiga.me/current; bundle exec thin restart -C config/thin_staging.yml
-    CMD
-  end
-
-  desc "Start the Thin processes"
-  task :start do
-    run  <<-CMD
-      cd /var/www/beta.oiga.me/current; bundle exec thin start -C config/thin_staging.yml
-    CMD
-  end
-  
-  desc "Stop the Thin processes"
-  task :stop do
-    run <<-CMD
-      cd /var/www/beta.oiga.me/current; bundle exec thin stop -C config/thin_staging.yml
-    CMD
-  end
-
   namespace :rollback do
     desc "Moves the repo back to the previous version of HEAD"
     task :repo, :except => { :no_release => true } do
@@ -209,6 +188,40 @@ end
 
 after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
-before 'deploy:finalize_update', 'deploy:assets:symlink'
-after 'deploy:update_code', 'deploy:assets:precompile'
-after "deploy:restart", "resque:restart"
+#before 'deploy:finalize_update', 'deploy:assets:symlink'
+#after 'deploy:update_code', 'deploy:assets:precompile'
+#after "deploy:restart", "resque:restart"
+
+
+# note - you may need to split into a before-deploy (stop) and after-deploy (start) depending on your setup
+
+
+namespace :god do
+  def god_is_running
+    !capture("#{god_command} status >/dev/null 2>/dev/null || echo 'not running'").start_with?('not running')
+  end
+
+  def god_command
+    "cd #{current_path}; bundle exec god"
+  end
+
+  desc "Stop god"
+  task :terminate_if_running do
+    if god_is_running
+      run "#{god_command} terminate"
+    end
+  end
+
+  desc "Start god"
+  task :start do
+    resque_file = "#{current_path}/config/resque.god"
+    thin_file = "#{current_path}/config/thin.god"
+    environment = { :RAILS_ENV => rails_env, :RAILS_ROOT => current_path }
+    run "#{god_command} -c #{resque_file} &", :env => environment
+    run "#{god_command} -c #{thin_file} &", :env => environment
+  end
+end
+
+before "deploy:update", "god:terminate_if_running"
+after "deploy:update", "god:start"
+
