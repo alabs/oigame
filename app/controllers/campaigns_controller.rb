@@ -159,8 +159,8 @@ class CampaignsController < ApplicationController
     model_name = Campaign.types[@campaign.ttype.to_sym][:model_name]
     modelk = model_name.constantize
 
-    from = user_signed_in? ? current_user.email : params[:email]
-    user_name = user_signed_in? ? current_user.name : params[:name]
+    from = current_user.try(:email) || params[:email]
+    user_name = current_user.try(:name) || params[:name]
 
     if @campaign
       # Create the instance of the methok
@@ -171,11 +171,11 @@ class CampaignsController < ApplicationController
       instanke.name = user_name
 
       if instanke.respond_to? :body
-        instanke.body = (params[:own_message] == 1) ? params[:body] : @campaign.default_message_body
+        instanke.body = (!params[:body].blank?) ? params[:body] : @campaign.default_message_body
       end
 
       if instanke.respond_to? :subject
-        instanke.subject = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
+        instanke.subject = (!params[:subject].blank?) ? params[:subject] : @campaign.default_message_subject
       end
 
       if instanke.save
