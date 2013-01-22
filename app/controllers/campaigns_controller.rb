@@ -3,7 +3,7 @@ class CampaignsController < ApplicationController
 
   #include Social::Facebook
 
-  protect_from_forgery :except => :sign, :add_credit
+  protect_from_forgery :except => [:sign, :add_credit]
   layout 'application', :except => [:widget, :widget_iframe]
 
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
