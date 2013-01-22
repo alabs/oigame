@@ -18,6 +18,8 @@ gem 'jquery-ui-themes'
 #gem 'unicorn'
 gem 'thin'
 
+gem 'god'
+
 gem 'capistrano'
 gem 'capistrano-ext'
 gem 'capistrano-resque'
