@@ -3,7 +3,7 @@ class CampaignsController < ApplicationController
 
   #include Social::Facebook
 
-  protect_from_forgery :except => :sign
+  protect_from_forgery :except => :sign, :add_credit
   layout 'application', :except => [:widget, :widget_iframe]
 
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
@@ -324,7 +324,7 @@ class CampaignsController < ApplicationController
     data[:name] = current_user.name
     data[:email] = current_user.email
     data[:cback] = campaign_url(@campaign)
-    HTTParty.post("http://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
+    HTTParty.post("https://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 
   private
