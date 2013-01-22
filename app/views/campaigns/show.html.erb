@@ -1,9 +1,5 @@
 <% @page_title = @campaign.name %>
 
-<% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
-  <%= render :partial => 'no_credit' %>
-<% end %>
-
 <div class="contenedorcampaign">
   <div class="img-wrap">
     <%= image_tag @image_src %>
@@ -32,9 +28,9 @@
         <li>
           <strong><span>Credito</span>:</strong> 0.00€ (<%= link_to 'Añadir crédito',add_credit_campaign_path %>)
         </li>
-        <li><strong>Publicada hace:</strong> 2 dias 23 horas</li>
-        <li><strong>Quedan:</strong> 300 días</li>
       <% end %>
+      <li><strong>Publicada hace:</strong></li>
+      <li><strong>Quedan:</strong></li>
     </ul>
   </div>
 
