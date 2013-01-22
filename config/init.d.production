@@ -1,0 +1,64 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          oiga.me
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      S 0 1 6
+# Short-Description: oiga.me initscript
+# Description:       oiga.me - one script to rule them all
+### END INIT INFO
+
+# Original author: Andrés Pereira
+
+# Do NOT "set -e"
+
+THIN=/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@oigame/bin/thin
+RAKE=/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@global/bin/rake
+
+RAILS_ENV=production
+USER=ruby-data
+APP_PATH=/var/www/oiga.me/current
+SCRIPT_NAME=/etc/init.d/oigame
+CONFIG_PATH=$APP_PATH/config/thin_production.yml
+
+
+# Exit if the package is not installed
+[ -x "$THIN" ] || exit 0
+
+
+start() {
+        echo -n "Starting oigame..."
+
+	$THIN start -C $CONFIG_PATH
+        cd $APP_PATH
+        sudo -u$USER QUEUE=* VERBOSE=1 $RAKE resque:work --trace >> /var/log/resque/$RAILS_ENV.log &
+        return
+}
+ 
+stop() {
+        echo -n "Shutting down oigame... "
+
+	$THIN stop -C $CONFIG_PATH
+        ps xef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | head -n1 | awk '{ print $2 }' | xargs kill
+        return
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	stop
+	start
+	;;
+  *)
+	echo "Usage: $SCRIPT_NAME {start|stop|restart}" >&2
+	exit 3
+	;;
+esac
+
+:
