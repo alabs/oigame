@@ -15,31 +15,7 @@
 </div>
 
 <div class="sidefirma">
-  <form method="post" action="">
-    <div class="textfield">
-      <input type="text" name="password"  placeholder="Nombre y Apellido"  >
-      <input type="text" name="username"  placeholder="Email">
-    </div>
-    <textarea class="comentarea" name="signature[message]" placeholder="Deja tu comentario en el foro"></textarea>
-    <div class="firmando">
-      <input type="submit" name="submit" value="Firmar" class="firma grande">
-    </div>
-    <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
-    <span class="checkfblabel">Compartir con mis amigos en Facebook</span>
-  </form>
-  <div  id="redes">
-
-    <div class="ZRa"><span id="button" class="hAa Qo Bg" title="" role="button" tabindex="0" aria-label="Click here to publicly +1 this as ." aria-pressed="false"></span></div>
-
-    <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button" data-size="large" data-related="tastytune"> <img src ="assets/img/twiterhash.png"/></a>
-    <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button" data-size="large" data-related="tastytune">#UnEREParaRato</a>
-
-
-  </div>
-  <div class="normas">Firmando, aceptas las
-    <a class="" href="#">Normas de uso</a> de Oiga.me
-  </div>
-
+  <%= render partial: 'sign_form' %>
 </div><!-- sidefirma -->
 
 <div class="welcome c">
@@ -54,7 +30,7 @@
       </li>
       <% if @campaign.ttype == "fax" %>
         <li>
-          <strong><span>Credito</span>:</strong> 0.00€ (<a href="#">Añadir crédito</a>)
+          <strong><span>Credito</span>:</strong> 0.00€ (<%= link_to 'Añadir crédito',add_credit_campaign_path %>)
         </li>
         <li><strong>Publicada hace:</strong> 2 dias 23 horas</li>
         <li><strong>Quedan:</strong> 300 días</li>
