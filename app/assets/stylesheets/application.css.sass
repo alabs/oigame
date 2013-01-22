@@ -26,6 +26,7 @@
 \:root
   var-naranja: #EB5E40
 
+$naranja: #EB5E40
 $blanco: #f0f0f0
 $gris: #d7d7d7
 $verde: #2d8a8a
@@ -131,11 +132,10 @@ select
   margin: 0px
   padding: 0px
   margin-top: 0px
-  position: relative
-  z-index: 2
   height: 40px
   float: left
   width: 65%
+  overflow: hidden
 
 /* hidden
 
@@ -557,11 +557,11 @@ input.btn
 
 progress#bar
   &::-moz-progress-bar
-    background-image: url('../img/brushed_alu.png')
+    background-image: url('brushed_alu.png')
     background-color: #EB5E40
     -moz-box-shadow: 1px 1px 1px #333333
   &::-webkit-progress-value
-    background-image: url('../img/brushed_alu.png')
+    background-image: url('brushed_alu.png')
     background-color: #EB5E40
     -webkit-box-shadow: 1px 1px 1px #333333
   background-color: rgba(240, 240, 240, 0.16)
@@ -744,7 +744,7 @@ ul.jcarorusel li img
   float: left
   background: #444
   height: 300px
-  background: #f0f0f0 url('../img/az_subtle.png')
+  background: #f0f0f0 url('az_subtle.png')
   text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
   form div.textfield input
     display: block
@@ -828,7 +828,7 @@ div.normas
   -webkit-border-radius: 0px 0px 0px 6px
   border-radius: 0px 0px 0px 6px
   font-size: 1em
-  background: #f0f0f0 url('../img/cream_dust.png')
+  background: #f0f0f0 url('cream_dust.png')
   p
     text-align: justify
     line-height: 21px
@@ -877,24 +877,19 @@ div.normas
     padding: 0
   a
     float: left
-    background: url("../img/tabright4.gif") no-repeat left top
     margin: 0
     padding: 0 0 0 7px
     text-decoration: none
-    border: 1px solid #DDD
-    -webkit-border-top-left-radius: 6px
-    -webkit-border-top-right-radius: 6px
-    -moz-border-radius-topleft: 6px
-    -moz-border-radius-topright: 6px
-    border-top-left-radius: 6px
-    border-top-right-radius: 6px
     span
       float: left
       display: block
-      background: url("../img/tabright4.gif") no-repeat right top
       padding: 5px 15px 4px 6px
       color: #1b5353
       float: none
+      font-weight: bold
+      &.active
+        border-bottom: 5px solid transparent
+        border-color: $naranja
     &:hover
       span
         color: #EB5E40
