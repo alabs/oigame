@@ -95,8 +95,8 @@ Oigame::Application.routes.draw do
   post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
   
   # para el servidor de tareas en background
-  if request.env['warden'].authenticate? && request.env['warden'].user.admin?
-    mount Resque::Server.new, :at => "/jobs"
+  constraints CanAccessResque do
+    mount Resque::Server, at: 'jobs'
   end
 
   match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
