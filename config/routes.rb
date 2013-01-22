@@ -95,11 +95,11 @@ Oigame::Application.routes.draw do
   post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
   
   # para el servidor de tareas en background
-  authenticate :user do
-    mount Resque::Server.new, :at => "/jobs"
+  constraints CanAccessResque do
+    mount Resque::Server, at: 'jobs'
   end
 
-  match '*path', to: redirect {|params| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
+  match '*path', to: redirect {|params,request| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
         constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
 
   match '', to: redirect("/#{I18n.default_locale}")
