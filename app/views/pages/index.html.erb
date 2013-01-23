@@ -102,32 +102,18 @@
   <ul class="photo">
     <% @campaigns_carousel.each do |campaign| %>
       <li>
-        <div class="view view-tenth">
-          <%= link_to image_tag(campaign.image_url(:home)), campaign %>
-          <div class="carousel-caption">
-
-            <div id="izquierda" >
-              <h4><%= link_to campaign.name, campaign %></h4>
-            </div>
-
-            <div id="derecha">
-              <%= link_to(campaign) do %>
-                <div id="avatar">
-                  <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
-                  <h4><%= campaign.user.name %></h4>
-                </div>
-              <% end %>
-            </div>
-
-          </div><!-- carousel-caption -->
-
-          <div class="mask">
-            <h4><%= campaign.name %></h4>
-            <p><%= campaign.intro %></p>
-            <%= link_to 'Firmar campaña', campaign %>
-          </div>
-
-        </div>
+        <a href="<%= campaign_path(campaign) %>">
+        <div class="campa-home">
+    <%= image_tag(campaign.image_url(:home)) %>
+    <div class="campa-texto">
+      <div class="campa-texto-left">
+      <%= link_to campaign.name, campaign %>
+      </div><!-- left -->
+      <div class="campa-texto-right">
+      <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+      </div><!-- left -->
+    </div><!-- campa-texto -->
+  </a>
       </li>
     <% end %>
   </ul>
