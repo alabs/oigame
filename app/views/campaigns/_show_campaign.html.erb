@@ -13,8 +13,11 @@
       <div class="campaign-text">        
         <div class="campaign-text-links">
         <%= campaign.to_html(campaign.intro).html_safe %>
-          <%= link_to t(:join), url, :title => campaign.name %>
+          
               
+
+  <%= link_to t(:join), url, :title => campaign.name %>
+
 
         <% if campaign.status == "archived" %>
           <%= link_to url do %>
