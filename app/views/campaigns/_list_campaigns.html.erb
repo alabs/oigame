@@ -27,7 +27,7 @@
         </div>
 
     <% if @campaigns.count > 0 %>      
-
+<div style="overflow:hidden;">
         <% @campaigns.each do |campaign| %>
           <div class="mostrar-campaign">
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
@@ -35,11 +35,13 @@
 
 
         <% end %>
+        </div>
         <div class="center">
           <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
         </div>
 
       </div><!-- list-campaigns-info -->
+
     <% else %>
       <div id="list-campaigns-info">
         <h2><%= t(:no_campaigns) %></h2>
