@@ -11,7 +11,14 @@
     </div>
   <% end %>
   </div>
-  <%= text_area_tag :message, nil,placeholder: 'Envía tu propio mensaje' , class: 'comentarea' %>
+  <div class="form-field">
+    <%= check_box_tag :own_message, false,false, class: 'checkfb' %>
+    <%= label_tag :own_message, t(:own_message), class: 'checkfblabel' %>
+  </div>
+  <div class="form-field form-message hide">
+    <%= text_area_tag :body, nil,placeholder: t(:message_info) , class: 'comentarea' %>
+  </div>
+
   <% if @campaign.identity_card %>
     <div class="form-field">
       <%= label_tag t(:your_identity_card) %>
@@ -34,7 +41,7 @@
     <%= button_tag t(:send_message), :class => 'firma grande' %>
   </div>
   <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
-  <span class="checkfblabel">Compartir con mis amigos en Facebook</span>
+  <label for="checkfb" class="checkfblabel">Compartir con mis amigos en Facebook</label>
   <div id="redes">
     <div class="g-plusone" data-size="medium"></div>
     <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato">
