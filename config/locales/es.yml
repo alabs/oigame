@@ -447,6 +447,11 @@ es:
   thanks_sign_has_validate: 'Gracias por firmar. Ahora tienes que validar la firma a través del correo que acabas de recibir'
   thanks_sign_validate: 'Gracias por firmar'
   thanks_sign_validate_now: 'Gracias por validar tu firma. Con esto conseguimos que todas las firmas sean legítimas'
+  your_state: "Tu país"
+  your_identity_card: "Tu NIF"
+  your_postal_code: "Tu código postal"
+  faq: "FAQ"
+  programe: "Programar"
   admin:
     home:
       name: Inicio
