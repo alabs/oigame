@@ -604,7 +604,7 @@ es:
         fax_title: "Envío de fax"
         fax_body_html: "Envía reclamaciones o <b>quejas</b> mediante FAX a los destinatarios que elijas con un simple <b>click</b>."
         telephony_title: "Telefonía"
-        telephony_body_html: "Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía."
+        telephony_body_html: "Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía. (En desarrollo)"
     campaigns:
       type:
         petition: "Petición online"
