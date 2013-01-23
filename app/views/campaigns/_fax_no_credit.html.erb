@@ -3,6 +3,8 @@
   <p>Actualmente está campaña no tiene suficiente dinero para poder mandar mensajes.</p>
   <p>Para poder seguir mandando mensajes es necesario realizar una donación</p>
     <%= form_tag add_credit_campaign_path , method: 'get' do %>
-      <%= button_tag 'Agregar crédito', class: 'firma grande' %>
+    <div class="btn-campaign">
+      <%= button_tag 'Agregar crédito' %>
+    </div>
     <% end %>
 </div>
