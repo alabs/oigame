@@ -3,7 +3,6 @@
 <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
 
 <% end %>
-<%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
 <div class="contenedorcampaign c">
   <div class="img-wrap">
     <div class="image-show-campaign"><%= image_tag @image_src %></div>
@@ -60,6 +59,7 @@
   </div>
 
 
+  <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
 </div><!-- welcome -->
 <br clear="all">
 
