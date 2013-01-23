@@ -181,7 +181,9 @@ class CampaignsController < ApplicationController
       if instanke.save
         if user_signed_in?
           instanke.validate!
+          flash[:thank_message] = t(:thanks_sign_validate)
         else
+          flash[:thank_message] = t(:thanks_sign_has_validate)
           validation = "send_message_to_validate_#{model_name.downcase}".to_s
           Mailman.send(validation, from, @campaign.id, instanke.id).deliver
         end
@@ -204,6 +206,7 @@ class CampaignsController < ApplicationController
 
       if model
         model.validate!
+        flash[:thank_message] = t(:thanks_sign_validate_now)
         redirector_to :signed
       else
         redirector_to :campaign, error: 'El token de validación ya no es válido'
