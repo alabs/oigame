@@ -1,8 +1,9 @@
 <% @page_title = @campaign.name %>
+<% @in_campaign = true %>
 <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
 
 <% end %>
-<div class="contenedorcampaign">
+<div class="contenedorcampaign c">
   <div class="img-wrap">
     <%= image_tag @image_src %>
     <div class="img-overlay">
@@ -12,7 +13,7 @@
   </div>
 </div>
 
-<div class="sidefirma">
+<div class="sidefirma c">
   <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
     <%= render partial: 'fax_no_credit' %>
   <% elsif @campaign.has_participated? current_user %>
@@ -49,7 +50,8 @@
     </progress>
     <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> Firmas</h3>
   <span class="circle2"><i class="icon-signin"></i>
-  <p id="necesarias"></span>Faltan<span><%= objective - gotten %></span> más!</p>
+  <p id="necesarias">Faltan<span class="underlined"><%= objective - gotten %></span> más!</p>
+    </span>
   </div>
 
 

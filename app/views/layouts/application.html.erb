@@ -46,7 +46,11 @@
 <body>
 <%= render :partial => 'header' %>
 
-<div class="c">
+<% if @in_campaign %>
+  <div>
+<% else %>
+  <div class="c">
+<% end %>
   <%= yield %>
 </div>
 

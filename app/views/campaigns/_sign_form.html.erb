@@ -1,5 +1,4 @@
 <%= form_tag @sub_oigame ? sign_sub_oigame_campaign_path(@sub_oigame, @campaign) : sign_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
-  <h3>Firma la campaña</h3>
   <div class="textfield">
   <% if !user_signed_in? || current_user.name.blank? %>
     <div class="form-field">
@@ -42,5 +41,8 @@
       <%= image_tag 'twiterhash.png' %>
     </a>
     <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button">#UnEREParaRato</a>
+  </div>
+  <div class="normas">Firmando, aceptas las
+    <a class="" href="#">Normas de uso</a> de Oiga.me
   </div>
  <% end %>
