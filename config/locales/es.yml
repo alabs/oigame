@@ -444,6 +444,9 @@ es:
   create: 'Crear'
   add_credit: 'Añadir crédito'
   countries: 'Países'
+  thanks_sign_has_validate: 'Gracias por firmar. Ahora tienes que validar la firma a través del correo que acabas de recibir'
+  thanks_sign_validate: 'Gracias por firmar'
+  thanks_sign_validate_now: 'Gracias por validar tu firma. Con esto conseguimos que todas las firmas sean legítimas'
   admin:
     home:
       name: Inicio
