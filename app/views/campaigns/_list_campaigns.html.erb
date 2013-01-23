@@ -1,10 +1,14 @@
-
-
-  
-
+<% no_btns = no_btns || false %>
+<% no_paginate = no_paginate || false %>
+<% message = message || false %>
 
 <div class="campaign-infolist">
-        
+        <% if message %>
+          <div class="message-thanks">
+            <%= message %>
+          </div>
+        <% end %>
+        <% unless no_btns %>
           <div class="btn-group" >
             <% if @sub_oigame %>
               <%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn" %>
@@ -20,7 +24,7 @@
               <% end %>
             <% end %>
           </div>
-
+<% end %>
       <div class="">    
         <h2><i class="icon-time"></i><%= @page_title %></h2>
         <hr class="dashed">
@@ -36,9 +40,11 @@
 
         <% end %>
         </div>
+        <% unless no_paginate %>
         <div class="center">
           <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
         </div>
+        <% end %>
 
       </div><!-- list-campaigns-info -->
 
