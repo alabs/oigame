@@ -1,17 +1,21 @@
 //@import "960"
 //@import "bootstrap"
 //@import "bootstrap-responsive.min"
-//@import "wisiwisi-editor"
-//@import "highlight.zenburn"
+@import "wisiwisi-editor"
+@import "highlight.zenburn"
 //@import "jquery.dialog2"
 //@import "jquery.jqplot"
 //@import "jquery.jgrowl"
-//@import "jquery.datePicker"
+@import "jquery.datePicker"
 //@import "jquery.ui.all"
 //@import "multi-select"
 @import "font-awesome"
 @import "prettify"
 @import "iosslider"
+@import "pages"
+@import "campaigns"
+
+
 
 @import url("style_common.css")
 
@@ -23,8 +27,6 @@
 
 
 /* Color v
-\:root
-  var-naranja: #EB5E40
 
 $naranja: #EB5E40
 $blanco: #f0f0f0
@@ -267,12 +269,6 @@ button
       cursor: pointer
       text-decoration: underline
   &.grande
-    width: 80%
-    margin-left: 10%
-    margin-right: 10%
-    height: 45px
-    font-size: 17px
-    text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
     border-radius: 4px
     border: 1px solid #184B43
     cursor: pointer
@@ -297,6 +293,26 @@ button
 
 /* firefox 19+
 
+.btn
+  color: white
+  font-size: 16px
+  background: #1b5353
+  border: 0px
+  padding: 1px 1px
+  -webkit-border-radius: 2px
+  -moz-border-radius: 2px
+  border-radius: 2px
+  background: -webkit-gradient(#1b5353, #2d8a8a)
+  background: -webkit-linear-gradient(#1b5353, #2d8a8a)
+  background: -moz-linear-gradient(#1b5353, #2d8a8a)
+  background: -o-linear-gradient(#1b5353, #2d8a8a)
+  background: linear-gradient(#1b5353, #2d8a8a)
+  background: #1b5353 
+  text-shadow: 0 1px #455D1E
+  box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
+  &:hover
+    cursor: pointer
+    text-decoration: underline
 .checkfb
   margin-left: 9%
   margin-top: 4%
@@ -364,6 +380,8 @@ ul.photo li
     -webkit-border-radius: 100%
     -moz-border-radius: 100%
     border-radius: 100%
+    border: 5px dotted white
+
   a
     color: #EB5E40
     &:hover
@@ -557,7 +575,7 @@ input.btn
 
 /* Firefox - value portion of progress bar
 
-progress#bar
+progress#bar,progress#barlista
   &::-moz-progress-bar
     background-image: url('brushed_alu.png')
     background-color: #EB5E40
@@ -575,6 +593,11 @@ progress#bar
   padding: 4px
   width: 100%
   height: 31px
+
+progress#barlista
+  height: 16px
+  padding: 1px
+
 
 /* Chrome, Safari - value portion of progress bar
 
@@ -822,12 +845,11 @@ div.normas
   left: 36px
   color: #F0F0F0
   position: relative
-
-#campaign-info
+.campaign-info
   width: 65%
   float: left
   padding: 2%
-  padding-right: 3%
+  padding-right: 2%
   padding-left: 15px
   text-align: justify
   border: 1px dashed #CCC
@@ -836,10 +858,36 @@ div.normas
   -webkit-border-radius: 0px 0px 0px 6px
   border-radius: 0px 0px 0px 6px
   font-size: 1em
-  background: #f0f0f0 url('cream_dust.png')
+  background: #f0f0f0 url('../img/cream_dust.png')
   p
     text-align: justify
     line-height: 21px
+  h3
+    font: 5em
+    text-shadow: 0 -1px 1px rgba(255,255,255, 0.2)
+    padding: 10px
+    a
+      color: #1a1a1a
+
+fieldset,#campaign-info
+  width: 65%
+  float: left
+  padding: 2%
+  padding-right: 2%
+  padding-left: 15px
+  text-align: justify
+  border: 1px dashed #CCC
+  text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
+  line-height: 21px
+  -webkit-border-radius: 0px 0px 0px 6px
+  border-radius: 0px 0px 0px 6px
+  font-size: 1em
+  background: rgba(240, 240, 240, 0.6) url('cream_dust.png')
+  p
+    text-align: justify
+    line-height: 21px
+
+
 
 #realtime
   text-align: justify
@@ -904,9 +952,7 @@ div.normas
         background-position: 100% -42px
       background-position: 0% -42px
 
-/* Commented Backslash Hack hides rule from IE5-Mac \
 
-/* End IE5-Mac hack
 
 .topcontent
   width: 100%
@@ -1042,7 +1088,7 @@ div.normas
   width: 100%
   border-top: 1px solid #ccc
   border-bottom: 1px solid #ccc
-  background: #f0f0f0 url('bck.png')
+  background: #f0f0f0 url('bck2.png')
 
 #footer
   border-top: 2px dotted #C9C1C0
@@ -1097,112 +1143,6 @@ div.normas
   color: #6F6F6F
   -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.05)
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.05)
-
-/*------------------------------------*\
- *    $CAROUSEL
- *\*------------------------------------
-
-.carousel
-  overflow: hidden
-  width: 100%
-  position: relative
-
-.panes
-  list-style: none
-  position: relative
-  width: 500%
-  /* Number of panes * 100%
-  overflow: hidden
-  /* This is used solely to clear floats, it does not add functionality.
-  -webkit-animation: carousel 30s infinite
-  -moz-animation: carousel 30s infinite
-  animation: carousel 30s infinite
-  > li
-    position: relative
-    float: left
-    width: 20%
-    /* 100 / number of panes
-    > a
-      display: block
-
-.carousel
-  img
-    display: block
-    width: 100%
-    max-width: 100%
-  h2
-    font-size: 1em
-    padding: 0.5em
-    position: absolute
-    right: 10px
-    bottom: 10px
-    left: 10px
-    text-align: right
-    color: #fff
-    background-color: rgba(0, 0, 0, 0.75)
-
-@-moz-keyframes carousel
-  0%, 11%
-  left: 0
-  12.5%, 23.5%
-  left: -100%
-  25%, 36%
-  left: -200%
-  37.5%, 48.5%
-  left: -300%
-  50%, 61%
-  left: -400%
-  62.5%, 73.5%
-  left: -300%
-  75%, 86%
-  left: -200%
-  87.5%, 98.5%
-  left: -100%
-  100%
-    left: 0
-
-
-@-webkit-keyframes carousel
-  0%, 11%
-  left: 0
-  12.5%, 23.5%
-  left: -100%
-  25%, 36%
-  left: -200%
-  37.5%, 48.5%
-  left: -300%
-  50%, 61%
-  left: -400%
-  62.5%, 73.5%
-  left: -300%
-  75%, 86%
-  left: -200%
-  87.5%, 98.5%
-  left: -100%
-  100%
-    left: 0
-
-
-@keyframes carousel
-  0%, 11%
-  left: 0
-  12.5%, 23.5%
-  left: -100%
-  25%, 36%
-  left: -200%
-  37.5%, 48.5%
-  left: -300%
-  50%, 61%
-  left: -400%
-  62.5%, 73.5%
-  left: -300%
-  75%, 86%
-  left: -200%
-  87.5%, 98.5%
-  left: -100%
-  100%
-    left: 0
-
 
 /* responsive
 

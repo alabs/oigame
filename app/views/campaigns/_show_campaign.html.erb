@@ -1,22 +1,49 @@
-<% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
-  <div class="cinfo">
-    <h3><%= link_to campaign.name, url %></h3>
-    <div class="campaign-image span2">
-      <% if campaign.image.to_s %>
-        <%= link_to image_tag(campaign.image_url(:thumb), :alt => campaign.name), url, :title => campaign.name %>
-      <% end %>
-    </div><!-- campaign-image -->
-    <div class="campaign-text span9">
-      <%= campaign.to_html(campaign.intro).html_safe %>
-      <div class="campaign-text-links">
-      <% if campaign.status == "archived" %>
-        <%= link_to url do %>
-          <span class="label label-warning" style="font-size: 1em;">archivada</span>
+  <% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
+    <div class="cinfo">
+      <h3><%= link_to campaign.name, url %></h3>
+
+
+
+
+      <div class="campaign-imagelist">
+        <% if campaign.image.to_s %>
+          <%= link_to image_tag(campaign.image_url(:thumb), :alt => campaign.name), url, :title => campaign.name %>
         <% end %>
-      <% else %>
-        <%= link_to t(:join_this_campaign), url, :title => campaign.name %>
-      <% end %>
-      <strong><%= campaign.messages_count %></strong> <%= t(:have_already_made) %>
-      </div><!-- campaign-text-links -->
-    </div><!-- campaign-text -->
-  </div><!-- cinfo -->
+      </div><!-- campaign-image -->
+      <div class="campaign-text">        
+        <div class="campaign-text-links">
+        <%= campaign.to_html(campaign.intro).html_safe %>
+          
+              
+
+  <%= link_to t(:join), url, :title => campaign.name %>
+
+
+        <% if campaign.status == "archived" %>
+          <%= link_to url do %>
+            <span class="label label-warning" style="font-size: 1em;">archivada</span>
+          <% end %>
+        <% else %>
+                    <div id="progressbarlista">
+
+                     <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted">103,438</span> Firmas</h3>
+                          
+                        
+                   
+                <div id="necesarias">
+                  <h4><i class="icon-signin"></i>
+                  Faltan <span class="underlinedlista">16,562 </span>firmas más!</h4>
+                </div>
+                <progress id="barlista" value="6" max="9">
+                  <em>6 of 9 stages completed</em>
+                </progress>
+           
+              
+              
+              </div>
+          
+        <% end %>
+        
+        </div><!-- campaign-text-links -->
+      </div><!-- campaign-text -->
+    </div><!-- cinfo -->

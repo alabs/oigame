@@ -1,18 +1,11 @@
 
-<div class="row-fluid">
+
   
 
 
-<div class="span7">
-
-<div id="page-wrapper">
-    <% if @campaigns.count > 0 %>
-        <div class="row-fluid">
-        <div class="span5">
-          <h2><%= @page_title %></h2>
-        </div>
-        <div class="span2" style="margin-top: 15px;">
-          <div class="btn-group" style="z-index: 9999;">
+<div class="campaign-infolist">
+        
+          <div class="btn-group" >
             <% if @sub_oigame %>
               <%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn" %>
               <%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => "btn" %>
@@ -27,16 +20,25 @@
               <% end %>
             <% end %>
           </div>
+
+      <div class="">    
+        <h2><i class="icon-time"></i><%= @page_title %></h2>
+        <hr class="dashed">
         </div>
-      </div>
+
+    <% if @campaigns.count > 0 %>      
+
         <% @campaigns.each do |campaign| %>
-          <div class="row-fluid mostrar-campaign">
+          <div class="mostrar-campaign">
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         </div>
+
+
         <% end %>
         <div class="center">
           <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
         </div>
+
       </div><!-- list-campaigns-info -->
     <% else %>
       <div id="list-campaigns-info">
@@ -44,7 +46,10 @@
       </div>
     <% end %>
 
-</div>
 
+       
 
-</div>
+      
+     
+ 
+

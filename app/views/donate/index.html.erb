@@ -6,16 +6,18 @@
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
-  <div class="span7">
+  <div class="">
 
 <div id="page-wrapper">
-      <h2><%= @page_title %></h2>
+  <div class="fondo">
+      <%= link_to t(:donate_oigame), donate_init_path, :class => 'grande' %>
+      <h2 class="paper"><%= @page_title %></h2>
       <p><%= I18n.t(:donation_info_1) %></p>      
       <p><%= I18n.t(:donation_info_2) %></p>      
-      <h3><%= I18n.t(:donation_secure) %>.</h3>
+      <h3><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h3>
       <p><%= I18n.t(:donation_secure_info) %></p>      
-      <br />
-      <p><%= link_to t(:donate_oigame), donate_init_path, :class => 'btn btn-inverse' %></p>
+      
     </div><!-- page-info -->
+    </div><!-- fondo -->
   </div><!-- page -->
 </div><!-- page-wrapper -->
