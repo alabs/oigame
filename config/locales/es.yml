@@ -443,6 +443,7 @@ es:
   about: 'Acerca de'
   create: 'Crear'
   add_credit: 'Añadir crédito'
+  add_credit_to_campaign: 'Añadir crédito a la campaña'
   countries: 'Países'
   admin:
     home:
