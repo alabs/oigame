@@ -5,11 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Traducciones - oiga.me</title>
 
-  <%= javascript_include_tag "tolk/application" %>
-  <%= javascript_include_tag "jquery" %>
-  <%= stylesheet_link_tag "tolk/application" %>
-  <%= stylesheet_link_tag "application" %>
-  <%= stylesheet_link_tag "bootstrap" %>
+  <%= stylesheet_link_tag "translate" %>
   <%= yield :head %>
 <style>
 html {
@@ -46,11 +42,6 @@ div#head span:last-child {
     </div>
   </div>
 
-  <script type="text/javascript">
-    $$('td textarea').each(function(element) {
-      element.setStyle({height: element.up('td').measure('height')+'px'});
-    });
-  </script>
   <%= javascript_include_tag "translate" %>
 </body>
 </html>

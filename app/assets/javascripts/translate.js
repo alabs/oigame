@@ -1,5 +1,10 @@
+//= require scriptaculous/prototype
+//= require scriptaculous/scriptaculous
+//= require scriptaculous/effects
+//= require tolk/application
+//= require jquery
 
-//$.noConflict();
+$.noConflict();
 
 jQuery.fn.directText = function(settings) {
    settings = jQuery.extend({},jQuery.fn.directText.defaults, settings);
