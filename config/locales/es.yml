@@ -443,7 +443,6 @@ es:
   about: 'Acerca de'
   create: 'Crear'
   add_credit: 'Añadir crédito'
-  add_credit_to_campaign: 'Añadir crédito a la campaña'
   countries: 'Países'
   admin:
     home:
@@ -576,6 +575,11 @@ es:
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
     campaigns:
+      credit:
+        add_credit: 'Añadir crédito a la campaña'
+        amount_select: "Elige una cantidad"
+        amount_to_donate: "Cantidad a donar"
+        accepted_cards: "Tarjetas aceptadas"
       creator_of_campaign: "creador de campaña"
     home:
       slogan_1: "Crea tus campañas, firma, actúa, y compartela con tus redes."

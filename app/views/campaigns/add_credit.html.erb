@@ -1,5 +1,5 @@
 
-<% @page_title = t(:add_credit_to_campaign) %>
+<% @page_title = t("oigame.campaigns.credit.add_credit") %>
 
 
   <div class="row-fluid">
@@ -14,7 +14,7 @@
       <div id="donate-form" class="form-stacked">
         <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post" class="form-horizontal">
           <fieldset>
-            <legend><%= I18n.t(:amount_select) %></legend>
+            <legend><%= t("oigame.campaigns.credit.amount_select") %></legend>
             <input type="hidden" name="nombre_comercio" value="ALABS" />
             <input type="hidden" name="referencia" value="<%= @reference %>" />
             <input type="hidden" name="moneda" value="EUR" />
@@ -23,7 +23,7 @@
             <div class="control-group">
               <div class="controls">
               <select name="coste">
-                <option value=""><%= t(:amount_to_donate) %></option>
+                <option value=""><%= t("oigame.campaigns.credit.amount_to_donate") %></option>
                 <option value="10.00">10 Euros</option>
                 <option value="30.00">30 Euros</option>
                 <option value="50.00">50 Euros</option>
@@ -32,7 +32,7 @@
             </div>
             <div class="control-group">
               <div class="controls">
-              <input type="submit" name="submit" value="<%= I18n.t(:add_credit_to_campaign) %>" class="btn primary" />
+              <input type="submit" name="submit" value="<%= t("oigame.campaigns.credit.add_credit") %>" class="btn primary" />
             </div>
             </div>
           </fieldset>
