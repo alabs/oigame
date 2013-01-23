@@ -1,7 +1,6 @@
   <% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
     <div class="cinfo">
-      <h3><%= link_to campaign.name, url %></h3>
-
+      
 <div>
         <div class="campa-home">
     <%= image_tag(campaign.image_url(:home)) %>
