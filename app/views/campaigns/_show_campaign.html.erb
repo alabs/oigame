@@ -2,18 +2,20 @@
 <div class="cinfo">
 
   <div>
+    <%= link_to campaign do %>
     <div class="campa-home">
       <%= image_tag(campaign.image_url(:home)) %>
 
       <div class="campa-texto">
         <div class="campa-texto-left">
-          <%= link_to campaign.name, campaign %>
+          <span><%= campaign.name %></span>
         </div><!-- left -->
         <div class="campa-texto-right">
           <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
         </div><!-- left -->
       </div><!-- campa-texto -->
     </div>
+      <% end %>
   </div>
 
   <div class="campaign-text">
