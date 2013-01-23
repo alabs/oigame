@@ -112,7 +112,7 @@ namespace :deploy do
     end
     
     # precompile assets
-    run "cd #{latest_release}; RAILS_ENV=production bundle exec rake assets:precompile"
+    #run "cd #{latest_release}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
   desc "Restart the Thin processes"
@@ -172,3 +172,7 @@ namespace :sphinx do
 end
 
 after 'deploy:finalize_update', 'sphinx:symlink_indexes'
+
+before 'deploy:finalize_update', 'deploy:assets:symlink'
+after 'deploy:update_code', 'deploy:assets:precompile'
+#after "deploy:restart", "resque:restart"
