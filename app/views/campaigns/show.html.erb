@@ -29,8 +29,8 @@
       <li>
         <p><b>Creada por:</b></p>
         <p>
-          <img src="<%= avatar_url(@campaign.user.email) %>" alt="creador de campaña"/>
-          <span><%= @campaign.user.name %></span>
+          <img class="creada" src="<%= avatar_url(@campaign.user.email) %>" alt="creador de campaña"/>
+          <span class="creador_name"><%= @campaign.user.name %></span>
         </p>
       </li>
       <% if @campaign.ttype == "fax" %>
