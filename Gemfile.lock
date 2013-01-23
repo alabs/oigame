@@ -409,6 +409,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  Ascii85
   acts_as_unvlogable
   better_errors
   binding_of_caller

@@ -2,14 +2,21 @@
     <div class="cinfo">
       <h3><%= link_to campaign.name, url %></h3>
 
+<div>
+        <div class="campa-home">
+    <%= image_tag(campaign.image_url(:home)) %>
+   
+    <div class="campa-texto">
+      <div class="campa-texto-left">
+      <%= link_to campaign.name, campaign %>
+      </div><!-- left -->
+      <div class="campa-texto-right">
+      <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+      </div><!-- left -->
+    </div><!-- campa-texto -->
+  </div>
+</div>
 
-
-
-      <div class="campaign-imagelist">
-        <% if campaign.image.to_s %>
-          <%= link_to image_tag(campaign.image_url(:thumb), :alt => campaign.name), url, :title => campaign.name %>
-        <% end %>
-      </div><!-- campaign-image -->
       <div class="campaign-text">        
         <div class="campaign-text-links">
         <%= campaign.to_html(campaign.intro).html_safe %>
@@ -27,8 +34,7 @@
                     <div id="progressbarlista">
 
                      <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted">103,438</span> Firmas</h3>
-                          
-                        
+
                    
                 <div id="necesarias">
                   <h4><i class="icon-signin"></i>

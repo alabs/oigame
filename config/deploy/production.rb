@@ -23,7 +23,7 @@ role :resque_worker, "polar.oiga.me"
 role :resque_scheduler, "polar.oiga.me"
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
-set :workers, { "mailer" => 4, "fax" => 8 }
+set :workers, { "mailer" => 1, "fax" => 1 }
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
@@ -42,6 +42,7 @@ default_environment["GEM_PATH"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p362
 default_environment["RUBY_VERSION"] = "ruby-1.9.3-p362"
 
 default_run_options[:shell] = 'bash'
+default_run_options[:pty] = true
 
 namespace :deploy do
   desc "Deploy your application"
@@ -110,22 +111,58 @@ namespace :deploy do
       asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
       run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
     end
-    
+
+    # compilar en local y subir los assets al repo
     # precompile assets
-    run "cd #{latest_release}; RAILS_ENV=production bundle exec rake assets:precompile"
+    #run "cd #{latest_release}; RAILS_ENV=staging bundle exec rake assets:precompile"
+  end
+
+  #namespace :assets do
+  #  task :precompile, :roles => :web, :except => { :no_release => true } do
+  #    from = source.next_revision(current_revision)
+  #    if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
+  #      run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+  #    else
+  #      logger.info "Skipping asset pre-compilation because there were no asset changes"
+  #    end
+  #  end
+  #end
+  
+  namespace :assets do
+
+    task :precompile, :roles => :web do
+      from = source.next_revision(current_revision)
+      if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ lib/assets/ app/assets/ | wc -l").to_i > 0
+        run_locally("rake assets:clean && rake assets:precompile")
+        run_locally "cd public && tar -jcf assets.tar.bz2 assets"
+        top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
+        run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
+        run_locally "rm public/assets.tar.bz2"
+        run_locally("rake assets:clean")
+      else
+        logger.info "Skipping asset precompilation because there were no asset changes"
+      end
+    end
+
+    task :symlink, roles: :web do
+      run ("rm -rf #{latest_release}/public/assets &&
+            mkdir -p #{latest_release}/public &&
+            mkdir -p #{shared_path}/assets &&
+            ln -s #{shared_path}/assets #{latest_release}/public/assets")
+    end
   end
 
   desc "Restart the Thin processes"
   task :restart do
     run <<-CMD
-      cd /var/www/oiga.me/current; bundle exec thin restart -C config/thin_production.yml
+      cd /var/www/beta.oiga.me/current; bundle exec thin restart -C config/thin_production.yml
     CMD
   end
 
   desc "Start the Thin processes"
   task :start do
     run  <<-CMD
-      cd /var/www/oiga.me/current; bundle exec thin start -C config/thin_production.yml
+      cd /var/www/beta.oiga.me/current; bundle exec thin start -C config/thin_production.yml
     CMD
   end
   
@@ -160,7 +197,6 @@ def run_rake(cmd)
   run "cd #{current_path}; #{rake} #{cmd}"
 end
 
-
 before 'deploy:update_code', 'thinking_sphinx:stop'
 after 'deploy:update_code', 'thinking_sphinx:start'
 
@@ -172,3 +208,7 @@ namespace :sphinx do
 end
 
 after 'deploy:finalize_update', 'sphinx:symlink_indexes'
+
+before 'deploy:finalize_update', 'deploy:assets:symlink'
+after 'deploy:update_code', 'deploy:assets:precompile'
+#after "deploy:restart", "resque:restart"

@@ -87,6 +87,7 @@ gem 'will_paginate-bootstrap'
 #gem 'canard'
 gem 'declarative_authorization'
 gem 'prawn'
+gem 'Ascii85'
 
 gem 'wicked'
 
@@ -110,3 +111,4 @@ gem 'countries'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+

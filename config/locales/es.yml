@@ -607,7 +607,7 @@ es:
       date_help: "Establece un límite de tiempo para tu campaña."
     privacy:
       legal_notice_title: "Aviso legal"
-      legal_notice_1: "Esta politica de privacidad se aplica a la relación del usuario con todas aquellas páginas bajo el dominio oiga.me (en adelante, el 'sitio web') operado por la Asociación sin ánimo de lucro aLabs (en adelante 'aLabs') y cualquiera de sus entidades asociadas o que controlen y hagan uso de la información que obtengan através del Sitio web."
+      legal_notice_1: "oiga.me es un proyecto de la asociación aLabs, y por tanto se aplica el Aviso Legal de la asociación"
       legal_notice_2: "aLabs a través del sitio web, facilita a los usuarios el acceso a determinados contenidos puestos a disposición por a Labs o por terceros."
       legal_notice_3: "La navegación por el sitio web, atribuye la condición de usuario y conlleva la aceptación plena y sin reservas del presente aviso legal y los términos y condiciones que se detallan a continuación."
       terms_title: "Términos y condiciones"
