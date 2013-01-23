@@ -17,10 +17,10 @@
                   <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
                 <% end %>
                 <li>
-                    <a href="/es">ES</a>
+                  <%= link_to 'ES', url_for( :locale => 'es' ) %>
                 </li>
                 <li>
-                    <a href="/en">EN</a>
+                  <%= link_to 'EN', url_for( :locale => 'en' ) %>
                 </li>
             </ul>
         </div>
