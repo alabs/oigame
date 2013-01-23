@@ -38,7 +38,7 @@ div#head span:last-child {
   <div id="container">
     <div id="head">
     
-      <h1><%= link_to(image_tag('logo.png'), "https://oiga.me" ) %><span class="home"><%= link_to "Traducciones", root_path %></span><% if @locale.present? %><span class="locale"><%= link_to @locale.language_name, locale_path(@locale) %></span><% end %></h1>
+      <h1><%= link_to(image_tag('logo.png'), "https://oiga.me" ) %><span class="home"><%= link_to "Traducciones", root_path %></span><% if @locale.present? %><span class="locale" id="js-lang" data-locale="<%= @locale.name %>" ><%= link_to @locale.language_name, locale_path(@locale) %></span><% end %></h1>
     </div>
     <div class="hero-unit">
       <%= yield %>
