@@ -19,7 +19,7 @@
 
       <div class="campaign-text">        
         <div class="campaign-text-links">
-        <%= campaign.to_html(campaign.intro).html_safe %>
+        <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>
           
               
 
