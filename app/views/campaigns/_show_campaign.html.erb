@@ -1,26 +1,25 @@
-  <% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
-    <div class="cinfo">
-      
-<div>
-        <div class="campa-home">
-    <%= image_tag(campaign.image_url(:home)) %>
-   
-    <div class="campa-texto">
-      <div class="campa-texto-left">
-      <%= link_to campaign.name, campaign %>
-      </div><!-- left -->
-      <div class="campa-texto-right">
-      <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
-      </div><!-- left -->
-    </div><!-- campa-texto -->
-  </div>
-</div>
+<% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
+<div class="cinfo">
 
-      <div class="campaign-text">        
-        <div class="campaign-text-links">
-        <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>
-          
-              
+  <div>
+    <div class="campa-home">
+      <%= image_tag(campaign.image_url(:home)) %>
+
+      <div class="campa-texto">
+        <div class="campa-texto-left">
+          <%= link_to campaign.name, campaign %>
+        </div><!-- left -->
+        <div class="campa-texto-right">
+          <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+        </div><!-- left -->
+      </div><!-- campa-texto -->
+    </div>
+  </div>
+
+  <div class="campaign-text">
+    <div class="campaign-text-links">
+      <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>
+
 
   <%= link_to t(:join), url, :title => campaign.name %>
 
@@ -37,7 +36,7 @@
                      %></span>
                        Firmas</h3>
 
-                   
+
                 <div id="necesarias">
                   <h4><i class="icon-signin"></i>
                   Faltan <span class="underlinedlista"><%= objective - gotten %> </span>firmas más!</h4>
@@ -45,13 +44,13 @@
                 <progress id="barlista" value="<%= gotten %>" max="<%= objective %>">
                   <em>Conseguidas <%= gotten %> de <%= objective %> firmas</em>
                 </progress>
-           
-              
-              
+
+
+
               </div>
-          
+
         <% end %>
-        
+
         </div><!-- campaign-text-links -->
       </div><!-- campaign-text -->
     </div><!-- cinfo -->
