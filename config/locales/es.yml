@@ -574,6 +574,16 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    home:
+      footer:
+        petition_title: "Recogida de firmas"
+        petition_body_html: "Firma una petición de apoyo y adhesión a una campaña. Las firmas quedan bajo nuestra política de <b>protección de datos.</b>"
+        mailing_title: "Mailing"
+        mailing_body_html: "Haz que tu campaña llegue por email, mediante un sistema de <b>envío seguro</b>, a los <b>responsables</b> de tu petición."
+        fax_title: "Envío de fax"
+        fax_body_html: "Envía reclamaciones o <b>quejas</b> mediante FAX a los destinatarios que elijas con un simple <b>click</b>."
+        telephony_title: "Telefonía"
+        telephony_body_html: "Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía."
     campaigns:
       type:
         petition: "Petición online"
