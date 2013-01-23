@@ -26,22 +26,25 @@
   <%= link_to t(:join), url, :title => campaign.name %>
 
 
-        <% if campaign.status == "archived" %>
+    <% objective  = campaign.target.to_i %>
+    <% gotten = campaign.messages_count.to_i %>        <% if campaign.status == "archived" %>
           <%= link_to url do %>
             <span class="label label-warning" style="font-size: 1em;">archivada</span>
           <% end %>
         <% else %>
                     <div id="progressbarlista">
 
-                     <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted">103,438</span> Firmas</h3>
+                     <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted"><%= gotten
+                     %></span>
+                       Firmas</h3>
 
                    
                 <div id="necesarias">
                   <h4><i class="icon-signin"></i>
-                  Faltan <span class="underlinedlista">16,562 </span>firmas más!</h4>
+                  Faltan <span class="underlinedlista"><%= objective - gotten %> </span>firmas más!</h4>
                 </div>
-                <progress id="barlista" value="6" max="9">
-                  <em>6 of 9 stages completed</em>
+                <progress id="barlista" value="<%= gotten %>" max="<%= objective %>">
+                  <em>Conseguidas <%= gotten %> de <%= objective %> firmas</em>
                 </progress>
            
               
