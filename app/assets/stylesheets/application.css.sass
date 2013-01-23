@@ -63,6 +63,9 @@ a
   color: white
   background-color: #222
   padding: 2px 0px
+  border-bottom: 1px dashed #ccc
+  background: url("retro_intro.png")
+  
 
 .cheaz
   margin-top: 10px
@@ -106,14 +109,9 @@ hr
 select
   padding: 3px
   margin: 0
-  -webkit-border-radius: 4px
-  -moz-border-radius: 4px
-  border-radius: 4px
-  -webkit-box-shadow: 0 3px 0 #cccccc, 0 -1px white inset
-  -moz-box-shadow: 0 3px 0 #cccccc, 0 -1px white inset
-  box-shadow: 0 3px 0 #cccccc, 0 -1px white inset
-  background: #F8F8F8
-  color: #888
+  background: transparent
+  color: #B8B8B8
+  font-size: 11px
   border: none
   outline: none
   display: inline-block
@@ -140,6 +138,66 @@ select
   width: 65%
   overflow: hidden
 
+ul.push, ul.repush, ul.push li.hi p 
+  margin: 0px
+  padding: 0px
+
+
+ul.push, ul.repush 
+  list-style-type: none
+
+
+ul.push li.hi 
+  width: 120px
+
+
+ul.push li.hi p 
+  padding: 4px
+  color: black
+  font-size: 13px
+  font-weight: bold
+
+
+ul.push li.hi p:hover 
+  background: #f0f0f0
+ 
+
+ul.repush, ul.push li.hi p, ul.repush li a  
+
+  -webkit-transition: 0.2s ease-in  
+  -moz-transition: 0.2s ease-in  
+  -o-transition: 0.2s ease-in  
+  transition: 0.2s ease-in
+
+
+ul.repush 
+  opacity: 0
+  margin-top: -20px
+
+
+
+ul.push li.hi:hover ul.repush 
+  opacity: 1
+  margin-top: 0px
+
+
+ul.repush li 
+  background: white
+  border-bottom: 1px solid #ccc
+  padding: 4px 0px 4px 4px
+
+
+ul.repush li a 
+  color: #666
+  font-size: 11px
+  text-decoration: none
+
+
+ul.repush li a:hover 
+  color: #eb5e40
+  text-decoration: underline
+
+
 /* hidden
 
 .cthreecolumns, .ctopfooter, .welchi, .cheaz
@@ -156,7 +214,8 @@ ul.photo
   margin: 0px
   padding: 0px
   li
-    width: 33%
+    width: 32%
+    padding: 0.5%
     float: left
     position: relative
     -webkit-border-radius: 4px
@@ -167,6 +226,8 @@ ul.photo
   width: 56%
   float: left
   margin-left: 10%
+  margin-bottom: 0px
+
 
 .text
   width: 33%
@@ -345,6 +406,7 @@ ul.photo li
       text-decoration: none
       font-weight: bold
 
+
 /* welcome
 
 .welcome
@@ -377,9 +439,11 @@ span
     float: left
     padding-right: 3px
     display: inline
-    color: #EB5E40
-    font-size: 18px
+    color: $naranja
+    font-size: 21px
     vertical-align: middle
+
+
 
 .quoted
   width: 86%
@@ -433,11 +497,14 @@ span
     font-size: 18px
     margin: 10px 0px
     color: #222
+
   p
-    font-size: 12px
+    font-size: 13px
     padding: 0px 25px
     margin: 0px 0px 10px 0px
-    color: #666
+    color: #4E4E4E
+    line-height: 19px
+    text-shadow: $sombrablanca
   a
     text-decoration: none
     display: inline
@@ -450,12 +517,14 @@ span
     font-size: 50px
 
 .welinfo
-  width: 50%
+  width: 49%
   float: left
-  color: #8C8C91
+  color: #444
   font-size: 0.8em
-  font-size: 18px
+  font-size: 20px
   margin-top: 10px
+  padding-right: 1%
+  line-height: 30px
   ul li
     font-size: 12px
     list-style-type: none
@@ -576,7 +645,7 @@ progress#bar,progress#barlista
   box-shadow: 3px 3px 3px silver
   padding: 4px
   width: 100%
-  height: 31px
+  height: 30px
 
 progress#barlista
   height: 16px
@@ -596,7 +665,7 @@ progress#barlista
   font-weight: bold
   font-size: 35px
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.79)
-  padding-bottom: 12px
+  padding-bottom: 5px
 
 #necesarias
   font-size: 1.4em
@@ -624,11 +693,11 @@ progress#barlista
 
 p
   &.min
-    font-size: 16px
+    font-size: 21px
     color: #999
     letter-spacing: 0px
     font-weight: normal
-    margin: 5px 0px
+    margin: 0px 0px
   &.max
     font-size: 21px
     color: #999
@@ -642,9 +711,9 @@ p
 
 .smsentra
   width: 75%
-  color: #222
+  color: #444
   font-weight: bold
-  font-size: 23px
+  font-size: 24px
   float: left
   letter-spacing: 1px
 
@@ -663,6 +732,7 @@ p
     border-radius: 20px
   i
     vertical-align: middle
+    color: $negrito
 
 /* jcarrousel
 
@@ -739,21 +809,23 @@ ul.jcarorusel li img
   background-repeat: no-repeat
   background-position: center bottom
   background-size: 95%
+  background-position: 0px 1px
 
 .sidefirma
-  width: 30%
+  width: 25%
   float: right
-  background: #444
-  background: #f0f0f0
+  font-weight: bolder
   background-repeat: no-repeat
   background-position: center bottom
   background-size: 95%
-  width: 30%
   float: left
   background: #444
-  height: 300px
+  height: 299px
   background: #f0f0f0 url('az_subtle.png')
   text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
+  box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.35)
+  margin-bottom: 0px
+  padding-bottom: 0px
   form div.textfield input
     display: block
     padding: 0px
@@ -765,9 +837,9 @@ ul.jcarorusel li img
     margin-right: 10%
     font-family: Times, serif
     font-size: 13px
-    color: #667D8B
+    color: $negrito
     text-align: left
-    background-color: rgba(255, 255, 255, 0.55)
+    background-color: rgba(255, 255, 255, 0.85)
     font-family: Roboto, Helvetica, arial, sans-serif
     border: none
     z-index: 30
@@ -776,6 +848,7 @@ ul.jcarorusel li img
     border-radius: 2px
     border: 1px dotted #1B5353
     padding-left: 3px
+
   fieldset
     border: 0px
   h3
@@ -815,20 +888,24 @@ div.normas
   border-radius: 2px
   height: 50px
   border: 1px dotted #1b5353
-  color: #667D8B
-  background-color: rgba(255, 255, 255, 0.55)
+  color: $negrito
+  background-color: rgba(255, 255, 255, 0.85)
+  
 
 .sidecarro i
   display: block
   padding: 4px
   letter-spacing: 1px
   word-spacing: 3px
-  font-size: 12px
+  font-size: 16px
   z-index: 3
-  top: 140px
-  left: 36px
+  top: 90px
+  left: 20px
   color: #F0F0F0
   position: relative
+  text-shadow: $sombranegra
+  padding-right: 6px
+  font-weight: bold
 .campaign-info
   width: 65%
   float: left
@@ -928,7 +1005,7 @@ fieldset,#campaign-info
       float: none
       font-weight: bold
       &.active
-        border-bottom: 5px solid transparent
+        border-bottom: 2px solid transparent
         border-color: $naranja
     &:hover
       span
