@@ -574,7 +574,28 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    campaigns:
+      creator_of_campaign: "creador de campaña"
     home:
+      slogan_1: "Crea tus campañas, firma, actúa, y compartela con tus redes."
+      slogan_2: "No odies al lobby, ¡cómetelo!"
+      create_campaign: "Crear campaña"
+      stats:
+        campaigns: "Campañas"
+        signatures: "Firmas"
+        users: "Usuarios"
+        countries: "Países"
+      welcome:
+        welinfo_1_html: "Una herramienta de movilización ciudadana a través de la red, %{href}"
+        welinfo_1_link: "crea tu propia campaña"
+        welinfo_2_html: "Una herramienta de presión social abierta, horizontal y transparente."
+      slideshow:
+        slide_1_title: "Software libre para la movilización ciudadana"
+        slide_1_body: "Tecnología libre para la movilización ciudadana"
+        slide_2_title: "¡Cambia! Activa al lobby ciudadano"
+        slide_3_title: "¡Actúa! Crea una campaña"
+        slide_4_title: "¡Apoya! Firma, haz click, llama"
+        slide_5_title: "Plataforma sin ánimo de lucro, hecha desde el 99% para el 99%"
       footer:
         petition_title: "Recogida de firmas"
         petition_body_html: "Firma una petición de apoyo y adhesión a una campaña. Las firmas quedan bajo nuestra política de <b>protección de datos.</b>"
@@ -607,7 +628,7 @@ es:
       date_help: "Establece un límite de tiempo para tu campaña."
     privacy:
       legal_notice_title: "Aviso legal"
-      legal_notice_1: "oiga.me es un proyecto de la asociación aLabs, y por tanto se aplica el Aviso Legal de la asociación"
+      legal_notice_1: "Esta politica de privacidad se aplica a la relación del usuario con todas aquellas páginas bajo el dominio oiga.me (en adelante, el 'sitio web') operado por la Asociación sin ánimo de lucro aLabs (en adelante 'aLabs') y cualquiera de sus entidades asociadas o que controlen y hagan uso de la información que obtengan através del Sitio web."
       legal_notice_2: "aLabs a través del sitio web, facilita a los usuarios el acceso a determinados contenidos puestos a disposición por a Labs o por terceros."
       legal_notice_3: "La navegación por el sitio web, atribuye la condición de usuario y conlleva la aceptación plena y sin reservas del presente aviso legal y los términos y condiciones que se detallan a continuación."
       terms_title: "Términos y condiciones"

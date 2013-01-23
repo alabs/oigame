@@ -9,10 +9,10 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>Software libre para la movilización ciudadana</span>
+            <span><%= t "oigame.home.slideshow.slide_1_title" %></span>
           </div>
           <div class="desc">
-            <span>Tecnología libre para la movilización ciudadana</span>
+            <span><%= t "oigame.home.slideshow.slide_1_body" %></span>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>¡Cambia! Activa al lobby ciudadano</span>
+            <span><%= t "oigame.home.slideshow.slide_2_title" %></span>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>¡Actúa! Crea una campaña</span>
+            <span><%= t "oigame.home.slideshow.slide_3_title" %></span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>¡Apoya! Firma, haz click, llama</span>
+            <span><%= t "oigame.home.slideshow.slide_4_title" %></span>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>Plataforma sin ánimo de lucro, hecha desde el 99% para el 99%</span>
+            <span><%= t "oigame.home.slideshow.slide_5_title" %></span>
           </div>
         </div>
       </div>
@@ -78,10 +78,10 @@
 
 
   <div class="sidecarro">
-    <i class="icon-bullhorn">campañas 33</i>
-    <i class="icon-pencil">Firmas 1000</i>
-    <i class=" icon-user">Usuarios 29</i>
-    <i class=" icon-globe">Países 5</i>
+    <i class="icon-bullhorn"><%= t "oigame.home.stats.campaigns" %> 33</i>
+    <i class="icon-pencil"><%= t "oigame.home.stats.signatures" %> 1000</i>
+    <i class="icon-user"><%= t "oigame.home.stats.users" %> 29</i>
+    <i class="icon-globe"><%= t "oigame.home.stats.countries" %> 5</i>
   </div>
   <!-- sidecarro -->
 </div>
@@ -90,11 +90,11 @@
 <div class="welcome c">
   <div class="welinfo">
     <span class="circle"><i class="icon-lightbulb icon-2x"></i></span>
-    Una herramienta de movilización ciudadana a través de la red, <a href="">crea tu propia campaña</a>
+    <%= t("oigame.home.welcome.welinfo_1_html", :href => link_to(t("oigame.home.welcome.welinfo_1_link"), new_campaign_path) ) %>
   </div><!-- welinfo -->
   <div class="welinfo">
     <span class="circle"><i class="icon-hand-right icon-2x"></i> </span>
-    Una herramienta de presión social abierta, horizontal y transparente.
+    <%= t "oigame.home.welcome.welinfo_2_html" %>
   </div><!-- welinfo -->
 </div><!-- welcome -->
 
@@ -110,7 +110,7 @@
       <%= link_to campaign.name, campaign %>
       </div><!-- left -->
       <div class="campa-texto-right">
-      <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+      <img src="<%= avatar_url(campaign.user.email) %>" alt="<%= t "oigame.campaigns.creator_of_campaign" %>"/>
       </div><!-- left -->
     </div><!-- campa-texto -->
   </a>
@@ -121,15 +121,15 @@
 <div class="c">
   <div class="entra">
     <div class="smsentra">
-      Crea tus campañas, firma, actúa, y compartela con tus redes.
-      <p class="min">No odies al lobby, ¡cómetelo!</p>
+      <%= t "oigame.home.slogan_1" %>
+      <p class="min"><%= t "oigame.home.slogan_2" %></p>
 
     </div><!-- smsentra -->
 
     <div class="buttonentra">
       <i  class="icon-share-alt icon-3x"></i>
 
-      <input type="button" name="" value="Crear campaña" class="btn"/>
+      <%= link_to( t("oigame.home.create_campaign"), new_campaign_path, :class => "btn" ) %>
 
     </div><!-- button -->
   </div><!-- entra -->
