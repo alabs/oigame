@@ -44,4 +44,9 @@ $(function(){
 
   $('.alert').hide().slideDown(1000).show();
 
+  // activamos popups de ayuda
+  $('[rel="popup_ayuda"]').popover({
+    trigger: 'focus'
+  });
+
 });

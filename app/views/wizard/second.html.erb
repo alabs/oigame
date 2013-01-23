@@ -21,7 +21,7 @@
       <div class="controls">
       <div class="wmd-panel">
         <div id="wmd-button-bar-second"></div>
-        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span6', :required => true, :placeholder => t(:body_of_campaign_help) %>
+        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span6', :required => true, :placeholder => t(:body_of_campaign_help), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.body_help') %>
       </div>
       <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
       <div class="markdown_help" style="display:none;">
@@ -44,7 +44,7 @@
 
       <% Campaign::TYPES.select do |k,v| %>
         <div class="controls">
-          <%= f.radio_button :ttype, k %>
+          <%= f.radio_button :ttype, k, :rel => 'popup_ayuda', 'data-content' => t("oigame.wizard.#{k}_help") %>
           <%= f.label :ttype, :value => k do %>
             <i class="<%= v[:img] %> icon-2x"></i>
             <%= v[:name] %>
@@ -98,19 +98,19 @@
     <div class="control-group form-field">
       <%= f.label :commentable, t(:enable_comments), :class => 'control-label' %>
       <div class="controls">
-      <%= f.check_box :commentable, :checked => true %> <span class="note"><%= t(:enable_comments) %></span>
+      <%= f.check_box :commentable, :checked => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.comment_help') %> <span class="note"><%= t(:enable_comments) %></span>
     </div>
     </div>
     <div class="control-group">
       <%= f.label :target, t(:number_of_people), :class => 'control-label' %>
       <div class="controls">
-      <%= f.text_field :target, :class => 'span6', :placeholder => t(:number_of_people) %>
+      <%= f.text_field :target, :class => 'span6', :placeholder => t(:number_of_people), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.people_help') %>
     </div>
     </div>
     <div class="control-group">
       <%= f.label :duedate_at, t(:due_date_of_campaign), :class => 'control-label' %>
       <div class="controls">
-      <%= f.text_field :duedate_at, :class => "datepicker", :required => true %>
+      <%= f.text_field :duedate_at, :class => "datepicker", :required => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.date_help') %>
       <% unless @campaign.errors[:duedate_at].blank? %>
         <br />
         <span class="error_message"><%= @campaign.errors[:duedate_at].to_sentence %></span>
