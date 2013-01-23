@@ -447,6 +447,9 @@ es:
   thanks_sign_has_validate: 'Gracias por firmar. Ahora tienes que validar la firma a través del correo que acabas de recibir'
   thanks_sign_validate: 'Gracias por firmar'
   thanks_sign_validate_now: 'Gracias por validar tu firma. Con esto conseguimos que todas las firmas sean legítimas'
+  request_identity_card: "Pedir NIF"
+  request_postal_code: "Pedir código postal"
+  request_state: "Pedir país"
   your_state: "Tu país"
   your_identity_card: "Tu NIF"
   your_postal_code: "Tu código postal"
@@ -583,12 +586,12 @@ es:
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
     campaigns:
+      creator_of_campaign: "creador de campaña"
       credit:
         add_credit: 'Añadir crédito a la campaña'
         amount_select: "Elige una cantidad"
         amount_to_donate: "Cantidad a donar"
         accepted_cards: "Tarjetas aceptadas"
-      creator_of_campaign: "creador de campaña"
     home:
       slogan_1: "Crea tus campañas, firma, actúa, y compartela con tus redes."
       slogan_2: "No odies al lobby, ¡cómetelo!"
