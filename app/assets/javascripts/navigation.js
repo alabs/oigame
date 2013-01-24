@@ -86,6 +86,10 @@ $(function() {
   $("#campaign_name").focus();
   $("#contact_name").focus();
 
+  $('#js-language-selector').change( function(){
+    document.location.href = $(this).val();  
+  });
+
   //check_current_navbar(document.URL.split('/')[4]);
 
 });

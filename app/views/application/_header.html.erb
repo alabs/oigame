@@ -25,17 +25,16 @@
                   <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
                 <% end %>
                 <li>
-            <select>
-              <option value="idiomas">Idiomas</option>
-              <option value="ES"><a href="/es">ES</a></option>
-              <option value="EN"><a href="/en">EN</a></option>
+            <select id="js-language-selector" class="language-selector">
+              <option value="language"><%= t(:language) %></option>
+              <option value='<%= url_for(:locale => "es") %>'>ES</option>
+              <option value='<%= url_for(:locale => "en") %>'>EN</option>
             </select>
                 </li>
                
             </ul>
 
         </div>
-
 
         <div class="logo">
             <h1><%= link_to image_tag("logo_oigame.png"), root_path %></h1>
@@ -47,7 +46,6 @@
             <ul class="nav" id="menu">
 
                 <li id="header-about"><% link_to_unless_current t(:about), about_path %></li>
-                <li id="header-create"><%= link_to_unless_current t(:create), new_campaign_path %></li>
                 <li id="header-campaigns"><%= link_to_unless_current t(:campaigns), campaigns_path %></li>
                 <li id="header-donate"><%= link_to_unless_current t(:donate), donate_path %></li>
                 <li id="header-help"><%= link_to_unless_current t(:faq), faq_path %></li>
