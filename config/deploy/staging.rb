@@ -1,5 +1,5 @@
 require "bundler/capistrano"
-require 'thinking_sphinx/deploy/capistrano'
+#require 'thinking_sphinx/deploy/capistrano'
 require "capistrano-resque"
 
 set :scm,             :git
@@ -23,7 +23,7 @@ role :resque_worker, "polar.oiga.me"
 role :resque_scheduler, "polar.oiga.me"
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
-set :workers, { "mailer" => 2, "fax" => 2 }
+set :workers, { "mailer" => 1, "fax" => 1 }
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
@@ -197,18 +197,18 @@ def run_rake(cmd)
   run "cd #{current_path}; #{rake} #{cmd}"
 end
 
-before 'deploy:update_code', 'thinking_sphinx:stop'
-after 'deploy:update_code', 'thinking_sphinx:start'
+#before 'deploy:update_code', 'thinking_sphinx:stop'
+#after 'deploy:update_code', 'thinking_sphinx:start'
 
-namespace :sphinx do
-  desc "Symlink Sphinx indexes"
-  task :symlink_indexes, :roles => [:app] do
-    run "ln -nfs #{shared_path}/db/sphinx_staging #{release_path}/db/sphinx"
-  end
-end
+#namespace :sphinx do
+#  desc "Symlink Sphinx indexes"
+#  task :symlink_indexes, :roles => [:app] do
+#    run "ln -nfs #{shared_path}/db/sphinx_staging #{release_path}/db/sphinx"
+#  end
+#end
 
-after 'deploy:finalize_update', 'sphinx:symlink_indexes'
+#after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
 before 'deploy:finalize_update', 'deploy:assets:symlink'
 after 'deploy:update_code', 'deploy:assets:precompile'
-after "deploy:restart", "resque:restart"
+#after "deploy:restart", "resque:restart"

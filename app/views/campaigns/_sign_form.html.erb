@@ -1,50 +1,49 @@
-<div id="campaign-message-form" class="form-stacked">
-  <%= form_tag @sub_oigame ? sign_sub_oigame_campaign_path(@sub_oigame, @campaign) : sign_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
-    <fieldset>
-      <p><%= I18n.t(:listen_your_voice) %></p>
-        <% if !user_signed_in? || current_user.name.blank? %>
-            <div class="form-field">
-                <%= label_tag t(:name_and_surname) %>
-                <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos', :value => cookies[:name] %>
-            </div>
-        <% end %>
-        <% if !user_signed_in? || current_user.email.blank? %>
-            <div class="form-field">
-                <%= label_tag t(:your_email) %>
-                <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
-            </div>
-        <% end %>
-      <div class="form-field">
-        <%= check_box_tag :own_message %>
-        <%= label_tag :own_message, t(:own_message) %>
-      </div>
-      <div class="form-field form-message hide">
-        <%= label_tag t(:subject) %>
-        <%= text_field_tag :subject, nil, :placeholder => t(:subject) %>
-      </div>
-      <div class="form-field form-message hide">
-        <%= label_tag t(:message) %>
-        <%= text_area_tag :body, nil, :placeholder => t(:message_info), :rows => 10 %>
-      </div>
-      <% if @campaign.identity_card %>
-        <div class="form-field">
-          <%= label_tag t(:your_identity_card) %>
-          <%= text_field_tag :identity_card, nil, :required => true, :placeholder => t(:your_identity_card) %>
-        </div>
-      <% end %>
-      <% if @campaign.postal_code %>
-        <div class="form-field">
-          <%= label_tag t(:your_postal_code) %>
-          <%= text_field_tag :postal_code, nil, :required => true, :placeholder => t(:your_postal_code) %>
-        </div>
-      <% end %>
-      <% if @campaign.state %>
-        <div class="form-field">
-          <%= label_tag t(:your_state) %>
-          <%= text_field_tag :state, nil, :required => true, :placeholder => t(:your_state) %>
-        </div>
-      <% end %>
-      <%= button_tag t(:send_message), :class => 'btn btn-large btn-inverse center' %>
-    </fieldset>
+<%= form_tag @sub_oigame ? sign_sub_oigame_campaign_path(@sub_oigame, @campaign) : sign_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
+  <div class="textfield">
+  <% if !user_signed_in? || current_user.name.blank? %>
+    <div class="form-field">
+      <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos', :value => cookies[:name] %>
+    </div>
   <% end %>
-</div><!-- campaign-message-form -->
+  <% if !user_signed_in? || current_user.email.blank? %>
+    <div class="form-field">
+      <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
+    </div>
+  <% end %>
+  </div>
+  <div class="form-field">
+    <%= check_box_tag :own_message, false,false, class: 'checkfb' %>
+    <%= label_tag :own_message, t(:own_message), class: 'checkfblabel' %>
+  </div>
+  <div class="form-field form-message hide">
+    <%= text_area_tag :body, nil,placeholder: t(:message_info) , class: 'comentarea' %>
+  </div>
+
+  <% if @campaign.identity_card %>
+    <div class="form-field">
+      <%= label_tag t(:your_identity_card) %>
+      <%= text_field_tag :identity_card, nil, :required => true, :placeholder => t(:your_identity_card) %>
+    </div>
+  <% end %>
+  <% if @campaign.postal_code %>
+    <div class="form-field">
+      <%= label_tag t(:your_postal_code) %>
+      <%= text_field_tag :postal_code, nil, :required => true, :placeholder => t(:your_postal_code) %>
+    </div>
+  <% end %>
+  <% if @campaign.state %>
+    <div class="form-field">
+      <%= label_tag t(:your_state) %>
+      <%= text_field_tag :state, nil, :required => true, :placeholder => t(:your_state) %>
+    </div>
+  <% end %>
+  <div class="btn-campaign btn-campsign">
+    <%= button_tag t(:send_message) %>
+  </div>
+  <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
+  <label for="checkfb" class="checkfblabel">Compartir con mis amigos en Facebook</label>
+
+  <div class="normas">Firmando, aceptas las
+    <%= link_to "políticas de privacidad", privacy_policy_path %> de Oiga.me
+  </div>
+ <% end %>

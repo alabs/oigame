@@ -268,6 +268,9 @@ en:
   created_at: "Created at"
   created_by: "Created by"
   current_password: "Current password"
+  thanks_sign_has_validate: 'Thank you for sign. Now you have to check your email for the last step'
+  thanks_sign_validate: 'Thank you for sign'
+  thanks_sign_validate_now: 'Thank you for validate the signature.'
   date: 
     abbr_day_names: 
       - Sun

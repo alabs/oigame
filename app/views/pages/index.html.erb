@@ -9,10 +9,10 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>Software libre para la movilización ciudadana</span>
+            <span><%= t "oigame.home.slideshow.slide_1_title" %></span>
           </div>
           <div class="desc">
-            <span>Tecnología libre para la movilización ciudadana</span>
+            <span><%= t "oigame.home.slideshow.slide_1_body" %></span>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>Inicia el cambio. Activa al lobby ciudadano</span>
+            <span><%= t "oigame.home.slideshow.slide_2_title" %></span>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>Actua crea una campaña</span>
+            <span><%= t "oigame.home.slideshow.slide_3_title" %></span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>Apoya. ¡Firma, haz click, llama!</span>
+            <span><%= t "oigame.home.slideshow.slide_4_title" %></span>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
         <div class='text'>
           <div class='bg'></div>
           <div class='title'>
-            <span>Plataform sin ánimo de lucra, hecha desde el 99% para el 99%</span>
+            <span><%= t "oigame.home.slideshow.slide_5_title" %></span>
           </div>
         </div>
       </div>
@@ -78,23 +78,23 @@
 
 
   <div class="sidecarro">
-    <i class="icon-bullhorn">campañas 33</i>
-    <i class="icon-pencil">Firmas 1000</i>
-    <i class=" icon-user">Usuarios 29</i>
-    <i class=" icon-globe">Países 5</i>
+    <i class="icon-bullhorn">&nbsp;<%= t "oigame.home.stats.campaigns" %> <%= @total_published_campaigns %></i>
+    <i class="icon-pencil">&nbsp;<%= t "oigame.home.stats.signatures" %> <%= @total_signs %></i>
+    <i class="icon-user">&nbsp;<%= t "oigame.home.stats.users" %> <%= @total_users %></i>
+    <!-- i class="icon-globe">&nbsp;<%= t "oigame.home.stats.countries" %> </i -->
   </div>
   <!-- sidecarro -->
 </div>
 </div><!-- carrousel -->
 
-<div class="welcome c">
+<div class="welcome welchi c">
   <div class="welinfo">
     <span class="circle"><i class="icon-lightbulb icon-2x"></i></span>
-    Una herramienta de movilización ciudadana a través de la red, <a href="">crea tu propia campaña</a>
+    <%= t("oigame.home.welcome.welinfo_1_html", :href => link_to(t("oigame.home.welcome.welinfo_1_link"), new_campaign_path) ) %>
   </div><!-- welinfo -->
   <div class="welinfo">
     <span class="circle"><i class="icon-hand-right icon-2x"></i> </span>
-    Una herramienta de presión social abierta, horizontal y transparente.
+    <%= t "oigame.home.welcome.welinfo_2_html" %>
   </div><!-- welinfo -->
 </div><!-- welcome -->
 
@@ -102,32 +102,18 @@
   <ul class="photo">
     <% @campaigns_carousel.each do |campaign| %>
       <li>
-        <div class="view view-tenth">
-          <%= link_to image_tag(campaign.image_url(:home)), campaign %>
-          <div class="carousel-caption">
-
-            <div id="izquierda" >
-              <h4><%= link_to campaign.name, campaign %></h4>
-            </div>
-
-            <div id="derecha">
-              <%= link_to(campaign) do %>
-                <div id="avatar">
-                  <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
-                  <h4><%= campaign.user.name %></h4>
-                </div>
-              <% end %>
-            </div>
-
-          </div><!-- carousel-caption -->
-
-          <div class="mask">
-            <h4><%= campaign.name %></h4>
-            <p><%= campaign.intro %></p>
-            <%= link_to 'Firmar campaña', campaign %>
-          </div>
-
-        </div>
+        <a href="<%= campaign_path(campaign) %>">
+        <div class="campa-home">
+    <%= image_tag(campaign.image_url(:home)) %>
+    <div class="campa-texto">
+      <div class="campa-texto-left">
+      <%= link_to campaign.name, campaign %>
+      </div><!-- left -->
+      <div class="campa-texto-right">
+      <img src="<%= avatar_url(campaign.user.email) %>" alt="<%= t "oigame.campaigns.creator_of_campaign" %>"/>
+      </div><!-- left -->
+    </div><!-- campa-texto -->
+  </a>
       </li>
     <% end %>
   </ul>
@@ -135,15 +121,15 @@
 <div class="c">
   <div class="entra">
     <div class="smsentra">
-      Crea tus campañas, firma, actúa, y compartela con tus redes.
-      <p class="min">No odies al lobby, ¡cómetelo!</p>
+      <%= t "oigame.home.slogan_1" %>
+      <p class="min"><%= t "oigame.home.slogan_2" %></p>
 
     </div><!-- smsentra -->
 
     <div class="buttonentra">
       <i  class="icon-share-alt icon-3x"></i>
 
-      <input type="button" name="" value="Crear campaña" class="btn"/>
+      <%= link_to( t("oigame.home.create_campaign"), new_campaign_path, :class => "btn" ) %>
 
     </div><!-- button -->
   </div><!-- entra -->

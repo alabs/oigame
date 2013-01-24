@@ -1,5 +1,10 @@
+//= require scriptaculous/prototype
+//= require scriptaculous/scriptaculous
+//= require scriptaculous/effects
+//= require tolk/application
+//= require jquery
 
-//$.noConflict();
+$.noConflict();
 
 jQuery.fn.directText = function(settings) {
    settings = jQuery.extend({},jQuery.fn.directText.defaults, settings);
@@ -21,7 +26,10 @@ jQuery('.search_translate').click(function(e) {
   e.preventDefault();
   var that = jQuery(this);
   var phrase = that.parent().parent().children('.phrase').directText();
-  jQuery.getJSON('http://mymemory.translated.net/api/get?q=' + phrase + '!&langpair=es|en', function(data){
+  that.html('<img src="/assets/ajax-loader.gif">');
+  var lang = jQuery("#js-lang").data('locale');
+  jQuery.getJSON('http://mymemory.translated.net/api/get?q=' + phrase + '!&langpair=es|' + lang, function(data){
+    that.html('Buscar');
     that.parent().parent().children('.translation').children('textarea').val(data.responseData.translatedText);
   });
 });

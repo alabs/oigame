@@ -8,11 +8,13 @@ function activityStream(e) {
         if (!e) return;
         n = $("<span style='font-size: 0.8em; float: right;' class='timestamp'>" + distanceOfTimeInWords(e.timestamp) + "</span>");
         n.data("actualDate", e.timestamp);
-        html = "<li><img style='width: 50px; float: left;' src='" + e.camp_img +"'>";
-        html += "<a href='" + e.camp_url + "'>";
-        html += "<label>" + e.part_name + " ha participado en " + e.camp_name + "</label></a>";
+        html = "<li>";
+        html += "<a href='http://" + e.camp_url + "'>";
+        html += "<label>" + e.part_name + "</label></a>";
+        html += "<label>"+ distanceOfTimeInWords(e.timestamp) +"</label>"
+        html += "<img height='32' width='32' src='" + e.camp_img +"'>";
+        html += "</li><hr>";
         r = $(html);
-        r.append(n);
         r.hide();
         o.prepend(r);
         r.show(s);

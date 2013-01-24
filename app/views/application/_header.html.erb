@@ -17,12 +17,15 @@
                   <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
                 <% end %>
                 <li>
-                    <a href="/es">ES</a>
+            <select>
+              <option value="idiomas">Idiomas</option>
+              <option value="ES"><a href="/es">ES</a></option>
+              <option value="EN"><a href="/en">EN</a></option>
+            </select>
                 </li>
-                <li>
-                    <a href="/en">EN</a>
-                </li>
+               
             </ul>
+
         </div>
 
 

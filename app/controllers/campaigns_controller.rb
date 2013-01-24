@@ -3,7 +3,7 @@ class CampaignsController < ApplicationController
 
   #include Social::Facebook
 
-  protect_from_forgery :except => :sign
+  protect_from_forgery :except => [:sign]
   layout 'application', :except => [:widget, :widget_iframe]
 
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
@@ -58,6 +58,10 @@ class CampaignsController < ApplicationController
     @description = @campaign.to_html(@campaign.intro).html_safe
 
     @videotron = UnvlogIt.new(@campaign.video_url) unless @campaign.video_url.blank?
+
+    @instanke = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize.new
+    @message_body = @campaign.default_message_body if @instanke.respond_to?(:body)
+    @message_subject = @campaign.default_message_body if @instanke.respond_to? :subject
 
     respond_with(@campaign)
   end
@@ -155,8 +159,8 @@ class CampaignsController < ApplicationController
     model_name = Campaign.types[@campaign.ttype.to_sym][:model_name]
     modelk = model_name.constantize
 
-    from = user_signed_in? ? current_user.email : params[:email]
-    user_name = user_signed_in? ? current_user.name : params[:name]
+    from = current_user.try(:email) || params[:email]
+    user_name = current_user.try(:name) || params[:name]
 
     if @campaign
       # Create the instance of the methok
@@ -167,17 +171,19 @@ class CampaignsController < ApplicationController
       instanke.name = user_name
 
       if instanke.respond_to? :body
-        instanke.body = (params[:own_message] == 1) ? params[:body] : @campaign.default_message_body
+        instanke.body = (!params[:body].blank?) ? params[:body] : @campaign.default_message_body
       end
 
       if instanke.respond_to? :subject
-        instanke.subject = (params[:own_message] == 1) ? params[:subject] : @campaign.default_message_subject
+        instanke.subject = (!params[:subject].blank?) ? params[:subject] : @campaign.default_message_subject
       end
 
       if instanke.save
         if user_signed_in?
           instanke.validate!
+          flash[:thank_message] = t(:thanks_sign_validate)
         else
+          flash[:thank_message] = t(:thanks_sign_has_validate)
           validation = "send_message_to_validate_#{model_name.downcase}".to_s
           Mailman.send(validation, from, @campaign.id, instanke.id).deliver
         end
@@ -200,6 +206,7 @@ class CampaignsController < ApplicationController
 
       if model
         model.validate!
+        flash[:thank_message] = t(:thanks_sign_validate_now)
         redirector_to :signed
       else
         redirector_to :campaign, error: 'El token de validación ya no es válido'
@@ -320,7 +327,7 @@ class CampaignsController < ApplicationController
     data[:name] = current_user.name
     data[:email] = current_user.email
     data[:cback] = campaign_url(@campaign)
-    HTTParty.post("http://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
+    HTTParty.post("https://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 
   private

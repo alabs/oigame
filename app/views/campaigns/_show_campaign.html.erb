@@ -1,22 +1,58 @@
 <% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
-  <div class="cinfo">
-    <h3><%= link_to campaign.name, url %></h3>
-    <div class="campaign-image span2">
-      <% if campaign.image.to_s %>
-        <%= link_to image_tag(campaign.image_url(:thumb), :alt => campaign.name), url, :title => campaign.name %>
+<div class="cinfo">
+
+  <div>
+    <%= link_to campaign do %>
+    <div class="campa-home">
+      <%= image_tag(campaign.image_url(:home)) %>
+
+      <div class="campa-texto">
+        <div class="campa-texto-left">
+          <span><%= campaign.name %></span>
+        </div><!-- left -->
+        <div class="campa-texto-right">
+          <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+        </div><!-- left -->
+      </div><!-- campa-texto -->
+    </div>
       <% end %>
-    </div><!-- campaign-image -->
-    <div class="campaign-text span9">
-      <%= campaign.to_html(campaign.intro).html_safe %>
-      <div class="campaign-text-links">
-      <% if campaign.status == "archived" %>
-        <%= link_to url do %>
-          <span class="label label-warning" style="font-size: 1em;">archivada</span>
+  </div>
+
+  <div class="campaign-text">
+    <div class="campaign-text-links">
+      <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>
+
+
+  <%= link_to t(:join), url, :title => campaign.name %>
+
+
+    <% objective  = campaign.target.to_i %>
+    <% gotten = campaign.messages_count.to_i %>        <% if campaign.status == "archived" %>
+          <%= link_to url do %>
+            <span class="label label-warning" style="font-size: 1em;">archivada</span>
+          <% end %>
+        <% else %>
+                    <div id="progressbarlista">
+
+                     <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted"><%= gotten
+                     %></span>
+                       Firmas</h3>
+
+
+                <div id="necesarias">
+                  <h4><i class="icon-signin"></i>
+                  Faltan <span class="underlinedlista"><%= objective - gotten %> </span>firmas más!</h4>
+                </div>
+                <progress id="barlista" value="<%= gotten %>" max="<%= objective %>">
+                  <em>Conseguidas <%= gotten %> de <%= objective %> firmas</em>
+                </progress>
+
+
+
+              </div>
+
         <% end %>
-      <% else %>
-        <%= link_to t(:join_this_campaign), url, :title => campaign.name %>
-      <% end %>
-      <strong><%= campaign.messages_count %></strong> <%= t(:have_already_made) %>
-      </div><!-- campaign-text-links -->
-    </div><!-- campaign-text -->
-  </div><!-- cinfo -->
+
+        </div><!-- campaign-text-links -->
+      </div><!-- campaign-text -->
+    </div><!-- cinfo -->

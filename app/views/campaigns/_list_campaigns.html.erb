@@ -1,18 +1,15 @@
+<% no_btns = no_btns || false %>
+<% no_paginate = no_paginate || false %>
+<% message = message || false %>
 
-<div class="row-fluid">
-  
-
-
-<div class="span7">
-
-<div id="page-wrapper">
-    <% if @campaigns.count > 0 %>
-        <div class="row-fluid">
-        <div class="span5">
-          <h2><%= @page_title %></h2>
-        </div>
-        <div class="span2" style="margin-top: 15px;">
-          <div class="btn-group" style="z-index: 9999;">
+<div class="campaign-infolist">
+        <% if message %>
+          <div class="message-thanks">
+            <%= message %>
+          </div>
+        <% end %>
+        <% unless no_btns %>
+          <div class="btn-group" >
             <% if @sub_oigame %>
               <%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn" %>
               <%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => "btn" %>
@@ -27,24 +24,40 @@
               <% end %>
             <% end %>
           </div>
+<% end %>
+      <div class="">    
+        <h2><i class="icon-time"></i><%= @page_title %></h2>
+        <hr class="dashed">
         </div>
-      </div>
+
+    <% if @campaigns.count > 0 %>      
+<div style="overflow:hidden;">
         <% @campaigns.each do |campaign| %>
-          <div class="row-fluid mostrar-campaign">
+          <div class="mostrar-campaign">
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         </div>
+
+
         <% end %>
+        </div>
+        <% unless no_paginate %>
         <div class="center">
           <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
         </div>
+        <% end %>
+
       </div><!-- list-campaigns-info -->
+
     <% else %>
       <div id="list-campaigns-info">
         <h2><%= t(:no_campaigns) %></h2>
       </div>
     <% end %>
 
-</div>
 
+       
 
-</div>
+      
+     
+ 
+

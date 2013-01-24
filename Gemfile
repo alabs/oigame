@@ -7,7 +7,7 @@ gem 'mysql2'
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'turbo-sprockets-rails3'
+#  gem 'turbo-sprockets-rails3'
 end
 gem 'sass-rails', '3.2.3'
 
@@ -87,6 +87,7 @@ gem 'will_paginate-bootstrap'
 #gem 'canard'
 gem 'declarative_authorization'
 gem 'prawn'
+gem 'Ascii85'
 
 gem 'wicked'
 
@@ -110,3 +111,4 @@ gem 'countries'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+

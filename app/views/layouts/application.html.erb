@@ -46,31 +46,35 @@
 <body>
 <%= render :partial => 'header' %>
 
-<div class="c">
+<% if @in_campaign %>
+  <div>
+<% else %>
+  <div class="c">
+<% end %>
   <%= yield %>
 </div>
-
+<br clear="all"/>
 <div class="topfooter">
   <div class="cthreecolumns c">
     <div class="threecolumns">
       <span><i class="icon-pencil"></i></span>
-      <h3>Recogida de firmas</h3>
-      <p>Firma una petición de apoyo y adhesión a una campaña. Las firmas quedan bajo nuestra política de <b>protección de datos.</b></p>
+      <h3><%= t "oigame.home.footer.petition_title" %></h3>
+      <p><%= t "oigame.home.footer.petition_body_html" %></p>
     </div><!-- threecolumns -->
     <div class="threecolumns">
       <span><i class="icon-envelope"></i></span>
-      <h3>Mailing</h3>
-      <p>Haz que tu campaña llegue por email, mediante un sistema de <b>envío seguro</b>, a los <b>responsables</b> de tu petición.</p>
+      <h3><%= t "oigame.home.footer.mailing_title" %></h3>
+      <p><%= t "oigame.home.footer.mailing_body_html" %></p>
     </div><!-- threecolumns -->
     <div class="threecolumns">
       <span><i class="icon-print"></i></span>
-      <h3>Envío de fax</h3>
-      <p>Envía reclamaciones o <b>quejas</b> mediante FAX a los destinatarios que elijas con un simple <b>click</b>.</p>
+      <h3><%= t "oigame.home.footer.fax_title" %></h3>
+      <p><%= t "oigame.home.footer.fax_body_html" %></p>
     </div><!-- threecolumns -->
     <div class="threecolumns">
       <span><i class="icon-mobile-phone"></i></span>
-      <h3>Telefonía</h3>
-      <p>Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía.</p>
+      <h3><%= t "oigame.home.footer.telephony_title" %></h3>
+      <p><%= t "oigame.home.footer.telephony_body_html" %></p>
     </div><!-- threecolumns -->
   </div><!-- cthreecolumns -->
 </div><!-- topfooter -->
@@ -106,35 +110,19 @@
       </li>
     </ul>
   </div>
-  <div class="" id="first_footer_c">
-    <!--  <div class="carousel">
-     <ul class="panes">
-         <li>
+  <div class="" id="first_footer_b">
+        <ul>
+      <li>
+          <%= image_tag 'openpk.png' %>      
+      </li>
+      <li>
+          <%= image_tag 'transparentpk.png' %>
+      </li>
+      <li>
+          <%= image_tag '99pk.png' %>
+      </li>
+    </ul>
 
-               <img src="http://farm5.static.flickr.com/4116/4877345244_6cf40b2d42.jpg" alt="">
-         </li>
-
-         <li>
-
-             <img src="http://farm5.static.flickr.com/4121/4877354764_7e31588287.jpg" alt="">
-         </li>
-
-         <li>
-
-             <img src="http://farm5.static.flickr.com/4076/4877358076_9a02fb2f98.jpg" alt="">
-         </li>
-
-         <li>
-
-             <img src="http://farm7.static.flickr.com/6050/6250747475_bc9f5069a4.jpg" alt="">
-         </li>
-
-         <li>
-
-             <img src="http://farm7.static.flickr.com/6055/6251268362_c3a1973019.jpg" alt="">
-         </li>
-     </ul>
-   </div> -->
   </div>
 </div>
 

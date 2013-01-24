@@ -5,10 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Traducciones - oiga.me</title>
 
-  <%= javascript_include_tag "tolk/application" %>
-  <%= javascript_include_tag "jquery" %>
-  <%= stylesheet_link_tag "tolk/application" %>
-  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "translate" %>
   <%= yield :head %>
 <style>
 html {
@@ -38,18 +35,13 @@ div#head span:last-child {
   <div id="container">
     <div id="head">
     
-      <h1><%= link_to(image_tag('logo.png'), "https://oiga.me" ) %><span class="home"><%= link_to "Traducciones", root_path %></span><% if @locale.present? %><span class="locale"><%= link_to @locale.language_name, locale_path(@locale) %></span><% end %></h1>
+      <h1><%= link_to(image_tag('logo.png'), "https://oiga.me" ) %><span class="home"><%= link_to "Traducciones", root_path %></span><% if @locale.present? %><span class="locale" id="js-lang" data-locale="<%= @locale.name %>" ><%= link_to @locale.language_name, locale_path(@locale) %></span><% end %></h1>
     </div>
     <div class="hero-unit">
       <%= yield %>
     </div>
   </div>
 
-  <script type="text/javascript">
-    $$('td textarea').each(function(element) {
-      element.setStyle({height: element.up('td').measure('height')+'px'});
-    });
-  </script>
   <%= javascript_include_tag "translate" %>
 </body>
 </html>
