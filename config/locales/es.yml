@@ -270,6 +270,7 @@ es:
   faxes_recipients_help: "Lista de números de fax, uno por línea."
   recipients_show: 'Tu mensaje se enviará a las siguientes personas'
   image_of_campaign: 'Imágen de la campaña'
+  video_url: 'URL del video'
   edit: 'Editar'
   subject: 'Asunto'
   message: 'Mensaje'
@@ -407,6 +408,7 @@ es:
   doit_2: 'podamos hacer campañas de miles de llamadas de teléfono a los poderosos, que podamos enviar cientos de faxes. Mejora, dona, difunde, escribe código.'
   doit_link: 'Infórmate como donar'
   already_participated: 'Ya has participado de esta campaña. ¡Muchas gracias!'
+  continue_participated: 'Puedes ayudarnos difundiendo esto en las redes sociales'
   no_campaigns: 'No hay campañas todavía, puedes proponer una.'
   search: 'Buscar'
   other_campaigns: 'Participa en estas otras campañas'
@@ -418,22 +420,22 @@ es:
   cancel_account: 'Cancelar mi cuenta'
   this_link: 'este enlace'
   hi: 'Hola'
-  inform_campaign_activate: "Te escribimos para informarte que la campaña con nombre '#{ campaign_name }' que creaste en oiga.me, ha sido publicada y está disponible en la siguiente URL:"
-  inform_new_comment: "Te escribimos para informarte que has recibido un nuevo comentario en la campaña con nombre '#{ campaign_name }' que creaste en oiga.me."
-  inform_campaign_social_council: "Hola consejo social, se ha creado una campaña nueva en oiga.me con el nombre: '#{ campaign_name }'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si os parece muy interesante comentadlo en la lista y lo debatimos."
-  inform_campaign_sub_admin: "Hola, se ha creado una campaña nueva en tu SubOigame '#{ sub_name }' con el nombre: '#{ campaign_name }'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si te parece muy interesante puedes activarla."
+  inform_campaign_activate: "Te escribimos para informarte que la campaña con nombre '%{campaign_name}' que creaste en oiga.me, ha sido publicada y está disponible en la siguiente URL:"
+  inform_new_comment: "Te escribimos para informarte que has recibido un nuevo comentario en la campaña con nombre '%{campaign_name}' que creaste en oiga.me."
+  inform_campaign_social_council: "Hola consejo social, se ha creado una campaña nueva en oiga.me con el nombre: '%{campaign_name}'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si os parece muy interesante comentadlo en la lista y lo debatimos."
+  inform_campaign_sub_admin: "Hola, se ha creado una campaña nueva en tu SubOigame '%{ sub_name }' con el nombre: '%{campaign_name}'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si te parece muy interesante puedes activarla."
   next_you_have_info: 'A continuación tenéis la información de la campaña'
   thanks_for_participating: 'Gracias por participar en oiga.me.'
-  mail_validate_1: "Validar adhesión a la campaña: #{ campaign_name }"
-  mail_validate_2: "Para validar la adhesión a la campaña #{ campaign_name } tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
+  mail_validate_1: "Validar adhesión a la campaña: %{campaign_name}"
+  mail_validate_2: "Para validar la adhesión a la campaña %{campaign_name} tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
   mail_validate_3: 'Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.'
   mail_validate_4: 'Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:'
-  mail_validate_5: "Incluye la campaña en tu página web para que tus visitas puedan participar: #{url}. Es muy sencillo, tardarás menos de 1 minuto."
+  mail_validate_5: "Incluye la campaña en tu página web para que tus visitas puedan participar: %{url}. Es muy sencillo, tardarás menos de 1 minuto."
   mail_validate_6: 'Difunde al máximo la campaña en las redes sociales.'
   mail_validate_7: 'Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).'
-  mail_validate_8: "oiga.me es un proyecto de la asociación . Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{donate_url})."
-  mail_validate_9: "Sigue a #{oigame_twitter} en Twitter y en #{oigame_facebook}."
-  mail_validate_10: "oiga.me es un proyecto de la asociación #{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (#{url_donate})."
+  mail_validate_8: "oiga.me es un proyecto de la asociación aLabs [ http://alabs.es/ ]. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto [ %{url_donate} ]."
+  mail_validate_9: "Sigue a %{oigame_twitter} en Twitter y en %{oigame_facebook}."
+  mail_validate_10: "oiga.me es un proyecto de la asociación %{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (%{url_donate})."
   category_of_campaign: "Categoría de la campaña"
   category: 'Categoría'
   faxes_recipients: 'Números de fax de los destinatarios'
@@ -444,6 +446,19 @@ es:
   create: 'Crear'
   add_credit: 'Añadir crédito'
   countries: 'Países'
+  thanks_sign_has_validate: 'Gracias por firmar. Ahora tienes que validar la firma a través del correo que acabas de recibir'
+  thanks_sign_validate: 'Gracias por firmar'
+  thanks_sign_validate_now: 'Gracias por validar tu firma. Con esto conseguimos que todas las firmas sean legítimas'
+  request_identity_card: "Pedir NIF"
+  request_postal_code: "Pedir código postal"
+  request_state: "Pedir país"
+  your_state: "Tu país"
+  your_identity_card: "Tu NIF"
+  your_postal_code: "Tu código postal"
+  faq: "FAQ"
+  programe: "Programar"
+  next_step: "Siguiente paso"
+  language: "Idioma"
   admin:
     home:
       name: Inicio
@@ -575,6 +590,42 @@ es:
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
     campaigns:
+      creator_of_campaign: "creador de campaña"
+      credit:
+        add_credit: 'Añadir crédito a la campaña'
+        amount_select: "Elige una cantidad"
+        amount_to_donate: "Cantidad a donar"
+        accepted_cards: "Tarjetas aceptadas"
+    home:
+      slogan_1: "Crea tus campañas, firma, actúa, y compartela con tus redes."
+      slogan_2: "No odies al lobby, ¡cómetelo!"
+      create_campaign: "Crear campaña"
+      stats:
+        campaigns: "Campañas"
+        signatures: "Firmas"
+        users: "Usuarios"
+        countries: "Países"
+      welcome:
+        welinfo_1_html: "Una herramienta de movilización ciudadana a través de la red, %{href}"
+        welinfo_1_link: "crea tu propia campaña"
+        welinfo_2_html: "Una herramienta de presión social abierta, horizontal y transparente."
+      slideshow:
+        slide_1_title: "Software libre para la movilización ciudadana"
+        slide_1_body: "Por primera vez, tecnología fax en acción"
+        slide_2_title: "¡Cambia! Activa al lobby ciudadano"
+        slide_3_title: "¡Actúa! Crea una campaña"
+        slide_4_title: "¡Apoya! Firma, haz click, llama"
+        slide_5_title: "Plataforma sin ánimo de lucro, hecha desde el 99% para el 99%"
+      footer:
+        petition_title: "Recogida de firmas"
+        petition_body_html: "Firma una petición de apoyo y adhesión a una campaña. Las firmas quedan bajo nuestra política de <b>protección de datos.</b>"
+        mailing_title: "Mailing"
+        mailing_body_html: "Haz que tu campaña llegue por email, mediante un sistema de <b>envío seguro</b>, a los <b>responsables</b> de tu petición."
+        fax_title: "Envío de fax"
+        fax_body_html: "Envía reclamaciones o <b>quejas</b> mediante FAX a los destinatarios que elijas con un simple <b>click</b>."
+        telephony_title: "Telefonía"
+        telephony_body_html: "Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía. (En desarrollo)"
+    campaigns:
       type:
         petition: "Petición online"
         mailing: "Envío de correo"
@@ -583,13 +634,25 @@ es:
       next_step: "Paso siguiente"
       previous_step: "Paso anterior"
       create_campaign: "Crear campaña"
+      name_help: "Elige un título corto que apele a la acción (diles, exige, denuncia...) y que exprese de manera clara qué se pide, a quién y cómo."
+      hastag_help: "Hashtag de la campaña."
+      image_help: "Sube una imagen sugerente y acorde con el contenido de tu campaña. Si puedes edítala para que contenga el título de la campaña."
+      video_help: "Si tienes algún material ya grabado, puedes meterlo aquí."
+      intro_help: "Redacta una entradilla breve que exprese los puntos claves de la campaña. Esta información aparecerá junto a la imagen en la portada de la web."
+      body_help: "Redacta un texto claro y conciso, 4 ó 5 párrafos bastarán y planifica el contenido: el primer párrafo puede servirte de intro y el último de cierre; debe quedar bien clara cual estrategia de la campaña que has diseñado (p.e. si se trata de una petición online conviene especificar el destino de las firmas (uso mediático, opinión pública) o si es un fax cuenta qué contenidos envías y quién lo recibirá. Finaliza con una frase que invite a la acción ( a veces, el mismo título puede valer)."
+      petition_help: "Recoge firmas on line para mostrar el apoyo a tu campaña. Cuando termines, la aplicación generará un fichero bajo nuestra política de protección de datos."
+      mailing_help: "Haz que tu campaña llegue por mail a sus destinatarios. Edita asunto y cuerpo de mensaje y busca las direcciones de mail donde quieres que se entregue."
+      fax_help: "Envía tu campaña por fax a los responsables. Escribe un modelo de fax y busca los números donde quieras que se entregue."
+      comment_help: "Esta opción permite que la gente opine y participe públicamente en tu campaña expresando su opinión."
+      people_help: "Estima cuanta gente crees que va participar en tu campaña."
+      date_help: "Establece un límite de tiempo para tu campaña."
     privacy:
       legal_notice_title: "Aviso legal"
       legal_notice_1: "Esta politica de privacidad se aplica a la relación del usuario con todas aquellas páginas bajo el dominio oiga.me (en adelante, el 'sitio web') operado por la Asociación sin ánimo de lucro aLabs (en adelante 'aLabs') y cualquiera de sus entidades asociadas o que controlen y hagan uso de la información que obtengan através del Sitio web."
       legal_notice_2: "aLabs a través del sitio web, facilita a los usuarios el acceso a determinados contenidos puestos a disposición por a Labs o por terceros."
       legal_notice_3: "La navegación por el sitio web, atribuye la condición de usuario y conlleva la aceptación plena y sin reservas del presente aviso legal y los términos y condiciones que se detallan a continuación."
       terms_title: "Términos y condiciones"
-      terms_1: "aLabs podrá modificar los términos y condiciones en cualquier momento, desplegando estos sus efectos desde el momento de su publicación en esta página. Debes estar atenta a las posibles actualizaciones del contenido. La última revisión se publicó el 28.07.2012."
+      terms_1: "aLabs podrá modificar los términos y condiciones en cualquier momento, desplegando estos sus efectos desde el momento de su publicación en esta página. Debes estar atenta a las posibles actualizaciones del contenido. La última revisión se publicó el 23.01.2013."
       terms_2: "Aceptas utilizar el sitio web únicamente con propósitos legales, y de manera que no restrinja o inhiba el uso y recreación del mismo por terceros."
       terms_3: "Las marcas, nombres comerciales y otros signos distintivos expuestos en este portal que no sean de la titularidad de aLabs se regirán por lo dispuesto en la legislación aplicable a la licencia a que se atienen. aLabs no se hace responsable del posible uso que los ususarios puedan hacer de los mismo."
       terms_4: "No obstante lo anterior, se otorga permiso para copiar, distribuir y/o modificar los contenidos publicados (textos, fotografías, gráficos, imágenes, iconos, software, diseño gráfico, código fuente, etc.) en cualquiera de las páginas bajo el dominio de aLabs y que sean de su titularidad, salvo que se indique expresamente lo contrario, bajo los términos de la Licencia Creative Commons (CC BY-SA 3.0)."

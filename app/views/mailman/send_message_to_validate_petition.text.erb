@@ -19,7 +19,7 @@
 <%= t(:mail_validate_7) %>
 
 <% if @sub_oigame.nil? %>
-<%= t(:mail_validate_8, :url_donate => "#{ APP_CONFIG[:domain] }/donate") %>
+  <%= t(:mail_validate_8, :url_donate => "donando al proyecto [ #{ APP_CONFIG[:domain] }/es/donate ]", :url_alabs => "aLabs [ http://alabs.es/ ]") %>
 <% end %>
 
 <%= t(:thanks_for_participating) %>

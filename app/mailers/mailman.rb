@@ -42,6 +42,9 @@ class Mailman < ActionMailer::Base
 
   [:message, :fax, :petition].each do |meth|
     define_method "send_message_to_validate_#{meth}".to_s do |to, campaign_id, signed_id|
+      # FIXME: fix rapido para que envie los correos en spanish
+      # TODO: I18n bien (con URLs segun el locale, subject y todo)
+      I18n.locale = I18n.default_locale
       sign_model = meth.to_s.capitalize.constantize
       @campaign = Campaign.find(campaign_id)
       petition = sign_model.find(signed_id)
@@ -50,10 +53,10 @@ class Mailman < ActionMailer::Base
       unless @campaign.sub_oigame.nil?
         prefix = "[#{@campaign.sub_oigame.name}]"
         @sub_oigame = @campaign.sub_oigame
-        @url = "#{APP_CONFIG[:domain]}/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+        @url = "#{APP_CONFIG[:domain]}/es/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
       else
         prefix = "[oiga.me]"
-        @url = "#{APP_CONFIG[:domain]}/campaigns/#{@campaign.slug}"
+        @url = "#{APP_CONFIG[:domain]}/es/campaigns/#{@campaign.slug}"
       end
 
       from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)
