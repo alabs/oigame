@@ -334,7 +334,7 @@ class Campaign < ActiveRecord::Base
     case ttype
     when 'mailing'
       messages.validated.count
-    when 'peititon'
+    when 'petition'
       petitions.validated.count
     when 'fax'
       faxes.validated.count
