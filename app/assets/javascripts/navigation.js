@@ -90,6 +90,10 @@ $(function() {
   $("#campaign_name").focus();
   $("#contact_name").focus();
 
+  // dropdown de seleccion de idioma
+  var lang = $('#js-language-selector').data('lang');
+  $('option[data-lang="' + lang + '"]').attr('selected', 'selected');
+
   $('#js-language-selector').change( function(){
     document.location.href = $(this).val();  
   });
@@ -97,5 +101,6 @@ $(function() {
   $('.sidefirma').scrollToFixed();
 
   check_current_navbar(document.URL.split('/')[4]);
+
 
 });

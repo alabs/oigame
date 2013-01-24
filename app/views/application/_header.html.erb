@@ -25,9 +25,9 @@
                 <% end %>
 
                 <li>
-                  <select id="js-language-selector" class="language-selector">
-                    <option value='<%= url_for(:locale => "es") %>'>ES</option>
-                    <option value='<%= url_for(:locale => "en") %>'>EN</option>
+                  <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
+                    <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>
+                    <option data-lang="en" value='<%= url_for(:locale => "en") %>'>EN</option>
                   </select>
                 </li>
                
