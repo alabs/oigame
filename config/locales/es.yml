@@ -270,6 +270,7 @@ es:
   faxes_recipients_help: "Lista de números de fax, uno por línea."
   recipients_show: 'Tu mensaje se enviará a las siguientes personas'
   image_of_campaign: 'Imágen de la campaña'
+  video_url: 'URL del video'
   edit: 'Editar'
   subject: 'Asunto'
   message: 'Mensaje'
@@ -456,6 +457,8 @@ es:
   your_postal_code: "Tu código postal"
   faq: "FAQ"
   programe: "Programar"
+  next_step: "Siguiente paso"
+  language: "Idioma"
   admin:
     home:
       name: Inicio

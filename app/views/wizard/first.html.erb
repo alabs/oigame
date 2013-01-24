@@ -36,7 +36,7 @@
     <div class="control-group">
       <%= f.label :image, t(:image_of_campaign), :class => 'control-label' %>
       <div class="controls">
-        <%= f.file_field :image, :class => 'input-file', :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.image_help') %>
+        <%= f.file_field :image, :class => 'input-file', :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.image_help'), 'data-original-title' => t(:image_of_campaign) %>
         <p><%= I18n.t(:minimal_size) %></p>
         <% unless @campaign.errors[:image].blank? %>
           <span class="error_message"><%= @campaign.errors[:image].to_sentence %></span>
@@ -46,7 +46,7 @@
     <div class="control-group">
       <%= f.label :video_url, t(:video_url), :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :video_url, :class => 'input-file', :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.video_help') %>
+        <%= f.text_field :video_url, :class => 'input-file', :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.video_help'), 'data-original-title' => t(:video_url) %>
         <% unless @campaign.errors[:video_url].blank? %>
           <span class="error_message"><%= @campaign.errors[:video_url].to_sentence %></span>
         <% end %>
@@ -57,7 +57,7 @@
       <div class="controls">
       <div class="wmd-panel">
         <div id="wmd-button-bar"></div>
-        <%= f.text_area :intro, :class => 'wmd-input', :rows => 6, :class => 'span6', :required => true, :placeholder => t(:intro_of_campaign_help), :maxlength => 500, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.intro_help') %>
+        <%= f.text_area :intro, :class => 'wmd-input', :rows => 6, :class => 'span6', :required => true, :placeholder => t(:intro_of_campaign_help), :maxlength => 500, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.intro_help'), 'data-original-title' => t(:intro_of_campaign) %>
         <p><%= I18n.t(:intro_limit) %></p>
       </div>
       <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
