@@ -10,12 +10,10 @@
         <div class="supermenu">
             <ul>
                 <% if current_user %>
-                  <li><%= link_to t(:my_account), edit_user_registration_path %></li>
-                  <li style="display: none;">
+                  <li>
                     <%= link_to edit_user_registration_path do %>
  <img style="width:30px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
 <b style="margin-bottom: 100px;"><%= current_user.name %></b>
-<br>
 
                     <% end %>
                   </li>
