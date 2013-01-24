@@ -20,7 +20,7 @@ class Fax < ActiveRecord::Base
 
   def validate!
     update_attributes(:validated => true, :token => nil)
-    Resque.enqueue(SendFax, fax.id)
+    Resque.enqueue(SendFax, self.id)
   end
 
 end
