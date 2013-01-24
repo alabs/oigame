@@ -2,11 +2,13 @@
   <div class="textfield">
   <% if !user_signed_in? || current_user.name.blank? %>
     <div class="form-field">
-      <%= text_field_tag :name, nil, :required => true, :placeholder => 'Nombre y apellidos', :value => cookies[:name] %>
+      <%= label_tag t(:name) %>
+      <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name), :value => cookies[:name] %>
     </div>
   <% end %>
   <% if !user_signed_in? || current_user.email.blank? %>
     <div class="form-field">
+      <%= label_tag t(:email) %>
       <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
     </div>
   <% end %>
@@ -37,13 +39,14 @@
       <%= text_field_tag :state, nil, :required => true, :placeholder => t(:your_state) %>
     </div>
   <% end %>
+  <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
+  <label for="checkfb" class="checkfblabel"><%= t(:share_with_my_friends_on_facebook) %></label>
+
+  <div class="normas"><%= t(:by_signing_you_accept) %>
+    <%= link_to t(:privacy_policy), privacy_policy_path %> <%= t(:of) %> oiga.me
+  </div>
+
   <div class="btn-campaign btn-campsign">
     <%= button_tag t(:send_message) %>
-  </div>
-  <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
-  <label for="checkfb" class="checkfblabel">Compartir con mis amigos en Facebook</label>
-
-  <div class="normas">Firmando, aceptas las
-    <%= link_to "políticas de privacidad", privacy_policy_path %> de Oiga.me
   </div>
  <% end %>

@@ -9,13 +9,12 @@
 
         <div class="supermenu">
             <ul>
+
                 <% if current_user %>
-                  <li><%= link_to t(:my_account), edit_user_registration_path %></li>
-                  <li style="display: none;">
+                  <li>
                     <%= link_to edit_user_registration_path do %>
  <img style="width:30px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
 <b style="margin-bottom: 100px;"><%= current_user.name %></b>
-<br>
 
                     <% end %>
                   </li>
@@ -24,12 +23,12 @@
                   <li><%= link_to t(:create_account), new_user_registration_path %></li>
                   <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
                 <% end %>
+
                 <li>
-            <select id="js-language-selector" class="language-selector">
-              <option value="language"><%= t(:language) %></option>
-              <option value='<%= url_for(:locale => "es") %>'>ES</option>
-              <option value='<%= url_for(:locale => "en") %>'>EN</option>
-            </select>
+                  <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
+                    <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>
+                    <option data-lang="en" value='<%= url_for(:locale => "en") %>'>EN</option>
+                  </select>
                 </li>
                
             </ul>
@@ -42,14 +41,13 @@
 
 
 
-        <div class="menuh">
-            <ul class="nav" id="menu">
-
-                <li id="header-about"><% link_to_unless_current t(:about), about_path %></li>
-                <li id="header-campaigns"><%= link_to_unless_current t(:campaigns), campaigns_path %></li>
-                <li id="header-donate"><%= link_to_unless_current t(:donate), donate_path %></li>
-                <li id="header-help"><%= link_to_unless_current t(:faq), faq_path %></li>
-                <li id="header-contact"><%= link_to_unless_current t(:about), about_path %></li>
+        <div class="navbar">
+            <ul class="nav">
+                <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
+                <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
+                <li id="header-faq"><%= link_to t(:faq), faq_path %></li>
+                <li id="header-about"><%= link_to t(:about), about_path %></li>
+                <li id="header-contact"><%= link_to t(:contact), contact_path %></li>
             </ul>
         </div><!-- menuh -->
     </div><!-- heazc -->

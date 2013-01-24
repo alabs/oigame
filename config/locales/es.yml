@@ -440,7 +440,11 @@ es:
   category: 'Categoría'
   faxes_recipients: 'Números de fax de los destinatarios'
   firms: 'Firmas'
+  share_with_my_friends_on_facebook: "Compartir con mis amigos en Facebook"
+  by_signing_you_accept: "Firmando aceptas la "
   users: 'Usuarios'
+  miss: "Faltan"
+  more: "más"
   languages: 'Idiomas'
   about: 'Acerca de'
   create: 'Crear'
@@ -459,6 +463,7 @@ es:
   programe: "Programar"
   next_step: "Siguiente paso"
   language: "Idioma"
+  options: "Opciones"
   admin:
     home:
       name: Inicio
@@ -742,13 +747,22 @@ es:
         subject: '[oiga.me] Instrucciones de recuperación de contraseña'
       unlock_instructions:
         subject: '[oiga.me] Instrucciones para desbloquear'
-  views:
-    pagination:
-      first: "&laquo; Primera"
-      last: "Última &raquo;"
-      previous: "&lsaquo; Anterior"
-      next: "Siguiente &rsaquo;"
-      truncate: "..."
+  will_paginate:
+    next_label: siguiente →
+    page_gap: ! '&hellip;'
+    previous_label: ← atrás
+    page_entries_info:
+      multi_page: Mostrando %{model} %{from} - %{to} de %{count} en total
+      multi_page_html: Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b>
+        en total
+      single_page:
+        one: Mostrando 1 %{model}
+        other: Mostrando en total %{count} %{model}
+        zero: No se encontraron %{model}
+      single_page_html:
+        one: Mostrando <b>1</b> %{model}
+        other: Mostrando en <b>total&nbsp;%{count}</b> %{model}
+        zero: No se encontraron %{model}
   helpers:
     page_entries_info:
       one_page:

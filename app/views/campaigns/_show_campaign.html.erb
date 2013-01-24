@@ -27,15 +27,15 @@
 
 
     <% objective  = campaign.target.to_i %>
-    <% gotten = campaign.messages_count.to_i %>        <% if campaign.status == "archived" %>
+    <% gotten = campaign.messages_count.to_i %> 
+      <% if campaign.status == "archived" %>
           <%= link_to url do %>
             <span class="label label-warning" style="font-size: 1em;">archivada</span>
           <% end %>
         <% else %>
                     <div id="progressbarlista">
 
-                     <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted"><%= gotten
-                     %></span>
+                     <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted"><%= gotten %></span>
                        Firmas</h3>
 
 
