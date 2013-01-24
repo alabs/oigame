@@ -89,13 +89,12 @@ class Mailman < ActionMailer::Base
   end
   
   def send_message_to_fax_recipients(fax_id, campaign_id)
-    # FIXME: algun motivo para reutilizar la variable fax???
     fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
     @password = APP_CONFIG[:our_fax_password]
     subject = APP_CONFIG[:our_fax_number]
-    fax = FaxPdf.new(fax, campaign)
-    attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = fax.generate_pdf
+    doc = FaxPdf.new(fax, campaign)
+    attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
     numbers = campaign.numbers.map {|number| number + "@ecofax.fr"}
     mail :from => 'fax@oiga.me', :to => numbers, :subject => subject
   end
