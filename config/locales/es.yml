@@ -464,6 +464,8 @@ es:
   next_step: "Siguiente paso"
   language: "Idioma"
   options: "Opciones"
+  avatar: "avatar"
+  edit_my_data: "Editar mis datos"
   admin:
     home:
       name: Inicio

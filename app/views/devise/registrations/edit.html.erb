@@ -12,7 +12,16 @@
     <div id="edit-account-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
         <fieldset>
-          <legend>Editar mis datos</legend>
+          <legend><%= t(:edit_my_data) %></legend>
+
+          <div class="form-field">
+            <%= f.label t(:avatar) %>
+             <img style="width:100px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
+             <div style="float: right; width: 18em;" class="alert alert-info"><b>Tu avatar es el de Gravatar</b> Si quieres modificarlo tendrás que hacerlo a través de tu cuenta de <%= link_to "gravatar", "http://gravatar.com" %> o tendrás que crearte una.</div>
+          </div>
+          <br />
+          <br />
+
           <div class="form-field">
             <%= f.label t(:email) %>
             <%= f.email_field :email, :required => true %>
