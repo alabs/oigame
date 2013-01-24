@@ -13,20 +13,7 @@
   </div>
 </div>
 
-<div class="sidefirma c">
-  <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
-    <%= render partial: 'fax_no_credit' %>
-  <% elsif @campaign.has_participated? current_user %>
-    <%= render partial: 'has_participated' %>
-  <% else %>
-    <%= render partial: 'sign_form' %>
-  <% end %>
-  <div id="redes">
-    <div class="g-plusone" data-size="medium"></div>
-    <a href="https://twitter.com/intent/tweet?button_hashtag=UnEREParaRato" class="twitter-hashtag-button">#UnEREParaRato</a>
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-  </div>
-</div><!-- sidefirma -->
+<%= @campaign.ttype %>
 
 <div class="welcome c">
   <div id="explain">
@@ -58,16 +45,18 @@
     </span>
   </div>
 
-
-  <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
 </div><!-- welcome -->
 <br clear="all">
 
 <div id="tabs4" >
   <ul>
-    <li><a class="tab1" href="http://" title="Descripción"><span class="active">Descripción</span></a></li>
+    <li><a class="tab1" href="#" title="Descripción"><span class="active">Descripción</span></a></li>
+    <li><a href="#" title="Estadísticas"><span>Estadísticas</span></a></li>
+    <li><a href="#" title="Opciones"><span>Opciones</span></a></li>
 
-    <li><a href="http://" title="Estadísticas"><span>Estadísticas</span></a></li>
+<div style="display:none;"
+  <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
+</div>
   </ul>
 </div><!-- tabs -->
 <br clear="left">
@@ -76,21 +65,7 @@
 
 
     <div id="description" class="active tab-pane">
-      <div id="realtime" class="">
-        <ul>
 
-        </ul>
-
-        <div class="quoted">
-          <li>
-            <span><i class=" icon-quote-left icon-4x"></i></span>
-            <h6>Ecologistas en accion</h6>
-
-
-          </li>
-          <p>Este es el comentario perosonal escrito por el creador de la campaña.Gracias a todos los Firmantes ,esta campaña es importante.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos.</p>
-        </div><!-- quoted -->
-      </div><!--/.realtime-->
       <div id="campaign-info">
         <%= @campaign.to_html(@campaign.body).html_safe %>
       </div>
@@ -108,4 +83,21 @@
     </div><!-- description -->
   </div><!-- tab-content -->
 </div><!-- topfooter -->
+
+<div class="sidefirma c">
+  <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
+    <%= render partial: 'fax_no_credit' %>
+  <% elsif @campaign.has_participated? current_user %>
+    <%= render partial: 'has_participated' %>
+  <% else %>
+    <%= render partial: 'sign_form' %>
+  <% end %>
+  <div id="redes">
+    <div class="g-plusone" data-size="medium"></div>
+    <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>" class="twitter-hashtag-button">#<%= @campaign.hashtag %></a>
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+  </div>
+</div><!-- sidefirma -->
+
 <br clear="all">
+
