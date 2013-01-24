@@ -110,7 +110,7 @@
       <%= link_to campaign.name, campaign %>
       </div><!-- left -->
       <div class="campa-texto-right">
-      <img src="<%= avatar_url(campaign.user.email) %>" alt="<%= t "oigame.campaigns.creator_of_campaign" %>"/>
+      <img src="<%= avatar_url(campaign.user.email) %>" alt="<%= campaign.user.name %>"/>
       </div><!-- left -->
     </div><!-- campa-texto -->
   </a>

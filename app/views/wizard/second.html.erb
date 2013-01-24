@@ -21,7 +21,7 @@
       <div class="controls">
       <div class="wmd-panel">
         <div id="wmd-button-bar-second"></div>
-        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span6', :required => true, :placeholder => t(:body_of_campaign_help), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.body_help') %>
+        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span6', :required => true, :placeholder => t(:body_of_campaign_help), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.body_help'), 'data-original-title' => t(:body_of_campaign) %>
       </div>
       <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
       <div class="markdown_help" style="display:none;">
@@ -44,7 +44,7 @@
 
       <% Campaign::TYPES.select do |k,v| %>
         <div class="controls">
-          <%= f.radio_button :ttype, k, :rel => 'popup_ayuda', 'data-content' => t("oigame.wizard.#{k}_help") %>
+          <%= f.radio_button :ttype, k, :rel => 'popup_ayuda', 'data-content' => t("oigame.wizard.#{k}_help"), :class => "campaign-choose", 'data-original-title' => v[:name] %>
           <%= f.label :ttype, :value => k do %>
             <i class="<%= v[:img] %> icon-2x"></i>
             <%= v[:name] %>
@@ -84,19 +84,15 @@
       </div>
     </div>
     <div class="control-group form-field">
-      <%= f.label :identity_card, t(:request_identity_card), :class => 'control-label' %>
       <%= f.check_box :identity_card, :checked => false %> <span class="note"><%= t(:request_identity_card) %></span>
     </div>
     <div class="control-group form-field">
-      <%= f.label :postal_code, t(:request_postal_code), :class => 'control-label' %>
       <%= f.check_box :postal_code, :checked => false %> <span class="note"><%= t(:request_postal_code) %></span>
     </div>
     <div class="control-group form-field">
-      <%= f.label :state, t(:request_state), :class => 'control-label' %>
       <%= f.check_box :state, :checked => false %> <span class="note"><%= t(:request_state) %></span>
     </div>
     <div class="control-group form-field">
-      <%= f.label :commentable, t(:enable_comments), :class => 'control-label' %>
       <div class="controls">
       <%= f.check_box :commentable, :checked => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.comment_help') %> <span class="note"><%= t(:enable_comments) %></span>
     </div>
@@ -104,13 +100,13 @@
     <div class="control-group">
       <%= f.label :target, t(:number_of_people), :class => 'control-label' %>
       <div class="controls">
-      <%= f.text_field :target, :class => 'span6', :placeholder => t(:number_of_people), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.people_help') %>
+      <%= f.text_field :target, :class => 'span6', :placeholder => t(:number_of_people), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.people_help'), 'data-original-title' => t(:number_of_people) %>
     </div>
     </div>
     <div class="control-group">
       <%= f.label :duedate_at, t(:due_date_of_campaign), :class => 'control-label' %>
       <div class="controls">
-      <%= f.text_field :duedate_at, :class => "datepicker", :required => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.date_help') %>
+      <%= f.text_field :duedate_at, :class => "datepicker", :required => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.date_help'), 'data-original-title' => t(:due_date_of_campaign) %>
       <% unless @campaign.errors[:duedate_at].blank? %>
         <br />
         <span class="error_message"><%= @campaign.errors[:duedate_at].to_sentence %></span>
@@ -119,7 +115,7 @@
     </div>
     <div id="control-group">
       <div class="controls">
-      <%= link_to t('oigame.wizard.previous_step'), campaign_wizard_path(@campaign.slug, :first), :class => 'btn btn-warning' %>
+      <%= link_to t('oigame.wizard.previous_step'), campaign_wizard_path(@campaign.slug, :first), :class => 'btn btn-inverse' %>
       <%= f.submit t('oigame.wizard.create_campaign'), :class => 'btn btn-inverse' %>
     </div>
     </div>

@@ -7,7 +7,7 @@
 //@import "jquery.jqplot"
 //@import "jquery.jgrowl"
 @import "jquery.datePicker"
-//@import "jquery.ui.all"
+@import "jquery.ui.all"
 //@import "multi-select"
 @import "font-awesome"
 @import "prettify"
@@ -15,9 +15,8 @@
 @import "pages"
 @import "campaigns"
 
-
-
-@import url("style_common.css")
+@import "bootstrap-and-changes"
+@import "style_common"
 
 //@import url("style10.css")
 
@@ -223,7 +222,7 @@ ul.photo
     border-radius: 4px
 
 .contenedorcampaign
-  width: 56%
+  width: 90%
   float: left
   margin-left: 10%
   margin-bottom: 0px
@@ -296,7 +295,8 @@ ul.photo
     font-size: 16px
     background: #EB5E40
     border: 0px
-    padding: 10px 30px 10px 10px
+    padding: 15px
+    width: 90%
     -webkit-border-radius: 4px
     -moz-border-radius: 4px
     border-radius: 4px
@@ -385,6 +385,10 @@ button
   margin-top: 4%
   margin-bottom: 13px
 
+#body
+  height: 10em
+  font-size: 0.8em
+
 .view
   .mask, .content
     position: absolute
@@ -439,6 +443,10 @@ ul.photo li
 
 .welcome
   margin: 10px auto
+
+.welcome-campaign
+  margin: 10px auto 10px 65px
+  width: 100%
 
 .welinfo
   span.circle
@@ -558,7 +566,7 @@ span
     list-style-type: none
 
 #progressbar
-  width: 35%
+  width: 43%
   float: left
   color: #8C8C91
   font-size: 0.8em
@@ -568,7 +576,7 @@ span
     list-style-type: none
 
 #explain
-  width: 35%
+  width: 46%
   float: left
   color: #8C8C91
   font-size: 14px
@@ -849,7 +857,8 @@ ul.jcarorusel li img
   background-position: 0px 1px
 
 .sidefirma
-  width: 25%
+  width: 18em
+  padding: 1em
   float: right
   font-weight: bolder
   background-repeat: no-repeat
@@ -857,7 +866,6 @@ ul.jcarorusel li img
   background-size: 95%
   float: left
   background: #444
-  height: 299px
   background: #f0f0f0 url('az_subtle.png')
   text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
   box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.35)
@@ -945,7 +953,7 @@ div.normas
   padding-right: 6px
   font-weight: bold
 .campaign-info
-  width: 65%
+  width: 90%
   float: left
   padding: 2%
   padding-right: 2%
@@ -969,7 +977,7 @@ div.normas
       color: #1a1a1a
 
 fieldset,#campaign-info
-  width: 65%
+  width: 90%
   float: left
   padding: 2%
   padding-right: 2%
@@ -1023,6 +1031,7 @@ fieldset,#campaign-info
 /*T a b s
 
 #tabs4
+  margin-top: 2em
   font-size: 1em
   line-height: normal
   margin-left: 9.8%
@@ -1236,10 +1245,9 @@ fieldset,#campaign-info
     cursor: pointer
 
 #carta
-  width: 80%
+  width: 90%
   background: #f0f0f0 url('lightpaperfibers.png')
   font-family: Courier, Arial
-  width: 65%
   float: left
   padding: 2%
   padding-right: 3%
@@ -1314,3 +1322,6 @@ fieldset,#campaign-info
     color: #444
   ul
     margin-top: 5px
+
+.campaign-wrapper
+  margin-top: 2em

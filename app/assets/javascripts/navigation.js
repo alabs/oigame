@@ -1,4 +1,9 @@
 
+function navbar_change(section){
+  $('.nav li').removeClass('active');
+  $('#' + section).addClass('active');
+}
+
 function check_current_navbar(section){ 
   // comprueba en que URL nos encontramos y dependiendo de eso marca con .active
   // un link del header
@@ -10,36 +15,35 @@ function check_current_navbar(section){
   var section = section.split("#")[0];
   switch (section) {
     case "campaigns": 
-      $("#header-home").removeClass("active");
-      $("#header-campaigns").addClass("active");
+      navbar_change('header-campaigns');
       break;
     case "about":
-      $("#header-home").removeClass("active");
-      $("#header-about").addClass("active");
+      navbar_change('header-about');
       break;
     case "contact":
-      $("#header-home").removeClass("active");
-      $("#header-contact").addClass("active");
+      navbar_change('header-contact');
       break;
     case "users":
-      $("#header-home").removeClass("active");
-      $("#header-signup").addClass("active");
       break;
     case "donate":
-      $("#header-home").removeClass("active");
-      $("#header-donate").addClass("active");
+      navbar_change('header-donate');
+      break;
+    case "faq":
+      navbar_change('header-faq');
       break;
     case "help":
-      $("#header-home").removeClass("active");
-      $("#header-help").addClass("active");
-      generateTOC("#preguntas");
-      if (query) { goTo(query); }
+      navbar_change('header-help');
+      // $("#header-home").removeClass("active");
+      // $("#header-help").addClass("active");
+      // generateTOC("#preguntas");
+      // if (query) { goTo(query); }
       break;
     case "tutorial":
-      $("#header-home").removeClass("active");
-      $("#header-tutorial").addClass("active");
-      generateTOC("#tutorial");
-      if (query) { goTo(query); }
+      navbar_change('header-tutorial');
+      // $("#header-home").removeClass("active");
+      // $("#header-tutorial").addClass("active");
+      // generateTOC("#tutorial");
+      // if (query) { goTo(query); }
       break;
   }
 }
@@ -86,6 +90,17 @@ $(function() {
   $("#campaign_name").focus();
   $("#contact_name").focus();
 
-  //check_current_navbar(document.URL.split('/')[4]);
+  // dropdown de seleccion de idioma
+  var lang = $('#js-language-selector').data('lang');
+  $('option[data-lang="' + lang + '"]').attr('selected', 'selected');
+
+  $('#js-language-selector').change( function(){
+    document.location.href = $(this).val();  
+  });
+ 
+  $('.sidefirma').scrollToFixed();
+
+  check_current_navbar(document.URL.split('/')[4]);
+
 
 });
