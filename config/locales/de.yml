@@ -1,0 +1,182 @@
+--- 
+de: 
+  about: Über
+  accepted_cards: "Akzeptierte Karten"
+  access_your_account: Einloggen
+  activate: Aktivieren
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: "%{attribute} %{message} "
+      messages: 
+        accepted: "muss akzeptiert werden"
+        blank: "darf nicht leer sein"
+        confirmation: "stimmt mit der Bestätigung nicht überein"
+        empty: "darf nicht leer stehen"
+        equal_to: "muss gleich %{count} sein"
+        even: "muss gerade sein"
+        exclusion: "ist reserviert"
+        greater_than: "muss größer als %{count} sein"
+        greater_than_or_equal_to: "muss größer als oder gleich %{count} sein"
+        inclusion: "steht nicht in der Liste"
+        invalid: "ist nicht gültig"
+        less_than: "muss kleiner als %{count} sein"
+        less_than_or_equal_to: "muss kleiner als oder gleich zu %{count} sein"
+        not_a_number: "ist keine Zahl"
+        not_an_integer: "muss eine Ganzzahl sein"
+        odd: "muss ungerade sein"
+        taken: "wird schon benutzt"
+        too_long: "ist zu lang (maximal %{count} Zeichen)"
+        too_short: "ist zu kurz (mindestens %{count} Zeichen)"
+        wrong_length: "hat nicht die richtige Länge (genau %{count} Zeichen)"
+      template: 
+        body: "Probleme mit folgenden Feldern gefunden:"
+        header: 
+          one: "Dieser/diese %{model} konnte nicht gespeichert werden, weil 1 fehler gefunden wurde"
+          other: "Dieser/diese %{model} konnte nicht gespeichert werden, weil %{count} Fehler gefunden wurden"
+  add_credit: "Kredit hinfügen"
+  admin: 
+    actions: 
+      bulk_delete: 
+        breadcrumb: "Mehrere löschen"
+        bulk_link: "Ausgewählte %{model_label_plural} löschen"
+        menu: "Mehrere löschen"
+        title: "%{model_label_plural} löschen"
+      dashboard: 
+        breadcrumb: Bedienfeld
+        menu: Bedienfeld
+        title: "Site verwaltung"
+      delete: 
+        breadcrumb: Löschen
+        done: gelöscht
+        link: "'%{object_label}' löschen"
+        menu: Löschen
+        title: "%{model_label} '%{object_label}' löschen"
+      edit: 
+        breadcrumb: Bearbeiten
+        done: geändert
+        link: "Diesen %{model_label} bearbeiten"
+        menu: Bearbeiten
+        title: "%{model_label} '%{object_label}' bearbeiten"
+      export: 
+        breadcrumb: Exportieren
+        bulk_link: "ausgewählte %{model_label_plural} exportieren"
+        done: exportiert
+        link: "gefundene %{model_label_plural} exportieren"
+        menu: Exportieren
+        title: "%{model_label} exportieren"
+      history_index: 
+        breadcrumb: Verlauf
+        menu: Verlauf
+        title: "Verlauf für %{model_label_plural}"
+      history_show: 
+        breadcrumb: Verlauf
+        menu: Verlauf
+        title: "Verlauf für %{model_label} '%{object_label}' "
+      index: 
+        breadcrumb: "%{model_label_plural} "
+        title: "Liste von %{model_label_plural}"
+      new: 
+        breadcrumb: neu
+        done: erzeugt
+        link: "Ein neues %{model_label} hinzufügen"
+        menu: "Ein neues hinzufügen"
+        title: "Neues %{model_label} "
+      show: 
+        breadcrumb: "%{object_label} "
+        menu: zeigen
+        title: "Details von %{model_label} '%{object_label}' "
+      show_in_app: 
+        menu: "in app zeigen"
+    export: 
+      click_to_reverse_selection: "Klicken Sie um die Auswahl zu umzudrehen"
+      confirmation: "Exportieren an %{name} "
+      csv: 
+        col_sep: Säulentrenner
+        col_sep_help: "Leer lassen für Default ('%{value}') "
+        encoding_to: "verschlüsseln in"
+        encoding_to_help: "Ausgangsverschlüsselung auswählen. Leer lassen um die aktuelle Verschlüsselung (%{name}) nicht zu modifizieren."
+        header_for_association_methods: "%{name} [%{association}] "
+        header_for_root_methods: "%{name}"
+        skip_header: "ohne Header"
+        skip_header_help: "Header nicht hinzufügen (ohne Felderbeschreibung)"
+      display: "%{name}: %{type} zeigen"
+      empty_value_for_associated_objects: <leer>
+      fields_from: "Felder von %{name}"
+      fields_from_associated: "Felder von asozierten %{name}"
+      options_for: "Optionen für %{name}"
+      select: "Felder fürs Exportieren auswählen"
+    flash: 
+      error: "%{name} %{action} nicht"
+      model_not_found: "Das Modell '%{model}' konnte nicht gefunden werden"
+      noaction: "Keine Aktion durchgeführt"
+      object_not_found: "%{model} mit id '%{id} konnte nicht gefunden werden"
+      successful: "%{name} erfolgreich %{action} "
+    form: 
+      all_of_the_following_related_items_will_be_deleted: "Folgende zusammenhängende Elementen werden gelöscht:"
+      are_you_sure_you_want_to_delete_the_object: "Sind Sie sicher, dass Sie dieses %{model_name} löschen wollen?"
+      basic_info: "Grundlegende Informationen"
+      bulk_delete: "Folgende Objekte werden gelöscht (einige ihrer zusammenhängende Relationen könnten gelöscht oder elternlos gelassen werden):"
+      cancel: Abbrechen
+      char_length_of: "Länge von"
+      char_length_up_to: "Länge bis"
+      confirmation: "Ja, ich bin sicher"
+      new_model: "%{name} (neu)"
+      one_char: Zeichen
+      optional: optional
+      required: aufgefordert
+      save: speichern
+      save_and_add_another: "speichern und ein anderes hinzufügen"
+      save_and_edit: "speichern und bearbeiten"
+    home: 
+      name: Start
+    misc: 
+      add_filter: "Filter hinzufügen..."
+      add_new: "Ein neues hinzufügen"
+      ago: zurück
+      bulk_menu_title: "Ausgewählte Elemente..."
+      chose_all: "Alle auswählen"
+      chosen: "%{name} ausgewählt "
+      clear_all: "Alle löschen"
+      down: Unten
+      filter: Filtern
+      filter_date_format: TT/MM/JJ
+      log_out: Ausloggen
+      navigation: Navigation
+      navigation_static_label: Links
+      refresh: Aktualisieren
+      remove: Löschen
+      search: Suchen
+      show_all: "Alles zeigen"
+      up: Oben
+    pagination: 
+      next: "Nächstes &raquo;"
+      previous: "Voriges &laquo;"
+    table_headers: 
+      changes: Änderungen
+      created_at: Datum/Uhrzeit
+      item: Element
+      last_used: "Letzte Nutzung"
+      message: Nachricht
+      model_name: Modellname
+      username: Nutzer
+  already_participated: "Sie haben schon an dieser Kampagne teilgenommen. Vielen Dank!"
+  amount_select: "Betrag auswählen"
+  amount_to_donate: Spendbetrag
+  another_format: "Linien mit vier Leerzeichen am Anfang werden mit einem anderen Format behandelt:"
+  answers: Antworte
+  archive: archivieren
+  archived_campaign: "archivierte Kampagne"
+  archived_campaigns: "archivierte Kampagnen"
+  are_you_sure: "Sind Sie sicher?"
+  back: zurück
+  bold: fett
+  campaign_stats: Kampagne-Statistik
+  campaigns: Kampagen
+  cancel: löschen
+  cancel_account: "Mein konto löschen"
+  category: Kategorie
+  category_of_campaign: Kampagne-Kategorie
+  close: Schliessen
+  communicate: Kommuniziere
+  community: Gemeinschaft

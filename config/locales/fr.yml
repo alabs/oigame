@@ -1,0 +1,416 @@
+--- 
+fr: 
+  about: "À propos de"
+  accepted_cards: "Cartes acceptées"
+  access_your_account: "Connectez-vous à votre compte"
+  activate: Activer
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: "%{attribute} %{message}"
+      messages: 
+        accepted: "doit être accepté"
+        blank: "ne peut pas être vide"
+        confirmation: "ne coïncide pas avec la confirmation"
+        empty: "ne peut pas être vide"
+        equal_to: "Doit être égal à  %{count}"
+        even: "doit être encore"
+        exclusion: "est réservée"
+        greater_than: "Doit être supérieur à %{count} "
+        greater_than_or_equal_to: "Doit être supérieur à ou égal à %{count} "
+        inclusion: "pas inclus dans la liste"
+        invalid: invalide
+        less_than: "Doit être inférieur à %{count} "
+        less_than_or_equal_to: "Doit être inférieur à ou égal à %{count} "
+        not_a_number: "ce n'est pas un nombre"
+        not_an_integer: "doit être un nombre entier"
+        odd: "doit être impair"
+        record_invalid: "La validation a échoué: %{errors} "
+        taken: "déjà en cours d'utilisation"
+        too_long: "est trop long (maximum %{count} caractères)"
+        too_short: "est trop court (minimum  %{count} caractères)"
+        wrong_length: "est de mauvaise longueur (devrait faire %{count} caractères)"
+      template: 
+        body: "Il y a des problèmes avec les champs suivants:"
+        header: 
+          one: "Impossible d'enregistrer ce/cette %{model} parce qu'il a été constaté 1 erreur"
+          other: "Impossible d'enregistrer ce/cette %{model} car on a trouvé %{count} erreurs"
+  add_credit: "Ajouter du crédit"
+  admin: 
+    actions: 
+      bulk_delete: 
+        breadcrumb: "Supprimer plusieurs"
+        bulk_link: "Supprimer %{model_label_plural} sélectionnés"
+        menu: "Eliminer plusieurs"
+        title: "Eliminer %{model_label_plural} "
+      dashboard: 
+        breadcrumb: "Panneau de contrôle"
+        menu: "Panneau de contrôle"
+        title: "Administration de site"
+      delete: 
+        breadcrumb: Supprimer
+        done: Eliminé
+        link: "Eliminer '%{object_label}'"
+        menu: Supprimer
+        title: "Eliminer %{model_label} '%{object_label}'"
+      edit: 
+        breadcrumb: Éditer
+        done: Modifié
+        link: "Editer celui-là %{model_label} "
+        menu: Editer
+        title: "Editer %{model_label} '%{object_label}' "
+      export: 
+        breadcrumb: Exporter
+        bulk_link: "Exporter %{model_label_plural} sélectionnés"
+        done: exportés
+        link: "Exporter %{model_label_plural} trouvés"
+        menu: Exporter
+        title: "Exporter %{model_label}"
+      history_index: 
+        breadcrumb: Historique
+        menu: Historique
+        title: "Historique pour %{model_label_plural} "
+      history_show: 
+        breadcrumb: Historique
+        menu: Historique
+        title: "Historique pour %{model_label} '%{object_label}"
+      index: 
+        breadcrumb: "%{model_label_plural} "
+        menu: Liste
+        title: "Liste de %{model_label_plural}"
+      new: 
+        breadcrumb: Nouveau
+        done: créé(e)
+        link: "Ajouter un nouveau %{model_label}"
+        menu: "Ajouter nouveau"
+        title: "Nouveau %{model_label} "
+      show: 
+        breadcrumb: "%{object_label} "
+        menu: Monter
+        title: "Détails pour %{model_label} '%{object_label}'"
+      show_in_app: 
+        menu: "Afficher dans l'application"
+    export: 
+      click_to_reverse_selection: "Cliquer pour inverser la sélection"
+      confirmation: "Exporter à %{name} "
+      csv: 
+        col_sep: "Séparateur des colonnes"
+        col_sep_help: "Laisser blanc pour la valeur par défaut ('%{value}')"
+        default_col_sep: ","
+        encoding_to: "Encoder en"
+        encoding_to_help: "Choisisser l'encodage du fichier. Laisser vide pour conserver l'encodage de l'entrée (%{name})"
+        header_for_association_methods: "%{name} [%{association}] "
+        header_for_root_methods: "%{name} "
+        skip_header: "Pas d'entête"
+        skip_header_help: "Ne pas afficher l'entête (pas de description des champs)"
+      display: "Afficher %{name}: %{type}"
+      empty_value_for_associated_objects: <vide>
+      fields_from: "Champs de %{name}"
+      fields_from_associated: "Champs du %{name} associé"
+      select: "Sélectionnez les champs destinés à l'exportation"
+    flash: 
+      model_not_found: "Le model '%{model}'n'a pas pu être trouvé"
+      noaction: "N'a été effectué aucune action"
+      object_not_found: "%{model} con id '%{id}' n'a pas pu être trouvé"
+      successful: " %{name} %{action} avec succès"
+    form: 
+      all_of_the_following_related_items_will_be_deleted: "les elements suivants en relation peuvent être supprimés ou rester isolés"
+      are_you_sure_you_want_to_delete_the_object: "Etes-vous sûr de vouloir supprimer cette %{model_name} "
+      basic_info: "renseignements basiques"
+      bulk_delete: "les éléments suivants vont être supprimés, ce que peut supprimer ou laisser vacants certains de vos elements en relation"
+      cancel: annuler
+      char_length_of: "longueur de"
+      char_length_up_to: "longueur de ... à"
+      confirmation: "oui, je suis sûr"
+      new_model: "%{name} (nuevo) "
+      one_char: caractère
+      optional: optionnel
+      required: requis
+      save: sauvegarder
+      save_and_add_another: "sauvegarder et en rajouter un autre"
+      save_and_edit: "Sauvegarder puis ré-éditer"
+    home: 
+      name: Accueil
+    misc: 
+      add_filter: "Ajouter un filtre"
+      add_new: "Créer nouveau"
+      ago: "&laquo; Préc."
+      bulk_menu_title: "Articles sélectionnés ..."
+      chose_all: "Choisir tous"
+      chosen: "%{name} choisi"
+      clear_all: "Désélectionner tous"
+      down: Descendre
+      filter: filtrer
+      filter_date_format: dd/mm/yy
+      log_out: Déconnexion
+      navigation: Navigation
+      navigation_static_label: liens
+      refresh: actualiser
+      remove: supprimer
+      search: rechercher
+      show_all: "tout montrer "
+      up: "en haut"
+    pagination: 
+      next: suivant
+      previous: précédent
+      truncate: "..."
+    table_headers: 
+      changes: Changements
+      created_at: Date/Heure
+      item: Elément
+      last_used: "Dernier usage"
+      message: Message
+      model_name: "Nom du modèle"
+      records: Registres
+      username: Utilisateur
+  already_participated: "Vous avez déjà participé à cette campagne"
+  amount_select: "Sélectionnez la quantité"
+  amount_to_donate: Qua
+  another_format: "Quantité à donner"
+  answers: Réponses
+  archive: ENregistrer
+  archived_campaign: "Campagne enregistrée"
+  archived_campaigns: "Campagnes enregistrées"
+  are_you_sure: "Vous êtes sûr?"
+  back: Retourner
+  body_of_campaign: "Corps de la campagne"
+  body_of_campaign_help: "Texte de la campagne développé"
+  bold: "Caractères gras"
+  campaign_stats: "Statistiques de la campagne"
+  campaigns: Campagnes
+  cancel: Supprimer
+  cancel_account: "Supprimer mon compte"
+  category: Catégorie
+  category_of_campaign: "Catégorie campagne"
+  close: Cermer
+  communicate: Diffuse
+  community: Communauté
+  configuration: Configuration
+  contact: Contacter
+  contact_to: contacter
+  countries: Pays
+  create: Créer
+  create_account: "Créer un compte"
+  create_campaign: "Créer une campagne"
+  created_and_maintened: "Créé et maintenu par"
+  created_at: "Créé il ya"
+  created_by: "Créé par"
+  current_password: "Mot de passe actuel"
+  date: 
+    formats: 
+      default: "%d/%m/%Y "
+  datetime: 
+    distance_in_words: 
+      half_a_minute: demi-minute
+    prompts: 
+      day: Jour
+      hour: Heure
+      minute: Minutes
+      month: Mois
+      second: Secondes
+      year: An
+  days: Jours
+  deactivate: Désactiver
+  default_message: "Message par défaut"
+  default_message_body: "Corps du message par défaut"
+  default_message_body_help: "Message par défaut doit être envoyé à la campagne pour les participants qui ne veulent pas d'écrire votre propre message."
+  default_message_subject: "Poster objet par défaut"
+  delete: Enlever
+  deprioritize: "Retirer la priorité"
+  description: Description
+  descriptions: "Plate-forme pour la mobilisation citoyenne à travers le web"
+  developers: Développeurs
+  devise: 
+    confirmations: 
+      confirmed: "Votre compte a été confirmée. Déjà connecté"
+      send_instructions: "Vous recevrez un email avec les instructions sur la façon de confirmer votre compte en quelques minutes."
+      send_paranoid_instructions: "Si votre email existent dans notre base de données, vous recevrez un courriel avec des instructions sur la façon de confirmer votre compte en quelques minutes."
+    failure: 
+      already_authenticated: "Vous avez déjà connecté."
+      inactive: "Votre compte n'a pas encore été activé."
+      invalid: "Mot de passe ou email invalide."
+      invalid_token: "Code d'authentification invalide."
+      locked: "Votre compte est bloqué."
+      timeout: "Votre session a expiré, s'il vous plaît vous connecter à nouveau pour continuer."
+      unauthenticated: "Vous devez vous identifier ou vous inscrire avant de poursuivre."
+      unconfirmed: "Vous devez confirmer votre compte avant de continuer."
+    mailer: 
+      confirmation_instructions: 
+        subject: "[Oiga.me] Instructions de confirmation"
+      reset_password_instructions: 
+        subject: "[oiga.me] Récupération mot de passe instructions"
+      unlock_instructions: 
+        subject: "[oiga.me] Instructions pour déverrouiller"
+    passwords: 
+      send_instructions: "Vous recevrez un email avec les instructions sur la façon de réinitialiser votre mot de passe dans quelques minutes."
+      send_paranoid_instructions: "Si votre email existent dans notre base de données, vous recevrez un courriel avec des instructions sur la réinitialisation de votre mot de passe dans votre boîte de réception."
+      updated: "Votre mot de passe a été changé. Déjà connecté."
+      updated_not_active: "Votre mot de passe a été changé."
+    registrations: 
+      destroyed: "C'était agréable de vous avoir avec nous. Votre compte a été annulé."
+      reasons: 
+        inactive: inactif
+        locked: bloqué
+        unconfirmed: "non confirmée"
+      signed_up: "Bienvenue. Votre compte a été créé."
+      updated: "Votre compte a été mis à jour."
+      user: 
+        signed_up_but_unconfirmed: "Compte créé, vérifiez votre email pour le confirmer."
+  didnt_receive_confirmation_instructions: "Vous n'avez pas reçu les instructions de confirmation?"
+  doit_link: "Découvrez comment faire un don"
+  doit_title: "Rendre possible"
+  donate: Donner
+  donate_oigame: "Faire un don à oiga.me"
+  donation_secure: "Donation sécurisé"
+  download_participants: "Télécharger la liste des participants"
+  due_date_of_campaign: "Date d'échéance de la campagne"
+  edit: Éditer
+  edit_campaign: "Modifier Campagne"
+  email: E-mail
+  enable_comments: "Activer les commentaires"
+  errors: 
+    messages: 
+      expired: "a expiré, s'il vous plaît demander un nouveau"
+  example_email: votrenom@domaine.com
+  faxes_recipients: "Numéros de fax des destinataires"
+  faxes_recipients_help: "Liste des numéros de fax, un par ligne."
+  forgot_your_password: "Mot de passe oublié?"
+  go_to_home: "Revenir en haut"
+  greetings: "Un gros câlin équipe oiga.me et aLabs."
+  have_account: "Vous avez un compte?"
+  have_already_made: "personnes l'ont déjà fait"
+  help: Aider
+  hi: Bonjour
+  intro_of_campaign: "Présentation de la campagne"
+  italic: italique
+  languages: Langues
+  last_campaigns: "Dernières campagnes"
+  last_moderated_campaigns: "Dernières campagnes modérée"
+  mail_validate_4: "Il est très important de diffuser la campagne, nous vous encourageons à être le centre de l'action:"
+  mail_validate_6: "Fais le maximum de campagne dans les médias sociaux."
+  mail_validate_7: "Suivez sur Twitter @oigame (http://twitter.com/oigame) et Facebook (http://www.facebook.com/oiga.me). mail_validate_7"
+  members: membres
+  message: Message
+  message_received: "Message reçu"
+  moderate_campaigns: "Campagnes modérés"
+  my_account: "Mon compte"
+  name: Nom
+  number: 
+    currency: 
+      format: 
+        format: "%n %u "
+        precision: "2 "
+        unit: €
+    format: 
+      delimiter: ", "
+      precision: 3
+      separator: ". "
+    human: 
+      decimal_units: 
+        format: "%n %u"
+        units: 
+          billion: milliard
+          million: million
+          thousand: mille
+          trillion: milliard
+      format: 
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units: 
+        format: " 	%n %u "
+        units: 
+          gb: GB
+          kb: "KB "
+          mb: "MB "
+          tb: "TB "
+  of: de
+  oigame: 
+    campaigns: 
+      type: 
+        fax: "Envoi de fax"
+        mailing: "Envoi de e-mail"
+        petition: "Pétition en ligne"
+    privacy: 
+      consent_title: Consentement
+      donation_title: "Mention spéciale pour les données qui accompagnent les dons"
+      policy_title: "Politique de confidentialité"
+      terms_title: "Termes et conditions"
+    wizard: 
+      create_campaign: "Créer une campagne"
+      next_step: "Étape suivante"
+      previous_step: "Étape précédente"
+  option: Option
+  other_campaigns: "Participer à ces autres campagnes"
+  participants: Participants
+  participate: Participer
+  password: "Mot de passe"
+  password_confirmation: "Confirmer mot de passe"
+  please_fill_the_form: "S'il vous plaît remplir le formulaire"
+  prioritize: Prioriser
+  privacy_policy: "Politique de confidentialité"
+  propose_campaign: "Soumettre une campagne"
+  quoted: "texte des messages précédents"
+  recipients: Récipiendaires
+  recipients_help: "Liste des destinataires de courrier électronique, un par ligne."
+  recipients_show: "Votre message sera envoyé aux personnes suivantes"
+  remember_me: "Se souvenir de moi"
+  repeat_link: "Dernières campagnes"
+  request_new_password: "Demande de nouveau mot de passe"
+  resend_confirmation_instructions: "Renvoyer instructions de confirmation"
+  result: Résulter
+  sayit_1: "Que votre voix soit entendue."
+  sayit_2: "est une plate-forme sur laquelle vous pouvez monter des campagnes en ligne dans lequel le monde peut participer."
+  sayit_link: "Apprendre à utiliser oiga.me"
+  send_message: "Envoyer un message"
+  signup: "Créer un compte"
+  slide_3: "Vous pensez que vous pouvez changer le monde? Do it!"
+  slide_4: "Nous sommes les 99%, ensemble nous changeons le monde"
+  slogan_4: "L'ONT DÉJÀ FAIT"
+  some_participants: "Certains participants"
+  some_reserved_rights: "Certains droits réservés"
+  spread: "Dans votre web"
+  spread_form: "Placez le formulaire sur votre site Web"
+  stats: Statistiques
+  subject: Sujet
+  support: 
+    array: 
+      last_word_connector: ",et"
+      two_words_connector: et
+      words_connector: ", "
+    select: 
+      prompt: "S'il vous plaît sélectionner"
+  tags: Tags
+  tags_most_used: "Top tags"
+  target: "Objectif de messages envoyés"
+  thank_you: Merci
+  thanks_for_participating: "Merci de votre participation dans oiga.me."
+  thanks_for_your_donation: "Merci pour votre don"
+  there_are_currently: "Il ya actuellement"
+  there_was_a_problem: "Il y avait un problème"
+  this_license: "cette licence"
+  this_link: "ce lien"
+  time: 
+    formats: 
+      default: " %A, %d de %B de %Y %H:%M:%S %z "
+      long: "%d de %B de %Y %H:%M "
+      short: "%d de %b %H:%M "
+    pm: pm
+  time_left: Sont
+  token_invalid_body: "Nous n'avons trouvé aucune adhérence avec le token, vérifie l'e-mail que vous avez reçu et si vous ne fonctionne toujours pas nous le faire savoir à hola@oiga.me"
+  token_invalid_title: "Il y avait un problème"
+  type_of_campaign: "Type de campagne"
+  type_of_campaign_prompt: "Sélectionnez le type de campagne"
+  unauthorized: 
+    default: "Vous n'êtes pas autorisé à accéder à cette page"
+  update: "Mettre à jour"
+  user_create: "Si vous souhaitez proposer des campagnes ou de recevoir des nouvelles oiga.me, créez un compte d'utilisateur."
+  users: Utilisateurs
+  view_all_campaigns: "Voir toutes les campagnes"
+  we_need_your_pass: "Besoin de votre mot de passe actuel d'apporter des modifications"
+  welcome_bye: "Profitez du site et des flux."
+  welcome_message: "Pour créer des campagnes de mobilisation sociale. Ce site vous regardez est une version bêta, qui, bien que fonctionnelle n'est pas encore opérationnel. Donc vous pensez que les utilisateurs et le contenu que vous téléchargez sur le serveur peut être supprimé à tout moment. La première version stable sera disponible à l'adresse:"
+  welcome_you: "Bienvenue sur oiga.me, la plateforme créée par"
+  you_can_help: "Vous pouvez contribuer à cette campagne en l'étalant sur ​​vos réseaux sociaux"
+  you_will_get: "devra:"
+  your_email: "Votre e-mail"
