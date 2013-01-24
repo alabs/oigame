@@ -39,13 +39,13 @@ group :test, :development do
 end
 
 group :development do
-  gem 'pry-rails'
   # no me arranca el unicorn con ruby-debug19 (apardo)
   #gem 'ruby-debug19', :require => 'ruby-debug'
   gem "better_errors"
   gem "binding_of_caller"
 end
 
+gem 'pry-rails'
 gem 'devise'
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'rmagick'
@@ -63,14 +63,11 @@ gem 'redis-store'
 gem 'redis-rails'
 gem 'honeypot-captcha'
 #gem 'translate-rails3', :require => "translate", :git => 'http://github.com/alabs/translate'
-gem "sentry-raven", :git => "https://github.com/coderanger/raven-ruby.git", :ref => "aad856a8a4"
 #gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
 gem "rails3_acts_as_paranoid", "~>0.2.0"
 gem 'thinking-sphinx', '2.0.10'
 gem 'fb_graph'
 #gem 'kaminari'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
 
 gem "koala"
 
