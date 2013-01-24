@@ -10,6 +10,7 @@
 // require turbolinks
 //= require jquery
 //= require bootstrap
+//= require bootstrap-tabs
 //= csscustom
 //= require Markdown.Converter
 //= require Markdown.Editor

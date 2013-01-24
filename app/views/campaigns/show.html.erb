@@ -3,101 +3,127 @@
 <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
 
 <% end %>
-<div class="contenedorcampaign c">
-  <div class="img-wrap">
-    <div class="image-show-campaign"><%= image_tag @image_src %></div>
-    <div class="img-overlay text-show-campaign">
-      <h4><%= @campaign.name.capitalize %></h4>
-      <p><%= @description %></p>
-    </div>
-  </div>
-</div>
 
-<%= @campaign.ttype %>
-
-<div class="welcome c">
-  <div id="explain">
-    <ul>
-      <li>
-        <p><b>Creada por:</b>
-          <img class="creada" src="<%= avatar_url(@campaign.user.email) %>" alt="creador de campaña"/>
-          <span class="creador_name"><%= @campaign.user.name %></span>
-        </p>
-      </li>
-      <% if @campaign.ttype == "fax" %>
-        <li>
-          <strong><span>Credito</span>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€ (<%= link_to 'Añadir crédito',add_credit_campaign_path %>)
-        </li>
-      <% end %>
-      <li><strong>Publicada hace:</strong><%= time_ago_in_words(@campaign.created_at) %></li>
-      <li><strong>Quedan:</strong><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
-    </ul>
-  </div>
-
-  <div id="progressbar">
-    <% objective  = @campaign.target.to_i %>
-    <% gotten = @campaign.messages_count.to_i %>
-    <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
-    </progress>
-    <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> Firmas</h3>
-  <span class="circle2"><i class="icon-signin"></i>
-  <p id="necesarias">Faltan<span class="underlined"><%= objective - gotten %></span> más!</p>
-    </span>
-  </div>
-
-</div><!-- welcome -->
-<br clear="all">
-
-<div id="tabs4" >
-  <ul>
-    <li><a class="tab1" href="#" title="Descripción"><span class="active">Descripción</span></a></li>
-    <li><a href="#" title="Estadísticas"><span>Estadísticas</span></a></li>
-    <li><a href="#" title="Opciones"><span>Opciones</span></a></li>
-
-<div style="display:none;"
-  <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
-</div>
-  </ul>
-</div><!-- tabs -->
-<br clear="left">
-<div class="topcontent">
-  <div class="tab-content c">
-
-
-    <div id="description" class="active tab-pane">
-
-      <div id="campaign-info">
-        <%= @campaign.to_html(@campaign.body).html_safe %>
+<div class="row-fluid campaign-wrapper">
+  <div class="span8">
+    <div class="contenedorcampaign">
+      <div class="img-wrap">
+        <div class="image-show-campaign"><%= image_tag @image_src %></div>
+        <div class="img-overlay text-show-campaign">
+          <h4><%= @campaign.name.capitalize %></h4>
+          <p><%= @description %></p>
+        </div>
       </div>
-      <% if @message_body || @message_subject %>
-        <div id="carta">
-          <%= "<p><b>Asunto:</b> #{@message_subject}</p>".html_safe if @message_subject %>
-          <p><b>Mensaje:</b></p>
-          <p><%= @message_body %></p>
+    </div>
+
+    <div class="welcome-campaign c">
+      <div id="explain">
+        <ul>
+          <li>
+            <p><b><%= t(:created_by) %>:</b>
+              <img class="creada" src="<%= avatar_url(@campaign.user.email) %>" alt="<%= @campaign.user.name %>"/>
+              <span class="creador_name"><%= @campaign.user.name %></span>
+            </p>
+          </li>
+          <% if @campaign.ttype == "fax" %>
+            <li>
+              <strong><span><%= t(:credit) %></span>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %>€ (<%= link_to t(:add_credit),add_credit_campaign_path %>)
+            </li>
+          <% end %>
+          <li><strong><%= t(:published_at) %>:</strong><%= time_ago_in_words(@campaign.created_at) %></li>
+          <li><strong><%= t(:time_left) %>:</strong><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
+        </ul>
+      </div>
+
+      <div id="progressbar">
+        <% objective  = @campaign.target.to_i %>
+        <% gotten = @campaign.messages_count.to_i %>
+        <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
+        </progress>
+        <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= t(:firms) %></h3>
+      <span class="circle2"><i class="icon-signin"></i>
+      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= objective - gotten %></span> <%= t(:more) %>!</p>
+        </span>
+      </div>
+
+    </div><!-- welcome -->
+
+
+    <div style="    line-height: normal;
+    margin-left: 9.8%;
+    margin-top: 2em;
+    width: 90%;">
+
+      <ul class="nav nav-tabs">
+        <li><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
+        <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
+        <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
+      </ul>
+
+      <div class="topcontent tab-content">
+
+        <div id="stats" class="tab-pane fade">
+          <%= render :partial => "stats_chart", :locals => {:campaign => @campaign} %>
         </div>
-        <div class="sombracarta">
-          <%= image_tag 'shadow2.png' %>
+
+        <div id="opt" class="tab-pane fade">
         </div>
+
+        <div id="desc" class="active tab-pane">
+          <div id="campaign-info">
+            <%= @campaign.to_html(@campaign.body).html_safe %>
+          </div>
+          <% if @message_body || @message_subject %>
+            <div id="carta">
+              <%= "<p><b>#{t(:subject)}:</b> #{@message_subject}</p>".html_safe if @message_subject %>
+              <p><b><%= t(:message) %>:</b></p>
+              <p><%= @message_body %></p>
+            </div>
+            <div class="sombracarta">
+              <%= image_tag 'shadow2.png' %>
+            </div>
+          <% end %>
+
+        <% if @campaign.commentable %>
+            <p style="margin-bottom:30px;"></p>
+            <div id="participants">
+              <!-- FB COMMENTS -->
+              <div id="fb-root"></div>
+              <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
+              <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="2" data-width="600"></div>
+            </div><!-- participants -->
+        <% end %>
+
+        </div><!-- description -->
+      </div><!-- tab-content -->
+    </div><!-- inner-tabs -->
+
+  </div><!-- span8 -->
+
+  <div class="span4">
+    <div class="sidefirma">
+      <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
+        <%= render partial: 'fax_no_credit' %>
+      <% elsif @campaign.has_participated? current_user %>
+        <%= render partial: 'has_participated' %>
+      <% else %>
+        <%= render partial: 'sign_form' %>
       <% end %>
+      <div id="redes">
+        <div class="g-plusone" data-size="medium"></div>
+        <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>" class="twitter-hashtag-button">#<%= @campaign.hashtag %></a>
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+      </div>
+    </div><!-- sidefirma -->
+  </div> <!-- span4 -->
 
-    </div><!-- description -->
-  </div><!-- tab-content -->
-</div><!-- topfooter -->
-
-<div class="sidefirma c">
-  <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
-    <%= render partial: 'fax_no_credit' %>
-  <% elsif @campaign.has_participated? current_user %>
-    <%= render partial: 'has_participated' %>
-  <% else %>
-    <%= render partial: 'sign_form' %>
-  <% end %>
-  <div id="redes">
-    <div class="g-plusone" data-size="medium"></div>
-    <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>" class="twitter-hashtag-button">#<%= @campaign.hashtag %></a>
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-  </div>
-</div><!-- sidefirma -->
+</div> <!-- row-fluid -->
 
 <br clear="all">
 

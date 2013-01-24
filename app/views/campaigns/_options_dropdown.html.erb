@@ -1,9 +1,8 @@
 <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
 <% if permitted_to? :moderated, campaign || (permitted_to? :moderated, campaign && campaign.moderated?) || (permitted_to? :deactivate, campaign && campaign.published?) || (permitted_to? :participants, campaign && campaign.messages.count > 0) || (permitted_to? :edit, campaign) || ((permitted_to? :prioritize, campaign) && (permitted_to? :deprioritize, campaign)) || (permitted_to? :destroy, campaign) %>
-<div class="option-moderation">
-  <h4>Opciones</h4>
   <li class="dropdown">
-    <ul class="dropdown-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="<%= t(:options) %>"><span><%= t(:options) %></span></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
       <li>
         <% if permitted_to? :moderated, campaign %>
           <a href="mailto:<%= campaign.user.email %>">
@@ -115,5 +114,4 @@
       <% end %>
     </ul><!-- .dropdown-menu -->
   </li><!-- .dropdown -->
-  </div>
 <% end %>
