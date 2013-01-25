@@ -1,0 +1,616 @@
+--- 
+eu: 
+  about: "Guri buruz"
+  accepted_cards: "Onartutako txartelak"
+  access_your_account: "Zure kontura sartu"
+  activate: Gaitu
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: "%{attribute} %{message} "
+      messages: 
+        accepted: "onartua izan behar da"
+        blank: "ezin da zuri egon"
+        confirmation: "ez du baieztapenarekin bat egiten"
+        empty: "ezin da hutsik egon"
+        equal_to: "%{count} izan behar da"
+        even: "bikoitia izan behar da"
+        exclusion: "erreserbatua dago"
+        greater_than: "%{count} baino handiagoa izan behar da"
+        greater_than_or_equal_to: "%{count} baino handiagoa edo berdina izan behar da"
+        inclusion: "ez dago zerrendan"
+        invalid: "ez da zuzena"
+        less_than: "%{count} baino txikiagoa izan behar da"
+        less_than_or_equal_to: "%{count} baino handiago edo berdina izan behar da"
+        not_a_number: "ez da zenbakia"
+        not_an_integer: "zenbaki osoa izan behar da"
+        odd: "bakoitia izan behar da"
+        record_invalid: "Baieztapenak huts egin du: %{errors}"
+        taken: "dagoeneko erabilia dago"
+        too_long: "luzeegia da (%{count} karaktere gehienez) "
+        too_short: "motzegia da (%{count} karaktere gutxienez) "
+        wrong_length: "ez du luzera egokia (%{count} karaktere zehatz) "
+      template: 
+        body: "Ondoko eremuekin arazoak aurkitu dira:"
+        header: 
+          one: "Ezin izan da %{model} hau gorde errore 1 aurkitu delako"
+          other: "Ezin izan dira %{model} hauek gorde %{count} errore aurkitu direlako"
+  add_credit: "Kreditua gehitu"
+  admin: 
+    actions: 
+      bulk_delete: 
+        breadcrumb: "Bizpahiru ezabatu"
+        bulk_link: "Hautatutako %{model_label_plural} ezabatu"
+        menu: "Bizpahiru ezabatu"
+        title: "Ezabatu %{model_label_plural} "
+      dashboard: 
+        breadcrumb: Kontrol-panela
+        menu: Kontrol-panela
+        title: "Gunearen administrazioa"
+      delete: 
+        breadcrumb: Ezabatu
+        done: ezabatua
+        link: "Ezabatu '%{object_label}' "
+        menu: Ezabatu
+        title: "Ezabatu %{model_label} '%{object_label}' "
+      edit: 
+        breadcrumb: Editar
+        done: aldatua
+        link: "Editatu %{model_label} hau"
+        menu: Editatu
+        title: "Editatu %{model_label} '%{object_label}' "
+      export: 
+        breadcrumb: Esportatu
+        bulk_link: "Hautatutako %{model_label_plural} esportatu"
+        done: esportatuak
+        link: "Aurkitutako %{model_label_plural} esportatu"
+        menu: Esportatu
+        title: "Esportatu %{model_label} "
+      history_index: 
+        breadcrumb: Historia
+        menu: Historia
+        title: "%{model_label_plural}-rako historia"
+      history_show: 
+        breadcrumb: Historia
+        menu: Historia
+        title: "%{model_label} '%{object_label}'-rako historia"
+      index: 
+        breadcrumb: "%{model_label_plural}-(r)ak"
+        menu: Zerrendatu
+        title: "%{model_label_plural}-(e)n zerrenda"
+      new: 
+        breadcrumb: Berria
+        done: sortua
+        link: "Gehitu %{model_label} berria"
+        menu: "Gehitu berria"
+        title: "%{model_label}  berria"
+      show: 
+        breadcrumb: "%{object_label} "
+        menu: Erakutsi
+        title: "%{model_label} '%{object_label}'-en xehetasunak"
+      show_in_app: 
+        menu: "Erakutsi App-ean"
+    export: 
+      click_to_reverse_selection: "Klik egin hautaketa alderantzizkatzeko"
+      confirmation: "%{name}-ra esportatu"
+      csv: 
+        col_sep: "Zutabe bereizlea"
+        col_sep_help: "Hutsik utzi lehenetsitakoarentzat ('%{value}')"
+        default_col_sep: ","
+        encoding_to: Kodifikatu
+        encoding_to_help: "Irtete kodifikazioa aukeratu. Hutsik utzi oraingo kodifikazioa (%{name}) erabiltzeko"
+        header_for_association_methods: "%{name} [%{association}] "
+        header_for_root_methods: "%{name} "
+        skip_header: "Goibururik gabea"
+        skip_header_help: "Goibururik ez gehitu (eremuen deskribapenik gabea)"
+      display: "%{name} erakutsi: %{type}"
+      empty_value_for_associated_objects: <hutsik>
+      fields_from: "%{name}-ren eremuak"
+      fields_from_associated: "Loturiko %{name}-ren eremuak"
+      options_for: "%{name}-ren aukerak"
+      select: "Esportatzeko eremuak aukeratu"
+    flash: 
+      error: "%{name} ez da %{action}"
+      model_not_found: "Ezin izan da aurkitu '%{model}' modeloa"
+      noaction: "Ez da inongo ekintzarik gauzatu"
+      object_not_found: "Ezin izan da aurkitu '%{id}' id-a daukan %{model} modeloa."
+      successful: "%{name} arrakastaz %{action} gauzatu du"
+    form: 
+      all_of_the_following_related_items_will_be_deleted: "Aukeratzen diren hurrengo elementuak ezabatuak izan daitezke edo umezurtz gelditu daitezke:"
+      are_you_sure_you_want_to_delete_the_object: "Zihur zaude %{model_name} hau ezabatu nahi duzula"
+      basic_info: "Funtsezko informazioa"
+      bulk_delete: "Hurrengo objektuak ezabatuak izango dira,  bere dependentziak ezabatuz edo umezurtz utziz:"
+      cancel: Ezeztatu
+      char_length_of: "-ren luzera"
+      char_length_up_to: "-rainoko luzera"
+      confirmation: "Bai, ziur nago"
+      new_model: "%{name} (berria)"
+      one_char: karakterea
+      optional: Hautazkoa
+      required: Beharrezkoa
+      save: Gorde
+      save_and_add_another: "Gore eta gehitu beste bat"
+      save_and_edit: "Gorde eta editatu"
+    home: 
+      name: Hasiera
+    misc: 
+      add_filter: "Gehitu iragazkia..."
+      add_new: "Gehitu berria"
+      ago: atzera
+      bulk_menu_title: "Hautatutako elementuak..."
+      chose_all: "Denak hautatu"
+      chosen: "%{name} hautatua"
+      clear_all: "Denak ezabatu"
+      down: Behera
+      filter: Iragazi
+      filter_date_format: yy/mm/dd
+      log_out: Irten
+      navigation: Nabigazioa
+      navigation_static_label: Estekak
+      refresh: Eguneratu
+      remove: Ezabatu
+      search: Bilatu
+      show_all: "Erakutsi dena"
+      up: Gora
+    pagination: 
+      next: "Hurrengoa &raquo; "
+      previous: "&laquo; Aurrekoa"
+      truncate: "..."
+    table_headers: 
+      changes: Aldaketak
+      created_at: Data/Ordua
+      item: Elementua
+      last_used: "Azken erabilera"
+      message: Mezua
+      model_name: "Modeloaren izena"
+      records: Erregistroak
+      username: Erabiltzaileak
+  already_participated: "Dagoeneko parte hartu duzu kanpaina honetan. Eskerrik asko!"
+  amount_select: "Hautatu kopurua"
+  amount_to_donate: "Dohaintzan eman beharreko kopurua"
+  another_format: "Lau espaziorekin hasten diren lerroak beste formatu bat dute."
+  answers: Erantzunak
+  archive: Artxibatu
+  archived_campaign: "Kanpaina artxibatua"
+  archived_campaigns: "Artxibatutako kanpainak"
+  are_you_sure: "Ziur zaude?"
+  back: Itzuli
+  body_of_campaign: "Kanpainaren gorputza"
+  body_of_campaign_help: "Kanpainaren testu landua"
+  bold: lodia
+  campaign_stats: "Kanpainaren estatistikak"
+  campaigns: Kanpainak
+  cancel: Ezeztatu
+  cancel_account: "Nire kontua ezeztatu"
+  category: Atalak
+  category_of_campaign: "Kanpainaren atala"
+  close: Itxi
+  communicate: Zabaldu
+  community: Komunitatea
+  configuration: Konfogurazioa
+  contact: Kontaktua
+  contact_to: "harremanetan jarri"
+  countries: Estatua
+  create: Sortu
+  create_account: "Sortu kontua"
+  create_campaign: "Sortu kanpaina"
+  created_and_maintened: "Sortzaile eta mantentzailea: "
+  created_at: "Noiz sortua:"
+  created_by: "Nork sortua:"
+  current_password: "Egungo pasahitza"
+  date: 
+    abbr_day_names: 
+      - iga
+      - asl
+      - asr
+      - asz
+      - osg
+      - osr
+      - lar
+    abbr_month_names: 
+      - ~
+      - urt
+      - ots
+      - mar
+      - api
+      - mai
+      - eka
+      - uzt
+      - abu
+      - ira
+      - urr
+      - aza
+      - aben
+    day_names: 
+      - igandea
+      - astelehena
+      - asteartea
+      - asteazkena
+      - osteguna
+      - ostirala
+      - larunbata
+    formats: 
+      default: "%Y/%m/%d"
+      long: "%Y(e)ko %B(a)k %d"
+      short: "%b(e)ko %da"
+    month_names: 
+      - ~
+      - urtarrilla
+      - otsaila
+      - martxoa
+      - apirila
+      - maiatza
+      - ekaina
+      - uztaila
+      - abuztua
+      - iraila
+      - urria
+      - azaroa
+      - abendua
+    order: 
+      - !ruby/symbol day
+      - !ruby/symbol month
+      - !ruby/symbol year
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "ordu 1 inguru"
+        other: "%{count} ordu inguru"
+      about_x_months: 
+        one: "hilabete 1 inguru"
+        other: "%{count} hilabete inguru"
+      about_x_years: 
+        one: "urte 1 inguru"
+        other: "%{count} urte inguru"
+      almost_x_years: 
+        one: "ia urte 1"
+        other: "ia %{count} urte"
+      half_a_minute: "minutu erdi"
+      less_than_x_minutes: 
+        one: "minutu 1 baino gutxiago"
+        other: "%{count} minutu baino gutxiago"
+      less_than_x_seconds: 
+        one: "segundu 1 baino gutxiago"
+        other: "%{count} segundu baino gutxiago"
+      over_x_years: 
+        one: "urte 1 baino gehiago"
+        other: "%{count} urte baino gehiago"
+      x_days: 
+        one: "egun 1"
+        other: "%{count} egun"
+      x_minutes: 
+        one: "minutu 1"
+        other: "%{count} minutu"
+      x_months: 
+        one: "hilabete 1"
+        other: "%{count} hilabete"
+      x_seconds: 
+        one: "segundu 1"
+        other: "%{count} segundu"
+    prompts: 
+      day: Eguna
+      hour: Ordua
+      minute: Minutuak
+      month: Hilabetea
+      second: Segunduak
+      year: Urtea
+  days: egun
+  deactivate: Ezgaitu
+  default_message: "Lehenetsitako mezua"
+  default_message_body: "Lehenetsitako mezuaren gorputza"
+  default_message_body_help: "Kanpainan bidaliko den lehenetsitako mezua, partaideek mezu egokitua idatzi nahi ez dutenetan."
+  default_message_subject: "Lehenetsitako mezuaren gaia"
+  delete: Ezabatu
+  deprioritize: "Lehentasuna kentu"
+  description: Deskribapena
+  descriptions: "Web bitartezko herri-mobilizazio plataforma"
+  developers: Garatzaileak
+  devise: 
+    confirmations: 
+      confirmed: "Zure kontua baieztatua izan zen. Saioa hasi zenuen."
+      send_instructions: "Zure kontua konfirmatzeko argibideak dakartzan eposta bat jasoko duzu hurrengo minutuetan."
+      send_paranoid_instructions: "Zure eposta gure datubasean bada, zure kontua konfirmatzeko argibideak dakartzan eposta bat jasoko duzu hurrengo minutuetan."
+    failure: 
+      already_authenticated: "Saioa hasi duzu."
+      inactive: "Zure kontua ez da oraindik gaitu."
+      invalid: "Pasahitz edo e-posta okerra."
+      invalid_token: "Autentikazio kode baliogabea."
+      locked: "Zure kontua blokeatuta dago."
+      timeout: "Zure saioa iraungi egin da, mesedez jarraitzeko hasi saioa berriro."
+      unauthenticated: "Erregistratzea edo saioa hastea beharrezkoa da aurrera jarraitzeko."
+      unconfirmed: "Zure kontua konfirmatzea beharrezkoa da aurrera jarraitzeko."
+    mailer: 
+      confirmation_instructions: 
+        subject: "[oiga.me] Konfirmazio argibideak"
+      reset_password_instructions: 
+        subject: "[oiga.me] Pasahitza berreskuratzeko argibideak"
+      unlock_instructions: 
+        subject: "[oiga.me] Desblokeatzeko argibideak"
+    omniauth_callbacks: 
+      failure: "Ez zera baimendua izan %{kind} konturako zeren eta \"%{reason}\"."
+      success: "Ongi baimendua izan zera %{kind} konturako."
+    passwords: 
+      send_instructions: "Zure pasahitza berrezartzeko argibideak dakartzan eposta bat jasoko duzu hurrengo minutuetan."
+      send_paranoid_instructions: "Zure eposta gure datubasean badago, zure pasahitza berrezartzeko argibideak dakartzan eposta bat jasoko duzu hurrengo minutuetan."
+      updated: "Zure pasahitza aldatu da. Saioa hasi duzu."
+      updated_not_active: "Zure pasahitza aldatu da."
+    registrations: 
+      destroyed: "Atsegina izan da gure artean edukitzea. Zure kontua ezeztatua izan da."
+      inactive_signed_up: "Zure kontua sortu da. Hala ere, ezin duzu saioa hasi zeren eta zure kontua %{reason} dago. Zure eposta begiratu kontua aktibatzeko."
+      reasons: 
+        inactive: ezgaitua
+        locked: blokeatua
+        unconfirmed: "baieztatu gabea"
+      signed_up: "Ongi etorri. Zure kontua sortu da."
+      updated: "Zure kontua eguneratu da."
+      user: 
+        signed_up_but_unconfirmed: "Kontua sortu da. Berrikusi zure e-posta kontua baieztatzeko."
+    sessions: 
+      signed_in: "Saioa hasia."
+      signed_out: "Saioa amaitua."
+    unlocks: 
+      send_instructions: "Zure kontua desblokeatzeko argibideak jasoko dituzu minutu gutxi barru."
+      send_paranoid_instructions: "Zure kontua existitzen bada, zure kontua desblokeatzeko argibideak jasoko dituzu minutu gutxi barru."
+      unlocked: "Zure kontua desblokeatua izan da. Saioa hasi duzu."
+  didnt_receive_confirmation_instructions: "Konfirmazio argibideak jaso dituzu?"
+  doit_1: Ahalbideratu...
+  doit_2: "boteretsuei milaka eta milaka telefono dei eta fax bidali ahal izatea. Hobetu, dohaintza egin, ezagutzera eman, idatzi kodea."
+  doit_link: "Informatu zaitez dohaintza nola egin"
+  doit_title: "Egintzazu posible"
+  donate: "Dohaintza egin"
+  donate_oigame: "oiga.me-ri dohaintza egin"
+  donation_info_1: "oiga.me-k bere lantaldea ahalik eta txikiena mantentzen du gastuak ere baxuak mantentzeko. Gardentasun ekonomikoa praktikatzen dugu urtero dohaintzen bidez irabazitakoa eta eduki diren gastuak argitaratuz."
+  donation_info_2: "Irabazi asmorik gabeko erakunde independente bezala, aLabs-ek dohaintza bakoitzaren bidez jasotako dirua oiga.me mantendu eta bultzatzera zuzentzen du. Zure laguntzarekin, milaka pertsonek haien ahotsa altxatu eta mundua aldatzeko koordinatzea lortu dezakegu, zure dohaintzak zuzenean bermatzen du milaka pertsonek aukera izatea antolatu eta inpaktu handiko ekintzak egiteko."
+  donation_problem: "Arazo bat egon da oiga.me-ra egin duzun dohaintzarekin eta transakzioa ezin izan da gauzatu, beraz zure kontutik ez da inongo dirurik kendu. Saiatu zaitez prozesua berriro egiten, arazoak egoten jarraitzen badute, jarri zaitez kontaktuan aLabs-eko taldearekin donaciones[a-bildua]alabs.es epostara idatziz."
+  donation_secure: "Dohaintza segurua"
+  donation_secure_info: "aLabs elkarteak ez du dohaintzak gauzatzen dituzten erabiltzaileen kreditu txartelen inongo informaziorik gordetzen, egiten diren dohaintzak zuzenean Banestoren TPV ordainketa sistemarekin prozesatzen dira. Ordaintzeko sistema seguru honekin datuak SSL bidez zifratzen dira inora bidali aurretik. Inongo arazorik baduzu sistema hau erabiltzeko edo galdera edo gomendiorik baduzu, jarri aLabs-ekin kontaktuan donaciones[a-bildua]alabs.es epostaren bidez."
+  download_participants: "Partaideen zerrenda deskargatu"
+  due_date_of_campaign: "Kanpainaren iraungitze data"
+  edit: Editatu
+  edit_campaign: "Kanpaina editatu"
+  email: "Posta elektronikoa"
+  enable_comments: "Iruzkina gaitu"
+  errors: 
+    messages: 
+      already_confirmed: "konfirmatua izan da, saiatu mesedez saioa hasten"
+      expired: "iraungi egin da, eskatu mesedez berria"
+      not_found: "ez da aurkitu"
+      not_locked: "ez zegoen blokeatuta"
+      not_saved: 
+        one: "%{resource} gordetzeko orduan errore bat gertatu da:"
+        other: "%{count} errore gertatu dira %{resource} gordetzeko orduan:"
+  example_email: zureizena@domeinua.com
+  faxes_recipients: "Hartzaileen fax zenbakiak"
+  faxes_recipients_help: "Fax zenbakien zerrenda, lerro bakoitzean bat."
+  firms: Sinadurak
+  forgot_your_password: "Zure pasahitza ahaztu duzu?"
+  go_to_home: "Itzuli hasierara"
+  greetings: "oiga.me eta aLabs-eko lankideen partez besarkada handi bat."
+  have_account: "Konturik baduzu"
+  have_already_made: "pertsonek iadanik egin dute"
+  help: Laguntza
+  helpers: 
+    page_entries_info: 
+      more_pages: 
+        display_entries: "<b>%{total}</b>-tik <b>%{first}&nbsp;-&nbsp;%{last}</b> %{entry_name} erakusten"
+      one_page: 
+        display_entries: 
+          one: "<b>1</b> %{entry_name} erakusten"
+          other: "<b>%{count}</b> %{entry_name}-ak erakusten "
+          zero: "Ez da %{entry_name}-ik aurkitu"
+  hi: Kaixo
+  home: Hasiera
+  i_want_to_receive_news: "oiga.me-ren albisteak jaso nahi ditut"
+  if_you_write: "idazten baduzu"
+  image_of_campaign: "Kanpainaren irudia"
+  important_notice: "Ohar garrantzitsua"
+  integrate_form: "Formularioa integratu."
+  integrate_form_explanation_1: "Kanpaina honen formularioa zure web orrian agertzeko, kopiatu eta itsatsi ondorengo Javascript kodea agertzea nahi duzun tokian:"
+  integrate_form_explanation_2: "Kodea ez badu funtzionatzen, Javascript eta iframe-rik gabeko HTML garbia den beste bertsio hau ere probatu dezakezu:"
+  intro_limit: "500 karaktere du muga bezala"
+  intro_of_campaign: "Kanpainaren hitzaurrea"
+  intro_of_campaign_help: "Kanpainaren sarreratxoa, testu hau kanpainen zerrendan agertzen da."
+  italic: kurtsiba
+  join: "Bat egin"
+  join_myself: Firmatu
+  join_oigame: "oiga.me-rekin bat egin!"
+  join_this_campaign: "Kanpaina honekin bat egin"
+  keywords: "oiga.me, plataforma, mobilizazioa, webgunea, kanpaina, kanpainak"
+  languages: Hizkuntzak
+  last_campaigns: "Azkeneko kanpainak"
+  last_moderated_campaigns: "Azkeneko moderatuta dauden kanpainak"
+  license_pre: "Kontrakoa esaten ez bada, webgune honen edukiak"
+  listen_your_voice: "Zure ahotsa entzun dadila! Kanpainan parte hartzeko idatzi ezazu hemen zure mezua, gu arduratuko gera erantzule guztiei era eraginkorrean iristeaz."
+  login: "Saioa hasi"
+  logout: Deskonektatu
+  mail_validate_3: "Ez bazara zu izan kanpaina honetara atxikitu dena, ez hartu kontutan mezu hau."
+  mail_validate_4: "Oso garrantzitsua da kanpainaren berri ematea, zu zeu bere zentroa izatera bultzatzen zaitugu:"
+  mail_validate_6: "Kanpainaren berri eman sare sozialetan."
+  mail_validate_7: "Jarraitu @oigame Twitter-ren (http://twitter.com/oigame) eta Facebook-en (http://www.facebook.com/oiga.me). "
+  make_member: "Egin zaitez kide orain"
+  markdown_help_show: "ikusi markaketaren laguntza"
+  maximize: Maximizatu
+  may_your_voice: "Zure ahotsa entzun dadila! Kanpainan parte hartzeko sar ezazu zure eposta eta klik egin bat egiteko botoian."
+  may_your_voice_signed: "Zure ahotsa entzun dadila! Kanpainan parte hartzeko egin klik bat egiteko botoian."
+  media: Media
+  members: kideak
+  message: Mezua
+  message_info: "Zure kanpaina eraginkorra izan dadin, zure mezua errespetuarekin idatzia izan dadila gomendatzen dizugu, irmoa eta adierazgarria izan daiteke eta gure esperientziak dio mezuak jasotzen dituztenak askoz ere harkorragoak direla errespetuarekin tratatzen bazaie. Esaiezu zergatik ez zauden ados egiten ari direnarekin, esaiezu zergatik eta esaiezu nola nahiko zenuke gauzak egitea."
+  message_received: "Mezua iritsi da"
+  minimal_size: "500x400ko tamaina eduki behar du"
+  moderate_campaigns: "Kanpainak moderatu"
+  my_account: "Nire kontua"
+  name: Izena
+  name_and_surname: "Izen abizenak"
+  name_of_campaign: "Kanpainaren izena"
+  next_you_have_info: "Ondoren kanpainaren informazioa duzue:"
+  no_account_yet: "Ez duzu konturik oraindik?"
+  no_campaigns: "Oraindik ez dago kanpainarik. Bat proposatu dezakezu."
+  number: 
+    currency: 
+      format: 
+        delimiter: ","
+        format: "%n %u"
+        precision: 2
+        separator: "."
+        unit: €
+    format: 
+      delimiter: ","
+      precision: 3
+      separator: "."
+    human: 
+      decimal_units: 
+        format: "%n %u"
+        units: 
+          billion: "mila milioi"
+          million: milioi
+          quadrillion: "mila bilioi"
+          thousand: mila
+          trillion: bilioi
+      format: 
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units: 
+        format: "%n %u"
+        units: 
+          byte: 
+            one: Byte
+            other: Byte
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+  number_of_people: "Zure ustez, kanpainara batuko den pertsona kopurua"
+  of: "-ren"
+  oigame: 
+    campaigns: 
+      type: 
+        fax: "Fax-en bidaltzea"
+        mailing: "Eposten bidaltzea"
+        petition: "Sareren bitarteko eskaria"
+    privacy: 
+      consent_1: "Erabiltzaileak ez daude behartuak inongo datu pertsonalik ematera webgunea erabiltzeko. Hala ere, aLabs-en proiektu ezberdinen araberako datu pertsonal batzuk ematea beharrezkoa izan daiteke. Datu hauek benetazkoak izan behar dira."
+      consent_title: Adostasuna
+      data_reg_1: "oiga.me-n erregistratzen zarenean borondatez gordeak, babestuak eta webgune honetarako bakarrik erabiliak izango diren datu pertsonal batzuk ematen dituzu."
+      data_reg_2: "Webgune honetako kanpaina batean parte hartzean, parte-hartzaileen eta ekintzen erregistro bat gordetzen da helburu estatistikoentzat. Erabiltzaileak aLabs elkarteari espreski baimena ematen dio kanpaina formularioan sartzen dituen datuak (Izen deiturak, abizenak eta eposta helbidea) kanpaina hori zuzenduta dagoen pertsona edo entitateari emateko."
+      data_reg_title: "Zer gertatzen da nire datuekin erregistratzen naizenean? Eta kanpaina batean parte hartzen dudanean?"
+      donation_1: "aLabs-i dohaintza bat egin nahi badiozu zure kreditu txartelaren eta bankuaren datuak behin bakarrik erabiliko dira, gure Internet bidezko ordainketa seguruaren sistemaren pean. aLabs-ek ez du zure kreditu txartelaren edo beste datu bankarien informaziorik gordetzen."
+      donation_title: "Aipamen berezia dohaintzak egiteko datuen inguruan"
+      final: "Edozein duda izan ezkero info[a-bildua]oiga.me eposta helbidera idatzi dezakezu gurekin kontaktuan jartzeko"
+      legal_notice_1: "Pribatutasun politika hau irabazi-asmorik gabeko aLabs elkartearen ('aLabs' aurrerantzean) eta oiga.me webgunea kontrolatzen duten beste entitateen oiga.me (aurrerantzean 'webgune') domeinuaren pean dauden web orri guztietara aplikatzen da."
+      legal_notice_2: "aLabs-ek webgunearen bidez erabiltzaileei aLabs-ek edo besteek sortutako informazioari sarrera ahalbideratzen du."
+      legal_notice_3: "Webgunean nabigatzeak erabiltzailearen baldintza ematen ditu eta abisu legal honen eta aurrerantzean azaltzen diren termino eta baldintza guztiak erreserbarik gabe onartzen direla esan nahi du."
+      legal_notice_title: "Ohar legala"
+      link_title: Estekak
+      lopd_cancel_2: "Ekintza hauek gauzatzeko eposta hau da: lopd[a-bildua]alabs.es"
+      lopd_resp_title: "Datu pertsonalen arduraduna"
+      minors_title: Adingabekoak
+      policy_1: "aLabs-ek zure datu pertsonalak bere eskura dauden bitarteko guztiekin babesteko eta webgunearentzako edo zuk kontsentitutako helburuentzat bakarrik erabiltzeko konpromisoa hartzen du. Zurekin hartzen dugun konpromiso hau ezagutu behar dituzun beste baldintza batzuk ditu ere."
+      policy_title: "Pribatutasun politika"
+      relevant_info_1: "Cookie-ak: aLabs-ek bisitarien estatistikak sortzeko cookie-ak erabili ditzake.  Cookie-ak desaktibatu nahi badituzu, zure arakatzailearen aukeren bidez egin dezakezu baino baliteke webgunearen atal ezberdinak erabiltzea ezinezkoa izatea."
+      relevant_info_2: "Miaketa: Erabiltzaileei zerbitzu hobeagoa emateko asmoarekin, webgune honen trafikoaren datuak ikertzen ditugu. Horretarako IP helbideen erregistro bat mantentzen dugu, bisitak eta ematen ditugun zerbitzuak hobeto ulertzeko."
+      relevant_info_title: "Interesa duen informazioa"
+      terms_title: "Termino eta baldintzak"
+    wizard: 
+      create_campaign: "Kanpaina sortu"
+      next_step: "Hurrengo hurratsa"
+      previous_step: "Aurreko hurratsa"
+  only_for_donations: "Dohaintzetarako soilik ezinbestekoa"
+  option: Aukera
+  other_campaigns: "Parte hartu beste kanpaina hauetan"
+  our_social_council: "Gure kontseilu sozialak ohartarazten du: oiga.me onuragarria izan daiteke zure estatuaren osasun demokratikoarentzat eta gizartearen parte-hartze mailak igo."
+  own_message: "Nire mezua idatzi nahi dut"
+  participants: Partaideak
+  participate: "Parte hartu"
+  password: Pasahitza
+  password_confirmation: "Pasahitza baieztatu"
+  please_fill_the_form: "Formulario bere mesedez"
+  prioritize: "Lehentasuna eman"
+  privacy_policy: "Pribatutasun politika"
+  propose_campaign: "Kanpaina bat proposatu"
+  published_at: "Noiz argitaratua:"
+  quoted: "aipatutako testua"
+  recipients: Hartzaileak
+  recipients_help: "Hartzaileen eposten zerrenda, bat lerro bakoitzeko."
+  recipients_show: "Zure mezua hurrengo pertsonei bidaliko zaie"
+  remember_me: "Gogoratu nire datuak"
+  repeat_1: "Bat egin protestarekin, zure ahotsa besteenari gehitu. Parte hartu milaka eposta modu masiboan bidaltzen, filtratu ezin duten era batean, belarriak ixtea ezinezkoa duten era batean."
+  repeat_link: "Azken kanpainak"
+  repeat_title: Errepikatu
+  request_new_password: "Pasahitz berria eskatu"
+  resend_confirmation_instructions: "Berbidali baieztapen argibideak"
+  result: Emaitza
+  sayit_1: "Entzun dadila zure ahotsa"
+  sayit_2: "Mundu osoak parte har dezakeen online kanpainak sortzeko plataforma da"
+  sayit_link: "Ikasi oiga.me erabiltzen"
+  sayit_title: Esantzazu
+  search: Bilatu
+  send_message: "Bidali mezua"
+  sign_in: "Hasi saioa"
+  sign_in_facebook: "Hasi saioa Facebook-en"
+  signup: "Sortu kontua"
+  slide_1: "Boteretsuak entzun zaitzaten bozeragailua "
+  slide_2: "Sortu munduko lobbyrik garrantzitsuena. %99a gara"
+  slide_3: "Mundua alda dezakezula uste al duzu? Alda ezazu ba!"
+  slide_4: "%99a gara, batera mundua aldatzen dugu"
+  slide_5: "Lortu zuten, ez baitzekiten ezinezkoa zenik"
+  slide_6: "Zu nahi zaitugu, batu zaitez!"
+  slogan_1: "EZ GORROTATU"
+  slogan_2: "LOBBYA, JAN EZAZU!!"
+  slogan_3: PERTSONEK
+  slogan_4: "IADANIK EGIN DUTE"
+  some_participants: "Parte-hartzaile batzuk"
+  some_reserved_rights: "Erreserbaturiko baimen batzuk"
+  spread: "Zure webgunean"
+  spread_form: "Jarri formularioa zure webgunean"
+  spread_info: "Kanpaina hau zure blog edo webgunean aditzera eman nahi baduzu, HTML edo Javascript kode hau itsasten lortu dezakezu. Jende gehiagok kanpainan parte hartzea ahalbideratzen du."
+  stats: Estatistikak
+  sub_integrate_form_explanation_1: "Zure SubOigamea zure webgunean atxikitzeko, kopiatu eta itsatsi ondorengo Javascript kodea nahi duzun tokian:"
+  subject: Gaia
+  support: 
+    array: 
+      last_word_connector: ", eta"
+      two_words_connector: eta
+      words_connector: ","
+    select: 
+      prompt: "Hautatu mesedez"
+  tags: Etiketak
+  tags_most_used: "Gehien erabilitako etiketak"
+  target: "Bidalitako mezuen helburua"
+  thank_you: "Eskerrik asko"
+  thank_you_confirmed: "Zure atxikimendua ongi gauzatu da, milesker kanpaina honetan parte hartzeagatik."
+  thank_you_message: "Zure eposta birbegiratu. Laster eposta bat jasoko duzu kanpainara batzeko azken urratsarekin."
+  thank_you_petition: "Milesker parte hartzeagatik. Ez bazaude oiga.me-n erregistratua zure eposta birbegiratu, laster eposta bat jasoko duzu kanpainara batzeko azken urratsarekin. "
+  thanks_for_participating: "Eskerrik asko oiga.me-n parte hartzeagatik."
+  thanks_for_your_donation: "Eskerrik asko zure dohaintzagatik"
+  thanks_for_your_donation_text: "Eskerrik beroenak ematen dizkizugu oiga.me-ra egin duzun dohaintzagatik. Zuriak bezalako laguntzekin proiektu honek aurrera jarrai dezake."
+  there_are_currently: "Momentu honetan daude"
+  there_was_a_problem: "Arazo bat egon da"
+  this_license: "lizentzia hau"
+  this_link: "esteka hau"
+  time: 
+    am: am
+    formats: 
+      default: "%Yren %Bren %da, %A, %H:%M:%S %z "
+      long: "%Yren %Bren %da, %H:%M "
+      short: "%bren %da, %H:%M "
+    pm: pm
+  time_left: "Gelditzen dira"
+  token_invalid_body: "Ez dugu token hau daukan atxikimendurik aurkitzen, bidali zintugun eposta birbegiratu eta ez badu funtzionatzen abisatu gaitzazu hola@oiga.me helbidera."
+  token_invalid_title: "Arazo bat egon da"
+  type_of_campaign: Kanpaina-mota
+  type_of_campaign_prompt: "Hautatu kanpaina-mota"
+  unauthorized: 
+    default: "Ez duzu orrialde honetara sartzeko baimenik"
+  update: Eguneratu
+  user_create: "oiga.me-n kanpainak proposatu edo berriak jaso nahi badituzu, erabiltzaile kontu bat sortu."
+  users: Erabiltzaileak
+  view_all_campaigns: "Ikusi kanpaina guztiak"
+  we_need_your_pass: "zure pasahitza behar dugu aldaketak gauzatzeko"
+  welcome_bye: "Disfrutatu eta ibili lasai."
+  welcome_message: "mobilizazio sozialen kanpainak sortzeko. Ikusten ari duzun webgune hau beta bertsio bat da, funtzionala izan harren ez dago guztiz operatibo. Horregatik sortzen dituzun erabiltzaileak eta igotzen duzun edukia edozein momentutan ezabatuak izan daitezke. Lehenengo bertsio egonkorra ondorengo helbidean aurkituko duzu: "
+  welcome_you: "Ongietorri oiga.me-ra, plataforma hau ondorengoak sortu du"
+  you_can_help: "Zure sare sozialetan aditzera emanda lagundu diezaiokezu kanpaina honi."
+  you_will_get: "geldituko da:"
+  your_email: "Zure posta elektronikoa"

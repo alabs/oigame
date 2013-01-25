@@ -4,7 +4,7 @@ class Mailman < ActionMailer::Base
   include Resque::Mailer # para enviar correos en background
 
   default :from => "oigame@oiga.me"
-  layout "email", :except => :send_message_to_fax_recipients
+  layout "email", :except => [:send_message_to_fax_recipients, :send_contact_message]
   helper :application
   include ApplicationHelper
 

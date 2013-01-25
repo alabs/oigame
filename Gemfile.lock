@@ -1,14 +1,3 @@
-GIT
-  remote: https://github.com/coderanger/raven-ruby.git
-  revision: aad856a8a44a73f262c763f16ff930f586350abc
-  ref: aad856a8a4
-  specs:
-    sentry-raven (0.2)
-      faraday (~> 0.8.0.rc2)
-      hashie
-      uuidtools
-      yajl-ruby
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -45,6 +34,9 @@ GEM
       xml-simple
       youtube_it
     addressable (2.3.2)
+    airbrake (3.1.6)
+      builder
+      girl_friday
     ansi (1.4.3)
     arel (3.0.2)
     attr_required (0.0.5)
@@ -88,6 +80,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    connection_pool (1.0.0)
     countries (0.8.4)
       currencies (>= 0.4.0)
     currencies (0.4.0)
@@ -121,6 +114,9 @@ GEM
       tzinfo
     ffi (1.1.5)
     geocoder (1.1.3)
+    girl_friday (0.11.2)
+      connection_pool (~> 1.0)
+      rubinius-actor
     god (0.13.1)
     haml (3.1.7)
     hashery (2.0.1)
@@ -311,6 +307,9 @@ GEM
       actionmailer (~> 3.0)
     riddle (1.5.3)
     rmagick (2.13.1)
+    rubinius-actor (0.0.2)
+      rubinius-core-api
+    rubinius-core-api (0.0.1)
     ruby-rc4 (0.1.5)
     ruby_parser (3.0.1)
       sexp_processor (~> 4.1)
@@ -380,7 +379,6 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    uuidtools (2.1.3)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.1)
@@ -395,7 +393,6 @@ GEM
     xpath (0.1.4)
       nokogiri (~> 1.3)
     ya2yaml (0.31)
-    yajl-ruby (1.1.0)
     yaml_db (0.2.3)
     youtube_it (2.1.10)
       builder
@@ -411,6 +408,7 @@ PLATFORMS
 DEPENDENCIES
   Ascii85
   acts_as_unvlogable
+  airbrake
   better_errors
   binding_of_caller
   capistrano
@@ -457,7 +455,6 @@ DEPENDENCIES
   rmagick
   ruby_parser
   sass-rails (= 3.2.3)
-  sentry-raven!
   sitemap_generator
   spork-rails
   spork-testunit

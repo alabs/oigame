@@ -1,0 +1,450 @@
+--- 
+ca: 
+  about: Sobre
+  accepted_cards: "Targetes acceptades"
+  access_your_account: "Accedeix al teu compte"
+  activate: Activa
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: " %{attribute} %{message} "
+      messages: 
+        accepted: "has d'acceptar"
+        blank: "no pot estar en blanc"
+        confirmation: "no coincideix amb la confirmació"
+        empty: "no pot estar buit"
+        equal_to: "ha de ser igual a %{count} "
+        even: "ha de ser parell"
+        exclusion: "està reservat"
+        greater_than: "ha de ser més gran que %{count} "
+        greater_than_or_equal_to: "ha de ser més gran o igual a %{count} "
+        inclusion: "no està inclòs en la llista"
+        invalid: "no és vàlid"
+        less_than: "ha de ser menor que %{count} "
+        less_than_or_equal_to: "ha de ser menor o igual a %{count} "
+        not_a_number: "no és un nombre"
+        not_an_integer: "ha de ser un sencer"
+        odd: "ha de ser senar"
+        record_invalid: "La comprovació ha fallat: %{errors} "
+        taken: "ja està en ús"
+        too_long: "és massa llarg (%{count} caràcters màxim)"
+        too_short: "és massa curt (%{count} caràcters mínim)"
+        wrong_length: "no té la longitud correcta (%{count} caràcters exactes)"
+      template: 
+        body: "S'han trobat problemes en els camps següents"
+  add_credit: "Afegeix crèdit"
+  admin: 
+    actions: 
+      bulk_delete: 
+        breadcrumb: "Elimina diversos"
+        bulk_link: "Elimina %{model_label_plural} seleccionats"
+        menu: "Elimina diversos"
+        title: "Elimina %{model_label_plural} "
+      dashboard: 
+        breadcrumb: "Panell de control"
+        menu: "Panell de control"
+        title: "Administració del lloc"
+      delete: 
+        breadcrumb: Elimina
+        done: eliminat
+        link: "Elimina '%{object_label}' "
+        menu: Elimina
+        title: " Elimina %{model_label} '%{object_label}' "
+      edit: 
+        breadcrumb: Edita
+        done: modificat
+        link: "Edita aquest %{model_label}"
+        menu: Edita
+        title: " Edita %{model_label} '%{object_label}' "
+      export: 
+        breadcrumb: Exporta
+        bulk_link: "Exporta %{model_label_plural} seleccionats"
+        done: exportats
+        link: "Exporta %{model_label_plural} trobats"
+        menu: Exporta
+        title: " Exporta %{model_label} "
+      history_index: 
+        breadcrumb: Historial
+        menu: Historial
+        title: "Historial per a %{model_label_plural} "
+      history_show: 
+        breadcrumb: Historial
+        menu: Historial
+        title: " Historial per a %{model_label} '%{object_label}' "
+      index: 
+        breadcrumb: " %{model_label_plural} "
+        menu: Llista
+        title: "Llista de %{model_label_plural} "
+      new: 
+        breadcrumb: Nou
+        done: creat
+        link: "Afegeix un nou %{model_label} "
+        menu: "Afegeix nou"
+        title: "Nou %{model_label}"
+      show: 
+        breadcrumb: " %{object_label} "
+        menu: Mostra
+        title: "Detalls de %{model_label} '%{object_label}' "
+      show_in_app: 
+        menu: "Mostra a la app"
+    export: 
+      click_to_reverse_selection: "Faci clic per a invertir la selecció "
+      confirmation: "Exporta a %{name}"
+      csv: 
+        col_sep: "Separador de columnes"
+        col_sep_help: "Deixi en blanc pel de defecte ('%{value}') "
+        default_col_sep: ","
+        encoding_to: "Codifica a"
+        encoding_to_help: "Esculli la codificació de sortida. Deixi en blanc per no canviar la codificació actual: %{name})"
+        header_for_association_methods: "%{name} [%{association}] "
+        header_for_root_methods: "%{name} "
+        skip_header: "Sense capçalera"
+        skip_header_help: "No incloure una capçalera (sense descripció dels camps)"
+      display: "Mostra %{name}: %{type} "
+      empty_value_for_associated_objects: <buit>
+      fields_from: "Camps de %{name}"
+      fields_from_associated: "Camps del %{name} associat"
+      options_for: "Opcions per a %{name}"
+      select: "Seleccioni els camps per a l'exportació"
+    flash: 
+      model_not_found: "No s'ha trobat el model '%{model}' "
+      noaction: "No s'ha dut a terme cap acció"
+      object_not_found: "no s'ha trobat cap %{model} amb id '%{id}'"
+      successful: "%{name} %{action} amb èxit"
+    form: 
+      all_of_the_following_related_items_will_be_deleted: "? Els següents elements relacionats poden ser eliminats o quedar orfes:"
+      are_you_sure_you_want_to_delete_the_object: "Està segur d'eliminar aquest  %{model_name}"
+      basic_info: "Informació bàsica"
+      bulk_delete: "Els objectes següents seràn eliminats, fet que pot eliminar o deixar orfes algunes de les seves dependències relacionades:"
+      cancel: Cancel·la
+      char_length_of: "longitud de"
+      char_length_up_to: "longitud "
+      confirmation: "Si, estic segur"
+      new_model: "%{name} (nou)"
+      one_char: caràcter
+      optional: Opcional
+      required: Obligatori
+      save: Desa
+      save_and_add_another: "Desa i afegeix un altre"
+      save_and_edit: "Desa i edita"
+    home: 
+      name: Inici
+    misc: 
+      add_filter: "Afegeix filtre"
+      add_new: "Afegeix nou"
+      ago: enrere
+      bulk_menu_title: "Elements seleccionats"
+      chose_all: "Triï tots"
+      chosen: "Triat %{name}"
+      clear_all: "Esborri tots"
+      down: "A sota"
+      filter: Filtra
+      filter_date_format: "dd/mm/yy "
+      log_out: Surt
+      navigation: Navegació
+      navigation_static_label: Enllaços
+      refresh: Actualitza
+      remove: Elimina
+      search: Busca
+      show_all: "Mostra tot"
+      up: "A dalt"
+    pagination: 
+      next: "Següent &raquo; "
+      previous: "&laquo; Anterior"
+      truncate: "..."
+    table_headers: 
+      changes: Canvis
+      created_at: Data/hora
+      item: Element
+      last_used: "Darrer ús"
+      message: Missatge
+      model_name: "Nom del model"
+      records: Registres
+      username: Usuari
+  already_participated: "Ja has participat d'aquesta campanya. Moltes gràcies!"
+  amount_select: "Selecciona la quantitat"
+  amount_to_donate: "Quantitat a donar"
+  another_format: "Les línies que comencen amb quatre espais son tractades amb un altre format:"
+  answers: Respostes
+  archive: Arxiva
+  archived_campaign: "Campanya arxivada"
+  archived_campaigns: "Campanyes arxivades"
+  are_you_sure: "Estàs segur?"
+  back: Torna
+  body_of_campaign: "Cos de la campanya"
+  body_of_campaign_help: "Text desenvolupat de la campanya"
+  bold: negreta
+  campaign_stats: "Estadístiques de la campanya"
+  campaigns: Campanyes
+  cancel: Cancel·la
+  cancel_account: "Elimina el meu compte"
+  category: Categoria
+  category_of_campaign: "Categoria de campanya"
+  close: Tanca
+  communicate: Difon
+  community: Comunitat
+  configuration: Configuració
+  contact: Contacte
+  contact_to: "posa't en contacte"
+  countries: Països
+  create: Crea
+  create_account: "Crea un compte"
+  create_campaign: "Crea una campanya"
+  created_and_maintened: "Creat i mantingut per"
+  created_at: "Creada fa"
+  created_by: "Creada per"
+  current_password: "Contrasenya actual"
+  date: 
+    abbr_day_names: 
+      - diu
+      - dill
+      - dima
+      - dime
+      - dij
+      - div
+      - dis
+    formats: 
+      default: "%d/%m/%Y "
+      long: "%d de %B de %Y "
+      short: "%d de %b "
+  datetime: 
+    distance_in_words: 
+      half_a_minute: "mig minut"
+    prompts: 
+      day: Dia
+      hour: Hora
+      minute: Minuts
+      month: Mes
+      second: Segons
+      year: Any
+  days: dies
+  deactivate: Desactivar
+  default_message: "Missatge per defecte"
+  default_message_body: "Cos del missatge per defect"
+  default_message_body_help: "Missatge per defecte que s'enviarà en la camanya per els participants que no vulguin escriure el seu propi missatge."
+  default_message_subject: "Assumpte del missatge per defecte"
+  delete: Eliminar
+  deprioritize: "Treure prioritat"
+  description: Descripció
+  descriptions: "Plataforma de mobilització ciutadana mitjançant la web."
+  developers: Desenvolupadors
+  devise: 
+    confirmations: 
+      confirmed: "El vostre compte ha estat confirmat. Ja heu iniciat la sessió."
+      send_instructions: "Rebrás un correu amb instruccions sobre com confirmar el teu compte en pocs minuts."
+      send_paranoid_instructions: "Si la teva adreça ja està en la nostra base de dades, rebràs un correu amb instruccions sobre com confirmar la teva compta d'aquí uns minuts."
+    failure: 
+      already_authenticated: "Ja heu iniciat la sessió."
+      inactive: "El vostre compte encara no ha sigut activat."
+      invalid: "Contrasenya o adreça incorrectes."
+      invalid_token: "Codi d'autenticació incorrecte."
+      locked: "El vostre compte està bloquejat."
+      timeout: "La vostra sessió ha expirat, per favor inicieu sessió de nou per continuar."
+      unauthenticated: "Inicieu sessió o registreu-vos per continuar."
+      unconfirmed: "Confirmeu el vostre compte per continuar."
+    mailer: 
+      confirmation_instructions: 
+        subject: "[oiga.me] Instruccions de confirmació"
+      reset_password_instructions: 
+        subject: "[oiga.me] Instruccions de recuperació de contrasenya"
+      unlock_instructions: 
+        subject: "[oiga.me] Instruccions de desbloqueig"
+    omniauth_callbacks: 
+      failure: "No estàs autoritzat en la compta %{kind} per què \"%{reason}\"."
+      success: "Has estat autoritzat correctament en la compta %{kind}. "
+    passwords: 
+      send_instructions: "Rebràs un correu amb instruccions sobre com reestablir la teva contrasenya d'aquí uns minuts."
+      send_paranoid_instructions: "Si la teva adreça està en la nostra base de dades, rebràs un correu amb instruccions sobre com reestablir la teva contrasenya."
+      updated: "La vostra contrasenya ha estat modificada. Ja heu iniciat sessió."
+      updated_not_active: "La vostra contrasenya ha estat modificada."
+    registrations: 
+      destroyed: "Ha estat agradable tenir-te entre nosaltres. La teva compta ha estat cancel·lada."
+      inactive_signed_up: "Hem creat el teu compte. Amb tot, no podem inicar la sessió perque la teva compta està %{reason}. Revisa el teu correu per activar-la."
+      reasons: 
+        inactive: inactiva
+        locked: bloquejada
+        unconfirmed: "sense confirmar"
+      signed_up: "Benvinguts. El vostre compte ha estat creat."
+      updated: "El vostre compte ha estat actualitzat."
+      user: 
+        signed_up_but_unconfirmed: "Compta creada, revisa el teu correu per a confirmar-la."
+    sessions: 
+      signed_in: "Sessió iniciada."
+      signed_out: "Sessió finalitzada."
+    unlocks: 
+      send_instructions: "Rebràs instruccions per desbloquejar la teva compta en pocs minuts."
+      send_paranoid_instructions: "Si la teva compta existeix, rebràs instruccions per desbloquejar-la en uns minuts."
+      unlocked: "La teva compta ha estat desboquejada. Has iniciat la sessió."
+  didnt_receive_confirmation_instructions: "No heu rebut instruccions de confirmació?"
+  doit_1: "Feu possible que en"
+  doit_2: "podem fer campanyes de milers de trucades de telèfon als podersos, que poden enviar centenars de fax. Millora, dona, difón, escriu codi."
+  doit_link: "Informeu-vos de com donar"
+  doit_title: "Feu-ho possible"
+  donate: Donar
+  donate_oigame: "Realitzeu una donació a oiga.me "
+  donation_info_1: "oiga.me manté un equip de treball reduït al màxim per mantenir baixos els costos. Practiquem una política de transparència econòmica, cada any publicarem un resum amb allò recaptat en donacions i la destinació d'aquestes."
+  donation_info_2: "Com a organització independent i sense ànim de lucre, aLabs destina la totalitat dels diners de cada donació rebuda en oiga.me a mantenir i potenciar aquesta plataforma. Amb el vostre suport podem aconseguir que moltes persones puguen alçar la veu i coordinar-se per canviar el món, la vostra donació col·labora directament perquè milers de persones puguen organitzar-se i realitzar accions de gran impacte."
+  donation_problem: "Hi ha hagut un problema amb la vostra donació a oiga.me i la transacció no s'ha pogut realitzar amb èxit, motiu pel quan no s'ha carregat cap quantitat al vostre compte. Proveu de repetir de nou el procés, si segueixen havent-hi problemes poseu-vos en contacte amb l'equip de aLabs en l'adreça electrònica donaciones[arroba]alabs.es."
+  donation_secure: "Donació segura"
+  donation_secure_info: "L'associació aLabs no emmagatzema cap dada de les targetes de crèdit de les usuàries que realitzen donacions, les transaccions amb targeta de crèdit són processades en línia directament fent servir el TPV de pagament de Banesto. Amb aquest sistema segur de pagament la informació viatja xifrada abans de ser enviada utilitzant el certificat SSL. Si trobeu cap problema fent servir el sistema, teniu qualsevol dubte o alguna recomanació, per favor contacteu amb aLabs a través de l'adreça donaciones[arroba]alabs.es."
+  download_participants: "Descarregueu el llistat amb particiants"
+  due_date_of_campaign: "Data de venciment de la campanya"
+  edit: Edita
+  edit_campaign: "Edita la campanya"
+  email: "Adreça electrònica"
+  enable_comments: "Habilita els comentaris"
+  errors: 
+    messages: 
+      already_confirmed: "ja ha estat confirmat, intenta iniciar la sessió."
+      expired: "ha expirat, per favor sol·liciteu-ne una de nova"
+      not_found: "no s'ha trobat"
+      not_locked: "no estava bloquejat"
+  example_email: elvostrenom@domini.com
+  faxes_recipients: "Números de fax dels destinataris"
+  faxes_recipients_help: "Llista dels números de fax, un per línia"
+  firms: Signatures
+  forgot_your_password: "Heu oblidat la vostra contrasenya?"
+  go_to_home: "Torneu a l'inici"
+  greetings: "Una forta abraçada del equip d'oiga.me y aLabs"
+  have_account: "Teniu un compte"
+  have_already_made: "persones ja ho han fet"
+  help: Ajuda
+  helpers: 
+    page_entries_info: 
+      more_pages: 
+        display_entries: "Mostrant %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b>  "
+      one_page: 
+        display_entries: 
+          one: "Mostrant <b>1</b> %{entry_name} "
+          other: "Mostrant <b>totes les %{count}</b> %{entry_name} "
+          zero: "No s'han trobat %{entry_name} "
+  hi: Hola
+  home: Inici
+  i_want_to_receive_news: "Desitge rebre notícies d'oiga.me "
+  if_you_write: "si escriviu:"
+  image_of_campaign: "Imatge de la campanya"
+  important_notice: "Avís important"
+  integrate_form: "Integra el formulari"
+  integrate_form_explanation_1: "Per integrar el formulari d'aquesta campanya en el teu lloc web copia i engantxa aquest codi Javascript on vulguis que es mostri:"
+  integrate_form_explanation_2: "Si el codi no et funciona, pots provar amb la versió sense Javascript ni iframes, en HTML net:"
+  intro_limit: "Té un límit de 500 caràcters"
+  intro_of_campaign: "Introducció de la campanya"
+  intro_of_campaign_help: "Entrada de la campanya, aquest text apareix en el llistat de campanyes."
+  italic: cursiva
+  join: Uniu-vos
+  join_myself: Signatura
+  join_oigame: "Uniu-vos a oiga.me!"
+  join_this_campaign: "Uniu-vos a aquesta campanya"
+  keywords: "oiga.me, plataforma, mobilitzaciño, web, campanya, campanyes"
+  languages: Llengües
+  last_campaigns: "Últimes campanyes"
+  last_moderated_campaigns: "Últimes campanyes moderades"
+  license_pre: "Mentre no s'indiqui el contrari, el contingut d'aquest lloc web té"
+  listen_your_voice: "Que s'escolti la teva veu! Per participar en la campanya escriu aquí el teu missatges, nosaltres ens encarreguem de que arribi a tots els seus responsables."
+  login: "Inicia la sessió"
+  logout: Desconnecta
+  mail_validate_3: "Si no has estat tu qui s'ha adherit a la campanya pots ignorar aquest missatge."
+  mail_validate_4: "És molt important difondre la campanya, per això t'animem a que siguis el centre de l'acció:"
+  mail_validate_6: "Difongueu al màxim la campanya en les xarxes socials."
+  mail_validate_7: "Segueix a @oigame a Twitter (http://twitter.com/oigame) i a Facebook (http://www.facebook.com/oiga.me)."
+  make_member: "Fes-te membre ara"
+  markdown_help_show: "veure l'ajuda de marcat"
+  maximize: Maximitzeu
+  may_your_voice: "Que s'escolti la teva veu! Uneix-te a la campanya introduint el correu electrònic i clicant al botó unir-me"
+  may_your_voice_signed: "Que s'escolti la teva veu! Per participar en la campanya fes clic a unir-me"
+  media: Mitjans
+  members: membres
+  message: Missatge
+  message_info: "Per fer efectiva la campanya et recomanem que el teu missatge estigui escrit amb respecte. Pot ser ferm però asertiu i la nostra experiència ens indica que qui reb el missatge és molt més receptiu si es tractat amb respecte. Explica que no estàs d'acord amb el que estan fent i perquè, explica com t'agradaria que actuessin realment."
+  message_received: "Missatge rebut"
+  minimal_size: "Ha de tenir una mida de 500x400"
+  moderate_campaigns: "Modera les campanyes"
+  my_account: "El meu compte"
+  name: Nom
+  name_and_surname: "Nom i cognoms"
+  name_of_campaign: "Nom de la campanya"
+  next_you_have_info: "A continuació teniu la informació de la campanya"
+  no_account_yet: "Encara no teniu un compte?"
+  no_campaigns: "Encara no hi ha campanyes, podeu proposar-ne una."
+  number: 
+    currency: 
+      format: 
+        delimiter: ", "
+        format: "%n %u "
+        precision: 2
+        separator: ". "
+        unit: €
+    format: 
+      delimiter: ","
+      precision: 3
+      separator: ". "
+    human: 
+      decimal_units: 
+        format: " %n %u "
+        units: 
+          billion: "mil milions"
+          million: milió
+          quadrillion: "mil bilions"
+          thousand: mil
+          trillion: bilió
+  number_of_people: "Número de persones que creus que s'uniran a la campanya"
+  oigame: 
+    privacy: 
+      legal_notice_title: "Avís legal"
+      link_title: Enllaços
+      policy_title: "Política de privacitat"
+      relevant_info_title: "Informació d'interès"
+      terms_title: "Termes i condicions"
+  option: Opció
+  our_social_council: "El nostre consell social adverteix: oiga-me pot ser beneficiós per la salut democràtica del vostre estat i elevar-ne els nivells de participació ciutadana."
+  participants: Participants
+  participate: Participeu
+  password: Contrasenya
+  password_confirmation: "Confirmeu contrasenya"
+  privacy_policy: "Política de privacitat"
+  propose_campaign: "Proposeu una campanya"
+  published_at: "Publicada fa"
+  quoted: "text citat"
+  recipients: Destinataris
+  recipients_show: "El vostre missatge s'enviarà a les següents persones"
+  remember_me: "Recorda les meues dades"
+  repeat_link: "Últimes campanyes"
+  result: Resultat
+  slide_4: "Som el 99%, juntes canviem el món"
+  slide_5: "Ho van aconseguir perquè no sabien que era impossible"
+  slogan_1: "NO ODIEU AL"
+  slogan_2: "LOBBY, MENJEU-VOS-EL!"
+  slogan_3: PERSONES
+  slogan_4: "JA HO HAN FET"
+  some_participants: "Algunes participants"
+  some_reserved_rights: "Alguns drets reservats"
+  spread: "En la vostra web"
+  spread_form: "Poseu el formulari al vostre web"
+  stats: Estadístiques
+  subject: Assumpte
+  support: 
+    array: 
+      last_word_connector: ", i"
+      two_words_connector: i
+  tags: Etiquetes
+  tags_most_used: "Etiquetes més utilitzades"
+  thank_you: Gràcies
+  thank_you_confirmed: "La vostra adhesió ha estat confirmada amb èxit, moltes gràcies per participar en aquesta campanya."
+  thanks_for_participating: "Gràcies per participar en oiga.me."
+  thanks_for_your_donation: "Gràcies per la vostra donació."
+  there_are_currently: "En aquests moment hi ha"
+  there_was_a_problem: "Hi ha hagut un problema"
+  this_license: "aquesta llicència"
+  this_link: "aquest enllaç"
+  time: 
+    am: am
+    pm: pm
+  time_left: Queden
+  unauthorized: 
+    default: "No esteu autoritzades a accedir a aquesta pàgina"
+  users: Usuàries
+  view_all_campaigns: "Veure totes les campanyes"
+  we_need_your_pass: "necessitem la vostra contrasenya actual per realitzar els canvis"
+  welcome_you: "Us donem la benvinguda a oiga.me, la plataforma creada per "
+  you_can_help: "Podeu ajudar a aquesta campanya difonent-la en les xarxes socials"
+  your_email: "La vostra adreça electrònica"

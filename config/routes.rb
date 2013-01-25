@@ -47,7 +47,7 @@ Oigame::Application.routes.draw do
 
   resources :categories
 
-  scope "(:locale)", :locale => /en|es/ do
+  scope "(:locale)", :locale => /en|es|gl/ do
     # solucionar el tema de acceso por rol
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -69,6 +69,7 @@ Oigame::Application.routes.draw do
     get 'answers' => redirect('/help')
     get 'help' => 'pages#faq', :as => 'help'
     get 'faq' => 'pages#faq', :as => 'faq'
+    get 'press' => 'pages#press', :as => 'press'
     get 'activity' => 'pages#activity', :as => 'activity'
     get 'tutorial' => 'pages#tutorial', :as => 'tutorial'
     get 'privacy-policy' => 'pages#privacy_policy', :as => 'privacy_policy'

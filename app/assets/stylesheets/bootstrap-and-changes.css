@@ -23,33 +23,6 @@ a:hover {
   margin-right: 2em;
 }
 
-/* modificados de twitter */
-
-.alert-danger,
-.alert-error,
-.alert-alert {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
-}
-
-.alert-danger h4,
-.alert-error h4,
-.alert-alert h4 {
-  color: #b94a48;
-}
-.alert-success,
-.alert-notice {
-  color: #468847;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-}
-
-.alert-success h4, 
-.alert-notice h4 {
-  color: #468847;
-}
-
 
 
 
@@ -3227,5 +3200,132 @@ table th[class*="span"],
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.thumbnails {
+    list-style: none outside none;
+    margin-left: -20px;
+}
+.thumbnails:before, .thumbnails:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.thumbnails:after {
+    clear: both;
+}
+.row-fluid .thumbnails {
+    margin-left: 0;
+}
+.thumbnails > li {
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.thumbnail {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    display: block;
+    line-height: 20px;
+    padding: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}
+a.thumbnail:hover {
+    border-color: #0088CC;
+    box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+.thumbnail > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+.thumbnail .caption {
+    color: #555555;
+    padding: 9px;
+}
+.media, .media-body {
+    overflow: hidden;
+}
+.media, .media .media {
+    margin-top: 15px;
+}
+.media:first-child {
+    margin-top: 0;
+}
+.media-object {
+    display: block;
+}
+.media-heading {
+    margin: 0 0 5px;
+}
+.media .pull-left {
+    margin-right: 10px;
+}
+.media .pull-right {
+    margin-left: 10px;
+}
+.media-list {
+    list-style: none outside none;
+    margin-left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* modificados de twitter - dejar siempre abajo */
+
+.alert-danger,
+.alert-error,
+.alert-alert {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+.alert-danger h4,
+.alert-error h4,
+.alert-alert h4 {
+  color: #b94a48;
+}
+.alert-success,
+.alert-notice {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-success h4, 
+.alert-notice h4 {
+  color: #468847;
 }
 

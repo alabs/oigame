@@ -1,2 +1,339 @@
 --- 
-gl: {}
+gl: 
+  about: "Acerca de"
+  accepted_cards: "Tarxetas aceptadas"
+  access_your_account: "Acceder a túa conta"
+  activate: Activar
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: "%{attribute} %{message}"
+      messages: 
+        accepted: "debe ser aceptado"
+        blank: "non pode estar en branco"
+        confirmation: "non coincide coa confirmación"
+        empty: "non pode estar baleiro"
+        equal_to: "debe ser igual a %{count}"
+        even: "debe ser par"
+        exclusion: "esta reservado"
+        greater_than: "debe ser maior que %{count}"
+        greater_than_or_equal_to: "debe ser maior que ou igual %{count}"
+        inclusion: "non está incluido na lista"
+        invalid: "non é válido"
+        less_than: "debe ser menor que %{count}"
+        less_than_or_equal_to: "debe ser menor que ou igual a %{count}"
+        not_a_number: "non é un número"
+        not_an_integer: "debe ser un enteiro"
+        odd: "debe ser impar"
+        record_invalid: "A validación fallou: %{errors}"
+        taken: "xa está en uso"
+        too_long: "é demasiado longo (%{count} caracteres máximo)"
+        too_short: "é demasiado curto (%{count} caracteres mínimo)"
+        wrong_length: "non ten a lonxitude correcta (%{count} caracteres exacto)"
+      template: 
+        body: "Atoparonse problemas cos seguintes campos:"
+        header: 
+          one: "Non se puido gardar este/a %{model} porque se atopou 1 erro"
+          other: "Non se puido gardar este/a %{model} porque se atoparon %{count} erros"
+  add_credit: "Engadir crédito"
+  admin: 
+    actions: 
+      bulk_delete: 
+        breadcrumb: "Eliminar varios"
+        bulk_link: "Eliminar %{model_label_plural} seleccionados"
+        menu: "Eliminar varios"
+        title: "Eliminar %{model_label_plural}"
+      dashboard: 
+        breadcrumb: "Panel de controis"
+        menu: "Panel de controis"
+        title: "Administración do sitio"
+      delete: 
+        breadcrumb: Eliminar
+        done: eliminado
+        link: "Eliminar '%{object_label}'"
+        menu: Eliminar
+        title: "Eliminar %{model_label} '%{object_label}'"
+      edit: 
+        breadcrumb: Editar
+        done: modificado
+        link: "Editar este %{model_label}"
+        menu: Editar
+        title: "Editar %{model_label} '%{object_label}'"
+      export: 
+        breadcrumb: Exportar
+        bulk_link: "Exportar %{model_label_plural} seleccionados"
+        done: exportados
+        link: "Exportar %{model_label_plural} atopados"
+        menu: Exportar
+        title: "Exportar %{model_label}"
+      history_index: 
+        breadcrumb: Historial
+        menu: Historial
+        title: "Historial para %{model_label_plural}"
+      history_show: 
+        breadcrumb: Historial
+        menu: Historial
+        title: "Historial para %{model_label} '%{object_label}'"
+      index: 
+        breadcrumb: "%{model_label_plural}"
+        menu: Listar
+        title: "Lista de %{model_label_plural}"
+      new: 
+        breadcrumb: Novo
+        done: creado
+        link: "Engadir un novo %{model_label}"
+        menu: "Engadir novo"
+        title: "Novo %{model_label}"
+      show: 
+        breadcrumb: "%{object_label}"
+        menu: Amosar
+        title: "Detalles de %{model_label} '%{object_label}'"
+      show_in_app: 
+        menu: "Amosar na app"
+    export: 
+      click_to_reverse_selection: "Faga click para invertir a selección"
+      confirmation: "Exportar a %{name}"
+      csv: 
+        col_sep: "Separador de columnas"
+        col_sep_help: "Deixe en branco para o de defecto ('%{value}')"
+        default_col_sep: ","
+        encoding_to: "Codificar a"
+        encoding_to_help: "Escolla a codificación de saída. Deixe en branco para non cambiar a codificación actual: (%{name})"
+        header_for_association_methods: "%{name} [%{association}]"
+        header_for_root_methods: "%{name}"
+        skip_header: "Sen cabeceira"
+        skip_header_help: "Non inclur un encabezado (sen descrición dos campos)"
+      display: "Amosar %{name}: %{type}"
+      empty_value_for_associated_objects: <baleiro>
+      fields_from: "Campos de %{name}"
+      fields_from_associated: "Campos do %{name} asociado"
+      options_for: "Opcións para %{name}"
+      select: "Seleccione os campos para a exportación"
+    flash: 
+      error: "%{name} non se %{action}"
+      model_not_found: "O modelo '%{model}' non se puido atopar"
+      noaction: "Non se levou a cabo nengunha acción"
+      object_not_found: "%{model} con id '%{id}' non se puido atopar"
+      successful: "%{name} %{action} con éxito"
+    form: 
+      all_of_the_following_related_items_will_be_deleted: "? Os seguintes elementos relacionados poden ser eliminados ou quedar orfos:"
+      are_you_sure_you_want_to_delete_the_object: "Está seguro de que quere eliminar este %{model_name}"
+      basic_info: "Información básica"
+      bulk_delete: "Os seguintes obxectos serán eliminados, o cal pode eliminar ou deixar orfas algunhas das suas dependencias relacionadas:"
+      cancel: Cancelar
+      char_length_of: "lonxitude de"
+      char_length_up_to: "lonxitude de ata"
+      confirmation: "Si, estou seguro"
+      new_model: "%{name} (novo)"
+      one_char: carácter
+      optional: Opcional
+      required: Requerido
+      save: Gardar
+      save_and_add_another: "Gardar e engadir outro"
+      save_and_edit: "Gardar e editar"
+    home: 
+      name: Inicio
+    misc: 
+      add_filter: "Engadir filtro..."
+      add_new: "Engadir novo"
+      ago: atrás
+      bulk_menu_title: "Elementos seleccionados..."
+      chose_all: "Escoller todos"
+      chosen: "Escollido %{name}"
+      clear_all: "Borrar todos"
+      down: Abaixo
+      filter: Filtrar
+      filter_date_format: dd/mm/yy
+      log_out: Saír
+      navigation: Navegación
+      navigation_static_label: Ligazóns
+      refresh: Actualizar
+      remove: Eliminar
+      search: Procurar
+      show_all: "Amosar todo"
+      up: Arriba
+    pagination: 
+      next: "Seguinte &raquo;"
+      previous: "&laquo; Anterior"
+      truncate: "..."
+    table_headers: 
+      changes: Cambios
+      created_at: Data/Hora
+      item: Elemento
+      last_used: "Último uso"
+      message: Mensaxe
+      model_name: "Nome do modelo"
+      records: Rexistros
+      username: Usuario
+  already_participated: "Xa participaches desta campaña. ¡Moitas grazas!"
+  amount_select: "Seleciona a cantidade"
+  amount_to_donate: "Cantidade a doar"
+  another_format: "A liñas que empezan con catro espazos son tratadas con outro formato:"
+  answers: Respostas
+  archive: Arquivar
+  archived_campaign: "Campaña arquivada"
+  archived_campaigns: "Campañas arquivadas"
+  are_you_sure: "¿Estás seguro?"
+  back: Volver
+  body_of_campaign: "Corpo da campaña"
+  body_of_campaign_help: "Texto desenvolvido da campaña"
+  bold: Grosa
+  campaign_stats: Estatística
+  campaigns: Campañas
+  cancel: Cancelar
+  cancel_account: "Cancelar a miña conta"
+  category: Categoría
+  category_of_campaign: "CategorÍa da campaña"
+  close: Pechar
+  communicate: Difunde
+  community: Comunidade
+  configuration: Configuración
+  contact: Contacto
+  contact_to: "Ponte en contacto"
+  countries: Países
+  create: crear
+  create_account: "crear conta"
+  create_campaign: "crear campaña"
+  created_and_maintened: "creado e mantido"
+  created_at: "creada hai"
+  created_by: "creada por"
+  current_password: "contrasinal actual"
+  date: 
+    formats: 
+      default: "%d/%m/%A"
+  datetime: 
+    distance_in_words: 
+      half_a_minute: "medio minuto"
+    prompts: 
+      day: Día
+      hour: Hora
+      minute: Minutos
+      month: Mes
+      second: Segundos
+      year: Ano
+  days: días
+  deactivate: Desactivar
+  default_message: "Mensaxe por defecto"
+  default_message_body: "Corpo da mensaxe por defecto"
+  default_message_body_help: "Mensaxe por defecto que se enviará na campaña polos participantes que non queiran escribi-la súa propia mensaxe."
+  default_message_subject: "Asunto da mensaxe por defecto"
+  delete: Eliminar
+  deprioritize: "Quitar prioridade"
+  description: Descrición
+  descriptions: "Plataforma de movilización cidadá a través da web"
+  developers: Desenvolvedores
+  devise: 
+    confirmations: 
+      confirmed: "A túa conta foi confirmada. Xa iniciaches sesión"
+      send_instructions: "Vas recibir un correo con instrucións sobre como confirma-la túa conta nuns poucos minutos"
+      send_paranoid_instructions: "Se o teu correo existe na nosa base de datos, vas recibir un correo con instrucións sobre como confirma-la túa conta nuns poucos minutos."
+    failure: 
+      already_authenticated: "xa iniciáches unha sesión"
+      inactive: "A túa conta aínda non foi activada"
+      invalid: "Contarsinal ou correo inválidos"
+      invalid_token: "Código de autentificación inválido "
+      locked: "A túa conta está bloqueada"
+      timeout: "A túa sesión expirou, por favor inicia sesión novamente para continuar"
+      unauthenticated: "Tes que iniciar sesión ou rexistrarte para poder continuar"
+      unconfirmed: "Tes que confirmar a túa conta para poder continuar. "
+    mailer: 
+      confirmation_instructions: 
+        subject: "[oiga.me] instrucións de confirmación."
+      reset_password_instructions: 
+        subject: "[oiga.me] instrucións de recuperación de contrasinal. "
+      unlock_instructions: 
+        subject: "[oiga.me] instrucións para desbloquear."
+    omniauth_callbacks: 
+      failure: "Non foi autorizado na conta %{kind} porque %{reason}."
+      success: "Foi autorizado satisfactoriamente da conta %{kind}."
+    passwords: 
+      send_instructions: "Receberás un correo con instrucións cobre cómo resetar o teu contrasinal nuns poucos minutos."
+      send_paranoid_instructions: "Se o teu correo existe na nosa base de datos, receberás un correo con instrucións sobre cómo resetear o teu contrasinal na túa bandexa de entrada."
+      updated: "O teu contrasinal foi cambiado. Xa iniciaches a sesión."
+      updated_not_active: "O teu contrasinal foi cambiado."
+    registrations: 
+      destroyed: "Foi grato terte connosco. A túa conta foi cancelada. "
+      inactive_signed_up: "A túa conta foi creada. Mais, non podemos iniciar a túa sesión pois a túa conta está %{reason}. Revisa o teu correo para activala."
+      reasons: 
+        inactive: inactiva
+        locked: bloqueada
+        unconfirmed: "sen confirmar"
+      signed_up: "Benvido. A túa conta foi creada."
+      updated: "A túa conta foi actualizada."
+      user: 
+        signed_up_but_unconfirmed: "Conta creada; revisa o teu correo para confirmala."
+    sessions: 
+      signed_in: "Sesión iniciada."
+      signed_out: "Sesión finalizada. "
+    unlocks: 
+      send_instructions: "Receberás instrucións para desbloquear a túa conta en poucos minutos. "
+      send_paranoid_instructions: "Se a túa conta existe, receberás instrucións para desbloquear a túa conta en poucos minutos. "
+      unlocked: "A túa conta foi desbloqueada. Xa iniciaches sesión."
+  didnt_receive_confirmation_instructions: "Non recibiches instrucións de confirmación?"
+  doit_1: "Fai posíbel que en "
+  doit_2: "poidamos facer campañas de miles de chamadas de teléfono aos poderosos, que poidamos enviar centos de faxes. Mellora, dona, difunde, escribe código."
+  doit_link: "infórmate cómo doar"
+  doit_title: "Faino posíbel"
+  donate: Doar
+  donate_oigame: "Realiza unha doazón a oiga.me"
+  donation_info_1: "oiga.me matén un equipo de traballo reducido ao máximo para manter os seus custes baixos. Practicamos unha política de transparencia económica, cada ano publicaremos un resumo co recollido en doazóns e o destino das mesmas. "
+  donation_info_2: "Como organización independente e sen ánimo de lucro aLabs destina todos os cartos de cada doazón recibida en oiga.me a manter e potenciar esta plataforma. Co teu apoio podemos conseguir que moitas persoas poidan alzar a súa voz e coordinarse para cambiar o mundo, a túa doazón colabora directamente para que miles de persoas poidan organizarse e realizar accións de gran impacto. "
+  donation_problem: "Houbo un problema coa túa doazón a oiga.me e a transación non puido realizrse con éxito polo que non se cargou ningunha cantidade na túa conta. Proba a repetir de novo o proceso, se segue habendo problemas ponte en contacto co equipo de aLabs na direción de correo donaciones[arroba]alabs.es."
+  donation_secure: "Doazón segura"
+  donation_secure_info: "A asociación aLabs non almacena ningún dato das tarxetas de crédito dos usuarios que realizan as doazóns, as transacións con tarxetas de crédito son procesadas en liña directamente empregando o TPV de pago de Banesto. Con este sistema seguro de pago a información viaxa cifrada antes de ser enviada empregando o certificado SSL. Se atopas algún problema empregando o sistema, tes algunha dúbida ou algunha recomendación, por favor contacta con aLabs através do correo donaciones[arroba]alabs.es."
+  download_participants: "Descargar listado con participantes"
+  due_date_of_campaign: "Data de vencemento da campaña"
+  edit: Editar
+  edit_campaign: "Editar campaña"
+  email: "Correo electrónico"
+  enable_comments: "Habilitar comentarios"
+  errors: 
+    messages: 
+      already_confirmed: "xa foi confirmado, por favor intenta iniciar sesión"
+      expired: "expirou, por favor solicita unha nova"
+      not_found: "non se atopou"
+      not_locked: "non estaba bloqueado"
+  example_email: teunome@dominio.com
+  faxes_recipients: "Números de fax dos destinatarios"
+  faxes_recipients_help: "Lista de números de fax, un por liña"
+  firms: Firmas
+  forgot_your_password: "Esqueciches o teu contrasinal?"
+  go_to_home: "Voltar ao inicio"
+  greetings: "Unha aperta forte do equipo de oiga.me e aLabs."
+  have_account: "Tes unha conta"
+  have_already_made: "persoas xa o fixeron"
+  help: Axuda
+  helpers: 
+    page_entries_info: 
+      more_pages: 
+        display_entries: "Amosando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b>de<b>%{total}</b> en total"
+      one_page: 
+        display_entries: 
+          other: "Amosando <b>todas as %{count}</b>%{entry_name}"
+          zero: "Non se atoparon %{entry_name}"
+  hi: Olá
+  home: Inicio
+  i_want_to_receive_news: "Desexo receber novas de oiga.me"
+  if_you_write: "se escrebes:"
+  image_of_campaign: "imaxe da campaña"
+  important_notice: "Aviso importante"
+  integrate_form: "Integrar formulario"
+  integrate_form_explanation_1: "PAra integrar o formulario desta campaña no teu sitio web copia e pega o seguinte código Javascript onde queiras que se amose:"
+  integrate_form_explanation_2: "No caso que o código non te funcione, podes probar coa versión sen Javascript nin iframes, en HTML limpo:"
+  intro_limit: "Ten un límite de 500 caracteres"
+  intro_of_campaign: "introdución da campaña"
+  intro_of_campaign_help: "Entradilla da campaña, este texto aparece no listado de campañas."
+  italic: cursiva
+  join: Únete
+  join_myself: Firma
+  join_oigame: "Únete a oiga.me!"
+  join_this_campaign: "Únete a esta campaña"
+  keywords: "oiga.me, plataforma, mobilización, web, campaña, campañas"
+  languages: Idiomas
+  last_campaigns: "Últimas campañas"
+  last_moderated_campaigns: "Últimas campañas moderadas"
+  license_pre: "Mentres nono se expreso o contrario, o contido deste sitio ten"
+  listen_your_voice: "Que se escoite a túa voz! Para participar na campaña escribe aquí a túa mensaxe, nós encargámosnos de que chegue de xeito eficaz a todos os responsábeis"
+  login: "iniciar sesión"
+  logout: Desconectar
+  make_member: "Faite membro agora"

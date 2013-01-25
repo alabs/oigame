@@ -30,21 +30,21 @@
     <% gotten = campaign.messages_count.to_i %> 
       <% if campaign.status == "archived" %>
           <%= link_to url do %>
-            <span class="label label-warning" style="font-size: 1em;">archivada</span>
+            <span class="label label-warning" style="font-size: 1em;"><%= t(:archived) %></span>
           <% end %>
         <% else %>
                     <div id="progressbarlista">
 
                      <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted"><%= gotten %></span>
-                       Firmas</h3>
+                       <%= t(:firms) %></h3>
 
 
                 <div id="necesarias">
                   <h4><i class="icon-signin"></i>
-                  Faltan <span class="underlinedlista"><%= objective - gotten %> </span>firmas más!</h4>
+                  <%= t(:miss) %> <span class="underlinedlista"><%= objective - gotten %> </span><%= t(:firms_more) %>!</h4>
                 </div>
                 <progress id="barlista" value="<%= gotten %>" max="<%= objective %>">
-                  <em>Conseguidas <%= gotten %> de <%= objective %> firmas</em>
+                  <em><%= t(:has_gotten) %> <%= gotten %> <%= t(:of) %> <%= objective %> <%= t(:firms) %></em>
                 </progress>
 
 

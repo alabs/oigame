@@ -44,6 +44,25 @@ default_environment["RUBY_VERSION"] = "ruby-1.9.3-p362"
 default_run_options[:shell] = 'bash'
 default_run_options[:pty] = true
 
+namespace :tolk do
+
+  desc "Tolk: fetch translations"
+  task :fetch do
+    download("/var/www/beta.oiga.me/current/config/locales/", "config/locales/", :recursive => true)  
+  end
+
+  desc "Tolk: remote sync"
+  task :sync do
+    run_rake("tolk:sync")
+  end
+
+  desc "Tolk: remote dump_all"
+  task :dump_all do
+    run_rake("tolk:dump_all")
+  end
+
+end
+
 namespace :deploy do
   desc "Deploy your application"
   task :default do

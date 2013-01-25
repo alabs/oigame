@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter { |c| Authorization.current_user = c.current_user }
 
   def permission_denied
-    redirect_to root_url, :alert => 'Sorry, you not allowed to access that page'
+    redirect_to root_url, :alert => t(:sorry_you_are_not_allowed)
   end
 
   protected
