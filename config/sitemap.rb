@@ -39,6 +39,6 @@ SitemapGenerator::Sitemap.create do
 
   # Campañas
   Campaign.published.find_each do |campaign|
-    add campaign_path(campaign), :lastmod => campaign.updated_at, :changefreq => 'daily'
+    add campaign_path(I18n.default_locale, campaign), :lastmod => campaign.updated_at, :changefreq => 'daily'
   end
 end
