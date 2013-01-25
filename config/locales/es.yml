@@ -464,6 +464,8 @@ es:
   your_identity_card: "Tu NIF"
   your_postal_code: "Tu código postal"
   faq: "FAQ"
+  sorry_you_are_not_allowed: "Lo sentimos, no tienes permitido el acceso a esta página"
+  press: "Prensa"
   programe: "Programar"
   next_step: "Siguiente paso"
   language: "Idioma"

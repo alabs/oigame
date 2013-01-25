@@ -23,33 +23,6 @@ a:hover {
   margin-right: 2em;
 }
 
-/* modificados de twitter */
-
-.alert-danger,
-.alert-error,
-.alert-alert {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
-}
-
-.alert-danger h4,
-.alert-error h4,
-.alert-alert h4 {
-  color: #b94a48;
-}
-.alert-success,
-.alert-notice {
-  color: #468847;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-}
-
-.alert-success h4, 
-.alert-notice h4 {
-  color: #468847;
-}
-
 
 
 
@@ -3310,3 +3283,49 @@ a.thumbnail:hover {
     list-style: none outside none;
     margin-left: 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* modificados de twitter - dejar siempre abajo */
+
+.alert-danger,
+.alert-error,
+.alert-alert {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+.alert-danger h4,
+.alert-error h4,
+.alert-alert h4 {
+  color: #b94a48;
+}
+.alert-success,
+.alert-notice {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-success h4, 
+.alert-notice h4 {
+  color: #468847;
+}
+
