@@ -61,7 +61,7 @@ class CampaignsController < ApplicationController
 
     @instanke = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize.new
     @message_body = @campaign.default_message_body if @instanke.respond_to?(:body)
-    @message_subject = @campaign.default_message_body if @instanke.respond_to? :subject
+    @message_subject = @campaign.default_message_subject if @instanke.respond_to?(:subject)
 
     respond_with(@campaign)
   end
