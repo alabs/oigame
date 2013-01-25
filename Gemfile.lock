@@ -1,14 +1,3 @@
-GIT
-  remote: https://github.com/coderanger/raven-ruby.git
-  revision: aad856a8a44a73f262c763f16ff930f586350abc
-  ref: aad856a8a4
-  specs:
-    sentry-raven (0.2)
-      faraday (~> 0.8.0.rc2)
-      hashie
-      uuidtools
-      yajl-ruby
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -380,7 +369,6 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    uuidtools (2.1.3)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.1)
@@ -395,7 +383,6 @@ GEM
     xpath (0.1.4)
       nokogiri (~> 1.3)
     ya2yaml (0.31)
-    yajl-ruby (1.1.0)
     yaml_db (0.2.3)
     youtube_it (2.1.10)
       builder
@@ -457,7 +444,6 @@ DEPENDENCIES
   rmagick
   ruby_parser
   sass-rails (= 3.2.3)
-  sentry-raven!
   sitemap_generator
   spork-rails
   spork-testunit
