@@ -337,6 +337,7 @@ es:
   published_at: 'Publicada hace'
   time_left: 'Quedan'
   archived_campaign: 'Campaña archivada'
+  archived: "archivada"
   days: 'días'
   participants: 'Participantes'
   of: 'de'
@@ -389,6 +390,7 @@ es:
   view_all_campaigns: "Ver todas las campañas"
   example_email: 'tunombre@dominio.com'
   make_member: 'Hazte miembro ahora'
+  tell_us: "Cuéntanos"
   slide_1: 'Un altavoz para que los poderosos te escuchen'
   slide_2: 'Crea el lobby más importante del mundo. Somos el 99%'
   slide_3: '¿Crees que puedes cambiar el mundo? ¡Hazlo!'
@@ -442,8 +444,10 @@ es:
   firms: 'Firmas'
   share_with_my_friends_on_facebook: "Compartir con mis amigos en Facebook"
   by_signing_you_accept: "Firmando aceptas la "
+  has_gotten: "conseguidas"
   users: 'Usuarios'
   miss: "Faltan"
+  firms_more: "firmas más"
   more: "más"
   languages: 'Idiomas'
   about: 'Acerca de'
@@ -460,10 +464,14 @@ es:
   your_identity_card: "Tu NIF"
   your_postal_code: "Tu código postal"
   faq: "FAQ"
+  sorry_you_are_not_allowed: "Lo sentimos, no tienes permitido el acceso a esta página"
+  press: "Prensa"
   programe: "Programar"
   next_step: "Siguiente paso"
   language: "Idioma"
   options: "Opciones"
+  change_my_password: "Cambiar mi contraseña"
+  cancel_account_explanation: "¿Deseas cancelar tu cuenta? Puedes hacerlo presionando"
   admin:
     home:
       name: Inicio
@@ -594,6 +602,64 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    user:
+      registration:
+        gravatar_html: "<b>Tu avatar es el de Gravatar</b> Si quieres modificarlo tendrás que hacerlo a través de tu cuenta de <a href='http://gravatar.com' title='gravatar'>gravatar</a> o tendrás que crearte una."
+    pages:
+      about:
+        title: "Acerca de"
+        title_html: "¿Qué es <strong>oiga.me</strong>?"
+        question_1_html: "<strong>oiga.me</strong> es una herramienta de movilización ciudadana a través de la red"
+        answer_1_1_html: "<strong>oiga.me</strong> es una herramienta para generar peticiones on line y campañas de apoyo, pero también es una plataforma de lobby ciudadano. A través de una herramienta de envío masivo de mail, fax y telefonía actúa como catalizador de demandas y peticiones facilitando el contacto directo de los ciudadanos con los responsables y representantes de gobiernos, empresas o cualquier tipo de autoridades."
+        answer_1_2_html: "<strong>oiga.me</strong> por tanto es una herramienta de democratización social y empoderamiento que sirve como mecanismo para amplificar las voces y potenciar el impacto demandas ciudadanas."
+        question_2_html: "<strong>oiga.me</strong> cree en la habilidad de las comunidades para producir cambios"
+        answer_2_1_html: "Las comunidades digitales y analógicas han protagonizado procesos de cambio que han sido el garante del cuidado de la gestión de los recursos comunes y de los servicios públicos. Hoy en día la red es el territorio nativo de muchos de esos procesos."
+        answer_2_2_html: "Nos sentimos parte del movimiento por la democracia y los derechos. <strong>oiga.me</strong>  promueve la cooperación a través de una interfaz sencillo que permite a cualquiera encontrarse con otros para la consecución de un objetivo común."
+        answer_2_3_html: "<strong>oiga.me</strong>  pone en práctica modelos de organización distribuida que promueven el desarrollo de la inteligencia colectiva en red."
+        question_3_html: "<strong>oiga.me</strong>  es una organización sin ánimo de lucro hecha desde el 99% para el 99%"
+        answer_3_1_html: "La democracia necesita canales libres e independientes de comunicación que no persigan intereses económicos o partidistas."
+        answer_3_2_html: "<strong>oiga.me</strong>  se encuentra gestionado por un Consejo Social del que forman parte  entidades de la sociedad civil representativas en el terreno de la democracia y de la participación ciudadana que se encuentra en construcción permanente, abierta a nuevas organizaciones. Las funciones del consejo social son: asegurar el buen uso de la plataforma, garantizar la independencia de la herramienta, asesorar en el proceso de toma de decisiones, proponer campañas especiales, buscar mejoras en la plataforma para las comunidades que la utilizan y conseguir recursos para su buen funcionamiento."
+        question_4_html: "En <strong>oiga.me</strong>  apostamos por la libertad del conocimiento, por eso está construida en software libre.
+<br />
+      Todo el software utilizado por <strong>oiga.me</strong>  es libre y está licenciado como GNU AFFERO GENERAL PUBLIC LICENSE , todos sus contenidos son copyleft bajo licencia CC-By-SA."
+        answer_4_1_html: "La construcción de <strong>oiga.me</strong> ha precisado del apoyo de la comunidad de de software libre, sin el código y la documentación, no hubiera sido posible. Por esto consideramos una obligación y una responsabilidad que el código se mantenga libre para que sea un retorno a la comunidad pero también como una forma de mejorar <strong>oiga.me</strong> ."
+        question_5_html: "¿Para que sirve <strong>oiga.me</strong> ?"
+        answer_5_1_html: "<strong>oiga.me</strong> transforma y concentrala energía distribuida de las redes hacia entornos físicos  a través de los canales de fax, mail y telefonía. Y además multiplica las acciones, permitiendo que los esfuerzos individuales se conviertan en  una  poderosa fuerza  colectiva a través de las redes sociales."
+        answer_5_2_html: "Canal Firmas online (peticiones)"
+        answer_5_3_html: "La plataforma permite que miles de personas se adhieran a una petición sumando su firma. El objetivo es demostrar cuántas personas quieren cambiar las cosas. Una vez concluida cada acción, el sistema genera un fichero imprimible para la organización que coordina la campaña de tal manera que esta pueda llevar a cabo su acción."
+        answer_5_4_html: "Canal Fax"
+        answer_5_5_html: "Las campañas por fax permiten enviar un texto por FAX a los destinatarios deseados simplemente haciendo 'click'. El FAX es una herramienta óptima para reclamaciones de consumo o para  la administración pública; <strong>oiga.me</strong>  permite la coordinación para migraciones masivas de clientes entre operadores de empresas de servicios o cualquier otro tipo de solicitudes masivas."
+        answer_5_6_html: "Canal E-Mail"
+        answer_5_7_html: "Las campañas por mail entregan un texto estándar o personalizado a los responsables directos de la campaña. <strong>oiga.me</strong>  utiliza un sistema seguro de envío de mensajería por el que se protege así la privacidad de los usuarios y se evitan así posibles filtros de las direcciones de los destinatarios, para ello requiere una confirmación que se realiza por correo."
+        answer_5_8_html: "Canal Teléfono"
+        answer_5_9_html: "Contacta directamente con los destinatarios de la campaña mediante un sistema gratuito de telefonía."
+      faq:
+        title: "Ayuda"
+        title_html: "FAQ <strong>oiga.me?</strong>"
+        question_1: "¿Quién puede proponer campañas?"
+        answer_1: "Pueden proponer campañas todas las personas, colectivos u organizaciones que lo deseen."
+        question_2: "¿Cúales son los criterios para que se acepten propuestas de campañas?"
+        answer_2_1: "Recursos disponibles: oiga.me, como toda aplicación, tiene una capacidad limitada.
+        Respeto: Un criterio básico en las campañas es el respeto a los derechos de las personas, pero también el respeto al medio ambiente y todo ser vivo, así como utilizar un lenguaje positivo e inclusivo."
+        answer_2_2: "Sentido común: Aún siendo el menos común de todos los sentidos, aLabs comparte la plataforma y el código de oiga.me con la intención de facilitar campañas que permitan a la sociedad del siglo XXI organizarse mediante herramientas telemáticas para conseguir transformar su realidad y ser efectivos. Por ese motivo hemos creado el consejo social de oiga.me para compartir las decisiones con redes en cuyo criterio confiamos."
+        question_3: "¿Qué ocurre con mis datos al registrarme?, ¿y cuando participo en una campaña?"
+        answer_3_1: "Cuando te registras como usuario de oiga.me, entregas voluntariamente ciertos datos personales que serán guardados, protegidos y utilizados sólo para las finalidades previstas en este sitio web. Si deseas más información, puedes consultar nuestra política de privacidad."
+        answer_3_2_html: "Al participar en una campaña a través de este sitio web, se guarda un registro del número de participantes y acciones con fines estadísticos. El usuario autoriza expresamente a la asociación <strong>aLabs</strong> a facilitar los datos que introduzca en el formulario de la campaña (Nombre completo, apellidos y dirección de correo electrónico) a la persona o entidad que impulse y gestione dicha campaña con el único y exclusivo objetivo de presentarlos ante la entidad final a la que se dirija la instancia"
+        question_4: "¿Cómo apoyar la difusión de las campañas?"
+        answer_4_1: 'Difunde las campaña como webmaster Cada campaña de oiga.me puede replicarse en tu blog o página web. Introduciendo un pequeño código HTML o Javascript que ponemos a tu disposición ayudarás a que la campaña sea visible desde más sitios, de tal forma que la web de oiga.me no sea el único punto de acceso para los usuarios que se quieran apuntar a una campaña y tu página web o blog sea también el centro de la acción.¿Cómo integrar el formulario? El "formulario" es un pequeño código de html que puedes integrar en el código de tu propia página web o blog. Es muy sencillo, simplemente copia el código del formulario y pégalo en una nueva entrada en tu blog, al publicar la nueva entrada verás el formulario en la portada de tu web y tus lectores podrán participar en la acción, construyendo un gran altavoz de manera distribuida.'
+        answer_4_2: "Por correo electrónico: Envía los mensajes que recibas de nuevas campañas a tus contactos que puedan estar interesados. Difunde las campañas por listas de correo que puedan estar interesadas."
+        answer_4_2_1_html: 'Sigue a @oigame en <a href="https://twitter.com/oigame">Twitter </a>'
+        answer_4_2_2: "Haz RT de las campañas que te interesen o publica tu participación en las mismas."
+        answer_4_2_3: "Participa en la difusión de los #hastags de las campañas."
+        answer_4_2_4: 'Facebook: Haz click en "Compartir con mis amigos en Facebook" en la firma de campaña para compartirla en tu muro.'
+        answer_4_2_5: "Por RSS Incluye el RSS (enlace) de las campañas de de oiga.me en tu página web."
+        question_5_html: '¿Cómo puedo participar? Como me integro en la comunidad <a href="http://oiga.me">oiga.me</a>'
+        answer_5_1: "Dona"
+        answer_5_2: "Desarrolla"
+        answer_5_3: "Crea tu Campaña"
+        answer_5_4_html: 'Las formas de colaborar con oiga.me van desde la mera participación en las campañas que te interesen, hasta la colaboración activa más directa aportando recursos o como voluntario en el equipo de desarrolladores. Inscríbete y recibirás un mail semanal con las nuevas campañas; entra en nuestro repositorio en <a href="https://github.com/alabs/oigame">Github</a> para mandarnos tus propuestas para mejorar la web.'
+        answer_5_5: "Cada pequeña donación es un gran apoyo que nos permite mejorar la plataforma con nuevas funcionalidad y dar soporte y difusión a las campañas. Las aportaciones pueden realizarse directamente desde la web a través de nuestra pasarela segura, que garantiza la máxima protección de tus datos (nombre y número de tarjeta de crédito). Como asociación cultural independiente y sin ánimo de lucro, aLabs destina estas donaciones a mantener los servidores de oiga.me y mejorar la plataforma."
+        answer_5_6_html: 'La labor de desarrollo de código es un trabajo en evolución constante: toda colaboración es bienvenida. Si tienes ganas de participar como desarrollador, te animamos a que te suscribas a la lista y nos lo comuniques a <a src="https://listas.alabs.es/mailman/listinfo/oigame-dev"> https://listas.alabs.es/mailman/listinfo/oigame-dev</a>'
     campaigns:
       creator_of_campaign: "creador de campaña"
       credit:

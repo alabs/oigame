@@ -317,10 +317,6 @@ gl:
   if_you_write: "se escrebes:"
   image_of_campaign: "imaxe da campaña"
   important_notice: "Aviso importante"
-  inform_campaign_activate: "Escribímoste para informarche que a campaña co teu nome '#{campaign_name}' que creaches en oiga.me, foi publicada e está disponíbel na seguinte URL:"
-  inform_campaign_social_council: "Olá consello social, creouse unha campaña nova en oiga.me co nome: '#{campaign_name}'. Polo momento atópase moderada polo que ainda non é pública. Podes revisala e valorala, se vos parece moi interesante comentádeo na lista e o debatimos. "
-  inform_campaign_sub_admin: "Olá, creouse unha campaña nova no teu SubOigame '#{ sub_name}' co nome: '#{ campign_name }'. Polo momento atópase moderada polo que ainda non é pública. Podes revisala e valorala, se a atopas moi interesante podes activala. "
-  inform_new_comment: "Escribímoste para informarche que recibiches un novo comentario na campaña co teu nome '#{ campaign_name } que creaches en oiga.me."
   integrate_form: "Integrar formulario"
   integrate_form_explanation_1: "PAra integrar o formulario desta campaña no teu sitio web copia e pega o seguinte código Javascript onde queiras que se amose:"
   integrate_form_explanation_2: "No caso que o código non te funcione, podes probar coa versión sen Javascript nin iframes, en HTML limpo:"
@@ -340,7 +336,4 @@ gl:
   listen_your_voice: "Que se escoite a túa voz! Para participar na campaña escribe aquí a túa mensaxe, nós encargámosnos de que chegue de xeito eficaz a todos os responsábeis"
   login: "iniciar sesión"
   logout: Desconectar
-  mail_validate_1: "Validar adhesión á campaña: #{ campaign_name }"
-  mail_validate_10: "oiga.me é un proxecto da asociación #{url_alabs}. Como asociación sen ánimo de lucro, aLabs destina todas as doazóns que recibe para oiga.me a mellorar a plataforma e engadir funcionalidades que permitan facilitar a participación da cidadanía na vida política e os asuntos que nos importan. Podes contribuir a manter de xeito colaborativo doando ao proxecto (#url_donate})."
-  mail_validate_2: "Para validar a adhesión á cmpaña #{ campaign_name } temos que comprobar que fuches ti quen o fixo. Para rematar o proceso:"
   make_member: "Faite membro agora"

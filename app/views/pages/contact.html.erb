@@ -9,7 +9,7 @@
             <div class="control-group">
               <%= f.label t(:name), :class => 'control-label' %>
               <div class="controls">
-                <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => 'Nombre y apellido' %>
+                <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_and_surname) %>
                 <% unless @contact.errors[:name].blank? %>
                   <span class="error_message"><%= @contact.errors[:name].to_sentence %></span>
                 <% end %>
@@ -18,7 +18,7 @@
             <div class="control-group">
               <%= f.label t(:email), :class => 'control-label' %>
               <div class="controls">
-                <%= f.email_field :email, :class => 'span6', :required => true, :placeholder => 'Tu correo de contacto' %>
+                <%= f.email_field :email, :class => 'span6', :required => true, :placeholder => t(:example_mail) %>
                 <% unless @contact.errors[:email].blank? %>
                   <span class="error_message"><%= @contact.errors[:email].to_sentence %></span>
                 <% end %>
@@ -27,13 +27,13 @@
             <div class="control-group">
               <%= f.label t(:subject), :class => 'control-label' %>
               <div class="controls">
-                <%= f.text_field :subject, :class => 'span6', :placeholder => 'Asunto del mensaje' %>
+                <%= f.text_field :subject, :class => 'span6', :placeholder => t(:subject) %>
               </div>
             </div>
             <div class="control-group">
               <%= f.label t(:message), :class => 'control-label' %>
               <div class="controls">
-                <%= f.text_area :body, :rows => 10, :class => 'span6', :required => true,  :placeholder => 'Cuéntanos' %>
+                <%= f.text_area :body, :rows => 10, :class => 'span6', :required => true,  :placeholder => t(:tell_us) %>
                 <% unless @contact.errors[:body].blank? %>
                   <span class="error_message"><%= @contact.errors[:body].to_sentence %></span>
                 <% end %>
@@ -41,7 +41,7 @@
             </div>
             <div class="control-group">
               <div class="controls">
-                <%= f.check_box :mailing, :checked => true %> <span class="note">Deseo recibir noticias de oiga.me</span>
+                <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
               </div>
             </div>
             <div class="control-group">
