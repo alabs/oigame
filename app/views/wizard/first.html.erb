@@ -6,7 +6,7 @@
   <%= render :partial => 'partials/diferencial' %>
   <%= render :partial => 'partials/logo' %>
 
-<div class="span7">
+<div class="span12">
 
 <div id="page-wrapper">
   <div id="create-campaigns">
@@ -29,6 +29,12 @@
     <% url = campaign_path(@campaign) %>
   <% end %>
 <% end %>
+
+      <ol class="progtrckr" data-progtrckr-steps="3">
+          <li class="progtrckr-done"><%= t(:step_1) %></li>
+          <li class="progtrckr-todo"><%= t(:step_2) %></li>
+          <li class="progtrckr-todo"><%= t(:step_3) %></li>
+      </ol>
 
 <%= form_for @campaign, :url => campaign_wizard_path, :method => :put do |f| %>
   <fieldset>

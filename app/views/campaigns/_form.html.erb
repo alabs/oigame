@@ -16,6 +16,12 @@
   <% end %>
 <% end %>
 
+<ol class="progtrckr" data-progtrckr-steps="3">
+    <li class="progtrckr-todo"><%= t(:step_1) %></li>
+    <li class="progtrckr-todo"><%= t(:step_2) %></li>
+    <li class="progtrckr-todo"><%= t(:step_3) %></li>
+</ol>
+
 <%= form_for @campaign do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
