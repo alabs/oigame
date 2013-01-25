@@ -19,7 +19,7 @@ https://listas.alabs.es/mailman/listinfo/oigame-dev
 
 Aplicación para ver excepciones
 ===============================
-http://sentry.alabs.es/oigame/
+https://err.oiga.me/
 
 Instalación de entorno de desarrollo
 ====================================
