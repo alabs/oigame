@@ -17,7 +17,7 @@
           <div class="form-field">
             <%= f.label t(:avatar) %>
              <img style="width:100px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
-             <div style="float: right; width: 18em;" class="alert alert-info"><b>Tu avatar es el de Gravatar</b> Si quieres modificarlo tendrás que hacerlo a través de tu cuenta de <%= link_to "gravatar", "http://gravatar.com" %> o tendrás que crearte una.</div>
+             <div style="float: right; width: 18em;" class="alert alert-info"><%= t("oigame.user.registration.gravatar_html") %></div>
           </div>
           <br />
           <br />
@@ -57,7 +57,7 @@
     <div id="edit-account-form" class="form-stacked">
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
         <fieldset>
-          <legend>Cambiar mi contraseña</legend>
+          <legend><%= t(:change_my_password) %></legend>
           <div class="form-field">
             <%= f.label t(:password) %>
             <%= f.password_field :password, :style => "display:none;", :name => "fuckautocompleteonfirstpasswd" %>
@@ -83,7 +83,7 @@
         </fieldset>
       <% end %>
       <h3><%= t(:cancel_account) %></h3>
-      <p>¿Deseas cancelar tu cuenta? Puedes hacerlo presionando <%= link_to t(:this_link), registration_path(resource_name), :confirm => t(:are_you_sure), :method => :delete %>.</p>
+      <p><%= t(:cancel_account_explanation) %><%= link_to t(:this_link), registration_path(resource_name), :confirm => t(:are_you_sure), :method => :delete %>.</p>
     </div><!-- edit-account-form -->
   </div><!-- accounts -->
 </div><!-- accounts-wrapper -->
