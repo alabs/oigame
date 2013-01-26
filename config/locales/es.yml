@@ -464,6 +464,9 @@ es:
   your_identity_card: "Tu NIF"
   your_postal_code: "Tu código postal"
   faq: "FAQ"
+  step_1: "Nombre"
+  step_2: "Descripción"
+  step_3: "Datos extra"
   sorry_you_are_not_allowed: "Lo sentimos, no tienes permitido el acceso a esta página"
   press: "Prensa"
   programe: "Programar"
@@ -602,6 +605,13 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    campaigns:
+      creator_of_campaign: "creador de campaña"
+      credit:
+        add_credit: 'Añadir crédito a la campaña'
+        amount_select: "Elige una cantidad"
+        amount_to_donate: "Cantidad a donar"
+        accepted_cards: "Tarjetas aceptadas"
     user:
       registration:
         gravatar_html: "<b>Tu avatar es el de Gravatar</b> Si quieres modificarlo tendrás que hacerlo a través de tu cuenta de <a href='http://gravatar.com' title='gravatar'>gravatar</a> o tendrás que crearte una."
@@ -660,13 +670,6 @@ es:
         answer_5_4_html: 'Las formas de colaborar con oiga.me van desde la mera participación en las campañas que te interesen, hasta la colaboración activa más directa aportando recursos o como voluntario en el equipo de desarrolladores. Inscríbete y recibirás un mail semanal con las nuevas campañas; entra en nuestro repositorio en <a href="https://github.com/alabs/oigame">Github</a> para mandarnos tus propuestas para mejorar la web.'
         answer_5_5: "Cada pequeña donación es un gran apoyo que nos permite mejorar la plataforma con nuevas funcionalidad y dar soporte y difusión a las campañas. Las aportaciones pueden realizarse directamente desde la web a través de nuestra pasarela segura, que garantiza la máxima protección de tus datos (nombre y número de tarjeta de crédito). Como asociación cultural independiente y sin ánimo de lucro, aLabs destina estas donaciones a mantener los servidores de oiga.me y mejorar la plataforma."
         answer_5_6_html: 'La labor de desarrollo de código es un trabajo en evolución constante: toda colaboración es bienvenida. Si tienes ganas de participar como desarrollador, te animamos a que te suscribas a la lista y nos lo comuniques a <a src="https://listas.alabs.es/mailman/listinfo/oigame-dev"> https://listas.alabs.es/mailman/listinfo/oigame-dev</a>'
-    campaigns:
-      creator_of_campaign: "creador de campaña"
-      credit:
-        add_credit: 'Añadir crédito a la campaña'
-        amount_select: "Elige una cantidad"
-        amount_to_donate: "Cantidad a donar"
-        accepted_cards: "Tarjetas aceptadas"
     home:
       slogan_1: "Crea tus campañas, firma, actúa, y compartela con tus redes."
       slogan_2: "No odies al lobby, ¡cómetelo!"
