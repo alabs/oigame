@@ -49,4 +49,7 @@ $(function(){
     trigger: 'focus'
   });
 
+  // todos los elementos con la clase editable se le añade el editor WYSIWYG
+  $('.editable').mdmagick();
+
 });
