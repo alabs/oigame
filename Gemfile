@@ -111,3 +111,4 @@ gem 'omniauth-twitter'
 
 gem 'airbrake'
 
+gem 'tweetstream'
