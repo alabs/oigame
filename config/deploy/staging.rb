@@ -4,7 +4,7 @@ require "capistrano-resque"
 
 set :scm,             :git
 set :repository,      "git@github.com:alabs/oigame.git"
-set :branch,          "origin/staging"
+set :branch,          "staging"
 set :migrate_target,  :current
 set :ssh_options,     { :forward_agent => true }
 set :rails_env,       "staging"
