@@ -311,6 +311,7 @@ es:
   contact: 'Contacto'
   name: 'Nombre'
   name_and_surname: 'Nombre y apellidos'
+  example_mail: 'tu@dominio.org'
   message_received: 'Mensaje recibido'
   go_to_home: 'Volver al inicio'
   type_of_campaign: 'Tipo de campaña'
@@ -390,7 +391,7 @@ es:
   slogan_3: 'PERSONAS'
   slogan_4: 'YA LO HAN HECHO'
   view_all_campaigns: "Ver todas las campañas"
-  example_email: 'tunombre@dominio.com'
+  example_email: 'Email'
   make_member: 'Hazte miembro ahora'
   tell_us: "Cuéntanos"
   slide_1: 'Un altavoz para que los poderosos te escuchen'
@@ -463,9 +464,9 @@ es:
   request_identity_card: "Pedir NIF"
   request_postal_code: "Pedir código postal"
   request_state: "Pedir país"
-  your_state: "Tu país"
-  your_identity_card: "Tu NIF"
-  your_postal_code: "Tu código postal"
+  your_state: "País"
+  your_identity_card: "NIF"
+  your_postal_code: "Código Postal"
   faq: "FAQ"
   step_1: "Nombre"
   step_2: "Descripción"
@@ -645,7 +646,7 @@ es:
         answer_5_6_html: "Canal E-Mail"
         answer_5_7_html: "Las campañas por mail entregan un texto estándar o personalizado a los responsables directos de la campaña. <strong>oiga.me</strong>  utiliza un sistema seguro de envío de mensajería por el que se protege así la privacidad de los usuarios y se evitan así posibles filtros de las direcciones de los destinatarios, para ello requiere una confirmación que se realiza por correo."
         answer_5_8_html: "Canal Teléfono"
-        answer_5_9_html: "Contacta directamente con los destinatarios de la campaña mediante un sistema gratuito de telefonía."
+        answer_5_9_html: "Próximamente podrás contactar directamente con los destinatarios de la campaña mediante un sistema gratuito de telefonía."
       faq:
         title: "Ayuda"
         title_html: "FAQ <strong>oiga.me?</strong>"
