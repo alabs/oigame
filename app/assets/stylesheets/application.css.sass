@@ -883,6 +883,8 @@ ul.jcarorusel li img
   box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.35)
   margin-bottom: 0px
   padding-bottom: 0px
+  .popover
+    font-weight: normal
   form div.textfield input
     display: block
     padding: 0px
@@ -908,7 +910,7 @@ ul.jcarorusel li img
 
   fieldset
     border: 0px
-  h3
+  h3, h3:not(.popover h3) 
     width: 80%
     margin-left: 10%
     margin-right: 10%
@@ -940,7 +942,6 @@ div.normas
 
 .comentarea
   width: 80%
-  margin-left: 10%
   margin-right: 10%
   margin-top: 10px
   border-radius: 2px

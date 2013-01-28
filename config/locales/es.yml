@@ -277,6 +277,7 @@ es:
   message_info: 'Para hacer efectiva la campaña te recomendamos que tu mensaje sea con respeto, se puede ser firme pero asertivo y nuestra experiencia nos indica que quienes reciben los mensajes son mucho más receptivos si se les trata respetuosamente. Cuéntales que no estás de acuerdo con lo que están haciendo y por qué, cuéntales cómo te gustaría que actuaran realmente'
   send_message: 'Enviar mensaje'
   your_email: 'Tu correo electrónico'
+  your_message: 'Tu mensaje'
   campaign_stats: 'Estadísticas de la campaña'
   help: 'Ayuda'
   answers: 'Respuestas'

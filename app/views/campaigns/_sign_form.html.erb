@@ -1,5 +1,4 @@
 <%= form_tag @sub_oigame ? sign_sub_oigame_campaign_path(@sub_oigame, @campaign) : sign_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
-  <div class="textfield">
   <% if !user_signed_in? || current_user.name.blank? %>
     <div class="form-field">
       <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name), :value => cookies[:name] %>
@@ -10,15 +9,6 @@
       <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
     </div>
   <% end %>
-  </div>
-  <div class="form-field">
-    <%= check_box_tag :own_message, false,false, class: 'checkfb' %>
-    <%= label_tag :own_message, t(:own_message), class: 'checkfblabel' %>
-  </div>
-  <div class="form-field form-message hide">
-    <%= text_area_tag :body, nil,placeholder: t(:message_info) , class: 'comentarea' %>
-  </div>
-
   <% if @campaign.identity_card %>
     <div class="form-field">
       <%= text_field_tag :identity_card, nil, :required => true, :placeholder => t(:your_identity_card) %>
@@ -34,6 +24,16 @@
       <%= text_field_tag :state, nil, :required => true, :placeholder => t(:your_state) %>
     </div>
   <% end %>
+  <% if @campaign.ttype != "petition" %>
+    <div class="form-field">
+      <%= check_box_tag :own_message, false,false, class: 'checkfb' %>
+      <%= label_tag :own_message, t(:own_message), class: 'checkfblabel' %>
+    </div>
+    <div class="form-field form-message hide">
+      <%= text_area_tag :body, nil, :placeholder => t(:your_message), :rel => 'popup_ayuda', 'data-content' => t(:message_info), 'data-original-title' => t(:message), 'data-placement' => 'left', class: 'comentarea' %>
+    </div>
+  <% end %>
+
   <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
   <label for="checkfb" class="checkfblabel"><%= t(:share_with_my_friends_on_facebook) %></label>
 
