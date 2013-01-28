@@ -462,6 +462,7 @@ en:
   my_account: "My account"
   name: "First name"
   name_and_surname: "Name and Surname/s:"
+  example_email: 'you@domain.com'
   name_of_campaign: "Campaign name"
   next_step: "Next step"
   next_you_have_info: "Here you have the information campaign"
