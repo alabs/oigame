@@ -110,4 +110,4 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'airbrake'
-
+gem 'tweetstream'
