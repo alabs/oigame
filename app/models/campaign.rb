@@ -70,10 +70,10 @@ class Campaign < ActiveRecord::Base
   before_save :normalize_target
 
   # Scope para solo mostrar la campañas que han sido moderadas
-  scope :published, where(:moderated => false, :status => 'active', :wstatus => 'active')
+  scope :published, where(:moderated => false, :status => 'active')
+  scope :not_published, where(:moderated => true, :status => 'active').where("wstatus != ?", 'active')
   scope :on_archive, where(:status => 'archived', :wstatus => 'active')
   scope :_archived, where(:status => 'archived', :wstatus => 'active')
-  scope :not_published, where(:moderated => true, :status => 'active', :wstatus => 'inactive')
   scope :by_sub_oigame, lambda {|sub| where(:sub_oigame_id => sub) unless sub.nil? }
 
   # thinking sphinx
