@@ -27,11 +27,7 @@
       <div class="controls">
       <div class="wmd-panel">
         <div id="wmd-button-bar-second"></div>
-        <%= f.text_area :body, :class => 'wmd-input', :id => 'wmd-input-second', :rows => 10, :class => 'span6', :required => true, :placeholder => t(:body_of_campaign_help), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.body_help'), 'data-original-title' => t(:body_of_campaign) %>
-      </div>
-      <a href="#" class="show_markdown_help"><%= I18n.t(:markdown_help_show) %></a>
-      <div class="markdown_help" style="display:none;">
-        <%= render :partial => 'campaigns/markdown_help' %>
+        <%= f.text_area :body, :id => 'wmd-input-second', :rows => 10, :class => 'span6 editable', :required => true, :placeholder => t(:body_of_campaign_help), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.body_help'), 'data-original-title' => t(:body_of_campaign) %>
       </div>
       <% unless @campaign.errors[:body].blank? %>
         <span class="error_message"><%= @campaign.errors[:body].to_sentence %></span>
@@ -50,7 +46,7 @@
 
       <% Campaign::TYPES.select do |k,v| %>
         <div class="controls">
-          <%= f.radio_button :ttype, k, :rel => 'popup_ayuda', 'data-content' => t("oigame.wizard.#{k}_help"), :class => "campaign-choose", 'data-original-title' => v[:name] %>
+          <%= f.radio_button :ttype, k, :rel => 'popup_ayuda', 'data-content' => t("oigame.wizard.#{k}_help"), :class => "campaign-choose", 'data-original-title' => v[:name], 'data-placement' => 'top' %>
           <%= f.label :ttype, :value => k do %>
             <i class="<%= v[:img] %> icon-2x"></i>
             <%= v[:name] %>

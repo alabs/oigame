@@ -1,11 +1,13 @@
 def csv_ovh_rates
-  resp = HTTParty.get('http://twitter.com/statuses/public_timeline.json')
-  return resp.body
+  resp = HTTParty.get('https://www.ovh.co.uk/cgi-bin/telephony/callRateCsv.cgi')
+  file = File.new('/tmp/ovh_fax_rates.csv', 'w')
+  file.puts resp.body
+  file.close
 end
 
 def import_csv
   require 'csv'    
-  csv_text = File.read(csv_ovh_rates)
+  csv_text = File.read('/tmp/ovh_fax_rates.csv')
   csv = CSV.parse(csv_text, :headers => true)
   data = []
   csv.each do |row|
@@ -21,15 +23,22 @@ def import_csv
     end
   end
 
+  return data
+end
+
+def destroy_and_create
   FaxForRails.all(&:destroy)
-  data.each do |d| 
-    FaxForRails.create(:country => d[0], :rate => d[1])
+  csv_ovh_rates
+  data = import_csv
+  data.each do |d|
+    f4r = FaxForRails.create!(:country => d[0], :rate => d[1])
+    puts "#{f4r.country}: #{f4r.rate}"
   end
 end
 
 namespace :oigame do
-  desc 'Import rates'
-  task(:import_rates => :environment) do
-    import_csv if ENV['FORMAT'] == 'csv'
+  desc 'Import FAX rates from OVH'
+  task(:import_fax_rates => :environment) do
+    destroy_and_create if ENV['FORMAT'] == 'csv'
   end
 end

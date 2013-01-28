@@ -1,1 +1,1 @@
-Sitemap: http://oiga.me/sitemap_index.xml.gz
+Sitemap: https://oiga.me/sitemap_index.xml.gz

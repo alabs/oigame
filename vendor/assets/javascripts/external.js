@@ -27,3 +27,6 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery.iosslider
+//= require a-tools
+//= require showdown
+//= require mdmagick

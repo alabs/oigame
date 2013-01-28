@@ -1,9 +1,8 @@
 class FaxForRails < ActiveRecord::Base
   
-  attr_accessible :country, :rate, :credit, :reference
+  # attr_accessible :country, :rate, :credit, :reference
+  # borrar esas columnas inncesarias
+  attr_accessible :country, :rate
 
-  TAX = 4
-
-  def hello_world(*args)
-  end
+  TAX = 0.04
 end

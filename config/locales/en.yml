@@ -36,6 +36,7 @@ en:
           one: "1 error prohibited this {{model}} from being saved"
           other: "{{count}} errors prohibited this {{model}} from being saved"
   add_credit: "Add credit"
+  credits: 'Credits'
   admin: 
     actions: 
       bulk_delete: 

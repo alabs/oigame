@@ -86,3 +86,10 @@ Oigame::Application.configure do
   # SSL en todo el sitio
   config.force_ssl = true
 end
+
+Airbrake.configure do |config|
+  config.api_key = '6082fecdacfa8a090f20df05b0df4041'
+  config.host    = 'err.oiga.me'
+  config.port    = 443
+  config.secure  = config.port == 443
+end
