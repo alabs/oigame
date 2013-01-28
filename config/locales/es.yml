@@ -315,7 +315,7 @@ es:
   type_of_campaign: 'Tipo de campaña'
   type_of_campaign_prompt: 'Selecciona tipo de campaña'
   archive: 'Archivar'
-  type: "tipo"
+  type: "Tipo"
   archived_campaigns: 'Campañas archivadas'
   default_message: 'Mensaje por defecto'
   own_message: 'Quiero escribir mi propio mensaje'
@@ -708,7 +708,7 @@ es:
         fax: "Envío de fax"
         petition_message: "firmas"
         message_message: "mensajes"
-        fax_message: "faxes enviado"
+        fax_message: "faxes enviados"
     wizard:
       next_step: "Paso siguiente"
       previous_step: "Paso anterior"
