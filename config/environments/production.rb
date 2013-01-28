@@ -90,7 +90,7 @@ Oigame::Application.configure do
 
   # instancia de redis
   config.cache_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
-  config.sesion_store = :redis_store, :expires_in => 1296000, { :host => '127.0.0.1', :port => 6379 }
+  config.sesion_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
 end
 
 Airbrake.configure do |config|
