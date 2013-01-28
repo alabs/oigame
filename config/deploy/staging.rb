@@ -48,17 +48,13 @@ namespace :tolk do
 
   desc "Tolk: fetch translations"
   task :fetch do
+    run_rake("tolk:dump_all")
     download("/var/www/beta.oiga.me/current/config/locales/", "config/locales/", :recursive => true)  
   end
 
   desc "Tolk: remote sync"
   task :sync do
     run_rake("tolk:sync")
-  end
-
-  desc "Tolk: remote dump_all"
-  task :dump_all do
-    run_rake("tolk:dump_all")
   end
 
 end

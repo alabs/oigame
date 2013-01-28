@@ -7,66 +7,65 @@ en:
   activerecord: 
     errors: 
       full_messages: 
-        format: " %{attribute} %{message} "
+        format: "%{attribute} %{message}"
       messages: 
-        accepted: "must be accepted"
-        blank: "can't be blank"
-        confirmation: "doesn't match confirmation"
-        empty: "can't be empty"
-        equal_to: "must be equal to {{count}}"
-        even: "must be even"
-        exclusion: "is reserved"
-        greater_than: "must be greater than {{count}}"
-        greater_than_or_equal_to: "must be greater than or equal to {{count}}"
-        inclusion: "is not included in the list"
-        invalid: "is invalid"
-        less_than: "must be less than {{count}}"
-        less_than_or_equal_to: "must be less than or equal to {{count}}"
-        not_a_number: "is not a number"
-        not_an_integer: "must be an integer"
-        odd: "must be odd"
+        accepted: "Must be accepted"
+        blank: "cannot be blank"
+        confirmation: "does not coincide with the confirmation"
+        empty: "cannot be empty"
+        equal_to: "must be equal to %{count}"
+        even: "must be an evennumber"
+        exclusion: "it's reserved"
+        greater_than: "must be greater than %{count} "
+        greater_than_or_equal_to: "must be greater than or equal to%{count} "
+        inclusion: "not included in the list"
+        invalid: invalid
+        less_than: "must be less than %{count}"
+        less_than_or_equal_to: "must be less than or equal to %{count}"
+        not_a_number: "not a number"
+        not_an_integer: "Must be an integer"
+        odd: "must be an odd number"
         record_invalid: "Validation failed: %{errors}"
         taken: "has already been taken"
-        too_long: "is too long (maximum is {{count}} characters)"
-        too_short: "is too short (minimum is {{count}} characters)"
-        wrong_length: "is the wrong length (should be {{count}} characters)"
+        too_long: "it's too long  (%{count} caracteres máximo) "
+        too_short: "it's too short  (%{count} caracteres máximo) "
+        wrong_length: "wrong length (%{count} exact characters) "
       template: 
-        body: "There were problems with the following fields"
+        body: "there were problems with the following fields:"
         header: 
-          one: "1 error prohibited this {{model}} from being saved"
-          other: "{{count}} errors prohibited this {{model}} from being saved"
+          one: "One error cannot allow this {{model}} from being saved"
+          other: "{{count}} errors cannot allow this {{model}} from being saved"
   add_credit: "Add credit"
-  credits: 'Credits'
   admin: 
     actions: 
       bulk_delete: 
         breadcrumb: "Delete multiple"
-        bulk_link: "Delete selected %{model_label_plural}"
+        bulk_link: "Delete %{model_label_plural} selected"
         menu: "Delete multiple"
         title: "Delete %{model_label_plural}"
       dashboard: 
-        breadcrumb: Dashboard
-        menu: Dashboard
+        breadcrumb: "Control panel"
+        menu: "Control panel"
         title: "Site administration"
       delete: 
         breadcrumb: Delete
         done: deleted
-        link: "Delete '%{object_label}'"
+        link: "Delete  '%{object_label}'"
         menu: Delete
         title: "Delete %{model_label} '%{object_label}'"
       edit: 
         breadcrumb: Edit
-        done: updated
+        done: "edit done"
         link: "Edit this %{model_label}"
         menu: Edit
         title: "Edit %{model_label} '%{object_label}'"
       export: 
         breadcrumb: Export
-        bulk_link: "Export selected %{model_label_plural}"
+        bulk_link: "Export %{model_label_plural} selected"
         done: exported
-        link: "Export found %{model_label_plural}"
+        link: "Export %{model_label_plural} found"
         menu: Export
-        title: "Export %{model_label} "
+        title: "Export %{model_label}"
       history_index: 
         breadcrumb: History
         menu: History
@@ -74,53 +73,53 @@ en:
       history_show: 
         breadcrumb: History
         menu: History
-        title: "History for %{model_label} '%{object_label}'"
+        title: "History %{model_label} '%{object_label}'"
       index: 
         breadcrumb: "%{model_label_plural}"
         menu: List
         title: "List of %{model_label_plural}"
       new: 
         breadcrumb: New
-        done: created
-        link: "Add a new %{model_label}"
+        done: Created
+        link: "Add new %{model_label}"
         menu: "Add new"
         title: "New %{model_label}"
       show: 
         breadcrumb: "%{object_label}"
         menu: Show
-        title: "Details for %{model_label} '%{object_label}'"
+        title: "Details of %{model_label} '%{object_label}'"
       show_in_app: 
         menu: "Show in app"
     export: 
       click_to_reverse_selection: "Click to reverse selection"
       confirmation: "Export to %{name}"
       csv: 
-        col_sep: "Column separator"
-        col_sep_help: "Leave blank for default ('%{value}')"
+        col_sep: "Columns separator"
+        col_sep_help: "Let it blank to see the effect ('%{value}')"
         default_col_sep: ","
-        encoding_to: "Encode to"
-        encoding_to_help: "Choose output encoding. Leave empty to let current input encoding untouched: (%{name})"
+        encoding_to: "Encoding to"
+        encoding_to_help: "Choose output encoding. Leave empty to let current input encoding  remain untouched: (%{name})"
         header_for_association_methods: "%{name} [%{association}]"
         header_for_root_methods: "%{name}"
-        skip_header: "No header"
-        skip_header_help: "Do not output a header (no fields description)"
-      display: "Display %{name}: %{type}"
+        skip_header: "Skip header"
+        skip_header_help: "Skip header (no description of the fields)"
+      display: "Show %{name}: %{type}"
       empty_value_for_associated_objects: <empty>
       fields_from: "Fields from %{name}"
-      fields_from_associated: "Fields from associated %{name}"
+      fields_from_associated: "Fields associated from %{name} "
       options_for: "Options for %{name}"
       select: "Select fields to export"
     flash: 
-      error: "%{name} failed to be %{action}"
-      model_not_found: "Model '%{model}' could not be found"
-      noaction: "No actions were taken"
-      object_not_found: "%{model} with id '%{id}' could not be found"
-      successful: "%{name} successfully %{action}"
+      error: "%{name} don't know %{action}"
+      model_not_found: "Model '%{model}' not found"
+      noaction: "No action taken"
+      object_not_found: "%{model} with id '%{id}' not found"
+      successful: "%{name} %{action} successful"
     form: 
-      all_of_the_following_related_items_will_be_deleted: "? The following related items may be deleted or orphaned:"
-      are_you_sure_you_want_to_delete_the_object: "Are you sure you want to delete this %{model_name}"
+      all_of_the_following_related_items_will_be_deleted: "? The following items can be removed or left as orphans:"
+      are_you_sure_you_want_to_delete_the_object: "Are you sure you want to delete %{model_name}?"
       basic_info: "Basic info"
-      bulk_delete: "The following objects will be deleted, which may delete or orphan some of their related dependencies:"
+      bulk_delete: "The following items will be removed, this can either delete or leave some of their related units as orphans:"
       cancel: Cancel
       char_length_of: "length of"
       char_length_up_to: "length up to"
@@ -137,14 +136,14 @@ en:
     misc: 
       add_filter: "Add filter"
       add_new: "Add new"
-      ago: ago
-      bulk_menu_title: "Selected items"
-      chose_all: "Choose all"
+      ago: back
+      bulk_menu_title: "Chosen elements"
+      chose_all: "Chose all"
       chosen: "Chosen %{name}"
       clear_all: "Clear all"
       down: Down
       filter: Filter
-      filter_date_format: mm/dd/yy
+      filter_date_format: dd/mm/yy
       log_out: "Log out"
       navigation: Navigation
       navigation_static_label: Links
@@ -155,52 +154,50 @@ en:
       up: Up
     pagination: 
       next: "Next &raquo;"
-      previous: "&laquo; Prev"
-      truncate: …
+      previous: "&laquo; Previous"
+      truncate: "..."
     table_headers: 
       changes: Changes
-      created_at: Date/Time
+      created_at: Date/Hour
       item: Item
       last_used: "Last used"
       message: Message
       model_name: "Model name"
       records: Records
-      username: User
-  already_participated: "You have already participated in this campaign. Thank you!"
-  amount_select: "Select the amount"
+      username: Username
+  already_participated: "Already participated in this campaign. Thanks!"
+  amount_select: "Select amount"
   amount_to_donate: "Amount to donate"
-  another_format: "The lines starting with four spaces are treated in a different format:"
+  another_format: "Rows starting with four spaces are treated in a different format:"
   answers: Answers
-  archive: Archivate
+  archive: Archive
   archived_campaign: "Archived campaign"
   archived_campaigns: "Archived campaigns"
   are_you_sure: "Are you sure?"
   back: Back
   body_of_campaign: "Campaign body"
-  body_of_campaign_help: "Body of campaign"
+  body_of_campaign_help: "Body text of the campaign"
   bold: bold
   by_signing_you_accept: "By signing you accept the"
   campaign_stats: "Campaign stats"
   campaigns: Campaigns
   cancel: Cancel
-  cancel_account: "Cancel my account"
-  cancel_account_explanation: "Want to cancel your account? You can do this by pressing"
+  cancel_account: "Cancel account"
   category: Category
   category_of_campaign: "Category of campaign"
-  change_my_password: "Change password"
   close: Close
-  communicate: Communicate
+  communicate: Spread
   community: Community
-  configuration: Settings
+  configuration: Configuration
   contact: Contact
-  contact_to: "Contact to"
+  contact_to: "Contact with"
   continue_participated: "You can help us spread this on social networks"
   countries: Countries
   create: Create
-  create_account: "Sign up"
+  create_account: "Create account"
   create_campaign: "Create campaign"
-  created_and_maintened: "Created and maintaned by"
-  created_at: "Created at"
+  created_and_maintened: "Created and maintained by"
+  created_at: "Created since"
   created_by: "Created by"
   current_password: "Current password"
   date: 
@@ -259,38 +256,38 @@ en:
   datetime: 
     distance_in_words: 
       about_x_hours: 
-        one: "about 1 hour"
+        one: "about one hour"
         other: "about %{count} hours"
       about_x_months: 
-        one: "about 1 month"
+        one: "about one month"
         other: "about %{count} months"
       about_x_years: 
-        one: "about 1 year"
+        one: "about one year"
         other: "about %{count} years"
       almost_x_years: 
-        one: "almost 1 year"
+        one: "almost one year"
         other: "almost %{count} years"
       half_a_minute: "half a minute"
       less_than_x_minutes: 
         one: "less than a minute"
         other: "less than %{count} minutes"
       less_than_x_seconds: 
-        one: "less than 1 second"
+        one: "less than one second"
         other: "less than %{count} seconds"
       over_x_years: 
-        one: "over 1 year"
+        one: "over one year"
         other: "over %{count} years"
       x_days: 
-        one: "1 day"
+        one: "One day"
         other: "%{count} days"
       x_minutes: 
-        one: "1 minute"
+        one: "One minute"
         other: "%{count} minutes"
       x_months: 
-        one: "1 month"
+        one: "one month"
         other: "%{count} months"
       x_seconds: 
-        one: "1 second"
+        one: "one second"
         other: "%{count} seconds"
     prompts: 
       day: Day
@@ -303,26 +300,26 @@ en:
   deactivate: Deactivate
   default_message: "Default message"
   default_message_body: "Default message body"
-  default_message_body_help: "Default message to be sent in the campaign for participants who do not want to write their own message."
+  default_message_body_help: "Default message body sent to campaign followers by users who don't want to write their own message."
   default_message_subject: "Default mesage"
   delete: Delete
-  deprioritize: Deprioritize
+  deprioritize: Depriorize
   description: Description
   descriptions: "Platform for citizen mobilization through the web"
   developers: Developers
   devise: 
     confirmations: 
-      confirmed: "Your account was successfully confirmed. You are now signed in."
-      send_instructions: "You will receive an email with instructions about how to confirm your account in a few minutes."
-      send_paranoid_instructions: "If your e-mail exists on our database, you will receive an email with instructions about how to confirm your account in a few minutes."
+      confirmed: "Your account was successfully confirmed. You are now logged in."
+      send_instructions: "You will receive an e-mail with instructions about how to confirm your account in a few minutes."
+      send_paranoid_instructions: "If your e-mail exists on our database, you will receive an e-mail with instructions about how to confirm your account in a few minutes."
     failure: 
       already_authenticated: "You are already signed in."
-      inactive: "Your account was not activated yet."
-      invalid: "Invalid email or password."
+      inactive: "Your account has not been activated yet."
+      invalid: "Invalid e-mail or password."
       invalid_token: "Invalid authentication token."
-      locked: "Your account is locked."
-      timeout: "Your session expired, please sign in again to continue."
-      unauthenticated: "You need to sign in or sign up before continuing."
+      locked: "Your account is blocked."
+      timeout: "Your session expired, please log in again to continue."
+      unauthenticated: "You need to log in or sign up before continuing."
       unconfirmed: "You have to confirm your account before continuing."
     mailer: 
       confirmation_instructions: 
@@ -333,129 +330,129 @@ en:
         subject: "Unlock Instructions"
     omniauth_callbacks: 
       failure: "Could not authorize you from %{kind} because \"%{reason}\"."
-      success: "Successfully authorized from %{kind} account."
+      success: "Successfully authorization for %{kind} account."
     passwords: 
-      send_instructions: "You will receive an email with instructions about how to reset your password in a few minutes."
-      send_paranoid_instructions: "If your e-mail exists on our database, you will receive a password recovery link on your e-mail"
+      send_instructions: "You will receive an e-mail with instructions about how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your e-mail exists on our database, you will receive a password recovery link at your e-mail"
       updated: "Your password was changed successfully. You are now signed in."
       updated_not_active: "Your password was changed successfully."
     registrations: 
       destroyed: "Bye! Your account was successfully cancelled. We hope to see you again soon."
-      inactive_signed_up: "You have signed up successfully. However, we could not sign you in because your account is %{reason}."
+      inactive_signed_up: "Your account has been created. However, we cannot proceed because your account is %{reason}. Check your e-mail to activate it."
       reasons: 
         inactive: inactive
         locked: locked
-        unconfirmed: unconfirmed
+        unconfirmed: "not confirmed"
       signed_up: "Welcome! You have signed up successfully."
-      updated: "You updated your account successfully."
+      updated: "Your account has been updated successfully."
       user: 
-        signed_up_but_unconfirmed: "Account created, check your email to confirm it."
+        signed_up_but_unconfirmed: "Account created, check your e-mail to confirm it."
     sessions: 
-      signed_in: "Signed in successfully."
-      signed_out: "Signed out successfully."
+      signed_in: "Logged in successfully."
+      signed_out: "Logged out successfully."
     unlocks: 
-      send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
-      send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
-      unlocked: "Your account was successfully unlocked. You are now signed in."
-  didnt_receive_confirmation_instructions: "Did not receive confirmation instructions?"
-  doit_1: "Beam may in"
-  doit_2: "can make thousands of phone calls to the powerful, we can send hundreds of faxes. Improve it, donate, spread, write code."
+      send_instructions: "You will receive an e-mail with instructions about how to unblock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an e-mail with instructions about how to unblock it in a few minutes."
+      unlocked: "Your account was successfully unblocked. You are now logged in."
+  didnt_receive_confirmation_instructions: "Did you not receive confirmation instructions?"
+  doit_1: "Make possible that by"
+  doit_2: "our campaigns can make thousands of phone calls to the ones with power, that we can send hundreds of faxes. Improve, donate, spread, write code."
   doit_link: "Find out how to donate"
   doit_title: "Make it possible"
   donate: Donate
-  donate_oigame: "Make a donation to oiga.me"
-  donation_info_1: "oiga.me maintains a small team to keep their costs down. We practice a policy of economic transparency, each year we will publish a summary of the proceeds from donations and their destination."
-  donation_info_2: "As an independent, nonprofit aLabs all money spent each donation received in oiga.me to maintain and enhance this platform. With your support we can get that many people can speak out and coordinated to change the world, your donation directly helps thousands of people which can organize and conduct high-impact actions."
-  donation_problem: "There was a problem with your donation to oiga.me and the transaction could not be completed successfully so we didn't charge any amount in your account. Try to repeat the process again if problems persist contact aLabs team in the e-mail donaciones [at] alabs.es."
+  donate_oigame: "Donate to oiga.me"
+  donation_info_1: "oiga.me maintains a small team to help lower costs their costs. We practice a policy of economic transparency and each year we will publish a summary of donations and their destination."
+  donation_info_2: "As an independent and nonprofit organization, aLabs spent each donation received to oiga.me to maintain and enhance this platform. With your support we can get that many people can speak out and coordinated to change the world, your donation directly helps thousands of people so they can organize and conduct actions of great impact."
+  donation_problem: "There was a problem with your donation to oiga.me and the transaction could not be completed successfully no tranfer has been withdrawn from your account. Try repeating the process again. If there is still a problem, please contact aLabs team at donaciones [at] alabs.es."
   donation_secure: "Secure donation"
-  donation_secure_info: "The aLabs association does not store any credit card users who make donations, credit card transactions are processed directly online using the TPV payment of Banesto. With this secure payment system information is encrypted before it is sent using an SSL certificate. If you encounter any problems using the system, you have a question or a recommendation, please contact via e aLabs donaciones [at] alabs.es."
-  download_participants: "Download participants list"
-  due_date_of_campaign: "Due date of the campaign"
+  donation_secure_info: "aLabs association does not store any data from credit card users who make donations. Credit card transactions are processed directly online using the Secure payment of Banesto. With this secure payment system, information is encrypted before it is sent using an SSL certificate. If you find any problems using the system, or have a question or a recommendation, please contact us at donaciones [at] alabs.es."
+  download_participants: "Download participant list"
+  due_date_of_campaign: "End date for campaign"
   edit: Edit
   edit_campaign: "Edit campaign"
-  email: Email
+  email: E-mail
   enable_comments: "Enable comments"
   errors: 
     messages: 
-      already_confirmed: "was already confirmed, please try signing in"
+      already_confirmed: "was already confirmed, please try loging in again"
       expired: "has expired, please request a new one"
       not_found: "not found"
       not_locked: "was not locked"
       not_saved: 
-        one: "1 error prohibited this %{resource} from being saved:"
+        one: "an error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
-  example_email: yourname@domain.com
+  example_email: yourname@yourdomain.com
   faq: FAQ
-  faxes_recipients: "Fax numbers of recipients"
-  faxes_recipients_help: "List of fax numbers, one per line."
-  firms: Firms
-  forgot_your_password: "Forgot your password?"
-  go_to_home: "Return to top"
-  greetings: "A big hug from oiga.me and aLabs teams."
+  faxes_recipients: "Fax recipients"
+  faxes_recipients_help: "Fax recipients, one per line."
+  firms: Signatures
+  forgot_your_password: "¿Forgot password?"
+  go_to_home: "Go back to home"
+  greetings: "Greetings from oiga.me and aLabs team."
   hashtag_of_campaign: "Hashtag Campaign"
   have_account: "Have an account?"
-  have_already_made: "people have already done"
+  have_already_made: "people already made them"
   help: Help
   helpers: 
     page_entries_info: 
       more_pages: 
-        display_entries: "Showing %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> total"
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> total"
       one_page: 
         display_entries: 
-          one: "Displaying <b>1</b> %{entry_name} "
-          other: "Showing <b> all the %{count}</b> %{entry_name} "
-          zero: "Did not match %{entry_name}"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+          zero: "Not found %{entry_name}"
   hi: Hi
   home: Home
-  i_want_to_receive_news: "I want to receive oiga.me news "
+  i_want_to_receive_news: "I want to receive news from oiga.me"
   if_you_write: "if you write:"
-  image_of_campaign: "Campaign image"
+  image_of_campaign: "image of the campaign"
   important_notice: "Important notice"
-  inform_campaign_activate: "We write to you to inform you that the campaign with name '#{ campaign_name }'  that you've created on oiga.me has been published and is available in the next URL:"
-  inform_campaign_social_council: "Hi social council, there's a new campaign created on oiga.me with the name '#{ campaign_name }'. For the moment it's moderated so it isn't public. You can revise it and assess it, if you think is interesting you can comment on the list and we can discus it. "
-  inform_campaign_sub_admin: "Hi, there's a new campaign in your SubOigame '#{ sub_name }' called '#{ campaign_name }'. For the moment it's moderated so it isn't public yet. You can revise and assess it, if you thinks it's interesting you can activate it. "
-  inform_new_comment: "We write you to inform you that you have received a new comment in your campaign called '#{ campaign_name }' that you have created on oiga.me"
-  integrate_form: "Integrate form"
-  integrate_form_explanation_1: "To integrate form this campaign on your website copy and paste the following Javascript code where you want to display it:"
-  integrate_form_explanation_2: "If the code will not work, you can try the version without Javascript and iframes; in HTML:"
-  intro_limit: "500 characters limit"
-  intro_of_campaign: "Campaign intro"
-  intro_of_campaign_help: "Campaign intro, this text appears in the list of campaigns."
-  italic: italic
+  inform_campaign_activate: "We are writing to inform you that the campaign named  '#{ campaign_name }' you created in oiga.me, has been published and is available at the following URL:"
+  inform_campaign_social_council: "Hello Social Council, someone has created a new campaign in oiga.me with the name: '#{ campaign_name }'. It is still being moderated and not yet public. You can review it and appraise it, if you find it very interesting comment it on the list and we can discuss it."
+  inform_campaign_sub_admin: "Hi, someone has created a new campaign in your SubOigame '#{ sub_name }' with the name: '#{ campaign_name }'. Is still being moderated and not public yet. You can review and appraise it. It you find it interesting you can activate it."
+  inform_new_comment: "We are writing to let you know that you have received a new comment about the campaign named  '#{ campaign_name }' that you created in oiga.me."
+  integrate_form: "Integrate the form"
+  integrate_form_explanation_1: "To integrate this campaign form on your website copy and paste the following Javascript code where you want it to display:"
+  integrate_form_explanation_2: "If the code doesn't work, you can try the version without Javascript and iframes with clean HTML:"
+  intro_limit: "There is a limit of 500 characters"
+  intro_of_campaign: "Campaign introduction"
+  intro_of_campaign_help: "Campaign intro: this text appears in the campaigns list."
+  italic: Italic
   join: Join
-  join_myself: Signature
+  join_myself: Sign
   join_oigame: "Join oiga.me!"
   join_this_campaign: "Join this campaign"
-  keywords: "oiga.me, platform, mobilization, web, campaign, campaigns"
+  keywords: "oiga.me, platform, movilization, web, campaign, campaigns"
   language: "Lists of languages"
   languages: Languages
-  last_campaigns: "Last campaigns"
-  last_moderated_campaigns: "Last moderated campaigns"
-  license_pre: "Until otherwise noted, content on this site is licensed "
-  listen_your_voice: "Let your voice be heard! To participate in the campaign enter your message, we will take care of effectively reaching all those responsible."
+  last_campaigns: "Latest campaigns"
+  last_moderated_campaigns: "Latest moderated campaigns"
+  license_pre: "Until otherwise noted, content on this site contains"
+  listen_your_voice: "Let your voice be heard! To participate in the campaign enter your message here. We will effectively take care of reaching their final destination."
   login: Login
   logout: Logout
-  mail_validate_1: "Validate your support to the campaign #{ campaign_name }"
-  mail_validate_10: "oiga.me is a proyect from aLabs association (#{url_alabs}). As a non-proffit association, aLabs intended all donations it receives to oiga.me to improve the platform and add functionality to ease the participation of citizens in political life and the issues we care about. You can help keep collaboratively donating to the project (#{url_donate})."
-  mail_validate_2: "To validate your support to the campaign #{ campaign_name } we need to check that it was you who did it. To complete the process:"
-  mail_validate_3: "If it was not you who joined this campaign you can ignore this message."
-  mail_validate_4: "It is very important to spread the campaign, so we encourage you to be the center of the action:"
-  mail_validate_5: "Includes the campaign on your website so that your visitors can participate: #{url}. It's simple, it takes less than 1 minute."
-  mail_validate_6: "Spread the campaign on social networks."
+  mail_validate_1: "Validate joining campaign: #{ campaign_name }"
+  mail_validate_10: "oiga.me is a aLabs association project # {url_alabs}. As a nonprofit association aLabs uses all donations received for oiga.me to improve the platform and add functionality to enabling the participation of people in political life and issues that we care for. You can collaborate by donating to the project (# {url_donate})."
+  mail_validate_2: "To validate membership towards the campaign #{ campaign_name } we need to check that it was you who did it. To complete the process:"
+  mail_validate_3: "If you did not join this campaign then ignore this message."
+  mail_validate_4: "It is very important to spread the word about the campaign. We encourage for you to be the center of the action:"
+  mail_validate_5: "Include the campaign on your website so your visitors can participate: # {url}. It's very simple and takes less than one minute."
+  mail_validate_6: "Spread the campaign as much as you can through social networks."
   mail_validate_7: "Follow @oigame on Twitter (http://twitter.com/oigame) and Facebook (http://www.facebook.com/oiga.me)."
-  mail_validate_8: "oiga.me is a proyect from aLabs association (#{url_alabs}). As a non-proffit association, aLabs intended all donations it receives to oiga.me to improve the platform and add functionality to ease the participation of citizens in political life and the issues we care about. You can help keep collaboratively donating to the project (#{url_donate})."
-  mail_validate_9: "Follow @oigame on Twitter #{oigame_twitter} and Facebook #{oigame_facebook}. "
-  make_member: "Sign up now"
-  markdown_help_show: "see markup help"
+  mail_validate_8: "oiga.me is a project of the aLabs association. As a nonprofit association, aLabs uses all donations received for oiga.me to improve the platform and add functionality and facilitate the participation of citizens in their political life and issues that we care for. You can collaborate by donating to the project (# {donate_url}).\n"
+  mail_validate_9: "Follow #{oigame_twitter} on Twitter and #{oigame_facebook}."
+  make_member: "Become a member now"
+  markdown_help_show: "show markdown help"
   maximize: Maximize
-  may_your_voice: "Let your voice be heard! To join the campaign, please enter your email and click the join button."
+  may_your_voice: "Let your voice be heard! To join the campaign, please enter your e-mail and click the join button."
   may_your_voice_signed: "Let your voice be heard! To join the campaign click the join button."
   media: Media
   members: members
   message: Message
-  message_info: "To enforce the campaign we recommend that your message is with respect, you can be firm but assertive and our experience tells us that those who receive the messages are much more receptive if they are treated respectfully. Tell them that you do not agree with what they are doing and why, tell them how you really want them to act."
+  message_info: "To make the campaign effective we recommend to write with full respect. You can be assertive and firm, yet our experience tells us that those who receive the messages are much more receptive if they are treated respectfully. Tell them that you do not agree with what they are doing and the reason why. Tell them how you really want them to act."
   message_received: "Message received"
-  minimal_size: "It must have a size of 500x400"
+  minimal_size: "Minimum size 500x400"
   miss: Missing
   moderate_campaigns: "Moderate campaigns"
   more: plus…
@@ -465,8 +462,8 @@ en:
   example_email: 'you@domain.com'
   name_of_campaign: "Campaign name"
   next_step: "Next step"
-  next_you_have_info: "Here you have the information campaign"
-  no_account_yet: "Do not have an account yet?"
+  next_you_have_info: "Next you have the campaign information "
+  no_account_yet: "No account yet?"
   no_campaigns: "No campaigns yet, you can propose one."
   number: 
     currency: 
@@ -511,7 +508,7 @@ en:
     precision: 
       format: 
         delimiter: "\"\""
-  number_of_people: "Number of people who you think they join the campaign"
+  number_of_people: "Number of people you think will join the campaign"
   of: of
   oigame: 
     campaigns: 
@@ -548,100 +545,45 @@ en:
         welinfo_1_html: "A tool of citizen mobilization through red, %{href}"
         welinfo_1_link: "create your own campaign"
         welinfo_2_html: "An open, horizontal and transparent social pressure tool."
-    pages: 
-      about: 
-        answer_1_1_html: "<strong>Oiga.me</strong> is a tool for generating requests on line and support campaigns, but is also a platform for citizen lobby. Through a tool of massive sending of mail, fax and telephony acts as catalyst for demands and requests by facilitating direct contact between citizens with policy-makers and representatives of Governments, companies or any authorities."
-        answer_1_2_html: "<strong>oiga.me</strong> therefore is a tool of social democratization and empowerment that serves as a mechanism to amplify the voices and enhance the impact demands."
-        answer_2_1_html: "Analog and digital communities have staged processes of change that have been the guarantor of care for the management of common pool resources and public services. Today the network is the native territory of many of these processes."
-        answer_2_2_html: "We feel part of the movement for democracy and human rights. <strong>Oiga.me</strong> promotes cooperation through a simple interface that allows anyone to meet with others to achieve a common goal."
-        answer_2_3_html: "<strong>Oiga.me</strong> implements distributed organization models that promote the development of collective intelligence in network."
-        answer_3_1_html: "Democracy needs free and independent channels of communication which are not for economic or partisan interests."
-        answer_3_2_html: "<strong>oiga.me</strong> is managed by a Board of Trustees which includes organizations representing civil society in the field of democracy and citizen participation that is in permanent construction, open to new organizations. The social functions of the board are to ensure the proper use of the platform, ensuring the independence of the tool, assist in the decision-making process, proposing special campaigns, search platform improvements for the communities that use it and get resources to its operation."
-        answer_4_1_html: "Building <strong>oiga.me</strong> we have used the support of the free software community, without the code and documentation, would not have been possible. For this we consider an obligation and a responsibility that the code remains free to make a return to the community but also as a way to improve <strong>oiga.me.</strong>"
-        answer_5_1_html: "<strong>Oiga.me</strong> transforms and concentrala distributed energy networks towards physical environments through fax, mail and telephone channels. And also multiplies the actions, allowing that individual efforts become a powerful collective force through social networks."
-        answer_5_2_html: "Signatures Channel online (requests)"
-        answer_5_3_html: "The platform enables thousands of people to adhere to a petition by adding your signature. The aim is to show how many people want to change things. After every action, the system generates a printable file for the organization that coordinates the campaign so that it can carry out its action."
-        answer_5_4_html: "Channel Fax"
-        answer_5_5_html: "Fax campaigns allow FAX send a text to the intended recipients simply by 'click'. The FAX is an optimal tool for consumer claims or public administration; <strong>oiga.me</strong> allows coordination to mass migration of customers between service business operators or any other massive applications."
-        answer_5_6_html: "Channel E-Mail"
-        answer_5_7_html: "Mail campaigns deliver standard or custom text to those directly responsible for the campaign. <strong>Oiga.me</strong> uses a courier shipping insurance laying and protects the privacy of users and thus avoids possible filter addresses recipients, for it requires a confirmation is made by mail."
-        answer_5_8_html: "Canal Phone"
-        answer_5_9_html: "Contact directly with the recipients of the campaign through a free telephone system."
-        question_1_html: "<strong>oiga.me</strong> is a tool of citizen mobilization through the network"
-        question_2_html: "<strong>Oiga.me</strong> believes in the ability of communities to produce changes"
-        question_3_html: "<strong>oiga.me</strong> is a nonprofit organization made ​​from 99% to 99%"
-        question_4_html: "In <strong>oiga.me</strong> we support the freedom of knowledge, so it is built on open source software. <br /> All software used by <strong>oiga.me</strong> is free and is licensed as GNU Affero General Public License, All content is copyleft licensed under CC-BY-SA."
-        question_5_html: "What is the use <strong>oiga.me?</strong>"
-        title: "About Qt"
-        title_html: "What is <strong>oiga.me</strong>?"
-      faq: 
-        answer_1: "They may propose campaigns all persons, groups or organizations wishing to do so."
-        answer_2_1: "Resources available: oiga.me, as throughout application, has a limited capacity. Respect: A basic criterion in the campaigns is respect for the rights of individuals, but also the respect for the environment and all living beings, as well as use a positive and inclusive language."
-        answer_2_2: "Common sense: despite being the least common of the senses, aLabs shares the platform and code oiga.me with the intention of facilitating campaigns that enable 21st century society organize themselves through telematic tools for transforming your reality and be effective. That is why we have created the social Council of oiga.me to share decisions with networks in whose opinion we trust."
-        answer_3_1: "When you register as a user of oiga.me, you give voluntarily certain personal data that will be saved, protected and used only for the purposes provided for in this web site. If you want more information, you can consult our privacy policy."
-        answer_3_2_html: "To participate in a campaign through this web site, kept a record of the number of participants and actions for statistical purposes. The user expressly authorizes the Association &lt;strong&gt;aLabs&lt;/strong&gt; provide data that you enter in the form of the campaign (full name, last name and email address) to the person or entity that impulse and manage that campaign with the sole and exclusive purpose of submission to the end-entity to which the instance is directed"
-        answer_4_1: "Spread the campaign as webmaster each oiga.me campaign can be replicated in your blog or web page. By inserting a small code HTML or Javascript that we put at your disposal will you help to make the campaign visible from more sites, so that the web of oiga.me is not the single point of access for users who want to point to a campaign and your website or blog is also the center of the action. how to integrate the form? The \"form\" is a small html code which you can integrate into the code of your own web page or blog. It is very simple, simply copy the form code and paste it into a new entry in your blog, when publishing the new entry you'll see the form on the front page of your website and your readers may participate in action, building a great speaker in a distributed manner."
-        answer_4_2: "By email: send messages you receive for new campaigns to your contacts who may be interested. It diffuses campaigns by mailing lists that might be interested."
-        answer_4_2_1_html: "Follow @oigame on <a href=\"https://twitter.com/oigame\">Twitter</a>"
-        answer_4_2_2: "Get RT's campaigns that interest you or public your participation therein."
-        answer_4_2_3: "Participate diffunding the campaign's #hashtag"
-        answer_4_2_4: "Facebook: Click on \"Share with my friends on Facebook\" in the signature campaign to share it on your wall."
-        answer_4_2_5: "By RSS includes RSS feed (link) of the campaigns of of oiga.me in your web page."
-        answer_5_1: Donate
-        answer_5_2: "It develops"
-        answer_5_3: "You create your campaign"
-        answer_5_4_html: "The ways to collaborate with oiga.me ranging from mere participation in campaigns that interest you, until the active collaboration more directly to providing resources or as a volunteer in the developers team. Sign up to receive a weekly email with new campaigns; it enters our repository on <a href=\"https://github.com/alabs/oigame\">Github</a> to send us your suggestions to improve the site."
-        answer_5_5: "Every small donation is a great support that allows us to improve the platform with new functionality and give support and dissemination campaigns. Contributions can be made directly from the web through our secure gateway, which guarantees the maximum protection of your data (name and credit card number). As an independent cultural association and non-profit, aLabs intended these donations to maintain oiga.me servers and improve the platform."
-        answer_5_6_html: "Development of code work is a work in constant evolution: all collaboration is welcome. If you want to participate as a developer, we encourage you to subscribe to the list and communicate it to us at <a src=\"https://listas.alabs.es/mailman/listinfo/oigame-dev\">https://listas.alabs.es/mailman/listinfo/oigame-dev</a>"
-        question_1: "Who can propose campaigns?"
-        question_2: "Are which the criteria proposals for campaigns to accept?"
-        question_3: "What happens to my data when registering?, What about when I participate in a campaign?"
-        question_4: "How to support the dissemination of the campaigns?"
-        question_5_html: "How can I participate? As <a href=\"http://oiga.me\">oiga.me</a> me full in the community"
-        title: Help
-        title_html: "FAQ <strong>oiga.me?</strong>"
     privacy: 
-      consent_1: "Users are not required to provide any personal information to use the Website. However, they can provide a range of personal information will vary depending on different projects that aLabs engaged at all times. This information must be truthful."
+      consent_1: "Users are not required to provide any personal information to use the website. However, they can provide a range of personal information which would vary depending on different projects that aLabs is engaged with at all times. This information must be truthful."
       consent_title: Consent
-      data_reg_1: "When you register as a user of oiga.me, you voluntarily supply certain personal data will be stored, protected and used only for the purposes provided in this website."
-      data_reg_2: "By participating in a campaign through this website, a record is kept of the number of participants and actions for statistical purposes. The user expressly authorizes aLabs association to provide the data you enter in the form of the campaign (Full name, surname and email) to the person or entity that promotes and manages the campaign for the sole and exclusive purpose of presenting before the end entity to which the request is directed."
-      data_reg_title: "What happens to my data when registering?, What about when I participate in a campaign?"
-      donation_1: "If you want to donate to aLabs, the information of your credit card and other bank, will be used only once and for a single transaction through our secure payment system on the Internet. aLabs not retain credit card information or other data bank."
-      donation_title: "Special mention to the data accompanying donations"
+      data_reg_1: "When you register as a user of oiga.me, you voluntarily supply certain personal data will be stored, protected and used only for the purposes provided by this website."
+      data_reg_2: "By participating in a campaign through this website, a record is kept of the number of participants and actions for statistical purposes. The user expressly authorizes aLabs association to provide the data you enter in the form of the campaign (Full name, surname and e-mail) to the person or entity that promotes and manages the campaign for the sole and exclusive purpose of presenting before the end entity to which the request is directed."
+      data_reg_title: "What happens to my data when I register?, What about when I participate in a campaign?"
+      donation_1: "If you want to donate to aLabs, your credit card or other transfer information will be used only once and for one single transaction through our secure payment system on the Internet. aLabs does not retain credit card information or other bank details."
+      donation_title: "Special mention to the information accompanying donations"
       final: "If you have any questions you can contact us through the address info [at] oiga.me"
-      legal_notice_1: "This privacy policy applies to the user's relationship with all those pages under the domain oiga.me (hereinafter the 'website') operated by the nonprofit Association aLabs (hereinafter 'aLabs') and any its partners or that control and make use of the information obtained using the Website."
-      legal_notice_2: "aLabs through the website, gives users access to certain contents provided by a third party or Labs."
+      legal_notice_1: "This privacy policy applies to the user's relationship with all those pages under the domain oiga.me (hereinafter the 'website') operated by the nonprofit association aLabs (hereinafter 'aLabs') and any its partners or that control and make use of the information obtained using the website."
+      legal_notice_2: "aLabs through the website, gives users access to certain contents provided by a third party or aLabs."
       legal_notice_3: "Navigating the website attributes the condition of user and implies the full and unreserved acceptance of the legal notice and the terms and conditions listed below."
       legal_notice_title: Disclaimer
-      link_1: "can bind aLabs interact with other websites. Obviously, these websites operated by third parties have their own privacy policies and terms of use out of control by aLabs. We can not be responsible, therefore, content, advertising, products or other materials that are contained in those other websites. Haciedo using this website you agree that aLabs not liable for direct or indirect damages resulting from such content teceros."
+      link_1: "aLabs can interact with other websites. Obviously, these websites operated by third parties have their own privacy policies and terms of use out of control by aLabs. Therefore we can not be responsible for the content, advertising, products or other materials that are contained in those other websites. By using this website you agree that aLabs is not liable for direct or indirect damages resulting from third parties."
       link_2: "Finally, we remind you that you can contact us for questions via the address info [at] alabs.es."
       link_title: Links
-      lopd_cancel_1: "Users may exercise their rights of access, correction or deletion of data and revocation of consent by a request sent to email aLabs provided for this purpose."
-      lopd_cancel_2: "The email address is bringing these actions lopd [at] alabs.es"
-      lopd_cancel_3: "Also, you can contact aLabs through the following website address: C/Embajadores 35 , local 6, 28012, Madrid."
-      lopd_cancel_title: "Cancellation and correction data"
-      lopd_resp_1: "aLabs is manager of the data you provide, and the use thereof shall be solely for the purposes of the Site itself or that the user is assigned."
-      lopd_resp_title: "Responsible for personal data"
-      minors_1: "aLabs understands the importance of protecting the privacy of children online. No part of our policy to collect any personal data concerning users under 13. If you are under, I suggest asking your parents help and we ask you not to use the email tool or application to make donations."
+      lopd_cancel_1: "Users may exercise their rights of access, correction or deletion of data and cancelation of consent by a request sent to the aLabs e-mail provided for this purpose."
+      lopd_cancel_2: "The e-mail address in concern is lopd[arroba]alabs.es "
+      lopd_cancel_3: "Also, you can contact aLabs through the following address: C/Embajadores 35 , local 6, 28012, Madrid."
+      lopd_cancel_title: "Cancellation and correction of data"
+      lopd_resp_1: "aLabs is manager of the data you provide and the use of them will be solely for the purposes of the website itself or the one the user  has assigned."
+      lopd_resp_title: "Responsibles of personal data"
+      minors_1: "aLabs understands the importance of protecting the privacy of children online. No part of our policy to collect any personal data concerning users under 13. If you are a minor, we suggest asking help from your parents and  we ask you not to use the e-mail tool or application for making donations."
       minors_title: Minors
-      policy_1: "aLabs is committed to protecting your personal data through all the technological means at their disposal and use them exclusively for the purposes of own website and those for you to give your express consent. This commitment we made to you, you have another set of conditions that you must know."
+      policy_1: "aLabs is committed to protecting your personal data through all the technological means at their disposal and use them exclusively for the purposes of their own website and those that your express consent for. This commitment we made with you has another set of conditions that you must know."
       policy_title: "Privacy Policy"
-      relevant_info_1: "Cookies: aLabs controls access statistics and could use cookies to implement them. If you wish to disable cookies, you may do so in your browser settings, but it may not be able to access different parts after the Website."
-      relevant_info_2: "Traces: In order to provide better service to the users, we study the data traffic on the Website. We used a IP Cams to help us better understand the origin of visitors and consequently, the services we can offer."
-      relevant_info_3: "In some emails sent by aLabs also will contain locators URL, which identify people who choose to interact on the Website."
+      relevant_info_1: "Cookies: aLabs controls access statistics and could use cookies to implement them. If you wish to disable cookies, you may do so in your browser settings, but it may not be able to access different parts of the website."
+      relevant_info_2: "Traces: In order to provide better service to the users, we study the data traffic on the website. We used an IP register to help us better understand the origin of visitors and consequently, the services we can offer."
+      relevant_info_3: "In some e-mails sent by aLabs also will contain locators URL, which identify people who choose to interact on the Website."
       relevant_info_title: "Useful information"
-      terms_1: "aLabs may modify the terms and conditions at any time, deploying these effects from the time of its publication on this page. You must be aware of the possible content updates. The last revision was published on 23/01/2013."
+      terms_1: "aLabs may modify the terms and conditions at any time, deploying these effects from the time of its publication on this page. You must be aware of the possible content updates. The last revision was published on 28/07/2012."
       terms_2: "You agree to use the website only for lawful purposes, and in a manner that does not restrict or inhibit the use and enjoyment of it by others."
-      terms_3: "The brand names, trademarks and service marks on this website other than the ownership of aLabs be governed by the provisions of law applicable to the license to adhere. aLabs not responsible for the possible use of the ususarios can do the same."
-      terms_4: "Notwithstanding the above, permission is granted to copy, distribute and / or modify the contents published (text, photographs, graphics, images, icons, software, graphic design, source code, etc..) In any of the pages under the domain of aLabs and are of their ownership, unless otherwise expressly stated, under the terms of the Creative Commons (CC BY-SA 3.0)."
-      terms_5: "aLabs not responsible for the content of external internet sites that may be linked to this website."
-      terms_6: "Any communication or material you transmit or post on, any public area of ​​this website including data, questions, comments, suggestions, or the like, will be treated as non-confidential and non-proprietary."
+      terms_3: "The brand names, trademarks and service marks on this website other than the ownership of aLabs be governed by the provisions of law applicable to the license to adhere. aLabs is not responsible for the possible use that the webiste members can do with the material."
+      terms_4: "Notwithstanding the above, permission is granted to copy, distribute and/or modify the contents published (text, photographs, graphics, images, icons, software, graphic design, source code, etc..) in any of the pages under the domain of aLabs and are of their ownership, unless otherwise expressly stated, under the terms of the Creative Commons (CC BY-SA 3.0)."
+      terms_5: "aLabs is not responsible for the content of external internet sites that may be linked to this website."
+      terms_6: "Any communication or material you transmit or post on, any public area of ​​this website including data, questions, comments, suggestions, or the like, will be treated as non-confidential and non-patented."
       terms_7: "These terms and conditions shall be governed and construed in accordance with the laws of the Spanish state. Any disputes shall be subject to the exclusive jurisdiction of the Spanish courts, without prejudice to any cause at issue could be resolved through arbitration law."
       terms_8: "If you do not accept these terms and conditions in full, you must terminate your use of this site immediately."
       terms_title: "Terms and conditions"
-    user: 
-      registration: 
-        gravatar_html: "<b>Your avatar is from Gravatar</b> If you want to modify it you can do it through your account in <a href='http://gravatar.com' title=\"gravatar\">gravatar</a> or have to create one."
     wizard: 
       body_help: "Writes clear and concise language, 4 or 5 paragraphs will suffice and plan content: the first paragraph can serve you enter and the last closing; It should be made clear what the campaign strategy that you've designed (i.e. If it's an online petition should specify the fate of signatures (using media, public opinion) or if it is a fax account send content and who will receive it. Ends with a phrase that invites to action (sometimes the same title may be worth)."
       comment_help: "This option allows people opine and participate in your campaign publicly expressing their opinion."
@@ -658,63 +600,63 @@ en:
       petition_help: "Collect signatures on line to show support for your campaign. When complete, the application will generate a file under our data protection policy."
       previous_step: "Previous step"
       video_help: "If you have any recorded material, you can put it here."
-  only_for_donations: "Only needed for donations "
-  option: Alternative
+  only_for_donations: "Only needed for donations"
+  option: Option
   options: Options
-  other_campaigns: "Participate in these other campaigns"
-  our_social_council: "Our Social Council warns oiga.me can be beneficial for the democratic health of their country and increase their levels of participation."
+  other_campaigns: "Join other campaigns"
+  our_social_council: "Our Social Council warns: oiga.me can be beneficial for the democratic health of your country and increase its citizen levels of participation."
   own_message: "I want to write my own message"
   participants: Participants
   participate: Participate
   password: Password
   password_confirmation: "Confirm password"
-  please_fill_the_form: "Please fill the form"
+  please_fill_the_form: "Please fill in the form"
   prioritize: Prioritize
   privacy_policy: "Privacy policy"
   programe: Schedule
   propose_campaign: "Propose campaign"
-  published_at: "Published at"
-  quoted: quoted
+  published_at: "Published on"
+  quoted: "Quoted text"
   recipients: Recipients
-  recipients_help: "List of email recipients, one per line."
-  recipients_show: "Your message will be sent to the following individuals"
+  recipients_help: "List of e-mail recipients, one per line."
+  recipients_show: "Your message will be sent to the following address"
   remember_me: "Remember me"
-  repeat_1: "Be part of the protest, rally your voice to the other. Participate by sending millions of e effectively, without being filtered, without being able to cover their ears."
+  repeat_1: "Be part of the action, join your voice. Participate by sending millions of effectively e-mails, without being filtered and them not covering their ears."
   repeat_link: "Latest campaigns"
-  repeat_title: Repeat
-  request_identity_card: "Ask identity card"
+  repeat_title: "Repeat it"
+  request_identity_card: "Ask intentity card"
   request_new_password: "Request new password"
   request_postal_code: "Ask postal code"
-  request_state: "Request country"
+  request_state: "Ask country"
   resend_confirmation_instructions: "Resend confirmation instructions"
   result: Result
   sayit_1: "Let your voice be heard."
-  sayit_2: "is a platform on which you can mount online campaigns in which the world can participate."
-  sayit_link: "Learn how to use oiga.me"
+  sayit_2: "is a platform that lets you create online campaigns where the whole world can participate."
+  sayit_link: "Learn to use oiga.me"
   sayit_title: "Say it"
   search: Search
   send_message: "Send message"
   share_with_my_friends_on_facebook: "Share with my friends on Facebook"
-  sign_in: Login
-  sign_in_facebook: "Login with Facebook"
-  signup: Signup
-  slide_1: "A powerful speaker that you hear"
-  slide_2: "Create the world's biggest lobby. We are the 99%"
-  slide_3: "You think you can change the world? Do it!"
-  slide_4: "We are the 99%, we change the world together"
-  slide_5: "They succeeded because they knew it was impossible"
+  sign_in: "Sign in"
+  sign_in_facebook: "Sign in with Facebook"
+  signup: "Sign up"
+  slide_1: "A speaker for us to be heard"
+  slide_2: "Create the biggest lobby in the world. We are 99%"
+  slide_3: "Thinking about changing world? Do it then!"
+  slide_4: "We are the 99%, together we can change the world"
+  slide_5: "They succeeded because they didn't know it was impossible"
   slide_6: "We love you, join!"
   slogan_1: "DON'T HATE THE"
-  slogan_2: "LOBBY, EAT IT!"
+  slogan_2: "LOBBY, EAT IT UP!"
   slogan_3: PEOPLE
-  slogan_4: "HAVE ALREADY DONE"
+  slogan_4: "DID IT"
   some_participants: "Some participants"
   some_reserved_rights: "Some rights reserved"
-  spread: "In your web"
-  spread_form: "Put the form on your web"
-  spread_info: "If you want to spread this campaign on your blog or website, you can do so by adding the following HTML or Javascript code. This makes it possible for more people to participate in the campaign."
+  spread: "In your website"
+  spread_form: "Put the form in your website"
+  spread_info: "If you want to spread this campaign on your blog or website, you can do so by adding the following code HTML or Javascript. That makes it possible for more people to participate in the campaign."
   stats: Stats
-  sub_integrate_form_explanation_1: "To integrate your SubOigame in your website you must copy and paste the following Javascript code where you want to display it:"
+  sub_integrate_form_explanation_1: "To integrate your SubOigame in your website copy and paste the following Javascript code where you want to display:"
   subject: Subject
   support: 
     array: 
@@ -726,12 +668,12 @@ en:
   tags: Tags
   tags_most_used: "Most used tags"
   target: "Messages sent target"
-  thank_you: "Thank you"
-  thank_you_confirmed: "Your membership has been confirmed successfully, thank you very much for participating in this campaign."
-  thank_you_message: "Check your email. You will shortly receive an email with the last step to take to join the campaign."
-  thank_you_petition: "Thanks for participating. If you are not registered in oiga.me check your email, you should shortly receive an email with the last step to take to join the campaign."
-  thanks_for_participating: "Thanks for participating in oiga.me."
-  thanks_for_your_donation: "Thank you for your donation"
+  thank_you: Thanks
+  thank_you_confirmed: "Your membership has been successfully confirmed, thank you very much for participating in this campaign."
+  thank_you_message: "Check your e-mail. You will shortly receive an e-mail with the last step to join the campaign."
+  thank_you_petition: "Thanks for participating. If you are not registered in oiga.me check your e-mail, shortly receive an e-mail with the last step to join the campaign."
+  thanks_for_participating: "Thanks for participating with oiga.me"
+  thanks_for_your_donation: "Thanks for your donation"
   thanks_for_your_donation_text: "We give heartfelt thanks for your donation to oiga.me. With contributions like yours this project can go ahead."
   thanks_sign_has_validate: "Thank you for signing. Now you have to validate the signature through the mail you just receive"
   thanks_sign_validate: "Thanks for signing"
@@ -748,20 +690,20 @@ en:
       short: "%d %b %H:%M"
     pm: pm
   time_left: Are
-  token_invalid_body: "We found no adhesion with the token, check the email we sent you and if you still does not work let us know at hola@oiga.me"
+  token_invalid_body: "We found no adhesion with the token, check the e-mail we sent you and if it still does not work let us know at hola@oiga.me"
   token_invalid_title: "There was a problem"
   type_of_campaign: "Campaign type"
   type_of_campaign_prompt: "Select campaign type"
   unauthorized: 
     default: "You are not authorized to access this page"
   update: Update
-  user_create: "If you want to propose campaigns or receive oiga.me news, create a user account."
+  user_create: "If you want to propose campaigns or receive oiga.me news, then create a user account."
   users: Users
-  video_url: "URL of the video"
-  view_all_campaigns: "See all campaigns"
-  we_need_your_pass: "we need your current password to make changes"
-  welcome_bye: "Enjoy the site and flow."
-  welcome_message: "to create social mobilization campaigns. This site you are looking at is a beta version, which although functional is not operational yet. So users and content you upload to the server can be deleted at any time. The first stable version will be available at the URL:"
+  video_url: "Video URL"
+  view_all_campaigns: "Show all campaigns"
+  we_need_your_pass: "We need your actual password to make changes"
+  welcome_bye: "Enjoy and navigate the site."
+  welcome_message: "to create social mobilization campaigns. The site you are looking at is a beta version, which although functional is not operational yet. So the users and content you upload to the server could be deleted at any time. The first operative version will be available at the web address:"
   welcome_you: "Welcome to oiga.me, the platform created by"
   will_paginate: 
     next_label: "next →"
@@ -779,8 +721,8 @@ en:
     page_gap: "&hellip;"
     previous_label: "← back"
   you_can_help: "You can help this campaign spreading it on your social networks"
-  you_will_get: "will:"
-  your_email: "Your email"
+  you_will_get: "will remain:"
+  your_email: "Your e-mail"
   your_identity_card: "Your VAT number"
   your_postal_code: "Zip or Postal Code"
   your_state: "Your country"
