@@ -311,6 +311,7 @@ es:
   contact: 'Contacto'
   name: 'Nombre'
   name_and_surname: 'Nombre y apellidos'
+  example_mail: 'tu@dominio.org'
   message_received: 'Mensaje recibido'
   go_to_home: 'Volver al inicio'
   type_of_campaign: 'Tipo de campaña'

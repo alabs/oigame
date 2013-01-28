@@ -457,8 +457,9 @@ en:
   moderate_campaigns: "Moderate campaigns"
   more: plus…
   my_account: "My account"
-  name: Name
-  name_and_surname: "First and last names"
+  name: "First name"
+  name_and_surname: "Name and Surname/s:"
+  example_email: 'you@domain.com'
   name_of_campaign: "Campaign name"
   next_step: "Next step"
   next_you_have_info: "Next you have the campaign information "
