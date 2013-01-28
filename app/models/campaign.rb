@@ -170,6 +170,17 @@ class Campaign < ActiveRecord::Base
     self.emails.join("\r\n")
   end
 
+  def recipients_list
+    case ttype
+    when 'mailing'
+      recipients
+    when 'petition'
+      recipients
+    when 'fax'
+      faxes_recipients
+    end
+  end
+
   def recipients=(args)
     addresses = args.gsub(/\s+/, ',').split(',')
     # arreglar el bug del strip

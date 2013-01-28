@@ -468,6 +468,7 @@ es:
   your_identity_card: "NIF"
   your_postal_code: "Código Postal"
   faq: "FAQ"
+  your_message_will_be_sent_to: "Tu mensaje será enviado a"
   step_1: "Nombre"
   step_2: "Descripción"
   step_3: "Datos extra"
