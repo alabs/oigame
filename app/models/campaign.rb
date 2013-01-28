@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
 
-  self.per_page = 5
+  self.per_page = 6
 
   acts_as_paranoid
 
@@ -73,7 +73,7 @@ class Campaign < ActiveRecord::Base
   before_save :normalize_target
 
   # Scope para solo mostrar la campañas que han sido moderadas
-  scope :published, where(:moderated => false, :status => 'active')
+  scope :published, where(:moderated => false, :status => 'active').order('priority DESC')
   scope :not_published, where(:moderated => true, :status => 'active').where('wstatus != ?', 'active')
   scope :on_archive, where(:status => 'archived', :wstatus => 'active')
   scope :_archived, where(:status => 'archived', :wstatus => 'active')
