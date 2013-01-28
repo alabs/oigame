@@ -60,6 +60,7 @@
         <li><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
         <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
         <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
+        <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
       </ul>
 
       <div class="topcontent tab-content">
@@ -68,7 +69,11 @@
           <%= render :partial => "stats_chart", :locals => {:campaign => @campaign} %>
         </div>
 
-        <div id="opt" class="tab-pane fade">
+        <div id="recip" class="tab-pane fade">
+          <p>
+            <%= t('oigame.your_message_will_be_sent_to') %>
+          </p>
+          <%= @campaign.recipients %>
         </div>
 
         <div id="desc" class="active tab-pane">
