@@ -707,11 +707,14 @@ es:
     campaigns:
       type:
         petition: "Petición online"
-        mailing: "Envío de correo"
-        fax: "Envío de fax"
         petition_message: "firmas"
-        message_message: "mensajes"
+        petition_action: "Firmar"
+        mailing: "Envío de correo"
+        mailing_message: "mensajes"
+        mailing_action: "Enviar mensaje"
+        fax: "Envío de fax"
         fax_message: "faxes enviados"
+        fax_action: "Enviar fax"
     wizard:
       next_step: "Paso siguiente"
       previous_step: "Paso anterior"
