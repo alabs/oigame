@@ -33,13 +33,15 @@ class Campaign < ActiveRecord::Base
         :img        => 'icon-pencil',
         :model_name => 'Petition',
         :message    => I18n.t('oigame.campaigns.type.petition_message'),
+        :action     => I18n.t('oigame.campaigns.type.petition_action'),
       },
     :mailing =>
       {
         :name       => I18n.t('oigame.campaigns.type.mailing'),
         :img        => 'icon-envelope',
         :model_name => 'Message',
-        :message    => I18n.t('oigame.campaigns.type.message_message'),
+        :message    => I18n.t('oigame.campaigns.type.mailing_message'),
+        :action     => I18n.t('oigame.campaigns.type.mailing_action'),
       },
     :fax =>
       {
@@ -47,6 +49,7 @@ class Campaign < ActiveRecord::Base
         :img        => 'icon-print',
         :model_name => 'Fax',
         :message    => I18n.t('oigame.campaigns.type.fax_message'),
+        :action     => I18n.t('oigame.campaigns.type.fax_action'),
       },
   }
    # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
@@ -218,6 +221,10 @@ class Campaign < ActiveRecord::Base
 
   def ttype_message
     Campaign::TYPES[ttype.to_sym][:message]
+  end
+
+  def ttype_action
+    Campaign::TYPES[ttype.to_sym][:action]
   end
 
   def ttype_img
