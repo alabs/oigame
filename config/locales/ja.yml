@@ -2,3 +2,27 @@
 ja: 
   about: について
   accepted_cards: 承認済みのカード
+  access_your_account: アカウントにログインする
+  activate: 始動する
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: "%{attribute} %{message} "
+      messages: 
+        accepted: 了承しなければならない
+        blank: 空白のままにしない
+        confirmation: 認証と一致しない
+        empty: 空白のままにしない
+        equal_to: "%{count} と同等でなければならない"
+        even: 偶数でなければならない
+        exclusion: 予約されている
+        greater_than: "%{count}より大きくなければいけない"
+        greater_than_or_equal_to: "%{count}と同等かまたは大きくなければならない"
+        inclusion: リストに入っていない
+        invalid: 無効
+        less_than: "%{count}より少なくなければならない"
+        less_than_or_equal_to: "%{count}と同等か少なくなければならない"
+        not_a_number: 数字ではない
+        not_an_integer: 全てそろっていなければいけない
+        odd: 奇数でなければならない
+        record_invalid: "有効化失敗: %{errors}"
