@@ -6,4 +6,4 @@
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
 #Oigame::Application.config.session_store :active_record_store
-Oigame::Application.config.session_store :redis_store, :expires_in => 1296000
+#Oigame::Application.config.session_store :redis_store, :expires_in => 1296000
