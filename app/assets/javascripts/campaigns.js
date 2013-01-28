@@ -220,19 +220,19 @@ $(function() {
 
 
   // al darle al submit en el form, comprobamos el correo
-  $('#js-message-campaign').submit(function(e){
-    var $form = $(this);
-    var domains = ['hotmail.com', 'gmail.com', 'aol.com', 'yahoo.com'];
-  
-    $('#js-message-check-email').mailcheck({ 
-      domains: domains,
-      suggested: function(element, suggestion) {
-         notify("Hemos encontrado un error en tu correo, quizás quisiste decir " + suggestion.domain, "error");
-         e.preventDefault(); //evitamos que el formulario se submitee
-      },
-      empty: function(element) { return true; }
-    })
-  })
+  //$('#js-message-campaign').submit(function(e){
+  //  var $form = $(this);
+  //  var domains = ['hotmail.com', 'gmail.com', 'aol.com', 'yahoo.com'];
+  //
+  //  $('#js-message-check-email').mailcheck({ 
+  //    domains: domains,
+  //    suggested: function(element, suggestion) {
+  //       notify("Hemos encontrado un error en tu correo, quizás quisiste decir " + suggestion.domain, "error");
+  //       e.preventDefault(); //evitamos que el formulario se submitee
+  //    },
+  //    empty: function(element) { return true; }
+  //  })
+  //})
 
   $('#participate-buttons').scrollToFixed();
 

@@ -29,21 +29,24 @@ class Campaign < ActiveRecord::Base
   TYPES = {
     :petition =>
       {
-        :name => I18n.t('oigame.campaigns.type.petition'),
-        :img  => 'icon-pencil',
-        :model_name => 'Petition'
+        :name       => I18n.t('oigame.campaigns.type.petition'),
+        :img        => 'icon-pencil',
+        :model_name => 'Petition',
+        :message    => I18n.t('oigame.campaigns.type.petition_message'),
       },
     :mailing =>
       {
-        :name => I18n.t('oigame.campaigns.type.mailing'),
-        :img  => 'icon-envelope',
-        :model_name => 'Message'
+        :name       => I18n.t('oigame.campaigns.type.mailing'),
+        :img        => 'icon-envelope',
+        :model_name => 'Message',
+        :message    => I18n.t('oigame.campaigns.type.message_message'),
       },
     :fax =>
       {
-        :name => I18n.t('oigame.campaigns.type.fax'),
-        :img  => 'icon-print',
-        :model_name => 'Fax'
+        :name       => I18n.t('oigame.campaigns.type.fax'),
+        :img        => 'icon-print',
+        :model_name => 'Fax',
+        :message    => I18n.t('oigame.campaigns.type.fax_message'),
       },
   }
    # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
@@ -213,11 +216,27 @@ class Campaign < ActiveRecord::Base
     moderated == false ? true : false
   end
 
+  def ttype_message
+    Campaign::TYPES[ttype.to_sym][:message]
+  end
+
+  def ttype_img
+    Campaign::TYPES[ttype.to_sym][:img]
+  end
+
+  def ttype_name
+    Campaign::TYPES[ttype.to_sym][:name]
+  end
+
+  def ttype_model_name
+    Campaign::TYPES[ttype.to_sym][:model_name]
+  end
+
   def stats
     case ttype
     when 'mailing'
       stats_for_mailing
-    when 'peititon'
+    when 'petition'
       stats_for_petition
     when 'fax'
       stats_for_fax

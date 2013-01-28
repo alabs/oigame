@@ -32,6 +32,7 @@
           <% end %>
           <li><strong><%= t(:published_at) %>:</strong><%= time_ago_in_words(@campaign.created_at) %></li>
           <li><strong><%= t(:time_left) %>:</strong><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
+          <li><strong><%= t(:type) %>:</strong><i class="<%= @campaign.ttype_img %>"></i> <%= @campaign.ttype_name %> </li>
         </ul>
       </div>
 
@@ -40,7 +41,8 @@
         <% gotten = @campaign.messages_count.to_i %>
         <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
         </progress>
-        <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= t(:firms) %></h3>
+        <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= @campaign.ttype_message %></h3>
+
       <span class="circle2"><i class="icon-signin"></i>
       <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= objective - gotten %></span> <%= t(:more) %>!</p>
         </span>
