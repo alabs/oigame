@@ -606,13 +606,13 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    credit:
+      add_credit: 'Añadir crédito a la campaña'
+      amount_select: "Elige una cantidad"
+      amount_to_donate: "Cantidad a donar"
+      accepted_cards: "Tarjetas aceptadas"
     campaigns:
       creator_of_campaign: "creador de campaña"
-      credit:
-        add_credit: 'Añadir crédito a la campaña'
-        amount_select: "Elige una cantidad"
-        amount_to_donate: "Cantidad a donar"
-        accepted_cards: "Tarjetas aceptadas"
     user:
       registration:
         gravatar_html: "<b>Tu avatar es el de Gravatar</b> Si quieres modificarlo tendrás que hacerlo a través de tu cuenta de <a href='http://gravatar.com' title='gravatar'>gravatar</a> o tendrás que crearte una."
