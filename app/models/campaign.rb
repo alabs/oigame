@@ -217,7 +217,7 @@ class Campaign < ActiveRecord::Base
     case ttype
     when 'mailing'
       stats_for_mailing
-    when 'peititon'
+    when 'petition'
       stats_for_petition
     when 'fax'
       stats_for_fax
