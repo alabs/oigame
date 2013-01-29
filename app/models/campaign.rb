@@ -250,17 +250,6 @@ class Campaign < ActiveRecord::Base
     Campaign::TYPES[ttype.to_sym][:model_name]
   end
 
-  def stats
-    case ttype
-    when 'mailing'
-      stats_for_mailing
-    when 'petition'
-      stats_for_petition
-    when 'fax'
-      stats_for_fax
-    end
-  end
-
   def archive
     self.status = 'archived'
     save!
@@ -289,43 +278,26 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  def stats_for_mailing
-    dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
-    messages = 0
-    require Rails.root.to_s+'/app/models/message'
-    dates.each do |date|
-      count = Rails.cache.fetch("s4m_#{id}_#{date.to_s}", :expires_in => 3.hour) { Message.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
-      messages += count
-      data.push([date.strftime('%Y-%m-%d'), messages])
+  def stats
+    case ttype
+    when "petition"
+      model = Petition
+      file_name = "petition"
+    when "mailing"
+      model = Message
+      file_name = "message"
+    when "fax"
+      model = Fax
+      file_name = "fax"
     end
-    
-    return data
-  end
-  
-  def stats_for_fax
     dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
     data = []
-    faxes = 0
-    require Rails.root.to_s+'/app/models/fax'
+    counter = 0
+    require Rails.root.to_s+'/app/models/'+file_name
     dates.each do |date|
-      count = Rails.cache.fetch("s4f_#{id}_#{date.to_s}", :expires_in => 3.hour) { Fax.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
-      faxes += count
-      data.push([date.strftime('%Y-%m-%d'), messages])
-    end
-    
-    return data
-  end
-  
-  def stats_for_petition
-    dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
-    petitions = 0
-    require Rails.root.to_s+'/app/models/petition'
-    dates.each do |date|
-      count = Rails.cache.fetch("s4p_#{id}_#{date.to_s}", :expires_in => 3.hour) { Petition.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
-      petitions += count
-      data.push([date.strftime('%Y-%m-%d'), petitions])
+      count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
+      counter += count
+      data.push([date.strftime('%Y-%m-%d'), counter])
     end
     
     return data
