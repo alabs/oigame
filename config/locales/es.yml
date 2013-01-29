@@ -708,13 +708,13 @@ es:
       type:
         petition: "Petición online"
         petition_message: "firmas"
-        petition_action: "Firmar"
+        petition_action: "Firma"
         mailing: "Envío de correo"
-        mailing_message: "mensajes"
-        mailing_action: "Enviar mensaje"
+        mailing_message: "mensajes enviados"
+        mailing_action: "Envia un mensaje"
         fax: "Envío de fax"
         fax_message: "faxes enviados"
-        fax_action: "Enviar fax"
+        fax_action: "Envia un fax"
     wizard:
       next_step: "Paso siguiente"
       previous_step: "Paso anterior"
