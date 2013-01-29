@@ -170,12 +170,16 @@ class Campaign < ActiveRecord::Base
     self.emails.join("\r\n")
   end
 
+  def mails_recipients
+    emails.join("<br>").sub('@','[arroba]')
+  end
+
   def recipients_list
     case ttype
     when 'mailing'
-      recipients
+      mails_recipients
     when 'petition'
-      recipients
+      mails_recipients
     when 'fax'
       faxes_recipients
     end
