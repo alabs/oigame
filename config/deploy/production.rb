@@ -154,7 +154,7 @@ namespace :deploy do
   desc "Restart the Thin processes"
   task :restart do
     run <<-CMD
-      cd /var/www/oiga.me/current; bundle exec thin restart -C config/thin_production.yml
+      cd /var/www/oiga.me/current; bundle exec thin restart --onebyone --wait 30 -C config/thin_production.yml
     CMD
   end
 
