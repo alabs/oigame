@@ -96,7 +96,7 @@ class Mailman < ActionMailer::Base
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
     numbers = campaign.numbers.map {|number| number + "@ecofax.fr"}
-    mail :from => 'fax@oiga.me', :to => numbers, :subject => subject
+    mail :from => APP_CONFIG[:fax_email_address], :to => numbers, :subject => subject
   end
 
   def inform_new_comment(campaign_id)
