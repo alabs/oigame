@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120133545) do
+ActiveRecord::Schema.define(:version => 20130130131133) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20130120133545) do
     t.string   "identity_card"
     t.string   "postal_code"
     t.string   "state"
+    t.integer  "check_code"
   end
 
   create_table "messages", :force => true do |t|
