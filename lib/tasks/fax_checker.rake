@@ -17,7 +17,8 @@ namespace :oigame do
         :enable_ssl => true
     end
 
-    Mail.all.each do |m|
+    # por defecto borra los mensajes que encuentre
+    Mail.find_and_delete do |m|
       begin
         status = OVHFaxChecker.status m
       rescue Net::POPAuthenticationError
@@ -32,12 +33,19 @@ namespace :oigame do
           fax.check_ticket_id = status[:ticket_id]
           fax.check_code = status[:code]
           fax.save
+          # si el fax falla le devolvemos el credito a la campaign
+          if fax.check_code == 500 
+            camp = Campaign.find status[:campaign_id]
+            camp.credit += FaxForRails::TAX 
+            camp.save
+          end
         end
       rescue
+        # si hay error no borramos el mensaje
+        m.skip_deletion = true
         puts "Not valid mail format for #{m.subject}"
       end
     end
-    #Mail.delete_all
 
   end
 end
