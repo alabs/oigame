@@ -30,6 +30,7 @@ namespace :oigame do
         fax.check_date = Time.at(status[:date]).to_datetime
         fax.check_message = status[:message]
         fax.check_ticket_id = status[:ticket_id]
+        fax.check_code = status[:code]
         fax.save
       end
     end
