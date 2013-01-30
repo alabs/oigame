@@ -55,8 +55,21 @@ class OVHFaxChecker
       when /se ha cumpletado/
         status[:code]      = 200
         status[:ticket_id] = OVHFaxChecker.splitter(mail, 22, 'IDTrabajo: ').to_i
-      when /(ha sido puesto em memoria|falló)/
-        # Puede venir en distintas lineas, hay que tratarlas todas
+      when /(ha sido puesto em memoria)/
+        # FIXME: lineas duplicadas :S 
+        # Antes esto estaba muy mal hecho, porque son codes diferentes (100/500)
+      # when /(ha sido puesto em memoria|falló)/
+        # Como hoy no estoy especialmente inspirado, vamos a usar la 
+        # magia del copypasting
+        error_mes1 = OVHFaxChecker.splitter(mail, 24, 'Estado: ')
+        error_mes2 = OVHFaxChecker.splitter(mail, 25, 'Estado: ')
+        error_mes3 = OVHFaxChecker.splitter(mail, 26, 'Estado: ')
+        ticket_id1 = OVHFaxChecker.splitter(mail, 27, 'IDTrabajo: ').to_i
+        ticket_id2 = OVHFaxChecker.splitter(mail, 28, 'IDTrabajo: ').to_i
+        status[:code]      = 100
+        status[:ticket_id] = ticket_id1 == 0 ? ticket_id2 : ticket_id1
+        status[:message]   = error_mes1 ? error_mes1 : ( error_mes2 ? error_mes2 : error_mes3 )
+      when /(falló)/
         error_mes1 = OVHFaxChecker.splitter(mail, 24, 'Estado: ')
         error_mes2 = OVHFaxChecker.splitter(mail, 25, 'Estado: ')
         error_mes3 = OVHFaxChecker.splitter(mail, 26, 'Estado: ')
