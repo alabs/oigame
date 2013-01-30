@@ -41,35 +41,39 @@ class OVHFaxChecker
 
   def self.status mail
     puts mail.subject
-    status = {
-      :fax_id      => OVHFaxChecker.fax_id(mail),
-      :campaign_id => OVHFaxChecker.campaign_id(mail),
-      :date        => OVHFaxChecker.date(mail),
-      :message     => nil,
-    }
-    case mail.subject
-      when /añadido en lista de espera/
-        status[:code]      = 100
-        status[:ticket_id] = OVHFaxChecker.splitter(mail, 4, " es el ").to_i
-        status[:message]   = "Processing"
-      when /se ha cumpletado/
-        status[:code]      = 200
-        status[:ticket_id] = OVHFaxChecker.splitter(mail, 22, 'IDTrabajo: ').to_i
-      when /(ha sido puesto em memoria|falló)/
-        # Puede venir en distintas lineas, hay que tratarlas todas
-        error_mes1 = OVHFaxChecker.splitter(mail, 24, 'Estado: ')
-        error_mes2 = OVHFaxChecker.splitter(mail, 25, 'Estado: ')
-        error_mes3 = OVHFaxChecker.splitter(mail, 26, 'Estado: ')
-        ticket_id1 = OVHFaxChecker.splitter(mail, 27, 'IDTrabajo: ').to_i
-        ticket_id2 = OVHFaxChecker.splitter(mail, 28, 'IDTrabajo: ').to_i
-        status[:code]      = 500
-        status[:ticket_id] = ticket_id1 == 0 ? ticket_id2 : ticket_id1
-        status[:message]   = error_mes1 ? error_mes1 : ( error_mes2 ? error_mes2 : error_mes3 )
-      else
-        status[:code]      = 000
-        status[:message]   = "Unknown"
+    begin
+      status = {
+        :fax_id      => OVHFaxChecker.fax_id(mail),
+        :campaign_id => OVHFaxChecker.campaign_id(mail),
+        :date        => OVHFaxChecker.date(mail),
+        :message     => nil,
+      }
+      case mail.subject
+        when /añadido en lista de espera/
+          status[:code]      = 100
+          status[:ticket_id] = OVHFaxChecker.splitter(mail, 4, " es el ").to_i
+          status[:message]   = "Processing"
+        when /se ha cumpletado/
+          status[:code]      = 200
+          status[:ticket_id] = OVHFaxChecker.splitter(mail, 22, 'IDTrabajo: ').to_i
+        when /(ha sido puesto em memoria|falló)/
+          # Puede venir en distintas lineas, hay que tratarlas todas
+          error_mes1 = OVHFaxChecker.splitter(mail, 24, 'Estado: ')
+          error_mes2 = OVHFaxChecker.splitter(mail, 25, 'Estado: ')
+          error_mes3 = OVHFaxChecker.splitter(mail, 26, 'Estado: ')
+          ticket_id1 = OVHFaxChecker.splitter(mail, 27, 'IDTrabajo: ').to_i
+          ticket_id2 = OVHFaxChecker.splitter(mail, 28, 'IDTrabajo: ').to_i
+          status[:code]      = 500
+          status[:ticket_id] = ticket_id1 == 0 ? ticket_id2 : ticket_id1
+          status[:message]   = error_mes1 ? error_mes1 : ( error_mes2 ? error_mes2 : error_mes3 )
+        else
+          status[:code]      = 000
+          status[:message]   = "Unknown"
+      end
+      return status
+    rescue
+      puts "not valid mail"
     end
-    return status
   end
 
 end
