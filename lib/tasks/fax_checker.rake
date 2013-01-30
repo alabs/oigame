@@ -23,15 +23,18 @@ namespace :oigame do
       rescue Net::POPAuthenticationError
         raise "-ERR Authentication failed."
       end
-      #puts status
-      fax = Fax.find status[:fax_id]
-      if fax.check_date.nil? or Time.at(status[:date]).to_datetime > fax.check_date 
-        puts "processing" 
-        fax.check_date = Time.at(status[:date]).to_datetime
-        fax.check_message = status[:message]
-        fax.check_ticket_id = status[:ticket_id]
-        fax.check_code = status[:code]
-        fax.save
+      begin 
+        #puts status
+        fax = Fax.find status[:fax_id]
+        if fax.check_date.nil? or Time.at(status[:date]).to_datetime > fax.check_date 
+          fax.check_date = Time.at(status[:date]).to_datetime
+          fax.check_message = status[:message]
+          fax.check_ticket_id = status[:ticket_id]
+          fax.check_code = status[:code]
+          fax.save
+        end
+      rescue
+        puts "Not valid mail format for #{m.subject}"
       end
     end
     #Mail.delete_all
