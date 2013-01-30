@@ -7,8 +7,7 @@ class FaxPdf
 
   def generate_pdf
     pdf = Prawn::Document.new
-    pdf.image logo_path, :with => 125, :height => 58
-    pdf.move_down 15
+    pdf.move_down 10 
     pdf.font_size 10
     pdf.text "Remitente: #{@fax.name}"
     pdf.text "Email: #{@fax.email}"
@@ -17,7 +16,9 @@ class FaxPdf
     pdf.text @campaign.name
     pdf.move_down 15
     pdf.font_size 10
-    pdf.text @fax.body 
+    pdf.text @fax.intro 
+    pdf.move_down 10
+    pdf.text @fax.body
     pdf.move_down 30
 
     pdf.render
