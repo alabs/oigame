@@ -23,6 +23,9 @@ a:hover {
   margin-right: 2em;
 }
 
+.line-tabs {
+  display: inline-block;
+}
 
 ol.progtrckr {
   margin: 0;
