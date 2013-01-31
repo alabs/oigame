@@ -1,0 +1,104 @@
+Return-Path: <no-reply@ovh.net>
+X-Original-To: fax-test@oiga.me
+Delivered-To: fax-test@peta.alabs.es
+Received: from cosmos.alabs.es (cosmos.alabs.es [94.23.203.58])
+	by peta.alabs.es (Postfix) with ESMTP id 857EC1161A21
+	for <fax-test@oiga.me>; Tue, 29 Jan 2013 18:55:59 +0100 (CET)
+Received: from mo196.mail-out.ovh.net (mo196.mail-out.ovh.net [178.32.228.196])
+	by cosmos.alabs.es (Postfix) with ESMTP id 6676D3B82581
+	for <fax-test@oiga.me>; Tue, 29 Jan 2013 18:55:59 +0100 (CET)
+Received: from 24.mail-out.ovh.net (24.mail-out.ovh.net [91.121.29.215])
+	by mo196.mail-out.ovh.net (Postfix) with SMTP id 41E1DFF9884
+	for <fax-test@oiga.me>; Tue, 29 Jan 2013 19:09:16 +0100 (CET)
+Received: (qmail 23501 invoked by uid 503); 29 Jan 2013 18:26:16 -0000
+Received: from v1.ovh.net (HELO fax8.voip.ha.ovh.net) (213.186.33.22)
+  by 24.mail-out.ovh.net with SMTP; 29 Jan 2013 18:26:16 -0000
+Received: by fax8.voip.ha.ovh.net (Postfix, from userid 10)
+	id 70A3041EA5; Tue, 29 Jan 2013 18:55:57 +0100 (CET)
+MIME-Version: 1.0
+Content-Type: Multipart/Mixed; Boundary="NextPart21841"
+Content-Transfer-Encoding: 7bit
+To: fax-test@oiga.me
+From: =?iso-8859-1?Q?Service=20t=C3=A9l=C3=A9copie?= <no-reply@ovh.net>
+References: 510805e9dd95f_3981c8100432973@polar.mail
+In-Reply-To: 510805e9dd95f_3981c8100432973@polar.mail
+X-Ovh-Fax-Mode: Account
+X-Ovh-Fax-From: 0034999999999
+X-Ovh-Fax-Target: 0034999999999
+X-Ovh-Fax-Jobid: 80435
+X-Ovh-Fax-Pages: 1
+X-Ovh-Fax-SentPages: 0
+X-Ovh-Fax-Quality: high
+X-Ovh-Fax-jobtag: =?iso-8859-1?Q?fax=2D217=2D258=2Epdf?=
+X-Ovh-Fax-Account: 00349999999
+X-Ovh-Folder: Failed
+X-Ovh-Fax-Error: E003
+X-Ovh-Fax-Status: No answer from remote ; too many attempts to dial
+X-Mailtype: Fax
+Subject: =?iso-8859-1?Q?fax=20=27fax=2D217=2D258=2Epdf=27=20a=2000349999999=20?=
+ =?iso-8859-1?Q?fall=F3?=
+Message-Id: <20130129175557.70A3041EA5@fax8.voip.ha.ovh.net>
+Date: Tue, 29 Jan 2013 18:55:56 +0100 (CET)
+X-Ovh-Tracer-Id: 1461418080621533378
+
+This is a multi-part message in MIME format.
+
+--NextPart21841
+Mime-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+fax 'fax-217-258.pdf' a 003499999999 ha fallado porque:
+    No answer from remote ; too many attempts to dial
+
+    ---- Estado del trabajo no enviado ----
+
+                    Destino: 0034999999
+                  Remitente: fax-test
+                  Direcci=F3n: fax-test@oiga.me
+                    Calidad: Fino
+                    Anchura: 209 (mm)
+                   Longitud: 296 (mm)
+Velocidad de la transmisi=F3n: 33600 bit/s
+           Formato De Datos: 1-D MH
+                   Di=E1logos: 0 (conexiones con el dispositivo remoto)
+                   Llamadas: 6 (total de llamadas telef=F3nicas echas)
+                Marcaciones: 6 (llamadas falladas consecutivas al destino)
+                      M=F3dem:=20
+                     Estado: No answer from remote ; too many attempts to d=
+ial
+                Sometido De: localhost.localdomain
+                  IDTrabajo: 80435
+                    IDGrupo: 41649
+                      IDCom: c000060618
+
+Recibido : 2013-01-29 18:55:56 UTC+01:00
+El tiempo de procesamiento fue de 0:00:12.
+
+    ---- Documentos sometidos para transmisi=F3n ----
+
+Los documentos siguientes fueron sometidos para transmisi=F3n y est=E1n
+disponibles en el servidor para reutilizarse hasta que sean eliminados
+autom=E1ticamente o cuando este trabajo est=E9 eliminado. Los documentos po=
+dr=E1n tambi=E9n ser eliminados
+manualmente usando el comando faxrm; consulte faxrm(1) para m=E1s informaci=
+=F3n.
+
+Nombre de fichero      Tama=F1o Tipo
+fax-217-258.pdf          7786 PDF
+
+  Informaci=F3n adicional:
+
+     No answer from remote ; too many attempts to dial
+
+    ---- La transcripci=F3n de la sesi=F3n es la siguiente ----
+
+
+--NextPart21841
+Content-Type: text/plain; charset=US-ASCII; name=c000060618
+Content-Description: FAX session log
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--NextPart21841--

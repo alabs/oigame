@@ -1,0 +1,43 @@
+Return-Path: <no-reply@ovh.net>
+X-Original-To: fax-test@oiga.me
+Delivered-To: fax-test@peta.alabs.es
+Received: from cosmos.alabs.es (cosmos.alabs.es [94.23.203.58])
+	by peta.alabs.es (Postfix) with ESMTP id C10D61161A21
+	for <fax-test@oiga.me>; Tue, 29 Jan 2013 18:30:06 +0100 (CET)
+X-Greylist: delayed 300 seconds by postgrey-1.32 at cosmos; Tue, 29 Jan 2013 18:30:06 CET
+Received: from mo196.mail-out.ovh.net (mo196.mail-out.ovh.net [178.32.228.196])
+	by cosmos.alabs.es (Postfix) with ESMTP id 110F63B82582
+	for <fax-test@oiga.me>; Tue, 29 Jan 2013 18:30:06 +0100 (CET)
+Received: from 24.mail-out.ovh.net (24.mail-out.ovh.net [91.121.29.215])
+	by mo196.mail-out.ovh.net (Postfix) with SMTP id B9F38FF8697
+	for <fax-test@oiga.me>; Tue, 29 Jan 2013 18:38:25 +0100 (CET)
+Received: (qmail 32403 invoked by uid 503); 29 Jan 2013 17:55:26 -0000
+Received: from v1.ovh.net (HELO ffax4.voip.ha.ovh.net) (213.186.33.22)
+  by 24.mail-out.ovh.net with SMTP; 29 Jan 2013 17:55:26 -0000
+Received: by ffax4.voip.ha.ovh.net (Postfix, from userid 1002)
+	id E4D371FF5A; Tue, 29 Jan 2013 18:25:06 +0100 (CET)
+Content-Type: text/plain; charset="UTF-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Mailer: MIME-tools 5.428 (Entity 5.428)
+X-Mailtype: Fax
+From: "Service télécopie" <no-reply@ovh.net>
+To: fax-test@oiga.me
+Subject: =?UTF-8?Q?Env=C3=ADo=20de=20?='fax-217-258.pdf' =?UTF-8?Q?=20hacia=20003499999999=20?=
+ =?UTF-8?Q?a=C3=B1adido=20en=20lista=20de=20?==?UTF-8?Q?espera?=
+In-Reply-To: <510805e9dd95f_3981c8100432973@polar.mail>
+Message-Id: <20130129172506.E4D371FF5A@ffax4.voip.ha.ovh.net>
+Date: Tue, 29 Jan 2013 18:25:06 +0100 (CET)
+X-Ovh-Tracer-Id: 940689374290221250
+
+Buenos d=C3=ADas,
+
+    Su solicitud de env=C3=ADo de 'fax-217-258.pdf' hacia el n=C3=BAmero 00=
+349999999 ha sido tomada en cuenta.
+En breve recibir=C3=A1 un acuse de recepci=C3=B3n inform=C3=A1ndole del des=
+arrollo de esta transmisi=C3=B3n.
+El n=C3=BAmero de tiquet para este env=C3=ADo es el 80437.
+
+Cordialmente,
+Service t=C3=83=C2=A9l=C3=83=C2=A9copie.=
