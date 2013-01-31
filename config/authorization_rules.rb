@@ -7,7 +7,7 @@ authorization do
     has_permission_on [:campaigns], :to => [:show] do
       if_attribute :moderated => is { false }
     end
-    has_permission_on [:donate], :to => [:index, :accepted, :denied]
+    has_permission_on [:donate], :to => [:index, :accepted, :denied, :confirm]
     has_permission_on [:pages], :to => [:index, :faq, :tutorial, :privacy_policy, :contact, :contact_received, :about, :press,
                                         :activity]
     has_permission_on [:sub_oigames], :to => [:widget, :widget_iframe, :integrate]
