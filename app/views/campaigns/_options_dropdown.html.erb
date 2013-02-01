@@ -11,6 +11,14 @@
           </a>
         <% end %>
       </li>
+        <li>
+          <% if (permitted_to? :participants, campaign) && campaign.messages.count > 0 %>
+            <%= link_to participants_campaign_path(campaign) do %>
+              <i class="icon-user"></i>
+              <%= t(:download_participants) %>
+            <% end %>
+          <% end %>
+        </li>
       <% if campaign.status == 'archived' %>
         <li>
           <% if permitted_to? :moderated, campaign %>
@@ -58,14 +66,6 @@
             <%= link_to sub_oigame ? deactivate_sub_oigame_campaign_path(sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
               <i class="icon-remove-circle"></i>
               <%= t(:deactivate) %>
-            <% end %>
-          <% end %>
-        </li>
-        <li>
-          <% if (permitted_to? :participants, campaign) && campaign.messages.count > 0 %>
-            <%= link_to participants_campaign_path(campaign) do %>
-              <i class="icon-user"></i>
-              <%= t(:download_participants) %>
             <% end %>
           <% end %>
         </li>
