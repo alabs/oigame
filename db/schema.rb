@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120133545) do
+ActiveRecord::Schema.define(:version => 20130201172654) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(:version => 20130120133545) do
     t.boolean  "validated"
     t.string   "token"
     t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "body"
     t.datetime "check_date"
     t.string   "check_message"
@@ -108,14 +108,16 @@ ActiveRecord::Schema.define(:version => 20130120133545) do
     t.string   "identity_card"
     t.string   "postal_code"
     t.string   "state"
+    t.integer  "check_code"
+    t.integer  "revalidate_counter"
   end
 
   create_table "messages", :force => true do |t|
     t.integer  "campaign_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "email"
-    t.boolean  "validated",     :default => false
+    t.boolean  "validated",          :default => false
     t.string   "token"
     t.text     "body"
     t.string   "subject"
@@ -123,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20130120133545) do
     t.string   "identity_card"
     t.string   "postal_code"
     t.string   "state"
+    t.integer  "revalidate_counter"
   end
 
   add_index "messages", ["campaign_id"], :name => "index_messages_on_campaign_id"
@@ -131,14 +134,15 @@ ActiveRecord::Schema.define(:version => 20130120133545) do
   create_table "petitions", :force => true do |t|
     t.integer  "campaign_id"
     t.string   "email"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.boolean  "validated",     :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "validated",          :default => false
     t.string   "token"
     t.string   "name"
     t.string   "identity_card"
     t.string   "postal_code"
     t.string   "state"
+    t.integer  "revalidate_counter"
   end
 
   add_index "petitions", ["campaign_id"], :name => "index_petitions_on_campaign_id"
