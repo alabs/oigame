@@ -19,7 +19,6 @@ class FaxPdf
     pdf.text @campaign.intro 
     pdf.move_down 10
     pdf.text @campaign.body
-    pdf.move_down 30
 
     pdf.render
   end
