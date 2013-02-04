@@ -45,34 +45,32 @@
   -->
 </head>
 <body>
-<%= render :partial => 'header' %>
 
-<% if @in_campaign %>
-  <div>
-<% else %>
-  <div class="c">
-<% end %>
+  <%= render :partial => 'header' %>
+
+<div class="container-fluid">
   <%= yield %>
 </div>
+
 <br clear="all"/>
 <div class="topfooter">
-  <div class="cthreecolumns c">
-    <div class="threecolumns">
+  <div class="cthreecolumns c row-fluid">
+    <div class="threecolumns span3">
       <span><i class="icon-pencil"></i></span>
       <h3><%= t "oigame.home.footer.petition_title" %></h3>
       <p><%= t "oigame.home.footer.petition_body_html" %></p>
     </div><!-- threecolumns -->
-    <div class="threecolumns">
+    <div class="threecolumns span3">
       <span><i class="icon-envelope"></i></span>
       <h3><%= t "oigame.home.footer.mailing_title" %></h3>
       <p><%= t "oigame.home.footer.mailing_body_html" %></p>
     </div><!-- threecolumns -->
-    <div class="threecolumns">
+    <div class="threecolumns span3">
       <span><i class="icon-print"></i></span>
       <h3><%= t "oigame.home.footer.fax_title" %></h3>
       <p><%= t "oigame.home.footer.fax_body_html" %></p>
     </div><!-- threecolumns -->
-    <div class="threecolumns">
+    <div class="threecolumns span3">
       <span><i class="icon-mobile-phone"></i></span>
       <h3><%= t "oigame.home.footer.telephony_title" %></h3>
       <p><%= t "oigame.home.footer.telephony_body_html" %></p>

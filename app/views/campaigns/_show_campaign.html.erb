@@ -22,9 +22,7 @@
     <div class="campaign-text-links">
       <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>
 
-
-  <%= link_to t(:join), url, :title => campaign.name %>
-
+      <%= link_to t(:join), url, :title => campaign.name, :class => "btn" %>
 
     <% objective  = campaign.target.to_i %>
     <% gotten = campaign.messages_count.to_i %> 

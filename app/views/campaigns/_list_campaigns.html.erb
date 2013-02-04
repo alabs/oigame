@@ -31,9 +31,9 @@
         </div>
 
     <% if @campaigns.count > 0 %>      
-<div style="overflow:hidden;">
+<div class="row-fluid">
         <% @campaigns.each do |campaign| %>
-          <div class="mostrar-campaign">
+          <div class="mostrar-campaign span4">
           <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
         </div>
 
