@@ -123,8 +123,8 @@
         <%= render partial: 'sign_form' %>
       <% end %>
       <div id="redes">
-        <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>" class="twitter-hashtag-button">#<%= @campaign.hashtag %></a>
-        <div style="position:absolute; margin-left: 1em;" class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+        <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=He%20participado%20en%20la%20campa%C3%B1a%20%22<%= URI.escape(@campaign.name) %>%22" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
+        <div style="position:absolute; margin-left: 1em;" class="fb-like" data-href="<%= @campaign.get_absolute_url %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
       </div>
     </div><!-- sidefirma -->
   </div> <!-- span4 -->
