@@ -4,7 +4,7 @@ class SendFax
 
   def self.perform fax_id
     campaign = Fax.find(fax_id).campaign
-    c.numbers.each do |number|
+    campaign.numbers.each do |number|
       while campaign.has_credit?
         Mailman.send_message_to_fax_recipient(fax_id, campaign.id, number).deliver
         campaign.credit -= 1
