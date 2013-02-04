@@ -16,6 +16,20 @@
   <% end %>
 <% end %>
 
+<div class="alert alert-info campaign-alert">
+  <p>
+    <b><%= t('oigame.wizard.intro_line_1') %></b>
+    <%= t('oigame.wizard.intro_line_2') %>
+  </p>
+
+  <ul class="unstyled">
+    <li><%= t('oigame.wizard.intro_line_3') %>
+    <li><%= t('oigame.wizard.intro_line_4') %>
+    <li><%= t('oigame.wizard.intro_line_5') %>
+  </ul>
+</div>
+
+
 <ol class="progtrckr" data-progtrckr-steps="3">
     <li class="progtrckr-todo"><%= t(:step_1) %></li>
     <li class="progtrckr-todo"><%= t(:step_2) %></li>
@@ -37,7 +51,7 @@
     <div class="control-group">
       <%= f.label :hashtag, t(:hashtag_of_campaign), :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :hashtag, :class => 'span6', :placeholder => t(:hashtag_of_campaign), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hastag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
+        <%= f.text_field :hashtag, :class => 'span6', :placeholder => t(:hashtag_of_campaign), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hashtag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
       </div>
     </div>
     <div id="control-group">
