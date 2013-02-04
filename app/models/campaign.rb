@@ -129,6 +129,10 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def has_credit?
+    self.credit >= 1
+  end
+
   # Para repartir el envio de mensajes en varios enlaces
   def partition_of_emails(size = 60)
     data = []

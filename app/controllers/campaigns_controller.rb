@@ -333,6 +333,18 @@ class CampaignsController < ApplicationController
     HTTParty.post("https://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 
+  def credit_added
+    campaign = Campaign.find_by_slug(params[:id])
+    flash[:notice] = t(:payment_accepted)
+    redirect_to campaign
+  end
+
+  def credit_denied
+    campaign = Campaign.find_by_slug(params[:id])
+    flash[:error] = t(:payment_denied)
+    redirect_to campaign
+  end
+
   private
 
   def render_404

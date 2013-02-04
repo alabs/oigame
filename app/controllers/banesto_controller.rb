@@ -8,7 +8,5 @@ class BanestoController < ApplicationController
     campaign = Campaign.find_by_slug(params[:id])
     campaign.credit += (params[:amount] / FaxForRails::TAX)
     campaign.save
-    flash[:notice] = t(:payment_accepted)
-    redirect_to campaign
   end
 end
