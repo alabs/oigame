@@ -3391,3 +3391,8 @@ a.thumbnail:hover {
   color: #468847;
 }
 
+
+ul.inline, ol.inline {
+    list-style: none outside none;
+    margin-left: 0;
+}
