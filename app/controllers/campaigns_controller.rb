@@ -48,6 +48,9 @@ class CampaignsController < ApplicationController
     @meta['og']['type'] = 'oigameapp:campaign'
     @meta['oigameapp']['end_date'] = @campaign.duedate_at.strftime("%Y-%m-%d")
 
+    # metas for twitter
+    @meta['url'] = @campaign.get_absolute_url
+
     @participants = @campaign.participants
 
     @has_participated = @campaign.has_participated?(current_user)

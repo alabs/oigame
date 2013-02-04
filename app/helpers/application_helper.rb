@@ -31,6 +31,12 @@ module ApplicationHelper
 
   def show_meta_tags
     data = ""
+    data << "<meta name='twitter:card' content='summary'>\n"
+    data << "<meta name='twitter:site' content='@oigame'>\n"
+    data << "<meta name='twitter:url' content='#{@meta['url']}'>\n"
+    data << "<meta name='twitter:title' content='#{@meta['title']}'>\n"
+    data << "<meta name='twitter:description' content='#{@meta['description']}'>\n"
+
     data << "<meta property='og:description' content='#{@meta['description']}' />\n"
     data << "<meta name='description' content='#{@meta['description']}' />\n"
     data << "<meta property='og:title' content='#{@meta['title']}' />\n"
