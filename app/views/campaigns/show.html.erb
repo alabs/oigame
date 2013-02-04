@@ -27,7 +27,7 @@
           </li>
           <% if @campaign.ttype == "fax" %>
             <li>
-              <strong><span><%= t(:credits) %></span>:</strong> <%= @campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
+              <strong><span><%= t(:credits) %></span>:</strong> <%= @campaign.credit %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
             </li>
           <% end %>
           <li><strong><%= t(:published_at) %>:</strong><%= time_ago_in_words(@campaign.created_at) %></li>
