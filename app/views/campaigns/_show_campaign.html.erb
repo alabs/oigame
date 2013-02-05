@@ -3,53 +3,46 @@
 
   <div>
     <%= link_to campaign do %>
-    <div class="campa-home">
-      <%= image_tag(campaign.image_url(:home)) %>
-
-      <div class="campa-texto">
-        <div class="campa-texto-left">
-          <span><%= campaign.name %></span>
-        </div><!-- left -->
-        <div class="campa-texto-right">
-          <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
-        </div><!-- left -->
-      </div><!-- campa-texto -->
-    </div>
-      <% end %>
+      <div class="campa-home">
+        <%= image_tag(campaign.image_url(:home)) %>
+        <div class="campa-texto">
+          <div class="campa-texto-left">
+            <span><%= campaign.name %></span>
+          </div><!-- left -->
+          <div class="campa-texto-right">
+            <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+          </div><!-- left -->
+        </div><!-- campa-texto -->
+      </div>
+    <% end %>
   </div>
 
   <div class="campaign-text">
     <div class="campaign-text-links">
       <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>
-
-      <%= link_to t(:join), url, :title => campaign.name, :class => "btn" %>
-
-    <% objective  = campaign.target.to_i %>
-    <% gotten = campaign.messages_count.to_i %> 
+      <% objective  = campaign.target.to_i %>
+      <% gotten = campaign.messages_count.to_i %> 
       <% if campaign.status == "archived" %>
-          <%= link_to url do %>
-            <span class="label label-warning" style="font-size: 1em;"><%= t(:archived) %></span>
-          <% end %>
-        <% else %>
-                    <div id="progressbarlista">
-
-                     <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted"><%= gotten %></span> <%= campaign.ttype_message %></h3>
-
-
-                <div id="necesarias">
-                  <h4><i class="icon-signin"></i>
-                  <%= t(:miss) %> <span class="underlinedlista"><%= objective - gotten %> </span><%= t(:firms_more) %>!</h4>
-                </div>
-                <progress id="barlista" value="<%= gotten %>" max="<%= objective %>">
-                  <em><%= t(:has_gotten) %> <%= gotten %> <%= t(:of) %> <%= objective %> <%= t(:firms) %></em>
-                </progress>
-
-
-
-              </div>
-
+        <%= link_to url do %>
+          <span class="label label-warning" style="font-size: 1em;"><%= t(:archived) %></span>
         <% end %>
+      <% else %>
+        <div id="progressbarlista">
+          <div class="span7">
+            <h3 id="recogidaslista">  <i class="icon-bullhorn"></i><span class="highlighted"><%= gotten %></span> <%= campaign.ttype_message %></h3>
+            <div id="necesarias">
+              <h4><i class="icon-signin"></i>
+                <%= t(:miss) %> <span class="underlinedlista"><%= objective - gotten %> </span><%= t(:firms_more) %>!
+              </h4>
+            </div>
+          </div>
+          <%= link_to t(:join), url, :title => campaign.name, :class => "btn span5" %>
+          <progress id="barlista" value="<%= gotten %>" max="<%= objective %>">
+          <em><%= t(:has_gotten) %> <%= gotten %> <%= t(:of) %> <%= objective %> <%= t(:firms) %></em>
+          </progress>
+        </div>
+      <% end %>
+    </div><!-- campaign-text-links -->
+  </div><!-- campaign-text -->
 
-        </div><!-- campaign-text-links -->
-      </div><!-- campaign-text -->
-    </div><!-- cinfo -->
+</div><!-- cinfo -->
