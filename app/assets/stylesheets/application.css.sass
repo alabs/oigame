@@ -1,6 +1,6 @@
 //@import "960"
-//@import "bootstrap"
-//@import "bootstrap-responsive.min"
+@import "bootstrap"
+@import "bootstrap-responsive.min"
 @import "wisiwisi-editor"
 @import "highlight.zenburn"
 //@import "jquery.dialog2"
@@ -15,7 +15,6 @@
 @import "pages"
 @import "campaigns"
 
-@import "bootstrap-and-changes"
 @import "style_common"
 
 //mdmagick
@@ -226,19 +225,13 @@ ul.photo
   padding: 0px
   li
     width: 32%
+    margin: 5px !important
     padding: 0.5%
     float: left
     position: relative
     -webkit-border-radius: 4px
     -moz-border-radius: 4px
     border-radius: 4px
-
-.contenedorcampaign
-  width: 90%
-  float: left
-  margin-left: 10%
-  margin-bottom: 0px
-
 
 .text
   width: 33%
@@ -283,7 +276,7 @@ ul.photo
     padding: 2px
     vertical-align: middle
   h4
-    color: #1b5353
+    color: $naranja
     font-size: 12px
 
 .creada
@@ -326,7 +319,7 @@ button
   &.firma
     color: white
     font-size: 16px
-    background: #1b5353
+    background: $naranja
     border: 0px
     padding: 1px 1px
     /* fuck ie
@@ -334,12 +327,12 @@ button
     -moz-border-radius: 2px
     border-radius: 2px
     /* fin
-    background: -webkit-gradient(#1b5353, #2d8a8a)
-    background: -webkit-linear-gradient(#1b5353, #2d8a8a)
-    background: -moz-linear-gradient(#1b5353, #2d8a8a)
-    background: -o-linear-gradient(#1b5353, #2d8a8a)
-    background: linear-gradient(#1b5353, #2d8a8a)
-    background: #1b5353 9
+    background: -webkit-gradient($naranja, #2d8a8a)
+    background: -webkit-linear-gradient($naranja, #2d8a8a)
+    background: -moz-linear-gradient($naranja, #2d8a8a)
+    background: -o-linear-gradient($naranja, #2d8a8a)
+    background: linear-gradient($naranja, #2d8a8a)
+    background: $naranja 9
     text-shadow: 0 1px #455D1E
     width: 33%
     margin-left: 33%
@@ -367,31 +360,31 @@ button
       text-decoration: none
 
   \::-webkit-input-placeholder, ::-moz-placeholder, input:-moz-placeholder
-  color: #1B5353
+  color: $naranja
   font-family: Roboto, Helvetica, arial, sans-serif
 
 /* firefox 19+
 
-.btn
-  color: white
-  font-size: 16px
-  background: #1b5353
-  border: 0px
-  padding: 1px 1px
-  -webkit-border-radius: 2px
-  -moz-border-radius: 2px
-  border-radius: 2px
-  background: -webkit-gradient(#1b5353, #2d8a8a)
-  background: -webkit-linear-gradient(#1b5353, #2d8a8a)
-  background: -moz-linear-gradient(#1b5353, #2d8a8a)
-  background: -o-linear-gradient(#1b5353, #2d8a8a)
-  background: linear-gradient(#1b5353, #2d8a8a)
-  background: #1b5353 
-  text-shadow: 0 1px #455D1E
-  box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
-  &:hover
-    cursor: pointer
-    text-decoration: underline
+// .btn
+//   color: white
+//   font-size: 16px
+//   background: #1b5353
+//   border: 0px
+//   padding: 1px 1px
+//   -webkit-border-radius: 2px
+//   -moz-border-radius: 2px
+//   border-radius: 2px
+//   background: -webkit-gradient(#1b5353, #2d8a8a)
+//   background: -webkit-linear-gradient(#1b5353, #2d8a8a)
+//   background: -moz-linear-gradient(#1b5353, #2d8a8a)
+//   background: -o-linear-gradient(#1b5353, #2d8a8a)
+//   background: linear-gradient(#1b5353, #2d8a8a)
+//   background: #1b5353 
+//   text-shadow: 0 1px #455D1E
+//   box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
+//   &:hover
+//     cursor: pointer
+//     text-decoration: underline
 .checkfb
   margin-left: 9%
   margin-top: 4%
@@ -515,12 +508,12 @@ span
     text-decoration: none
     display: inline
     font-size: 18px
-    color: #1B5353
+    color: $naranja
   img
     vertical-align: text-bottom
   li
     list-style-type: none
-    color: #1B5353
+    color: $naranja
   i
     color: #eb5e40
     font-size: 35px
@@ -558,7 +551,7 @@ span
     text-decoration: none
     display: inline
     font-size: 15px
-    color: #1B5353
+    color: $naranja
   li
     list-style-type: none
   i
@@ -579,7 +572,6 @@ span
     list-style-type: none
 
 #progressbar
-  width: 43%
   float: left
   color: #8C8C91
   font-size: 0.8em
@@ -589,7 +581,6 @@ span
     list-style-type: none
 
 #explain
-  width: 46%
   float: left
   color: #8C8C91
   font-size: 14px
@@ -647,12 +638,12 @@ span
   font-size: 12px
 
 #participants
-  width: 70%
+  width: 90%
   float: left
   margin-top: 12px
   margin-bottom: 10px
 
-input.btn
+input.btn, .btn
   color: white
   font-size: 16px
   background: #EB5E40
@@ -693,7 +684,8 @@ progress#bar,progress#barlista
   -moz-box-shadow: 3px 3px 3px #C0C0C0
   -webkit-box-shadow: 3px 3px 3px silver
   box-shadow: 3px 3px 3px silver
-  padding: 4px
+  padding: 2px
+  margin-left: -7px
   width: 100%
   height: 30px
 
@@ -760,7 +752,7 @@ p
     text-shadow: 1px 1xpx 1px #f0f0f0
 
 .smsentra
-  width: 75%
+  width: 70%
   color: #444
   font-weight: bold
   font-size: 24px
@@ -824,7 +816,6 @@ ul.jcarorusel
       border-radius: 4px
 
 .iosSlider
-  width: 69%
   float: left
   margin: 0px
   padding: 0px
@@ -907,7 +898,7 @@ ul.jcarorusel li img
     position: relative
     top: 0px
     border-radius: 2px
-    border: 1px dotted #1B5353
+    border: 1px dotted $naranja
     padding-left: 3px
 
   fieldset
@@ -941,7 +932,7 @@ div.normas
   margin-bottom: 5em
   text-align: justify
   a
-    color: #1b5353
+    color: $naranja
 
 .comentarea
   width: 80%
@@ -949,7 +940,7 @@ div.normas
   margin-top: 10px
   border-radius: 2px
   height: 50px
-  border: 1px dotted #1b5353
+  border: 1px dotted $naranja
   color: $negrito
   background-color: rgba(255, 255, 255, 0.85)
   
@@ -1022,13 +1013,13 @@ fieldset,#campaign-info
       text-decoration: none
       display: inline
       font-size: 11px
-      color: #1b5353
+      color: $naranja
       padding-left: 4px
     a label
       text-decoration: none
       display: inline
       font-size: 15px
-      color: #1b5353
+      color: $naranja
       text-decoration: none
     list-style-type: none
     padding-top: 3%
@@ -1071,7 +1062,7 @@ fieldset,#campaign-info
       float: left
       display: block
       padding: 5px 15px 4px 6px
-      color: #1b5353
+      color: $naranja
       float: none
       font-weight: bold
       &.active
@@ -1344,22 +1335,128 @@ fieldset,#campaign-info
 .campaign-wrapper
   margin-top: 2em
 
-.fb_ui_button
-  -moz-user-select: none
-  background-color: #F8F8F8
-  background-image: -moz-linear-gradient(center top , #FFFFFF, #DEDEDE)
-  border: 1px solid #CCCCCC
-  border-radius: 3px 3px 3px 3px
-  color: #333333
-  cursor: pointer
-  font-weight: bold
-  height: 18px
-  max-width: 98%
-  overflow: hidden
+.navbar-inner 
+  background: url("retro_intro.png") repeat scroll 0 0 transparent !important
+  background-bottom: 1px dashed #CCCCCC !important
+  border-radius: 0px
+  padding-left: 0px !important
+  padding-right: 0px !important
+
+@media (max-width: 480px) 
+  .img-wrap
+    position: relative
+    height: 100%
+  .img-overlay
+    position: relative
+    width: 90%
+    padding: 1em
+    margin-top: 1em
+  .nav-tabs > li
+    clear: both
+  .container-fluid
+    padding-left: 20px
+    padding-right: 20px
+  .dl-horizontal dd
+    margin-left: 20px !important
+    margin-bottom: 5px
+  .iosSlider .slider .item .text
+    width: 85%
+
+
+.fb-comments, .fb-comments span[style], .fb-comments iframe[style]
+  width: 100% !important
+
+@media (min-width: 960px) 
+  .container-fluid
+    padding-left: 100px
+    padding-right: 100px
+
+.dl-horizontal dt
+  width: 100px
+  font-size: 12px
+
+.dl-horizontal dd
+  margin-left: 120px
+
+fieldset
+  margin: 2em !important
+
+.language-selector
+  width: 4em
+
+.users-links
+  display: inline-block
+
+a
+  color: #EB5E40
+
+a:hover 
+  text-decoration: underline
+
+.campaign-choose
+  float: left
+  margin-right: 2em
+
+.line-tabs
+  display: inline-block
+
+ol.progtrckr
+  margin: 0
+  padding: 0
+  list-style-type: none
+  li 
+    display: inline-block
+    text-align: center
+    line-height: 3em
+    .progtrckr-done 
+      color: black
+      border-bottom: 4px solid #EB5E40
+    .progtrckr-todo 
+      color: silver 
+      border-bottom: 4px solid silver
+
+ol.progtrckr[data-progtrckr-steps="2"] li
+  width: 49%
+ol.progtrckr[data-progtrckr-steps="3"] li
+  width: 33%
+ol.progtrckr[data-progtrckr-steps="4"] li
+  width: 24% 
+ol.progtrckr[data-progtrckr-steps="5"] li 
+  width: 19% 
+ol.progtrckr[data-progtrckr-steps="6"] li
+  width: 16% 
+ol.progtrckr[data-progtrckr-steps="7"] li
+  width: 14% 
+ol.progtrckr[data-progtrckr-steps="8"] li
+  width: 12% 
+ol.progtrckr[data-progtrckr-steps="9"] li
+  width: 11% 
+
+
+ol.progtrckr li:after 
+  content: "\00a0\00a0"
+
+ol.progtrckr li:before 
   position: relative
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  font: 11px/18px 'Helvetica Neue',Arial,sans-serif
-  font-weight: bold
-  padding: 3px
-  i
-    color: #3B5998
+  bottom: -2.5em
+  float: left
+  left: 50%
+  line-height: 1em
+
+ol.progtrckr li.progtrckr-done:before 
+  content: "\2713"
+  color: white
+  background-color: #EB5E40
+  height: 1.2em
+  width: 1.2em
+  line-height: 1.2em
+  border: none
+  border-radius: 1.2em
+
+ol.progtrckr li.progtrckr-todo:before 
+  content: "\039F"
+  color: silver
+  background-color: white
+  font-size: 1.5em
+  bottom: -1.6em
+

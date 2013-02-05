@@ -4,39 +4,45 @@
 
 <% end %>
 
-<div class="row-fluid campaign-wrapper">
+<article class="row-fluid">
   <div class="span8">
     <div class="contenedorcampaign">
       <div class="img-wrap">
-        <div class="image-show-campaign"><%= image_tag @image_src %></div>
+        <div class="image-show-campaign"><%= image_tag @image_src, :alt => @campaign.name %></div>
         <div class="img-overlay text-show-campaign">
-          <h4><%= @campaign.name.capitalize %></h4>
-          <p><%= @description %></p>
+          <h1><%= @campaign.name.capitalize %></h1>
+          <%= @description %>
         </div>
       </div>
     </div>
 
-    <div class="welcome-campaign">
-      <div id="explain">
-        <ul>
-          <li>
-            <p><b><%= t(:created_by) %>:</b>
-              <img class="creada" src="<%= avatar_url(@campaign.user.email) %>" alt="<%= @campaign.user.name %>"/>
-              <span class="creador_name"><%= @campaign.user.name %></span>
-            </p>
-          </li>
+    <div class="row-fluid">
+      <div class="span6">
+        <dl class="dl-horizontal">
+          <dt><%= t(:created_by) %></dt>
+          <dd>
+            <img class="creada" src="<%= avatar_url(@campaign.user.email) %>"alt="<%= @campaign.user.name %>"/>
+            <span class="creador_name"><%= @campaign.user.name %></span>
+          </dd>
           <% if @campaign.ttype == "fax" %>
             <li>
-              <strong><span><%= t(:credits) %></span>:</strong> <%= @campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
+              <strong><span><%= t(:credits) %></span>:</strong> 
             </li>
+            <dt><%= t(:credits) %></dt>
+            <dd>
+              <%= @campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
+            </dd>
           <% end %>
-          <li><strong><%= t(:published_at) %>:</strong><%= time_ago_in_words(@campaign.created_at) %></li>
-          <li><strong><%= t(:time_left) %>:</strong><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
-          <li><strong><%= t(:type) %>:</strong><i class="<%= @campaign.ttype_img %>"></i> <%= @campaign.ttype_name %> </li>
-        </ul>
+          <dt><%= t(:published_at) %></dt>
+          <dd><%= time_ago_in_words(@campaign.created_at) %></dd>
+          <dt><%= t(:time_left) %></dt>
+          <dd><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
+          <dt><%= t(:type) %></dt>
+          <dd><i class="<%= @campaign.ttype_img %>"></i> <%= @campaign.ttype_name %> </dd>
+        </dt>
       </div>
 
-      <div id="progressbar">
+      <div id="progressbar" class="span6">
         <% objective  = @campaign.target.to_i %>
         <% gotten = @campaign.messages_count.to_i %>
         <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
@@ -51,13 +57,10 @@
     </div><!-- welcome -->
 
 
-    <div style="    line-height: normal;
-    margin-left: 9.8%;
-    margin-top: 2em;
-    width: 90%;">
+    <div>
 
       <ul class="nav nav-tabs line-tabs">
-        <li><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
+        <li class="active"><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
         <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
         <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
         <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
@@ -103,7 +106,7 @@
                 js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
                 fjs.parentNode.insertBefore(js, fjs);
               }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="2" data-width="600"></div>
+              <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="6"></div>
             </div><!-- participants -->
         <% end %>
 
@@ -150,7 +153,7 @@
     </div><!-- sidefirma -->
   </div> <!-- span4 -->
 
-</div> <!-- row-fluid -->
+</article> <!-- row-fluid -->
 
 <br clear="all">
 
