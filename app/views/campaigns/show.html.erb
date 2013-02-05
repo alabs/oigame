@@ -57,7 +57,9 @@
         <li class="active"><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
         <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
         <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
-        <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
+        <% unless @campaign.ttype == "petition" %>
+          <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
+        <% end %>
       </ul>
 
       <div class="topcontent tab-content">
