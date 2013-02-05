@@ -7,9 +7,9 @@ class SendFax
     campaign.numbers.each do |number|
       while campaign.has_credit?
         Mailman.send_message_to_fax_recipient(fax_id, campaign.id, number).deliver
-        campaign.credit -= 1
-        campaign.save
       end
     end
+    campaign.credit -= campaign.numbers.size
+    campaign.save
   end
 end

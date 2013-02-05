@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201172654) do
+ActiveRecord::Schema.define(:version => 20130204235411) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -28,28 +28,28 @@ ActiveRecord::Schema.define(:version => 20130201172654) do
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
-    t.boolean  "moderated",                                              :default => true
+    t.boolean  "moderated",               :default => true
     t.datetime "published_at"
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
-    t.string   "status",                                                 :default => "active"
+    t.string   "status",                  :default => "active"
     t.integer  "sub_oigame_id"
     t.string   "default_message_subject"
     t.text     "default_message_body"
-    t.boolean  "priority",                                               :default => false
+    t.boolean  "priority",                :default => false
     t.time     "deleted_at"
-    t.integer  "messages_count",                                         :default => 0
-    t.integer  "petitions_count",                                        :default => 0
-    t.boolean  "commentable",                                            :default => true
+    t.integer  "messages_count",          :default => 0
+    t.integer  "petitions_count",         :default => 0
+    t.boolean  "commentable",             :default => true
     t.integer  "category_id"
-    t.decimal  "credit",                  :precision => 10, :scale => 4, :default => 0.0
+    t.integer  "credit",                  :default => 0
     t.text     "numbers"
-    t.integer  "faxes_count",                                            :default => 0
-    t.string   "wstatus",                                                :default => "inactive"
-    t.boolean  "identity_card",                                          :default => false
-    t.boolean  "state",                                                  :default => false
-    t.boolean  "postal_code",                                            :default => false
+    t.integer  "faxes_count",             :default => 0
+    t.string   "wstatus",                 :default => "inactive"
+    t.boolean  "identity_card",           :default => false
+    t.boolean  "state",                   :default => false
+    t.boolean  "postal_code",             :default => false
     t.string   "hashtag"
     t.string   "video_url"
   end
