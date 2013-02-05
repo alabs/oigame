@@ -1,6 +1,6 @@
 <% @page_title = t(:home) %>
-<div class="carro" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-  <div class='iosSlider'>
+<div class="carro row-fluid">
+  <div class='iosSlider span8'>
     <div class='slider'>
       <div class='item' id='item4'>
         <div class='image'>
@@ -74,10 +74,10 @@
       <div class='button'></div>
       <div class='button'></div>
     </div>
-  </div>
+  </div> <!-- iosSlider -->
 
 
-  <div class="sidecarro">
+  <div class="sidecarro span4 visible-desktop">
     <i class="icon-bullhorn">&nbsp;<%= t "oigame.home.stats.campaigns" %> <%= @total_published_campaigns %></i>
     <i class="icon-pencil">&nbsp;<%= t "oigame.home.stats.signatures" %> <%= @total_signs %></i>
     <i class="icon-user">&nbsp;<%= t "oigame.home.stats.users" %> <%= @total_users %></i>
@@ -87,39 +87,40 @@
 </div>
 </div><!-- carrousel -->
 
-<div class="welcome welchi c">
-  <div class="welinfo">
+<div class="welcome welchi c row-fluid">
+  <div class="welinfo span6">
     <span class="circle"><i class="icon-lightbulb icon-2x"></i></span>
     <%= t("oigame.home.welcome.welinfo_1_html", :href => link_to(t("oigame.home.welcome.welinfo_1_link"), new_campaign_path) ) %>
   </div><!-- welinfo -->
-  <div class="welinfo">
+  <div class="welinfo span6">
     <span class="circle"><i class="icon-hand-right icon-2x"></i> </span>
     <%= t "oigame.home.welcome.welinfo_2_html" %>
   </div><!-- welinfo -->
 </div><!-- welcome -->
 
-<div class="campaing c">
-  <ul class="photo">
+<div class="container-fluid">
+  <ul class="photo row-fluid">
     <% @campaigns_carousel.each do |campaign| %>
-      <li>
-        <a href="<%= campaign_path(campaign) %>">
-        <div class="campa-home">
-    <%= image_tag(campaign.image_url(:home)) %>
-    <div class="campa-texto">
-      <div class="campa-texto-left">
-      <%= link_to campaign.name, campaign %>
-      </div><!-- left -->
-      <div class="campa-texto-right">
-      <img src="<%= avatar_url(campaign.user.email) %>" alt="<%= campaign.user.name %>"/>
-      </div><!-- left -->
-    </div><!-- campa-texto -->
-  </a>
+      <li class="span4">
+        <%= link_to campaign_path(campaign), :title => campaign.name do %>
+          <div class="campa-home">
+            <%= image_tag(campaign.image_url(:home), :alt => campaign.name) %>
+            <div class="campa-texto">
+              <div class="campa-texto-left">
+                <%= link_to campaign.name, campaign, :title => campaign.name %>
+              </div><!-- campa-texto-left -->
+              <div class="campa-texto-right">
+                <%= image_tag(avatar_url(campaign.user.email), :alt => campaign.user.name) %>
+              </div><!-- campa-texto-right -->
+            </div><!-- campa-texto -->
+          </div><!-- campa-home -->
+        <% end %>
       </li>
     <% end %>
   </ul>
 </div><!-- campaing -->
-<div class="c">
-  <div class="entra">
+<div class="c row-fluid">
+  <div class="entra span12">
     <div class="smsentra">
       <%= t "oigame.home.slogan_1" %>
       <p class="min"><%= t "oigame.home.slogan_2" %></p>
@@ -128,10 +129,9 @@
 
     <div class="buttonentra">
       <i  class="icon-share-alt icon-3x"></i>
-
       <%= link_to( t("oigame.home.create_campaign"), new_campaign_path, :class => "btn" ) %>
+    </div><!-- buttonentra -->
 
-    </div><!-- button -->
   </div><!-- entra -->
 </div>
 
