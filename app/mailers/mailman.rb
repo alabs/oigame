@@ -88,7 +88,7 @@ class Mailman < ActionMailer::Base
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
   
-  def send_message_to_fax_recipients(fax_id, campaign_id, number)
+  def send_message_to_fax_recipient(fax_id, campaign_id, number)
     fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
     @password = APP_CONFIG[:our_fax_password]
