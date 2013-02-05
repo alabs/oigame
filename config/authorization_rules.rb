@@ -3,7 +3,7 @@ Authorization.default_role = :anonymous
 authorization do
   role :anonymous do
     has_permission_on [:campaigns], :to => [:index, :widget ,:widget_iframe, :sign, :signed,
-                                            :validate, :integrate, :validated, :feed, :archived, :search, :add_credit]
+                                            :validate, :integrate, :validated, :feed, :archived, :search, :add_credit, :credit_added, :credit_denied]
     has_permission_on [:campaigns], :to => [:show] do
       if_attribute :moderated => is { false }
     end
@@ -11,6 +11,7 @@ authorization do
     has_permission_on [:pages], :to => [:index, :faq, :tutorial, :privacy_policy, :contact, :contact_received, :about, :press,
                                         :activity]
     has_permission_on [:sub_oigames], :to => [:widget, :widget_iframe, :integrate]
+    has_permission_on [:banesto], :to => [:payment_accepted]
   end
   
   role :user do
