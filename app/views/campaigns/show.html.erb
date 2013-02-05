@@ -82,7 +82,7 @@
           <% if @message_body || @message_subject %>
             <div id="carta">
               <%= "<p><b>#{t(:subject)}:</b> #{@message_subject}</p>".html_safe if @message_subject %>
-              <p><b><%= t(:message) %>:</b></p>
+              <p><b><%= @campaign.ttype == "fax" ? t(:fax) : t(:message) %>:</b></p>
               <p><%= @message_body %></p>
             </div>
             <div class="sombracarta">
