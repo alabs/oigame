@@ -33,6 +33,8 @@ Oigame::Application.routes.draw do
       get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
       get 'transaction-accepted' => 'campaigns#credit_added', :as => 'credit_added'
       get 'transaction-denied' => 'campaigns#credit_denied', :as => 'credit_denied'
+    
+      post 'ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
     end
 
     collection do
@@ -52,7 +54,7 @@ Oigame::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
     resources :campaigns, &campaign_routes
-
+  
     resources :sub_oigames, :path => "o" do
       resources :campaigns, &campaign_routes
 
@@ -93,8 +95,6 @@ Oigame::Application.routes.draw do
     root :to => 'pages#index'
   end
 
-  post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
-  
   # para el servidor de tareas en background
   constraints CanAccessResque do
     mount Resque::Server, at: 'jobs'

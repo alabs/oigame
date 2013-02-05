@@ -1,8 +1,5 @@
 <% @page_title = @campaign.name %>
 <% @in_campaign = true %>
-<% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
-
-<% end %>
 
 <article class="row-fluid">
   <div class="span8">
@@ -25,9 +22,6 @@
             <span class="creador_name"><%= @campaign.user.name %></span>
           </dd>
           <% if @campaign.ttype == "fax" %>
-            <li>
-              <strong><span><%= t(:credits) %></span>:</strong> 
-            </li>
             <dt><%= t(:credits) %></dt>
             <dd>
               <%= @campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
