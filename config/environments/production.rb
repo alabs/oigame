@@ -73,7 +73,7 @@ Oigame::Application.configure do
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => false,
-    :address => 'tron.oiga.me'
+    :address => 'pulsar.oiga.me'
   }
   
   # para que rule resque mailer
