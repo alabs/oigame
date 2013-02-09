@@ -85,7 +85,7 @@ class Mailman < ActionMailer::Base
     @message_body = message.body
     subject = message.subject
     message.campaign.emails.each do |m|
-      mail :from => message.email, :to => message.email, :subject => subject, :bcc => m
+      mail :from => message.email, :to => m, :subject => subject
     end
   end
   
