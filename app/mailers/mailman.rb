@@ -84,8 +84,9 @@ class Mailman < ActionMailer::Base
     message = Message.find(message_id)
     @message_body = message.body
     subject = message.subject
-    recipients = message.campaign.emails
-    mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
+    message.campaign.emails.each do |m|
+      mail :from => message.email, :to => message.email, :subject => subject, :bcc => m
+    end
   end
   
   def send_message_to_fax_recipient(fax_id, campaign_id, number)
