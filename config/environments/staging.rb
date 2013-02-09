@@ -68,10 +68,15 @@ Oigame::Application.configure do
   config.to_prepare { Devise::RegistrationsController.force_ssl }
   config.to_prepare { Devise::PasswordsController.force_ssl }
   
+  def select_mta
+    mtas = ['tron.oiga.me', 'pulsar.oiga.me']
+    return mtas[rand(mtas.length)]
+  end
+
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => false,
-    :address => 'pulsar.oiga.me'
+    :address => select_mta
   }
   
   # para que rule resque mailer
