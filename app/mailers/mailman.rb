@@ -4,14 +4,9 @@ class Mailman < ActionMailer::Base
   include Resque::Mailer # para enviar correos en background
 
   # random mta
-  ActionMailer::Base.smtp_settings.address = Mailman.select_mta
-
-  class << self
-
-    def select_mta
-      mtas = ['tron.oiga.me', 'pulsar.oiga.me']
-      return mtas[rand(mtas.length)]
-    end
+  ActionMailer::Base.smtp_settings.address = lambda do
+    mtas = ['tron.oiga.me', 'pulsar.oiga.me']
+    return mtas[rand(mtas.length)]
   end
 
   default :from => "oigame@oiga.me"
