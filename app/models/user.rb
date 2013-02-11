@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :campaigns, :dependent => :destroy
   has_and_belongs_to_many :sub_oigames
   has_many :donations
+  has_many :user_providers
 
   after_create :set_role
 
