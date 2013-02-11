@@ -8,7 +8,6 @@
         <div class="image-show-campaign"><%= image_tag @image_src, :alt => @campaign.name %></div>
         <div class="img-overlay text-show-campaign">
           <h1 style="font-size: 35px;"><%= @campaign.name.capitalize %></h1>
-          <%= @description %>
         </div>
       </div>
     </div>
@@ -76,6 +75,9 @@
         </div>
 
         <div id="desc" class="active tab-pane">
+          <div id="campaign-info">
+            <%= @description %>
+          </div>
           <div id="campaign-info">
             <%= @campaign.to_html(@campaign.body).html_safe %>
           </div>
