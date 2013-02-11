@@ -145,7 +145,7 @@
             </a>
           </li>
           <li>
-            <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=He%20participado%20en%20la%20campa%C3%B1a%20%22<%= URI.escape(@campaign.name) %>%22" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
+            <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=<%= URI.escape(@campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
           </li>
       </div>
     </div><!-- sidefirma -->
