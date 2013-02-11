@@ -6,7 +6,7 @@ class BanestoController < ApplicationController
 
   def payment_accepted
     campaign = Campaign.find_by_slug(params[:id])
-    campaign.credit += (params[:amount].to_i / FaxForRails::TAX)
+    campaign.credit += params[:amount].to_i / FaxForRails::TAX
     campaign.save
 
     render :nothing => true
