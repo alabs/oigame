@@ -4,7 +4,15 @@ class Mailman < ActionMailer::Base
   include Resque::Mailer # para enviar correos en background
 
   # random mta
-  ActionMailer::Base.smtp_settings.address = select_mta
+  ActionMailer::Base.smtp_settings.address = Mailman.select_mta
+
+  class << self
+
+    def select_mta
+      mtas = ['tron.oiga.me', 'pulsar.oiga.me']
+      return mtas[rand(mtas.length)]
+    end
+  end
 
   default :from => "oigame@oiga.me"
   layout "email", :except => [:send_message_to_fax_recipient, :send_contact_message]
@@ -108,12 +116,5 @@ class Mailman < ActionMailer::Base
     @campaign_slug = campaign.slug
     subject = "[oiga.me] Nuevo mensaje en tu campaña #{ @campaign_name }"
     mail :to => @message_to, :subject => subject
-  end
-
-  protected
-
-  def select_mta
-    mtas = ['tron.oiga.me', 'pulsar.oiga.me']
-    return mtas[rand(mtas.length)]
   end
 end
