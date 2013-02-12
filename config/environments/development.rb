@@ -35,7 +35,6 @@ Oigame::Application.configure do
   
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => false,
     :port => 1025
   }
 
