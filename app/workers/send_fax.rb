@@ -1,4 +1,6 @@
-class SendFax
+class SendFax < Resque::ThrottledJob
+
+  throttle :can_run_every => 1.minute
 
   @queue = :faxer
 

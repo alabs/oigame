@@ -317,6 +317,8 @@ GEM
       redis (>= 2.0.1)
       resque (>= 1.20.0)
       rufus-scheduler
+    resque-throttle (0.3.0)
+      resque (>= 1.6.0)
     resque_mailer (2.1.0)
       actionmailer (~> 3.0)
     riddle (1.5.3)
@@ -471,6 +473,7 @@ DEPENDENCIES
   redis-rails
   redis-store
   resque
+  resque-throttle
   resque_mailer
   rmagick
   ruby_parser
