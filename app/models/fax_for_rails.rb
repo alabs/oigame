@@ -4,5 +4,5 @@ class FaxForRails < ActiveRecord::Base
   # borrar esas columnas inncesarias
   attr_accessible :country, :rate
 
-  TAX = 0.02
+  TAX = 0.05
 end
