@@ -102,7 +102,7 @@ class Mailman < ActionMailer::Base
   def send_message_to_fax_recipient(fax_id, campaign_id, number)
     @fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
-    doc = FaxPdf.new(fax, campaign)
+    doc = FaxPdf.new(@fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
     mail :from => 'hola@alabs.org', :to => number+"@mail2fax.popfax.com", :subject => APP_CONFIG[:popfax_password]
   end
