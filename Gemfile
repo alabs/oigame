@@ -91,7 +91,6 @@ gem 'wicked'
 # para el servidor de tareas en background
 gem 'resque'
 gem 'resque_mailer'
-gem 'resque-throttle'
 gem 'ruby_parser'
 gem 'devise-async'
 
