@@ -129,8 +129,18 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  def has_credit?
-    self.credit >= 1
+  def has_credit?(credits)
+    (self.credit - credits) >= 0
+  end
+
+  def generate_numbers_for_faxing
+    numbers = self.numbers
+    fh = File.open("/tmp/numbers-#{self.campaign.id}", "w")
+    numbers.each do |n|
+      fh.print(n + "\r\n")
+    end
+
+    return fh.read
   end
 
   # Para repartir el envio de mensajes en varios enlaces
