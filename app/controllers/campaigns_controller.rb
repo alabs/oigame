@@ -190,7 +190,11 @@ class CampaignsController < ApplicationController
           validation = "send_message_to_validate_#{model_name.downcase}".to_s
           Mailman.send(validation, from, @campaign.id, instanke.id).deliver
         end
-        redirector_to :signed
+        if params[:fb]
+          open_graph_facebook
+        else
+          redirector_to :signed
+        end
       else
         redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
       end
@@ -377,16 +381,22 @@ class CampaignsController < ApplicationController
   end
 
   def open_graph_facebook
-    session[:fb_sess_campaign] = @campaign.id
-    redirect_to facebook_auth_url
+    session[:fb_sess][:id] = @campaign.id
+    session[:fb_sess][:type] = @campaign.model.name
+    session[:fb_sess][:goto] = urls_oigame[:signed]
+    redirect_to facebook_send_action_url
   end
 
-  def redirector_to site, params = {}
+  def urls_oigame
     t_sub_oigame = @sub_oigame.nil? ? '' : 'sub_oigame_'
     urls = {}
     urls[:campaigns] = "#{t_sub_oigame}campaigns_url".to_s
     urls[:signed] = "signed_#{t_sub_oigame}campaign_url".to_s
     urls[:campaign] = "#{t_sub_oigame}campaign_url".to_s
-    redirect_to self.send(urls[site]), params
+    urls
+  end
+
+  def redirector_to(site, params = {})
+    redirect_to self.send(urls_oigame[site]), params
   end
 end
