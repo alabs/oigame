@@ -620,7 +620,7 @@ es:
       no_money_2: "Actualmente está campaña no tiene suficiente dinero para poder mandar mensajes."
       no_money_3: "Para poder seguir mandando mensajes es necesario realizar una donación"
       donate_explain_1_html: 'Al donar crédito a esta campaña estás ayudando a que se puedan enviar FAX. Solo permitimos donar 10€, 30€ y 50€ como límite, el objetivo es <b>distribuir el coste de los FAX entre los participantes de la campaña y usuarios de la aplicación</b>, permitiendo que personas como tu apoyen las campañas que les parezcan justas o necesarias.' 
-      donate_explain_2_html: 'Dependiendo del país, cada crédito tiene un coste, esto es debido a que el proveedor de FAX ofrece <a href="http://www.popfax.com/index.php?pop=tariffs">distinta tarifa por país</a>. En el futuro añadiremos un pequeño porcentaje destinado a mantener entre todos los costes del servidor y de la administración, pero por el momento el coste es exclusivamente el del proveedor.'
+      donate_explain_2_html: 'Dependiendo del país, cada crédito tiene un coste, esto es debido a que el <a href="http://www.ovh.es/telefonia/descubrir/tarifas_telefonia.xml#A" alt="OVH fax">proveedor de FAX ofrece distinta tarifa por país</a>. A ese coste, le sumamos 2 céntimos para financiar de manera distribuida los servidores y costes de oiga.me. Esperamos poder visibilizar esos datos en la web a lo largo de este año.'
       donate_explain_3_html: 'Muchas gracias por apoyar esta campaña y también por apoyar oiga.me.' 
     campaigns:
       creator_of_campaign: "creador de campaña"
