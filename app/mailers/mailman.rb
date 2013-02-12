@@ -92,13 +92,12 @@ class Mailman < ActionMailer::Base
   def send_message_to_fax_recipient(fax_id, campaign_id)
     fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
-    numbers = campaign.numbers
     @password = APP_CONFIG[:our_fax_password]
     subject = APP_CONFIG[:our_fax_number]
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
-    attachments["numbers.txt"] = campaign.generate_numbers_for_faxing
-    mail :from => APP_CONFIG[:fax_from_email_address], :to => "fax@ecofax.fr", :subject => subject
+    attachments["numbers.txt"] = campaign.generate_numbers_for_faxing(fax_id)
+    mail :from => APP_CONFIG[:fax_from_email_address], :to => "apardo@alabs.org", :subject => subject
   end
   
   #def send_message_to_fax_recipient(fax_id, campaign_id, number)

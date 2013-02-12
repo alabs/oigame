@@ -133,14 +133,17 @@ class Campaign < ActiveRecord::Base
     (self.credit - credits) >= 0
   end
 
-  def generate_numbers_for_faxing
+  def generate_numbers_for_faxing(fax_id)
     numbers = self.numbers
-    fh = File.open("/tmp/numbers-#{self.campaign.id}", "w")
+    fh = File.open("/tmp/numbers-#{fax_id}-#{self.id}.txt", "w+")
     numbers.each do |n|
       fh.print(n + "\r\n")
     end
 
-    return fh.read
+    file = fh.read
+    fh.close
+
+    return file
   end
 
   # Para repartir el envio de mensajes en varios enlaces
