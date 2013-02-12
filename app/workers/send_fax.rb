@@ -6,12 +6,11 @@ class SendFax < Resque::ThrottledJob
 
   def self.perform fax_id
     campaign = Fax.find(fax_id).campaign
-    campaign.numbers.each do |number|
-      if campaign.has_credit?
-        Mailman.send_message_to_fax_recipient(fax_id, campaign.id, number).deliver
-        campaign.credit -= 1
-        campaign.save
-      end
+    credits = campaign.numbers.size
+    if campaign.has_credit?(credits)
+      Mailman.send_message_to_fax_recipient(fax_id, campaign.id).deliver
+      campaign.credit -= credits
+      campaign.save
     end
   end
 end

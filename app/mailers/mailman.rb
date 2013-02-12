@@ -88,24 +88,26 @@ class Mailman < ActionMailer::Base
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
   
-  # OVH, don't be evil :-/
-  #def send_message_to_fax_recipient(fax_id, campaign_id, number)
-  #  fax = Fax.find(fax_id)
-  #  campaign = Campaign.find(campaign_id)
-  #  @password = APP_CONFIG[:our_fax_password]
-  #  subject = APP_CONFIG[:our_fax_number]
-  #  doc = FaxPdf.new(fax, campaign)
-  #  attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
-  #  mail :from => APP_CONFIG[:fax_from_email_address], :to => number+"@ecofax.fr", :subject => subject
-  #end
-  
-  def send_message_to_fax_recipient(fax_id, campaign_id, number)
-    @fax = Fax.find(fax_id)
+  # OVH is the best provider for faxing :)
+  def send_message_to_fax_recipient(fax_id, campaign_id)
+    fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
+    numbers = campaign.numbers
+    @password = APP_CONFIG[:our_fax_password]
+    subject = APP_CONFIG[:our_fax_number]
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
-    mail :from => 'hola@alabs.org', :to => number+"@mail2fax.popfax.com", :subject => APP_CONFIG[:popfax_password]
+    attachments["numbers.txt"] = campaign.generate_numbers_for_faxing
+    mail :from => APP_CONFIG[:fax_from_email_address], :to => "fax@ecofax.fr", :subject => subject
   end
+  
+  #def send_message_to_fax_recipient(fax_id, campaign_id, number)
+  #  @fax = Fax.find(fax_id)
+  #  campaign = Campaign.find(campaign_id)
+  #  doc = FaxPdf.new(fax, campaign)
+  #  attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
+  #  mail :from => 'hola@alabs.org', :to => number+"@mail2fax.popfax.com", :subject => APP_CONFIG[:popfax_password]
+  #end
 
   def inform_new_comment(campaign_id)
     campaign = Campaign.find(campaign_id)
