@@ -28,17 +28,31 @@ class User < ActiveRecord::Base
     end
 
     def find_for_facebook_oauth(auth, signed_in_resource=nil)
-      user = self.where(:provider => auth.provider, :uid => auth.uid).first || self.where(:email => auth.info.email).first
-      unless user
-        user = User.new
-        user.name = auth.extra.raw_info.name
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
-        user.confirmed_at = DateTime.now
-        user.skip_confirmation!
-        user.save
+      unless signed_in_resource
+        up = UserProvider.where(:provider => auth.provider, :uid => auth.uid).first
+        user = up ? up.user : self.where(:email => auth.info.email).first
+        unless user
+          user = User.new
+          user_provider = UserProvider.new
+          user.name = auth.extra.raw_info.name
+          user.provider = auth.provider
+          user.uid = auth.uid
+          user.email = auth.info.email
+          user.password = Devise.friendly_token[0,20]
+          user.confirmed_at = DateTime.now
+          user.skip_confirmation!
+          user.save
+          user_provider.user = user
+          user_provider.provider = user.provider
+          user_provider.uid = user.uid
+          user_provider.save
+        end
+      else
+        user_provider = UserProvider.new
+        user_provider.user = signed_in_resource
+        user_provider.provider = user.provider
+        user_provider.uid = user.uid
+        user_provider.save
       end
       user
     end
@@ -47,13 +61,17 @@ class User < ActiveRecord::Base
       user = self.where(:provider => auth["provider"], :uid => auth["uid"]).first
       unless user
         user = User.new
+        user_provider = UserProvider.new
         user.name = auth["info"]["name"]
-        user.provider = auth["provider"]
-        user.uid = auth["uid"]
         user.email = nil
         user.password = Devise.friendly_token[0,20]
         user.confirmed_at = DateTime.now
         user.skip_confirmation!
+        user.save
+        user_provider.user = user
+        user_provider.provider = auth["provider"]
+        user_provider.uid = auth["uid"]
+        user_provider.save
       end
       user
     end
