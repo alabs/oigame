@@ -1467,13 +1467,16 @@ ol.progtrckr li.progtrckr-todo:before
   -moz-user-select: none
   background-color: #F8F8F8
   background-image: -moz-linear-gradient(center top , #FFFFFF, #DEDEDE)
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#dedede))
   border: 1px solid #CCCCCC
   border-radius: 3px 3px 3px 3px
+  -webkit-border-radius: 3px
   color: #333333
   cursor: pointer
   font-weight: bold
-  height: 18px
-  max-width: 98%
+  height: 20px
+  max-width: 100%
+  box-sizing: border-box
   overflow: hidden
   position: relative
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
@@ -1482,3 +1485,6 @@ ol.progtrckr li.progtrckr-todo:before
   padding: 3px
   i
     color: #3B5998
+  span
+    padding: 0 6px 0 0px
+    margin-left: -5px
