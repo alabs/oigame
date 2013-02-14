@@ -118,10 +118,10 @@
     <div class="sidefirma">
       <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
         <%= render partial: 'fax_no_credit' %>
-      <% elsif @campaign.has_participated? current_user %>
-        <%= render partial: 'has_participated' %>
       <% elsif @campaign.archived? %>
         <%= render partial: 'is_archived' %>
+      <% elsif @campaign.has_participated? current_user %>
+        <%= render partial: 'has_participated' %>
       <% else %>
         <%= render partial: 'sign_form' %>
       <% end %>
