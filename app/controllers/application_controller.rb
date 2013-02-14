@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  
+
   helper :all
-  
+
   before_filter :set_locale, :header_data, :set_meta_defaults
   protect_from_forgery
 
@@ -11,13 +11,39 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => t(:sorry_you_are_not_allowed)
   end
 
+  if Rails.env.production? or Rails.env.staging?
+    unless Rails.application.config.consider_all_requests_local
+      rescue_from Exception, with: :render_500
+      rescue_from ActionController::RoutingError, with: :render_404
+      rescue_from ActionController::UnknownController, with: :render_404
+      rescue_from ActionController::UnknownAction, with: :render_404
+      rescue_from ActiveRecord::RecordNotFound, with: :render_404
+    end
+  end
+
+  def render_404(exception)
+    @not_found_path = exception.message
+    respond_to do |format|
+      format.html { render template: 'errors/not_found', layout: 'layouts/application', status: 404 }
+      format.all { render nothing: true, status: 404 }
+    end
+  end
+
+  def render_500(exception)
+    logger.info exception.backtrace.join("\n")
+    respond_to do |format|
+      format.html { render template: 'errors/internal_server_error', layout: 'layouts/application', status: 500 }
+      format.all { render nothing: true, status: 500}
+    end
+  end
+
   protected
 
   # Método para decirle a Varnish qué tiene que cachear
   def set_http_cache(period, visibility = false)
     expires_in period, :public => visibility, 'max-stale' => 0
   end
-    
+
   def generate_token
     secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
   end
