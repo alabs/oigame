@@ -372,7 +372,7 @@ class Campaign < ActiveRecord::Base
     when 'mailing'
       model = messages
     when 'petition'
-      model = messages
+      model = petitions
     when 'fax'
       model = faxes
     end
