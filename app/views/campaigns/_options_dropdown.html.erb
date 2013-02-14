@@ -12,7 +12,7 @@
         <% end %>
       </li>
         <li>
-          <% if (permitted_to? :participants, campaign) && campaign.messages.count > 0 %>
+          <% if (permitted_to? :participants, campaign) && campaign.messages_count > 0 %>
             <%= link_to participants_campaign_path(campaign) do %>
               <i class="icon-user"></i>
               <%= t(:download_participants) %>
