@@ -610,6 +610,11 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    errors:
+      internal_server_error: "500 - Error en el servidor"
+      internal_server_error_explain: "Hemos encontrado un error en el servidor. Por favor avísanos en hola[arroba]oiga[punto]me con lo que estabas realizando para que lo podamos solucionar."
+      page_not_found: "404 - Página no encontrada"
+      page_not_found_explain: "No hemos encontrado la página que estas buscando."
     credit:
       add_credit: 'Donar crédito a la campaña'
       add_credit_short: 'Donar crédito'
