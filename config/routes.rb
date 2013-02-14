@@ -1,4 +1,5 @@
 Oigame::Application.routes.draw do
+
   campaign_routes = lambda do
     resources :wizard
     member do
@@ -33,7 +34,7 @@ Oigame::Application.routes.draw do
       get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
       get 'transaction-accepted' => 'campaigns#credit_added', :as => 'credit_added'
       get 'transaction-denied' => 'campaigns#credit_denied', :as => 'credit_denied'
-    
+
       post 'ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
     end
 
@@ -54,7 +55,7 @@ Oigame::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
     resources :campaigns, &campaign_routes
-  
+
     resources :sub_oigames, :path => "o" do
       resources :campaigns, &campaign_routes
 
@@ -101,8 +102,12 @@ Oigame::Application.routes.draw do
   end
 
   match '*path', to: redirect {|params,request| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
-        constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+  constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
 
   match '', to: redirect("/#{I18n.default_locale}")
+
+  unless Rails.application.config.consider_all_requests_local
+    match '*not_found', to: 'errors#error_404'
+  end
 
 end
