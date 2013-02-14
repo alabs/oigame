@@ -166,6 +166,13 @@ class CampaignsController < ApplicationController
     user_name = current_user.try(:name) || params[:name]
 
     if @campaign
+
+      # return if archived
+      if @campaign.archived?
+        flash[:error] = t(:campaign_archived)
+        redirect_to @campaign
+      end
+      
       # Create the instance of the methok
       instanke = modelk.new
       instanke.campaign = @campaign
