@@ -171,6 +171,8 @@ class CampaignsController < ApplicationController
       if @campaign.archived?
         flash[:error] = t(:campaign_archived)
         redirect_to @campaign
+
+        return
       end
       
       # Create the instance of the methok
