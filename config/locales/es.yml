@@ -628,6 +628,8 @@ es:
       donate_explain_2_html: 'Dependiendo del país, cada crédito tiene un coste, esto es debido a que <a href="http://www.ovh.es/telefonia/descubrir/tarifas_telefonia.xml#A">el proveedor de FAX ofrece distinta tarifa por país</a>. A ese coste le sumaremos en el futuro 1 o 2 céntimos para financiar de manera distribuida los servidores y mantenimiento de oiga.me, pero de momento mientras probamos esta nueva forma de participación preferimos no añadir costes para no quedarnos con dinero que no nos corresponde. Esperamos poder visibilizar esos datos en la web a lo largo de este año.'
       donate_explain_3_html: 'Muchas gracias por apoyar esta campaña y también por apoyar oiga.me.' 
     campaigns:
+      is_archived: "Campaña archivada"
+      is_archived_explain: "Esta campaña ha sido archivada, ya no puedes participar más."
       creator_of_campaign: "creador de campaña"
     user:
       registration:

@@ -120,6 +120,8 @@
         <%= render partial: 'fax_no_credit' %>
       <% elsif @campaign.has_participated? current_user %>
         <%= render partial: 'has_participated' %>
+      <% elsif @campaign.archived? %>
+        <%= render partial: 'is_archived' %>
       <% else %>
         <%= render partial: 'sign_form' %>
       <% end %>

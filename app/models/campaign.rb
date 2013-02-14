@@ -267,6 +267,10 @@ class Campaign < ActiveRecord::Base
     Campaign::TYPES[ttype.to_sym][:model_name]
   end
 
+  def archived?
+    status == "archived"
+  end
+
   def archive
     self.status = 'archived'
     save!
