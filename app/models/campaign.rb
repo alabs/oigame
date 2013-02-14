@@ -369,7 +369,16 @@ class Campaign < ActiveRecord::Base
   end
 
   def participants_list
-    recipients = self.messages.map {|m| m.email}.sort.uniq
+    case ttype
+    when 'mailing'
+      model = messages
+    when 'petition'
+      model = messages
+    when 'fax'
+      model = faxes
+    end
+
+    recipients = model.map {|m| m.email}.sort.uniq
     response = ""
     recipients.each {|r| response += r + "\n" }
     return response
