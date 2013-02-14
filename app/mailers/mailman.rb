@@ -116,4 +116,10 @@ class Mailman < ActionMailer::Base
     subject = "[oiga.me] Nuevo mensaje en tu campaña #{ @campaign_name }"
     mail :to => @message_to, :subject => subject
   end
+
+  def send_message_lower_credit(campaign_id)
+    @campaign = Campaign.find(campaign_id)
+    subject = "[oiga.me] Aviso de crédito bajo"
+    mail :to => @campaign.user.email, :subject => subject
+  end
 end
