@@ -190,7 +190,7 @@ class CampaignsController < ApplicationController
           validation = "send_message_to_validate_#{model_name.downcase}".to_s
           Mailman.send(validation, from, @campaign.id, instanke.id).deliver
         end
-        if params[:fb]
+        if params[:post_to_facebook]
           open_graph_facebook
         else
           redirector_to :signed
@@ -381,10 +381,10 @@ class CampaignsController < ApplicationController
   end
 
   def open_graph_facebook
+    session[:fb_sess] = {}
     session[:fb_sess][:id] = @campaign.id
-    session[:fb_sess][:type] = @campaign.model.name
     session[:fb_sess][:goto] = urls_oigame[:signed]
-    redirect_to facebook_send_action_url
+    redirect_to facebook_create_action_url
   end
 
   def urls_oigame
