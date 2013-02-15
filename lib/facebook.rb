@@ -1,10 +1,10 @@
 module Facebook
   class OpenGraph
 
-    FB_URL = 'https://graph.facebook.com/me/oigameapp:'
+    FB_URL = 'https://graph.facebook.com/me/oigameapp:sign'
     ACTIONS = {
         :fax => :send,
-        :message => :send,
+        :mailing => :send,
         :petition => :sign
     }
 
@@ -17,19 +17,18 @@ module Facebook
     def can_send_action? action
     end
 
-    def send_action(obj)
-      model_name = obj.model.name
-      fb_url = send "#{model_name}_url", obj
-      fb_post ACTIONS[model_name.to_sym] , fb_url
+    def send_action(class_name,fb_url)
+      fb_post ACTIONS[class_name.to_sym] , fb_url
     end
 
-    protect
-    def fb_post action, fb_url
+    protected
+    def fb_post(action, fb_url)
       data = {}
-      data[:access_token] = @acces_token
+      data[:access_token] = @access_token
       data[:campaign] = fb_url
       data["fb:explicitly_shared"] = true
-      HTTParty.post("#{FB_URL}#{action}")
+      response = HTTParty.post("#{FB_URL}",:body => data)
+      tu
     end
 
   end
