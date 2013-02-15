@@ -33,9 +33,9 @@ class User < ActiveRecord::Base
         user = user_provider ? user_provider.user : self.where(:email => auth.info.email).first
       else
         user = signed_in_resource
-        user_provider = user.user_providers.where(provider: auth.provider, uid: auth.credentials.token).first
       end
 
+      user_provider ||= user.user_providers.where(provider: auth.provider).first if user
       unless user
         user = User.new
         user.name = auth.extra.raw_info.name
@@ -46,11 +46,14 @@ class User < ActiveRecord::Base
         user.confirmed_at = DateTime.now
         user.skip_confirmation!
         user.save
-      else
+      end
+
+      unless user_provider
         user_provider = UserProvider.new
         user_provider.user = user
         user_provider.provider = auth.provider
       end
+
       user_provider.uid = auth.credentials.token
       user_provider.save
       user
