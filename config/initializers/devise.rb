@@ -206,7 +206,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require 'omniauth-facebook'
   require "#{Rails.root.to_s}/app/controllers/users/omniauth_callbacks"
-  config.omniauth :facebook, APP_CONFIG[:facebook_app_id], APP_CONFIG[:facebook_app_secret]
+  config.omniauth :facebook, APP_CONFIG[:FACEBOOK_APP_ID], APP_CONFIG[:FACEBOOK_SECRET]
   
   #require 'omniauth-twitter'
   #config.omniauth :twitter, APP_CONFIG[:twitter_consumer_key], APP_CONFIG[:twitter_consumer_secret]
