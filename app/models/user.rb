@@ -29,31 +29,30 @@ class User < ActiveRecord::Base
 
     def find_for_facebook_oauth(auth, signed_in_resource=nil)
       unless signed_in_resource
-        up = UserProvider.where(:provider => auth.provider, :uid => auth.uid).first
-        user = up ? up.user : self.where(:email => auth.info.email).first
-        unless user
-          user = User.new
-          user_provider = UserProvider.new
-          user.name = auth.extra.raw_info.name
-          user.provider = auth.provider
-          user.uid = auth.uid
-          user.email = auth.info.email
-          user.password = Devise.friendly_token[0,20]
-          user.confirmed_at = DateTime.now
-          user.skip_confirmation!
-          user.save
-          user_provider.user = user
-          user_provider.provider = user.provider
-          user_provider.uid = user.uid
-          user_provider.save
-        end
+        user_provider = UserProvider.where(:provider => auth.provider, :uid => auth.credentials.token).first
+        user = user_provider ? user_provider.user : self.where(:email => auth.info.email).first
+      else
+        user = signed_in_resource
+        user_provider = user.user_providers.where(provider: auth.provider, uid: auth.credentials.token).first
+      end
+
+      unless user
+        user = User.new
+        user.name = auth.extra.raw_info.name
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0,20]
+        user.confirmed_at = DateTime.now
+        user.skip_confirmation!
+        user.save
       else
         user_provider = UserProvider.new
-        user_provider.user = signed_in_resource
-        user_provider.provider = user.provider
-        user_provider.uid = user.uid
-        user_provider.save
+        user_provider.user = user
+        user_provider.provider = auth.provider
       end
+      user_provider.uid = auth.credentials.token
+      user_provider.save
       user
     end
 
