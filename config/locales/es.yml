@@ -220,6 +220,7 @@ es:
 
       full_messages:
         format: "%{attribute} %{message}"
+  alert_for_fb: "La acción que se va a publicar en facebook es 'firmar una campaña(sign a campaign)'"
   some_participants: 'Algunas participantes'
   hashtag_of_campaign: '#hashtag de la campaña'
   home: 'Inicio'
