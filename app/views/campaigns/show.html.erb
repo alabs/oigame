@@ -42,8 +42,14 @@
         </progress>
         <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= @campaign.ttype_message %></h3>
 
+      <% if objective - gotten <= 0 %>
+        obj_minus_gotten_result = 0 
+      <% else %>
+        obj_minus_gotten_result = objective - gotten
+      <% end %>
+
       <span class="circle2"><i class="icon-signin"></i>
-      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= objective - gotten %></span> <%= t(:more) %>!</p>
+      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= obj_minus_gotten_result %></span> <%= t(:more) %>!</p>
         </span>
       </div>
 
