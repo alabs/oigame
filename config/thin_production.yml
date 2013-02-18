@@ -8,8 +8,9 @@ require: []
 
 environment: production
 max_persistent_conns: 512
-servers: 8
+servers: 1
 daemonize: true
 chdir: /var/www/oiga.me/current
 
-socket: /tmp/thin.production.sock
+address: 127.0.0.1
+port: 3562
