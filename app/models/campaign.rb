@@ -285,9 +285,9 @@ class Campaign < ActiveRecord::Base
     # devuelve otras campaigns similares a la que estamos seleccionando, quitando la que usamos
     # tiene en cuenta el sub
     if self.sub_oigame.nil?
-      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ?", self.id], :limit => 5)
+      return Campaign.published.order('priority ASC').find(:all, :conditions => ["id != ?", self.id], :limit => 6)
     else
-      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 5)
+      return Campaign.published.order('priority ASC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 6)
     end
   end
 

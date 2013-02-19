@@ -42,8 +42,11 @@
         </progress>
         <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= @campaign.ttype_message %></h3>
 
+        <% obj_minus_gotten_result = 0 if (objective - gotten) <= 0 %>
+        <% obj_minus_gotten_result = (objective - gotten) if obj_minus_gotten_result != 0 %>
+
       <span class="circle2"><i class="icon-signin"></i>
-      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= objective - gotten %></span> <%= t(:more) %>!</p>
+      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= obj_minus_gotten_result %></span> <%= t(:more) %>!</p>
         </span>
       </div>
 
@@ -143,6 +146,7 @@
           <li>
             <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=<%= URI.escape(@campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
           </li>
+          <br />
           <li>
           &nbsp;
             <a onclick='shareOnFacebook("<%= @campaign.name %>", "<%= @campaign.get_absolute_url %>", "<%= @campaign.intro %>", "<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>")' href="javascript:void" class="fb_ui_button">
