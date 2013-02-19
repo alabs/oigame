@@ -96,7 +96,7 @@ class Mailman < ActionMailer::Base
     subject = APP_CONFIG[:our_fax_number]
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
-    attachments["numbers.txt"] = campaign.generate_numbers_for_faxing(fax_id)
+    attachments["numbers.txt"] = File.read(campaign.generate_file_with_numbers_for_faxing(fax_id)) 
     mail :from => APP_CONFIG[:fax_from_email_address], :to => "fax@ecofax.fr", :subject => subject
   end
   
