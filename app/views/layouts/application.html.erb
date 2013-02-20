@@ -1,169 +1,191 @@
 <!DOCTYPE html>
 <html>
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# oigameapp: http://ogp.me/ns/fb/oigameapp#">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= @page_title %> - oiga.me</title>
-  <%= stylesheet_link_tag "application" %>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
-  <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
-  <%= show_meta_tags %>
-  <% if @image_src %>
-    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
-    <meta property="twitter:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
-    <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
-  <% else %>
-    <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
-    <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
-  <% end %>
-  <%= csrf_meta_tags %>
-  <meta name="generator" content="oiga.me - <%= Rails.env %>" />
-  <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
-  <%= airbrake_javascript_notifier %>
-  <!--
-             Esta web está hecha por la asociación aLabs (http://alabs.es).
-             Puedes ver el código en https://github.com/alabs/oigame/
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# oigameapp: http://ogp.me/ns/fb/oigameapp#">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= @page_title %> - oiga.me</title>
+    <%= stylesheet_link_tag "application" %>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
+    <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
+    <%= show_meta_tags %>
+    <% if @image_src %>
+      <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+      <meta property="twitter:image" content="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+      <link rel="image_src" type="<%= `file --mime --brief #{@image_file}`.match(/(\w+\/\w+)/)[0] %>" href="<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" />
+    <% else %>
+      <meta property="og:image" content="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+      <link rel="image_src" type="image/png" href="<%= APP_CONFIG[:domain] %><%= image_path('logo-small.png') %>" />
+    <% end %>
+    <%= csrf_meta_tags %>
+    <meta name="generator" content="oiga.me - <%= Rails.env %>" />
+    <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
+    <%= airbrake_javascript_notifier %>
+    <!--
 
-                         @@@@              @@@@                 @+`
-                         @@@@              @@@@               @@@@@`
-                 `..`    @@@@      ,;;,    @@@@ ,;,    `:;:`   ,@@`
-               `::::::.  @@@@    .@@@@@@:  @@@@@@@@@  @@@@@@@  @#@@
-               ::::::::  @@@@    @@@@@@@@  @@@@@@@@@`:@@@@@@@#
-              .:::`,:::. @@@@   :@@@.;@@@; @@@@ @@@@.@@@@ @@@@
-              ,::: ,:::: @@@@   '@@@.,@@@+ @@@@ @@@@.@@@@ @@@@
-              :::: ::::; @@@@   '@@@.'@@@# @@@@ @@@@.+@@@@
-                 .:::::; @@@@      :@@@@@# @@@@ @@@@. @@@@@#
-               ,:::::::; @@@@    +@@@@@@@# @@@@ @@@@. .@@@@@@`
-              `:::;,:::; @@@@   .@@@@,@@@# @@@@ @@@@.   #@@@@@
-              ,:::`,:::; @@@@   '@@@,,@@@# @@@@ @@@@.#@@@ @@@@
-              :::: ,:::; @@@@   '@@@.,@@@# @@@@ @@@@.+@@@ #@@@
-              ,::: ::::; @@@@@@@'@@@.;@@@# @@@@ @@@@`:@@@ @@@@
-              .::::::::; @@@@@@@.@@@@@@@@# @@@@@@@@@  @@@@@@@@
-               ::::::::; @@@@@@@ @@@@'@@@# @@@@#@@@+  .@@@@@@`
-                .:                `:`            :`     `::`
+           Esta web está hecha por la asociación aLabs (http://alabs.es).
+           Puedes ver el código en https://github.com/alabs/oigame/
 
-  -->
-</head>
-<body>
+                       @@@@              @@@@                 @+`
+                       @@@@              @@@@               @@@@@`
+               `..`    @@@@      ,;;,    @@@@ ,;,    `:;:`   ,@@`
+             `::::::.  @@@@    .@@@@@@:  @@@@@@@@@  @@@@@@@  @#@@
+             ::::::::  @@@@    @@@@@@@@  @@@@@@@@@`:@@@@@@@#
+            .:::`,:::. @@@@   :@@@.;@@@; @@@@ @@@@.@@@@ @@@@
+            ,::: ,:::: @@@@   '@@@.,@@@+ @@@@ @@@@.@@@@ @@@@
+            :::: ::::; @@@@   '@@@.'@@@# @@@@ @@@@.+@@@@
+               .:::::; @@@@      :@@@@@# @@@@ @@@@. @@@@@#
+             ,:::::::; @@@@    +@@@@@@@# @@@@ @@@@. .@@@@@@`
+            `:::;,:::; @@@@   .@@@@,@@@# @@@@ @@@@.   #@@@@@
+            ,:::`,:::; @@@@   '@@@,,@@@# @@@@ @@@@.#@@@ @@@@
+            :::: ,:::; @@@@   '@@@.,@@@# @@@@ @@@@.+@@@ #@@@
+            ,::: ::::; @@@@@@@'@@@.;@@@# @@@@ @@@@`:@@@ @@@@
+            .::::::::; @@@@@@@.@@@@@@@@# @@@@@@@@@  @@@@@@@@
+             ::::::::; @@@@@@@ @@@@'@@@# @@@@#@@@+  .@@@@@@`
+              .:                `:`            :`     `::`
 
-  <%= render :partial => 'header' %>
+    -->
+  </head>
+  <body>
 
-<div class="container-fluid">
-  <%= yield %>
-</div>
+    <%= render :partial => 'header' %>
 
-<br clear="all"/>
-<div class="topfooter">
-  <div class="cthreecolumns c row-fluid">
-    <div class="threecolumns span3">
-      <span><i class="icon-pencil"></i></span>
-      <h3><%= t "oigame.home.footer.petition_title" %></h3>
-      <p><%= t "oigame.home.footer.petition_body_html" %></p>
-    </div><!-- threecolumns -->
-    <div class="threecolumns span3">
-      <span><i class="icon-envelope"></i></span>
-      <h3><%= t "oigame.home.footer.mailing_title" %></h3>
-      <p><%= t "oigame.home.footer.mailing_body_html" %></p>
-    </div><!-- threecolumns -->
-    <div class="threecolumns span3">
-      <span><i class="icon-print"></i></span>
-      <h3><%= t "oigame.home.footer.fax_title" %></h3>
-      <p><%= t "oigame.home.footer.fax_body_html" %></p>
-    </div><!-- threecolumns -->
-    <div class="threecolumns span3">
-      <span><i class="icon-mobile-phone"></i></span>
-      <h3><%= t "oigame.home.footer.telephony_title" %></h3>
-      <p><%= t "oigame.home.footer.telephony_body_html" %></p>
-    </div><!-- threecolumns -->
-  </div><!-- cthreecolumns -->
-</div><!-- topfooter -->
-<div id="footer">
+    <% unless @sub_oigame.nil? %>
+      <style>
+        <%= @sub_oigame.html_style %>
+      </style>
+      <div id="sub_oigame-header">
+        <%= sanitize @sub_oigame.html_header, :tags => %(a img div span p br table tr td u
+l li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
 
-  <div class="" id="first_footer_a">
-    <ul>
-      <li>
-        <a href="/es/campaigns/feed">
-          <i class="glyphicon-rss icon-2x"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/oigame">
-          <i class="icon-twitter-sign icon-2x"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://plus.google.com/109609067558669990733/posts">
-          <i class="icon-google-plus-sign icon-2x">
-          </i>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.facebook.com/oiga.me">
-          <i class="icon-facebook-sign icon-2x"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/alabs/oigame">
-          <i class="icon-github-alt icon-2x"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <!--
-  <div class="" id="first_footer_b">
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+    </div>
+
+    <% unless @sub_oigame.nil? %>
+      <div id="sub_oigame-footer"> 
+        <%= sanitize @sub_oigame.html_footer, :tags => %(a img div span p br table tr td u
+l li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+      </div>
+    <% end %>
+
+    <br clear="all"/>
+    <div id="links-wrapper" class="topfooter">
+      <div class="cthreecolumns c row-fluid">
+        <div class="threecolumns span3">
+          <span><i class="icon-pencil"></i></span>
+          <h3><%= t "oigame.home.footer.petition_title" %></h3>
+          <p><%= t "oigame.home.footer.petition_body_html" %></p>
+        </div><!-- threecolumns -->
+        <div class="threecolumns span3">
+          <span><i class="icon-envelope"></i></span>
+          <h3><%= t "oigame.home.footer.mailing_title" %></h3>
+          <p><%= t "oigame.home.footer.mailing_body_html" %></p>
+        </div><!-- threecolumns -->
+        <div class="threecolumns span3">
+          <span><i class="icon-print"></i></span>
+          <h3><%= t "oigame.home.footer.fax_title" %></h3>
+          <p><%= t "oigame.home.footer.fax_body_html" %></p>
+        </div><!-- threecolumns -->
+        <div class="threecolumns span3">
+          <span><i class="icon-mobile-phone"></i></span>
+          <h3><%= t "oigame.home.footer.telephony_title" %></h3>
+          <p><%= t "oigame.home.footer.telephony_body_html" %></p>
+        </div><!-- threecolumns -->
+      </div><!-- cthreecolumns -->
+    </div><!-- topfooter -->
+
+    <div id="footer-wrapper">
+    <div id="footer">
+
+      <div class="" id="first_footer_a">
         <ul>
-      <li>
+          <li>
+          <a href="/es/campaigns/feed">
+            <i class="glyphicon-rss icon-2x"></i>
+          </a>
+          </li>
+          <li>
+          <a href="https://twitter.com/oigame">
+            <i class="icon-twitter-sign icon-2x"></i>
+          </a>
+          </li>
+          <li>
+          <a href="https://plus.google.com/109609067558669990733/posts">
+            <i class="icon-google-plus-sign icon-2x">
+            </i>
+          </a>
+          </li>
+          <li>
+          <a href="https://www.facebook.com/oiga.me">
+            <i class="icon-facebook-sign icon-2x"></i>
+          </a>
+          </li>
+          <li>
+          <a href="https://github.com/alabs/oigame">
+            <i class="icon-github-alt icon-2x"></i>
+          </a>
+          </li>
+        </ul>
+      </div>
+      <!--
+      <div class="" id="first_footer_b">
+        <ul>
+          <li>
           <%= image_tag 'openpk.png' %>      
-      </li>
-      <li>
+          </li>
+          <li>
           <%= image_tag 'transparentpk.png' %>
-      </li>
-      <li>
+          </li>
+          <li>
           <%= image_tag '99pk.png' %>
-      </li>
-    </ul>
+          </li>
+        </ul>
 
-  </div>
-  -->
-</div>
+      </div>
+      -->
+    </div>
+    </div>
 
 
-<% if Rails.env == 'production' %>
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-19861474-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+    <% if Rails.env == 'production' %>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-19861474-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+</script>
 <% end %>
 <script type="text/javascript">
   window.___gcfg = {lang: 'es'};
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-35996224-2']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=<%= APP_CONFIG[:FACEBOOK_APP_ID] %>";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-35996224-2']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=<%= APP_CONFIG[:FACEBOOK_APP_ID] %>";
+ fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));
+(function() {
+ var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+ po.src = 'https://apis.google.com/js/plusone.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
 </script>
 <%= javascript_include_tag 'application' %>
 <% if Rails.env == 'development' %>
