@@ -355,14 +355,33 @@ class Campaign < ActiveRecord::Base
     wstatus.include?('duedate_at') || active?
   end
 
+  def obj_minus_gotten_result
+    target.to_i - participants_count 
+  end
+
   def messages_count
+    recipients_count * participants_count
+  end
+
+  def recipients_count
     case ttype
     when 'mailing'
-      messages.validated.count
+      emails.count
     when 'petition'
-      petitions.validated.count
+      emails.count
     when 'fax'
-      faxes.validated.count
+      faxes_recipients.split(/\r\n/).count
+    end
+  end
+
+  def participants_count
+    case ttype
+    when 'mailing'
+      messages.validated.count.to_i
+    when 'petition'
+      petitions.validated.count.to_i
+    when 'fax'
+      faxes.validated.count.to_i
     end
   end
 

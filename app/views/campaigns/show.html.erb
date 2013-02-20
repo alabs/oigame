@@ -2,52 +2,50 @@
 <% @in_campaign = true %>
 
 <article class="row-fluid">
-  <div class="span8">
-    <div class="contenedorcampaign">
-      <div class="img-wrap">
-        <div class="image-show-campaign"><%= image_tag @image_src, :alt => @campaign.name %></div>
-        <div class="img-overlay text-show-campaign">
-          <h1 style="font-size: 35px;"><%= @campaign.name.capitalize %></h1>
-        </div>
+<div class="span8">
+  <div class="contenedorcampaign">
+    <div class="img-wrap">
+      <div class="image-show-campaign"><%= image_tag @image_src, :alt => @campaign.name %></div>
+      <div class="img-overlay text-show-campaign">
+        <h1 style="font-size: 35px;"><%= @campaign.name.capitalize %></h1>
       </div>
     </div>
+  </div>
 
-    <div class="row-fluid">
-      <div class="span6">
-        <dl class="dl-horizontal">
-          <dt><%= t(:created_by) %></dt>
+  <div class="row-fluid">
+    <div class="span6">
+      <dl class="dl-horizontal">
+        <dt><%= t(:created_by) %></dt>
+        <dd>
+        <img class="creada" src="<%= avatar_url(@campaign.user.email) %>"alt="<%= @campaign.user.name %>"/>
+        <span class="creador_name"><%= @campaign.user.name %></span>
+        </dd>
+        <% if @campaign.ttype == "fax" %>
+          <dt><%= t(:credits) %></dt>
           <dd>
-            <img class="creada" src="<%= avatar_url(@campaign.user.email) %>"alt="<%= @campaign.user.name %>"/>
-            <span class="creador_name"><%= @campaign.user.name %></span>
+          <%= @campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
           </dd>
-          <% if @campaign.ttype == "fax" %>
-            <dt><%= t(:credits) %></dt>
-            <dd>
-              <%= @campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
-            </dd>
-          <% end %>
-          <dt><%= t(:published_at) %></dt>
-          <dd><%= time_ago_in_words(@campaign.created_at) %></dd>
-          <dt><%= t(:time_left) %></dt>
-          <dd><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
-          <dt><%= t(:type) %></dt>
-          <dd><i class="<%= @campaign.ttype_img %>"></i> <%= @campaign.ttype_name %> </dd>
+        <% end %>
+        <dt><%= t(:published_at) %></dt>
+        <dd><%= time_ago_in_words(@campaign.created_at) %></dd>
+        <dt><%= t(:time_left) %></dt>
+        <dd><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
+        <dt><%= t(:type) %></dt>
+        <dd><i class="<%= @campaign.ttype_img %>"></i> <%= @campaign.ttype_name %> </dd>
         </dt>
       </div>
 
       <div id="progressbar" class="span6">
-        <% objective  = @campaign.target.to_i %>
-        <% gotten = @campaign.messages_count.to_i %>
-        <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
-        </progress>
-        <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= @campaign.ttype_message %></h3>
+        <progress id="bar" value="<%= @campaign.participants_count %>" max="<%= @campaign.target %>"></progress>
+        <h3 id="recogidas"><span class="highlighted"><%= @campaign.messages_count %></span> <%= @campaign.ttype_message %></h3>
 
-        <% obj_minus_gotten_result = 0 if (objective - gotten) <= 0 %>
-        <% obj_minus_gotten_result = (objective - gotten) if obj_minus_gotten_result != 0 %>
+        <div class="circle2"><i class="icon-signin icon-large"></i>
+          <p id="necesarias"><span class="underlined"><%= @campaign.participants_count %></span> <%= t(:people_have_already_participated) %></p>
+        </div>
 
-      <span class="circle2"><i class="icon-signin"></i>
-      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= obj_minus_gotten_result %></span> <%= t(:more) %>!</p>
-        </span>
+        <div class="circle2"><i class="icon-signin icon-large"></i>
+          <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= @campaign.obj_minus_gotten_result %></span> <%= t(:more) %>!</p>
+        </div>
       </div>
 
     </div><!-- welcome -->
@@ -72,7 +70,7 @@
 
         <div id="recip" class="tab-pane fade">
           <p>
-            <%= t('your_message_will_be_sent_to') %>
+          <%= t('your_message_will_be_sent_to') %>
           </p>
           <%= simple_format @campaign.recipients_list %>
         </div>
@@ -95,7 +93,7 @@
             </div>
           <% end %>
 
-        <% if @campaign.commentable %>
+          <% if @campaign.commentable %>
             <p style="margin-bottom:30px;"></p>
             <div id="participants">
               <!-- FB COMMENTS -->
@@ -106,10 +104,10 @@
                 js = d.createElement(s); js.id = id;
                 js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
                 fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
+                }(document, 'script', 'facebook-jssdk'));</script>
               <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="6"></div>
             </div><!-- participants -->
-        <% end %>
+          <% end %>
 
         </div><!-- description -->
       </div><!-- tab-content -->
@@ -131,21 +129,21 @@
       <div id="redes">
         <ul class="inline">
           <li>
-            <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=<%= URI.escape(@campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
+          <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=<%= URI.escape(@campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
           </li>
           <br />
           <li>
-            <a href="#" class="fb_ui_button">
-              <i class="icon-facebook"></i>
-              <span>Compartir</span>
-            </a>
+          <a href="#" class="fb_ui_button">
+            <i class="icon-facebook"></i>
+            <span>Compartir</span>
+          </a>
           </li>
         </ul>
       </div>
     </div><!-- sidefirma -->
   </div> <!-- span4 -->
 
-</article> <!-- row-fluid -->
+  </article> <!-- row-fluid -->
 
-<br clear="all">
+  <br clear="all">
 

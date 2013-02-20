@@ -482,6 +482,7 @@ es:
   cancel_account_explanation: "¿Deseas cancelar tu cuenta? Puedes hacerlo presionando"
   is_archived: "Campaña archivada"
   is_archived_explain: "Esta campaña ha sido archivada, ya no puedes participar más."
+  people_have_already_participated: "personas han participado"
   admin:
     home:
       name: Inicio
