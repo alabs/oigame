@@ -13,6 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       add_credit_url = session[:redirect_to_add_credit]
       session[:redirect_to_add_credit] = nil
       add_credit_url
+    elsif session[:redirect_to_create_campaign]
+      new_campaign_url = session[:redirect_to_create_campaign]
+      session[:redirect_to_create_campaign] = nil
+      new_campaign_url
     else
       super
     end
