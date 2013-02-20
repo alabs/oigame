@@ -60,13 +60,22 @@ a
 
 /* heaz
 
-.alert-notice, .alerft-thank_message
-  background: #178a00
+.alert
+  font-weight: bold
   color: #fff
+  padding-left: 50px
+  margin-bottom: 0px
+
+.alert-notice, .alerft-thank_message
+  @extend .alert
+  background: #178a00
+
+.alert-error
+  @extend .alert
+  background: #db0000
 
 .alert-alert
-  background: #a60101
-  color: #fff
+  @extend .alert-error
 
 .heaz
   width: 100%
