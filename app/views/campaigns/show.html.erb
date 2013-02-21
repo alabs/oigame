@@ -129,15 +129,20 @@
         <%= render partial: 'sign_form' %>
       <% end %>
       <div id="redes">
-        <ul class="inline">
+        <ul>
           <li>
             <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=<%= URI.escape(@campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
           </li>
-          <br />
           <li>
-            <a href="#" class="fb_ui_button">
+            <a href="#" class="social-button js-fb-share">
               <i class="icon-facebook"></i>
-              <span>Compartir</span>
+              <span>Compartir en Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://plus.google.com/share?url=<%= URI.escape @campaign.get_absolute_url %>" class="social-button js-google-plus-share">
+              <i class="icon-google-plus"></i>
+              <span>Compartir en G+</span>
             </a>
           </li>
         </ul>

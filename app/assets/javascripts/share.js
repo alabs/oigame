@@ -1,7 +1,7 @@
 $(function(){
 
   // para compartir en facebook al hacer click en el compartir de FB
-  $('.fb_ui_button').on('click', function(e){
+  $('.js-fb-share').on('click', function(e){
     e.preventDefault();
     var t=encodeURIComponent($("meta[property='og:title']").attr('content'));
     var d=encodeURIComponent($("meta[property='og:description']").attr('content'));
@@ -11,6 +11,13 @@ $(function(){
     share_url+='?s=100&p[title]='+t+'&p[summary]='+d+'&p[url]='+u;
     share_url+='&p[images][0]='+i;
     share_url+='&t='+t+'&e='+d;
+    var myWindow = window.open(share_url, 'sharer', 'toolbar=0,status=0,width=626,height=436');
+  });
+
+  // para compartir en g+ al hacer click en el compartir de g+
+  $('.js-google-plus-share').on('click', function(e){
+    e.preventDefault();
+    var share_url = $(this).attr('href');
     var myWindow = window.open(share_url, 'sharer', 'toolbar=0,status=0,width=626,height=436');
   });
 
