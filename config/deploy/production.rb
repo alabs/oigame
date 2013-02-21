@@ -1,8 +1,11 @@
 require "bundler/capistrano"
 #require 'thinking_sphinx/deploy/capistrano'
 require "capistrano-resque"
-require './config/boot'
-require 'airbrake/capistrano'
+
+# estudiar esto, peta al hacer el deploy
+# apardo 20130221
+#require './config/boot'
+#require 'airbrake/capistrano'
 
 set :scm,             :git
 set :repository,      "git@github.com:alabs/oigame.git"
