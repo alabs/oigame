@@ -2,6 +2,7 @@
 class WizardController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :get_sub_oigame
 
   layout 'application'
 
@@ -34,11 +35,13 @@ class WizardController < ApplicationController
     @campaign = Campaign.find_by_slug(params[:campaign_id])
     if @campaign.sub_oigame
       Mailman.send_campaign_to_sub_oigame_admin(@campaign.sub_oigame.id, @campaign.id).deliver
+      flash[:notice] = t(:thanks_for_propossing_sub)
+      redirect_to sub_oigame_campaign_path(@sub_oigame)
     else
       Mailman.send_campaign_to_social_council(@campaign.id).deliver
+      flash[:notice] = t(:thanks_for_propossing)
+      redirect_to campaigns_path
     end
-    flash[:notice] = "Gracias por crear la campaña."
 
-    campaigns_path
   end
 end

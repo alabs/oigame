@@ -1,28 +1,10 @@
-<%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
-
-<% if params[:action] == "new" %>
-  <% if @sub_oigame %>
-    <% url = url_for(:action=> "create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
-  <% else %>
-    <% url = url_for(:action=> "create", :controller=> "campaigns") %>
-  <% end %>
-<% end %>
-
-<% if params[:action] == "edit" %>
-  <% if @sub_oigame %>
-    <% url = sub_oigame_campaign_path(@sub_oigame, @campaign) %>
-  <% else %>
-    <% url = campaign_path(@campaign) %>
-  <% end %>
-<% end %>
-
 <ol class="progtrckr" data-progtrckr-steps="3">
     <li class="progtrckr-todo"><%= t(:step_1) %></li>
     <li class="progtrckr-todo"><%= t(:step_2) %></li>
     <li class="progtrckr-todo"><%= t(:step_3) %></li>
 </ol>
 
-<%= form_for @campaign do |f| %>
+<%= form_for @campaign, :url => url_for_campaign_form do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="control-group">

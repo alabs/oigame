@@ -100,6 +100,7 @@ class CampaignsController < ApplicationController
     if @campaign.save
       if @sub_oigame
         @campaign.sub_oigame = @sub_oigame
+        @campaign.save
         redirect_url = sub_oigame_campaign_wizard_path(@sub_oigame, @campaign.slug, :first)
       else
         redirect_url = campaign_wizard_path(@campaign.slug, :first)

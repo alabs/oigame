@@ -482,6 +482,8 @@ es:
   cancel_account_explanation: "¿Deseas cancelar tu cuenta? Puedes hacerlo presionando"
   is_archived: "Campaña archivada"
   is_archived_explain: "Esta campaña ha sido archivada, ya no puedes participar más."
+  thanks_for_propossing: "Gracias por proponer la campaña. Avisaremos al Consejo Social para que la revise y la apruebe." 
+  thanks_for_propossing_sub: "Gracias por proponer la campaña. Se les ha avisado a los administradores para que la revisen." 
   admin:
     home:
       name: Inicio

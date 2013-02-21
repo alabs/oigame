@@ -1,8 +1,7 @@
-<% if sub_oigame.nil? %> <% url = campaign_path(campaign) %> <% else %> <% url = sub_oigame_campaign_path(sub_oigame, campaign) %> <% end %>
 <div class="cinfo">
 
   <div>
-    <%= link_to campaign do %>
+    <%= link_to campaign.get_absolute_url do %>
       <div class="campa-home">
         <%= image_tag(campaign.image_url(:home)) %>
         <div class="campa-texto">
@@ -23,7 +22,7 @@
       <% objective  = campaign.target.to_i %>
       <% gotten = campaign.messages_count.to_i %> 
       <% if campaign.status == "archived" %>
-        <%= link_to url do %>
+        <%= link_to campaign.get_absolute_url do %>
           <span class="label label-warning" style="font-size: 1em;"><%= t(:archived) %></span>
         <% end %>
       <% else %>
@@ -36,7 +35,7 @@
               </h4>
             </div>
           </div>
-          <%= link_to t(:join), url, :title => campaign.name, :class => "btn span5" %>
+          <%= link_to t(:join), campaign.get_absolute_url, :title => campaign.name, :class => "btn span5" %>
           <progress id="barlista" value="<%= gotten %>" max="<%= objective %>">
           <em><%= t(:has_gotten) %> <%= gotten %> <%= t(:of) %> <%= objective %> <%= t(:firms) %></em>
           </progress>
