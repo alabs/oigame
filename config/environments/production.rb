@@ -92,10 +92,3 @@ Oigame::Application.configure do
   config.cache_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
   config.sesion_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
 end
-
-Airbrake.configure do |config|
-  config.api_key = 'c6626f26039ab33d1b509b50bde13659'
-  config.host    = 'err.oiga.me'
-  config.port    = 443
-  config.secure  = config.port == 443
-end
