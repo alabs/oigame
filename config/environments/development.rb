@@ -36,8 +36,9 @@ Oigame::Application.configure do
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => false,
-    :port => 25
+    :port => 1025
   }
+  config.action_mailer.delivery_method = :sendmail
 
   # para que rule resque mailer
   config.action_mailer.perform_deliveries = true
