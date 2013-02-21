@@ -22,7 +22,7 @@ Oigame::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.assets.precompile += ['responsive.css']
+  config.assets.precompile += ['application.css']
 
   # Do not compress assets
   config.assets.compress = false
@@ -35,7 +35,8 @@ Oigame::Application.configure do
   
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
-    :port => 1025
+    :enable_starttls_auto => false,
+    :port => 25
   }
 
   # para que rule resque mailer
