@@ -14,25 +14,7 @@
 
     <div class="row-fluid">
       <div class="span6">
-        <dl class="dl-horizontal">
-          <dt><%= t(:created_by) %></dt>
-          <dd>
-            <img class="creada" src="<%= avatar_url(@campaign.user.email) %>"alt="<%= @campaign.user.name %>"/>
-            <span class="creador_name"><%= @campaign.user.name %></span>
-          </dd>
-          <% if @campaign.ttype == "fax" %>
-            <dt><%= t(:credits) %></dt>
-            <dd>
-              <%= @campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
-            </dd>
-          <% end %>
-          <dt><%= t(:published_at) %></dt>
-          <dd><%= time_ago_in_words(@campaign.created_at) %></dd>
-          <dt><%= t(:time_left) %></dt>
-          <dd><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
-          <dt><%= t(:type) %></dt>
-          <dd><i class="<%= @campaign.ttype_img %>"></i> <%= @campaign.ttype_name %> </dd>
-        </dt>
+        <%= render :partial => 'campaign_info', :locals => {:campaign => @campaign} %>
       </div>
 
       <div id="progressbar" class="span6">
@@ -98,16 +80,7 @@
         <% if @campaign.commentable %>
             <p style="margin-bottom:30px;"></p>
             <div id="participants">
-              <!-- FB COMMENTS -->
-              <div id="fb-root"></div>
-              <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="6"></div>
+              <%= render :partial => 'comments', :locals => {:campaign => @campaign} %>
             </div><!-- participants -->
         <% end %>
 
@@ -129,23 +102,7 @@
         <%= render partial: 'sign_form' %>
       <% end %>
       <div id="redes">
-        <ul>
-          <li>
-            <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=<%= URI.escape(@campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
-          </li>
-          <li>
-            <a href="#" class="social-button js-fb-share">
-              <i class="icon-facebook"></i>
-              <span>Compartir en Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://plus.google.com/share?url=<%= URI.escape @campaign.get_absolute_url %>" class="social-button js-google-plus-share">
-              <i class="icon-google-plus"></i>
-              <span>Compartir en G+</span>
-            </a>
-          </li>
-        </ul>
+        <%= render :partial => 'share', :locals => {:campaign => @campaign} %>
       </div>
     </div><!-- sidefirma -->
   </div> <!-- span4 -->
