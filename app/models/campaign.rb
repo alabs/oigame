@@ -63,9 +63,8 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :body,  :if => :active_or_body?
   validates_presence_of :ttype,  :if => :active_or_ttype?
   validates_presence_of :duedate_at, :if => :active_or_duedate_at?
-  # validación desactivada porque genera excepción al manipular objetos
-  # antiguos que tienen una intro de mas de 500 caracteres
-  #validates :intro, :length => { :maximum => 500 }
+  validates :intro, :length => { :maximum => 500 }
+  validates :default_message_body, :length => { :maximum => 2800 }
 
   mount_uploader :image, CampaignImageUploader
 
