@@ -8,12 +8,13 @@
 // where to print the restant value -> $('selector')
 
 
-function progressCounter(v,max,speed) {
+function progressCounter($selector,value,recipients_count,max,speed) {
   setTimeout(function() { 
-    $('progress').attr('value', v); 
-    $('#recogidas .highlighted').text(v);
-    $('#necesarias .underlined').text(max - v);
-  }, speed * v);
+    $selector.attr('value', value * recipients_count); 
+    $('.js-collected .highlighted').text(value * recipients_count);
+    $('.js-participated-people .underlined').text(value);
+    $('.js-needed-people .underlined').text(max - value);
+  }, speed * value);
 }
 
 function progressGetSpeed(value) {
@@ -56,16 +57,16 @@ function progressGetSpeed(value) {
 function progressInit($selector) {
   var value = parseInt($selector.attr('value'));
   var max = parseInt($selector.attr('max'));
-  $('progress').attr('value', 0); 
-
+  var recipients_count = parseInt($selector.attr('data-recipients-count'));
   var speed = progressGetSpeed(value);
-  for (var i=1;i<value+1;i++) progressCounter(i,max,speed)
+
+  $selector.attr('value', 0); 
+  for (var i=1;i<value+1;i++) progressCounter($selector,i,recipients_count,max,speed)
 
 }
 
 $(function(){
 
-   progressInit($('progress'));
-//  $('progress').progressSmooth()
+   progressInit($('progress#bar'));
 
 });

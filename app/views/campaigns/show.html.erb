@@ -18,18 +18,7 @@
       </div>
 
       <div id="progressbar" class="span6">
-        <% objective  = @campaign.target.to_i %>
-        <% gotten = @campaign.messages_count.to_i %>
-        <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
-        </progress>
-        <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= @campaign.ttype_message %></h3>
-
-        <% obj_minus_gotten_result = 0 if (objective - gotten) <= 0 %>
-        <% obj_minus_gotten_result = (objective - gotten) if obj_minus_gotten_result != 0 %>
-
-      <span class="circle2"><i class="icon-signin"></i>
-      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= obj_minus_gotten_result %></span> <%= t(:more) %>!</p>
-        </span>
+        <%= render :partial => 'progress', :locals => {:campaign => @campaign} %>
       </div>
 
     </div><!-- welcome -->
