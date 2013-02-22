@@ -117,6 +117,10 @@ class User < ActiveRecord::Base
     name.blank? ? false : true
   end
 
+  def ready_for_create_campaigns?
+    name.blank? ? false : true
+  end
+
   def user?
     self.roles.include? == 'user'
   end

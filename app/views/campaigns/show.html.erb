@@ -42,8 +42,11 @@
         </progress>
         <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= @campaign.ttype_message %></h3>
 
+        <% obj_minus_gotten_result = 0 if (objective - gotten) <= 0 %>
+        <% obj_minus_gotten_result = (objective - gotten) if obj_minus_gotten_result != 0 %>
+
       <span class="circle2"><i class="icon-signin"></i>
-      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= objective - gotten %></span> <%= t(:more) %>!</p>
+      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= obj_minus_gotten_result %></span> <%= t(:more) %>!</p>
         </span>
       </div>
 
@@ -126,11 +129,23 @@
         <%= render partial: 'sign_form' %>
       <% end %>
       <div id="redes">
-        <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=He%20participado%20en%20la%20campa%C3%B1a%20%22<%= URI.escape(@campaign.name) %>%22" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
-        <a href="http://www.facebook.com/sharer/sharer.php?s=100&p%5Btitle%5D=<%= URI.escape(@campaign.name) %>&p%5Bsummary%5D=<%= URI.escape(@campaign.intro) %>&p%5Burl%5D=<%= @campaign.get_absolute_url %>&p%5Bimages[0]%5D=<%= APP_CONFIG[:domain] %><%= image_path(@image_src) %>" target="_blank">
-          <%= image_tag "facebook-share.gif" %>
-        </a>
-        <div style="position:absolute; margin-left: 1em;" class="fb-like" data-href="<%= @campaign.get_absolute_url %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+       <ul>
+          <li>
+            <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>&text=<%= URI.escape(@campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= @campaign.get_absolute_url %>">Tweet #<%= @campaign.hashtag %></a>
+          </li>
+          <li>
+            <a href="#" class="social-button js-fb-share">
+              <i class="icon-facebook"></i>
+              <span>Compartir en Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://plus.google.com/share?url=<%= URI.escape @campaign.get_absolute_url %>" class="social-button js-google-plus-share">
+              <i class="icon-google-plus"></i>
+              <span>Compartir en G+</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div><!-- sidefirma -->
   </div> <!-- span4 -->

@@ -70,6 +70,14 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    unless current_user.ready_for_create_campaigns?
+      session[:redirect_to_create_campaign] = new_campaign_url
+      flash[:error] = 'Tienes que ingresar tu nombre en el sistema para poder crear una campaña'
+      redirect_to edit_user_registration_url
+
+      return
+    end
+
     @campaign = Campaign.new
 
     respond_to do |format|

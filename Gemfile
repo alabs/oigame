@@ -47,7 +47,7 @@ end
 
 gem 'pry-rails'
 gem 'devise'
-gem 'exception_notification', :require => 'exception_notifier'
+#gem 'exception_notification', :require => 'exception_notifier'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'redcarpet'

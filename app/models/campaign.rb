@@ -63,9 +63,8 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :body,  :if => :active_or_body?
   validates_presence_of :ttype,  :if => :active_or_ttype?
   validates_presence_of :duedate_at, :if => :active_or_duedate_at?
-  # validación desactivada porque genera excepción al manipular objetos
-  # antiguos que tienen una intro de mas de 500 caracteres
-  #validates :intro, :length => { :maximum => 500 }
+  validates :intro, :length => { :maximum => 500 }
+  validates :default_message_body, :length => { :maximum => 2800 }
 
   mount_uploader :image, CampaignImageUploader
 
@@ -133,17 +132,12 @@ class Campaign < ActiveRecord::Base
     (self.credit - credits) >= 0
   end
 
-  def generate_numbers_for_faxing(fax_id)
+  def generate_file_with_numbers_for_faxing(fax_id)
     numbers = self.numbers
     fh = File.open("/tmp/numbers-#{fax_id}-#{self.id}.txt", "w+")
-    numbers.each do |n|
-      fh.print(n + "\r\n")
-    end
-
-    file = fh.read
+    numbers.each {|n| fh.print(n + "\r\n")}
     fh.close
-
-    return file
+    return fh.path
   end
 
   # Para repartir el envio de mensajes en varios enlaces
@@ -286,9 +280,9 @@ class Campaign < ActiveRecord::Base
     # devuelve otras campaigns similares a la que estamos seleccionando, quitando la que usamos
     # tiene en cuenta el sub
     if self.sub_oigame.nil?
-      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ?", self.id], :limit => 5)
+      return Campaign.published.order('priority ASC').find(:all, :conditions => ["id != ?", self.id], :limit => 6)
     else
-      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 5)
+      return Campaign.published.order('priority ASC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 6)
     end
   end
 

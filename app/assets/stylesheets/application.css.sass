@@ -60,13 +60,22 @@ a
 
 /* heaz
 
-.alert-notice, .alerft-thank_message
-  background: #178a00
+.alert
+  font-weight: bold
   color: #fff
+  padding-left: 50px
+  margin-bottom: 0px
+
+.alert-notice, .alert-thank_message
+  @extend .alert
+  background: #178a00
+
+.alert-error
+  @extend .alert
+  background: #db0000
 
 .alert-alert
-  background: #a60101
-  color: #fff
+  @extend .alert-error
 
 .heaz
   width: 100%
@@ -612,7 +621,7 @@ span
     font-size: 12px
     list-style: none outside none
     margin-left: 0
-    float: left
+    margin-bottom: 0.5em
 
 .ZRa
   float: left
@@ -1461,9 +1470,11 @@ ol.progtrckr li.progtrckr-todo:before
   font-size: 1.5em
   bottom: -1.6em
 
-.campaign-alert
-  margin-top: 2em !important
-.fb_ui_button
+.twitter-hashtag-button
+  margin-left: 0
+  margin-bottom: -4%
+
+.social-button
   -moz-user-select: none
   background-color: #F8F8F8
   background-image: -moz-linear-gradient(center top , #FFFFFF, #DEDEDE)
@@ -1490,3 +1501,11 @@ ol.progtrckr li.progtrckr-todo:before
     margin-left: -5px
 .campaign-alert
   margin-top: 2em !important
+
+.social-button:focus, .social-button:hover, .social-button:active
+  background-color: #F8F8F8
+  background-image: -moz-linear-gradient(center top , #F8F8F8, #D9D9D9)
+  border-color: #BBBBBB
+  color: #333333
+  text-decoration: none
+  box-shadow: none
