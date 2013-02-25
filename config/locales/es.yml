@@ -476,6 +476,9 @@ es:
   sorry_you_are_not_allowed: "Lo sentimos, no tienes permitido el acceso a esta página"
   press: "Prensa"
   programe: "Programar"
+  fax: "Envío de fax"
+  petition: "Petición online"
+  mailing: "Envío de correo"
   next_step: "Siguiente paso"
   language: "Idioma"
   options: "Opciones"
@@ -483,6 +486,7 @@ es:
   cancel_account_explanation: "¿Deseas cancelar tu cuenta? Puedes hacerlo presionando"
   is_archived: "Campaña archivada"
   is_archived_explain: "Esta campaña ha sido archivada, ya no puedes participar más."
+  people_have_already_participated: "personas han participado"
   admin:
     home:
       name: Inicio
@@ -721,13 +725,10 @@ es:
         telephony_body_html: "Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía. (En desarrollo)"
     campaigns:
       type:
-        petition: "Petición online"
         petition_message: "firmas"
         petition_action: "Firma"
-        mailing: "Envío de correo"
         mailing_message: "mensajes enviados"
         mailing_action: "Envia un mensaje"
-        fax: "Envío de fax"
         fax_message: "faxes enviados"
         fax_action: "Envia un fax"
     wizard:
