@@ -367,7 +367,7 @@ class Campaign < ActiveRecord::Base
     when 'mailing'
       emails.count
     when 'petition'
-      emails.count
+      1 # o sino multiplicamos por 0 y explota todo
     when 'fax'
       faxes_recipients.split(/\r\n/).count
     end
