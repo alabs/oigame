@@ -1,11 +1,14 @@
-<div id="no_credit_fax">
-  <div id="diffusion">
-    <%= t(:already_participated) %>
-  </div>
-  <br>
-  <br>
-  <div>
-    <%= t(:continue_participated) %>
-  </div>
+<div id="has_participated">
+
+  <p><%= t(:already_participated_html, :email => email) %></p>
+
+  <% if anonymous %>
+    <p>
+    <%= t(:clean_participated) %>
+    <%= link_to t(:clean_participated_button), profile_clean_user_parameters_path, :method => :post, :class => "label" %>
+    </p>
+  <% end %>
+
+  <p><%= t(:continue_participated) %></p>
 
 </div>

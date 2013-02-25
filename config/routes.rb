@@ -65,6 +65,7 @@ Oigame::Application.routes.draw do
     end
 
     get '/profile/:username' => 'profiles#show', :as => 'profile'
+    post '/profile/clean_user_parameters' => 'profiles#clean_user_parameters', :as => 'profile_clean_user_parameters'
     get 'donate' => 'donate#index', :as => 'donate'
     get 'donate/init' => 'donate#init', :as => 'donate_init'
     get 'donate/accepted' => 'donate#accepted'

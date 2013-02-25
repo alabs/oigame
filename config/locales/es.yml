@@ -412,7 +412,9 @@ es:
   doit_1: 'Haz posible que en'
   doit_2: 'podamos hacer campañas de miles de llamadas de teléfono a los poderosos, que podamos enviar cientos de faxes. Mejora, dona, difunde, escribe código.'
   doit_link: 'Infórmate como donar'
-  already_participated: 'Ya has participado de esta campaña. ¡Muchas gracias!'
+  already_participated_html: "Ya has participado en esta campaña con el correo electrónico <strong>%{email}</strong> ¡Muchas gracias!"
+  clean_participated: "Si este no es tu correo electrónico puedes"
+  clean_participated_button: "Limpiar correo electrónico" 
   continue_participated: 'Puedes ayudarnos difundiendo esto en las redes sociales'
   no_campaigns: 'No hay campañas todavía, puedes proponer una.'
   search: 'Buscar'
