@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :campaigns, :dependent => :destroy
   has_and_belongs_to_many :sub_oigames
   has_many :donations
+  has_many :user_providers
 
   after_create :set_role
 
@@ -27,7 +28,14 @@ class User < ActiveRecord::Base
     end
 
     def find_for_facebook_oauth(auth, signed_in_resource=nil)
-      user = self.where(:provider => auth.provider, :uid => auth.uid).first || self.where(:email => auth.info.email).first
+      unless signed_in_resource
+        user_provider = UserProvider.where(:provider => auth.provider, :uid => auth.credentials.token).first
+        user = user_provider ? user_provider.user : self.where(:email => auth.info.email).first
+      else
+        user = signed_in_resource
+      end
+
+      user_provider ||= user.user_providers.where(provider: auth.provider).first if user
       unless user
         user = User.new
         user.name = auth.extra.raw_info.name
@@ -39,6 +47,15 @@ class User < ActiveRecord::Base
         user.skip_confirmation!
         user.save
       end
+
+      unless user_provider
+        user_provider = UserProvider.new
+        user_provider.user = user
+        user_provider.provider = auth.provider
+      end
+
+      user_provider.uid = auth.credentials.token
+      user_provider.save
       user
     end
 
@@ -46,13 +63,17 @@ class User < ActiveRecord::Base
       user = self.where(:provider => auth["provider"], :uid => auth["uid"]).first
       unless user
         user = User.new
+        user_provider = UserProvider.new
         user.name = auth["info"]["name"]
-        user.provider = auth["provider"]
-        user.uid = auth["uid"]
         user.email = nil
         user.password = Devise.friendly_token[0,20]
         user.confirmed_at = DateTime.now
         user.skip_confirmation!
+        user.save
+        user_provider.user = user
+        user_provider.provider = auth["provider"]
+        user_provider.uid = auth["uid"]
+        user_provider.save
       end
       user
     end

@@ -90,9 +90,7 @@ Oigame::Application.routes.draw do
       mount Tolk::Engine => '/translate', :as => 'tolk'
     end
 
-
-    get 'facebook/auth' => 'facebook#auth', :as => 'facebook_auth'
-    get 'facebook/callback' => 'facebook#callback', :as => 'facebook_callback'
+    get 'facebook/create_action' => 'facebook#create_action', :as => 'facebook_create_action'
     root :to => 'pages#index'
   end
 
