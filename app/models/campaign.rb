@@ -29,7 +29,7 @@ class Campaign < ActiveRecord::Base
   TYPES = {
     :petition =>
       {
-        :name       => I18n.t('oigame.campaigns.type.petition'),
+        :name       => I18n.t('petition'),
         :img        => 'icon-pencil',
         :model_name => 'Petition',
         :message    => I18n.t('oigame.campaigns.type.petition_message'),
@@ -37,7 +37,7 @@ class Campaign < ActiveRecord::Base
       },
     :mailing =>
       {
-        :name       => I18n.t('oigame.campaigns.type.mailing'),
+        :name       => I18n.t('mailing'),
         :img        => 'icon-envelope',
         :model_name => 'Message',
         :message    => I18n.t('oigame.campaigns.type.mailing_message'),
@@ -45,7 +45,7 @@ class Campaign < ActiveRecord::Base
       },
     :fax =>
       {
-        :name       => I18n.t('oigame.campaigns.type.fax'),
+        :name       => I18n.t('fax'),
         :img        => 'icon-print',
         :model_name => 'Fax',
         :message    => I18n.t('oigame.campaigns.type.fax_message'),
