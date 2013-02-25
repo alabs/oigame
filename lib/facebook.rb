@@ -29,6 +29,7 @@ module Facebook
       data["fb:explicitly_shared"] = true
       response = HTTParty.post("#{FB_URL}",:body => data)
       Rails.logger.info("FB RESPONSE: #{response.inspect}")
+      Rails.logger.info("FB DATA: #{data.inspect}")
     end
 
   end
