@@ -155,13 +155,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def participants
-    petitions = self.petitions
-    mailings = self.messages
-
-    data = petitions + mailings
-    data = data.collect { data.slice!(rand data.length) }
-
-    return data[0,27]
+    return self.petitions + self.messages + self.faxes
   end
 
   def faxes_recipients
@@ -318,15 +312,13 @@ class Campaign < ActiveRecord::Base
     return data
   end
 
-  def has_participated?(user)
+  def has_participated?(email)
     # comprobamos si este usuario ya ha participado en este campaña
-    if defined? user.email
-      participants_emails = self.participants.map {|x| x.email}
-      if participants_emails.include? user.email
-        return true
-      else
-        return false
-      end
+    participants_emails = self.participants.map {|x| x.email}
+    if participants_emails.include? email
+      return true
+    else
+      return false
     end
   end
 
