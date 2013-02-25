@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>RWD oiga.me</title>
+        <style type="text/css">
+            *{margin: 0;padding: 0;font-family: Arial;transition: all 1.75s 0.05s ease;-moz-transition: all 1.75s 0.05s ease;-webkit-transition: all 1.75s 0.05s ease;-o-transition: all 1.75s 0.05s ease}
+            html,body{position: relative;background-color: #FFF;}
+            .header{position: relative;top:0;left:0;height: auto;overflow: hidden;width: 100%;z-index: 2;border-bottom: 2px solid #085E8C;margin: 0 0 2px 0;}
+            .header .links{position: relative;height:auto;width: 960px;margin: 1px;overflow: hidden;}
+            .links a{position: relative;display: block;float:left;margin: 0 1px 0 0;padding: 9px 0 7px 0;text-decoration: none;color:#000;background-color: #eb5e40;text-transform: uppercase;text-align: center;width: 80px;font-size: 17px;font-weight:bold;text-shadow: 1px 1px #FFF;}
+            .links a.sel{background-color: orange;color: #FFF;text-shadow: 0 0 #FFF;}
+            .iframe{position:relative;display: block;clear: both;margin:0 0 0 2px;border: 1px solid #AAA;width: 320px;height: 480px;}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="links">
+                <a href="#void" id="rwd-280-420">-320</a>
+                <a href="#void" id="rwd-325-480" class="sel">320</a>
+                <a href="#void" id="rwd-445-320">440</a>
+                <a href="#void" id="rwd-485-320">480</a>
+                <a href="#void" id="rwd-605-480">600</a>
+                <a href="#void" id="rwd-805-480">800</a>
+                <a href="#void" id="rwd-965-768">960</a>
+                <a href="#void" id="rwd-1100-768">1100</a>
+                <a href="#void" id="rwd-1205-960">1200</a>
+                <a href="#void" id="rwd-1400-960">+1200</a>
+            </div>
+        </div>
+        <iframe class="iframe" src="http://oiga.me"></iframe>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript">
+            $(window).load(function () {
+
+                var init = function(){
+                    width = parseInt($('html').width()) - 30;
+                    height = parseInt($('html').height()) - 65;
+                };
+
+                init();
+
+                var rtime = new Date(1, 1, 2000, 12,00,00);
+                var timeout = false;
+                var delta = 200;
+                $(window).resize(function() {
+                    rtime = new Date();
+                    if (timeout === false) {
+                        timeout = true;
+                        setTimeout(resizeend, delta);
+                    }
+                });
+                function resizeend(){
+                    if (new Date() - rtime < delta) {
+                        setTimeout(resizeend, delta);
+                    } else {
+                        timeout = false;
+                        init();
+                    }
+                }
+
+                $('.links a').click(function(){
+
+                    $('.links a').removeClass('sel');
+                    $(this).addClass('sel');
+
+                    var tmp = $(this).attr('id').replace('rwd-','');
+                    var r_w = tmp.split('-');
+                    var w = (parseInt(r_w[0]) - 10);
+                    var h = (parseInt(r_w[1]) - 10);
+
+                    if(w > width){
+                        w = width;
+                    }
+
+                    $('.iframe').css('height',h + 'px').css('width',w + 'px');
+
+                    return false;
+                });
+
+            });
+        </script>
+    </body>
+</html>

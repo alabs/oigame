@@ -101,6 +101,8 @@ Oigame::Application.routes.draw do
     mount Resque::Server, at: 'jobs'
   end
 
+  match '/rwd', :to => redirect('/rwd.html')
+
   match '*path', to: redirect {|params,request| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
   constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
 
