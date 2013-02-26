@@ -27,7 +27,7 @@
       <div class="controls">
       <div class="wmd-panel">
         <div id="wmd-button-bar-second"></div>
-        <%= f.text_area :body, :id => 'wmd-input-second', :rows => 10, :class => 'span6 editable', :required => true, :placeholder => t(:body_of_campaign_help), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.body_help'), 'data-original-title' => t(:body_of_campaign) %>
+        <%= f.text_area :body, :id => 'wmd-input-second', :rows => 10, :class => 'span6 editable', :required => true, :placeholder => t(:body_of_campaign_help), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.body_help'), 'data-original-title' => t(:body_of_campaign), :maxlength => 3960  %>
       </div>
       <% unless @campaign.errors[:body].blank? %>
         <span class="error_message"><%= @campaign.errors[:body].to_sentence %></span>
@@ -82,7 +82,7 @@
     <div class="control-group form-fax hide">
       <%= f.label :default_message_body, t(:default_message_body), :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :maxlength => 2800, :placeholder => t(:default_message_body_help) %>
+        <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
       </div>
     </div>
     <div class="control-group form-field">
