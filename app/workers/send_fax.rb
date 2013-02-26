@@ -6,7 +6,11 @@ class SendFax
     campaign = Fax.find(fax_id).campaign
     credits = campaign.numbers.size
     if campaign.has_credit?(credits)
-      Mailman.send_message_to_fax_recipient(fax_id, campaign.id).deliver
+      unless campaign.numbers.size == 1
+        Mailman.send_message_to_fax_recipients(fax_id, campaign.id).deliver
+      else
+        Mailman.send_message_to_fax_recipient(fax_id, campsign.id).deliver
+      end
       campaign.credit -= credits
       campaign.save
     else

@@ -4,7 +4,7 @@ class Mailman < ActionMailer::Base
   include Resque::Mailer # para enviar correos en background
 
   default :from => "oigame@oiga.me"
-  layout "email", :except => [:send_message_to_fax_recipient, :send_contact_message]
+  layout "email", :except => [:send_message_to_fax_recipient, :send_message_to_fax_recipients, :send_contact_message]
   helper :application
   include ApplicationHelper
 
@@ -89,15 +89,18 @@ class Mailman < ActionMailer::Base
   end
   
   # OVH is the best provider for faxing :)
-  def send_message_to_fax_recipient(fax_id, campaign_id)
+  def send_message_to_fax_recipients(fax_id, campaign_id)
     fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
     @password = APP_CONFIG[:our_fax_password]
     subject = APP_CONFIG[:our_fax_number]
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
-    attachments["numbers.txt"] = File.read(campaign.generate_file_with_numbers_for_faxing(fax_id)) 
-    mail :from => APP_CONFIG[:fax_from_email_address], :to => APP_CONFIG[:ecofax_mail], :subject => subject
+    number = campaign.numbers.first
+    mail :from => APP_CONFIG[:fax_from_email_address], :to => number+"@ecofax.fr", :subject => subject
+  end
+
+  def send_message_to_fax_recipient(fax_id, campaign_id)
   end
   
   #def send_message_to_fax_recipient(fax_id, campaign_id, number)
