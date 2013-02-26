@@ -9,7 +9,7 @@ class SendFax
       unless campaign.numbers.size == 1
         Mailman.send_message_to_fax_recipients(fax_id, campaign.id).deliver
       else
-        Mailman.send_message_to_fax_recipient(fax_id, campsign.id).deliver
+        Mailman.send_message_to_fax_recipient(fax_id, campaign.id).deliver
       end
       campaign.credit -= credits
       campaign.save
