@@ -36,6 +36,9 @@ Oigame::Application.routes.draw do
       get 'transaction-denied' => 'campaigns#credit_denied', :as => 'credit_denied'
 
       post 'ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
+
+      # add updates to campaign
+      post 'add-update' => 'campaigns#add_update', :as => 'add_update'
     end
 
     collection do

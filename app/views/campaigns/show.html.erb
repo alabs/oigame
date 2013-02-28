@@ -23,25 +23,33 @@
 
     </div><!-- welcome -->
 
+    <br />
+    <br />
 
     <div>
 
       <ul class="nav nav-tabs line-tabs">
         <li class="active"><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
-        <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
-        <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
         <% unless @campaign.ttype == "petition" %>
           <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
         <% end %>
+        <li><a href="#updates" data-toggle="tab" title="<%= t(:updates) %>"><span><%= t(:updates) %></span></a></li>
+        <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
+        <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
       </ul>
 
       <div class="topcontent tab-content">
+
+        <div id="updates" class="tab-pane fade">
+          <%= render :partial => "updates", :locals => { :campaign => @campaign } %>
+        </div>
 
         <div id="stats" class="tab-pane fade">
           <%= render :partial => "stats_chart", :locals => {:campaign => @campaign} %>
         </div>
 
         <div id="recip" class="tab-pane fade">
+          <h2><%= t(:recipients) %></h2>
           <p>
             <%= t('your_message_will_be_sent_to') %>
           </p>

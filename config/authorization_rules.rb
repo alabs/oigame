@@ -17,7 +17,7 @@ authorization do
   role :user do
     includes :anonymous
     has_permission_on [:campaigns], :to => [:new, :create]
-    has_permission_on [:campaigns], :to => [:show, :edit, :update, :participants] do
+    has_permission_on [:campaigns], :to => [:show, :edit, :update, :participants, :add_update] do
       if_attribute :user_id => is { user.id } 
     end
     # crear el permiso para moderated teniendo en cuenta el sub_oigame
@@ -30,8 +30,8 @@ authorization do
   role :editor do
     includes :user
     has_permission_on [:campaigns], :to => [:participants, :update, :destroy, :moderated, :activate,
-      :deactivate, :archive, :prioritize, :deprioritize, :show, :edit, :update, :participants, :programe]
-    has_permission_on [:sub_oigames], :to => [:index, :show, :new, :edit, :create, :update, :destroy, :programe]
+      :deactivate, :archive, :prioritize, :deprioritize, :show, :edit, :update, :participants, :programe, :add_update]
+    has_permission_on [:sub_oigames], :to => [:index, :show, :new, :edit, :create, :update, :destroy, :programe, :add_update]
   end
 
   role :admin do

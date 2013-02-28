@@ -9,8 +9,8 @@ class FaxPdf
     pdf = Prawn::Document.new
     pdf.move_down 10 
     pdf.font_size 10
-    pdf.text "Remitente: #{@fax.name}"
-    pdf.text "Email: #{@fax.email}"
+    pdf.text @fax.name
+    pdf.text @fax.email
     pdf.move_down 25
     pdf.font_size 16
     pdf.text @campaign.name
