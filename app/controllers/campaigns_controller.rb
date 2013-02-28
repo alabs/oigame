@@ -41,6 +41,9 @@ class CampaignsController < ApplicationController
     @cause = true
     @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
 
+    @update = @campaign.updates.new
+    @updates = @campaign.updates.order('created_at DESC').all
+
     # metas for facebook
     @meta['title'] = @campaign.name
     @meta['og']['url'] = campaign_url(@campaign,locale:nil)
@@ -364,6 +367,11 @@ class CampaignsController < ApplicationController
     campaign = Campaign.find_by_slug(params[:id])
     flash[:error] = t(:payment_denied)
     redirect_to campaign
+  end
+
+  def add_update
+    @campaign.updates.create(:body => params[:update][:body])
+    redirector_to :campaign, notice: "Actulización realizada con éxito"
   end
 
   private

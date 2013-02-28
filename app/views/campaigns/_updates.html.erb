@@ -1,0 +1,33 @@
+<div id="updates-data">
+  <h2><%= t(:updates) %></h2>
+
+  <% if user_signed_in? %>
+    <% if @campaign.user == current_user || current_user.roles.include?('editor') || current_user.roles.include?('admin')  %>
+
+      <% if @sub_oigame %>
+        <% url = add_update_sub_oigame_campaign_path(@sub_oigame, @campaign) %>
+      <% else %>
+        <% url = add_update_campaign_path(@campaign) %>
+      <% end %>
+
+      <%= form_for @update, :url => url do |f| %>
+          <div class="control-group">
+            <%= f.text_area :body, :rows => 3, :class => 'span8', :required => true, :maxlength => 150 %>
+          </div>
+          <div class="controls">
+            <%= f.submit 'Enviar actualización', :class => 'btn btn-inverse' %>
+          </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% unless @updates.size == 0 %>
+    <% @updates.each do |update| %>
+      <div class="update-item">
+        <p><%= update.body %> - <strong style="font-size: .7em;"><%= time_ago_in_words(update.created_at) %></strong></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Esta campaña todavía no dispone de actualizaciones.</p>
+  <% end %>
+</div>
