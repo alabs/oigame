@@ -9,6 +9,7 @@ class Mailman < ActionMailer::Base
   include ApplicationHelper
 
   def send_message_to_user(to, subject, message, campaign_id)
+    I18n.locale = I18n.default_locale
     @message_to = to
     @message_subject = subject
     @message_body = message
@@ -18,12 +19,14 @@ class Mailman < ActionMailer::Base
   end
 
   def send_campaign_to_social_council(campaign_id)
+    I18n.locale = I18n.default_locale
     @campaign = Campaign.find(campaign_id)
     subject = "[oiga.me] #{@campaign.name}"
     mail :to => APP_CONFIG[:social_council_email], :subject => subject
   end
 
   def send_campaign_to_sub_oigame_admin(sub_oigame_id, campaign_id)
+    I18n.locale = I18n.default_locale
     @campaign = Campaign.find(campaign_id)
     @sub_oigame = SubOigame.find(sub_oigame_id)
     subject = "[#{@sub_oigame.name}] #{@campaign.name}"
@@ -33,6 +36,7 @@ class Mailman < ActionMailer::Base
   end
 
   def send_contact_message(contact_id)
+    I18n.locale = I18n.default_locale
     @message = Contact.find(contact_id)
     from = "#{@message.name} <#{@message.email}>"
     subject = "[oiga.me] #{@message.subject}"
@@ -66,6 +70,7 @@ class Mailman < ActionMailer::Base
   end
 
   def inform_campaign_activated(campaign_id)
+    I18n.locale = I18n.default_locale
     campaign = Campaign.find(campaign_id)
     @message_to = campaign.user.email
     @campaign_name = campaign.name
@@ -75,12 +80,14 @@ class Mailman < ActionMailer::Base
   end
 
   def send_mailing(email, subject, message)
+    I18n.locale = I18n.default_locale
     @message_body = message
     subject = "[oiga.me] #{subject}"
     mail :to => email, :subject => subject
   end
 
   def send_message_to_recipients(message_id)
+    I18n.locale = I18n.default_locale
     message = Message.find(message_id)
     @message_body = message.body
     subject = message.subject
@@ -90,6 +97,7 @@ class Mailman < ActionMailer::Base
   
   # OVH is the best provider for faxing :)
   def send_message_to_fax_recipient(fax_id, campaign_id)
+    I18n.locale = I18n.default_locale
     fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
     @password = APP_CONFIG[:our_fax_password]
@@ -109,6 +117,7 @@ class Mailman < ActionMailer::Base
   #end
 
   def inform_new_comment(campaign_id)
+    I18n.locale = I18n.default_locale
     campaign = Campaign.find(campaign_id)
     @message_to = campaign.user.email
     @campaign_name = campaign.name
@@ -118,6 +127,7 @@ class Mailman < ActionMailer::Base
   end
 
   def send_message_lower_credit(campaign_id)
+    I18n.locale = I18n.default_locale
     @campaign = Campaign.find(campaign_id)
     subject = "[oiga.me] Aviso de crédito bajo"
     mail :to => @campaign.user.email, :subject => subject
