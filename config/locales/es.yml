@@ -734,7 +734,7 @@ es:
     wizard:
       next_step: "Paso siguiente"
       previous_step: "Paso anterior"
-      create_campaign: "Crear campaña"
+      create_campaign: "Proponer campaña al Consejo Social"
       name_help: "Elige un título corto que apele a la acción (diles, exige, denuncia...) y que exprese de manera clara qué se pide, a quién y cómo."
       hastag_help: "Hashtag de la campaña."
       image_help: "Sube una imagen sugerente y acorde con el contenido de tu campaña. Si puedes edítala para que contenga el título de la campaña."

@@ -36,11 +36,11 @@ class WizardController < ApplicationController
     if @campaign.sub_oigame
       Mailman.send_campaign_to_sub_oigame_admin(@campaign.sub_oigame.id, @campaign.id).deliver
       flash[:notice] = t(:thanks_for_propossing_sub)
-      redirect_to sub_oigame_campaign_path(@sub_oigame)
+      sub_oigame_campaigns_path(@campaign.sub_oigame)
     else
       Mailman.send_campaign_to_social_council(@campaign.id).deliver
       flash[:notice] = t(:thanks_for_propossing)
-      redirect_to campaigns_path
+      campaigns_path
     end
 
   end
