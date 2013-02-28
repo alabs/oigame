@@ -6,45 +6,45 @@
   </div>
 <% end %>
 
-<div class="navbar navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <%= link_to image_tag("logo_oigame.png"), root_path, :class => "brand" %>
-          <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <div class="nav-collapse collapse">
-            <ul class="nav navbar-text pull-right inline">
-                <% if current_user %>
-                  <li>
-                    <%= link_to edit_user_registration_path do %>
-                     <img style="width:30px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
-                     <b style="margin-bottom: 100px;"><%= current_user.name %></b>
-                    <% end %>
-                  </li>
-                  <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
-                <% else %>
-                  <li><%= link_to t(:create_account), new_user_registration_path %></li>
-                  <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
-                <% end %>
+<div id="header-wrapper" class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <%= link_to image_tag("logo_oigame.png"), root_path, :class => "brand" %>
+      <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse">
+        <ul class="nav navbar-text pull-right inline">
+          <% if current_user %>
+            <li>
+            <%= link_to edit_user_registration_path do %>
+              <img style="width:30px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
+              <b style="margin-bottom: 100px;"><%= current_user.name %></b>
+            <% end %>
+            </li>
+            <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to t(:create_account), new_user_registration_path %></li>
+            <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
+          <% end %>
 
-                <li>
-                  <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
-                    <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>
-                    <option data-lang="en" value='<%= url_for(:locale => "en") %>'>EN</option>
-                  </select>
-                </li>
-            </ul>
-            <ul class="nav">
-              <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
-              <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
-              <li id="header-faq"><%= link_to t(:faq), faq_path %></li>
-              <li id="header-about"><%= link_to t(:about), about_path %></li>
-              <li id="header-contact"><%= link_to t(:contact), contact_path %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
+          <li>
+          <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
+            <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>
+            <option data-lang="en" value='<%= url_for(:locale => "en") %>'>EN</option>
+          </select>
+          </li>
+        </ul>
+        <ul class="nav">
+          <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
+          <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
+          <li id="header-faq"><%= link_to t(:faq), faq_path %></li>
+          <li id="header-about"><%= link_to t(:about), about_path %></li>
+          <li id="header-contact"><%= link_to t(:contact), contact_path %></li>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
+  </div>
+</div>
