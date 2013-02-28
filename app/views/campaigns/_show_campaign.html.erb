@@ -1,7 +1,7 @@
 <div class="cinfo">
 
   <div>
-    <%= link_to campaign do %>
+    <%= link_to campaign.get_absolute_url do %>
       <div class="campa-home">
         <%= image_tag(campaign.image_url(:home)) %>
         <div class="campa-texto">

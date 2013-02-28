@@ -287,10 +287,10 @@ class Campaign < ActiveRecord::Base
   end
 
   def get_absolute_url
-    if self.sub_oigame.nil?
-      return APP_CONFIG[:domain] + "/campaigns/" + self.slug
+    if sub_oigame.nil?
+      return APP_CONFIG[:domain] + "/campaigns/" + slug
     else 
-      return APP_CONFIG[:domain] + "/o/" + self.sub_oigame.name + "/campaigns/" + self.slug
+      return APP_CONFIG[:domain] + "/o/" + sub_oigame.name + "/campaigns/" + slug
     end
   end
 
