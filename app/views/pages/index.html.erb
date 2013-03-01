@@ -103,7 +103,9 @@
     <% @campaigns_carousel.each do |campaign| %>
       <li class="span4">
       <div class="campa-home">
-        <%= image_tag(campaign.image_url(:home), :alt => campaign.name, :class => "campa-img") %>
+        <%= link_to campaign, :title => campaign.name do %>
+          <%= image_tag(campaign.image_url(:home), :alt => campaign.name, :class => "campa-img") %>
+        <% end %>
         <div class="campa-texto">
           <div class="campa-texto-left">
             <%= link_to campaign.name, campaign, :title => campaign.name %>
