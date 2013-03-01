@@ -62,7 +62,6 @@ a
 
 .alert
   font-weight: bold
-  color: #fff
   padding-left: 50px
   margin-bottom: 0px
 
@@ -1410,6 +1409,8 @@ a:hover
 .line-tabs
   display: inline-block
 
+/* http://blog.sathomas.me/post/tracking-progress-in-pure-css */
+
 ol.progtrckr
   margin: 0
   padding: 0
@@ -1418,12 +1419,14 @@ ol.progtrckr
     display: inline-block
     text-align: center
     line-height: 3em
-    .progtrckr-done 
-      color: black
-      border-bottom: 4px solid #EB5E40
-    .progtrckr-todo 
-      color: silver 
-      border-bottom: 4px solid silver
+
+.progtrckr-done 
+  color: black
+  border-bottom: 4px solid #EB5E40
+
+.progtrckr-todo 
+  color: silver 
+  border-bottom: 4px solid silver
 
 ol.progtrckr[data-progtrckr-steps="2"] li
   width: 49%
@@ -1499,8 +1502,18 @@ ol.progtrckr li.progtrckr-todo:before
   span
     padding: 0 6px 0 0px
     margin-left: -5px
-.campaign-alert
-  margin-top: 2em !important
+
+.btn:hover, .btn:focus, .btn-campaign button:hover
+  box-shadow: 5px 5px 5px #888888
+  background-position: 0px
+
+.error_message
+  color: red
+  font-size: 1em
+  font-weight: bold
+
+.alert-campaign
+  margin: 2em
 
 .social-button:focus, .social-button:hover, .social-button:active
   background-color: #F8F8F8

@@ -1,5 +1,5 @@
 
-<div class="alert alert-info campaign-alert">
+<div class="alert alert-info alert-campaign">
   <p>
     <b><%= t('oigame.wizard.intro_line_1') %></b>
     <%= t('oigame.wizard.intro_line_2') %>
@@ -32,8 +32,9 @@
     </div>
     <div class="control-group">
       <%= f.label :hashtag, t(:hashtag_of_campaign), :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :hashtag, :class => 'span6', :placeholder => t(:hashtag_of_campaign), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hashtag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
+      <div class="controls input-prepend">
+        <span class="add-on">#</span>
+        <%= f.text_field :hashtag, :class => 'span6', :placeholder => t(:hashtag), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hashtag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
       </div>
     </div>
     <div id="control-group">

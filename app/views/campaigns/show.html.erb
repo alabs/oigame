@@ -7,7 +7,7 @@
       <div class="img-wrap">
         <div class="image-show-campaign"><%= image_tag @image_src, :alt => @campaign.name %></div>
         <div class="img-overlay text-show-campaign">
-          <h1 style="font-size: 35px;"><%= @campaign.name.capitalize %></h1>
+          <h1 style="font-size: 20px;"><%= @campaign.name %></h1>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
           <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
         <% end %>
         <li><a href="#updates" data-toggle="tab" title="<%= t(:updates) %>"><span><%= t(:updates) %></span></a></li>
-        <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
+        <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><i class="icon-signal"></i></span></a></li>
         <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
       </ul>
 
@@ -51,7 +51,7 @@
         <div id="recip" class="tab-pane fade">
           <h2><%= t(:recipients) %></h2>
           <p>
-            <%= t('your_message_will_be_sent_to') %>
+          <%= t('your_message_will_be_sent_to') %>
           </p>
           <%= simple_format @campaign.recipients_list %>
         </div>
@@ -59,8 +59,12 @@
         <div id="desc" class="active tab-pane">
           <div id="campaign-info">
             <%= @description %>
+            <%= link_to "#", :class => "js-campaign-description-show" do %>
+              <i class="icon-circle-arrow-down"></i>
+              <span style="margin-left:0.3em;"><%= t(:continue_reading) %></span>
+            <% end %>
           </div>
-          <div id="campaign-info">
+          <div id="campaign-info" class="js-campaign-description hide">
             <%= @campaign.to_html(@campaign.body).html_safe %>
           </div>
           <% if @message_body || @message_subject %>
@@ -74,12 +78,12 @@
             </div>
           <% end %>
 
-        <% if @campaign.commentable %>
+          <% if @campaign.commentable %>
             <p style="margin-bottom:30px;"></p>
             <div id="participants">
               <%= render :partial => 'comments', :locals => {:campaign => @campaign} %>
             </div><!-- participants -->
-        <% end %>
+          <% end %>
 
         </div><!-- description -->
       </div><!-- tab-content -->
@@ -104,7 +108,7 @@
     </div><!-- sidefirma -->
   </div> <!-- span4 -->
 
-</article> <!-- row-fluid -->
+  </article> <!-- row-fluid -->
 
-<br clear="all">
+  <br clear="all">
 

@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-     </div>
+    </div>
     <div class='prevButton'></div>
     <div class='nextButton'></div>
     <div class='iosSliderButtons'>
@@ -102,19 +102,17 @@
   <ul class="photo row-fluid">
     <% @campaigns_carousel.each do |campaign| %>
       <li class="span4">
-        <%= link_to campaign_path(campaign), :title => campaign.name do %>
-          <div class="campa-home">
-            <%= image_tag(campaign.image_url(:home), :alt => campaign.name) %>
-            <div class="campa-texto">
-              <div class="campa-texto-left">
-                <%= link_to campaign.name, campaign, :title => campaign.name %>
-              </div><!-- campa-texto-left -->
-              <div class="campa-texto-right">
-                <%= image_tag(avatar_url(campaign.user.email), :alt => campaign.user.name) %>
-              </div><!-- campa-texto-right -->
-            </div><!-- campa-texto -->
-          </div><!-- campa-home -->
-        <% end %>
+      <div class="campa-home">
+        <%= image_tag(campaign.image_url(:home), :alt => campaign.name, :class => "campa-img") %>
+        <div class="campa-texto">
+          <div class="campa-texto-left">
+            <%= link_to campaign.name, campaign, :title => campaign.name %>
+          </div><!-- campa-texto-left -->
+          <div class="campa-texto-right">
+            <%= image_tag(avatar_url(campaign.user.email), :alt => campaign.user.name) %>
+          </div><!-- campa-texto-right -->
+        </div><!-- campa-texto -->
+      </div><!-- campa-home -->
       </li>
     <% end %>
   </ul>

@@ -238,4 +238,9 @@ $(function() {
 
   $('#modal-notify-nocredit').modal({keyboard: true, backdrop: true});
 
+  $('.js-campaign-description-show').on('click', function(e){
+    e.preventDefault();
+    $(this).hide();
+    $('.js-campaign-description').slideDown('slow');
+  });
 });
