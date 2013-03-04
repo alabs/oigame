@@ -1,15 +1,17 @@
 <div class="cinfo">
 
   <div class="campa-home">
-    <%= image_tag(campaign.image_url(:home), :class => "campa-img") %>
-    <div class="campa-texto">
-      <div class="campa-texto-left">
-        <span><%= campaign.name %></span>
-      </div><!-- left -->
-      <div class="campa-texto-right">
-        <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
-      </div><!-- left -->
-    </div><!-- campa-texto -->
+    <%= link_to campaign.get_absolute_url do %>
+      <%= image_tag(campaign.image_url(:home), :class => "campa-img") %>
+      <div class="campa-texto">
+        <div class="campa-texto-left">
+          <span><%= campaign.name %></span>
+        </div><!-- left -->
+        <div class="campa-texto-right">
+          <img src="<%= avatar_url(campaign.user.email) %>" alt="creador de campaña"/>
+        </div><!-- left -->
+      </div><!-- campa-texto -->
+    <% end %>
   </div>
 
   <div class="campaign-text">
