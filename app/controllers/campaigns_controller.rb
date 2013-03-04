@@ -303,8 +303,7 @@ class CampaignsController < ApplicationController
   end
 
   def prioritize
-    @campaign.priority = true
-    @campaign.save!
+    @campaign.update_attribute(:priority, true)
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido marcada con prioridad'
     else
@@ -313,8 +312,7 @@ class CampaignsController < ApplicationController
   end
 
   def deprioritize
-    @campaign.priority = false
-    @campaign.save!
+    @campaign.update_attribute(:priority, false)
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido desmarcada con prioridad'
     else
