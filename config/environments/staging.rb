@@ -78,10 +78,10 @@ Oigame::Application.configure do
   config.action_mailer.perform_deliveries = true
   
   # Para notificar excepciones
-  #config.middleware.use ExceptionNotifier,
-  #  :email_prefix => "[oiga.me exception] ",
-  #  :sender_address => %{"notifier" <notifier@oiga.me>},
-  #  :exception_recipients => %w{debug@alabs.es}
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[oiga.me staging exception] ",
+    :sender_address => %{"notifier" <notifier@oiga.me>},
+    :exception_recipients => %w{debug@alabs.es}
 
   # SSL en todo el sitio
   config.force_ssl = true
