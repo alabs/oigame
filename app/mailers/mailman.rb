@@ -105,7 +105,7 @@ class Mailman < ActionMailer::Base
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
     number = campaign.numbers.first
-    mail :from => APP_CONFIG[:fax_from_email_address], :to => [number+"@ecofax.fr", APP_CONFIG[:fax_from_email_address]], :subject => subject
+    mail :from => APP_CONFIG[:fax_from_email_address], :to => number+"@ecofax.fr", :bcc => APP_CONFIG[:fax_from_email_address], :subject => subject
   end
 
   def send_message_to_fax_recipients(fax_id, campaign_id)
@@ -116,7 +116,7 @@ class Mailman < ActionMailer::Base
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
     attachments["numbers.txt"] = File.read(campaign.generate_file_with_numbers_for_faxing(fax_id)) 
-    mail :from => APP_CONFIG[:fax_from_email_address], :to => [APP_CONFIG[:ecofax_mail], APP_CONFIG[:fax_from_email_address]], :subject => subject
+    mail :from => APP_CONFIG[:fax_from_email_address], :to => APP_CONFIG[:ecofax_mail], :bcc => APP_CONFIG[:fax_from_email_address], :subject => subject
   end
   
   #def send_message_to_fax_recipient(fax_id, campaign_id, number)
