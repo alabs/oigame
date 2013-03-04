@@ -16,7 +16,7 @@
 
           <div class="form-field">
             <%= f.label t(:avatar) %>
-             <img style="width:100px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
+             <img style="width:100px;" src="<%= avatar_url(current_user.email, 200) %>" alt="<%= current_user.email %>"/>
              <div style="float: right; width: 18em;" class="alert alert-info"><%= t("oigame.user.registration.gravatar_html") %></div>
           </div>
           <br />
