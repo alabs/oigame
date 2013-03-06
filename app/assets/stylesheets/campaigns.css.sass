@@ -52,10 +52,11 @@ $sombranegra: 1px 0px 2px rgba(0, 0, 0, 0.75)
   .recogidaslista
     font-size: 13px
   .btn
-    margin-top: 10px
-    margin-left: 0 auto
-    margin-right: 0 auto
+    display: block
     font-weight: bold
+    margin: 20px auto -20px
+    text-align: center
+    width: 5em
   .small
     font-weight: bold
     font-size: 0.8em
@@ -118,6 +119,7 @@ hr.dashed
 .campa-img
   height: 150px
   display: block
+  margin: -4px
 
 .campa-texto
   width: 97.5%
@@ -158,6 +160,17 @@ hr.dashed
   margin-top: 3px
   color: #3b5998
   opacity: 0.8
+
+.btn_readmore
+  @extend .btn
+  width: 70%
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+.alert-pagination-end
+  @extend .alert
+  @extend .alert-info
  
 .thumbnail
   background: none repeat scroll 0 0 rgba(240, 240, 240, 0.6)
