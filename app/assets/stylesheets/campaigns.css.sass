@@ -34,6 +34,8 @@ $sombranegra: 1px 0px 2px rgba(0, 0, 0, 0.75)
   i
     padding-right: 5px
     font-size: 15px
+  .thumbnails
+    width: 100%
 
 .cinfo
   h3
@@ -172,19 +174,23 @@ hr.dashed
   @extend .alert
   @extend .alert-info
  
-.thumbnail
-  background: none repeat scroll 0 0 rgba(240, 240, 240, 0.6)
-  .caption
-    .campa-text
-      color: black
-      font-weight: normal
-    .campa-text:hover
-      text-decoration: none
-    .title
-      @extend h4
-      font-weight: bold
-    .title a:hover
-      text-decoration: none
-    .img-user
-      margin-top: 1em
-      margin-left: 1em
+.item
+  width: 20em
+  float: left
+  margin: 1em
+  .thumbnail
+    background: none repeat scroll 0 0 rgba(240, 240, 240, 0.6)
+    .caption
+      .campa-text
+        color: black
+        font-weight: normal
+      .campa-text:hover
+        text-decoration: none
+      .title
+        @extend h4
+        font-weight: bold
+      .title a:hover
+        text-decoration: none
+      .img-user
+        margin-top: 1em
+        margin-left: 1em
