@@ -33,11 +33,13 @@
 
   <% if @campaigns.count > 0 %>      
     <div class="row-fluid">
-      <% @campaigns.each do |campaign| %>
-        <div class="mostrar-campaign span4">
-          <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
-        </div>
-      <% end %>
+      <div class="thumbnails" style="width: 100%">
+        <% @campaigns.each do |campaign| %>
+          <div class="item" style="width:20em; float:left; margin:1em;">
+            <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <% unless no_paginate %>
       <div class="center">
