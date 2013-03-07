@@ -15,6 +15,7 @@ defaults: &defaults
   fax_email_port: 995
   fax_email_user_name: ''
   fax_email_password: ''
+  fax_test_address: ''
 
 development:
   <<: *defaults
