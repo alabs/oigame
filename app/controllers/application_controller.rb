@@ -18,6 +18,9 @@ class ApplicationController < ActionController::Base
 
   private
   def render_error(status, exception)
+    if status == 500
+      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
+    end
     respond_to do |format|
       format.html { render template: "errors/error_#{status}", layout: 'layouts/application', status: status }
       format.all { render nothing: true, status: status }
