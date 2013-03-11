@@ -64,7 +64,7 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :ttype,  :if => :active_or_ttype?
   validates_presence_of :duedate_at, :if => :active_or_duedate_at?
   validates :intro, :length => { :maximum => 500 }
-  validates :body, :length => { :maximum => 3960 }
+  validates :body, :length => { :maximum => 3960 }, :if => :fax_campaign?
 
   mount_uploader :image, CampaignImageUploader
 
@@ -400,7 +400,7 @@ class Campaign < ActiveRecord::Base
     recipients.each {|r| response += r + "\n" }
     return response
   end
-
+  
   private
 
   def generate_slug
@@ -443,5 +443,7 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-
+  def fax_campaign?
+    self.ttype == 'fax'
+  end
 end
