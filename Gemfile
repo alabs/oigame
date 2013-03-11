@@ -27,6 +27,7 @@ gem 'capistrano-resque'
 # To use debugger
 
 group :test, :development do
+  gem 'jazz_hands'
   gem 'minitest'
   gem 'capybara'
   # Pretty printed test output
