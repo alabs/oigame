@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def render_error(status, exception)
     if status == 500
       ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
-      Airbrake.notify(exception, airbrake_request_data)
+      notify_airbrake(exception)
     end
     respond_to do |format|
       format.html { render template: "errors/error_#{status}", layout: 'layouts/application', status: status }
