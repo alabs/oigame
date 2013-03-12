@@ -16,7 +16,7 @@
   Airbrake.setKey("<%= Airbrake.configuration.js_api_key %>");
   Airbrake.setHost('err.oiga.me');
   Airbrake.setEnvironment('<%= Rails.env %>');
-  Airbrake.setErrorDefaults({ url: <%= APP_CONFIG[:domain] %>, component: "<%= params[:controller] %>", action: "<%= params[:action] %>" });
+  Airbrake.setErrorDefaults({ url: '<%= APP_CONFIG[:domain] %>', component: "<%= params[:controller] %>", action: "<%= params[:action] %>" });
 
   //]]>
   </script>
