@@ -332,9 +332,9 @@ class Campaign < ActiveRecord::Base
     if defined? user.email
       participants_emails = self.participants.map {|x| x.email}
       if participants_emails.include? user.email
-        return false
-      else
         return true
+      else
+        return false
       end
     end
   end
