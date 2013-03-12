@@ -485,6 +485,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   countries
   database_cleaner
+  debugger-ruby_core_source
   declarative_authorization
   devise
   devise-async

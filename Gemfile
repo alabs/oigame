@@ -44,6 +44,7 @@ group :development do
   #gem 'ruby-debug19', :require => 'ruby-debug'
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'debugger-ruby_core_source'
 end
 
 gem 'pry-rails'
