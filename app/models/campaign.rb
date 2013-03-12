@@ -115,8 +115,16 @@ class Campaign < ActiveRecord::Base
       where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true).page(page)  
     end
 
+    def last_campaigns_moderated_without_pagination(sub_oigame = nil)
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true)
+    end
+
     def archived_campaigns(page = 1, sub_oigame = nil)
       where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive.page(page)
+    end
+    
+    def archived_campaigns_without_pagination(sub_oigame = nil)
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive
     end
 
     def total_published_campaigns

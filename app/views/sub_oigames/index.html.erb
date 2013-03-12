@@ -17,9 +17,9 @@
       <% @sub_oigames.each do |sub_oigame| %>
         <tr>
           <td><%= link_to sub_oigame.name, sub_oigame %></td>
-          <td><%= link_to sub_oigame.campaigns.last_campaigns.count, sub_oigame_campaigns_path(sub_oigame) %></td>
-          <td><%= link_to sub_oigame.campaigns.archived_campaigns.count, archived_sub_oigame_campaigns_path(sub_oigame) %></td>
-          <td><%= link_to sub_oigame.campaigns.last_campaigns_moderated.count, moderated_sub_oigame_campaigns_path(sub_oigame) %></td>
+          <td><%= link_to sub_oigame.campaigns.last_campaigns_without_pagination.count, sub_oigame_campaigns_path(sub_oigame) %></td>
+          <td><%= link_to sub_oigame.campaigns.archived_campaigns_without_pagination(sub_oigame).count, archived_sub_oigame_campaigns_path(sub_oigame) %></td>
+          <td><%= link_to sub_oigame.campaigns.last_campaigns_moderated_without_pagination(sub_oigame).count, moderated_sub_oigame_campaigns_path(sub_oigame) %></td>
           <td>
             <%= link_to 'Proponer campaña', new_sub_oigame_campaign_path(sub_oigame), :class => "btn" %>
             <br />
