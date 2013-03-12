@@ -11,7 +11,7 @@
     </dd>
   <% end %>
   <dt><%= t(:published_at) %></dt>
-  <dd><%= time_ago_in_words(campaign.created_at) %></dd>
+  <dd><%= time_ago_in_words(campaign.published_at) %></dd>
   <dt><%= t(:time_left) %></dt>
   <dd><%= (campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
   <dt><%= t(:type) %></dt>
