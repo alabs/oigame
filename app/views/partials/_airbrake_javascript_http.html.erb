@@ -1,0 +1,23 @@
+<% unless ["development", "staging"].include? Rails.env %>
+  <script type="text/javascript">
+    //<![CDATA[
+
+  (function(){
+   document.write(unescape("%3Cscript src='http://err.oiga.me/javascripts/notifier.js' type='text/javascript'%3E%3C/script%3E"));
+   })();
+
+  //]]>
+  </script>
+
+  <script type="text/javascript">
+    //<![CDATA[
+
+  window.Airbrake = (typeof(Airbrake) == 'undefined' && typeof(Hoptoad) != 'undefined') ? Hoptoad : Airbrake
+  Airbrake.setKey("<%= Airbrake.configuration.js_api_key %>");
+  Airbrake.setHost('err.oiga.me');
+  Airbrake.setEnvironment('<%= Rails.env %>');
+  Airbrake.setErrorDefaults({ url: <%= APP_CONFIG[:domain] %>, component: "<%= params[:controller] %>", action: "<%= params[:action] %>" });
+
+  //]]>
+  </script>
+<% end %>
