@@ -433,16 +433,17 @@ es:
   inform_campaign_sub_admin: "Hola, se ha creado una campaña nueva en tu SubOigame '%{ sub_name }' con el nombre: '%{campaign_name}'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si te parece muy interesante puedes activarla."
   next_you_have_info: 'A continuación tenéis la información de la campaña'
   thanks_for_participating: 'Gracias por participar en oiga.me.'
-  mail_validate_1: "Validar adhesión a la campaña: %{campaign_name}"
-  mail_validate_2: "Para validar la adhesión a la campaña %{campaign_name} tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
-  mail_validate_3: 'Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.'
-  mail_validate_4: 'Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:'
-  mail_validate_5: "Incluye la campaña en tu página web para que tus visitas puedan participar: %{url}. Es muy sencillo, tardarás menos de 1 minuto."
-  mail_validate_6: 'Difunde al máximo la campaña en las redes sociales.'
-  mail_validate_7: 'Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).'
-  mail_validate_8: "oiga.me es un proyecto de la asociación aLabs [ http://alabs.es/ ]. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto [ %{url_donate} ]."
-  mail_validate_9: "Sigue a %{oigame_twitter} en Twitter y en %{oigame_facebook}."
-  mail_validate_10: "oiga.me es un proyecto de la asociación %{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (%{url_donate})."
+  mail_validate_1_html: "Validar adhesión a la campaña: %{campaign_name}"
+  mail_validate_2_html: "Para validar la adhesión a la campaña %{campaign_name} tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
+  mail_validate_3_html: 'Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.'
+  mail_validate_4_html: 'Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:'
+  mail_validate_5_html: "Incluye la campaña en tu página web para que tus visitas puedan participar: %{url}. Es muy sencillo, tardarás menos de 1 minuto."
+  mail_validate_6_html: 'Difunde al máximo la campaña en las redes sociales.'
+  mail_validate_7_html: 'Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).'
+  mail_validate_8_html: "oiga.me es un proyecto de la asociación aLabs [ http://alabs.es/ ]. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto [ %{url_donate} ]."
+  mail_validate_9_html: "Sigue a %{oigame_twitter} en Twitter y en %{oigame_facebook}."
+  mail_validate_10_html: "oiga.me es un proyecto de la asociación %{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (%{url_donate})."
+  donating_to_proyect: "donando al proyecto"
   category_of_campaign: "Categoría de la campaña"
   category: 'Categoría'
   faxes_recipients: 'Números de fax de los destinatarios'

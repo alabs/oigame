@@ -49,6 +49,7 @@ class Mailman < ActionMailer::Base
       # FIXME: fix rapido para que envie los correos en spanish
       # TODO: I18n bien (con URLs segun el locale, subject y todo)
       I18n.locale = I18n.default_locale
+      @locale = I18n.locale
       sign_model = meth.to_s.capitalize.constantize
       @campaign = Campaign.find(campaign_id)
       petition = sign_model.find(signed_id)
@@ -57,10 +58,12 @@ class Mailman < ActionMailer::Base
       unless @campaign.sub_oigame.nil?
         prefix = "[#{@campaign.sub_oigame.name}]"
         @sub_oigame = @campaign.sub_oigame
-        @url = "#{APP_CONFIG[:domain]}/es/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+        @url = sub_oigame_campaign_url(:id => @campaign, :sub_oigame_id => @sub_oigame, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
+        @url_validate = validate_sub_oigame_campaign_url(:id => @campaign, :sub_oigame_id => @sub_oigame, :token => @token, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
       else
         prefix = "[oiga.me]"
-        @url = "#{APP_CONFIG[:domain]}/es/campaigns/#{@campaign.slug}"
+        @url = campaign_url(:id => @campaign, :host => APP_CONFIG[:host], :protocol => "https")
+        @url_validate = validate_campaign_url(:id => @campaign, :token => @token, :host => APP_CONFIG[:host], :protocol => "https")
       end
 
       from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)

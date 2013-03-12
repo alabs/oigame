@@ -1,0 +1,32 @@
+<h1><%= t(:mail_validate_1_html, :campaign_name => @campaign.name) %></h1>
+
+<p><%= t(:mail_validate_2_html, :campaign_name => @campaign.name) %></p>
+
+<h2><%= link_to @url_validate, @url_validate %></h2>
+
+<p><%= t(:mail_validate_3_html) %></p>
+
+<% if @sub_oigame and @sub_oigame.mail_message %>
+  <%= raw(@sub_oigame.mail_message.gsub(/\n/, '<br>')) %>
+<% end %>
+
+<p><%= t(:mail_validate_4_html) %></p>
+
+<p><%= t(:mail_validate_5_html, :url => link_to( @url, @url) ) %></p>
+
+<p><%= t(:mail_validate_6_html) %></p>
+
+
+<% if @sub_oigame.nil? %>
+  <p><%= t(:mail_validate_7_html,
+           :oigame_twitter => link_to("@oigame", "http://twitter.com/oigame"),
+           :oigame_facebook => link_to("Facebook", "http://www.facebook.com/oiga.me")
+  ) %></p>
+  <p> <%= t(:mail_validate_8_html,
+              :url_donate => link_to(t(:donating_to_proyect), donate_url(:host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)),
+              :url_alabs => link_to('aLabs', 'http://alabs.es/')
+  ) %> </p>
+<% end %>
+
+<p><%= t(:thanks_for_participating) %></p>
+

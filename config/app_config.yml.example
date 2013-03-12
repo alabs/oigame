@@ -19,12 +19,15 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  domain: localhost:8080
+  domain: "http://localhost:3000"
+  host: "localhost:3000"
 
 test:
   <<: *defaults
-  domain: localhost:8080
+  domain: "http://localhost:3000"
+  host: "localhost:3000"
 
 production:
   <<: *defaults
-  domain: oiga.me
+  domain: "https://oiga.me"
+  host: "oiga.me"
