@@ -62,8 +62,8 @@ class Mailman < ActionMailer::Base
         @url_validate = validate_sub_oigame_campaign_url(:id => @campaign, :sub_oigame_id => @sub_oigame, :token => @token, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
       else
         prefix = "[oiga.me]"
-        @url = campaign_url(:id => @campaign, :host => APP_CONFIG[:host], :protocol => "https")
-        @url_validate = validate_campaign_url(:id => @campaign, :token => @token, :host => APP_CONFIG[:host], :protocol => "https")
+        @url = campaign_url(:id => @campaign, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
+        @url_validate = validate_campaign_url(:id => @campaign, :token => @token, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
       end
 
       from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)
