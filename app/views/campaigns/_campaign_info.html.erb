@@ -1,8 +1,8 @@
 <dl class="dl-horizontal">
   <dt><%= t(:created_by) %></dt>
   <dd>
-  <img class="creada" src="<%= avatar_url(campaign.user.email) %>"alt="<%= campaign.user.name %>"/>
-  <span class="creador_name"><%= campaign.user.name %></span>
+  <%= link_to image_tag(avatar_url(campaign.user.email), :class => 'creada', :alt => campaign.user.name), profile_path(campaign.user) %>
+  <%= link_to campaign.user.name, profile_path(campaign.user) %>
   </dd>
   <% if campaign.ttype == "fax" %>
     <dt><%= t(:credits) %></dt>

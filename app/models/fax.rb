@@ -13,6 +13,7 @@ class Fax < ActiveRecord::Base
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   # comentada para cuando refactoricemos
   validates_presence_of :name
+  validates :body, :length => { :maximum => 3960 }
 
   def self.last_faxes
     validated.order('created_at DESC').select('created_at, name, campaign_id, id').limit(10)
@@ -22,5 +23,4 @@ class Fax < ActiveRecord::Base
     update_attributes(:validated => true, :token => nil)
     Resque.enqueue(SendFax, self.id)
   end
-
 end

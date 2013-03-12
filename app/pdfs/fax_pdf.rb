@@ -16,9 +16,11 @@ class FaxPdf
     pdf.text @campaign.name
     pdf.move_down 15
     pdf.font_size 10
-    pdf.text @campaign.intro 
-    pdf.move_down 10
-    pdf.text @campaign.body
+    if fax.body
+      pdf.text fax.body
+    else
+      pdf.text @campaign.default_message_body
+    end
 
     pdf.render
   end

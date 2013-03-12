@@ -370,7 +370,7 @@ class CampaignsController < ApplicationController
 
   def add_update
     @campaign.updates.create(:body => params[:update][:body])
-    redirector_to :campaign, notice: "Actulización realizada con éxito"
+    redirector_to :campaign, notice: "Actualización realizada con éxito"
   end
 
   private
