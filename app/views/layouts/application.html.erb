@@ -20,7 +20,8 @@
     <%= csrf_meta_tags %>
     <meta name="generator" content="oiga.me - <%= Rails.env %>" />
     <link href="https://plus.google.com/109609067558669990733/" rel="publisher" />
-    <%= airbrake_javascript_notifier %>
+    <%= render :partial => "partials/airbrake_javascript_http" %>
+
     <!--
 
            Esta web está hecha por la asociación aLabs (http://alabs.es).
