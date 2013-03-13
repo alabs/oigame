@@ -651,6 +651,9 @@ es:
       internal_server_error_explain: "Hemos encontrado un error en el servidor. Por favor avísanos en hola[arroba]oiga[punto]me con lo que estabas realizando para que lo podamos solucionar."
       page_not_found: "404 - Página no encontrada"
       page_not_found_explain: "No hemos encontrado la página que estas buscando."
+    contact:
+      error: 'Hubo un problema con el envio de tu mensaje. Por favor escríbenos a hola[arroba]oiga[punto]me'
+      received: 'Mensaje recibido, pronto nos pondremos en contacto'
     credit:
       add_credit: 'Donar crédito a la campaña'
       add_credit_short: 'Donar crédito'
