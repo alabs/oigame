@@ -1,46 +1,46 @@
 <%= form_for(@sub_oigame) do |f| %>
-    <fieldset>
-      <legend>Opciones generales</legend>
+  <fieldset>
+    <legend><%= t('oigame.sub.general_options') %></legend>
 
     <% if @sub_oigame.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@sub_oigame.errors.count, "error") %> prohibited this sub_oigame from being saved:</h2>
 
         <ul>
-        <% @sub_oigame.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+          <% @sub_oigame.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
 
     <div class="form-field">
-      <%= f.label :name, "Nombre" %>
+      <%= f.label :name, t('oigame.sub.name') %>
       <div class="clearfix">
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.name_help'), 'data-original-title' => t('oigame.sub.name') %>
       </div>
     </div>
 
     <div class="form-field">
-      <%= f.label :sub_oigames_users, "Usuarios administradores" %>
-      <%= f.text_area :admin_users, :rows => 10, :class => 'span6', :required => true, :placeholder => 'Administradores del sub oiga.me' %>
+      <%= f.label :sub_oigames_users, t('oigame.sub.admin') %>
+      <%= f.text_area :admin_users, :rows => 10, :class => 'span6', :required => true, :placeholder => t('example_mail'), :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.admin_help'), 'data-original-title' => t('oigame.sub.admin')  %>
     </div>
   </fieldset>
   <fieldset>
 
-    <legend>Correo electrónico</legend>
+    <legend><%= t('oigame.sub.electronic_mail') %></legend>
 
     <div class="form-field">
-      <%= f.label :from, "Dirección de envio" %>
+      <%= f.label :from, t('oigame.sub.mail') %>
       <div class="clearfix">
-        <%= f.text_field :from, :placeholder => "noreply@oiga.me" %>
+        <%= f.text_field :from, :placeholder => "noreply@oiga.me", :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.mail_help'), 'data-original-title' => t('oigame.sub.mail') %>
       </div>
     </div>
 
     <div class="form-field">
-      <%= f.label :mail_message, "Mensaje" %>
+      <%= f.label :mail_message, t('oigame.sub.message') %>
       <div class="clearfix">
-        <%= f.text_area :mail_message, :class => "span6", :placeholder => "Pon aquí el mensaje que quieres que vean tus usuarios en el correo de adhesión" %>
+        <%= f.text_area :mail_message, :class => "span6", :placeholder => t('oigame.sub.message_placeholder'), :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.message_help'), 'data-original-title' => t('oigame.sub.message') %>
       </div>
     </div>
 
@@ -48,53 +48,38 @@
 
   <fieldset>
 
-    <legend>Diseño</legend>
+    <legend><%= t('oigame.sub.design') %></legend>
 
     <div class="form-field">
-      <%= f.label :logo, "Logo" %>
+      <%= f.label :logo, t('oigame.sub.logo') %>
       <div class="clearfix">
-        <%= f.file_field :logo, :class => 'input-file' %>
-      </div>
-    </div>
-
-    <div class="well">
-      Podrás usar estas etiquetas HTML
-      <p>
-        <code>
-          a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6
-        </code>
-      </p>
-      Con estos atributos
-      <p>
-        <code>
-          id class src style href
-        </code>
-      </p>
-    </div>
-
-    <div class="form-field">
-      <%= f.label :html_header, "Header (HTML)" %>
-      <div class="clearfix">
-        <%= f.text_area :html_header, :style => "width: 500px;", :placeholder => "La parte superior de la página" %>
+        <%= f.file_field :logo, :class => 'input-file', :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.logo_help'), 'data-original-title' => t('oigame.sub.logo') %>
       </div>
     </div>
 
     <div class="form-field">
-      <%= f.label :html_footer, "Footer (HTML)" %>
+      <%= f.label :html_header, t('oigame.sub.header') %>
       <div class="clearfix">
-        <%= f.text_area :html_footer, :style => "width: 500px;", :placeholder => "La parte inferior de la página" %>
+        <%= f.text_area :html_header, :style => "width: 500px;", :placeholder => "<header>foo</header>", :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.header_help'), 'data-original-title' => t('oigame.sub.header') %>
       </div>
     </div>
 
     <div class="form-field">
-      <%= f.label :html_style, "Estílos (CSS)" %>
+      <%= f.label :html_footer, t('oigame.sub.footer') %>
       <div class="clearfix">
-        <%= f.text_area :html_style, :style => "width: 500px;", :placeholder => "Los estilos CSS, por ejemplo: a {color:blue}" %>
+        <%= f.text_area :html_footer, :style => "width: 500px;", :placeholder => "<footer>bar</footer>", :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.footer_help'), 'data-original-title' => t('oigame.sub.footer') %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :html_style, t('oigame.sub.styles') %>
+      <div class="clearfix">
+        <%= f.text_area :html_style, :style => "width: 500px;", :placeholder => "a {color:blue}", :rel => 'popup_ayuda', 'data-content' => t('oigame.sub.styles_help'), 'data-original-title' => t('oigame.sub.styles') %>
       </div>
     </div>
 
     <div class="actions">
-      <%= f.submit "Enviar", :class => 'btn btn-primary btn-large' %>
+      <%= f.submit t('oigame.sub.save_button'), :class => 'btn btn-primary btn-large' %>
     </div>
 
   </fieldset>

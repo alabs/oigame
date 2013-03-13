@@ -624,6 +624,28 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    sub:
+      general_options: "Opciones generales"
+      name: "Nombre"
+      name_help: "Nombre que se usará para la URL del Sub"
+      admin: "Administradores del Sub"
+      admin_help: "Usuarios administradores para este Sub. Deben estar creados en oiga.me anteriormente. En caso de no encontrarse no se mostrará error, así que es recomendable comprobarlo"
+      logo: "Logo"
+      logo_help: "El logo que aparecerá en los correos de validación que se envíen"
+      electronic_mail: "Correo electrónico"
+      mail: "Dirección de envio"
+      mail_help: "Dirección de correo desde la que se enviaran los correos. Recomendamos que sea una del tipo noreply@dominio.com"
+      message: "Mensaje"
+      message_help: "Este mensaje lo verán los usuarios en el correo de validación de participación a las campañas"
+      message_placeholder: "Gracias por participar en la campaña"
+      design: "Diseño"
+      header: "Header (HTML)"
+      header_help: "El código HTML que aparecerá en la parte superior de la página. Podrás usar estas etiquetas HTML [a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6] con estos atributos [id class src style href]"
+      styles: "Estílos (CSS)"
+      styles_help: "El código CSS con los estilos que se aplicarán a todo el Sub"
+      footer: "Footer (HTML)"
+      footer_help: "El código HTML que aparecerá en la parte inferior de la página. Podrás usar estas etiquetas HTML [a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6] con estos atributos [id class src style href]"
+      save_button: "Guardar"
     errors:
       internal_server_error: "500 - Error en el servidor"
       internal_server_error_explain: "Hemos encontrado un error en el servidor. Por favor avísanos en hola[arroba]oiga[punto]me con lo que estabas realizando para que lo podamos solucionar."
