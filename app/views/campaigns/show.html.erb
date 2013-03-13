@@ -92,7 +92,7 @@
   </div><!-- span8 -->
 
   <div class="span4">
-    <div class="sidefirma">
+    <div class="sidefirma" data-spy="affix" data-offset-bottom="600" data-offset-top="50">
       <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
         <%= render partial: 'fax_no_credit' %>
       <% elsif @campaign.archived? %>
