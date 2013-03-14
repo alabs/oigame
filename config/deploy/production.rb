@@ -219,7 +219,7 @@ end
 
 #after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
-before 'deploy:finalize_update', 'deploy:compile_assets'
+before 'deploy:finalize_update', 'deploy:assets:compile_assets'
 before 'deploy:finalize_update', 'deploy:assets:symlink'
 #after 'deploy:update_code', 'deploy:assets:precompile'
 #after "deploy:restart", "resque:restart"
