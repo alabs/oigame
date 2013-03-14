@@ -455,8 +455,10 @@ class Campaign < ActiveRecord::Base
   end
 
   def validate_video_url_provider
-    unless self.video_url.start_with?("http://youtu.be/", "http://www.youtube.com/watch?v=", "https://www.youtube.com/watch?v=", "http://vimeo.com/")
-      errors.add :video_url, "must be a valid provider" 
+    if !self.video_url.blank?
+      unless self.video_url.start_with?("http://youtu.be/", "http://www.youtube.com/watch?v=", "https://www.youtube.com/watch?v=", "http://vimeo.com/")
+        errors.add :video_url, "must be a valid provider" 
+      end
     end
   end
 
