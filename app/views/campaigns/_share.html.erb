@@ -1,17 +1,20 @@
-<ul style="margin-left:2px;">
+<ul class="inline">
   <li>
-  <a href="https://twitter.com/intent/tweet?button_hashtag=<%= campaign.hashtag %>&text=<%= URI.escape(campaign.name) %>" class="twitter-hashtag-button" data-lang="es" data-related="oigame" data-url="<%= campaign.get_absolute_url %>">Tweet #<%= campaign.hashtag %></a>
-  </li>
-  <li>
-  <a href="#" class="social-button js-fb-share">
-    <i class="icon-facebook"></i>
-    <span>Compartir en Facebook</span>
+  <a class="social-button social-button-tw" href="https://twitter.com/intent/tweet?button_hashtag=<%= campaign.hashtag %>&text=<%= URI.escape(campaign.name) %>">
+    <i class="icon-twitter"></i>
+    Tweet 
   </a>
   </li>
   <li>
-  <a href="https://plus.google.com/share?url=<%= URI.escape campaign.get_absolute_url %>" class="social-button js-google-plus-share">
+  <a href="#" class="social-button social-button-fb js-fb-share">
+    <i class="icon-facebook"></i>
+    <span><%= t(:share) %></span>
+  </a>
+  </li>
+  <li>
+  <a class="social-button social-button-g js-google-plus-share" href="https://plus.google.com/share?url=<%= URI.escape campaign.get_absolute_url %>" >
     <i class="icon-google-plus"></i>
-    <span>Compartir en G+</span>
+    <span><%= t(:share) %></span>
   </a>
   </li>
 </ul>
