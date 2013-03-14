@@ -912,3 +912,4 @@ es:
           other: "Mostrando <b>todas las %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Mostrando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> en total"
+  edit_my_data: 'Editar mis datos'

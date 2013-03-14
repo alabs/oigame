@@ -22,7 +22,7 @@ gem 'god'
 
 gem 'capistrano'
 gem 'capistrano-ext'
-gem 'capistrano-resque'
+#gem 'capistrano-resque'
 
 # To use debugger
 

@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 #require 'thinking_sphinx/deploy/capistrano'
-require "capistrano-resque"
+#require "capistrano-resque"
 
 # estudiar esto, peta al hacer el deploy
 # apardo 20130221
@@ -24,11 +24,11 @@ role :web,    "polar.oiga.me"
 role :app,    "polar.oiga.me"
 role :db,     "polar.oiga.me", :primary => true
 
-role :resque_worker, "polar.oiga.me"
-role :resque_scheduler, "polar.oiga.me"
+#role :resque_worker, "polar.oiga.me"
+#role :resque_scheduler, "polar.oiga.me"
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
-set :workers, { "mailer" => 1, "fax" => 1 }
+#set :workers, { "mailer" => 1, "fax" => 1 }
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
