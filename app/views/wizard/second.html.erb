@@ -67,19 +67,13 @@
                   <%= f.text_field :default_message_subject, :class => 'span6', :required => true, :placeholder => t(:default_message_subject) %>
                 </div>
               </div>
-              <div class="control-group form-campaign hide">
-                <%= f.label :default_message_body, t(:default_message_body), :class => 'control-label' %>
-                <div class="controls">
-                  <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
-                </div>
-              </div>
               <div class="control-group form-fax hide">
                 <%= f.label :faxes_recipients, t(:faxes_recipients), :class => 'control-label' %>
                 <div class="controls">
                   <%= f.text_area :faxes_recipients, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:faxes_recipients_help) %>
                 </div>
               </div>
-              <div class="control-group form-fax hide">
+              <div class="control-group form-fax form-campaign hide">
                 <%= f.label :default_message_body, t(:default_message_body), :class => 'control-label' %>
                 <div class="controls">
                   <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
@@ -131,7 +125,6 @@
               </div>
             </fieldset>
           <% end %>
-
         </div><!-- create-campaign-form -->
       </div><!-- create-campaigns -->
     </div><!-- campaigns-wrapper -->
