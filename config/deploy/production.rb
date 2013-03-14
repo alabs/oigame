@@ -110,11 +110,11 @@ namespace :deploy do
       ln -sf #{shared_path}/public/sitemap_index.xml.gz #{latest_release}/public/sitemap_index.xml.gz
     CMD
 
-    if fetch(:normalize_asset_timestamps, true)
-      stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
-      asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
-      run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
-    end
+    #if fetch(:normalize_asset_timestamps, true)
+    #  stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
+    #  asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
+    #  run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
+    #end
 
     # compilar en local y subir los assets al repo
     # precompile assets
@@ -134,18 +134,24 @@ namespace :deploy do
   
   namespace :assets do
 
-    task :precompile, :roles => :web do
-      from = source.next_revision(current_revision)
-      if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ lib/assets/ app/assets/ | wc -l").to_i > 0
-        run_locally("rake assets:clean && rake assets:precompile")
-        run_locally "cd public && tar -jcf assets.tar.bz2 assets"
-        top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
-        run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
-        run_locally "rm public/assets.tar.bz2"
-        run_locally("rake assets:clean")
-      else
-        logger.info "Skipping asset precompilation because there were no asset changes"
-      end
+    #task :precompile, :roles => :web do
+    #  from = source.next_revision(current_revision)
+    #  if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ lib/assets/ app/assets/ | wc -l").to_i > 0
+    #    run_locally("rake assets:clean && rake assets:precompile")
+    #    run_locally "cd public && tar -jcf assets.tar.bz2 assets"
+    #    top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
+    #    run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
+    #    run_locally "rm public/assets.tar.bz2"
+    #    run_locally("rake assets:clean")
+    #  else
+    #    logger.info "Skipping asset precompilation because there were no asset changes"
+    #  end
+    #end
+    
+    task :compile_assets do
+      run <<-CMD
+        cd /var/www/oiga.me/current; RAILS_ENV=production bundle exec rake assets:precompile
+      CMD
     end
 
     task :symlink, roles: :web do
@@ -213,6 +219,7 @@ end
 
 #after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
+before 'deploy:finalize_update', 'deploy:compile_assets'
 before 'deploy:finalize_update', 'deploy:assets:symlink'
-after 'deploy:update_code', 'deploy:assets:precompile'
+#after 'deploy:update_code', 'deploy:assets:precompile'
 #after "deploy:restart", "resque:restart"
