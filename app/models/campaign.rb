@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class Campaign < ActiveRecord::Base
 
   self.per_page = 6
@@ -13,7 +14,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   has_many :donations
   has_many :updates
-  
+
   attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype,
     :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :postal_code,
     :identity_card, :state, :hashtag, :video_url
@@ -28,31 +29,31 @@ class Campaign < ActiveRecord::Base
 
   TYPES = {
     :petition =>
-      {
-        :name       => I18n.t('petition'),
-        :img        => 'icon-pencil',
-        :model_name => 'Petition',
-        :message    => I18n.t('oigame.campaigns.type.petition_message'),
-        :action     => I18n.t('oigame.campaigns.type.petition_action'),
-      },
+    {
+      :name       => I18n.t('petition'),
+      :img        => 'icon-pencil',
+      :model_name => 'Petition',
+      :message    => I18n.t('oigame.campaigns.type.petition_message'),
+      :action     => I18n.t('oigame.campaigns.type.petition_action'),
+    },
     :mailing =>
-      {
-        :name       => I18n.t('mailing'),
-        :img        => 'icon-envelope',
-        :model_name => 'Message',
-        :message    => I18n.t('oigame.campaigns.type.mailing_message'),
-        :action     => I18n.t('oigame.campaigns.type.mailing_action'),
-      },
+    {
+      :name       => I18n.t('mailing'),
+      :img        => 'icon-envelope',
+      :model_name => 'Message',
+      :message    => I18n.t('oigame.campaigns.type.mailing_message'),
+      :action     => I18n.t('oigame.campaigns.type.mailing_action'),
+    },
     :fax =>
-      {
-        :name       => I18n.t('fax'),
-        :img        => 'icon-print',
-        :model_name => 'Fax',
-        :message    => I18n.t('oigame.campaigns.type.fax_message'),
-        :action     => I18n.t('oigame.campaigns.type.fax_action'),
-      },
+    {
+      :name       => I18n.t('fax'),
+      :img        => 'icon-print',
+      :model_name => 'Fax',
+      :message    => I18n.t('oigame.campaigns.type.fax_message'),
+      :action     => I18n.t('oigame.campaigns.type.fax_action'),
+    },
   }
-   # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
+  # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
 
   STATUS = %w[active archived deleted]
 
@@ -65,6 +66,8 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :duedate_at, :if => :active_or_duedate_at?
   validates :intro, :length => { :maximum => 500 }
   validates :default_message_body, :length => { :maximum => 3960 }, :if => :fax_campaign?
+
+  validate :validate_video_url_provider
 
   mount_uploader :image, CampaignImageUploader
 
@@ -85,7 +88,7 @@ class Campaign < ActiveRecord::Base
     indexes :intro
     indexes :status
     indexes :sub_oigame_id
-    
+
     # a little hack para que podamos buscar por nil
     # https://groups.google.com/forum/?fromgroups#!topic/thinking-sphinx/CUwd3m_4cLQ
     has "sub_oigame_id IS NULL", :type => :boolean, :as => :no_sub
@@ -106,7 +109,7 @@ class Campaign < ActiveRecord::Base
     def last_campaigns(page = 1, sub_oigame = nil, limit = nil)
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => sub_oigame).published.limit(limit).page(page)
     end
-    
+
     def last_campaigns_without_pagination(limit = nil)
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => nil).published.limit(limit)
     end
@@ -122,7 +125,7 @@ class Campaign < ActiveRecord::Base
     def archived_campaigns(page = 1, sub_oigame = nil)
       where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive.page(page)
     end
-    
+
     def archived_campaigns_without_pagination(sub_oigame = nil)
       where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive
     end
@@ -175,7 +178,7 @@ class Campaign < ActiveRecord::Base
   def faxes_recipients
     self.numbers.join("\r\n")
   end
-  
+
   def faxes_recipients=(args)
     numbs = args.gsub(/\s+/, ',').split(',')
     # arreglar el bug del strip
@@ -208,7 +211,7 @@ class Campaign < ActiveRecord::Base
     addresses.delete_if {|a| a.blank? }
     self.emails = addresses
   end
-  
+
   def recipients_for_message
     self.emails.join(',')
   end
@@ -220,7 +223,7 @@ class Campaign < ActiveRecord::Base
   def to_html(field)
     render = Redcarpet::Render::HTML.new(:filter_html => true)
     markdown = Redcarpet::Markdown.new(render,
-      :autolink => true, :space_after_headers => true)
+                                       :autolink => true, :space_after_headers => true)
     markdown.render(field).html_safe
   end
 
@@ -323,7 +326,7 @@ class Campaign < ActiveRecord::Base
       counter += count
       data.push([date.strftime('%Y-%m-%d'), counter])
     end
-    
+
     return data
   end
 
@@ -346,7 +349,7 @@ class Campaign < ActiveRecord::Base
   def active_or_image?
     wstatus.include?('image') || active?
   end
-  
+
   def active_or_intro?
     wstatus.include?('intro') || active?
   end
@@ -354,11 +357,11 @@ class Campaign < ActiveRecord::Base
   def active_or_body?
     wstatus.include?('body') || active?
   end
-  
+
   def active_or_ttype?
     wstatus.include?('ttype') || active?
   end
-  
+
   def active_or_duedate_at?
     wstatus.include?('duedate_at') || active?
   end
@@ -408,7 +411,7 @@ class Campaign < ActiveRecord::Base
     recipients.each {|r| response += r + "\n" }
     return response
   end
-  
+
   private
 
   def generate_slug
@@ -451,7 +454,14 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def validate_video_url_provider
+    unless self.video_url.start_with?("http://youtu.be/", "http://www.youtube.com/watch?v=", "https://www.youtube.com/watch?v=", "http://vimeo.com/")
+      errors.add :video_url, "must be a valid provider" 
+    end
+  end
+
   def fax_campaign?
     self.ttype == 'fax'
   end
 end
+

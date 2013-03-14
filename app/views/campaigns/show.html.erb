@@ -58,11 +58,20 @@
 
         <div id="desc" class="active tab-pane">
           <div id="campaign-info">
+
             <%= @description %>
+
+            <% if @videotron %>
+              <%= raw @videotron.embed_html("100%") %>
+            <% end %>
+
+            <p>
             <%= link_to "#", :class => "js-campaign-description-show" do %>
               <i class="icon-circle-arrow-down"></i>
               <span style="margin-left:0.3em;"><%= t(:continue_reading) %></span>
             <% end %>
+            </p>
+
           </div>
           <div id="campaign-info" class="js-campaign-description hide">
             <%= @campaign.to_html(@campaign.body).html_safe %>
