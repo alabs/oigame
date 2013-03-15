@@ -1,18 +1,18 @@
 <ul class="inline">
   <li>
-  <a class="social-button social-button-tw" href="https://twitter.com/intent/tweet?button_hashtag=<%= campaign.hashtag %>&text=<%= URI.escape(campaign.name) %>">
+  <a class="social-button social-button-tw" href="https://twitter.com/intent/tweet?url=<%= CGI.escape campaign.get_absolute_url %>&via=oigame&text=<%= "#{CGI.escape("He participado en la campaña \"#{campaign.name}\"")}" %>">
     <i class="icon-twitter"></i>
     Tweet 
   </a>
   </li>
   <li>
-  <a href="#" class="social-button social-button-fb js-fb-share">
+  <a class="social-button social-button-fb js-social-button" href="<%= "http://www.facebook.com/sharer.php?s=100&p[title]=#{ CGI.escape campaign.name }&p[summary]=#{CGI.escape campaign.intro }&p[url]=#{CGI.escape campaign.get_absolute_url}&p[images][0]=#{CGI.escape campaign.get_image_absolute_url}&t=#{CGI.escape campaign.intro}"%>">
     <i class="icon-facebook"></i>
     <span><%= t(:share) %></span>
   </a>
   </li>
   <li>
-  <a class="social-button social-button-g js-google-plus-share" href="https://plus.google.com/share?url=<%= URI.escape campaign.get_absolute_url %>" >
+  <a class="social-button social-button-g js-social-button" href="https://plus.google.com/share?url=<%= URI.escape campaign.get_absolute_url %>" >
     <i class="icon-google-plus"></i>
     <span><%= t(:share) %></span>
   </a>
