@@ -113,3 +113,5 @@ gem 'omniauth-twitter'
 
 gem 'airbrake'
 gem 'tweetstream'
+
+gem 'recaptcha', :require => 'recaptcha/rails'
