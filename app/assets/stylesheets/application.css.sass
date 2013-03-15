@@ -22,6 +22,8 @@
 @import "mdmagick"
 @import "mdmagick-font"
 
+@import "isotope"
+
 //@import url("style10.css")
 
 @font-face
@@ -678,7 +680,7 @@ input.btn, .btn
 
 /* Firefox - value portion of progress bar
 
-progress#bar,progress#barlista
+progress#bar, progress.barlista
   &::-moz-progress-bar
     background-image: url('brushed_alu.png')
     background-color: #EB5E40
@@ -698,7 +700,7 @@ progress#bar,progress#barlista
   width: 100%
   height: 30px
 
-progress#barlista
+progress.barlista
   height: 16px
   padding: 1px
 
@@ -1492,6 +1494,7 @@ ol.progtrckr li.progtrckr-todo:before
 .btn:hover, .btn:focus, .btn-campaign button:hover
   box-shadow: 5px 5px 5px #888888
   background-position: 0px
+  text-decoration: none
 
 .error_message
   color: red

@@ -452,7 +452,8 @@ es:
   by_signing_you_accept: "Firmando aceptas la "
   has_gotten: "conseguidas"
   users: 'Usuarios'
-  miss: "Faltan"
+  miss: "faltan"
+  participated: "participaron"
   firms_more: "firmas más"
   more: "más"
   languages: 'Idiomas'

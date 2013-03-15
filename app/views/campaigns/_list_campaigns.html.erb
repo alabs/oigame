@@ -34,15 +34,14 @@
 
   <% if @campaigns.count > 0 %>      
     <div class="row-fluid">
-      <% @campaigns.each do |campaign| %>
-        <div class="mostrar-campaign span4">
-          <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
-        </div>
-      <% end %>
+      <div class="thumbnails">
+        <%= render @campaigns %>
+      </div>
     </div>
     <% unless no_paginate %>
       <div class="center">
-        <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
+        <div class="alert-pagination-end" style="display:none;">No hay más campañas para mostrar</div>
+        <%= will_paginate(@campaigns, :page_links => false) %>
       </div>
     <% end %>
   </div>
