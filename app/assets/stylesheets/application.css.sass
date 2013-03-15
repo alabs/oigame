@@ -14,12 +14,15 @@
 @import "iosslider"
 @import "pages"
 @import "campaigns"
+@import "social"
 
 @import "style_common"
 
 //mdmagick
 @import "mdmagick"
 @import "mdmagick-font"
+
+@import "isotope"
 
 //@import url("style10.css")
 
@@ -623,18 +626,6 @@ span
     padding-top: 11px
     color: #828383
 
-/* R E D E S
-
-#redes
-  width: 90%
-  margin-top: 4px
-  margin-bottom: 4px
-  ul li
-    font-size: 12px
-    list-style: none outside none
-    margin-left: 0
-    margin-bottom: 0.5em
-
 .ZRa
   float: left
   white-space: nowrap
@@ -690,7 +681,7 @@ input.btn, .btn
 
 /* Firefox - value portion of progress bar
 
-progress#bar,progress#barlista
+progress#bar, progress.barlista
   &::-moz-progress-bar
     background-image: url('brushed_alu.png')
     background-color: #EB5E40
@@ -710,7 +701,7 @@ progress#bar,progress#barlista
   width: 100%
   height: 30px
 
-progress#barlista
+progress.barlista
   height: 16px
   padding: 1px
 
@@ -1422,6 +1413,17 @@ a:hover
 .line-tabs
   display: inline-block
 
+.modal
+  h4
+    line-height: 1.25em
+    margin: 0 2em 0 0
+  .thumbnail
+    display: inline-block
+    padding: 1em
+    border: 0
+    img
+      margin-top: 2em
+
 /* http://blog.sathomas.me/post/tracking-progress-in-pure-css */
 
 ol.progtrckr
@@ -1490,48 +1492,15 @@ ol.progtrckr li.progtrckr-todo:before
   margin-left: 0
   margin-bottom: -4%
 
-.social-button
-  -moz-user-select: none
-  background-color: #F8F8F8
-  background-image: -moz-linear-gradient(center top , #FFFFFF, #DEDEDE)
-  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#dedede))
-  border: 1px solid #CCCCCC
-  border-radius: 3px 3px 3px 3px
-  -webkit-border-radius: 3px
-  color: #333333
-  cursor: pointer
-  font-weight: bold
-  height: 20px
-  max-width: 100%
-  box-sizing: border-box
-  overflow: hidden
-  position: relative
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  font: 11px/18px 'Helvetica Neue',Arial,sans-serif
-  font-weight: bold
-  padding: 3px
-  i
-    color: #3B5998
-  span
-    padding: 0 6px 0 0px
-    margin-left: -5px
-
 .btn:hover, .btn:focus, .btn-campaign button:hover
   box-shadow: 5px 5px 5px #888888
   background-position: 0px
+  text-decoration: none
 
 .error_message
   color: red
   font-size: 1em
   font-weight: bold
-
-.social-button:focus, .social-button:hover, .social-button:active
-  background-color: #F8F8F8
-  background-image: -moz-linear-gradient(center top , #F8F8F8, #D9D9D9)
-  border-color: #BBBBBB
-  color: #333333
-  text-decoration: none
-  box-shadow: none
 
 #profile-message
   font-size: 2em
