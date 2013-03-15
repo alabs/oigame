@@ -30,3 +30,4 @@
 //= require a-tools
 //= require showdown
 //= require mdmagick
+//= require jquery.isotope.min
