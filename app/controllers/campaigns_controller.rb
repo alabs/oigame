@@ -33,7 +33,11 @@ class CampaignsController < ApplicationController
     #end
     @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
 
-    respond_with(@campaigns)
+    respond_to do |format|
+      format.js
+      format.html # index.html.erb
+      format.xml  { render :xml => @campaigns }
+    end
   end
 
   def show
