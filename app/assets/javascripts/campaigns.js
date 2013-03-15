@@ -208,4 +208,6 @@ $(function() {
     $('.js-campaign-description').slideDown('slow');
   });
 
+  $('.js-modal-thanks').modal()
+
 });

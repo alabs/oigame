@@ -3,11 +3,6 @@
 <% message = message || false %>
 
 <div class="campaign-infolist row-fluid">
-  <% if message %>
-    <div class="message-thanks">
-      <%= message %>
-    </div>
-  <% end %>
   <% unless no_btns %>
     <div class="btn-group" >
       <% if @sub_oigame %>
@@ -26,9 +21,15 @@
     </div>
   <% end %>
 
-  <div class="span11">
+  <div class="span12">
     <h2><i class="icon-time"></i><%= @page_title %></h2>
     <hr class="dashed">
+    <% if message %>
+      <%= render :partial => 'thanks_modal', :locals => {:message => message, :campaign => campaign} %>
+      <div class="message-thanks">
+        <p> <%= t(:other_campaigns) %> </p>
+      </div>
+    <% end %>
   </div>
 
   <% if @campaigns.count > 0 %>      
