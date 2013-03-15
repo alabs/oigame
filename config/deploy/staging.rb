@@ -160,7 +160,7 @@ namespace :deploy do
     
     task :compile_assets do
       run <<-CMD
-        cd /var/www/oiga.me/current; RAILS_ENV=staging bundle exec rake assets:precompile
+      run "cd #{release_path}; bundle exec rake assets:precompile"
       CMD
     end
 
@@ -229,7 +229,7 @@ end
 
 #after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
-before 'deploy:finalize_update', 'deploy:assets:compile_assets'
+after 'deploy:finalize_update', 'deploy:assets:compile_assets'
 before 'deploy:finalize_update', 'deploy:assets:symlink'
 #after 'deploy:update_code', 'deploy:assets:precompile'
 #after "deploy:restart", "resque:restart"
