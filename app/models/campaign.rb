@@ -305,6 +305,10 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def get_image_absolute_url
+    return APP_CONFIG[:domain] + image_url
+  end
+
   def stats
     case ttype
     when "petition"
