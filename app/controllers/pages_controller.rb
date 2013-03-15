@@ -23,20 +23,18 @@ class PagesController < ApplicationController
   
   def contact
     if request.post?
-      # no funciona el honeypot-captcha, asi que hacemos el honeypot captcha a mano
-      if params[:a_comment_body].blank?
+      if verify_recaptcha()
         @contact = Contact.new(params[:contact])
         if @contact.save
           Mailman.send_contact_message(@contact.id).deliver
           redirect_to contact_received_url, :notice => t('oigame.contact.received')
           return
         else
+          flash[:error] = "Hubo un error al enviar el mensaje"
           @contact = Contact.new
         end
       else
         @contact = Contact.new
-        flash[:error] = t('oigame.contact.error')
-        render
       end
     else
       @contact = Contact.new
