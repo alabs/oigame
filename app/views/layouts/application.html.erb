@@ -51,6 +51,16 @@
 
     <%= render :partial => 'header' %>
 
+<style>
+.page-header-top {
+    border-bottom: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    margin: -20px 0 30px;
+    padding: 20px 20px 10px;
+}
+</style>
+
+
     <% unless @sub_oigame.nil? %>
       <style>
         <%= @sub_oigame.html_style %>
@@ -73,83 +83,7 @@ l li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
       </div>
     <% end %>
 
-    <br clear="all"/>
-    <div id="links-wrapper" class="topfooter">
-      <div class="cthreecolumns c row-fluid">
-        <div class="threecolumns span3">
-          <span><i class="icon-pencil"></i></span>
-          <h3><%= t "oigame.home.footer.petition_title" %></h3>
-          <p><%= t "oigame.home.footer.petition_body_html" %></p>
-        </div><!-- threecolumns -->
-        <div class="threecolumns span3">
-          <span><i class="icon-envelope"></i></span>
-          <h3><%= t "oigame.home.footer.mailing_title" %></h3>
-          <p><%= t "oigame.home.footer.mailing_body_html" %></p>
-        </div><!-- threecolumns -->
-        <div class="threecolumns span3">
-          <span><i class="icon-print"></i></span>
-          <h3><%= t "oigame.home.footer.fax_title" %></h3>
-          <p><%= t "oigame.home.footer.fax_body_html" %></p>
-        </div><!-- threecolumns -->
-        <div class="threecolumns span3">
-          <span><i class="icon-mobile-phone"></i></span>
-          <h3><%= t "oigame.home.footer.telephony_title" %></h3>
-          <p><%= t "oigame.home.footer.telephony_body_html" %></p>
-        </div><!-- threecolumns -->
-      </div><!-- cthreecolumns -->
-    </div><!-- topfooter -->
-
-    <div id="footer-wrapper">
-    <div id="footer">
-
-      <div class="" id="first_footer_a">
-        <ul>
-          <li>
-          <a href="/es/campaigns/feed">
-            <i class="glyphicon-rss icon-2x"></i>
-          </a>
-          </li>
-          <li>
-          <a href="https://twitter.com/oigame">
-            <i class="icon-twitter-sign icon-2x"></i>
-          </a>
-          </li>
-          <li>
-          <a href="https://plus.google.com/109609067558669990733/posts">
-            <i class="icon-google-plus-sign icon-2x">
-            </i>
-          </a>
-          </li>
-          <li>
-          <a href="https://www.facebook.com/oiga.me">
-            <i class="icon-facebook-sign icon-2x"></i>
-          </a>
-          </li>
-          <li>
-          <a href="https://github.com/alabs/oigame">
-            <i class="icon-github-alt icon-2x"></i>
-          </a>
-          </li>
-        </ul>
-      </div>
-      <!--
-      <div class="" id="first_footer_b">
-        <ul>
-          <li>
-          <%= image_tag 'openpk.png' %>      
-          </li>
-          <li>
-          <%= image_tag 'transparentpk.png' %>
-          </li>
-          <li>
-          <%= image_tag '99pk.png' %>
-          </li>
-        </ul>
-
-      </div>
-      -->
-    </div>
-    </div>
+    <%= render :partial => 'footer' %>
 
     <% if Rails.env == 'production' %>
       <script type="text/javascript">

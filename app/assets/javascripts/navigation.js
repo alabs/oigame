@@ -55,6 +55,6 @@ $(function() {
     document.location.href = $(this).val();  
   });
  
-  check_current_navbar(document.URL.split('/')[4]);
+  //check_current_navbar(document.URL.split('/')[4]);
 
 });

@@ -1,50 +1,51 @@
 <% @page_title = t(:privacy_policy) %>
+<% @header_top = t(:privacy_policy) %>
 
-<div id="page-wrapper">
-  <div id="page">
-    <div id="page-info">
-      <h2><%= @page_title %></h2>
-      <h3><%= t("oigame.privacy.legal_notice_title") %></h3>
-      <p><%= t("oigame.privacy.legal_notice_1") %></p>
-      <p><%= t("oigame.privacy.legal_notice_2") %></p>
-      <p><%= t("oigame.privacy.legal_notice_3") %></p>
-      <h3><%= t("oigame.privacy.terms_title") %></h3>
-      <ol>
-        <li><%= t("oigame.privacy.terms_1") %></li>
-        <li><%= t("oigame.privacy.terms_2") %></li>
-        <li><%= t("oigame.privacy.terms_3") %></li>
-        <li><%= t("oigame.privacy.terms_4") %></li>
-        <li><%= t("oigame.privacy.terms_5") %></li>
-        <li><%= t("oigame.privacy.terms_6") %></li>
-        <li><%= t("oigame.privacy.terms_7") %></li>
-        <li><%= t("oigame.privacy.terms_8") %></li>
-      </ol>
-      <h3><%= t("oigame.privacy.policy_title") %></h3>
-      <p><%= t("oigame.privacy.policy_1") %></p>
-      <h4><%= t("oigame.privacy.consent_title") %></h4>
-      <p><%= t("oigame.privacy.consent_1") %></p>
-      <h4><%= t("oigame.privacy.donation_title") %></h4>
-      <p><%= t("oigame.privacy.donation_1") %></p>
-      <h4><%= t("oigame.privacy.lopd_cancel_title") %></h4>
-      <p><%= t("oigame.privacy.lopd_cancel_1") %></p>
-      <p><%= t("oigame.privacy.lopd_cancel_2") %></p>
-      <p><%= t("oigame.privacy.lopd_cancel_3") %></p>
-      <h4><%= t("oigame.privacy.lopd_resp_title") %></h4>
-      <p><%= t("oigame.privacy.lopd_resp_1") %></p>
-      <h4><%= t("oigame.privacy.data_reg_title") %></h4>
-      <p><%= t("oigame.privacy.data_reg_1") %></p>
-      <p><%= t("oigame.privacy.data_reg_2") %></p>
-      <h4><%= t("oigame.privacy.minors_title") %></h4>
-      <p><%= t("oigame.privacy.minors_1") %></p>
-      <h4><%= t("oigame.privacy.relevant_info_title") %></h4>
-        <li><%= t("oigame.privacy.relevant_info_1") %></li>
-        <li><%= t("oigame.privacy.relevant_info_2") %></li>
-        <li><%= t("oigame.privacy.relevant_info_3") %></li>
-      <h4><%= t("oigame.privacy.link_title") %></h4>
-      <p><%= t("oigame.privacy.link_1") %></p>
-      <p><%= t("oigame.privacy.link_2") %></p>
-      </p>
-      <p><%= t("oigame.privacy.final") %></p>
-    </div><!-- page-info -->
-  </div><!-- page -->
-</div><!-- page-wrapper -->
+<div class="row-fluid">
+
+  <%= render :partial => 'nav_bar', :locals => {:active => 'privacy'} %>
+
+  <div class="span9">
+    <h3><%= t("oigame.privacy.legal_notice_title") %></h3>
+    <p><%= t("oigame.privacy.legal_notice_1") %></p>
+    <p><%= t("oigame.privacy.legal_notice_2") %></p>
+    <p><%= t("oigame.privacy.legal_notice_3") %></p>
+    <h3><%= t("oigame.privacy.terms_title") %></h3>
+    <ol>
+      <li><%= t("oigame.privacy.terms_1") %></li>
+      <li><%= t("oigame.privacy.terms_2") %></li>
+      <li><%= t("oigame.privacy.terms_3") %></li>
+      <li><%= t("oigame.privacy.terms_4") %></li>
+      <li><%= t("oigame.privacy.terms_5") %></li>
+      <li><%= t("oigame.privacy.terms_6") %></li>
+      <li><%= t("oigame.privacy.terms_7") %></li>
+      <li><%= t("oigame.privacy.terms_8") %></li>
+    </ol>
+    <h3><%= t("oigame.privacy.policy_title") %></h3>
+    <p><%= t("oigame.privacy.policy_1") %></p>
+    <h4><%= t("oigame.privacy.consent_title") %></h4>
+    <p><%= t("oigame.privacy.consent_1") %></p>
+    <h4><%= t("oigame.privacy.donation_title") %></h4>
+    <p><%= t("oigame.privacy.donation_1") %></p>
+    <h4><%= t("oigame.privacy.lopd_cancel_title") %></h4>
+    <p><%= t("oigame.privacy.lopd_cancel_1") %></p>
+    <p><%= t("oigame.privacy.lopd_cancel_2") %></p>
+    <p><%= t("oigame.privacy.lopd_cancel_3") %></p>
+    <h4><%= t("oigame.privacy.lopd_resp_title") %></h4>
+    <p><%= t("oigame.privacy.lopd_resp_1") %></p>
+    <h4><%= t("oigame.privacy.data_reg_title") %></h4>
+    <p><%= t("oigame.privacy.data_reg_1") %></p>
+    <p><%= t("oigame.privacy.data_reg_2") %></p>
+    <h4><%= t("oigame.privacy.minors_title") %></h4>
+    <p><%= t("oigame.privacy.minors_1") %></p>
+    <h4><%= t("oigame.privacy.relevant_info_title") %></h4>
+    <li><%= t("oigame.privacy.relevant_info_1") %></li>
+    <li><%= t("oigame.privacy.relevant_info_2") %></li>
+    <li><%= t("oigame.privacy.relevant_info_3") %></li>
+    <h4><%= t("oigame.privacy.link_title") %></h4>
+    <p><%= t("oigame.privacy.link_1") %></p>
+    <p><%= t("oigame.privacy.link_2") %></p>
+    </p>
+    <p><%= t("oigame.privacy.final") %></p>
+  </div><!-- .span7 -->
+</div><!-- .content-fluid -->
