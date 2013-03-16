@@ -1,6 +1,5 @@
 //@import "960"
 @import "bootstrap"
-@import "bootstrap-responsive.min"
 @import "wisiwisi-editor"
 @import "highlight.zenburn"
 //@import "jquery.dialog2"
@@ -413,6 +412,11 @@ button
   margin-top: 4%
   margin-bottom: 13px
 
+.nav-pills > .active > a, .nav-pills > .active > a:hover
+  background-color: $naranja !important
+  border-radius: 3px 3px 3px 3px
+  font-weight: bold
+
 #body
   height: 10em
   font-size: 0.8em
@@ -757,7 +761,6 @@ p
     letter-spacing: 0px
     font-weight: normal
     margin: 5px 0px
-    padding: 12px
     background-color: #DADADA
     text-align: justify
     text-shadow: 1px 1xpx 1px #f0f0f0
@@ -1309,6 +1312,26 @@ fieldset, #campaign-info, .update-item
   #first_footer_b
     display: block
     width: 100%
+
+#footer-final
+  background: url("//s3.amazonaws.com/wrapbootstrap/live/imgs/tray-bg.png") repeat scroll 0 0 #181818
+  color: #FFFFFF
+  height: 60px
+  overflow: hidden
+  padding: 0
+  width: auto
+  a
+    color: #EEEEEE
+  footer
+    border: medium none
+    height: 60px
+    margin: 0
+    overflow: hidden
+    padding: 0
+    p
+      font-size: 13px
+      line-height: 45px
+
 
 #no_credit_fax
   margin: 15px 20px 0px 20px

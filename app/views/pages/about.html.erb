@@ -1,7 +1,11 @@
 <% @page_title = t("oigame.pages.about.title") %>
-<div class="fondo">
-  <h2 class="paper"><%= t("oigame.pages.about.title_html") %></h2>
-  <ul>
+<% @header_top = t("oigame.pages.about.title") %>
+
+<div class="row-fluid">
+
+  <%= render :partial => 'nav_bar', :locals => {:active => 'about'} %>
+
+  <ul class="span9">
     <li>
     <h3><%= t("oigame.pages.about.question_1_html") %></h3>
     <p><%= t("oigame.pages.about.answer_1_1_html") %></p>
