@@ -1,39 +1,35 @@
 <% @page_title = t(:resend_confirmation_instructions) %>
-
+<% @header_top = t(:resend_confirmation_instructions) %>
 
 <div class="row-fluid">
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
 
+  <%= render :partial => "devise/shared/links" %>
 
   <div class="span7">
-
-<div id="page-wrapper">
-    <div id="resend-confirmation-instructions" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
-        <fieldset>
-          <legend><%= t(:please_fill_the_form) %></legend>
-          <div class="control-group">
-            <%= f.label t(:email), :class => 'control-label' %>
-            <div class="controls">
-              <%= f.email_field :email, :required => true %>
-              <% unless resource.errors[:email].blank? %>
-                <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
-              <% end %>
+    <div id="page-wrapper">
+      <div id="resend-confirmation-instructions" class="form-stacked">
+        <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
+          <fieldset>
+            <legend><%= t(:please_fill_the_form) %></legend>
+            <div class="control-group">
+              <%= f.label t(:email), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.email_field :email, :required => true %>
+                <% unless resource.errors[:email].blank? %>
+                  <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.submit t(:resend_confirmation_instructions), :class => 'btn btn-inverse primary' %>
+            <div class="control-group">
+              <div class="controls">
+                <%= f.submit t(:resend_confirmation_instructions), :class => 'btn btn-inverse primary' %>
+              </div>
             </div>
-          </div>
-        </fieldset>
-      <% end %>
-      <%= render :partial => "devise/shared/links" %>
+          </fieldset>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-  
 </div>
 

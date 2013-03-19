@@ -27,9 +27,12 @@
             <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
           <% else %>
             <li><%= link_to t(:create_account), new_user_registration_path %></li>
-            <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
+            <li>
+            <%= link_to new_user_session_path, :class => 'navbar-link' do %>
+              <i class="icon-lock icon"></i><%= t(:login) %>
+              </li>
+            <% end %>
           <% end %>
-
           <li>
           <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
             <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>
@@ -39,12 +42,16 @@
         </ul>
         <ul class="nav">
           <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
-          <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
-          <li id="header-faq"><%= link_to t(:faq), faq_path %></li>
-          <li id="header-about"><%= link_to t(:about), about_path %></li>
-          <li id="header-contact"><%= link_to t(:contact), contact_path %></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
   </div>
 </div>
+
+<% if defined? @header_top %>
+  <div class="paper page-header-top">
+    <div class="container-fluid">
+      <h1><%= @header_top %></h1>
+    </div>
+  </div>
+<% end %>

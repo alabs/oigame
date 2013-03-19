@@ -1,23 +1,19 @@
 <% @page_title = t(:donate) %>
+<% @header_top = t(:donate) %>
 
+<div class="row-fluid">
 
-  <div class="row-fluid">
+  <%= render :partial => 'pages/nav_bar', :locals => {:active => "donate"} %>
 
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
+  <div class="span9">
+    <%= link_to t(:donate_oigame), donate_init_path, :class => 'grande' %>
+    <br/>
+    <br/>
+    <br/>
+    <p><%= I18n.t(:donation_info_1) %></p>      
+    <p><%= I18n.t(:donation_info_2) %></p>      
+    <h3><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h3>
+    <p><%= I18n.t(:donation_secure_info) %></p>      
+  </div><!-- .span9 -->
 
-  <div class="">
-
-<div id="page-wrapper">
-  <div class="fondo">
-      <%= link_to t(:donate_oigame), donate_init_path, :class => 'grande' %>
-      <h2 class="paper"><%= @page_title %></h2>
-      <p><%= I18n.t(:donation_info_1) %></p>      
-      <p><%= I18n.t(:donation_info_2) %></p>      
-      <h3><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h3>
-      <p><%= I18n.t(:donation_secure_info) %></p>      
-      
-    </div><!-- page-info -->
-    </div><!-- fondo -->
-  </div><!-- page -->
-</div><!-- page-wrapper -->
+</div><!-- .row-fluid -->

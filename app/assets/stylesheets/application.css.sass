@@ -1,6 +1,5 @@
 //@import "960"
 @import "bootstrap"
-@import "bootstrap-responsive.min"
 @import "wisiwisi-editor"
 @import "highlight.zenburn"
 //@import "jquery.dialog2"
@@ -363,7 +362,7 @@ button
     box-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
     &:hover
       cursor: pointer
-      text-decoration: underline
+      text-decoration: none
   &.grande
     border-radius: 4px
     border: 1px solid #184B43
@@ -413,6 +412,11 @@ button
   margin-left: 9%
   margin-top: 4%
   margin-bottom: 13px
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover
+  background-color: $naranja !important
+  border-radius: 3px 3px 3px 3px
+  font-weight: bold
 
 #body
   height: 10em
@@ -674,8 +678,14 @@ input.btn, .btn
   background: #f0836c	9
   text-shadow: 0 1px #455D1E
   &:hover
+    opacity: 0.90
     cursor: pointer
-    text-decoration: underline
+    text-decoration: normal
+
+.btn:hover, .btn:focus, .btn-campaign:hover
+  background-position: 0px
+  text-decoration: none
+  opacity: 0.9
 
 /* P R O G R E S S B A R
 
@@ -758,7 +768,6 @@ p
     letter-spacing: 0px
     font-weight: normal
     margin: 5px 0px
-    padding: 12px
     background-color: #DADADA
     text-align: justify
     text-shadow: 1px 1xpx 1px #f0f0f0
@@ -1247,6 +1256,9 @@ fieldset, #campaign-info, .update-item
   display: inline
 
 #first_footer_b
+  color: white
+  display: block
+  width: 100%
   margin-top: 3%
   width: 33%
   display: inline
@@ -1307,9 +1319,29 @@ fieldset, #campaign-info, .update-item
     padding-left: 0px
     display: block
     width: 100%
-  #first_footer_b
-    display: block
-    width: 100%
+
+#footer-final
+  background: url("//s3.amazonaws.com/wrapbootstrap/live/imgs/tray-bg.png") repeat scroll 0 0 #181818
+  color: #FFFFFF
+  height: 60px
+  overflow: hidden
+  padding: 0
+  width: auto
+  a
+    color: #EEEEEE
+  footer
+    border: medium none
+    height: 60px
+    margin: 0
+    overflow: hidden
+    padding: 0
+    p
+      font-size: 13px
+      line-height: 45px
+      display: inline
+    img
+      padding-top: 0.7em
+
 
 #no_credit_fax
   margin: 15px 20px 0px 20px
@@ -1355,6 +1387,11 @@ fieldset, #campaign-info, .update-item
   padding-left: 0px !important
   padding-right: 0px !important
 
+.navbar-link
+  i
+    color: white
+    margin-right: 0.5em
+
 @media (max-width: 480px) 
   .img-wrap
     position: relative
@@ -1390,9 +1427,6 @@ fieldset, #campaign-info, .update-item
 
 .dl-horizontal dd
   margin-left: 120px
-
-fieldset
-  margin: 2em !important
 
 .language-selector
   width: 4em
@@ -1492,10 +1526,6 @@ ol.progtrckr li.progtrckr-todo:before
   margin-left: 0
   margin-bottom: -4%
 
-.btn:hover, .btn:focus, .btn-campaign button:hover
-  box-shadow: 5px 5px 5px #888888
-  background-position: 0px
-  text-decoration: none
 
 .error_message
   color: red
@@ -1504,4 +1534,3 @@ ol.progtrckr li.progtrckr-todo:before
 
 #profile-message
   font-size: 2em
-  

@@ -1,0 +1,10 @@
+<div class="span3">
+  <h5>Más información</h5>
+  <ul class="nav nav-pills nav-stacked">
+    <li<% if active == 'faq' %> class="active"<% end %>><%= link_to t(:faq), faq_path %></li>
+    <li<% if active == 'donate' %> class="active"<% end %>><%= link_to t(:donate), donate_path  %></li>
+    <li<% if active == 'privacy' %> class="active"<% end %>><%= link_to t(:privacy_policy), privacy_policy_path %></li>
+    <li<% if active == 'about' %> class="active"<% end %>><%= link_to t(:about), about_path %></li>
+    <li<% if active == 'contact' %> class="active"<% end %>><%= link_to t(:contact), contact_path %></li>
+  </ul>
+</div>

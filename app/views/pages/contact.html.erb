@@ -1,64 +1,65 @@
 <% @page_title = t(:contact) %>
+<% @header_top = t(:contact) %>
 
-<div id="page-wrapper">
-      <h2>Contactar con oiga.me</h2>
-      <div id="contact-form" class="form-stacked">
-        <%= form_for @contact, :url => contact_path, :html => { :class => 'form-horizontal' } do |f| %>
-          <fieldset>
-            <legend><%= t(:please_fill_the_form) %></legend>
-            <div class="control-group">
-              <%= f.label t(:name), :class => 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_and_surname) %>
-                <% unless @contact.errors[:name].blank? %>
-                  <span class="error_message"><%= @contact.errors[:name].to_sentence %></span>
-                <% end %>
-              </div>
-            </div>
-            <div class="control-group">
-              <%= f.label t(:email), :class => 'control-label' %>
-              <div class="controls">
-                <%= f.email_field :email, :class => 'span6', :required => true, :placeholder => t(:example_mail) %>
-                <% unless @contact.errors[:email].blank? %>
-                  <span class="error_message"><%= @contact.errors[:email].to_sentence %></span>
-                <% end %>
-              </div>
-            </div>
-            <div class="control-group">
-              <%= f.label t(:subject), :class => 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :subject, :class => 'span6', :placeholder => t(:subject) %>
-              </div>
-            </div>
-            <div class="control-group">
-              <%= f.label t(:message), :class => 'control-label' %>
-              <div class="controls">
-                <%= f.text_area :body, :rows => 10, :class => 'span6', :required => true,  :placeholder => t(:tell_us) %>
-                <% unless @contact.errors[:body].blank? %>
-                  <span class="error_message"><%= @contact.errors[:body].to_sentence %></span>
-                <% end %>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="controls">
-                <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="controls">
-                <%= recaptcha_tags %>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="controls">
-                <%= f.submit t(:send_message), :class => 'btn btn-inverse primary' %>
-              </div>
-            </div>
-          </fieldset>
-        <% end %>
-      </div><!-- contact-form -->
-    </div>
-  </div>
-</div><!-- page-wrapper -->
+<div class="row-fluid">
+
+  <%= render :partial => 'nav_bar', :locals => {:active => 'contact'} %>
+
+  <div id="contact-form" class="form-stacked span9">
+    <%= form_for @contact, :url => contact_path, :html => { :class => 'form-horizontal', :honeypot => true } do |f| %>
+      <fieldset>
+        <legend><%= t(:please_fill_the_form) %></legend>
+        <div class="control-group">
+          <%= f.label t(:name), :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :name, :class => 'span9', :required => true, :placeholder => t(:name_and_surname) %>
+            <% unless @contact.errors[:name].blank? %>
+              <span class="error_message"><%= @contact.errors[:name].to_sentence %></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label t(:email), :class => 'control-label' %>
+          <div class="controls">
+            <%= f.email_field :email, :class => 'span9', :required => true, :placeholder => t(:example_mail) %>
+            <% unless @contact.errors[:email].blank? %>
+              <span class="error_message"><%= @contact.errors[:email].to_sentence %></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label t(:subject), :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :subject, :class => 'span9', :placeholder => t(:subject) %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label t(:message), :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :body, :rows => 10, :class => 'span9', :required => true,  :placeholder => t(:tell_us) %>
+            <% unless @contact.errors[:body].blank? %>
+              <span class="error_message"><%= @contact.errors[:body].to_sentence %></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <%= recaptcha_tags %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.submit t(:send_message), :class => 'btn btn-inverse primary' %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+  </div><!-- contact-form -->
+</div>
 
 
