@@ -27,9 +27,12 @@
             <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
           <% else %>
             <li><%= link_to t(:create_account), new_user_registration_path %></li>
-            <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
+            <li>
+            <%= link_to new_user_session_path, :class => 'navbar-link' do %>
+              <i class="icon-lock icon"></i><%= t(:login) %>
+              </li>
+            <% end %>
           <% end %>
-
           <li>
           <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
             <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>

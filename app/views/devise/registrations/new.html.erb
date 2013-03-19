@@ -1,66 +1,62 @@
 <% @page_title = t(:signup) %>
-
+<% @header_top = @page_title %>
 
 <div class="row-fluid">
-  
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
 
-<div class="span7">
+  <%= render :partial => "devise/shared/links" %>
 
-<div id="page-wrapper">
-    <div id="signup-form" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
-        <fieldset>
-          <legend><%= @page_title %></legend>
-          <p>
+  <div class="span7">
+    <div id="page-wrapper">
+      <div id="signup-form" class="form-stacked">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
+          <fieldset>
+            <legend><%= @page_title %></legend>
+            <p>
             <%= t(:user_create) %>
-          </p>
-          <div class="control-group">
-            <%= f.label t(:email), :class => 'control-label' %>
-            <div class="controls">
-              <% unless params[:email] %>
-                <%= f.email_field :email, :required => true %>
-              <% else %>
-                <%= f.email_field :email, :value => params[:email], :required => true %>
-              <% end %>
-              <% unless resource.errors[:email].blank? %>
-                <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
-              <% end %>
+            </p>
+            <div class="control-group">
+              <%= f.label t(:email), :class => 'control-label' %>
+              <div class="controls">
+                <% unless params[:email] %>
+                  <%= f.email_field :email, :required => true %>
+                <% else %>
+                  <%= f.email_field :email, :value => params[:email], :required => true %>
+                <% end %>
+                <% unless resource.errors[:email].blank? %>
+                  <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <%= f.label t(:password), :class => 'control-label' %>
-            <div class="controls">
-              <%= f.password_field :password %>
-              <% unless resource.errors[:password].blank? %>
-                <span class="error_message"><%= resource.errors[:password].to_sentence %></span>
-              <% end %>
+            <div class="control-group">
+              <%= f.label t(:password), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.password_field :password %>
+                <% unless resource.errors[:password].blank? %>
+                  <span class="error_message"><%= resource.errors[:password].to_sentence %></span>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <%= f.label t(:password_confirmation), :class => 'control-label' %>
-            <div class="controls">
-              <%= f.password_field :password_confirmation %>
+            <div class="control-group">
+              <%= f.label t(:password_confirmation), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.password_field :password_confirmation %>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
+            <div class="control-group">
+              <div class="controls">
+                <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.submit @page_title, :class => 'btn btn-inverse primary' %>
+            <div class="control-group">
+              <div class="controls">
+                <%= f.submit @page_title, :class => 'btn btn-inverse primary' %>
+              </div>
             </div>
-          </div>
-        </fieldset>
-      <% end %>
-      <%= render :partial => "devise/shared/links" %>
-    </div><!-- signup-form -->
-  </div><!-- accounts -->
-</div><!-- accounts-wrapper -->
-
+          </fieldset>
+        <% end %>
+      </div><!-- signup-form -->
+    </div><!-- accounts -->
+  </div><!-- .span7 -->
 
 </div>
 
