@@ -3,7 +3,8 @@ $(function(){
 
   $('.thumbnails').isotope({
     // options
-    itemSelector : '.item'
+    itemSelector : '.item',
+    layoutMode   : 'fitRows'
   });
 
 $('.campaign-infolist .next_page')
