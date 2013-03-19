@@ -3,7 +3,7 @@
 <div id="page-wrapper">
       <h2>Contactar con oiga.me</h2>
       <div id="contact-form" class="form-stacked">
-        <%= form_for @contact, :url => contact_path, :html => { :class => 'form-horizontal', :honeypot => true } do |f| %>
+        <%= form_for @contact, :url => contact_path, :html => { :class => 'form-horizontal' } do |f| %>
           <fieldset>
             <legend><%= t(:please_fill_the_form) %></legend>
             <div class="control-group">
@@ -42,6 +42,11 @@
             <div class="control-group">
               <div class="controls">
                 <%= f.check_box :mailing, :checked => true %> <span class="note"><%= t(:i_want_to_receive_news) %></span>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <%= recaptcha_tags %>
               </div>
             </div>
             <div class="control-group">

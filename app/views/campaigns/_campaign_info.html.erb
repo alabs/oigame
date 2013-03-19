@@ -1,8 +1,12 @@
 <dl class="dl-horizontal">
   <dt><%= t(:created_by) %></dt>
-  <dd>
-  <%= link_to image_tag(avatar_url(campaign.user.email), :class => 'creada', :alt => campaign.user.name), profile_path(campaign.user) %>
-  <%= link_to campaign.user.name, profile_path(campaign.user) %>
+  <dd id="show-modal-add-friend-profile">
+    <%= link_to image_tag(avatar_url(campaign.user.email), :class => 'creada', :alt => campaign.user.name), profile_path(campaign.user) %>
+    <% if campaign.user.name %>
+      <%= link_to campaign.user.name, profile_path(campaign.user) %>
+    <% else %>
+      <%= link_to campaign.user.id, profile_path(campaign.user) %>
+    <% end %>
   </dd>
   <% if campaign.ttype == "fax" %>
     <dt><%= t(:credits) %></dt>
@@ -23,3 +27,4 @@
   <dt><%= t(:type) %></dt>
   <dd><i class="<%= campaign.ttype_img %>"></i> <%= campaign.ttype_name %> </dd>
   </dt>
+
