@@ -1,41 +1,37 @@
 #!/bin/sh
 
 ### BEGIN INIT INFO
-# Provides:          beta.oiga.me
+# Provides:          beta.oiga.me.resque
 # Required-Start:    $local_fs $remote_fs
 # Required-Stop:     $local_fs $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: beta.oiga.me initscript
-# Description:       beta.oiga.me - one script to rule them all
+# Short-Description: beta.oiga.me.resque initscript
+# Description:       beta.oiga.me.resque - control resque instance
 ### END INIT INFO
 
 # Original author: Andrés Pereira
 
 # Do NOT "set -e"
 
-THIN=/home/ruby-data/.rvm/bin/bootup_thin
 RAKE=/home/ruby-data/.rvm/bin/bootup_rake
 
 RAILS_ENV=staging
 USER=ruby-data
 APP_PATH=/var/www/beta.oiga.me/current
-SCRIPT_NAME=/etc/init.d/beta.oiga.me
-CONFIG_PATH=$APP_PATH/config/thin_staging.yml
+SCRIPT_NAME=/etc/init.d/beta.oiga.me.resque
 
 start() {
-        echo -n "Starting oigame..."
+        echo -n "[beta.oiga.me] Starting resque for staging..."
 
         cd $APP_PATH
-	sudo -u$USER $THIN start -C $CONFIG_PATH
         sudo -u$USER QUEUE=mailer COUNT=2 VVERBOSE=1 NEWRELIC_ENABLE=false RAILS_ENV=$RAILS_ENV $RAKE resque:work --trace >> /var/log/resque/$RAILS_ENV.log  2>&1 &
         return
 }
  
 stop() {
-        echo -n "Shutting down oigame... "
+        echo -n "[beta.oiga.me] Stoping resque for staging..."
 
-	sudo -u$USER $THIN stop -C $CONFIG_PATH
         ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | head -n1 | awk '{ print $1 }' | xargs kill
         return
 }

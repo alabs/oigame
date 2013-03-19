@@ -1,0 +1,62 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          oiga.me.thin
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: oiga.me.thin initscript
+# Description:       oiga.me.thin - thin application server
+### END INIT INFO
+
+# Original author: Andrés Pereira
+
+# Do NOT "set -e"
+
+THIN=/home/ruby-data/.rvm/bin/bootup_thin
+
+RAILS_ENV=production
+USER=oigame
+APP_PATH=/var/www/oiga.me/current
+SCRIPT_NAME=/etc/init.d/oigame.thin
+CONFIG_PATH=$APP_PATH/config/thin_production.yml
+
+start() {
+        echo -n "[oiga.me] Starting thin server for production..."
+
+        cd $APP_PATH
+	sudo -u$USER $THIN start -C $CONFIG_PATH
+        return
+}
+ 
+stop() {
+        echo -n "[oiga.me] Stoping thin server for production..."
+
+	sudo -u$USER $THIN stop -C $CONFIG_PATH
+        return
+}
+
+restart() {
+        echo -n "[oiga.me] Restarting thin server for production..."
+
+	sudo -u$USER $THIN restart --onebyone --wait 30 -C $CONFIG_PATH
+        return
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  *)
+	echo "Usage: $SCRIPT_NAME {start|stop|restart}" >&2
+	exit 3
+	;;
+esac
+
+:
