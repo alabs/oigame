@@ -23,7 +23,7 @@ SCRIPT_NAME=/etc/init.d/beta.oiga.me.thin
 CONFIG_PATH=$APP_PATH/config/thin_staging.yml
 
 start() {
-        echo -n "[beta.oiga.me] Starting thin server for staging..."
+        echo "[beta.oiga.me] Starting thin server for staging..."
 
         cd $APP_PATH
 	sudo -u$USER $THIN start -C $CONFIG_PATH
@@ -31,14 +31,14 @@ start() {
 }
  
 stop() {
-        echo -n "[beta.oiga.me] Stopping thin server for staging..."
+        echo "[beta.oiga.me] Stopping thin server for staging..."
 
 	sudo -u$USER $THIN stop -C $CONFIG_PATH
         return
 }
 
 restart() {
-        echo -n "[oiga.me] Restarting thin server for production..."
+        echo "[oiga.me] Restarting thin server for production..."
 
 	sudo -u$USER $THIN restart --onebyone --wait 30 -C $CONFIG_PATH
         return

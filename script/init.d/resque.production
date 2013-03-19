@@ -21,7 +21,7 @@ APP_PATH=/var/www/oiga.me/current
 SCRIPT_NAME=/etc/init.d/oigame.resque
 
 start() {
-        echo -n "[oiga.me] Starting resque for production..."
+        echo "[oiga.me] Starting resque for production..."
 
         cd $APP_PATH
         sudo -u$USER QUEUE=* COUNT=5 VVERBOSE=1 NEWRELIC_ENABLE=false RAILS_ENV=$RAILS_ENV $RAKE resque:work --trace >> /var/log/resque/$RAILS_ENV.log  2>&1 &
@@ -29,7 +29,7 @@ start() {
 }
  
 stop() {
-        echo -n "[oiga.me] Stoping resque for production..."
+        echo "[oiga.me] Stoping resque for production..."
 
         ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | head -n1 | awk '{ print $1 }' | xargs kill
         return
