@@ -1,38 +1,36 @@
 <% @page_title = t(:forgot_your_password) %>
-
+<% @header_top = t(:forgot_your_password) %>
 
 <div class="row-fluid">
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
 
+  <%= render :partial => "devise/shared/links" %>
 
   <div class="span7">
 
-<div id="page-wrapper">
-    <div id="forgot-password-form" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
-        <fieldset>
-          <legend><%= t(:please_fill_the_form) %></legend>
-          <div class="control-group">
-            <%= f.label t(:email), :class => 'control-label' %>
-            <div class="controls">
-              <%= f.email_field :email, :required => true %>
-              <% unless resource.errors[:email].blank? %>
-                <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
-              <% end %>
+    <div id="page-wrapper">
+      <div id="forgot-password-form" class="form-stacked">
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
+          <fieldset>
+            <legend><%= t(:please_fill_the_form) %></legend>
+            <div class="control-group">
+              <%= f.label t(:email), :class => 'control-label' %>
+              <div class="controls">
+                <%= f.email_field :email, :required => true %>
+                <% unless resource.errors[:email].blank? %>
+                  <span class="error_message"><%= resource.errors[:email].to_sentence %></span>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div class="contro-group">
-            <div class="controls">
-              <%= f.submit t(:request_new_password), :class => 'btn btn-inverse primary' %>
+            <div class="contro-group">
+              <div class="controls">
+                <%= f.submit t(:request_new_password), :class => 'btn btn-inverse primary' %>
+              </div>
             </div>
-          </div>
-        </fieldset>
-      <% end %>
-      <%= render :partial => "devise/shared/links" %>
-    </div><!-- forgot-passowrd-form -->
-</div><!-- accounts-wrapper -->
-  
-</div>
+          </fieldset>
+        <% end %>
+      </div><!-- forgot-passowrd-form -->
+    </div><!-- accounts-wrapper -->
+
+  </div>
 </div>
 

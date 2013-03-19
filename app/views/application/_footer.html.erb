@@ -58,8 +58,23 @@
         </li>
       </ul>
     </div>
+  </div>
+</div>
+
+<div id="footer-final">
+  <div class="container-fluid">
+    <footer>
+    <p class="pull-left">
+    <%= link_to t(:faq), faq_path %>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <%= link_to t(:donate), donate_path  %>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <%= link_to t(:privacy_policy), privacy_policy_path %>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <%= link_to t(:about), about_path %>&nbsp;&nbsp;·&nbsp;&nbsp;
+
+    <%= link_to t(:contact), contact_path %>
+    </p>
+
     <div class="" id="first_footer_b">
-      <ul>
+      <ul class="inline">
         <li>
         <%= image_tag 'openpk.png' %>      
         </li>
@@ -72,22 +87,8 @@
       </ul>
 
     </div>
-  </div>
-</div>
 
-<div id="footer-final">
-  <div class="container-fluid">
-    <footer>
-    <p>
-    <%= link_to t(:faq), faq_path %>&nbsp;&nbsp;·&nbsp;&nbsp;
-    <%= link_to t(:donate), donate_path  %>&nbsp;&nbsp;·&nbsp;&nbsp;
-    <%= link_to t(:privacy_policy), privacy_policy_path %>&nbsp;&nbsp;·&nbsp;&nbsp;
-    <%= link_to t(:about), about_path %>&nbsp;&nbsp;·&nbsp;&nbsp;
-
-    <%= link_to t(:contact), contact_path %>
-
-    <span class="pull-right"> (ↄ) 2013 oiga.me </span>
-    </p>
+    <p class="pull-right"> (ↄ) 2013 oiga.me </p>
     </footer>
   </div>
 </div>
