@@ -1,12 +1,16 @@
 var el = document.createElement('iframe'); 
 el.setAttribute('id', 'ifrm-campaign-<%= @campaign.id %>');
-el.setAttribute('src', '<%= APP_CONFIG[:domain] %>/campaigns/<%= @campaign.slug %>/widget-iframe.html');
+<% if @sub_oigame %>
+el.setAttribute('src', '<%= url_for widget_iframe_sub_oigame_campaign_url(:protocol => "https", :host => APP_CONFIG[:host]) %>');
+<% else %>
+el.setAttribute('src', '<%= url_for widget_iframe_campaign_url(:protocol => "https", :host => APP_CONFIG[:host]) %>');
+<% end %>
 el.setAttribute('width', '100%');
+// el height lo pasamos como un parametro, por ejemplo ?height=800
+el.setAttribute('height', '<%= params[:height] ? params[:height] + "px" : "500px" %>');
 el.setAttribute('scrolling', 'no');
 el.setAttribute('frameborder', '0');
 // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
 var scripts = document.getElementsByTagName('script');
 var script = scripts[scripts.length-1];
 script.parentNode.insertBefore(el, script);
-// paran no tener que hardcodear un height, ni que nos aparezca el tipico de 200px, lo hacemos dinamico
-el.setAttribute('height', el.offsetTop + 'px');
