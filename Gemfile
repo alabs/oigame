@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'mysql2'
 # prepare for upgrade to postgres
 #gem 'pg'
@@ -113,3 +113,5 @@ gem 'omniauth-twitter'
 
 gem 'airbrake'
 gem 'tweetstream'
+
+gem 'recaptcha', :require => 'recaptcha/rails'

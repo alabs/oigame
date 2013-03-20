@@ -9,7 +9,7 @@ class FacebookController < ApplicationController
         campaign = Campaign.find(sess[:id])
         fb_url = campaign_url campaign
         op.send_action(campaign.ttype,fb_url)
-        redirect_to root_url
+        redirect_to signed_campaign_url(campaign)
       else
         session[:user_return_to] = facebook_create_action_url
         redirect_to user_omniauth_authorize_path(:facebook)

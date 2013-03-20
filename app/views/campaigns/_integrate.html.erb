@@ -1,0 +1,12 @@
+
+<h2><%= t(:integrate) %> </h2>
+
+<p><%= I18n.t(:integrate_form_explanation_1) %></p><br />
+
+<% if @sub_oigame %> 
+ <% widget_url = url_for widget_sub_oigame_campaign_url(:protocol => "https", :host => APP_CONFIG[:host], :format => :js) %>
+<% else %> 
+ <% widget_url = url_for widget_campaign_url(:protocol => "https", :host => APP_CONFIG[:host], :format => :js) %>
+<% end %> 
+
+<pre><code class="html"><%=h "<script type=\"text\/javascript\" src=\"#{widget_url}\"></script>" %></code></pre>

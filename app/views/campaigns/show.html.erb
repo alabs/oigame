@@ -34,11 +34,16 @@
           <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
         <% end %>
         <li><a href="#updates" data-toggle="tab" title="<%= t(:updates) %>"><span><%= t(:updates) %></span></a></li>
+        <li><a href="#integrate" data-toggle="tab" title="<%= t(:integrate) %>"><span><%= t(:integrate) %></span></a></li>
         <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><i class="icon-signal"></i></span></a></li>
         <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
       </ul>
 
       <div class="topcontent tab-content">
+
+        <div id="integrate" class="tab-pane fade">
+          <%= render :partial => "integrate", :locals => { :campaign => @campaign } %>
+        </div>
 
         <div id="updates" class="tab-pane fade">
           <%= render :partial => "updates", :locals => { :campaign => @campaign } %>

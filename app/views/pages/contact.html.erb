@@ -49,6 +49,11 @@
         </div>
         <div class="control-group">
           <div class="controls">
+            <%= recaptcha_tags %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
             <%= f.submit t(:send_message), :class => 'btn btn-inverse primary' %>
           </div>
         </div>
@@ -56,7 +61,5 @@
     <% end %>
   </div><!-- contact-form -->
 </div>
-  </div>
-</div><!-- page-wrapper -->
 
 
