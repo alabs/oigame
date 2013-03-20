@@ -142,7 +142,7 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
-    @campaign.destroy
+    @campaign.trash
     flash[:notice] = 'La campaña se eliminió con éxito'
     if @sub_oigame.nil?
       redirect_to campaigns_url
