@@ -2,8 +2,9 @@
   <div class="thumbnail">
 
     <%= link_to campaign.get_absolute_url do %>
-      <%= image_tag(campaign.image_url(:home), :class => "campa-img img-polaroid") %>
+      <%= absolute_image_tag(campaign.image_url(:home), :class => "campa-img img-polaroid") %>
     <% end %>
+
     <div class="caption">
 
       <span class="title"><%= link_to campaign.name, campaign.get_absolute_url %></span>
@@ -37,8 +38,18 @@
           </span>
 
           <p>
-          <%= link_to t(:join), campaign.get_absolute_url, :title => campaign.name, :class => "btn" %>
+          <% if local_assigns[:archived] == true %>
+            <%= link_to t(:archived_campaign), campaign.get_absolute_url, :title => campaign.name, :class => "btn disabled" %>
+          <% else %>
+            <%= link_to t(:join), campaign.get_absolute_url, :title => campaign.name, :class => "btn" %>
+          <% end %>
           </p>
+
+          <% if local_assigns[:widget] == true %>
+            <p class="campa-footer">
+            <%= link_to(absolute_image_tag("logo_oigame.png", :alt => "oiga.me"), url_for(root_url(:protocol => "https", :host => APP_CONFIG[:host])), :title => "oiga.me") %>
+            </p>
+          <% end %>
 
         </div>
       <% end %>
