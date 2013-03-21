@@ -8,7 +8,7 @@ class CampaignsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
   before_filter :get_campaign_with_other_campaigns, only: [:signed]
-  before_filter :get_campaign, :except => [:index, :feed, :new, :create, :archived]
+  before_filter :get_campaign, :except => [:index, :feed, :new, :create, :archived, :list]
   before_filter :protect_from_spam, :only => :sign
   before_filter :set_user_blank_parameters, only: :sign
 
@@ -22,7 +22,7 @@ class CampaignsController < ApplicationController
   filter_access_to :all, :attribute_check => true
   # para que no se haga check del attributo
   # preguntar a enrique como hacer esto más dry
-  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived
+  filter_access_to :index, :feed, :search, :moderated, :new, :create, :archived, :list
 
   respond_to :html, :json
 
@@ -37,6 +37,14 @@ class CampaignsController < ApplicationController
       format.js
       format.html # index.html.erb
       format.xml  { render :xml => @campaigns }
+    end
+  end
+
+  def list
+    @campaigns = Campaign.select('name, slug').published.where(:sub_oigame_id => nil)
+    respond_to do |format|
+      format.xml   { render :xml => @campaigns }
+      format.json  { render :json => @campaigns }
     end
   end
 
