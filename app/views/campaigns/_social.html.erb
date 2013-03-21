@@ -1,6 +1,6 @@
 <ul class="inline">
   <li>
-  <a class="social-button social-button-tw" href="https://twitter.com/intent/tweet?url=<%= CGI.escape campaign.get_absolute_url %>&via=oigame&text=<%= "#{CGI.escape("He participado en la campaña \"#{campaign.name}\"")}" %>">
+  <a class="social-button social-button-tw" href="https://twitter.com/intent/tweet?url=<%= CGI.escape campaign.get_absolute_url %>&via=oigame&text=<%= "#{CGI.escape("Sumate a la campaña \"#{campaign.name}\"")}" %>"&hastags=<%= CGI.escape campaign.hashtag%>>
     <i class="icon-twitter"></i>
     Tweet 
   </a>
