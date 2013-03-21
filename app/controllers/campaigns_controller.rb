@@ -150,7 +150,7 @@ class CampaignsController < ApplicationController
   end
 
   def destroy
-    @campaign.destroy
+    @campaign.trash
     flash[:notice] = 'La campaña se eliminió con éxito'
     if @sub_oigame.nil?
       redirect_to campaigns_url
@@ -401,7 +401,7 @@ class CampaignsController < ApplicationController
 
   def get_campaign_with_other_campaigns
     @campaign = Campaign.find_by_slug(params[:id])
-    @campaigns = @campaign.other_campaigns.each {|c| c.delete if c.has_participated?(current_user) }
+    @campaigns = @campaign.other_campaigns.reject! {|c| c.has_participated?(current_user) }
   end
 
   def set_user_blank_parameters
