@@ -1,89 +1,90 @@
 <% @page_title = @campaign.name %>
 <% @in_campaign = true %>
-<% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
 
-<% end %>
-
-<div class="row-fluid campaign-wrapper">
+<article class="row-fluid">
   <div class="span8">
     <div class="contenedorcampaign">
       <div class="img-wrap">
-        <div class="image-show-campaign"><%= image_tag @image_src %></div>
+        <div class="image-show-campaign"><%= image_tag @image_src, :alt => @campaign.name %></div>
         <div class="img-overlay text-show-campaign">
-          <h4><%= @campaign.name.capitalize %></h4>
-          <p><%= @description %></p>
+          <h1 style="font-size: 20px;"><%= @campaign.name %></h1>
         </div>
       </div>
     </div>
 
-    <div class="welcome-campaign">
-      <div id="explain">
-        <ul>
-          <li>
-            <p><b><%= t(:created_by) %>:</b>
-              <img class="creada" src="<%= avatar_url(@campaign.user.email) %>" alt="<%= @campaign.user.name %>"/>
-              <span class="creador_name"><%= @campaign.user.name %></span>
-            </p>
-          </li>
-          <% if @campaign.ttype == "fax" %>
-            <li>
-              <strong><span><%= t(:credits) %></span>:</strong> <%= number_with_precision(@campaign.credit, :precision => 2) %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
-            </li>
-          <% end %>
-          <li><strong><%= t(:published_at) %>:</strong><%= time_ago_in_words(@campaign.created_at) %></li>
-          <li><strong><%= t(:time_left) %>:</strong><%= (@campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></li>
-          <li><strong><%= t(:type) %>:</strong><i class="<%= @campaign.ttype_img %>"></i> <%= @campaign.ttype_name %> </li>
-        </ul>
+    <div class="row-fluid">
+      <div class="span6">
+        <%= render :partial => 'campaign_info', :locals => {:campaign => @campaign} %>
       </div>
 
-      <div id="progressbar">
-        <% objective  = @campaign.target.to_i %>
-        <% gotten = @campaign.messages_count.to_i %>
-        <progress id="bar" value="<%= gotten %>" max="<%= objective %>">
-        </progress>
-        <h3 id="recogidas"><span class="highlighted"><%= gotten %></span> <%= @campaign.ttype_message %></h3>
-
-      <span class="circle2"><i class="icon-signin"></i>
-      <p id="necesarias"><%= t(:miss) %><span class="underlined"><%= objective - gotten %></span> <%= t(:more) %>!</p>
-        </span>
+      <div id="progressbar" class="span6">
+        <%= render :partial => 'progress', :locals => {:campaign => @campaign} %>
       </div>
 
     </div><!-- welcome -->
 
+    <br />
+    <br />
 
-    <div style="    line-height: normal;
-    margin-left: 9.8%;
-    margin-top: 2em;
-    width: 90%;">
+    <div>
 
-      <ul class="nav nav-tabs">
-        <li><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
-        <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><%= t(:stats) %></span></a></li>
+      <ul class="nav nav-tabs line-tabs">
+        <li class="active"><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
+        <% unless @campaign.ttype == "petition" %>
+          <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
+        <% end %>
+        <li><a href="#updates" data-toggle="tab" title="<%= t(:updates) %>"><span><%= t(:updates) %></span></a></li>
+        <li><a href="#integrate" data-toggle="tab" title="<%= t(:integrate) %>"><span><%= t(:integrate) %></span></a></li>
+        <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><i class="icon-signal"></i></span></a></li>
         <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
-        <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
       </ul>
 
       <div class="topcontent tab-content">
+
+        <div id="integrate" class="tab-pane fade">
+          <%= render :partial => "integrate", :locals => { :campaign => @campaign } %>
+        </div>
+
+        <div id="updates" class="tab-pane fade">
+          <%= render :partial => "updates", :locals => { :campaign => @campaign } %>
+        </div>
 
         <div id="stats" class="tab-pane fade">
           <%= render :partial => "stats_chart", :locals => {:campaign => @campaign} %>
         </div>
 
         <div id="recip" class="tab-pane fade">
+          <h2><%= t(:recipients) %></h2>
           <p>
-            <%= t('your_message_will_be_sent_to') %>
+          <%= t('your_message_will_be_sent_to') %>
           </p>
           <%= simple_format @campaign.recipients_list %>
         </div>
 
         <div id="desc" class="active tab-pane">
           <div id="campaign-info">
+
+            <%= @description %>
+
+            <% if @videotron %>
+              <%= raw @videotron.embed_html("100%") %>
+            <% end %>
+
+            <p>
+            <%= link_to "#", :class => "js-campaign-description-show" do %>
+              <i class="icon-circle-arrow-down"></i>
+              <span style="margin-left:0.3em;"><%= t(:continue_reading) %></span>
+            <% end %>
+            </p>
+
+          </div>
+          <div id="campaign-info" class="js-campaign-description hide">
             <%= @campaign.to_html(@campaign.body).html_safe %>
           </div>
           <% if @message_body || @message_subject %>
             <div id="carta">
               <%= "<p><b>#{t(:subject)}:</b> #{@message_subject}</p>".html_safe if @message_subject %>
-              <p><b><%= t(:message) %>:</b></p>
+              <p><b><%= @campaign.ttype == "fax" ? t(:fax) : t(:message) %>:</b></p>
               <p><%= @message_body %></p>
             </div>
             <div class="sombracarta">
@@ -91,21 +92,12 @@
             </div>
           <% end %>
 
-        <% if @campaign.commentable %>
+          <% if @campaign.commentable %>
             <p style="margin-bottom:30px;"></p>
             <div id="participants">
-              <!-- FB COMMENTS -->
-              <div id="fb-root"></div>
-              <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-comments" data-href="<%= campaign_url %>" data-num-posts="2" data-width="600"></div>
+              <%= render :partial => 'comments', :locals => {:campaign => @campaign} %>
             </div><!-- participants -->
-        <% end %>
+          <% end %>
 
         </div><!-- description -->
       </div><!-- tab-content -->
@@ -114,22 +106,23 @@
   </div><!-- span8 -->
 
   <div class="span4">
-    <div class="sidefirma">
+    <div class="sidefirma" data-spy="affix" data-offset-bottom="600" data-offset-top="50">
       <% if @campaign.ttype == 'fax' && @campaign.credit <= 5 %>
         <%= render partial: 'fax_no_credit' %>
+      <% elsif @campaign.archived? %>
+        <%= render partial: 'is_archived' %>
       <% elsif @campaign.has_participated? current_user %>
         <%= render partial: 'has_participated' %>
       <% else %>
         <%= render partial: 'sign_form' %>
       <% end %>
       <div id="redes">
-        <a href="https://twitter.com/intent/tweet?button_hashtag=<%= @campaign.hashtag %>" class="twitter-hashtag-button">#<%= @campaign.hashtag %></a>
-        <div style="position:absolute; margin-left: 1em;" class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+        <%= render :partial => 'social', :locals => {:campaign => @campaign} %>
       </div>
     </div><!-- sidefirma -->
   </div> <!-- span4 -->
 
-</div> <!-- row-fluid -->
+  </article> <!-- row-fluid -->
 
-<br clear="all">
+  <br clear="all">
 

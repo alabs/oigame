@@ -4,9 +4,20 @@ class SendFax
 
   def self.perform fax_id
     campaign = Fax.find(fax_id).campaign
-    price = (FaxForRails::TAX * campaign.numbers.size)
-    campaign.credit = campaign.credit - price
-    campaign.save
-    Mailman.send_message_to_fax_recipients(fax_id, campaign.id).deliver
+    credits = campaign.numbers.size
+    if campaign.has_credit?(credits)
+      if campaign.numbers.size > 1
+        Mailman.send_message_to_fax_recipients(fax_id, campaign.id).deliver
+      else
+        Mailman.send_message_to_fax_recipient(fax_id, campaign.id).deliver
+      end
+      campaign.credit -= credits
+      campaign.save
+    else
+      # informar que no puede participar gente
+      Mailman.send_message_lower_credit(campaign.id).deliver
+      campaign.informed_low_credit = true
+      campaign.save
+    end
   end
 end

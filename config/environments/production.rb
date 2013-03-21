@@ -69,19 +69,19 @@ Oigame::Application.configure do
   config.to_prepare { Devise::SessionsController.force_ssl }
   config.to_prepare { Devise::RegistrationsController.force_ssl }
   config.to_prepare { Devise::PasswordsController.force_ssl }
-  
+
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => false,
-    :address => 'tron.oiga.me'
+    :address => 'pulsar.oiga.me'
   }
   
   # para que rule resque mailer
   config.action_mailer.perform_deliveries = true
-  
+
   # Para notificar excepciones
   config.middleware.use ExceptionNotifier,
-    :email_prefix => "[oiga.me exception] ",
+    :email_prefix => "[oiga.me production exception] ",
     :sender_address => %{"notifier" <notifier@oiga.me>},
     :exception_recipients => %w{debug@alabs.es}
 
@@ -91,11 +91,4 @@ Oigame::Application.configure do
   # instancia de redis
   config.cache_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
   config.sesion_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
-end
-
-Airbrake.configure do |config|
-  config.api_key = 'c6626f26039ab33d1b509b50bde13659'
-  config.host    = 'err.oiga.me'
-  config.port    = 443
-  config.secure  = config.port == 443
 end

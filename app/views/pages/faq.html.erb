@@ -1,63 +1,65 @@
 <% @page_title = t("oigame.pages.faq.title") %>
-<div id="page-wrapper faq">
-  <div class="fondo">
-  <h2 class="paper"><%= t("oigame.pages.faq.title_html") %> </h2>
-  <ol>
+<% @header_top = t("oigame.pages.faq.title_html") %>
+
+<div class="row-fluid">
+
+  <%= render :partial => 'nav_bar', :locals => {:active => 'faq'} %>
+
+  <ol class="span9">
     <li>
-      <h3><%= t("oigame.pages.faq.question_1") %></h3>
-      <p><%= t("oigame.pages.faq.answer_1") %></p>
+    <h3><%= t("oigame.pages.faq.question_1") %></h3>
+    <p><%= t("oigame.pages.faq.answer_1") %></p>
     </li>
     <li>
-      <h3><%= t("oigame.pages.faq.question_2") %></h3>
-      <p><%= t("oigame.pages.faq.answer_2_1") %></p>
-      <p><%= t("oigame.pages.faq.answer_2_2") %></p>
+    <h3><%= t("oigame.pages.faq.question_2") %></h3>
+    <p><%= t("oigame.pages.faq.answer_2_1") %></p>
+    <p><%= t("oigame.pages.faq.answer_2_2") %></p>
 
     </li>
     <li>
-      <h3><%= t("oigame.pages.faq.question_3") %></h3>
-      <p><%= t("oigame.pages.faq.answer_3_1") %></p>
-      <p><%= t("oigame.pages.faq.answer_3_2_html") %></p>
+    <h3><%= t("oigame.pages.faq.question_3") %></h3>
+    <p><%= t("oigame.pages.faq.answer_3_1") %></p>
+    <p><%= t("oigame.pages.faq.answer_3_2_html") %></p>
     </li>
     <li>
-      <h3><%= t("oigame.pages.faq.question_4") %></h3>
-      <p><%= t("oigame.pages.faq.answer_4_1") %></p>
-      <p><%= t("oigame.pages.faq.answer_4_2") %></p>
-      <ul>
-        <li>
-          <i class="icon-double-angle-right"></i>
-          <%= t("oigame.pages.faq.answer_4_2_1_html") %>
-        </li>
-        <li>
-          <i class="icon-double-angle-right"></i>
-          <%= t("oigame.pages.faq.answer_4_2_2") %>
-        </li>
-        <li>
-          <i class="icon-double-angle-right"></i>
-          <%= t("oigame.pages.faq.answer_4_2_3") %>
-        </li>
-        <li>
-          <i class="icon-double-angle-right"></i>
-          <%= t("oigame.pages.faq.answer_4_2_4") %>
-        </li>
-        <li>
-          <i class="icon-double-angle-right"></i>
-          <%= t("oigame.pages.faq.answer_4_2_5") %>
-        </li>
-      </ul>
+    <h3><%= t("oigame.pages.faq.question_4") %></h3>
+    <p><%= t("oigame.pages.faq.answer_4_1") %></p>
+    <p><%= t("oigame.pages.faq.answer_4_2") %></p>
+    <ul>
+      <li>
+      <i class="icon-double-angle-right"></i>
+      <%= t("oigame.pages.faq.answer_4_2_1_html") %>
+      </li>
+      <li>
+      <i class="icon-double-angle-right"></i>
+      <%= t("oigame.pages.faq.answer_4_2_2") %>
+      </li>
+      <li>
+      <i class="icon-double-angle-right"></i>
+      <%= t("oigame.pages.faq.answer_4_2_3") %>
+      </li>
+      <li>
+      <i class="icon-double-angle-right"></i>
+      <%= t("oigame.pages.faq.answer_4_2_4") %>
+      </li>
+      <li>
+      <i class="icon-double-angle-right"></i>
+      <%= t("oigame.pages.faq.answer_4_2_5") %>
+      </li>
+    </ul>
     </li>
     <br>
     <li>
-      <h3><%= t("oigame.pages.faq.question_5_html") %></h3>
-      <p><ul>
-        <li><i class="icon-double-angle-right"></i><a href="/es/donate/init" ><%= t("oigame.pages.faq.answer_5_2") %></a></li>
-        <li><a href="https://github.com/alabs/oigame"><i class="icon-double-angle-right"></i> <%= t("oigame.pages.faq.answer_5_3") %> </a></li>
-        <li><i class="icon-double-angle-right"></i><a href="/es/donate/init" ><%= t("oigame.pages.faq.answer_5_4") %></a></li>
-      </ul>
+    <h3><%= t("oigame.pages.faq.question_5_html") %></h3>
+    <p><ul>
+      <li><i class="icon-double-angle-right"></i><a href="https://github.com/alabs/oigame"><%= t("oigame.pages.faq.answer_5_2") %></a></li>
+      <li><a href="https://oiga.me/es/campaigns/new"><i class="icon-double-angle-right"></i> <%= t("oigame.pages.faq.answer_5_3") %> </a></li>
+      <li><i class="icon-double-angle-right"></i><a href="#" ><%= t("oigame.pages.faq.answer_5_4") %></a></li>
+    </ul>
     </p>
-      <p><%= t("oigame.pages.faq.answer_5_4_html") %></p>
-      <p><%= t("oigame.pages.faq.answer_5_5") %></p>
-      <p><%= t("oigame.pages.faq.answer_5_6_html") %></p>
+    <p><%= t("oigame.pages.faq.answer_5_4_html") %></p>
+    <p><%= t("oigame.pages.faq.answer_5_5") %></p>
+    <p><%= t("oigame.pages.faq.answer_5_6_html") %></p>
     </li>
   </ol>
- </div><!-- fondo -->
-</div>
+</div><!-- fondo -->

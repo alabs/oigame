@@ -1,20 +1,16 @@
-<%# si no obtiene el @sub_oigame lo hace al general (/campaigns) %>
 
-<% if params[:action] == "new" %>
-  <% if @sub_oigame %>
-    <% url = url_for(:action=> "create", :controller=> "campaigns", :sub_oigame_id => @sub_oigame) %>
-  <% else %>
-    <% url = url_for(:action=> "create", :controller=> "campaigns") %>
-  <% end %>
-<% end %>
+<div class="alert alert-info alert-campaign">
+  <p>
+    <b><%= t('oigame.wizard.intro_line_1') %></b>
+    <%= t('oigame.wizard.intro_line_2') %>
+  </p>
 
-<% if params[:action] == "edit" %>
-  <% if @sub_oigame %>
-    <% url = sub_oigame_campaign_path(@sub_oigame, @campaign) %>
-  <% else %>
-    <% url = campaign_path(@campaign) %>
-  <% end %>
-<% end %>
+  <ul class="unstyled">
+    <li><%= t('oigame.wizard.intro_line_3') %>
+    <li><%= t('oigame.wizard.intro_line_4') %>
+    <li><%= t('oigame.wizard.intro_line_5') %>
+  </ul>
+</div>
 
 <ol class="progtrckr" data-progtrckr-steps="3">
     <li class="progtrckr-todo"><%= t(:step_1) %></li>
@@ -22,7 +18,7 @@
     <li class="progtrckr-todo"><%= t(:step_3) %></li>
 </ol>
 
-<%= form_for @campaign do |f| %>
+<%= form_for @campaign, :url => url_for_campaign_form do |f| %>
   <fieldset>
     <legend><%= t(:please_fill_the_form) %></legend>
     <div class="control-group">
@@ -36,8 +32,9 @@
     </div>
     <div class="control-group">
       <%= f.label :hashtag, t(:hashtag_of_campaign), :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :hashtag, :class => 'span6', :placeholder => t(:hashtag_of_campaign), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hastag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
+      <div class="controls input-prepend">
+        <span class="add-on">#</span>
+        <%= f.text_field :hashtag, :class => 'span6', :placeholder => t(:hashtag), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hashtag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
       </div>
     </div>
     <div id="control-group">

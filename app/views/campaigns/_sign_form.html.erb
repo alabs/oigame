@@ -34,15 +34,15 @@
     </div>
   <% end %>
 
-  <input class="checkfb" name="post_to_facebook" type="checkbox" value="1"></span>
+  <input class="checkfb" name="post_to_facebook" type="checkbox" checked value="1"></span>
   <label for="checkfb" class="checkfblabel"><%= t(:share_with_my_friends_on_facebook) %></label>
 
-  <div class="btn-campaign btn-campsign">
+  <div style="margin-left: 0px;" class="btn-campaign btn-campsign">
     <%= button_tag @campaign.ttype_action %>
   </div>
 
   <div class="normas"><%= t(:by_signing_you_accept) %>
-    <%= link_to t(:privacy_policy), privacy_policy_path %> <%= t(:of) %> oiga.me
+    <%= link_to t(:privacy_policy), privacy_policy_path %>
   </div>
 
  <% end %>

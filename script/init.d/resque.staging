@@ -1,0 +1,56 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          beta.oiga.me.resque
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: beta.oiga.me.resque initscript
+# Description:       beta.oiga.me.resque - control resque instance
+### END INIT INFO
+
+# Original author: Andrés Pereira
+
+# Do NOT "set -e"
+
+RAKE=/home/ruby-data/.rvm/bin/bootup_rake
+
+RAILS_ENV=staging
+USER=ruby-data
+APP_PATH=/var/www/beta.oiga.me/current
+SCRIPT_NAME=/etc/init.d/beta.oiga.me.resque
+
+start() {
+        echo "[beta.oiga.me] Starting resque for staging..."
+
+        cd $APP_PATH
+        sudo -u$USER QUEUE=mailer COUNT=2 VVERBOSE=1 NEWRELIC_ENABLE=false RAILS_ENV=$RAILS_ENV $RAKE resque:work --trace >> /var/log/resque/$RAILS_ENV.log  2>&1 &
+        return
+}
+ 
+stop() {
+        echo "[beta.oiga.me] Stoping resque for staging..."
+
+        ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | head -n1 | awk '{ print $1 }' | xargs kill
+        return
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	stop
+	start
+	;;
+  *)
+	echo "Usage: $SCRIPT_NAME {start|stop|restart}" >&2
+	exit 3
+	;;
+esac
+
+:

@@ -1,0 +1,21 @@
+
+<div class="modal hide fade js-modal-thanks">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4><%= message %></h4>
+  </div>
+  <div class="modal-body">
+    <div class="thumbnail">
+      <%= image_tag(campaign.image_url(:home), :class => "campa-img img-polaroid span4", :alt => campaign.name) %>
+      <div class="span8">
+        <h5><%= campaign.name %></h5>
+        <div class="caption">
+          <%= campaign.intro %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= render :partial => "social", :locals => {:campaign => campaign } %>
+  </div>
+</div>

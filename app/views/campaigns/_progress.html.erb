@@ -1,0 +1,10 @@
+<progress id="bar" value="<%= campaign.participants_count %>" max="<%= campaign.target %>" data-recipients-count="<%= campaign.recipients_count %>"></progress>
+<h3 id="recogidas" class="js-collected"><span class="highlighted"><%= campaign.messages_count %></span> <%= campaign.ttype_message %></h3>
+
+<div class="circle2"><i class="icon-signin icon-large"></i>
+  <p id="necesarias" class="js-participated-people"><span class="underlined"><%= campaign.participants_count %></span> <%= t(:people_have_already_participated) %></p>
+</div>
+
+<div class="circle2"><i class="icon-signin icon-large"></i>
+  <p id="necesarias" class="js-needed-people"><%= t(:miss) %><span class="underlined"><%= campaign.obj_minus_gotten_result %></span> <%= t(:more) %>!</p>
+</div>

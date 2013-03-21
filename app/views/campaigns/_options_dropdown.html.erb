@@ -1,7 +1,7 @@
 <%# si el usuario tiene permiso para alguna accion, mostramos el dropdown %>
 <% if permitted_to? :moderated, campaign || (permitted_to? :moderated, campaign && campaign.moderated?) || (permitted_to? :deactivate, campaign && campaign.published?) || (permitted_to? :participants, campaign && campaign.messages.count > 0) || (permitted_to? :edit, campaign) || ((permitted_to? :prioritize, campaign) && (permitted_to? :deprioritize, campaign)) || (permitted_to? :destroy, campaign) %>
   <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="<%= t(:options) %>"><span><%= t(:options) %></span></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="<%= t(:options) %>"><span><i class="icon-wrench"></i></span></a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
       <li>
         <% if permitted_to? :moderated, campaign %>
@@ -11,6 +11,14 @@
           </a>
         <% end %>
       </li>
+        <li>
+          <% if (permitted_to? :participants, campaign) && campaign.messages_count > 0 %>
+            <%= link_to participants_campaign_path(campaign) do %>
+              <i class="icon-user"></i>
+              <%= t(:download_participants) %>
+            <% end %>
+          <% end %>
+        </li>
       <% if campaign.status == 'archived' %>
         <li>
           <% if permitted_to? :moderated, campaign %>
@@ -58,14 +66,6 @@
             <%= link_to sub_oigame ? deactivate_sub_oigame_campaign_path(sub_oigame) : deactivate_campaign_path, :confirm => t(:are_you_sure), :method => :post do %>
               <i class="icon-remove-circle"></i>
               <%= t(:deactivate) %>
-            <% end %>
-          <% end %>
-        </li>
-        <li>
-          <% if (permitted_to? :participants, campaign) && campaign.messages.count > 0 %>
-            <%= link_to participants_campaign_path(campaign) do %>
-              <i class="icon-user"></i>
-              <%= t(:download_participants) %>
             <% end %>
           <% end %>
         </li>

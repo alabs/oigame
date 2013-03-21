@@ -16,13 +16,11 @@ $sombranegra: 1px 0px 2px rgba(0, 0, 0, 0.75)
   padding-top: 1%
 
   text-align: justify
-  border: 1px dashed #CCC
   text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
   line-height: 21px
   -webkit-border-radius: 0px 0px 0px 6px
   border-radius: 0px 0px 0px 6px
   font-size: 1em
-  background: rgba(240, 240, 240, 0.6)
   p
     text-align: justify
     line-height: 21px
@@ -36,6 +34,8 @@ $sombranegra: 1px 0px 2px rgba(0, 0, 0, 0.75)
   i
     padding-right: 5px
     font-size: 15px
+  .thumbnails
+    width: 100%
 
 .cinfo
   h3
@@ -46,48 +46,29 @@ $sombranegra: 1px 0px 2px rgba(0, 0, 0, 0.75)
 
 .campaign-text
   min-height: 300px
-  a
-    border-radius: 4px
-    border: 1px solid #184B43
-    cursor: pointer
-    font-family: Roboto, Helvetica, arial, sans-serif
-    letter-spacing: 2px    
-    font-size: 15px
-    text-shadow: 1px 0px 0px rgba(0, 0, 0, 0.55)
-    letter-spacing: 2px
-    -webkit-box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
-    box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
-    color: #fff
-    background: #1B5353 
-    background: -webkit-gradient(#1B5353, #2D8A8A)
-    background: -webkit-linear-gradient(#1B5353, #2D8A8A)
-    background: -moz-linear-gradient(#1B5353, #2D8A8A)
-    background: -o-linear-gradient(#1B5353, #2D8A8A)
-    background: linear-gradient(#1B5353, #2D8A8A)
     
-    padding: 5px
-    float: right
-    &:hover
-      text-decoration: none
-
-
-
-    
-#progressbarlista
+.progressbarlista
   width: 100%
   padding-bottom: 10px
   padding-top: 0px
+  .recogidaslista
+    font-size: 13px
+  .btn
+    display: block
+    font-weight: bold
+    margin: 20px auto -20px
+    text-align: center
+    width: 5em
+  .small
+    font-weight: bold
+    font-size: 0.8em
 
 #bar
   width: 80%
 
-#recogidaslista
-  h2
-    font-size: 16px
-  h3
-    font-size: 16px
-
-
+.recogidaslista
+  @extend h3
+  font-size: 16px
 
 .campaign-imagelist
   img
@@ -96,33 +77,13 @@ $sombranegra: 1px 0px 2px rgba(0, 0, 0, 0.75)
     -webkit-box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
     box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
 
-.btn-group
-  width: 100%
-  float: right
-  margin-bottom: 15px
-  .btn
-    color: $naranja    
-    background: none
-    display: inline
-    margin-bottom: 2px
-    text-align: center
-    padding: 10px
-    padding-bottom: 0px     
-    text-shadow: 1px 0px 0px rgba(255, 255,222, 0.55)
-    border-right: 1px dashed #ccc
-    &:hover
-      text-decoration: none
-      cursor: pointer
-      color: $verdoso
-      border-right: 1px dashed #aaa
-
 
 .highlighted
   font-size: 19px
 
 #necesarias
   h4
-    font-size: 17px
+    font-size: 12px
     color: $negrito
     padding-bottom: 8px
     
@@ -130,12 +91,15 @@ hr.dashed
   border: 0
   border-bottom: 1px dashed #ccc
   background: none
+  margin-top: 0px
+  margin-bottom: 20px
 
 .mostrar-campaign
   width: 31%
   padding: 1%
   float: left
-  min-height: 460px
+  min-height: 470px !important
+  margin-left: 0px !important
 
 .underlinedlista
   font-size: 13px
@@ -144,13 +108,8 @@ hr.dashed
   color: $naranja
   font-weight: bold
   
-#necesarias 
-  h4
-    font-size: 13px
-
 .campa-home
   position: relative
-
 
 .campa-home img
   width: 100%
@@ -158,6 +117,12 @@ hr.dashed
   background: white
   border: 1px solid #A0A0A0
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.55)
+
+.campa-img
+  height: 150px
+  display: block
+  margin: -4px
+
 .campa-texto
   width: 97.5%
   padding: 8px 4px
@@ -188,4 +153,44 @@ hr.dashed
     width: 25px !important
     float: right
     border: 1px dashed #A0A0A0
-    
+   
+.fbalert
+  line-height: 13px
+  font-size: 9px
+  width: 185px
+  padding: 0px 0px 0px 16px
+  margin-top: 3px
+  color: #3b5998
+  opacity: 0.8
+
+.btn_readmore
+  @extend .btn
+  width: 70%
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+.alert-pagination-end
+  @extend .alert
+  @extend .alert-info
+ 
+.item
+  width: 20em
+  float: left
+  margin: 1em
+  .thumbnail
+    background: none repeat scroll 0 0 rgba(240, 240, 240, 0.6)
+    .caption
+      .campa-text
+        color: black
+        font-weight: normal
+      .campa-text:hover
+        text-decoration: none
+      .title
+        @extend h4
+        font-weight: bold
+      .title a:hover
+        text-decoration: none
+      .img-user
+        margin-top: 1em
+        margin-left: 1em

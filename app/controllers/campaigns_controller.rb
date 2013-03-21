@@ -33,7 +33,11 @@ class CampaignsController < ApplicationController
     #end
     @campaigns = Campaign.last_campaigns params[:page], @sub_oigame
 
-    respond_with(@campaigns)
+    respond_to do |format|
+      format.js
+      format.html # index.html.erb
+      format.xml  { render :xml => @campaigns }
+    end
   end
 
   def show
@@ -41,12 +45,18 @@ class CampaignsController < ApplicationController
     @cause = true
     @campaign = Campaign.find(:all, :conditions => {:slug => params[:id], :sub_oigame_id => @sub_oigame}).first
 
+    @update = @campaign.updates.new
+    @updates = @campaign.updates.order('created_at DESC').all
+
     # metas for facebook
     @meta['title'] = @campaign.name
     @meta['og']['url'] = campaign_url(@campaign,locale:nil)
     @meta['description'] = @campaign.intro
     @meta['og']['type'] = 'oigameapp:campaign'
     @meta['oigameapp']['end_date'] = @campaign.duedate_at.strftime("%Y-%m-%d")
+
+    # metas for twitter
+    @meta['url'] = @campaign.get_absolute_url
 
     @participants = @campaign.participants
 
@@ -67,6 +77,14 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    unless current_user.ready_for_create_campaigns?
+      session[:redirect_to_create_campaign] = new_campaign_url
+      flash[:error] = 'Tienes que ingresar tu nombre en el sistema para poder crear una campaña'
+      redirect_to edit_user_registration_url
+
+      return
+    end
+
     @campaign = Campaign.new
 
     respond_to do |format|
@@ -97,6 +115,7 @@ class CampaignsController < ApplicationController
     if @campaign.save
       if @sub_oigame
         @campaign.sub_oigame = @sub_oigame
+        @campaign.save
         redirect_url = sub_oigame_campaign_wizard_path(@sub_oigame, @campaign.slug, :first)
       else
         redirect_url = campaign_wizard_path(@campaign.slug, :first)
@@ -163,6 +182,15 @@ class CampaignsController < ApplicationController
     user_name = current_user.try(:name) || params[:name]
 
     if @campaign
+
+      # return if archived
+      if @campaign.archived?
+        flash[:error] = t(:campaign_archived)
+        redirect_to @campaign
+
+        return
+      end
+      
       # Create the instance of the methok
       instanke = modelk.new
       instanke.campaign = @campaign
@@ -187,7 +215,11 @@ class CampaignsController < ApplicationController
           validation = "send_message_to_validate_#{model_name.downcase}".to_s
           Mailman.send(validation, from, @campaign.id, instanke.id).deliver
         end
-        redirector_to :signed
+        if params[:post_to_facebook]
+          open_graph_facebook
+        else
+          redirector_to :signed
+        end
       else
         redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
       end
@@ -275,8 +307,7 @@ class CampaignsController < ApplicationController
   end
 
   def prioritize
-    @campaign.priority = true
-    @campaign.save!
+    @campaign.update_attribute(:priority, true)
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido marcada con prioridad'
     else
@@ -285,8 +316,7 @@ class CampaignsController < ApplicationController
   end
 
   def deprioritize
-    @campaign.priority = false
-    @campaign.save!
+    @campaign.update_attribute(:priority, false)
     if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña ha sido desmarcada con prioridad'
     else
@@ -330,6 +360,23 @@ class CampaignsController < ApplicationController
     HTTParty.post("https://#{APP_CONFIG[:gw_domain]}/pre", :body => data)
   end
 
+  def credit_added
+    campaign = Campaign.find_by_slug(params[:id])
+    flash[:notice] = t(:payment_accepted)
+    redirect_to campaign
+  end
+
+  def credit_denied
+    campaign = Campaign.find_by_slug(params[:id])
+    flash[:error] = t(:payment_denied)
+    redirect_to campaign
+  end
+
+  def add_update
+    @campaign.updates.create(:body => params[:update][:body])
+    redirector_to :campaign, notice: "Actualización realizada con éxito"
+  end
+
   private
 
   def render_404
@@ -346,7 +393,7 @@ class CampaignsController < ApplicationController
 
   def get_campaign_with_other_campaigns
     @campaign = Campaign.find_by_slug(params[:id])
-    @campaigns = @campaign.other_campaigns
+    @campaigns = @campaign.other_campaigns.each {|c| c.delete if c.has_participated?(current_user) }
   end
 
   def set_user_blank_parameters
@@ -362,16 +409,22 @@ class CampaignsController < ApplicationController
   end
 
   def open_graph_facebook
-    session[:fb_sess_campaign] = @campaign.id
-    redirect_to facebook_auth_url
+    session[:fb_sess] = {}
+    session[:fb_sess][:id] = @campaign.id
+    session[:fb_sess][:goto] = urls_oigame[:signed]
+    redirect_to facebook_create_action_url
   end
 
-  def redirector_to site, params = {}
+  def urls_oigame
     t_sub_oigame = @sub_oigame.nil? ? '' : 'sub_oigame_'
     urls = {}
     urls[:campaigns] = "#{t_sub_oigame}campaigns_url".to_s
     urls[:signed] = "signed_#{t_sub_oigame}campaign_url".to_s
     urls[:campaign] = "#{t_sub_oigame}campaign_url".to_s
-    redirect_to self.send(urls[site]), params
+    urls
+  end
+
+  def redirector_to(site, params = {})
+    redirect_to self.send(urls_oigame[site]), params
   end
 end

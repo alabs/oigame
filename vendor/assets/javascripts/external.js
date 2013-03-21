@@ -1,3 +1,4 @@
+// require csscustom
 // require date
 // require date_es
 // require jquery.dialog2
@@ -5,16 +6,15 @@
 // require jquery.mailcheck.min
 // require jquery.tableofcontents
 // require jquery.turbolinks
+// require Markdown.Converter
+// require Markdown.Editor
+// require Markdown.Sanitizer
 // require tag-it
 // require translate
 // require turbolinks
 //= require jquery
 //= require bootstrap
 //= require bootstrap-tabs
-//= csscustom
-//= require Markdown.Converter
-//= require Markdown.Editor
-//= require Markdown.Sanitizer
 //= require highlight.pack
 //= require jqplot
 //= require jqplot/plugins/jqplot.canvasAxisLabelRenderer
@@ -30,3 +30,4 @@
 //= require a-tools
 //= require showdown
 //= require mdmagick
+//= require jquery.isotope.min

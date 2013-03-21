@@ -1,8 +1,16 @@
 module ApplicationHelper
 
-  def avatar_url(email)
+  def avatar_url(email, size = nil)
     gravatar_id = Digest::MD5::hexdigest(email).downcase
-    "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=48&d=mm"
+    s = size || 48
+    "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=#{s}&d=mm"
+  end
+
+  # Use with the same arguments as image_tag. Returns the same, except including
+  # a full path in the src URL. Useful for templates that will be rendered into
+  # emails etc.
+  def absolute_image_tag(*args)
+    raw(image_tag(*args).sub /src="(.*?)"/, "src=\"#{request.protocol}#{request.host_with_port}" + '\1"')
   end
 
   def generate_from_for_validate(default_from, sub_oigame = nil)
@@ -31,6 +39,12 @@ module ApplicationHelper
 
   def show_meta_tags
     data = ""
+    data << "<meta name='twitter:card' content='summary'>\n"
+    data << "<meta name='twitter:site' content='@oigame'>\n"
+    data << "<meta name='twitter:url' content='#{@meta['url']}'>\n"
+    data << "<meta name='twitter:title' content='#{@meta['title']}'>\n"
+    data << "<meta name='twitter:description' content='#{@meta['description']}'>\n"
+
     data << "<meta property='og:description' content='#{@meta['description']}' />\n"
     data << "<meta name='description' content='#{@meta['description']}' />\n"
     data << "<meta property='og:title' content='#{@meta['title']}' />\n"

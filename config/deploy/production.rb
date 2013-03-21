@@ -1,6 +1,11 @@
 require "bundler/capistrano"
 #require 'thinking_sphinx/deploy/capistrano'
-require "capistrano-resque"
+#require "capistrano-resque"
+
+# estudiar esto, peta al hacer el deploy
+# apardo 20130221
+#require './config/boot'
+#require 'airbrake/capistrano'
 
 set :scm,             :git
 set :repository,      "git@github.com:alabs/oigame.git"
@@ -19,11 +24,11 @@ role :web,    "polar.oiga.me"
 role :app,    "polar.oiga.me"
 role :db,     "polar.oiga.me", :primary => true
 
-role :resque_worker, "polar.oiga.me"
-role :resque_scheduler, "polar.oiga.me"
+#role :resque_worker, "polar.oiga.me"
+#role :resque_scheduler, "polar.oiga.me"
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
-set :workers, { "mailer" => 1, "fax" => 1 }
+#set :workers, { "mailer" => 1, "fax" => 1 }
 
 set(:latest_release)  { fetch(:current_path) }
 set(:release_path)    { fetch(:current_path) }
@@ -36,10 +41,10 @@ set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEA
 default_environment["RAILS_ENV"] = 'production'
 
 # Use our ruby-1.9.3-p194@oigame
-default_environment["PATH"]         = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@oigame/bin:/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@global/bin:/home/ruby-data/.rvm/rubies/ruby-1.9.3-p362/bin:/home/ruby-data/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
-default_environment["GEM_HOME"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@oigame"
-default_environment["GEM_PATH"]     = "/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@oigame:/home/ruby-data/.rvm/gems/ruby-1.9.3-p362@global"
-default_environment["RUBY_VERSION"] = "ruby-1.9.3-p362"
+default_environment["PATH"]         = "/home/oigame/.rvm/gems/ruby-1.9.3-p392@oigame/bin:/home/oigame/.rvm/gems/ruby-1.9.3-p392@global/bin:/home/oigame/.rvm/rubies/ruby-1.9.3-p392/bin:/home/oigame/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+default_environment["GEM_HOME"]     = "/home/oigame/.rvm/gems/ruby-1.9.3-p392@oigame"
+default_environment["GEM_PATH"]     = "/home/oigame/.rvm/gems/ruby-1.9.3-p392@oigame:/home/oigame/.rvm/gems/ruby-1.9.3-p392@global"
+default_environment["RUBY_VERSION"] = "ruby-1.9.3-p392"
 
 default_run_options[:shell] = 'bash'
 default_run_options[:pty] = true
@@ -102,14 +107,15 @@ namespace :deploy do
       ln -sf #{shared_path}/config/app_config.yml #{latest_release}/config/app_config.yml &&
       ln -sf #{shared_path}/config/newrelic.yml #{latest_release}/config/newrelic.yml &&
       ln -sf #{shared_path}/public/sitemap1.xml.gz #{latest_release}/public/sitemap1.xml.gz &&
-      ln -sf #{shared_path}/public/sitemap_index.xml.gz #{latest_release}/public/sitemap_index.xml.gz
+      ln -sf #{shared_path}/public/sitemap_index.xml.gz #{latest_release}/public/sitemap_index.xml.gz &&
+      ln -sf #{shared_path}/config/recaptcha.rb #{latest_release}/config/initializers/recaptcha.rb
     CMD
 
-    if fetch(:normalize_asset_timestamps, true)
-      stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
-      asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
-      run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
-    end
+    #if fetch(:normalize_asset_timestamps, true)
+    #  stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
+    #  asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
+    #  run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", :env => { "TZ" => "UTC" }
+    #end
 
     # compilar en local y subir los assets al repo
     # precompile assets
@@ -127,29 +133,29 @@ namespace :deploy do
   #  end
   #end
   
-  namespace :assets do
+  #namespace :assets do
 
-    task :precompile, :roles => :web do
-      from = source.next_revision(current_revision)
-      if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ lib/assets/ app/assets/ | wc -l").to_i > 0
-        run_locally("rake assets:clean && rake assets:precompile")
-        run_locally "cd public && tar -jcf assets.tar.bz2 assets"
-        top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
-        run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
-        run_locally "rm public/assets.tar.bz2"
-        run_locally("rake assets:clean")
-      else
-        logger.info "Skipping asset precompilation because there were no asset changes"
-      end
-    end
-
-    task :symlink, roles: :web do
-      run ("rm -rf #{latest_release}/public/assets &&
-            mkdir -p #{latest_release}/public &&
-            mkdir -p #{shared_path}/assets &&
-            ln -s #{shared_path}/assets #{latest_release}/public/assets")
-    end
-  end
+  #  #task :precompile, :roles => :web do
+  #  #  from = source.next_revision(current_revision)
+  #  #  if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ lib/assets/ app/assets/ | wc -l").to_i > 0
+  #  #    run_locally("rake assets:clean && rake assets:precompile")
+  #  #    run_locally "cd public && tar -jcf assets.tar.bz2 assets"
+  #  #    top.upload "public/assets.tar.bz2", "#{shared_path}", :via => :scp
+  #  #    run "cd #{shared_path} && tar -jxf assets.tar.bz2 && rm assets.tar.bz2"
+  #  #    run_locally "rm public/assets.tar.bz2"
+  #  #    run_locally("rake assets:clean")
+  #  #  else
+  #  #    logger.info "Skipping asset precompilation because there were no asset changes"
+  #  #  end
+  #  #end
+  #  
+  #  task :symlink, roles: :web do
+  #    run ("rm -rf #{latest_release}/public/assets &&
+  #          mkdir -p #{latest_release}/public &&
+  #          mkdir -p #{shared_path}/assets &&
+  #          ln -s #{shared_path}/assets #{latest_release}/public/assets")
+  #  end
+  #end
 
   desc "Restart the Thin processes"
   task :restart do
@@ -191,6 +197,11 @@ namespace :deploy do
     end
   end
 end
+    
+task :compile_assets do
+  run "cd #{release_path}; bundle exec rake assets:precompile"
+end
+
 
 def run_rake(cmd)
   run "cd #{current_path}; #{rake} #{cmd}"
@@ -208,6 +219,7 @@ end
 
 #after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 
+#after 'deploy:finalize_update', 'compile_assets'
 before 'deploy:finalize_update', 'deploy:assets:symlink'
-after 'deploy:update_code', 'deploy:assets:precompile'
+#after 'deploy:update_code', 'deploy:assets:precompile'
 #after "deploy:restart", "resque:restart"

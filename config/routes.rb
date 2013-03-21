@@ -1,4 +1,5 @@
 Oigame::Application.routes.draw do
+
   campaign_routes = lambda do
     resources :wizard
     member do
@@ -33,6 +34,11 @@ Oigame::Application.routes.draw do
       get 'add-credit' => 'campaigns#add_credit', :as => 'add_credit'
       get 'transaction-accepted' => 'campaigns#credit_added', :as => 'credit_added'
       get 'transaction-denied' => 'campaigns#credit_denied', :as => 'credit_denied'
+
+      post 'ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
+
+      # add updates to campaign
+      post 'add-update' => 'campaigns#add_update', :as => 'add_update'
     end
 
     collection do
@@ -61,7 +67,7 @@ Oigame::Application.routes.draw do
       get 'widget-iframe.html' => 'sub_oigames#widget_iframe', :as => 'widget_iframe'
     end
 
-    get '/profile/:username' => 'profiles#show', :as => 'profile'
+    get '/profile/:user' => 'profiles#show', :as => 'profile'
     get 'donate' => 'donate#index', :as => 'donate'
     get 'donate/init' => 'donate#init', :as => 'donate_init'
     get 'donate/accepted' => 'donate#accepted'
@@ -87,22 +93,24 @@ Oigame::Application.routes.draw do
       mount Tolk::Engine => '/translate', :as => 'tolk'
     end
 
-
-    get 'facebook/auth' => 'facebook#auth', :as => 'facebook_auth'
-    get 'facebook/callback' => 'facebook#callback', :as => 'facebook_callback'
+    get 'facebook/create_action' => 'facebook#create_action', :as => 'facebook_create_action'
     root :to => 'pages#index'
   end
 
-  post 'banesto/ok' => 'banesto#payment_accepted', :as => 'payment_accepted'
-  
   # para el servidor de tareas en background
   constraints CanAccessResque do
     mount Resque::Server, at: 'jobs'
   end
 
+  match '/rwd', :to => redirect('/rwd.html')
+
   match '*path', to: redirect {|params,request| "/#{I18n.default_locale}/#{CGI::unescape(params[:path])}" },
-        constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+  constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
 
   match '', to: redirect("/#{I18n.default_locale}")
+
+  unless Rails.application.config.consider_all_requests_local
+    match '*not_found', to: 'errors#error_404'
+  end
 
 end

@@ -149,26 +149,6 @@ $(function() {
 
   $("#campaign_duedate_at").datepicker();
 
-  // Al hacer click en unirse a una campaña, hacer el scroll
-  // y poner foco en el campo nombre
-  $("#join-this-campaign-link").click(function(event) {
-    event.preventDefault();
-    var fullUrl = this.href;
-    var parts = fullUrl.split("#");
-    var target = parts[1];
-    var targetOffset = $("#"+target).offset();
-    var targetTop = targetOffset.top;
-    $("html, body").animate({scrollTop:targetTop}, 1000);
-    $("#campaign-message-form #email").focus();
-  }); 
-
-  function copy_input_to_modal(input_id){
-    $("#modal-send-message #" + input_id).val($("#show-campaign-sidebar #" + input_id).val());
-  }
-
-  var html_clean =  jQuery.trim( $("#modal-widget-window-example").html() );
-  $("#modal-widget-html").text(html_clean);
-
   $(".show_markdown_help").click( function(event){
     event.preventDefault();
     if ( $(this).hasClass("hide_markdown_help") ){
@@ -179,21 +159,6 @@ $(function() {
       $(this).text("esconder ayuda de marcado");
     }
     $(this).next().fadeToggle("slow", "linear");
-  });
-
-  // thermometer start
-  var participants = $("#participants").text();
-  var participants_target = $("#participants-target").text();
-  var percent_raw = (participants * 100) / participants_target;
-  var percent = Math.round(percent_raw);
-  $(".progress .bar").css("width", percent + "%")
-  // thermometer end
-
-
-  // al hacer click en /campaigns en cualquier campania va directamente a esta misma
-  $(".mostrar-campaign").click( function(){
-    var destination = $(this).children(".cinfo").children("h3").children("a").attr("href");
-    window.location = destination;
   });
 
   switch_campaign_type($('input[name="campaign[ttype]"]').filter(':checked').attr('value'));
@@ -218,7 +183,6 @@ $(function() {
     };
   });
 
-
   // al darle al submit en el form, comprobamos el correo
   //$('#js-message-campaign').submit(function(e){
   //  var $form = $(this);
@@ -237,5 +201,13 @@ $(function() {
   $('#participate-buttons').scrollToFixed();
 
   $('#modal-notify-nocredit').modal({keyboard: true, backdrop: true});
+
+  $('.js-campaign-description-show').on('click', function(e){
+    e.preventDefault();
+    $(this).hide();
+    $('.js-campaign-description').slideDown('slow');
+  });
+
+  $('.js-modal-thanks').modal()
 
 });

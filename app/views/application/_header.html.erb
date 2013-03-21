@@ -1,55 +1,72 @@
-<div class="heaz">
-    <div class="cheaz c">
-        <% flash.each do |name, msg| %>
-            <div class="alert alert-<%= name %>">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <%= msg %>
-            </div>
-        <% end %>
 
-        <div class="supermenu">
-            <ul>
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name %>">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= msg %>
+  </div>
+<% end %>
 
-                <% if current_user %>
-                  <li>
-                    <%= link_to edit_user_registration_path do %>
- <img style="width:30px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
-<b style="margin-bottom: 100px;"><%= current_user.name %></b>
+<div id="header-wrapper" class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <%= link_to image_tag("logo_oigame.png"), root_path, :class => "brand" %>
+      <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse">
+        <ul class="nav navbar-text pull-right inline">
+          <% if current_user %>
+            <li>
+            <%= link_to edit_user_registration_path do %>
+              <img style="width:30px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
+              <b style="margin-bottom: 100px;"><%= current_user.name %></b>
+            <% end %>
+            </li>
+            <li>
+            <%= link_to destroy_user_session_path, :class => "navbar-link", :method => :delete do %>
+              <i class="icon-unlock"></i>
+              <%= t(:logout) %>
+            <% end %>
+            </li>
 
-                    <% end %>
-                  </li>
-                  <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
-                <% else %>
-                  <li><%= link_to t(:create_account), new_user_registration_path %></li>
-                  <li id="login-link"><%= link_to t(:login), new_user_session_path, :class => 'navbar-link' %></li>
-                <% end %>
+          <% else %>
+            <li>
+            <%= link_to new_user_registration_path, :class => "navbar-link" do %>
+              <i class="icon-pencil"></i><%= t(:create_account) %>
+            <% end %>
+            </li>
+            <li>
+            <%= link_to new_user_session_path, :class => "navbar-link" do %>
+              <i class="icon-lock icon"></i><%= t(:login) %>
+              </li>
+            <% end %>
+          <% end %>
+          <li>
+          <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
+            <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>
+            <option data-lang="en" value='<%= url_for(:locale => "en") %>'>EN</option>
+          </select>
+          </li>
+        </ul>
+        <ul class="nav">
+          <li id="header-campaigns">
+          <%= link_to campaigns_path, :class => "navbar-link" do %>
+            <i class="icon-bullhorn"></i>
+            <%= t(:campaigns) %>
+          <% end %>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
 
-                <li>
-                  <select data-lang="<%= I18n.locale %>" id="js-language-selector" class="language-selector">
-                    <option data-lang="es" value='<%= url_for(:locale => "es") %>'>ES</option>
-                    <option data-lang="en" value='<%= url_for(:locale => "en") %>'>EN</option>
-                  </select>
-                </li>
-               
-            </ul>
-
-        </div>
-
-        <div class="logo">
-            <h1><%= link_to image_tag("logo_oigame.png"), root_path %></h1>
-        </div><!-- logo -->
-
-
-
-        <div class="navbar">
-            <ul class="nav">
-                <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
-                <li id="header-donate"><%= link_to t(:donate), donate_path %></li>
-                <li id="header-faq"><%= link_to t(:faq), faq_path %></li>
-                <li id="header-about"><%= link_to t(:about), about_path %></li>
-                <li id="header-contact"><%= link_to t(:contact), contact_path %></li>
-            </ul>
-        </div><!-- menuh -->
-    </div><!-- heazc -->
-</div><!-- heaz -->
-
+<% if defined? @header_top %>
+  <div class="paper page-header-top">
+    <div class="container-fluid">
+      <h1><%= @header_top %></h1>
+    </div>
+  </div>
+<% end %>

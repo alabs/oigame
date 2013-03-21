@@ -1,5 +1,6 @@
 --- 
 en: 
+  alert_for_fb: "The action wich will be published in facebook is 'sign a campaign'"
   about: About
   accepted_cards: "Accepted cards"
   access_your_account: "Log into your account"
@@ -549,7 +550,7 @@ en:
       consent_1: "Users are not required to provide any personal information to use the website. However, they can provide a range of personal information which would vary depending on different projects that aLabs is engaged with at all times. This information must be truthful."
       consent_title: Consent
       data_reg_1: "When you register as a user of oiga.me, you voluntarily supply certain personal data will be stored, protected and used only for the purposes provided by this website."
-      data_reg_2: "By participating in a campaign through this website, a record is kept of the number of participants and actions for statistical purposes. The user expressly authorizes aLabs association to provide the data you enter in the form of the campaign (Full name, surname and e-mail) to the person or entity that promotes and manages the campaign for the sole and exclusive purpose of presenting before the end entity to which the request is directed."
+      data_reg_2: "By participating in a campaign through this website, a record is kept of the number of participants and actions for statistical purposes. The user expressly authorizes aLabs association to provide the data you enter in the form of the campaign (Full name, surname and e-mail, home address or a identification number) to the person or entity that promotes and manages the campaign for the sole and exclusive purpose of presenting before the end entity to which the request is directed."
       data_reg_title: "What happens to my data when I register?, What about when I participate in a campaign?"
       donation_1: "If you want to donate to aLabs, your credit card or other transfer information will be used only once and for one single transaction through our secure payment system on the Internet. aLabs does not retain credit card information or other bank details."
       donation_title: "Special mention to the information accompanying donations"
@@ -656,6 +657,7 @@ en:
   spread_form: "Put the form in your website"
   spread_info: "If you want to spread this campaign on your blog or website, you can do so by adding the following code HTML or Javascript. That makes it possible for more people to participate in the campaign."
   stats: Stats
+  updates: 'Updates'
   sub_integrate_form_explanation_1: "To integrate your SubOigame in your website copy and paste the following Javascript code where you want to display:"
   subject: Subject
   support: 
@@ -726,3 +728,4 @@ en:
   your_identity_card: "Your VAT number"
   your_postal_code: "Zip or Postal Code"
   your_state: "Your country"
+  edit_my_data: 'Edit my data'

@@ -23,6 +23,9 @@ a:hover {
   margin-right: 2em;
 }
 
+.line-tabs {
+  display: inline-block;
+}
 
 ol.progtrckr {
   margin: 0;
@@ -3388,3 +3391,8 @@ a.thumbnail:hover {
   color: #468847;
 }
 
+
+ul.inline, ol.inline {
+    list-style: none outside none;
+    margin-left: 0;
+}

@@ -1,0 +1,60 @@
+<div class="item">
+  <div class="thumbnail">
+
+    <%= link_to campaign.get_absolute_url do %>
+      <%= absolute_image_tag(campaign.image_url(:home), :class => "campa-img img-polaroid") %>
+    <% end %>
+
+    <div class="caption">
+
+      <span class="title"><%= link_to campaign.name, campaign.get_absolute_url %></span>
+
+      <%= image_tag(avatar_url(campaign.user.email), :alt => campaign.user.name, :class => "pull-right img-user img-polaroid") %>
+
+      <%= link_to campaign.get_absolute_url, :class => "campa-text"  do %>
+        <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>
+      <% end %>
+
+      <% if campaign.status == "archived" %>
+        <%= link_to campaign.get_absolute_url do %>
+          <span class="label label-warning" style="font-size: 1em;"><%= t(:archived) %></span>
+        <% end %>
+      <% else %>
+
+        <div class="progressbarlista">
+          <p class="recogidaslista">  <i class="<%= campaign.ttype_img %>"></i><span class="highlighted"><%= campaign.messages_count %></span> <%= campaign.ttype_message %></p>
+
+          <span class="pull-left small">
+            <%= t(:participated) %>
+            <%= campaign.participants_count %> 
+          </span>
+
+          <progress class="barlista" value="<%= campaign.participants_count %>" max="<%= campaign.target %>">
+          <em><%= t(:has_gotten) %> <%= campaign.participants_count %> <%= t(:of) %> <%= campaign.target %> <%= t(:firms) %></em>
+          </progress>
+
+          <span class="pull-right small">
+            <%= t(:miss) %> <%= campaign.obj_minus_gotten_result %> 
+          </span>
+
+          <p>
+          <% if local_assigns[:archived] == true %>
+            <%= link_to t(:archived_campaign), campaign.get_absolute_url, :title => campaign.name, :class => "btn disabled" %>
+          <% else %>
+            <%= link_to t(:join), campaign.get_absolute_url, :title => campaign.name, :class => "btn" %>
+          <% end %>
+          </p>
+
+          <% if local_assigns[:widget] == true %>
+            <p class="campa-footer">
+            <%= link_to(absolute_image_tag("logo_oigame.png", :alt => "oiga.me"), url_for(root_url(:protocol => "https", :host => APP_CONFIG[:host])), :title => "oiga.me") %>
+            </p>
+          <% end %>
+
+        </div>
+      <% end %>
+
+    </div><!-- caption -->
+
+  </div><!-- thumbnail -->
+</div>

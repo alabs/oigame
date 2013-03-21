@@ -11,7 +11,7 @@ Oigame::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
 
-  config.assets.precompile += ['responsive.css', 'oigame-translate.css', 'oigame-translate.js']
+  config.assets.precompile += ['application.css', 'oigame-translate.css', 'oigame-translate.js']
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -71,7 +71,7 @@ Oigame::Application.configure do
   # Configuración para ActionMailer
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => false,
-    :address => 'tron.oiga.me'
+    :address => 'pulsar.oiga.me'
   }
   
   # para que rule resque mailer
@@ -79,7 +79,7 @@ Oigame::Application.configure do
   
   # Para notificar excepciones
   config.middleware.use ExceptionNotifier,
-    :email_prefix => "[oiga.me exception] ",
+    :email_prefix => "[oiga.me staging exception] ",
     :sender_address => %{"notifier" <notifier@oiga.me>},
     :exception_recipients => %w{debug@alabs.es}
 
@@ -89,11 +89,4 @@ Oigame::Application.configure do
   # instancia de redis
   config.cache_store = :redis_store, { :host => '127.0.0.1', :port => 6380 }
   config.sesion_store = :redis_store, { :host => '127.0.0.1', :port => 6380 }
-end
-
-Airbrake.configure do |config|
-  config.api_key = '6082fecdacfa8a090f20df05b0df4041'
-  config.host    = 'err.oiga.me'
-  config.port    = 443
-  config.secure  = config.port == 443
 end

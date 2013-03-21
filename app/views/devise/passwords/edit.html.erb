@@ -1,36 +1,34 @@
 <% @page_title = "Cambia tu contraseña" %>
+<% @header_top = "Cambia tu contraseña" %>
 
 <div class="row-fluid">
 
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
-
+  <%= render :partial => "devise/shared/links" %>
 
   <div class="span7">
 
-<div id="page-wrapper">
-    <div id="edit-account-form" class="form-stacked">
-      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-        <fieldset>
-          <legend><%= @page_title %></legend>
-          <%= devise_error_messages! %>
-          <%= f.hidden_field :reset_password_token %>
+    <div id="page-wrapper">
+      <div id="edit-account-form" class="form-stacked">
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+          <fieldset>
+            <legend><%= @page_title %></legend>
+            <%= devise_error_messages! %>
+            <%= f.hidden_field :reset_password_token %>
 
-          <div><%= f.label :password, "Nueva contraseña" %><br />
-          <%= f.password_field :password %></div>
+            <div><%= f.label :password, "Nueva contraseña" %><br />
+              <%= f.password_field :password %></div>
 
-          <div><%= f.label :password_confirmation, "Confirmar nueva contraseña" %><br />
-          <%= f.password_field :password_confirmation %></div>
+            <div><%= f.label :password_confirmation, "Confirmar nueva contraseña" %><br />
+              <%= f.password_field :password_confirmation %></div>
 
-          <div class="form-actions">
-            <%= f.submit "Cambiar mi contraseña", :class => 'btn btn-primary' %>
-          </div>
-        </fieldset>
-      <% end %>
+            <div class="form-actions">
+              <%= f.submit "Cambiar mi contraseña", :class => 'btn btn-primary' %>
+            </div>
+          </fieldset>
+        <% end %>
 
-      <%= render :partial => "devise/shared/links" %>
+      </div>
     </div>
   </div>
-</div>
 
 </div>

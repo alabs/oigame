@@ -2,15 +2,20 @@
 <% @page_title = t("oigame.credit.add_credit") %>
 
 
-  <div class="row-fluid">
+<div class="row-fluid">
 
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
+  <div class="span12">
 
-  <div class="span7">
-
-<div id="page-wrapper">
+    <div id="page-wrapper">
       <h2><%= @page_title %></h2>
+      <hr class="dashed">
+
+      <div class="alert alert-success">
+        <p><%= t('oigame.credit.donate_explain_1_html') %></p>
+        <p><%= t('oigame.credit.donate_explain_2_html') %></p>
+        <p><%= t('oigame.credit.donate_explain_3_html') %></p>
+      </div>
+
       <div id="donate-form" class="form-stacked">
         <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post" class="form-horizontal">
           <fieldset>
@@ -22,18 +27,18 @@
             <input type="hidden" name="type" value="addcredit" />
             <div class="control-group">
               <div class="controls">
-              <select name="coste">
-                <option value=""><%= t("oigame.credit.amount_to_donate") %></option>
-                <option value="10.00">10 Euros</option>
-                <option value="30.00">30 Euros</option>
-                <option value="50.00">50 Euros</option>
-              </select>
-            </div>
+                <select name="coste">
+                  <option value=""><%= t("oigame.credit.amount_to_donate") %></option>
+                  <option value="10.00">10 Euros</option>
+                  <option value="30.00">30 Euros</option>
+                  <option value="50.00">50 Euros</option>
+                </select>
+              </div>
             </div>
             <div class="control-group">
               <div class="controls">
-              <input type="submit" name="submit" value="<%= t("oigame.credit.add_credit") %>" class="btn primary" />
-            </div>
+                <input type="submit" name="submit" value="<%= t("oigame.credit.add_credit") %>" class="btn primary" />
+              </div>
             </div>
           </fieldset>
         </form>

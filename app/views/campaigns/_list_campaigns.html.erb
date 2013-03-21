@@ -2,54 +2,52 @@
 <% no_paginate = no_paginate || false %>
 <% message = message || false %>
 
-<div class="campaign-infolist">
-        <% if message %>
-          <div class="message-thanks">
-            <%= message %>
-          </div>
+<div class="campaign-infolist row-fluid">
+  <% unless no_btns %>
+    <div class="btn-group" >
+      <% if @sub_oigame %>
+        <%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn" %>
+        <%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => "btn" %>
+        <% permitted_to? :moderated, Campaign.new do %>
+          <%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn" %>
         <% end %>
-        <% unless no_btns %>
-          <div class="btn-group" >
-            <% if @sub_oigame %>
-              <%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame), :class => "btn" %>
-              <%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame), :class => "btn" %>
-              <% permitted_to? :moderated, Campaign.new do %>
-                <%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame), :class => "btn" %>
-              <% end %>
-            <% else %>
-              <%= link_to t(:propose_campaign), new_campaign_path, :class => "btn" %>
-              <%= link_to t(:archived_campaigns), archived_campaigns_path, :class => "btn" %>
-              <% permitted_to? :moderated, Campaign.new do %>
-                <%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn" %>
-              <% end %>
-            <% end %>
-          </div>
-<% end %>
-      <div class="">    
-        <h2><i class="icon-time"></i><%= @page_title %></h2>
-        <hr class="dashed">
-        </div>
-
-    <% if @campaigns.count > 0 %>      
-<div style="overflow:hidden;">
-        <% @campaigns.each do |campaign| %>
-          <div class="mostrar-campaign">
-          <%= render :partial => "show_campaign", :locals => { :sub_oigame => @sub_oigame, :campaign => campaign } %>
-        </div>
-
-
+      <% else %>
+        <%= link_to t(:propose_campaign), new_campaign_path, :class => "btn" %>
+        <%= link_to t(:archived_campaigns), archived_campaigns_path, :class => "btn" %>
+        <% permitted_to? :moderated, Campaign.new do %>
+          <%= link_to t(:moderate_campaigns), moderated_campaigns_path, :class => "btn" %>
         <% end %>
-        </div>
-        <% unless no_paginate %>
-        <div class="center">
-          <%= will_paginate(@campaigns, :renderer => BootstrapPagination::Rails) %>
-        </div>
-        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 
-      </div><!-- list-campaigns-info -->
-
-    <% else %>
-      <div id="list-campaigns-info">
-        <h2><%= t(:no_campaigns) %></h2>
+  <div class="span12">
+    <h2><i class="icon-time"></i><%= @page_title %></h2>
+    <hr class="dashed">
+    <% if message %>
+      <%= render :partial => 'thanks_modal', :locals => {:message => message, :campaign => campaign} %>
+      <div class="message-thanks">
+        <p> <%= t(:other_campaigns) %> </p>
       </div>
     <% end %>
+  </div>
+
+  <% if @campaigns.count > 0 %>      
+    <div class="row-fluid">
+      <div class="thumbnails">
+        <%= render @campaigns %>
+      </div>
+    </div>
+    <% unless no_paginate %>
+      <div class="center">
+        <div class="alert-pagination-end" style="display:none;">No hay más campañas para mostrar</div>
+        <%= will_paginate(@campaigns, :page_links => false) %>
+      </div>
+    <% end %>
+  </div>
+
+<% else %>
+  <div id="list-campaigns-info" class="span12">
+    <h2><%= t(:no_campaigns) %></h2>
+  </div>
+<% end %>

@@ -220,8 +220,9 @@ es:
 
       full_messages:
         format: "%{attribute} %{message}"
+  alert_for_fb: "La acción que se va a publicar en facebook es 'firmar una campaña(sign a campaign)'"
   some_participants: 'Algunas participantes'
-  hashtag_of_campaign: 'Hashtag de la campaña'
+  hashtag_of_campaign: '#hashtag de la campaña'
   home: 'Inicio'
   descriptions: 'Plataforma de movilización ciudadana a través de la web'
   keywords: 'oiga.me, plataforma, movilización, web, campaña, campañas'
@@ -348,6 +349,7 @@ es:
   contact_to: 'ponte en contacto'
   description: 'Descripción'
   stats: 'Estadísticas'
+  updates: 'Actualizaciones'
   spread: 'En tu web'
   spread_info: 'Si quieres difundir esta campaña en tu blog o sitio web, puedes hacerlo añadiendo el siguiente código HTML o Javascript. Eso hace posible que más gente pueda participar en la campaña.'
   spread_form: 'Pon el formulario en tu web'
@@ -431,16 +433,17 @@ es:
   inform_campaign_sub_admin: "Hola, se ha creado una campaña nueva en tu SubOigame '%{ sub_name }' con el nombre: '%{campaign_name}'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si te parece muy interesante puedes activarla."
   next_you_have_info: 'A continuación tenéis la información de la campaña'
   thanks_for_participating: 'Gracias por participar en oiga.me.'
-  mail_validate_1: "Validar adhesión a la campaña: %{campaign_name}"
-  mail_validate_2: "Para validar la adhesión a la campaña %{campaign_name} tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
-  mail_validate_3: 'Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.'
-  mail_validate_4: 'Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:'
-  mail_validate_5: "Incluye la campaña en tu página web para que tus visitas puedan participar: %{url}. Es muy sencillo, tardarás menos de 1 minuto."
-  mail_validate_6: 'Difunde al máximo la campaña en las redes sociales.'
-  mail_validate_7: 'Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).'
-  mail_validate_8: "oiga.me es un proyecto de la asociación aLabs [ http://alabs.es/ ]. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto [ %{url_donate} ]."
-  mail_validate_9: "Sigue a %{oigame_twitter} en Twitter y en %{oigame_facebook}."
-  mail_validate_10: "oiga.me es un proyecto de la asociación %{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (%{url_donate})."
+  mail_validate_1_html: "Validar adhesión a la campaña: %{campaign_name}"
+  mail_validate_2_html: "Para validar la adhesión a la campaña %{campaign_name} tenemos que comprobar que has sido tú quien lo hizo. Para terminar el proceso:"
+  mail_validate_3_html: 'Si no has sido tú quien se adhirió a esta campaña puede ignorar este mensaje.'
+  mail_validate_4_html: 'Es muy importante difundir la campaña, por lo que te animamos a ser el centro de la acción:'
+  mail_validate_5_html: "Incluye la campaña en tu página web para que tus visitas puedan participar: %{url}. Es muy sencillo, tardarás menos de 1 minuto."
+  mail_validate_6_html: 'Difunde al máximo la campaña en las redes sociales.'
+  mail_validate_7_html: 'Sigue a @oigame en Twitter (http://twitter.com/oigame) y en Facebook (http://www.facebook.com/oiga.me).'
+  mail_validate_8_html: "oiga.me es un proyecto de la asociación aLabs [ http://alabs.es/ ]. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto [ %{url_donate} ]."
+  mail_validate_9_html: "Sigue a %{oigame_twitter} en Twitter y en %{oigame_facebook}."
+  mail_validate_10_html: "oiga.me es un proyecto de la asociación %{url_alabs}. Como asociación sin ánimo de lucro, aLabs destina todas las donaciones que recibe para oiga.me a mejorar la plataforma y añadir funcionalidades que permitan facilitar la participación de la ciudadanía en la vida política y los asuntos que nos importan. Puedes contribuir a mantener de manera colaborativa donando al proyecto (%{url_donate})."
+  donating_to_proyect: "donando al proyecto"
   category_of_campaign: "Categoría de la campaña"
   category: 'Categoría'
   faxes_recipients: 'Números de fax de los destinatarios'
@@ -449,13 +452,14 @@ es:
   by_signing_you_accept: "Firmando aceptas la "
   has_gotten: "conseguidas"
   users: 'Usuarios'
-  miss: "Faltan"
+  miss: "faltan"
+  participated: "participaron"
   firms_more: "firmas más"
   more: "más"
   languages: 'Idiomas'
   about: 'Acerca de'
   create: 'Crear'
-  add_credit: 'Añadir crédito'
+  add_credit: 'Donar crédito'
   credits: 'Créditos'
   countries: 'Países'
   thanks_sign_has_validate: 'Gracias por firmar. Ahora tienes que validar la firma a través del correo que acabas de recibir'
@@ -468,6 +472,11 @@ es:
   your_identity_card: "NIF"
   your_postal_code: "Código Postal"
   faq: "FAQ"
+  share: "Compartir"
+  other_campaigns: "Otras campañas que pueden interesarte"
+  hashtag: "hashtag"
+  avatar: "avatar"
+  continue_reading: "Seguir leyendo"
   your_message_will_be_sent_to: "Tu mensaje será enviado a:"
   step_1: "Nombre"
   step_2: "Descripción"
@@ -475,11 +484,20 @@ es:
   sorry_you_are_not_allowed: "Lo sentimos, no tienes permitido el acceso a esta página"
   press: "Prensa"
   programe: "Programar"
+  fax: "Envío de fax"
+  petition: "Petición online"
+  mailing: "Envío de correo"
   next_step: "Siguiente paso"
   language: "Idioma"
   options: "Opciones"
   change_my_password: "Cambiar mi contraseña"
   cancel_account_explanation: "¿Deseas cancelar tu cuenta? Puedes hacerlo presionando"
+  is_archived: "Campaña archivada"
+  is_archived_explain: "Esta campaña ha sido archivada, ya no puedes participar más."
+  integrate: "Integrar"
+  people_have_already_participated: "personas han participado"
+  thanks_for_propossing: "Gracias por proponer la campaña. Avisaremos al Consejo Social para que la revise y la apruebe." 
+  thanks_for_propossing_sub: "Gracias por proponer la campaña. Se les ha avisado a los administradores para que la revisen." 
   admin:
     home:
       name: Inicio
@@ -610,11 +628,48 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    sub:
+      general_options: "Opciones generales"
+      name: "Nombre"
+      name_help: "Nombre que se usará para la URL del Sub"
+      admin: "Administradores del Sub"
+      admin_help: "Usuarios administradores para este Sub. Deben estar creados en oiga.me anteriormente. En caso de no encontrarse no se mostrará error, así que es recomendable comprobarlo"
+      logo: "Logo"
+      logo_help: "El logo que aparecerá en los correos de validación que se envíen"
+      electronic_mail: "Correo electrónico"
+      mail: "Dirección de envio"
+      mail_help: "Dirección de correo desde la que se enviaran los correos. Recomendamos que sea una del tipo noreply@dominio.com"
+      message: "Mensaje"
+      message_help: "Este mensaje lo verán los usuarios en el correo de validación de participación a las campañas"
+      message_placeholder: "Gracias por participar en la campaña"
+      design: "Diseño"
+      header: "Header (HTML)"
+      header_help: "El código HTML que aparecerá en la parte superior de la página. Podrás usar estas etiquetas HTML [a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6] con estos atributos [id class src style href]"
+      styles: "Estílos (CSS)"
+      styles_help: "El código CSS con los estilos que se aplicarán a todo el Sub"
+      footer: "Footer (HTML)"
+      footer_help: "El código HTML que aparecerá en la parte inferior de la página. Podrás usar estas etiquetas HTML [a img div span p table tr td ul li ol h1 h2 h3 h4 h5 h6] con estos atributos [id class src style href]"
+      save_button: "Guardar"
+    errors:
+      internal_server_error: "500 - Error en el servidor"
+      internal_server_error_explain: "Hemos encontrado un error en el servidor. Por favor avísanos en hola[arroba]oiga[punto]me con lo que estabas realizando para que lo podamos solucionar."
+      page_not_found: "404 - Página no encontrada"
+      page_not_found_explain: "No hemos encontrado la página que estas buscando."
+    contact:
+      error: 'Hubo un problema con el envio de tu mensaje. Por favor escríbenos a hola[arroba]oiga[punto]me'
+      received: 'Mensaje recibido, pronto nos pondremos en contacto'
     credit:
-      add_credit: 'Añadir crédito a la campaña'
+      add_credit: 'Donar crédito a la campaña'
+      add_credit_short: 'Donar crédito'
       amount_select: "Elige una cantidad"
       amount_to_donate: "Cantidad a donar"
       accepted_cards: "Tarjetas aceptadas"
+      no_money_1: "No hay suficiente dinero"
+      no_money_2: "Actualmente está campaña no tiene suficiente dinero para poder mandar mensajes."
+      no_money_3: "Para poder seguir mandando mensajes es necesario realizar una donación"
+      donate_explain_1_html: 'Al donar crédito a esta campaña estás ayudando a que se puedan enviar FAX. Solo permitimos donar 10€, 30€ y 50€ como límite, el objetivo es <b>distribuir el coste de los FAX entre los participantes de la campaña y usuarios de la aplicación</b>, permitiendo que personas como tu apoyen las campañas que les parezcan justas o necesarias.' 
+      donate_explain_2_html: 'Dependiendo del país, cada crédito tiene un coste, esto es debido a que <a href="http://www.ovh.es/telefonia/descubrir/tarifas_telefonia.xml#A">el proveedor de FAX ofrece distinta tarifa por país</a>. A ese coste le sumaremos en el futuro 1 o 2 céntimos para financiar de manera distribuida los servidores y mantenimiento de oiga.me, pero de momento mientras probamos esta nueva forma de participación preferimos no añadir costes para no quedarnos con dinero que no nos corresponde. Esperamos poder visibilizar esos datos en la web a lo largo de este año.'
+      donate_explain_3_html: 'Muchas gracias por apoyar esta campaña y también por apoyar oiga.me.' 
     campaigns:
       creator_of_campaign: "creador de campaña"
     user:
@@ -659,7 +714,7 @@ es:
         answer_2_2: "Sentido común: Aún siendo el menos común de todos los sentidos, aLabs comparte la plataforma y el código de oiga.me con la intención de facilitar campañas que permitan a la sociedad del siglo XXI organizarse mediante herramientas telemáticas para conseguir transformar su realidad y ser efectivos. Por ese motivo hemos creado el consejo social de oiga.me para compartir las decisiones con redes en cuyo criterio confiamos."
         question_3: "¿Qué ocurre con mis datos al registrarme?, ¿y cuando participo en una campaña?"
         answer_3_1: "Cuando te registras como usuario de oiga.me, entregas voluntariamente ciertos datos personales que serán guardados, protegidos y utilizados sólo para las finalidades previstas en este sitio web. Si deseas más información, puedes consultar nuestra política de privacidad."
-        answer_3_2_html: "Al participar en una campaña a través de este sitio web, se guarda un registro del número de participantes y acciones con fines estadísticos. El usuario autoriza expresamente a la asociación <strong>aLabs</strong> a facilitar los datos que introduzca en el formulario de la campaña (Nombre completo, apellidos y dirección de correo electrónico) a la persona o entidad que impulse y gestione dicha campaña con el único y exclusivo objetivo de presentarlos ante la entidad final a la que se dirija la instancia"
+        answer_3_2_html: "Al participar en una campaña a través de este sitio web, se guarda un registro del número de participantes y acciones con fines estadísticos. El usuario autoriza expresamente a la asociación <strong>aLabs</strong> a facilitar los datos que introduzca en el formulario de la campaña (Nombre completo, apellidos, DNI, Código postal y dirección de correo electrónico, dependiendo de los datos que el creador de cada campaña estime más conveniente para el éxito de la misma) a la persona o entidad que impulse y gestione dicha campaña con el único y exclusivo objetivo de presentarlos ante la entidad final a la que se dirija la instancia"
         question_4: "¿Cómo apoyar la difusión de las campañas?"
         answer_4_1: 'Difunde las campaña como webmaster Cada campaña de oiga.me puede replicarse en tu blog o página web. Introduciendo un pequeño código HTML o Javascript que ponemos a tu disposición ayudarás a que la campaña sea visible desde más sitios, de tal forma que la web de oiga.me no sea el único punto de acceso para los usuarios que se quieran apuntar a una campaña y tu página web o blog sea también el centro de la acción.¿Cómo integrar el formulario? El "formulario" es un pequeño código de html que puedes integrar en el código de tu propia página web o blog. Es muy sencillo, simplemente copia el código del formulario y pégalo en una nueva entrada en tu blog, al publicar la nueva entrada verás el formulario en la portada de tu web y tus lectores podrán participar en la acción, construyendo un gran altavoz de manera distribuida.'
         answer_4_2: "Por correo electrónico: Envía los mensajes que recibas de nuevas campañas a tus contactos que puedan estar interesados. Difunde las campañas por listas de correo que puedan estar interesadas."
@@ -706,21 +761,30 @@ es:
         telephony_body_html: "Contacta directamente con los destinatarios de la campaña mediante un <b>sistema gratuito</b> de telefonía. (En desarrollo)"
     campaigns:
       type:
-        petition: "Petición online"
         petition_message: "firmas"
         petition_action: "Firma"
-        mailing: "Envío de correo"
         mailing_message: "mensajes enviados"
         mailing_action: "Envia un mensaje"
-        fax: "Envío de fax"
         fax_message: "faxes enviados"
         fax_action: "Envia un fax"
     wizard:
+      intro_line_1: "Antes de empezar, diseña tu campaña."
+      intro_line_2: "Define el impacto, selecciona los canales y sus destinatarios"
+      intro_line_3: "¿Cuales son los objetivos que quieres alcanzar con la campaña?"
+      intro_line_4: "¿Cómo vas a hacer para conseguirlos? ¿A través de que canal vas a hacerlo?"
+      intro_line_5: "¿Quien es el destinatario de tu campaña?"
+      finish_line_1: "Ya está: ya has creado tu campaña, ahora sólo queda que el consejo la apruebe y está lista para ser movida ;-)"
+      finish_line_2: "Una vez creada tu campaña, Oiga.me genera los siguientes recursos:"
+      finish_line_3: "La página con el texto y material multimedia de la campaña."
+      finish_line_4: "Aplicaciones para la integración en redes sociales que mejorarán su difusión."
+      finish_line_5: "Un sencillo código de réplica en html que, al ser copiado en cualquier otro gestor de contenidos o aplicación semejante (p.e. un blog u otra web), optimiza la integración del formulario de la campaña en otros soportes."
+      finish_line_6_html: 'La red está viva, procura planificar la comunicación de la campaña. Aquí te dejamos con el <a href="http://goteo.org/blog/482" title="decálogo de difusión digital de Goteo">decálogo de difusión digital de Goteo</a>.'
+      finish_line_1: ""
       next_step: "Paso siguiente"
       previous_step: "Paso anterior"
-      create_campaign: "Crear campaña"
+      create_campaign: "Proponer campaña al Consejo Social"
       name_help: "Elige un título corto que apele a la acción (diles, exige, denuncia...) y que exprese de manera clara qué se pide, a quién y cómo."
-      hastag_help: "Hashtag de la campaña."
+      hashtag_help: 'Un hashtag es una etiqueta usada en Twitter. Recomendamos no usar espacios, no empezar con numeros, no usar caracteres raros (como "!, $, %, ^, &, *, +, .") e intentar de que sea corto'
       image_help: "Sube una imagen sugerente y acorde con el contenido de tu campaña. Si puedes edítala para que contenga el título de la campaña."
       video_help: "Si tienes algún material ya grabado, puedes meterlo aquí."
       intro_help: "Redacta una entradilla breve que exprese los puntos claves de la campaña. Esta información aparecerá junto a la imagen en la portada de la web."
@@ -759,7 +823,7 @@ es:
       lopd_resp_1: "aLabs es administradora de los datos que le proporcionas, y el uso de los mismos se corresponderá exclusivamente con la finalidad propia del Sitio web o aquella que el usuario le haya asignado."
       data_reg_title: "¿Qué ocurre con mis datos al registrarme?, ¿y cuando participo en una campaña?"
       data_reg_1: "Cuando te registras como usuario de oiga.me, entregas voluntariamente ciertos datos personales que serán guardados, protegidos y utilizados sólo para las finalidades previstas en este sitio web."
-      data_reg_2: "Al participar en una campaña a través de este sitio web, se guarda un registro del número de participantes y acciones con fines estadísticos. El usuario autoriza expresamente a la asociación aLabs a facilitar los datos que introduzca en el formulario de la campaña (Nombre completo, apellidos y dirección de correo electrónico) a la persona o entidad que impulse y gestione dicha campaña con el único y exclusivo objetivo de presentarlos ante la entidad final a la que se dirija la instancia."
+      data_reg_2: "Al participar en una campaña a través de este sitio web, se guarda un registro del número de participantes y acciones con fines estadísticos. El usuario autoriza expresamente a la asociación aLabs a facilitar los datos que introduzca en el formulario de la campaña (Nombre completo, apellidos, DNI, Código postal y dirección de correo electrónico, dependiendo de los datos que el creador de cada campaña estime más conveniente para el éxito de la misma) a la persona o entidad que impulse y gestione dicha campaña con el único y exclusivo objetivo de presentarlos ante la entidad final a la que se dirija la instancia."
       minors_title: "Menores de edad"
       minors_1: "aLabs entiende la importancia de proteger la privacidad de los menores en Internet. No forma parte de nuestra política recoger ningún dato personal relativo a los usuarios menores de 13 años. Si eres menor, te recomendamos que solicites ayuda a tus padres y te pedimos que no utilices la herramienta de email ni la aplicación para hacer donaciones."
       relevant_info_title: "Información de interés"
@@ -852,3 +916,4 @@ es:
           other: "Mostrando <b>todas las %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Mostrando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> en total"
+  edit_my_data: 'Editar mis datos'

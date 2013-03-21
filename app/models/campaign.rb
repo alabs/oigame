@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 class Campaign < ActiveRecord::Base
 
   self.per_page = 6
@@ -13,7 +14,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :category
   has_many :donations
   has_many :updates
-  
+
   attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype,
     :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :postal_code,
     :identity_card, :state, :hashtag, :video_url
@@ -28,31 +29,31 @@ class Campaign < ActiveRecord::Base
 
   TYPES = {
     :petition =>
-      {
-        :name       => I18n.t('oigame.campaigns.type.petition'),
-        :img        => 'icon-pencil',
-        :model_name => 'Petition',
-        :message    => I18n.t('oigame.campaigns.type.petition_message'),
-        :action     => I18n.t('oigame.campaigns.type.petition_action'),
-      },
+    {
+      :name       => I18n.t('petition'),
+      :img        => 'icon-pencil',
+      :model_name => 'Petition',
+      :message    => I18n.t('oigame.campaigns.type.petition_message'),
+      :action     => I18n.t('oigame.campaigns.type.petition_action'),
+    },
     :mailing =>
-      {
-        :name       => I18n.t('oigame.campaigns.type.mailing'),
-        :img        => 'icon-envelope',
-        :model_name => 'Message',
-        :message    => I18n.t('oigame.campaigns.type.mailing_message'),
-        :action     => I18n.t('oigame.campaigns.type.mailing_action'),
-      },
+    {
+      :name       => I18n.t('mailing'),
+      :img        => 'icon-envelope',
+      :model_name => 'Message',
+      :message    => I18n.t('oigame.campaigns.type.mailing_message'),
+      :action     => I18n.t('oigame.campaigns.type.mailing_action'),
+    },
     :fax =>
-      {
-        :name       => I18n.t('oigame.campaigns.type.fax'),
-        :img        => 'icon-print',
-        :model_name => 'Fax',
-        :message    => I18n.t('oigame.campaigns.type.fax_message'),
-        :action     => I18n.t('oigame.campaigns.type.fax_action'),
-      },
+    {
+      :name       => I18n.t('fax'),
+      :img        => 'icon-print',
+      :model_name => 'Fax',
+      :message    => I18n.t('oigame.campaigns.type.fax_message'),
+      :action     => I18n.t('oigame.campaigns.type.fax_action'),
+    },
   }
-   # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
+  # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
 
   STATUS = %w[active archived deleted]
 
@@ -63,9 +64,10 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :body,  :if => :active_or_body?
   validates_presence_of :ttype,  :if => :active_or_ttype?
   validates_presence_of :duedate_at, :if => :active_or_duedate_at?
-  # validación desactivada porque genera excepción al manipular objetos
-  # antiguos que tienen una intro de mas de 500 caracteres
-  #validates :intro, :length => { :maximum => 500 }
+  validates :intro, :length => { :maximum => 500 }
+  validates :default_message_body, :length => { :maximum => 3960 }, :if => :fax_campaign?
+
+  validate :validate_video_url_provider
 
   mount_uploader :image, CampaignImageUploader
 
@@ -86,7 +88,7 @@ class Campaign < ActiveRecord::Base
     indexes :intro
     indexes :status
     indexes :sub_oigame_id
-    
+
     # a little hack para que podamos buscar por nil
     # https://groups.google.com/forum/?fromgroups#!topic/thinking-sphinx/CUwd3m_4cLQ
     has "sub_oigame_id IS NULL", :type => :boolean, :as => :no_sub
@@ -107,7 +109,7 @@ class Campaign < ActiveRecord::Base
     def last_campaigns(page = 1, sub_oigame = nil, limit = nil)
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => sub_oigame).published.limit(limit).page(page)
     end
-    
+
     def last_campaigns_without_pagination(limit = nil)
       includes(:messages, :petitions).order('priority DESC').order('published_at DESC').where(:sub_oigame_id => nil).published.limit(limit)
     end
@@ -116,8 +118,16 @@ class Campaign < ActiveRecord::Base
       where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true).page(page)  
     end
 
+    def last_campaigns_moderated_without_pagination(sub_oigame = nil)
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true)
+    end
+
     def archived_campaigns(page = 1, sub_oigame = nil)
       where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive.page(page)
+    end
+
+    def archived_campaigns_without_pagination(sub_oigame = nil)
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('published_at DESC').on_archive
     end
 
     def total_published_campaigns
@@ -127,6 +137,18 @@ class Campaign < ActiveRecord::Base
     def types
       TYPES
     end
+  end
+
+  def has_credit?(credits)
+    (self.credit - credits) >= 0
+  end
+
+  def generate_file_with_numbers_for_faxing(fax_id)
+    numbers = self.numbers
+    fh = File.open("/tmp/numbers-#{fax_id}-#{self.id}.txt", "w+")
+    numbers.each {|n| fh.print(n + "\r\n")}
+    fh.close
+    return fh.path
   end
 
   # Para repartir el envio de mensajes en varios enlaces
@@ -156,7 +178,7 @@ class Campaign < ActiveRecord::Base
   def faxes_recipients
     self.numbers.join("\r\n")
   end
-  
+
   def faxes_recipients=(args)
     numbs = args.gsub(/\s+/, ',').split(',')
     # arreglar el bug del strip
@@ -189,7 +211,7 @@ class Campaign < ActiveRecord::Base
     addresses.delete_if {|a| a.blank? }
     self.emails = addresses
   end
-  
+
   def recipients_for_message
     self.emails.join(',')
   end
@@ -201,7 +223,7 @@ class Campaign < ActiveRecord::Base
   def to_html(field)
     render = Redcarpet::Render::HTML.new(:filter_html => true)
     markdown = Redcarpet::Markdown.new(render,
-      :autolink => true, :space_after_headers => true)
+                                       :autolink => true, :space_after_headers => true)
     markdown.render(field).html_safe
   end
 
@@ -251,6 +273,10 @@ class Campaign < ActiveRecord::Base
     Campaign::TYPES[ttype.to_sym][:model_name]
   end
 
+  def archived?
+    status == "archived"
+  end
+
   def archive
     self.status = 'archived'
     save!
@@ -265,18 +291,22 @@ class Campaign < ActiveRecord::Base
     # devuelve otras campaigns similares a la que estamos seleccionando, quitando la que usamos
     # tiene en cuenta el sub
     if self.sub_oigame.nil?
-      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ?", self.id], :limit => 5)
+      return Campaign.published.order('priority ASC').find(:all, :conditions => ["id != ?", self.id], :limit => 6)
     else
-      return Campaign.published.order('priority DESC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 5)
+      return Campaign.published.order('priority ASC').find(:all, :conditions => ["id != ? and sub_oigame_id = ?", self.id, self.sub_oigame.id], :limit => 6)
     end
   end
 
   def get_absolute_url
-    if self.sub_oigame.nil?
-      return APP_CONFIG[:domain] + "/campaigns/" + self.slug
+    if sub_oigame.nil?
+      return APP_CONFIG[:domain] + "/campaigns/" + slug
     else 
-      return APP_CONFIG[:domain] + "/o/" + self.sub_oigame.name + "/campaigns/" + self.slug
+      return APP_CONFIG[:domain] + "/o/" + sub_oigame.name + "/campaigns/" + slug
     end
+  end
+
+  def get_image_absolute_url
+    return APP_CONFIG[:domain] + image_url
   end
 
   def stats
@@ -300,7 +330,7 @@ class Campaign < ActiveRecord::Base
       counter += count
       data.push([date.strftime('%Y-%m-%d'), counter])
     end
-    
+
     return data
   end
 
@@ -323,7 +353,7 @@ class Campaign < ActiveRecord::Base
   def active_or_image?
     wstatus.include?('image') || active?
   end
-  
+
   def active_or_intro?
     wstatus.include?('intro') || active?
   end
@@ -331,28 +361,56 @@ class Campaign < ActiveRecord::Base
   def active_or_body?
     wstatus.include?('body') || active?
   end
-  
+
   def active_or_ttype?
     wstatus.include?('ttype') || active?
   end
-  
+
   def active_or_duedate_at?
     wstatus.include?('duedate_at') || active?
   end
 
+  def obj_minus_gotten_result
+    target.to_i - participants_count 
+  end
+
   def messages_count
+    recipients_count * participants_count
+  end
+
+  def recipients_count
     case ttype
     when 'mailing'
-      messages.validated.count
+      emails.count
     when 'petition'
-      petitions.validated.count
+      1 # o sino multiplicamos por 0 y explota todo
     when 'fax'
-      faxes.validated.count
+      faxes_recipients.split(/\r\n/).count
+    end
+  end
+
+  def participants_count
+    case ttype
+    when 'mailing'
+      messages.validated.count.to_i
+    when 'petition'
+      petitions.validated.count.to_i
+    when 'fax'
+      faxes.validated.count.to_i
     end
   end
 
   def participants_list
-    recipients = self.messages.map {|m| m.email}.sort.uniq
+    case ttype
+    when 'mailing'
+      model = messages
+    when 'petition'
+      model = petitions
+    when 'fax'
+      model = faxes
+    end
+
+    recipients = model.map {|m| m.email}.sort.uniq
     response = ""
     recipients.each {|r| response += r + "\n" }
     return response
@@ -400,5 +458,16 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def validate_video_url_provider
+    if !self.video_url.blank?
+      unless self.video_url.start_with?("http://youtu.be/", "http://www.youtube.com/watch?v=", "https://www.youtube.com/watch?v=", "http://vimeo.com/")
+        errors.add :video_url, "must be a valid provider" 
+      end
+    end
+  end
 
+  def fax_campaign?
+    self.ttype == 'fax'
+  end
 end
+

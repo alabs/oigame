@@ -54,7 +54,9 @@ class SubOigame < ActiveRecord::Base
 
     addresses.each do |address|
       user = User.where(:email => address).first
-      users << user
+      unless user.nil?
+        users << user
+      end
     end
   end
 end

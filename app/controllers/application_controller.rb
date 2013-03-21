@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  
+
   helper :all
-  
+
   before_filter :set_locale, :header_data, :set_meta_defaults
   protect_from_forgery
 
@@ -11,13 +11,31 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => t(:sorry_you_are_not_allowed)
   end
 
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+    rescue_from ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
+  end
+
+  private
+  def render_error(status, exception)
+    if status == 500
+      ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
+      notify_airbrake(exception)
+    end
+    respond_to do |format|
+      format.html { render template: "errors/error_#{status}", layout: 'layouts/application', status: status }
+      format.all { render nothing: true, status: status }
+    end
+  end
+
+
   protected
 
   # Método para decirle a Varnish qué tiene que cachear
   def set_http_cache(period, visibility = false)
     expires_in period, :public => visibility, 'max-stale' => 0
   end
-    
+
   def generate_token
     secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
   end
@@ -67,7 +85,6 @@ class ApplicationController < ActionController::Base
     @meta['title'] = 'oiga.me'
     @meta['description'] = 'Participa y colabora'
     @meta['og'] = {} || @meta['og']
-    @meta['og']['locale'] = 'es'
     @meta['fb'] = {} || @meta['fb']
     @meta['fb']['app_id'] = APP_CONFIG[:FACEBOOK_APP_ID]
     @meta['oigameapp'] = {} || @meta['oigameapp']

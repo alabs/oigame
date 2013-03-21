@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'mysql2'
 # prepare for upgrade to postgres
 #gem 'pg'
@@ -22,11 +22,12 @@ gem 'god'
 
 gem 'capistrano'
 gem 'capistrano-ext'
-gem 'capistrano-resque'
+#gem 'capistrano-resque'
 
 # To use debugger
 
 group :test, :development do
+  gem 'jazz_hands'
   gem 'minitest'
   gem 'capybara'
   # Pretty printed test output
@@ -43,6 +44,7 @@ group :development do
   #gem 'ruby-debug19', :require => 'ruby-debug'
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'debugger-ruby_core_source'
 end
 
 gem 'pry-rails'
@@ -111,3 +113,5 @@ gem 'omniauth-twitter'
 
 gem 'airbrake'
 gem 'tweetstream'
+
+gem 'recaptcha', :require => 'recaptcha/rails'

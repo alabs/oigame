@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130131133) do
+ActiveRecord::Schema.define(:version => 20130212221154) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -23,35 +23,36 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
     t.string   "slug"
     t.text     "intro"
     t.text     "body"
-    t.datetime "created_at",                                                                     :null => false
-    t.datetime "updated_at",                                                                     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
-    t.boolean  "moderated",                                              :default => true
+    t.boolean  "moderated",               :default => true
     t.datetime "published_at"
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
-    t.string   "status",                                                 :default => "active"
-    t.time     "deleted_at"
+    t.string   "status",                  :default => "active"
     t.integer  "sub_oigame_id"
     t.string   "default_message_subject"
     t.text     "default_message_body"
-    t.boolean  "priority",                                               :default => false
-    t.integer  "messages_count",                                         :default => 0
-    t.integer  "petitions_count",                                        :default => 0
-    t.boolean  "commentable",                                            :default => true
+    t.boolean  "priority",                :default => false
+    t.time     "deleted_at"
+    t.integer  "messages_count",          :default => 0
+    t.integer  "petitions_count",         :default => 0
+    t.boolean  "commentable",             :default => true
     t.integer  "category_id"
-    t.decimal  "credit",                  :precision => 10, :scale => 4, :default => 0.0
+    t.integer  "credit",                  :default => 0
     t.text     "numbers"
-    t.integer  "faxes_count",                                            :default => 0
-    t.string   "wstatus",                                                :default => "inactive"
-    t.boolean  "identity_card",                                          :default => false
-    t.boolean  "state",                                                  :default => false
-    t.boolean  "postal_code",                                            :default => false
+    t.integer  "faxes_count",             :default => 0
+    t.string   "wstatus",                 :default => "inactive"
+    t.boolean  "identity_card",           :default => false
+    t.boolean  "state",                   :default => false
+    t.boolean  "postal_code",             :default => false
     t.string   "hashtag"
     t.string   "video_url"
+    t.boolean  "informed_low_credit",     :default => false
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
@@ -72,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
     t.string   "email"
     t.string   "subject"
     t.text     "body"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "mailing",    :default => false
   end
 
@@ -99,8 +100,8 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
     t.boolean  "validated"
     t.string   "token"
     t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "body"
     t.datetime "check_date"
     t.string   "check_message"
@@ -109,14 +110,15 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
     t.string   "postal_code"
     t.string   "state"
     t.integer  "check_code"
+    t.integer  "revalidate_counter"
   end
 
   create_table "messages", :force => true do |t|
     t.integer  "campaign_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email"
-    t.boolean  "validated",     :default => false
+    t.boolean  "validated",          :default => false
     t.string   "token"
     t.text     "body"
     t.string   "subject"
@@ -124,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
     t.string   "identity_card"
     t.string   "postal_code"
     t.string   "state"
+    t.integer  "revalidate_counter"
   end
 
   add_index "messages", ["campaign_id"], :name => "index_messages_on_campaign_id"
@@ -132,14 +135,15 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
   create_table "petitions", :force => true do |t|
     t.integer  "campaign_id"
     t.string   "email"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.boolean  "validated",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "validated",          :default => false
     t.string   "token"
     t.string   "name"
     t.string   "identity_card"
     t.string   "postal_code"
     t.string   "state"
+    t.integer  "revalidate_counter"
   end
 
   add_index "petitions", ["campaign_id"], :name => "index_petitions_on_campaign_id"
@@ -161,8 +165,8 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
@@ -225,13 +229,21 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "user_providers", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                                 :default => "",    :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -239,14 +251,14 @@ ActiveRecord::Schema.define(:version => 20130130131133) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.string   "authentication_token"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.boolean  "mailing",                :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "mailing",                               :default => false
     t.string   "name"
     t.string   "vat"
-    t.integer  "campaigns_count",        :default => 0
+    t.string   "authentication_token"
+    t.string   "unconfirmed_email"
+    t.integer  "campaigns_count",                       :default => 0
     t.string   "provider"
     t.string   "uid"
     t.integer  "roles_mask"

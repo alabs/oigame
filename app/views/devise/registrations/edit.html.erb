@@ -16,7 +16,7 @@
 
           <div class="form-field">
             <%= f.label t(:avatar) %>
-             <img style="width:100px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
+             <img style="width:100px;" src="<%= avatar_url(current_user.email, 200) %>" alt="<%= current_user.email %>"/>
              <div style="float: right; width: 18em;" class="alert alert-info"><%= t("oigame.user.registration.gravatar_html") %></div>
           </div>
           <br />
@@ -83,7 +83,7 @@
         </fieldset>
       <% end %>
       <h3><%= t(:cancel_account) %></h3>
-      <p><%= t(:cancel_account_explanation) %><%= link_to t(:this_link), registration_path(resource_name), :confirm => t(:are_you_sure), :method => :delete %>.</p>
+      <p><%= t(:cancel_account_explanation) %> <%= link_to t(:this_link), registration_path(resource_name), :confirm => t(:are_you_sure), :method => :delete %>.</p>
     </div><!-- edit-account-form -->
   </div><!-- accounts -->
 </div><!-- accounts-wrapper -->

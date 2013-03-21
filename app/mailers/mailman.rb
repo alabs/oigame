@@ -4,11 +4,12 @@ class Mailman < ActionMailer::Base
   include Resque::Mailer # para enviar correos en background
 
   default :from => "oigame@oiga.me"
-  layout "email", :except => [:send_message_to_fax_recipients, :send_contact_message]
+  layout "email", :except => [:send_message_to_fax_recipient, :send_message_to_fax_recipients, :send_contact_message]
   helper :application
   include ApplicationHelper
 
   def send_message_to_user(to, subject, message, campaign_id)
+    I18n.locale = I18n.default_locale
     @message_to = to
     @message_subject = subject
     @message_body = message
@@ -18,12 +19,14 @@ class Mailman < ActionMailer::Base
   end
 
   def send_campaign_to_social_council(campaign_id)
+    I18n.locale = I18n.default_locale
     @campaign = Campaign.find(campaign_id)
     subject = "[oiga.me] #{@campaign.name}"
     mail :to => APP_CONFIG[:social_council_email], :subject => subject
   end
 
   def send_campaign_to_sub_oigame_admin(sub_oigame_id, campaign_id)
+    I18n.locale = I18n.default_locale
     @campaign = Campaign.find(campaign_id)
     @sub_oigame = SubOigame.find(sub_oigame_id)
     subject = "[#{@sub_oigame.name}] #{@campaign.name}"
@@ -33,6 +36,7 @@ class Mailman < ActionMailer::Base
   end
 
   def send_contact_message(contact_id)
+    I18n.locale = I18n.default_locale
     @message = Contact.find(contact_id)
     from = "#{@message.name} <#{@message.email}>"
     subject = "[oiga.me] #{@message.subject}"
@@ -45,6 +49,7 @@ class Mailman < ActionMailer::Base
       # FIXME: fix rapido para que envie los correos en spanish
       # TODO: I18n bien (con URLs segun el locale, subject y todo)
       I18n.locale = I18n.default_locale
+      @locale = I18n.locale
       sign_model = meth.to_s.capitalize.constantize
       @campaign = Campaign.find(campaign_id)
       petition = sign_model.find(signed_id)
@@ -53,10 +58,12 @@ class Mailman < ActionMailer::Base
       unless @campaign.sub_oigame.nil?
         prefix = "[#{@campaign.sub_oigame.name}]"
         @sub_oigame = @campaign.sub_oigame
-        @url = "#{APP_CONFIG[:domain]}/es/o/#{@sub_oigame.name}/campaigns/#{@campaign.slug}"
+        @url = sub_oigame_campaign_url(:id => @campaign, :sub_oigame_id => @sub_oigame, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
+        @url_validate = validate_sub_oigame_campaign_url(:id => @campaign, :sub_oigame_id => @sub_oigame, :token => @token, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
       else
         prefix = "[oiga.me]"
-        @url = "#{APP_CONFIG[:domain]}/es/campaigns/#{@campaign.slug}"
+        @url = campaign_url(:id => @campaign, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
+        @url_validate = validate_campaign_url(:id => @campaign, :token => @token, :host => APP_CONFIG[:host], :protocol => "https", :locale => @locale)
       end
 
       from = generate_from_for_validate('oigame@oiga.me', @campaign.sub_oigame)
@@ -66,6 +73,7 @@ class Mailman < ActionMailer::Base
   end
 
   def inform_campaign_activated(campaign_id)
+    I18n.locale = I18n.default_locale
     campaign = Campaign.find(campaign_id)
     @message_to = campaign.user.email
     @campaign_name = campaign.name
@@ -75,12 +83,14 @@ class Mailman < ActionMailer::Base
   end
 
   def send_mailing(email, subject, message)
+    I18n.locale = I18n.default_locale
     @message_body = message
     subject = "[oiga.me] #{subject}"
     mail :to => email, :subject => subject
   end
 
   def send_message_to_recipients(message_id)
+    I18n.locale = I18n.default_locale
     message = Message.find(message_id)
     @message_body = message.body
     subject = message.subject
@@ -88,6 +98,19 @@ class Mailman < ActionMailer::Base
     mail :from => message.email, :to => message.email, :subject => subject, :bcc => recipients
   end
   
+  # OVH is the best provider for faxing :)
+  def send_message_to_fax_recipient(fax_id, campaign_id)
+    I18n.locale = I18n.default_locale
+    fax = Fax.find(fax_id)
+    campaign = Campaign.find(campaign_id)
+    @password = APP_CONFIG[:our_fax_password]
+    subject = APP_CONFIG[:our_fax_number]
+    doc = FaxPdf.new(fax, campaign)
+    attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
+    number = campaign.numbers.first
+    mail :from => APP_CONFIG[:fax_from_email_address], :to => number+"@ecofax.fr", :bcc => APP_CONFIG[:fax_test_email_address], :subject => subject
+  end
+
   def send_message_to_fax_recipients(fax_id, campaign_id)
     fax = Fax.find(fax_id)
     campaign = Campaign.find(campaign_id)
@@ -95,16 +118,32 @@ class Mailman < ActionMailer::Base
     subject = APP_CONFIG[:our_fax_number]
     doc = FaxPdf.new(fax, campaign)
     attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
-    numbers = campaign.numbers.map {|number| number + "@ecofax.fr"}
-    mail :from => APP_CONFIG[:fax_from_email_address], :to => numbers, :subject => subject
+    attachments["numbers.txt"] = File.read(campaign.generate_file_with_numbers_for_faxing(fax_id)) 
+    mail :from => APP_CONFIG[:fax_from_email_address], :to => APP_CONFIG[:ecofax_mail], :bcc => APP_CONFIG[:fax_test_email_address], :subject => subject
   end
+  
+  #def send_message_to_fax_recipient(fax_id, campaign_id, number)
+  #  @fax = Fax.find(fax_id)
+  #  campaign = Campaign.find(campaign_id)
+  #  doc = FaxPdf.new(fax, campaign)
+  #  attachments["fax-#{campaign_id}-#{fax_id}.pdf"] = doc.generate_pdf
+  #  mail :from => 'hola@alabs.org', :to => number+"@mail2fax.popfax.com", :subject => APP_CONFIG[:popfax_password]
+  #end
 
   def inform_new_comment(campaign_id)
+    I18n.locale = I18n.default_locale
     campaign = Campaign.find(campaign_id)
     @message_to = campaign.user.email
     @campaign_name = campaign.name
     @campaign_slug = campaign.slug
     subject = "[oiga.me] Nuevo mensaje en tu campaña #{ @campaign_name }"
     mail :to => @message_to, :subject => subject
+  end
+
+  def send_message_lower_credit(campaign_id)
+    I18n.locale = I18n.default_locale
+    @campaign = Campaign.find(campaign_id)
+    subject = "[oiga.me] Aviso de crédito bajo"
+    mail :to => @campaign.user.email, :subject => subject
   end
 end
