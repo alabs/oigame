@@ -1,16 +1,13 @@
-var el = document.createElement('object'); 
+var el = document.createElement('iframe'); 
 el.setAttribute('id', 'ifrm-campaign-<%= @campaign.id %>');
 <% if @sub_oigame %>
-el.setAttribute('data', '<%= url_for widget_iframe_sub_oigame_campaign_url(:protocol => "https", :host => APP_CONFIG[:host]) %>');
+el.setAttribute('src', '<%= url_for widget_iframe_sub_oigame_campaign_url(:protocol => "https", :host => APP_CONFIG[:host]) %>');
 <% else %>
-el.setAttribute('data', '<%= url_for widget_iframe_campaign_url(:protocol => "https", :host => APP_CONFIG[:host]) %>');
+el.setAttribute('src', '<%= url_for widget_iframe_campaign_url(:protocol => "https", :host => APP_CONFIG[:host]) %>');
 <% end %>
-
-el.setAttribute('data', 'http://localhost:3000/es/campaigns/solicita-a-los-representantes-de-paises-extranjeros-y-organismos-internacionales-que-dejen-de-reconocer-al-gobierno-de-espana/widget-iframe.html');
-el.setAttribute('type', 'text/html');
 el.setAttribute('width', '100%');
-el.setAttribute('height', '100%');
 // el height lo pasamos como un parametro, por ejemplo ?height=800
+el.setAttribute('height', '<%= params[:height] ? params[:height] + "px" : "500px" %>');
 el.setAttribute('scrolling', 'no');
 el.setAttribute('frameborder', '0');
 // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
