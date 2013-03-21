@@ -24,11 +24,21 @@
               <b style="margin-bottom: 100px;"><%= current_user.name %></b>
             <% end %>
             </li>
-            <li><%= link_to t(:logout), destroy_user_session_path, :method => :delete %></li>
-          <% else %>
-            <li><%= link_to t(:create_account), new_user_registration_path %></li>
             <li>
-            <%= link_to new_user_session_path, :class => 'navbar-link' do %>
+            <%= link_to destroy_user_session_path, :class => "navbar-link", :method => :delete do %>
+              <i class="icon-unlock"></i>
+              <%= t(:logout) %>
+            <% end %>
+            </li>
+
+          <% else %>
+            <li>
+            <%= link_to new_user_registration_path, :class => "navbar-link" do %>
+              <i class="icon-pencil"></i><%= t(:create_account) %>
+            <% end %>
+            </li>
+            <li>
+            <%= link_to new_user_session_path, :class => "navbar-link" do %>
               <i class="icon-lock icon"></i><%= t(:login) %>
               </li>
             <% end %>
@@ -41,7 +51,12 @@
           </li>
         </ul>
         <ul class="nav">
-          <li id="header-campaigns"><%= link_to t(:campaigns), campaigns_path %></li>
+          <li id="header-campaigns">
+          <%= link_to campaigns_path, :class => "navbar-link" do %>
+            <i class="icon-bullhorn"></i>
+            <%= t(:campaigns) %>
+          <% end %>
+          </li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
