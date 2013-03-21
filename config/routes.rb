@@ -17,6 +17,8 @@ Oigame::Application.routes.draw do
       get 'validate/:token' => 'campaigns#validate', :as => 'validate'
       get 'validated'
       get 'participants'
+
+      # integrate / widgets
       get 'integrate'
       get 'widget'
       get 'widget-iframe.html' => 'campaigns#widget_iframe', :as => 'widget_iframe'
@@ -43,6 +45,7 @@ Oigame::Application.routes.draw do
 
     collection do
       get 'moderated'
+      get 'list' 
       get 'feed', :defaults => { :format => 'rss' }
       get 'archived'
       get 'search' => 'campaigns#search'
