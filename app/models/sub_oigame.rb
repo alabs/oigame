@@ -19,6 +19,10 @@ class SubOigame < ActiveRecord::Base
     slug
   end
 
+  def to_s
+    self.name
+  end
+
   def generate_slug
     self.slug = self.name.parameterize
   end

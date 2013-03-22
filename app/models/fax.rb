@@ -23,4 +23,8 @@ class Fax < ActiveRecord::Base
     update_attributes(:validated => true, :token => nil)
     Resque.enqueue(SendFax, self.id)
   end
+
+  def to_s
+    self.campaign.name + ": " + self.email
+  end
 end

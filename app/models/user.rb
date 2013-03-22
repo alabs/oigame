@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def to_s
+    self.email
+  end
   
   #def role=(roles)
   #  roles=(roles)

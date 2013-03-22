@@ -140,6 +140,10 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def to_s
+    self.name
+  end
+
   def has_credit?(credits)
     (self.credit - credits) >= 0
   end

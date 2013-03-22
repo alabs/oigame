@@ -23,4 +23,7 @@ class Petition < ActiveRecord::Base
     update_attributes(:validated => true, :token => nil)
   end
 
+  def to_s
+    self.campaign.name + ": " + self.email
+  end
 end
