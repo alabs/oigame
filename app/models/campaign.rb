@@ -17,9 +17,10 @@ class Campaign < ActiveRecord::Base
 
   attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype,
     :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :postal_code,
-    :identity_card, :state, :hashtag, :video_url
+    :identity_card, :state, :ht, :video_url
 
   attr_accessor :recipient
+  attr_accessor :ht
 
   #validate :validate_minimum_image_size
   attr_accessor :image_width, :image_height
@@ -414,6 +415,13 @@ class Campaign < ActiveRecord::Base
     response = ""
     recipients.each {|r| response += r + "\n" }
     return response
+  end
+
+  # for twitter hashtag
+  def ht=(args)
+    str = args
+    str = str.gsub(/#/, '').gsub(/,/, '')
+    self.hashtag = str.split.first
   end
 
   private
