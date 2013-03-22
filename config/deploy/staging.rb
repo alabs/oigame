@@ -89,6 +89,7 @@ namespace :deploy do
   task :update_code, :except => { :no_release => true } do
     run "cd #{current_path}; git fetch origin; git reset --hard #{branch}"
     finalize_update
+    restart_resque
   end
 
   desc "Update the database (overwritten to avoid symlink)"
@@ -130,6 +131,13 @@ namespace :deploy do
     # compilar en local y subir los assets al repo
     # precompile assets
     #run "cd #{latest_release}; RAILS_ENV=staging bundle exec rake assets:precompile"
+  end
+  
+  desc "Restart resque workers"
+  task :restart_resque, :except => { :no_release => true } do
+    run <<-CMD
+      sudo /etc/init.d/beta.oiga.me.resque restart
+    CMD
   end
 
   #namespace :assets do
