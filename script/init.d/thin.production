@@ -18,7 +18,7 @@ THIN=/home/ruby-data/.rvm/bin/bootup_thin
 RAILS_ENV=production
 USER=oigame
 APP_PATH=/var/www/oiga.me/current
-SCRIPT_NAME=/etc/init.d/oigame.thin
+SCRIPT_NAME=/etc/init.d/oiga.me.thin
 CONFIG_PATH=$APP_PATH/config/thin_production.yml
 
 start() {

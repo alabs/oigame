@@ -738,6 +738,7 @@ es:
         campaigns: "Campañas"
         signatures: "Firmas"
         users: "Usuarios"
+        people: "Personas"
         countries: "Países"
       welcome:
         welinfo_1_html: "Una herramienta de movilización ciudadana a través de la red, %{href}"
