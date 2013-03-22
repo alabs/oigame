@@ -542,6 +542,7 @@ en:
         countries: Country
         signatures: Signatures
         users: Users
+        people: 'People'
       welcome: 
         welinfo_1_html: "A tool of citizen mobilization through red, %{href}"
         welinfo_1_link: "create your own campaign"
