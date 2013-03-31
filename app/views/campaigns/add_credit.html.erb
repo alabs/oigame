@@ -27,7 +27,7 @@
             <input type="hidden" name="type" value="addcredit" />
             <div class="control-group">
               <div class="controls">
-                <select name="coste">
+                <select id="add-credit-select" name="coste">
                   <option value=""><%= t("oigame.credit.amount_to_donate") %></option>
                   <option value="10.00">10 Euros</option>
                   <option value="30.00">30 Euros</option>
@@ -42,8 +42,7 @@
             </div>
           </fieldset>
         </form>
-        <p><%= t("oigame.credit.accepted_cards") %>:<br />
-        <%= image_tag('credit-cards.jpg') %>
+        <%= image_tag('credit-cards.jpg', :class => 'cards') %>
       </div><!-- donate-form -->
     </div><!-- page-info -->
   </div><!-- page -->
