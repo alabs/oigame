@@ -10,7 +10,7 @@
 
 function progressCounter($selector,value,recipients_count,max,speed) {
   setTimeout(function() { 
-    $selector.attr('value', value * recipients_count); 
+    $selector.attr('value', value); 
     $('.js-collected .highlighted').text(value * recipients_count);
     $('.js-participated-people .underlined').text(value);
     $('.js-needed-people .underlined').text(max - value);
