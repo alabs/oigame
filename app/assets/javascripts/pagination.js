@@ -3,8 +3,10 @@ $(function(){
 
   $('.thumbnails').isotope({
     // options
+    layoutMode: 'fitRows',
     itemSelector : '.item'
   });
+
 
 $('.campaign-infolist .next_page')
   .addClass('btn_readmore')
