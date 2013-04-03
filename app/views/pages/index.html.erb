@@ -80,7 +80,7 @@
   <div class="sidecarro span3 visible-desktop">
     <i class="icon-bullhorn">&nbsp;<%= t "oigame.home.stats.campaigns" %> <%= @total_published_campaigns %></i>
     <i class="icon-pencil">&nbsp;<%= t "oigame.home.stats.signatures" %> <%= @total_signs %></i>
-    <i class="icon-user">&nbsp;<%= t "oigame.home.stats.users" %> <%= @total_users %></i>
+    <i class="icon-user">&nbsp;<%= t "oigame.home.stats.people" %> <%= @total_users %></i>
     <!-- i class="icon-globe">&nbsp;<%= t "oigame.home.stats.countries" %> </i -->
   </div>
   <!-- sidecarro -->
@@ -99,25 +99,15 @@
 </div><!-- welcome -->
 
 <div class="container-fluid">
-  <ul class="photo row-fluid">
-    <% @campaigns_carousel.each do |campaign| %>
-      <li class="span4">
-      <div class="campa-home">
-        <%= link_to campaign, :title => campaign.name do %>
-          <%= image_tag(campaign.image_url(:home), :alt => campaign.name, :class => "campa-img") %>
-        <% end %>
-        <div class="campa-texto">
-          <div class="campa-texto-left">
-            <%= link_to campaign.name, campaign, :title => campaign.name %>
-          </div><!-- campa-texto-left -->
-          <div class="campa-texto-right">
-            <%= image_tag(avatar_url(campaign.user.email), :alt => campaign.user.name) %>
-          </div><!-- campa-texto-right -->
-        </div><!-- campa-texto -->
-      </div><!-- campa-home -->
-      </li>
-    <% end %>
-  </ul>
+
+  <div class="row-fluid">
+    <div class="thumbnails">
+      <% @campaigns_carousel.each do |campaign| %>
+        <%= render :partial => "campaigns/campaign", :locals => {:campaign => campaign } %>
+      <% end %>
+    </div>
+  </div>
+
 </div><!-- campaing -->
 <div class="c row-fluid">
   <div class="entra span12">

@@ -1,28 +1,24 @@
+[![oiga.me](https://oiga.me/assets/logo-small.png "oiga.me")](https://oiga.me)
+
 [![Build Status](https://secure.travis-ci.org/alabs/oigame.png)](http://travis-ci.org/alabs/oigame)
 
-oiga.me, Plataforma de movilización ciudadana a través de la web 
-=======================================================
+# oiga.me
+
+### Plataforma de movilización ciudadana a través de la web 
 
 oiga.me es una plataforma de acción y movilización ciudadana, una herramienta de democracia participativa a través de sistemas web y correo electrónico para colectivos, entidades o asociaciones que desean ser escuchados. oiga.me multiplica la potencia de miles de pequeños esfuerzos individuales en una poderosa fuerza colectiva. Es, además, un altavoz tecnológico que sirve a personas y organizaciones para hacer oír su voz y constituirse en agente activo en la vida política y social. 
 
-Licencia
-========
+## Licencia
 
 Mira el fichero LICENSE
 
-Lista de correo
-===============
+## Lista de correo
 
 Toda colaboración en bienvenida. Si tienes ganas de participar como desarrollador te animamos a que te suscribas a la lista y nos lo comuniques.
 
 https://listas.alabs.es/mailman/listinfo/oigame-dev
 
-Aplicación para ver excepciones
-===============================
-https://err.oiga.me/
-
-Instalación de entorno de desarrollo
-====================================
+## Instalación de entorno de desarrollo
 
 Instrucciones para Linux y MacOSX
 
@@ -46,8 +42,7 @@ Se necesitan las siguientes dependencias:
 sudo aptitude install libmysqlclient-dev libmagick-dev libmagickwand-dev
 
 
-Traducciones
-============
+## Traducciones
 
 Para manejar las traducciones utilizamos tolk: 
 
@@ -72,9 +67,7 @@ Para facilitar la traducción a personas externas del proyecto, se ha creado un 
 
 Por lo que las personas externas pueden traducir iniciando sesión en https://beta.oiga.me/translate 
 
-
-Resque 
-======
+## Resque 
 
 Para las tareas asíncronas utilizamos Resque. Para que funcione es necesario tener instalado y corriendo el servidor de redis
 

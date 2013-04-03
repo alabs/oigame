@@ -7,6 +7,7 @@ $(function(){
     layoutMode   : 'fitRows'
   });
 
+
 $('.campaign-infolist .next_page')
   .addClass('btn_readmore')
   .click(function(e){
