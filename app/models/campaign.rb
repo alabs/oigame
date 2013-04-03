@@ -442,7 +442,7 @@ class Campaign < ActiveRecord::Base
       config.oauth_token_secret = APP_CONFIG[:twitter_oauth_token_secret]
     end
     if self.hashtag
-      Twitter.update(self.name[0,100] + ' - ' + get_absolute_url + ' - ' + self.hashtag)
+      Twitter.update(self.name[0,100] + ' - ' + get_absolute_url + ' - ' + "#"+self.hashtag)
     else
       Twitter.update(self.name + ' - ' + get_absolute_url)
     end
