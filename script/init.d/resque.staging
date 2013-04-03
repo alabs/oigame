@@ -32,7 +32,7 @@ start() {
 stop() {
         echo "[beta.oiga.me] Stoping resque for staging..."
 
-        ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | grep -v grep | head -n1 | cut -f1 -d' ' | xargs kill
+        ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | grep -v grep | head -n1 | awk '{print $1}' | xargs kill
         return
 }
 
