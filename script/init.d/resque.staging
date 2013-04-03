@@ -22,7 +22,6 @@ APP_PATH=/var/www/beta.oiga.me/current
 SCRIPT_NAME=/etc/init.d/beta.oiga.me.resque
 
 start() {
-        echo "[beta.oiga.me] Starting resque for staging..."
 
         cd $APP_PATH
         sudo -u$USER QUEUE=mailer COUNT=2 VVERBOSE=1 NEWRELIC_ENABLE=false RAILS_ENV=$RAILS_ENV $RAKE resque:work --trace >> /var/log/resque/$RAILS_ENV.log  2>&1 &
@@ -30,20 +29,23 @@ start() {
 }
  
 stop() {
-        echo "[beta.oiga.me] Stoping resque for staging..."
-
         ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | grep -v grep | head -n1 | awk '{print $1}' | xargs kill
         return
 }
 
 case "$1" in
   start)
+        echo "[beta.oiga.me] Starting resque for staging..."
+
 	start
 	;;
   stop)
+        echo "[beta.oiga.me] Stoping resque for staging..."
+
 	stop
 	;;
   restart)
+        echo "[beta.oiga.me] Restarting resque for staging..."
 	stop
 	start
 	;;
