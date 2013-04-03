@@ -224,6 +224,7 @@ class CampaignsController < ApplicationController
           Mailman.send(validation, from, @campaign.id, instanke.id).deliver
         end
         if params[:post_to_facebook]
+          flash[:thank_message] = t(:thanks_sign_validate)
           open_graph_facebook
         else
           redirector_to :signed

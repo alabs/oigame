@@ -3,6 +3,7 @@ $(function(){
 
   $('.thumbnails').isotope({
     // options
+    layoutMode: 'fitRows',
     itemSelector : '.item'
   });
 
