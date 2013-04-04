@@ -234,6 +234,9 @@ es:
   campaigns: 'Campañas'
   community: 'Comunidad'
   donate: 'Donar'
+  we_need_your_name_to_donate: 'Necesitamos que nos digas tu nombre para donar'
+  confirm_donation: 'Confirma tu donación'
+  euros: 'Euros'
   media: 'Medios'
   signup: 'Crear cuenta'
   email: 'Correo electrónico'
@@ -289,6 +292,7 @@ es:
   delete: 'Eliminar'
   last_moderated_campaigns: 'Últimas campañas moderadas'
   activate: 'Activar'
+  idcard: 'DNI'
   moderate_campaigns: 'Moderar campañas'
   edit_campaign: 'Editar campaña'
   amount_to_donate: 'Cantidad a donar'
@@ -427,6 +431,7 @@ es:
   cancel_account: 'Cancelar mi cuenta'
   this_link: 'este enlace'
   hi: 'Hola'
+  vat: 'IVA'
   inform_campaign_activate: "Te escribimos para informarte que la campaña con nombre '%{campaign_name}' que creaste en oiga.me, ha sido publicada y está disponible en la siguiente URL:"
   inform_new_comment: "Te escribimos para informarte que has recibido un nuevo comentario en la campaña con nombre '%{campaign_name}' que creaste en oiga.me."
   inform_campaign_social_council: "Hola consejo social, se ha creado una campaña nueva en oiga.me con el nombre: '%{campaign_name}'. Por el momento se encuentra moderada por lo que todavía no es pública. Puedes revisarla y valorarla, si os parece muy interesante comentadlo en la lista y lo debatimos."
