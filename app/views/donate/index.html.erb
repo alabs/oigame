@@ -6,7 +6,7 @@
   <%= render :partial => 'pages/nav_bar', :locals => {:active => "donate"} %>
 
   <div class="span9">
-    <%= link_to t(:donate_oigame), donate_init_path, :class => 'grande' %>
+    <%= link_to t(:donate_oigame), donate_path, :class => 'grande' %>
     <br/>
     <br/>
     <br/>
@@ -54,7 +54,7 @@
             <div class="control-group">
               <label for="coste" class="control-label"><%= t(:amount_to_donate) %></label>
               <div class="controls">
-              <select name="coste">
+              <select id="donate-select" name="coste">
                 <option value="30.00">30 <%= t(:euros) %></option>
                 <option value="10.00">10 <%= t(:euros) %></option>
                 <option value="20.00">20 <%= t(:euros) %></option>
@@ -73,7 +73,6 @@
             </div>
           </fieldset>
         <% end %>
-        <p><%= I18n.t(:accepted_cards) %>:<br />
         <%= image_tag('credit-cards.jpg') %>
       </div><!-- donate-form -->
       

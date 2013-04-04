@@ -51,7 +51,7 @@
             <div class="control-group">
               <label for="coste" class="control-label"><%= t(:amount_to_donate) %></label>
               <div class="controls">
-              <select name="coste" disabled="disabled">
+              <select id="donate-select" name="coste" disabled="disabled">
                 <option value="<%= @coste %>"><%= @coste.to_i %> <%= t(:euros) %></option>
               </select>
             </div>
