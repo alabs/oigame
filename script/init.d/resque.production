@@ -27,6 +27,7 @@ start() {
 }
  
 stop() {
+echo `ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | grep -v grep | head -n1 | awk '{print $1}'`
         ps axef | grep "resque" | grep RAILS_ENV=$RAILS_ENV | grep -v grep | head -n1 | awk '{print $1}' | xargs kill
         return
 }
