@@ -5,8 +5,6 @@ $(function(){
     // options
     itemSelector : '.item',
     layoutMode   : 'fitRows'
-    layoutMode: 'fitRows',
-    itemSelector : '.item'
   });
 
 
