@@ -89,7 +89,7 @@ namespace :deploy do
   task :update_code, :except => { :no_release => true } do
     run "cd #{current_path}; git fetch origin; git reset --hard #{branch}"
     finalize_update
-    restart_resque
+    #restart_resque
   end
 
   desc "Update the database (overwritten to avoid symlink)"
