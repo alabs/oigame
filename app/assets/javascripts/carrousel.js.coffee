@@ -34,6 +34,7 @@ $(document).ready ->
     $(args.sliderObject).parent().find(".iosSliderButtons .button").removeClass "selected"
     $(args.sliderObject).parent().find(".iosSliderButtons .button:eq(" + (args.currentSlideNumber - 1) + ")").addClass "selected"
   $(".iosSlider").iosSlider
+    autoSlide: true
     scrollbar: true
     snapToChildren: true
     desktopClickDrag: true
