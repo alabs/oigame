@@ -72,7 +72,7 @@ Oigame::Application.routes.draw do
 
     get '/profile/:user' => 'profiles#show', :as => 'profile'
     get 'donate' => 'donate#index', :as => 'donate'
-    get 'donate/init' => 'donate#init', :as => 'donate_init'
+    post 'donate/confirm' => 'donate#confirm', :as => 'donate_confirm'
     get 'donate/accepted' => 'donate#accepted'
     get 'donate/denied' => 'donate#denied'
     get 'answers' => redirect('/help')

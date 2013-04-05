@@ -6,7 +6,7 @@
   <%= render :partial => 'pages/nav_bar', :locals => {:active => "donate"} %>
 
   <div class="span9">
-    <%= link_to t(:donate_oigame), donate_init_path, :class => 'grande' %>
+    <%= link_to t(:donate_oigame), donate_path, :class => 'grande' %>
     <br/>
     <br/>
     <br/>
@@ -17,3 +17,66 @@
   </div><!-- .span9 -->
 
 </div><!-- .row-fluid -->
+<div id="page-wrapper">
+  <div class="fondo">
+      <h2 class="paper"><%= @page_title %></h2>
+      <p><%= I18n.t(:donation_info_1) %></p>      
+      <p><%= I18n.t(:donation_info_2) %></p>      
+      <h3><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h3>
+      <p><%= I18n.t(:donation_secure_info) %></p>      
+
+      <div id="donate-form" class="form-stacked">
+        <%= form_tag donate_confirm_path, :method => :post, :class => "form-horizontal" do %>
+          <fieldset>
+            <legend><%= I18n.t(:amount_select) %></legend>
+
+            <div class="control-group">
+              <%= label_tag :name, t(:name), :class => "control-label" %>
+              <div class="controls">
+                <%= text_field_tag :name, current_user ? current_user.name : '', :placeholder => t(:name) %>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <%= label_tag :idcard, t(:idcard), :class => "control-label" %>
+              <div class="controls">
+                <%= text_field_tag :idcard, current_user ? current_user.vat : '', :placeholder => t(:idcard) %>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <%= label_tag :email, t(:email), :class => "control-label" %>
+              <div class="controls">
+                <%= text_field_tag :email, current_user ? current_user.email : '', :placeholder => t(:email) %>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label for="coste" class="control-label"><%= t(:amount_to_donate) %></label>
+              <div class="controls">
+              <select id="donate-select" name="coste">
+                <option value="30.00">30 <%= t(:euros) %></option>
+                <option value="10.00">10 <%= t(:euros) %></option>
+                <option value="20.00">20 <%= t(:euros) %></option>
+                <option value="50.00">50 <%= t(:euros) %></option>
+                <option value="75.00">75 <%= t(:euros) %></option>
+                <option value="100.00">100 <%= t(:euros) %></option>
+                <option value="200.00">200 <%= t(:euros) %></option>
+                <option value="500.00">500 <%= t(:euros) %></option>
+              </select>
+            </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+              <input type="submit" name="submit" value="<%= I18n.t(:donate_oigame) %>" class="btn btn-inverse primary" />
+            </div>
+            </div>
+          </fieldset>
+        <% end %>
+        <%= image_tag('credit-cards.jpg') %>
+      </div><!-- donate-form -->
+      
+    </div><!-- page-info -->
+    </div><!-- fondo -->
+  </div><!-- page -->
+</div><!-- page-wrapper -->
