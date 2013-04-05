@@ -428,6 +428,14 @@ class Campaign < ActiveRecord::Base
     self.hashtag = str.split.first
   end
 
+  def facebook_it
+    oauth = Koala::Facebook::OAuth.new(APP_CONFIG[:FACEBOOK_APP_ID], APP_CONFIG[:FACEBOOK_SECRET])
+    token = oauth.get_app_access_token
+    page_graph = Koala::Facebook::API.new(token)
+    logger.debug('DEBUG: ' + page_graph.inspect)
+    #page_graph.put_connections(APP_CONFIG[:FACEBOOK_APP_ID], 'feed', :link => self.get_absolute_url)
+  end
+
   private
 
   def generate_slug
@@ -446,21 +454,6 @@ class Campaign < ActiveRecord::Base
     else
       Twitter.update(self.name + ' - ' + get_absolute_url)
     end
-  end
-
-  def facebook_it
-    pages = FbGraph::User.me(APP_CONFIG[:facebook_token]).accounts
-    page = []
-    pages.each do |p|
-      page << p if p.name == 'oiga.me'
-    end
-    page = page[0]
-
-    page.feed!(
-      :message => self.name,
-      :link => get_absolute_url,
-      :description => self.intro[0..280]
-    )
   end
 
   # custom validation for image width & height minimum dimensions

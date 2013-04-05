@@ -3,7 +3,7 @@ class Tweet < ActiveRecord::Base
   attr_accessor :text
 
   def self.last_messages(section)
-    order('created_at DESC').limit(2).all
+    order('created_at DESC').limit(1).all
   end
 
   #def text=(args)
