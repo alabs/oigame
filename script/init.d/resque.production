@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 ### BEGIN INIT INFO
 # Provides:          oiga.me.resque
 # Required-Start:    $local_fs $remote_fs
@@ -19,32 +20,61 @@ RAILS_ENV=production
 USER=oigame
 APP_PATH=/var/www/oiga.me/current
 SCRIPT_NAME=/etc/init.d/oigame.resque
+PID_FILE=/tmp/resque.$RAILS_ENV.pid
 
 start() {
-        cd $APP_PATH
-        sudo -u$USER QUEUE=* COUNT=5 VVERBOSE=1 NEWRELIC_ENABLE=false RAILS_ENV=$RAILS_ENV $RAKE resque:work --trace >> /var/log/resque/$RAILS_ENV.log  2>&1 &
+
+	if [ -e "$PID_FILE" ]; then
+		echo "Error! $RAILS_ENV_1ST Resque worker is currently running, or the pid file in $PID_PATH is stale! Sorry it didn't work out, brah." 1>&2
+		exit 1
+	else
+
+		cd $APP_PATH
+		sudo -u$USER QUEUE=* COUNT=5 VVERBOSE=1 NEWRELIC_ENABLE=false RAILS_ENV=$RAILS_ENV $RAKE resque:work --trace >> /var/log/resque/$RAILS_ENV.log  2>&1 &
+
+		while [[ $PID == "" ]]
+		do
+			PID=`ps axef | grep "resque" |grep $RAKE | grep RAILS_ENV=$RAILS_ENV | grep -v grep | head -n1 | awk '{print $1}' `
+			sleep 1
+		done
+
+		echo $PID > $PID_FILE
+
+		echo "[oiga.me] Started resque for production with PID $PID..."
+	fi
+
         return
 }
  
 stop() {
-        ps axef | grep "resque" |grep $RAKE | grep RAILS_ENV=$RAILS_ENV | grep -v grep | head -n1 | awk '{print $1}' | xargs kill 2>&1 & || echo "[oiga.me] Not started, so we don't stop it"
+	if [ -e "$PID_FILE" ]; then
+		pid=`cat "$PID_FILE"`
+		kill $pid > /dev/null 2>&1 # not using -9 so as not to have output
+		sleep 7 # I should really check if the PID is still up here...
+		rm "$PID_FILE"
+		echo "$RAILS_ENV Resque worker stopped, brah!"
+	else
+		echo "Error! $RAILS_ENV Resque worker is not running! C'mon, brah!" 1>&2
+		exit 1
+	fi
+        
         return
 }
 
+if [ "$(id -u)" != "0" ]; then
+	echo "This script must be run as root, brah!" 1>&2
+	exit 1
+fi
+ 
+
 case "$1" in
   start)
-        echo "[oiga.me] Starting resque for production..."
-
 	start
 	;;
   stop)
-        echo "[oiga.me] Stoping resque for production..."
-
 	stop
 	;;
   restart)
-        echo "[oiga.me] Restarting resque for production..."
-
 	stop
 	start
 	;;
@@ -55,3 +85,4 @@ case "$1" in
 esac
 
 :
+
