@@ -230,10 +230,12 @@ class CampaignsController < ApplicationController
           redirector_to :signed
         end
       else
-        redirector_to :campaign, error: "No puedes participar más de una vez por campaña"
+        flash[:error] = "No puedes participar más de una vez por campaña"
+        redirector_to :campaign
       end
     else
-      redirector_to :campaigns, error: "Esta campaña ya no está activa."
+      flash[:error] = "Esta campaña ya no está activa."
+      redirector_to :campaigns
     end
   end
 
@@ -250,11 +252,13 @@ class CampaignsController < ApplicationController
         flash[:thank_message] = t(:thanks_sign_validate_now)
         redirector_to :signed
       else
-        redirector_to :campaign, error: 'El token de validación ya no es válido'
+        flash[:error] = 'El token de validación ya no es válido'
+        redirector_to :campaign
       end
 
     else
-      redirector_to :campaigns, error: 'Está campaña ya no esa activa'
+      flash[:error] = 'Está campaña ya no se encuentra activa'
+      redirector_to :campaigns
     end
   end
 
@@ -383,7 +387,7 @@ class CampaignsController < ApplicationController
 
   def add_update
     @campaign.updates.create(:body => params[:update][:body])
-    redirector_to :campaign, notice: "Actualización realizada con éxito"
+    redirector_to :campaign, :flash => { :notice => "Actualización realizada con éxito" }
   end
 
   private

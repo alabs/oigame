@@ -171,13 +171,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def participants
-    petitions = self.petitions
-    mailings = self.messages
-
-    data = petitions + mailings
-    data = data.collect { data.slice!(rand data.length) }
-
-    return data[0,27]
+    return self.petitions + self.messages + self.faxes
   end
 
   def faxes_recipients
@@ -339,16 +333,22 @@ class Campaign < ActiveRecord::Base
     return data
   end
 
-  def has_participated?(user)
+  def has_participated?(user_or_email)
     # comprobamos si este usuario ya ha participado en este campaña
-    if defined? user.email
-      participants_emails = self.participants.map {|x| x.email}
-      if participants_emails.include? user.email
-        return true
-      else
-        return false
-      end
+    # puede ser una instnacia de un usuario o un mail solo en texto
+
+    participants_emails = self.participants.map {|x| x.email}
+
+    # si es un usuario, ejemplo current_user
+    if defined? user_or_email.email
+      return participants_emails.include? user_or_email.email
     end
+
+    # si es un mail solo
+    if user_or_email and user_or_email.include? "@"
+      return participants_emails.include? user_or_email
+    end
+    
   end
 
   def active?
