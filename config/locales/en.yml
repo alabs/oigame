@@ -512,6 +512,7 @@ en:
   number_of_people: "Number of people you think will join the campaign"
   of: of
   oigame: 
+    donate_to_oigame: 'Donate to oiga.me'
     campaigns: 
       type: 
         fax: Faxing

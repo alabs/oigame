@@ -3,14 +3,10 @@
 
   <div class="row-fluid">
 
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
+  <%= render :partial => 'pages/nav_bar', :locals => {:active => "donate"} %>
 
-  <div class="">
-
-<div id="page-wrapper">
-  <div class="fondo">
-      <h2 class="paper"><%= @page_title %></h2>
+<div class="span9">
+      <h3><%= @page_title %></h3>
 
       <div id="donate-form" class="form-stacked">
         <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post" class="form-horizontal">

@@ -633,6 +633,7 @@ es:
         col_sep: "Separador de columnas"
         col_sep_help: "Deje en blanco para el de defecto ('%{value}')" # value is default_col_sep
   oigame:
+    donate_to_oigame: 'Donar a oiga.me'
     sub:
       general_options: "Opciones generales"
       name: "Nombre"

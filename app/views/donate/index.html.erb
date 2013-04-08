@@ -6,25 +6,11 @@
   <%= render :partial => 'pages/nav_bar', :locals => {:active => "donate"} %>
 
   <div class="span9">
-    <%= link_to t(:donate_oigame), donate_path, :class => 'grande' %>
-    <br/>
-    <br/>
-    <br/>
+    <h3><%= t("oigame.donate_to_oigame") %></h3>
     <p><%= I18n.t(:donation_info_1) %></p>      
     <p><%= I18n.t(:donation_info_2) %></p>      
-    <h3><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h3>
+    <h4><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h4>
     <p><%= I18n.t(:donation_secure_info) %></p>      
-  </div><!-- .span9 -->
-
-</div><!-- .row-fluid -->
-<div id="page-wrapper">
-  <div class="fondo">
-      <h2 class="paper"><%= @page_title %></h2>
-      <p><%= I18n.t(:donation_info_1) %></p>      
-      <p><%= I18n.t(:donation_info_2) %></p>      
-      <h3><i class="icon-ok"></i><%= I18n.t(:donation_secure) %></h3>
-      <p><%= I18n.t(:donation_secure_info) %></p>      
-
       <div id="donate-form" class="form-stacked">
         <%= form_tag donate_confirm_path, :method => :post, :class => "form-horizontal" do %>
           <fieldset>
@@ -73,10 +59,8 @@
             </div>
           </fieldset>
         <% end %>
-        <%= image_tag('credit-cards.jpg') %>
+        <%= image_tag('credit-cards.jpg', :style => 'margin-left: 60px;') %>
       </div><!-- donate-form -->
-      
-    </div><!-- page-info -->
-    </div><!-- fondo -->
-  </div><!-- page -->
-</div><!-- page-wrapper -->
+  </div><!-- .span9 -->
+
+</div><!-- .row-fluid -->
