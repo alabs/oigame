@@ -7,7 +7,6 @@ class PagesController < ApplicationController
 
   def index
     @campaigns_carousel = Campaign.last_campaigns_without_pagination(6)
-    @tweets = Tweet.last_messages('home', 1)
   end
 
   def press
