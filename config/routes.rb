@@ -71,6 +71,7 @@ Oigame::Application.routes.draw do
     end
 
     get '/profile/:user' => 'profiles#show', :as => 'profile'
+    get '/tweets' => 'tweets#index', :as => 'tweets'
     get 'donate' => 'donate#index', :as => 'donate'
     post 'donate/confirm' => 'donate#confirm', :as => 'donate_confirm'
     get 'donate/accepted' => 'donate#accepted'
