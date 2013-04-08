@@ -10,6 +10,10 @@ class Tweet < ActiveRecord::Base
     self.msg = args
   end
 
+  def text
+    self.msg
+  end
+
   #def convert_tweet_to_html(string)
   #  string = string
   #end
