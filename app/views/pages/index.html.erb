@@ -78,9 +78,7 @@
 
 
   <div class="sidecarro span3 visible-desktop">
-    <% @tweets.each do |t| %>
-      <i style="margin-top: 35px; font-size: .9em; width: 75%;"><%= t.msg %></i>
-    <% end %>
+    <ul id="twitter"></ul>
     <!--
     <i class="icon-bullhorn">&nbsp;<%= t "oigame.home.stats.campaigns" %> <%= @total_published_campaigns %></i>
     <i class="icon-pencil">&nbsp;<%= t "oigame.home.stats.signatures" %> <%= @total_signs %></i>
