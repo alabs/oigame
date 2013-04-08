@@ -54,6 +54,7 @@
               <select id="donate-select" name="coste" disabled="disabled">
                 <option value="<%= @coste %>"><%= @coste.to_i %> <%= t(:euros) %></option>
               </select>
+              <input type="hidden" name="coste" value="<%= @coste %>" />
             </div>
             </div>
             <div class="control-group">

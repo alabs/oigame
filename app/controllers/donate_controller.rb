@@ -21,7 +21,7 @@ class DonateController < ApplicationController
     @data = {}
     @data[:reference] = @reference
     @data[:name] = params[:name]
-    @data[:idcard] = params[:idcard]
+    @data[:vat] = params[:idcard]
     @data[:email] = params[:email]
     HTTParty.post("http://#{APP_CONFIG[:gw_domain]}/pre", :body => @data)
 
