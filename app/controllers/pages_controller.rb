@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
   def index
     @campaigns_carousel = Campaign.last_campaigns_without_pagination(6)
+    @tweets = Tweet.last_messages('home')
   end
 
   def press
@@ -65,5 +66,4 @@ class PagesController < ApplicationController
       format.json { render json: @actions }
     end
   end
-
 end

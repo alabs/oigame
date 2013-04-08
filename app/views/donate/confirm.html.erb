@@ -1,0 +1,69 @@
+<% @page_title = t(:confirm_donation) %>
+
+
+  <div class="row-fluid">
+
+  <%= render :partial => 'partials/diferencial' %>
+  <%= render :partial => 'partials/logo' %>
+
+  <div class="">
+
+<div id="page-wrapper">
+  <div class="fondo">
+      <h2 class="paper"><%= @page_title %></h2>
+
+      <div id="donate-form" class="form-stacked">
+        <form action="https://servidordepagos.com/Banesto/totalizacion.exe" method="post" class="form-horizontal">
+          <fieldset>
+            <input type="hidden" name="nombre_comercio" value="ALABS" />
+            <input type="hidden" name="referencia" value="<%= @reference %>" />
+            <input type="hidden" name="moneda" value="EUR" />
+            <input type="hidden" name="project" value="oiga.me" />
+            <input type="hidden" name="type" value="donation" />
+
+            <% unless @data[:name].blank? %>
+              <div class="control-group">
+                <%= label_tag :name, t(:name), :class => "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag :name, @data[:name], :disabled => "disabled" %>
+                </div>
+              </div>
+            <% end %>
+
+            <% unless @data[:idcard].blank? %>
+              <div class="control-group">
+                <%= label_tag :idcard, t(:idcard), :class => "control-label" %>
+                <div class="controls">
+                  <%= text_field_tag :idcard, @data[:idcard], :disabled => "disabled" %>
+                </div>
+              </div>
+            <% end %>
+
+            <% unless @data[:email].blank? %>
+              <div class="control-group">
+                <%= label_tag :email, t(:email), :class => "control-label" %>
+                <div class="controls">
+                    <%= text_field_tag :email, @data[:email], :disabled => "disabled" %>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="control-group">
+              <label for="coste" class="control-label"><%= t(:amount_to_donate) %></label>
+              <div class="controls">
+              <select id="donate-select" name="coste" disabled="disabled">
+                <option value="<%= @coste %>"><%= @coste.to_i %> <%= t(:euros) %></option>
+              </select>
+            </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+              <input type="submit" name="submit" value="<%= I18n.t(:donate_oigame) %>" class="btn btn-inverse primary" />
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+
+  </div>
+</div>
