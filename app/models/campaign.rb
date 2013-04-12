@@ -16,8 +16,7 @@ class Campaign < ActiveRecord::Base
   has_many :updates
 
   attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype,
-    :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :postal_code,
-    :identity_card, :state, :ht, :video_url
+    :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :ht, :video_url
 
   attr_accessor :recipient
   attr_accessor :ht
