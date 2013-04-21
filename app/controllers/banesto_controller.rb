@@ -6,13 +6,7 @@ class BanestoController < ApplicationController
 
   def payment_accepted
     campaign = Campaign.find_by_slug(params[:id])
-    banesto_rate = 0.028
-    amount = params[:amount] - (params[:amount] * banesto_rate)
-    iva = 0.21
-    amount = amount - (amount * iva)
-    campaign.credit += amount / FaxForRails::TAX
-    campaign.informed_low_credit = false
-    campaign.save
+    campaign.add_credit(params[:amount])
 
     render :nothing => true
   end
@@ -20,7 +14,7 @@ class BanestoController < ApplicationController
   protected
 
   def protect_payment_accepted
-    ips = ['94.23.203.58']
+    ips = ['94.23.203.58', '127.0.0.1']
     unless ips.include? request.remote_ip
       # Check for your subnet stuff here, for example
       # if not request.remote_ip.include?('127.0,0')

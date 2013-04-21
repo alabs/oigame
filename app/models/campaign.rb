@@ -435,6 +435,16 @@ class Campaign < ActiveRecord::Base
     #page_graph.put_connections(APP_CONFIG[:FACEBOOK_APP_ID], 'feed', :link => self.get_absolute_url)
   end
 
+  def add_credit(amount)
+    banesto_rate = 0.028
+    amount = amount.to_i - (amount.to_i * banesto_rate)
+    iva = 0.21
+    amount = amount - (amount * iva)
+    self.credit += amount / FaxForRails::TAX
+    self.informed_low_credit = false
+    save
+  end
+
   private
 
   def generate_slug
