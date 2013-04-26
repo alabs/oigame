@@ -1,5 +1,10 @@
 Oigame::Application.routes.draw do
 
+  # para el servidor de tareas en background
+  constraints CanAccessResque do
+    mount Resque::Server, at: '/jobs'
+  end
+
   campaign_routes = lambda do
     resources :wizard
     member do
@@ -99,11 +104,6 @@ Oigame::Application.routes.draw do
 
     get 'facebook/create_action' => 'facebook#create_action', :as => 'facebook_create_action'
     root :to => 'pages#index'
-  end
-
-  # para el servidor de tareas en background
-  constraints CanAccessResque do
-    mount Resque::Server, at: '/jobs'
   end
 
   match '/rwd', :to => redirect('/rwd.html')
