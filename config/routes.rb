@@ -103,7 +103,7 @@ Oigame::Application.routes.draw do
 
   # para el servidor de tareas en background
   constraints CanAccessResque do
-    mount Resque::Server, at: 'jobs'
+    mount Resque::Server, at: '/jobs'
   end
 
   match '/rwd', :to => redirect('/rwd.html')
