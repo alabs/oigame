@@ -53,7 +53,8 @@ gem 'exception_notification', :require => 'exception_notifier'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'redcarpet'
-gem 'twitter'
+#gem 'twitter'
+gem "twitter", "~> 4.6.2"
 gem 'yaml_db'
 gem 'execjs'
 gem 'therubyracer'
@@ -112,6 +113,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'airbrake'
-gem 'tweetstream'
+#gem 'tweetstream'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
