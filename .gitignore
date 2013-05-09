@@ -17,3 +17,5 @@ config/locales/log/*
 db/sphinx
 config/development.sphinx.conf
 config/initializers/recaptcha.rb
+.ruby-gemset
+.ruby-version
