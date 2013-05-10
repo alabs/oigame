@@ -326,16 +326,20 @@ class Campaign < ActiveRecord::Base
       file_name = "fax"
     end
     dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
+    stats_data = []
+    stats_dates = []
     counter = 0
+    i = 1
     require Rails.root.to_s+'/app/models/'+file_name
     dates.each do |date|
       count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
       counter += count
-      data.push([date.strftime('%Y-%m-%d'), counter])
+      stats_data.push([i, counter])
+      stats_dates.push([i, date.strftime('%Y-%m-%d')])
+      i+=1
     end
 
-    return data
+    return {:data => stats_data, :dates => stats_dates}
   end
 
   def has_participated?(user)

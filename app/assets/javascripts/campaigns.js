@@ -1,8 +1,9 @@
 
 function draw_stats_chart(){
-  var items_messages = JSON.parse($('#stats-data').text());
+  var stats_data = JSON.parse($('#js-stats-data').text());
+  var stats_dates = JSON.parse($('#js-stats-dates').text());
   var minimal_date = $("#stats-minimal_date").text();
-  chart_draw(items_messages, 'chart_messages', '#F78181', minimal_date);
+  chart_draw(stats_data, stats_dates);
 }
 ////////////////////////// switch_campaign_type - start 
 
@@ -51,54 +52,55 @@ function switch_campaign_type(ctype) {
 
 ////////////////////////// chart_draw: jqplot helper  - start
 
-function chart_draw(items, chart_id, color, minimal_date){
-  // seleccionamos el valor del ultimo item para saber cual tiene 
-  // que ser el tickInterval 
-  var last_item = items[items.length-1][1];
-  if (last_item > 0){
-    var tick_interval = Math.ceil(last_item / 4);
-  } else {
-    var tick_interval = 1;
-  }
-  $.jqplot(chart_id, [items], {
-    seriesDefaults: {
-      fill: true,
-      fillAndStroke: true,
-      fillAlpha: 0.5,
-      shadow: false
-    },
-    highlighter: {
-      tooltipAxes: 'y',
-    },
-    grid: {
-        backgroundColor: 'white',
-        borderColor: 'white',
-        drawGridlines: false,
-      shadow: false
-    },
-    axes: {
+function chart_draw(stats_data, stats_dates){
+
+  // jQuery Flot Chart
+
+  var plot = $.plot($("#js-stats-chart"),
+      [ { data: stats_data, label: "Participantes"}],
+      {
+        series: {
+          lines: {
+            show: true,
+      lineWidth: 1,
+      fill: true, 
+      fillColor: { colors: [ { opacity: 0.1 }, { opacity: 0.13 } ] }
+          },
+      points: {
+        show: true, 
+      lineWidth: 2,
+      radius: 3
+      },
+      shadowSize: 0,
+      stack: true
+        },
+      grid: { hoverable: true, 
+        clickable: true, 
+      tickColor: "#f9f9f9",
+      borderWidth: 0
+      },
+      legend: {
+        // show: false
+        labelBoxBorderColor: "#fff"
+      },  
+      colors: ["#EB5E40"],
       xaxis: {
-        label:'Fecha (Día-Mes)',
-        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
-        renderer:$.jqplot.DateAxisRenderer,
-        tickOptions:{formatString:'%d-%m'},
-        min: minimal_date
+        ticks: [stats_dates],
+        font: {
+          size: 12,
+          family: "Open Sans, Arial",
+          variant: "small-caps",
+          color: "#9da3a9"
+        }
       },
       yaxis: {
-        min: 0,
-        tickInterval: tick_interval,
-        tickOptions:{
-          formatString:'%d'
-        },
-        label:'Mensajes enviados',
-        labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+        ticks:3, 
+        tickDecimals: 0,
+        font: {size:12, color: "#9da3a9"}
       }
-    },
-    series: [{
-      color: color,
-      lineWidth:4
-    }]
-  }); 
+      });
+
+
 }
 
 ////////////////////////// chart_draw: jqplot helper  - end
@@ -113,12 +115,12 @@ function check_own_message($selector){
     $('.form-message')
       .slideDown('slow')
       .removeClass('hide');
-      $('.form-message input, .form-message textarea').attr('required', 'required');
+    $('.form-message input, .form-message textarea').attr('required', 'required');
   } else {
     $('.form-message')
       .slideUp('slow')
       .addClass('hide');
-      $('.form-message input, .form-message textarea').removeAttr('required');
+    $('.form-message input, .form-message textarea').removeAttr('required');
   }
 }
 
@@ -129,22 +131,22 @@ $(function() {
 
   $.datepicker.regional['es'] = {
     closeText: 'Cerrar',
-    prevText: '&#x3c;Ant',
-    nextText: 'Sig&#x3e;',
-    currentText: 'Hoy',
-    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
-    'Jul','Ago','Sep','Oct','Nov','Dic'],
-    dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
-    dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
-    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
-    weekHeader: 'Sm',
-    dateFormat: 'dd/mm/yy',
-    firstDay: 1,
-    isRTL: false,
-    showMonthAfterYear: false,
-    yearSuffix: ''};
+prevText: '&#x3c;Ant',
+nextText: 'Sig&#x3e;',
+currentText: 'Hoy',
+monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+'Jul','Ago','Sep','Oct','Nov','Dic'],
+dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+weekHeader: 'Sm',
+dateFormat: 'dd/mm/yy',
+firstDay: 1,
+isRTL: false,
+showMonthAfterYear: false,
+yearSuffix: ''};
   $.datepicker.setDefaults($.datepicker.regional['es']);
 
   $("#campaign_duedate_at").datepicker();
@@ -178,7 +180,6 @@ $(function() {
   // mostrar stats al cambiar de tab
   $('a[data-toggle="tab"]').on('shown', function (e) {
     if ( $(this).attr('href') === "#stats" ){ 
-      $.jqplot.config.enablePlugins = true;
       draw_stats_chart();
     };
   });

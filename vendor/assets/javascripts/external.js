@@ -24,3 +24,5 @@
 //= require showdown
 //= require mdmagick
 //= require jquery.isotope.min
+//= require jquery.flot
+//= require jquery.flot.resize

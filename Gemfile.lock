@@ -119,6 +119,8 @@ GEM
       multi_json (>= 1.3)
       rack-oauth2 (>= 0.14.4)
       tzinfo
+    flot-rails (0.0.3)
+      jquery-rails
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
@@ -461,6 +463,7 @@ DEPENDENCIES
   execjs
   factory_girl_rails
   fb_graph
+  flot-rails
   geocoder
   god
   honeypot-captcha

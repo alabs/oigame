@@ -1,8 +1,6 @@
 <div id="stats-chart">
   <h2><%= t(:stats) %></h2>
-  <div id="stats-data" class="hide"><%= @campaign.stats %></div>
-  <div id="stats-minimal_date" class="hide"><%= @campaign.created_at.yesterday.strftime("%Y-%m-%d") %></div>
-  <div id="chart_center" style="width: 500px; height:300px; margin: 0 auto;">
-    <div id="chart_messages"></div>
-  </div>
+  <div id="js-stats-data" class="hide"><%= @campaign.stats[:data] %></div>
+  <div id="js-stats-dates" class="hide"><%= @campaign.stats[:dates] %></div>
+  <div id="js-stats-chart" style="height:300px; margin-top:20px;"></div>
 </div><!-- stats-chart -->
