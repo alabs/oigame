@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= @page_title %> - oiga.me</title>
-    <%= stylesheet_link_tag "application" %>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <%= stylesheet_link_tag "application", :debug => Rails.env.development? %>
     <link rel="shortcut icon" href="<%= image_path('favicon.png') %>" />
     <link rel="alternate" type="application/rss+xml" title="Última campañas de oiga.me" href="<%= APP_CONFIG[:domain] %>/campaigns/feed" />
     <%= show_meta_tags %>
@@ -121,7 +120,7 @@ _gaq.push(['_trackPageview']);
  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
  })();
 </script>
-<%= javascript_include_tag 'application' %>
+<%= javascript_include_tag "application", :debug => Rails.env.development? %>
 <% if Rails.env == 'development' %>
   <div id="debug">
     <%= debug(params) %>

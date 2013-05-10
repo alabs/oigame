@@ -16,8 +16,7 @@ class Campaign < ActiveRecord::Base
   has_many :updates
 
   attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype,
-    :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :postal_code,
-    :identity_card, :state, :ht, :video_url
+    :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :ht, :video_url
 
   attr_accessor :recipient
   attr_accessor :ht
@@ -321,16 +320,20 @@ class Campaign < ActiveRecord::Base
       file_name = "fax"
     end
     dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
-    data = []
+    stats_data = []
+    stats_dates = []
     counter = 0
+    i = 1
     require Rails.root.to_s+'/app/models/'+file_name
     dates.each do |date|
       count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
       counter += count
-      data.push([date.strftime('%Y-%m-%d'), counter])
+      stats_data.push([i, counter])
+      stats_dates.push([i, date.strftime('%Y-%m-%d')])
+      i+=1
     end
 
-    return data
+    return {:data => stats_data, :dates => stats_dates}
   end
 
   def has_participated?(user_or_email)
@@ -434,6 +437,16 @@ class Campaign < ActiveRecord::Base
     page_graph = Koala::Facebook::API.new(token)
     logger.debug('DEBUG: ' + page_graph.inspect)
     #page_graph.put_connections(APP_CONFIG[:FACEBOOK_APP_ID], 'feed', :link => self.get_absolute_url)
+  end
+
+  def add_credit(amount)
+    banesto_rate = 0.028
+    amount = amount.to_i - (amount.to_i * banesto_rate)
+    iva = 0.21
+    amount = amount - (amount * iva)
+    self.credit += amount / FaxForRails::TAX
+    self.informed_low_credit = false
+    save
   end
 
   private
