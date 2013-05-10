@@ -14,15 +14,8 @@
 // require turbolinks
 //= require jquery
 //= require bootstrap
-//= require bootstrap-tabs
 //= require highlight.pack
-//= require jqplot
-//= require jqplot/plugins/jqplot.canvasAxisLabelRenderer
-//= require jqplot/plugins/jqplot.canvasTextRenderer
-//= require jqplot/plugins/jqplot.dateAxisRenderer
-//= require jqplot/plugins/jqplot.highlighter
 //= require jquery.multi-select
-//= require jquery.simpleSlide
 //= require jquery-scrolltofixed
 //= require jquery.ui.all
 //= require jquery_ujs
