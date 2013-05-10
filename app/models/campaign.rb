@@ -319,21 +319,29 @@ class Campaign < ActiveRecord::Base
       model = Fax
       file_name = "fax"
     end
-    dates = (created_at.to_date..Date.today).map{ |date| date.to_date }
+
+    dates = []
     stats_data = []
-    stats_dates = []
     counter = 0
-    i = 1
+    n = 1
+
+    # obtenemos 10 fragmentos desde cuando se creo esta campaña hasta hoy
+    fragment = (created_at.to_i..Time.now.to_i).count/10
+    last_date = created_at.to_i
+    # vamos con esos 10 y sumamos los tiempos
+    (1..10).each {|i| dates.push last_date ; last_date = last_date + fragment }
+
     require Rails.root.to_s+'/app/models/'+file_name
     dates.each do |date|
-      count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
+      #count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
+      d = DateTime.strptime(date.to_s,'%s')
+      count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", d.to_date, d.tomorrow.to_date.to_s).where(:campaign_id => id).all }.count
       counter += count
-      stats_data.push([i, counter])
-      stats_dates.push([i, date.strftime('%Y-%m-%d')])
-      i+=1
+      stats_data.push([date.to_i * 1000, counter])
+      n+=1
     end
 
-    return {:data => stats_data, :dates => stats_dates}
+    return stats_data
   end
 
   def has_participated?(user_or_email)
@@ -351,7 +359,7 @@ class Campaign < ActiveRecord::Base
     if user_or_email and user_or_email.include? "@"
       return participants_emails.include? user_or_email
     end
-    
+
   end
 
   def active?
@@ -428,7 +436,7 @@ class Campaign < ActiveRecord::Base
   def ht=(args)
     str = args
     str = str.gsub(/#/, '').gsub(/,/, '')
-    self.hashtag = str.split.first
+      self.hashtag = str.split.first
   end
 
   def facebook_it
