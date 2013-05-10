@@ -335,7 +335,8 @@ class Campaign < ActiveRecord::Base
     dates.each do |date|
       #count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", date, date.tomorrow.to_date).where(:campaign_id => id).all }.count
       d = DateTime.strptime(date.to_s,'%s')
-      count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", d.to_date, d.tomorrow.to_date.to_s).where(:campaign_id => id).all }.count
+      #count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", d.to_date, d.tomorrow.to_date.to_s).where(:campaign_id => id).all }.count
+      count = Rails.cache.fetch("s4#{ttype}_#{id}_#{date.to_s}", :expires_in => 3.hour) { model.validated.where("created_at BETWEEN ? AND ?", d.to_date, d.tomorrow.to_date).where(:campaign_id => id).all }.count
       counter += count
       stats_data.push([date.to_i * 1000, counter])
       n+=1
