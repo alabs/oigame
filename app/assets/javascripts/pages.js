@@ -23,19 +23,3 @@
         return this;
     }
 })(jQuery);
-
-
-$(function () {
-    $.ajax({
-        dataType: "jsonp",
-        url: "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=oigame",
-        success: function (twits) {
-            var html = '';
-            for (i = 0; i < twits.length; i++) {
-                html += '<li>' + twits[i].text + '</li>';
-            }
-            $('#twitter').html(html);
-            $('#twitter>li').carrusel();
-        }
-    });
-});
