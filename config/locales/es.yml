@@ -509,7 +509,7 @@ es:
       name: Inicio
     pagination:
       previous: "&laquo; Anterior"
-      next: "Siguiente &raquo;"
+      next: "Más campañas &raquo;"
       truncate: "…"
     misc:
       navigation_static_label: "Enlaces"
@@ -900,7 +900,7 @@ es:
       unlock_instructions:
         subject: '[oiga.me] Instrucciones para desbloquear'
   will_paginate:
-    next_label: siguiente →
+    next_label: "Más campañas"
     page_gap: ! '&hellip;'
     previous_label: ← atrás
     page_entries_info:
