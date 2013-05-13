@@ -53,13 +53,21 @@
     <h3><%= t("oigame.pages.faq.question_5_html") %></h3>
     <p><ul>
       <li><i class="icon-double-angle-right"></i><a href="https://github.com/alabs/oigame"><%= t("oigame.pages.faq.answer_5_2") %></a></li>
-      <li><a href="https://oiga.me/es/campaigns/new"><i class="icon-double-angle-right"></i> <%= t("oigame.pages.faq.answer_5_3") %> </a></li>
-      <li><i class="icon-double-angle-right"></i><a href="#" ><%= t("oigame.pages.faq.answer_5_4") %></a></li>
-    </ul>
-    </p>
-    <p><%= t("oigame.pages.faq.answer_5_4_html") %></p>
-    <p><%= t("oigame.pages.faq.answer_5_5") %></p>
-    <p><%= t("oigame.pages.faq.answer_5_6_html") %></p>
-    </li>
-  </ol>
+      <li><i class="icon-double-angle-right"></i><%= link_to t("oigame.pages.faq.answer_5_3"), new_campaign_path %></li>
+    <li><i class="icon-double-angle-right"></i><%= link_to t("oigame.pages.faq.answer_5_1"), donate_path %></li>
+  </ul>
+  </p>
+  <p><%= t("oigame.pages.faq.answer_5_4_html") %></p>
+  <p><%= t("oigame.pages.faq.answer_5_5") %></p>
+  <p><%= t("oigame.pages.faq.answer_5_6_html") %></p>
+  </li>
+  <li>
+  <h3><%= t("oigame.pages.faq.question_6") %></h3>
+  <p><%= t("oigame.pages.faq.answer_6_1") %></p>
+  </li>
+  <li>
+  <h3><%= t("oigame.pages.faq.question_7") %></h3>
+  <p><%= t("oigame.pages.faq.answer_7_1") %></p>
+  </li>
+</ol>
 </div><!-- fondo -->
