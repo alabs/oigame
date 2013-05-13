@@ -477,6 +477,7 @@ es:
   your_identity_card: "NIF"
   your_postal_code: "Código Postal"
   faq: "FAQ"
+  payment_accepted: "Su pago ha sido aceptado y está en revisión para ser procesado. En las próximas horas se verá reflejado en la campaña."
   share: "Compartir"
   other_campaigns: "Otras campañas que pueden interesarte"
   hashtag: "hashtag"
