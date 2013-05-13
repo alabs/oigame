@@ -359,7 +359,6 @@ class Campaign < ActiveRecord::Base
     if user_or_email and user_or_email.include? "@"
       return participants_emails.include? user_or_email
     end
-
   end
 
   def active?
