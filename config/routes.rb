@@ -75,8 +75,11 @@ Oigame::Application.routes.draw do
       get 'widget-iframe.html' => 'sub_oigames#widget_iframe', :as => 'widget_iframe'
     end
 
-    get '/profile/:user' => 'profiles#show', :as => 'profile'
+
     get '/tweets' => 'tweets#index', :as => 'tweets'
+    get '/profile/:username' => 'profiles#show', :as => 'profile'
+    post '/profile/clean_user_parameters' => 'profiles#clean_user_parameters', :as => 'profile_clean_user_parameters'
+
     get 'donate' => 'donate#index', :as => 'donate'
     post 'donate/confirm' => 'donate#confirm', :as => 'donate_confirm'
     get 'donate/accepted' => 'donate#accepted'
