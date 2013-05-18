@@ -415,7 +415,7 @@ class CampaignsController < ApplicationController
   def set_user_blank_parameters
     if user_signed_in?
       current_user.update_attributes(:name => params[:name]) if current_user.name.blank?
-      current_user.update_attributes(:email => params[:email]) if current_user.name.blank?
+      current_user.update_attributes(:email => params[:email]) if current_user.email.blank?
     else
       # si no esta registrado seteamos las cookies para no volver a preguntar
       # su nombre y su correo - si esta registrado nos da igual
