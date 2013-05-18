@@ -126,7 +126,8 @@ namespace :deploy do
   desc "Restart resque workers"
   task :restart_resque, :except => { :no_release => true } do
     run <<-CMD
-      sudo /etc/init.d/oiga.me.resque restart
+      sudo /etc/init.d/oiga.me.resque stop &&
+      sudo /etc/init.d/oiga.me.resque start
     CMD
   end
 
