@@ -447,11 +447,12 @@ class Campaign < ActiveRecord::Base
   end
 
   def add_credit(amount)
+    amount = amount * 100
     banesto_rate = 0.028
-    amount = amount.to_i - (amount.to_i * banesto_rate)
+    cents = amount - (amount * banesto_rate)
     iva = 0.21
-    amount = amount - (amount * iva)
-    self.credit += amount / FaxForRails::TAX
+    cents = cents - (cents * iva)
+    self.credit += (cents / 2).to_i
     self.informed_low_credit = false
     save
   end
