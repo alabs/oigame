@@ -14,9 +14,9 @@ String.prototype.twParseUsername = function() {
 };
 
 String.prototype.twParseHashtag = function() {
-  return this.replace(/[#]+[A-Za-z0-9-_]+/g, function(t) {
+  return this.replace(/[#]+[a-zA-Z0-9ßÄÖÜäöüÑñÉéÈèÁáÀàÂâŶĈĉĜĝŷÊêÔôÛûŴŵ-]+/g, function(t) {
     var tag = t.replace("#","%23")
-    return t.link("http://search.twitter.com/search?q="+tag);
+    return t.link("http://twitter.com/search?q="+tag+"&src=hash");
   });
 };
 
