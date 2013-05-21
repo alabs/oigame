@@ -24,7 +24,7 @@
     <div class="control-group">
       <%= f.label :name, t(:name_of_campaign), :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_of_campaign), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.name_help'), 'data-original-title' => t(:name_of_campaign) %>
+        <%= f.text_field :name, :class => 'span6', :required => true, :placeholder => t(:name_of_campaign), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.name_help'), 'data-original-title' => t(:name_of_campaign), :maxlength => 256 %>
         <% unless @campaign.errors[:name].blank? %>
           <span class="error_message"><%= @campaign.errors[:name].to_sentence %></span>
         <% end %>

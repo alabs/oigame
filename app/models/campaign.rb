@@ -65,6 +65,7 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :ttype,  :if => :active_or_ttype?
   validates_presence_of :duedate_at, :if => :active_or_duedate_at?
   validates :intro, :length => { :maximum => 500 }
+  validates :name, :length => { :maximum => 256 }
   validates :default_message_body, :length => { :maximum => 3960 }, :if => :fax_campaign?
 
   validate :validate_video_url_provider
