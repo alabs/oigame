@@ -31,7 +31,7 @@
   <dd><i class="<%= campaign.ttype_img %>"></i> <%= campaign.ttype_name %> </dd>
   <% if campaign.hashtag? %>
     <dt>Hashtag</dt>
-    <dd><i class="icon-twitter"></i> <a target="_blank" href="https://twitter.com/search?q=%23<%= campaign.hashtag %>&src=hash" id="js-campaign-hashtag">#<%= campaign.hashtag %></a> </dd>
+    <dd><i class="icon-twitter"></i> <a target="_blank" href="https://twitter.com/search?q=%23<%= campaign.hashtag_clean %>&src=hash" id="js-campaign-hashtag">#<%= campaign.hashtag_clean %></a> </dd>
   <% end %>
   </dt>
 
