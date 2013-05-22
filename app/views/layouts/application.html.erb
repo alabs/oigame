@@ -50,23 +50,12 @@
 
     <%= render :partial => 'header' %>
 
-<style>
-.page-header-top {
-    border-bottom: 1px solid #DDDDDD;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    margin: -20px 0 30px;
-    padding: 20px 20px 10px;
-}
-</style>
-
-
     <% unless @sub_oigame.nil? %>
       <style>
         <%= @sub_oigame.html_style %>
       </style>
       <div id="sub_oigame-header">
-        <%= sanitize @sub_oigame.html_header, :tags => %(a img div span p br table tr td u
-l li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
+        <%= sanitize @sub_oigame.html_header, :tags => %(a img div span p br table tr td ul li ol h1 h2 h3 h4 h5 h6), :attributes => %w(id class src style href)  %>
       </div>
     <% end %>
 
