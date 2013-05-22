@@ -22,8 +22,11 @@
       <%= time_ago_in_words(campaign.created_at) %>
     <% end %>
   </dd>
-  <dt><%= t(:time_left) %></dt>
-  <dd><%= (campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
+  <% days_left = (campaign.duedate_at - Time.now).round / 60 / 60 / 24 %>
+  <% if days_left > 0 %>
+    <dt><%= t(:time_left) %></dt>
+    <dd><%= days_left %> <%= t(:days) %></dd>
+  <% end %>
   <dt><%= t(:type) %></dt>
   <dd><i class="<%= campaign.ttype_img %>"></i> <%= campaign.ttype_name %> </dd>
   <% if campaign.hashtag? %>
