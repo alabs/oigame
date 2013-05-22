@@ -26,5 +26,9 @@
   <dd><%= (campaign.duedate_at - Time.now).round / 60 / 60 / 24 %> <%= t(:days) %></dd>
   <dt><%= t(:type) %></dt>
   <dd><i class="<%= campaign.ttype_img %>"></i> <%= campaign.ttype_name %> </dd>
+  <% if campaign.hashtag? %>
+    <dt>Hashtag</dt>
+    <dd><i class="icon-twitter"></i> <a href="https://twitter.com/search?q=%23<%= campaign.hashtag %>&src=hash" id="js-campaign-hashtag">#<%= campaign.hashtag %></a> </dd>
+  <% end %>
   </dt>
 
