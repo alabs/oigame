@@ -83,16 +83,15 @@
               <%= raw @videotron.embed_html("100%") %>
             <% end %>
 
-            <p>
-            <%= link_to "#", :class => "js-campaign-description-show" do %>
+            <%= link_to "#", :class => "js-campaign-description-show keep-reading span12" do %>
               <i class="icon-circle-arrow-down"></i>
               <span style="margin-left:0.3em;"><%= t(:continue_reading) %></span>
             <% end %>
-            </p>
 
-          </div>
-          <div id="campaign-info" class="js-campaign-description hide">
-            <%= @campaign.to_html(@campaign.body).html_safe %>
+            <span class="js-campaign-description hide">
+              <%= @campaign.to_html(@campaign.body).html_safe %>
+            </span>
+
           </div>
           <% if @message_body || @message_subject %>
             <div id="carta">
