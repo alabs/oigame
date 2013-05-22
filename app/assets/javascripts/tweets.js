@@ -48,7 +48,7 @@ $(function () {
       convert_links: true, //Converts hashtags to links
       query: $('#js-campaign-hashtag').text(),          
       loader_text : 'Cargando tweets', // loading text
-      no_result : 'No se encontraron tweets' // no results text
+      no_result : 'No se encontraron tweets recientes' // no results text
     });
   }
 });

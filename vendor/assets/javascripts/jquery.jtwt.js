@@ -26,18 +26,18 @@
 	    			var user_date = new Date();
 	
 	    			var diff = Math.floor((user_date - system_date) / 1000);
-	    			if (diff <= 1) {return "just now";}
-	    			if (diff < 20) {return diff + " seconds ago";}
-	    			if (diff < 40) {return "half a minute ago";}
-	    			if (diff < 60) {return "less than a minute ago";}
-	    			if (diff <= 90) {return "one minute ago";}
-	    			if (diff <= 3540) {return Math.round(diff / 60) + " minutes ago";}
-	    			if (diff <= 5400) {return "1 hour ago";}
-	    			if (diff <= 86400) {return Math.round(diff / 3600) + " hours ago";}
-	    			if (diff <= 129600) {return "1 day ago";}
-	    			if (diff < 604800) {return Math.round(diff / 86400) + " days ago";}
-	    			if (diff <= 777600) {return "1 week ago";}
-	    			return "on " + system_date;
+	    			if (diff <= 1) {return "ahora";}
+	    			if (diff < 20) {return "hace " + diff + " segundos";}
+	    			if (diff < 40) {return "hace medio minuto";}
+	    			if (diff < 60) {return "hace menos de un minuto";}
+	    			if (diff <= 90) {return "hace un minuto";}
+	    			if (diff <= 3540) {return "hace " + Math.round(diff / 60) + " minutos";}
+	    			if (diff <= 5400) {return "hace una hora";}
+	    			if (diff <= 86400) {return "hace " + Math.round(diff / 3600) + " horas";}
+	    			if (diff <= 129600) {return "hace un día";}
+	    			if (diff < 604800) {return "hace " + Math.round(diff / 86400) + " días";}
+	    			if (diff <= 777600) {return "Hace una semana";}
+	    			return "el " + system_date;
     
     		}
     		
@@ -64,6 +64,8 @@
 		
 				//get the tweets from the API
 				$.getJSON('http://search.twitter.com/search.json?q=' + q + '&callback=?', function(data){ 
+
+console.log(data);
 
 					var results = data['results'];
 					
@@ -95,7 +97,7 @@
 		
 				                tweettext = tweettext.replace(/(http\:\/\/[A-Za-z0-9\/\.\?\=\-]*)/g,'<a href="$1">$1</a>');
 				                tweettext = tweettext.replace(/@([A-Za-z0-9\/_]*)/g,'<a href="http://twitter.com/$1">@$1</a>');
-				                tweettext = tweettext.replace(/#([A-Za-z0-9\/\.]*)/g,'<a href="http://twitter.com/search?q=$1">#$1</a>');
+				                tweettext = tweettext.replace(/#([a-zA-Z0-9ßÄÖÜäöüÑñÉéÈèÁáÀàÂâŶĈĉĜĝŷÊêÔôÛûŴŵ-]*)/g,'<a href="http://twitter.com/search?q=$1">#$1</a>');
 	
 			                }
 		
