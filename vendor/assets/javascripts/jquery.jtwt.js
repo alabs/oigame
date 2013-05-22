@@ -63,7 +63,7 @@
 				}
 		
 				//get the tweets from the API
-				$.getJSON('http://search.twitter.com/search.json?q=' + q + '&callback=?', function(data){ 
+				$.getJSON('https://search.twitter.com/search.json?q=' + q + '&callback=?', function(data){ 
 
 console.log(data);
 
