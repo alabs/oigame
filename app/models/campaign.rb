@@ -439,6 +439,10 @@ class Campaign < ActiveRecord::Base
       self.hashtag = str.split.first
   end
 
+  def hashtag_clean
+    hashtag.include?("#") ? hashtag.sub('#','') : hashtag
+  end
+
   def facebook_it
     oauth = Koala::Facebook::OAuth.new(APP_CONFIG[:FACEBOOK_APP_ID], APP_CONFIG[:FACEBOOK_SECRET])
     token = oauth.get_app_access_token

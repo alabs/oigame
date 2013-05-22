@@ -1,3 +1,5 @@
+// PARA LA HOME
+
 // http://www.simonwhatley.co.uk/parsing-twitter-usernames-hashtags-and-urls-with-javascript
 
 String.prototype.parseURL = function() {
@@ -35,3 +37,19 @@ $(function () {
     }
   });
 });
+
+
+// PARA EL TAB DE TWITTER EN UNA CAMPAIGN
+
+$(function () {
+  if($('#js-campaign-hashtag').length == 1){
+    $('#js-social-tw').jtwt({
+      count: 20, // The number of displayed tweets.
+      convert_links: true, //Converts hashtags to links
+      query: $('#js-campaign-hashtag').text(),          
+      loader_text : 'Cargando tweets', // loading text
+      no_result : 'No se encontraron tweets recientes' // no results text
+    });
+  }
+});
+

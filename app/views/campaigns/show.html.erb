@@ -29,13 +29,17 @@
     <div>
 
       <ul class="nav nav-tabs line-tabs">
-        <li class="active"><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><%= t(:description) %></span></a></li>
+        <li class="active"><a href="#desc" data-toggle="tab" title="<%= t(:description) %>"><span><i class="icon-file"></i></span></a></li>
         <% unless @campaign.ttype == "petition" %>
-          <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><%= t(:recipients) %></span></a></li>
+          <li><a href="#recip" data-toggle="tab" title="<%= t(:recipients) %>"><span><i class="icon-envelope"></i></span><span class="tab-number">(<%= @campaign.recipients_count %>)</span></a></li>
         <% end %>
-        <li><a href="#updates" data-toggle="tab" title="<%= t(:updates) %>"><span><%= t(:updates) %></span></a></li>
-        <li><a href="#integrate" data-toggle="tab" title="<%= t(:integrate) %>"><span><%= t(:integrate) %></span></a></li>
+        <li><a href="#updates" data-toggle="tab" title="<%= t(:updates) %>"><span><i class="icon-refresh"></i></span><span class="tab-number">(<%= @campaign.updates_count %>)</span></a></li>
+        <li><a href="#integrate" data-toggle="tab" title="<%= t(:integrate) %>"><span><b><></b></a></li>
         <li><a href="#stats" data-toggle="tab" title="<%= t(:stats) %>"><span><i class="icon-signal"></i></span></a></li>
+        <li><a href="#social-fb" data-toggle="tab" title="facebook"><span><i class="icon-facebook"></i></span></a></li>
+        <% if @campaign.hashtag? %>
+          <li><a href="#social-tw" data-toggle="tab" title="twitter"><span><i class="icon-twitter"></i></span></a></li>
+        <% end %>
         <%= render :partial => "options_dropdown", :locals => { :campaign => @campaign, :sub_oigame => @sub_oigame } %>
       </ul>
 
@@ -52,6 +56,19 @@
         <div id="stats" class="tab-pane fade">
           <%= render :partial => "stats_chart", :locals => {:campaign => @campaign} %>
         </div>
+
+        <div id="social-fb" class="tab-pane fade">
+          <p style="margin-bottom:30px;"></p>
+          <div id="participants">
+            <%= render :partial => 'comments', :locals => {:campaign => @campaign} %>
+          </div><!-- participants -->
+        </div>
+
+        <% if @campaign.hashtag? %>
+          <div id="social-tw" class="tab-pane fade">
+            <div id="js-social-tw"></div>
+          </div>
+        <% end %>
 
         <div id="recip" class="tab-pane fade">
           <h2><%= t(:recipients) %></h2>
@@ -70,16 +87,15 @@
               <%= raw @videotron.embed_html("100%") %>
             <% end %>
 
-            <p>
-            <%= link_to "#", :class => "js-campaign-description-show" do %>
+            <%= link_to "#", :class => "js-campaign-description-show keep-reading span12" do %>
               <i class="icon-circle-arrow-down"></i>
               <span style="margin-left:0.3em;"><%= t(:continue_reading) %></span>
             <% end %>
-            </p>
 
-          </div>
-          <div id="campaign-info" class="js-campaign-description hide">
-            <%= @campaign.to_html(@campaign.body).html_safe %>
+            <span class="js-campaign-description hide">
+              <%= @campaign.to_html(@campaign.body).html_safe %>
+            </span>
+
           </div>
           <% if @message_body || @message_subject %>
             <div id="carta">
@@ -90,13 +106,6 @@
             <div class="sombracarta">
               <%= image_tag 'shadow2.png' %>
             </div>
-          <% end %>
-
-          <% if @campaign.commentable %>
-            <p style="margin-bottom:30px;"></p>
-            <div id="participants">
-              <%= render :partial => 'comments', :locals => {:campaign => @campaign} %>
-            </div><!-- participants -->
           <% end %>
 
         </div><!-- description -->

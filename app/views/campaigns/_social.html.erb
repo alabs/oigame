@@ -1,6 +1,6 @@
 <ul class="inline">
   <li>
-  <a class="social-button social-button-tw" href="https://twitter.com/intent/tweet?url=<%= CGI.escape campaign.get_absolute_url %>&via=oigame&text=<%= "#{CGI.escape("#{campaign.name.truncate(80)} ##{campaign.hashtag}") }" %>">
+  <a class="social-button social-button-tw" href="https://twitter.com/intent/tweet?url=<%= CGI.escape campaign.get_absolute_url %>&via=oigame&text=<%= "#{CGI.escape("#{campaign.name.truncate(80)} ##{campaign.hashtag_clean}") }" %>">
     <i class="icon-twitter"></i>
     Tweet 
   </a>

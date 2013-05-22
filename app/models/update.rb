@@ -1,6 +1,6 @@
 class Update < ActiveRecord::Base
 
-  belongs_to :campaign
+  belongs_to :campaign, :counter_cache => true
 
   attr_accessible :body
 
