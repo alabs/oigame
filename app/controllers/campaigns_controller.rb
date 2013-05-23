@@ -268,6 +268,12 @@ class CampaignsController < ApplicationController
   def moderated
     @campaigns = Campaign.last_campaigns_moderated params[:page], @sub_oigame
 
+    respond_to do |format|
+      format.js
+      format.html 
+      format.json { render :json => @campaigns }
+      format.xml  { render :xml => @campaigns }
+    end
   end
 
   def activate
