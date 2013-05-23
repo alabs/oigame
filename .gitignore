@@ -6,6 +6,7 @@ tmp/
 .sass-cache/
 *.swp
 *.swo
+*.swn
 public/uploads/
 config/database.yml
 config/app_config.yml
