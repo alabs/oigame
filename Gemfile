@@ -117,3 +117,5 @@ gem 'airbrake'
 #gem 'tweetstream'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
+
+gem 'dotenv-rails'
