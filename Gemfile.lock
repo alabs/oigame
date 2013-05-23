@@ -101,6 +101,9 @@ GEM
       devise (>= 2.2)
     diff-lcs (1.2.4)
     diffy (2.1.4)
+    dotenv (0.7.0)
+    dotenv-rails (0.7.0)
+      dotenv (= 0.7.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     exception_notification (3.0.1)
@@ -459,6 +462,7 @@ DEPENDENCIES
   declarative_authorization
   devise
   devise-async
+  dotenv-rails
   exception_notification
   execjs
   factory_girl_rails
