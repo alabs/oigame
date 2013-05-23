@@ -65,12 +65,13 @@
 				//get the tweets from the API
 				$.getJSON('https://search.twitter.com/search.json?q=' + q + '&callback=?', function(data){ 
 
-console.log(data);
-
 					var results = data['results'];
 					
 					if(results.length) {
 						
+                                                // para oiga.me 
+                                                $('a[title="twitter"] .tab-number').html("(" + results.length + ")");
+
 						//Loop through results and append them to the parent
 						for(var i = 0; i < o.count && i < results.length; i++) {
 						
@@ -84,7 +85,7 @@ console.log(data);
 			  
 				                jtweet += '<div class="jtwt_picture">';
 				                jtweet += '<a href="http://twitter.com/' + item.from_user + '">'
-				                jtweet += '<img width="' + o.image_size +'" height="' + o.image_size + '" src="' + item.profile_image_url + '" />';
+				                jtweet += '<img width="' + o.image_size +'" height="' + o.image_size + '" src="' + item.profile_image_url_https + '" />';
 				                jtweet += '</a>';
 				                jtweet += '</div>';
 			
