@@ -267,6 +267,7 @@ class CampaignsController < ApplicationController
 
   def moderated
     @campaigns = Campaign.last_campaigns_moderated params[:page], @sub_oigame
+
   end
 
   def activate
@@ -317,6 +318,14 @@ class CampaignsController < ApplicationController
     else
       @campaigns = Campaign.archived_campaigns(params[:page], @sub_oigame)
     end
+
+    respond_to do |format|
+      format.js
+      format.html 
+      format.json { render :json => @campaigns }
+      format.xml  { render :xml => @campaigns }
+    end
+
   end
 
   def prioritize

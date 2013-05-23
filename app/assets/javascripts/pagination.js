@@ -18,7 +18,7 @@ $('.campaign-infolist .next_page')
 
     e.preventDefault();
     $.ajax({
-      url: '/campaigns?page=' + page,
+      url: document.location.pathname + '?page=' + page,
       type: 'get',
       dataType: 'script',
       success: function(data) {
