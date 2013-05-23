@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
 
 
   def show
-    @user = User.find(params[:user])
+    @user = User.find(params[:username])
   end
 
   def clean_user_parameters
