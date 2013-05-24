@@ -1,0 +1,13 @@
+<% @page_title = t(:thank_you) %>
+
+<%= render :partial => "list_campaigns", :locals => {
+  :page_title => @page_title,
+  :campaign => @campaign,
+  :sub_oigame => @sub_oigame,
+  :campaigns => @campaigns,
+  :message_type => "success",
+  :no_paginate => true,
+  :no_btns => true,
+  :message => flash[:thank_message]
+} %>
+
