@@ -8,7 +8,7 @@ class Asterisk
   end
 
   def login
-    "Action: Login\r\nUsername: oigame\r\nSecret: emagio\r\nEvents: off"
+    "Action: Login\r\nUsername: oigame\r\nSecret: #{APP_CONFIG[:ami_pass]}\r\nEvents: off"
   end
 
   def get_template
