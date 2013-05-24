@@ -3,7 +3,7 @@ require 'socket'
 class Asterisk
 
   def initialize(caller_number, callee_number)
-    @caller = callee_number
+    @caller = caller_number
     @callee = callee_number
   end
 
