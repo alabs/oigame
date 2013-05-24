@@ -200,8 +200,8 @@ class CampaignsController < ApplicationController
       end
 
       if @campaign.ttype == "call" 
-        caller_number = '00593984281670' # params["telephone_prefix"].strip + params["telephone_number"].strip
-        callee_number = '00593984281776' # @campaign.calls_recipients.split('\n')[0]
+        caller_number = params["telephone_prefix"].strip + params["telephone_number"].strip
+        callee_number = @campaign.calls_recipients.split('\n')[0]
         asterisk = Asterisk.new(caller_number, callee_number)
         asterisk.make_call
         redirector_to :calling

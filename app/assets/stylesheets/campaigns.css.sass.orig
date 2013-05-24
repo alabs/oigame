@@ -1,0 +1,222 @@
+$naranja: #EB5E40
+$blanco: #f0f0f0
+$gris: #d7d7d7
+$verde: #2d8a8a
+$verdoso: #1b5353
+$rojo: #bf2633
+$morao: #50505a
+$negrito: #272626
+$marron: #d9cead
+$sombrablanca: 1px 0px 0px rgba(255, 255, 255, 0.95)
+$sombranegra: 1px 0px 2px rgba(0, 0, 0, 0.75)
+
+.campaign-infolist
+  
+  padding: 2%
+  padding-top: 1%
+
+  text-align: justify
+  text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.95)
+  line-height: 21px
+  -webkit-border-radius: 0px 0px 0px 6px
+  border-radius: 0px 0px 0px 6px
+  font-size: 1em
+  p
+    text-align: justify
+    line-height: 21px
+    font-size: 13px
+  h2
+    font-size: 16px
+    text-shadow: 0 -1px 1px rgba(255,255,255, 0.2)
+    padding: 0px
+    color: $verdoso    
+    padding-left: 2px
+  i
+    padding-right: 5px
+    font-size: 15px
+  .thumbnails
+    width: 100%
+
+.cinfo
+  h3
+    a
+      color: $negrito
+      
+
+
+.campaign-text
+  min-height: 300px
+    
+.progressbarlista
+  width: 100%
+  padding-bottom: 10px
+  padding-top: 0px
+  .recogidaslista
+    font-size: 13px
+  .btn
+    display: block
+    font-weight: bold
+    margin: 20px auto -20px
+    text-align: center
+    width: 5em
+  .small
+    font-weight: bold
+    font-size: 0.8em
+
+#bar
+  width: 80%
+
+.recogidaslista
+  @extend h3
+  font-size: 16px
+
+.campaign-imagelist
+  img
+    width: 100%
+    max-height: 150px
+    -webkit-box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
+    box-shadow: 1px -1px 10px 1px rgba(0, 0, 0, 0.2)
+
+
+.highlighted
+  font-size: 19px
+
+#necesarias
+  h4
+    font-size: 12px
+    color: $negrito
+    padding-bottom: 8px
+    
+hr.dashed
+  border: 0
+  border-bottom: 1px dashed #ccc
+  background: none
+  margin-top: 0px
+  margin-bottom: 20px
+
+.mostrar-campaign
+  width: 31%
+  padding: 1%
+  float: left
+  min-height: 470px !important
+  margin-left: 0px !important
+
+.underlinedlista
+  font-size: 13px
+  font-family: Roboto, Helvetica, arial, sans-serif
+  line-height: 1em
+  color: $naranja
+  font-weight: bold
+  
+.campa-home
+  position: relative
+
+.campa-home img
+  width: 100%
+  padding: 1px
+  background: white
+  border: 1px solid #A0A0A0
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.55)
+
+.campa-img
+  height: 150px
+  display: block
+  margin: -4px
+
+.campa-texto
+  width: 97.5%
+  padding: 8px 4px
+  bottom: 0px
+  position: absolute
+  overflow: hidden
+  background-image: url("transparencia.png")
+  opacity: 0.9
+  height: 40px
+  border-top: 1px dashed $negrito
+  bottom: 6px
+  margin-left: 2px
+  span,a
+    text-shadow: 0 -1px 1px black
+    color: #F0F1F1 !important
+  
+.campa-texto-left
+  width: 80%
+  float: left
+  overflow: hidden
+
+.campa-texto-right
+  width: 15%
+  float: right
+  padding-right: 2px
+
+  img
+    width: 25px !important
+    float: right
+    border: 1px dashed #A0A0A0
+   
+.fbalert
+  line-height: 13px
+  font-size: 9px
+  width: 185px
+  padding: 0px 0px 0px 16px
+  margin-top: 3px
+  color: #3b5998
+  opacity: 0.8
+
+.btn_readmore
+  @extend .btn
+  width: 70%
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+.alert-pagination-end
+  @extend .alert
+  @extend .alert-info
+ 
+.item
+  width: 20em
+  float: left
+  margin: 1em
+  .thumbnail
+    background: none repeat scroll 0 0 rgba(240, 240, 240, 0.6)
+    .caption
+      .campa-text
+        color: black
+        font-weight: normal
+      .campa-text:hover
+        text-decoration: none
+      .title
+        @extend h4
+        font-weight: bold
+      .title a:hover
+        text-decoration: none
+      .img-user
+        margin-top: 1em
+        margin-left: 1em
+
+<<<<<<< HEAD
+=======
+.text-show-campaign h1
+  padding: 15px
+  font-size: 1.3em
+
+>>>>>>> calls
+.keep-reading
+  line-height: 20px
+  margin-top: -55px
+  padding-top: 60px
+  width: 100%
+  opacity: 0.9
+  background: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.9) 70%, #FFFFFF 100%) repeat scroll 0 0 transparent
+  margin-left: 0 !important
+
+.text-show-campaign h1
+  padding: 15px
+  font-size: 1.3em
+
+.tab-number
+  font-size: 0.8em 
+  margin-left: 0.3em
+  font-family: Helvetica
+  font-weight: bolder
