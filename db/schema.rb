@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524213025) do
+ActiveRecord::Schema.define(:version => 20130524214333) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -213,6 +213,13 @@ ActiveRecord::Schema.define(:version => 20130524213025) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "rates", :force => true do |t|
+    t.string   "country"
+    t.decimal  "rate",       :precision => 10, :scale => 4
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

@@ -27,18 +27,19 @@ def import_csv
 end
 
 def destroy_and_create
-  FaxForRails.all(&:destroy)
+  Rate.all(&:destroy)
   csv_ovh_rates
   data = import_csv
   data.each do |d|
-    f4r = FaxForRails.create!(:country => d[0], :rate => d[1])
-    puts "#{f4r.country}: #{f4r.rate}"
+    rate = Rate.create!(:country => d[0], :rate => d[1])
+    puts "#{rate.country}: #{rate.rate}"
   end
 end
 
 namespace :oigame do
-  desc 'Import FAX rates from OVH'
-  task(:import_fax_rates => :environment) do
+  desc 'Import OVH telephony and fax rates'
+  task(:rates => :environment) do
     destroy_and_create if ENV['FORMAT'] == 'csv'
+    puts "PRUEBA CONSEGUIDA!"
   end
 end
