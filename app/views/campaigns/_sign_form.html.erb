@@ -9,13 +9,19 @@
       <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
     </div>
   <% end %>
-  <% if @campaign.ttype != "petition" %>
+  <% if ["mailing", "fax"].include? @campaign.ttype %>
     <div class="form-field">
       <%= check_box_tag :own_message, false,false, class: 'checkfb' %>
       <%= label_tag :own_message, t(:own_message), class: 'checkfblabel' %>
     </div>
     <div class="form-field form-message hide">
       <%= text_area_tag :body, nil, :placeholder => t(:your_message), :rel => 'popup_ayuda', 'data-content' => t(:message_info), 'data-original-title' => t(:message), 'data-placement' => 'left', class: 'comentarea' %>
+    </div>
+  <% end %>
+
+  <% if @campaign.ttype == "call" %>
+    <div class="form-field">
+      <%= text_field_tag :number, nil, :required => true, :placeholder => t(:telephone_number), :value => cookies[:telephone_number] %>
     </div>
   <% end %>
 

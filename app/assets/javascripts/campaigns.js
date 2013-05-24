@@ -4,20 +4,20 @@
 function switch_campaign_type(ctype) {
   switch (ctype) {
     case "petition": 
-      $(".form-campaign, .form-fax")
+      $(".form-campaign, .form-fax, .form-call")
         .hide("slow");
-      $("form-fax input, .form-fax textarea")
+      $("form-fax input, .form-fax textarea, .form-call textarea")
         .attr("required", "required");
-      $(".form-campaign input, .form-campaign textarea, .form-fax input, .form-fax textarea")
+      $(".form-campaign input, .form-campaign textarea, .form-fax input, .form-fax textarea, .form-call textarea")
         .removeAttr("required"); 
       break;
     case "mailing":
-      $(".form-fax")
+      $(".form-fax, .form-call")
         .hide("slow");
       $(".form-campaign")
         .show("slow")
         .removeClass("hide");
-      $(".form-fax input, .form-fax textarea")
+      $(".form-fax input, .form-fax textarea, .form-call textarea")
         .removeAttr("required");
       $(".form-campaign input, .form-campaign textarea")
         .attr("required", "required");
@@ -33,10 +33,21 @@ function switch_campaign_type(ctype) {
       $(".form-fax input, .form-fax textarea")
         .attr("required", "required");
       break;
-    default:
+    case "call":
       $(".form-campaign, .form-fax")
         .hide("slow");
-      $(".form-campaign input, .form-campaign textarea, .form-fax input .form-fax textarea")
+      $(".form-call")
+        .show("slow")
+        .removeClass("hide");
+      $(".form-campaign input, .form-campaign textarea, .form-fax input, .form-fax textarea")
+        .removeAttr("required");
+      $(".form-call textarea")
+        .attr("required", "required");
+      break;
+    default:
+      $(".form-campaign, .form-fax, .form-call")
+        .hide("slow");
+      $(".form-campaign input, .form-campaign textarea, .form-fax input .form-fax textarea, .form-call textarea")
         .removeAttr("required"); 
       break;
   }

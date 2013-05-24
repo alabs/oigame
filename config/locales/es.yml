@@ -272,6 +272,7 @@ es:
   recipients: 'Destinatarios'
   recipients_help: 'Lista de direcciones de correo de destinatarios, una por línea.'
   faxes_recipients_help: "Lista de números de fax, uno por línea."
+  calls_recipients_help: "Lista de números de teléfono, uno por línea."
   recipients_show: 'Tu mensaje se enviará a las siguientes personas'
   image_of_campaign: 'Imágen de la campaña'
   video_url: 'URL del video'
@@ -454,6 +455,7 @@ es:
   category_of_campaign: "Categoría de la campaña"
   category: 'Categoría'
   faxes_recipients: 'Números de fax de los destinatarios'
+  calls_recipients: 'Números de teléfono de los destinatarios'
   firms: 'Firmas'
   share_with_my_friends_on_facebook: "Compartir con mis amigos en Facebook"
   by_signing_you_accept: "Firmando aceptas la "
@@ -479,6 +481,7 @@ es:
   your_identity_card: "NIF"
   your_postal_code: "Código Postal"
   faq: "FAQ"
+  telephone_number: "Pon tu número de teléfono"
   payment_accepted: "Su pago ha sido aceptado y está en revisión para ser procesado. En las próximas horas se verá reflejado en la campaña."
   share: "Compartir"
   other_campaigns: "Otras campañas que pueden interesarte"
@@ -493,6 +496,7 @@ es:
   press: "Prensa"
   programe: "Programar"
   fax: "Envío de fax"
+  call: "Llamada telefónica"
   petition: "Petición online"
   mailing: "Envío de correo"
   next_step: "Siguiente paso"
@@ -781,6 +785,8 @@ es:
         mailing_action: "Envia un mensaje"
         fax_message: "faxes enviados"
         fax_action: "Envia un fax"
+        call_message: "llamadas realizadas"
+        call_action: "Llamar por teléfono"
     wizard:
       intro_line_1: "Antes de empezar, diseña tu campaña."
       intro_line_2: "Define el impacto, selecciona los canales y sus destinatarios"
@@ -806,6 +812,7 @@ es:
       petition_help: "Recoge firmas on line para mostrar el apoyo a tu campaña. Cuando termines, la aplicación generará un fichero bajo nuestra política de protección de datos."
       mailing_help: "Haz que tu campaña llegue por mail a sus destinatarios. Edita asunto y cuerpo de mensaje y busca las direcciones de mail donde quieres que se entregue."
       fax_help: "Envía tu campaña por fax a los responsables. Escribe un modelo de fax y busca los números donde quieras que se entregue."
+      call_help: "Llama por teléfono a los responsables. El usuario escribe su número y lo llamamos a él y a los responsables."
       comment_help: "Esta opción permite que la gente opine y participe públicamente en tu campaña expresando su opinión."
       people_help: "Estima cuanta gente crees que va participar en tu campaña."
       date_help: "Establece un límite de tiempo para tu campaña."

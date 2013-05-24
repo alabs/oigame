@@ -79,9 +79,16 @@
                   <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
                 </div>
               </div>
-              <div class="control-group form-field">
+              <div class="control-group form-call hide">
+                <%= f.label :calls_recipients, t(:call_recipients), :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.check_box :commentable, :checked => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.comment_help') %> <span class="note"><%= t(:enable_comments) %></span>
+                  <%= f.text_area :calls_recipients, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:calls_recipients_help) %>
+                </div>
+              </div>
+              <div class="control-group form-call form-campaign hide">
+                <%= f.label :default_message_body, t(:default_message_body), :class => 'control-label' %>
+                <div class="controls">
+                  <%= f.text_area :default_message_body, :rows => 10, :class => 'span6', :required => true, :placeholder => t(:default_message_body_help) %>
                 </div>
               </div>
               <div class="control-group">

@@ -11,11 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522202501) do
+ActiveRecord::Schema.define(:version => 20130524003903) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "calls", :force => true do |t|
+    t.integer  "number"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "campaign_id"
   end
 
   create_table "campaigns", :force => true do |t|
@@ -28,35 +35,32 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
-    t.boolean  "moderated",                 :default => true
+    t.boolean  "moderated",               :default => true
     t.datetime "published_at"
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
-    t.string   "status",                    :default => "active"
+    t.string   "status",                  :default => "active"
     t.integer  "sub_oigame_id"
     t.string   "default_message_subject"
     t.text     "default_message_body"
-    t.boolean  "priority",                  :default => false
+    t.boolean  "priority",                :default => false
     t.time     "deleted_at"
-    t.integer  "messages_count",            :default => 0
-    t.integer  "petitions_count",           :default => 0
-    t.boolean  "commentable",               :default => true
+    t.integer  "messages_count",          :default => 0
+    t.integer  "petitions_count",         :default => 0
+    t.boolean  "commentable",             :default => true
     t.integer  "category_id"
-    t.integer  "credit",                    :default => 0
+    t.integer  "credit",                  :default => 0
     t.text     "numbers"
-    t.integer  "faxes_count",               :default => 0
-    t.string   "wstatus",                   :default => "inactive"
-    t.boolean  "identity_card",             :default => false
-    t.boolean  "state",                     :default => false
-    t.boolean  "postal_code",               :default => false
+    t.integer  "faxes_count",             :default => 0
+    t.string   "wstatus",                 :default => "inactive"
+    t.boolean  "identity_card",           :default => false
+    t.boolean  "state",                   :default => false
+    t.boolean  "postal_code",             :default => false
     t.string   "hashtag"
     t.string   "video_url"
-    t.boolean  "informed_low_credit",       :default => false
-    t.text     "users_ids_who_favorite_it"
-    t.text     "users_ids_who_comment_it"
-    t.text     "users_ids_who_reblog_it"
-    t.integer  "updates_count",             :default => 0
+    t.boolean  "informed_low_credit",     :default => false
+    t.integer  "updates_count",           :default => 0
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
@@ -113,25 +117,8 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
     t.string   "identity_card"
     t.string   "postal_code"
     t.string   "state"
-    t.integer  "check_code"
     t.integer  "revalidate_counter"
-  end
-
-  create_table "inkwell_blog_items", :force => true do |t|
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.boolean  "is_reblog"
-    t.boolean  "is_comment"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "inkwell_favorite_items", :force => true do |t|
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.boolean  "is_comment"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "check_code"
   end
 
   create_table "messages", :force => true do |t|
