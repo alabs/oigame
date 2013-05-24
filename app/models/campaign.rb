@@ -16,7 +16,7 @@ class Campaign < ActiveRecord::Base
   has_many :donations
   has_many :updates
 
-  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :image, :target, :duedate_at, :ttype,
+  attr_accessible :name, :intro, :body, :recipients, :faxes_recipients, :calls_recipients, :image, :target, :duedate_at, :ttype,
     :default_message_subject, :default_message_body, :commentable, :category_id, :wstatus, :ht, :video_url
 
   attr_accessor :recipient
@@ -56,7 +56,7 @@ class Campaign < ActiveRecord::Base
     :call =>
     {
       :name       => I18n.t('call'),
-      :img        => 'icon-call',
+      :img        => 'icon-phone',
       :model_name => 'Call',
       :message    => I18n.t('oigame.campaigns.type.call_message'),
       :action     => I18n.t('oigame.campaigns.type.call_action'),
@@ -182,6 +182,19 @@ class Campaign < ActiveRecord::Base
     return self.petitions + self.messages + self.faxes
   end
 
+  def calls_recipients
+    self.numbers.join("\r\n")
+  end
+
+  def calls_recipients=(args)
+    numbs = args.gsub(/\s+/, ',').split(',')
+    # arreglar el bug del strip
+    # numbs.each {|number| number.strip!.downcase! }.uniq!
+    numbs.each {|number| number.downcase! }.uniq!
+    numbs.delete_if {|n| n.blank? }
+    self.numbers = numbs
+  end
+
   def faxes_recipients
     self.numbers.join("\r\n")
   end
@@ -207,6 +220,8 @@ class Campaign < ActiveRecord::Base
       emails.join("\r\n").gsub('@','[arroba]')
     when 'fax'
       faxes_recipients
+    when 'call'
+      calls_recipients
     end
   end
 
@@ -411,6 +426,8 @@ class Campaign < ActiveRecord::Base
       emails.count
     when 'petition'
       1 # o sino multiplicamos por 0 y explota todo
+    when 'call'
+      calls_recipients.split(/\r\n/).count
     when 'fax'
       faxes_recipients.split(/\r\n/).count
     end
@@ -424,6 +441,8 @@ class Campaign < ActiveRecord::Base
       petitions.validated.count.to_i
     when 'fax'
       faxes.validated.count.to_i
+    when 'call'
+      calls.count.to_i
     end
   end
 
