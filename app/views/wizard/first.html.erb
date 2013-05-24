@@ -1,4 +1,9 @@
-<% @page_title = t(:propose_campaign) %>
+<% if @campaign.wstatus == "active" %>
+  <% @page_title = t(:edit_campaign) %>
+<% else %>
+  <% @page_title = t(:propose_campaign) %>
+<% end %>
+<% @header_top = @campaign.name %>
 
 <div class="row-fluid">
   <div class="span12">
@@ -35,6 +40,9 @@
               <legend><%= t(:please_fill_the_form) %></legend>
               <div class="control-group">
                 <%= f.label :image, t(:image_of_campaign), :class => 'control-label' %>
+                <% if @campaign.image? %>
+                  <%= image_tag @campaign.image_url.to_s %>
+                <% end %>
                 <div class="controls">
                   <%= f.file_field :image, :class => 'input-file', :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.image_help'), 'data-original-title' => t(:image_of_campaign) %>
                   <p><%= I18n.t(:minimal_size) %></p>

@@ -1,3 +1,5 @@
+<% @page_title = "Te estamos llamando..." %>
+
 <%= render :partial => "list_campaigns", :locals => {
   :page_title => @page_title,
   :campaign => @campaign,
@@ -6,6 +8,6 @@
   :message_type => "success",
   :no_paginate => true,
   :no_btns => true,
-  :message => "Estamos llamándote por teléfono y también al destinatario <i class='icon-spinner icon-spin icon-large' style='font-size:50px;text-align:center;display:block;'></i>"
+  :message => "call",
 } %>
 

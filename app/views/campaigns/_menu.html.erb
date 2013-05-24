@@ -1,0 +1,25 @@
+<ul class="nav nav-pills pull-left" >
+  <% if @sub_oigame %>
+    <li><%= link_to t(:last_campaigns), sub_oigame_campaigns_path(@sub_oigame) %></li>
+    <li><%= link_to t(:archived_campaigns), archived_sub_oigame_campaigns_path(@sub_oigame) %></li>
+    <% permitted_to? :moderated, Campaign.new do %>
+      <li><%= link_to t(:moderate_campaigns), moderated_sub_oigame_campaigns_path(@sub_oigame) %></li>
+    <% end %>
+  <% else %>
+    <li <%= active == "last" ? "class=active" : "" %>><%= link_to t(:last_campaigns), campaigns_path %></li>
+    <li <%= active == "archived" ? "class=active" : "" %>><%= link_to t(:archived_campaigns), archived_campaigns_path %></li>
+    <% permitted_to? :moderated, Campaign.new do %>
+      <li <%= active == "moderated" ? "class=active" : "" %>><%= link_to t(:moderate_campaigns), moderated_campaigns_path %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<ul class="nav nav-pills pull-right" >
+  <li>
+  <% if @sub_oigame %>
+    <%= link_to t(:propose_campaign), new_sub_oigame_campaign_path(@sub_oigame) %>
+  <% else %>
+    <%= link_to t(:propose_campaign), new_campaign_path %>
+  <% end %>
+  </li>
+</ul>
