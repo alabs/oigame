@@ -10,6 +10,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :sub_oigame, :counter_cache => true
   has_many :messages
   has_many :petitions
+  has_many :calls
   has_many :faxes, :class_name => 'Fax'
   belongs_to :category
   has_many :donations
@@ -52,8 +53,15 @@ class Campaign < ActiveRecord::Base
       :message    => I18n.t('oigame.campaigns.type.fax_message'),
       :action     => I18n.t('oigame.campaigns.type.fax_action'),
     },
+    :call =>
+    {
+      :name       => I18n.t('call'),
+      :img        => 'icon-call',
+      :model_name => 'Call',
+      :message    => I18n.t('oigame.campaigns.type.call_message'),
+      :action     => I18n.t('oigame.campaigns.type.call_action'),
+    },
   }
-  # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
 
   STATUS = %w[active archived deleted]
 
@@ -319,6 +327,9 @@ class Campaign < ActiveRecord::Base
     when "fax"
       model = Fax
       file_name = "fax"
+    when "call"
+      model = Call
+      file_name = "call"
     end
 
     dates = []
