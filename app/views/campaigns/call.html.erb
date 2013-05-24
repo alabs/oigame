@@ -1,7 +1,11 @@
-<% @page_title = t(:thank_you) %>
+<%= render :partial => "list_campaigns", :locals => {
+  :page_title => @page_title,
+  :campaign => @campaign,
+  :sub_oigame => @sub_oigame,
+  :campaigns => @campaigns,
+  :message_type => "success",
+  :no_paginate => true,
+  :no_btns => true,
+  :message => "Estamos llamándote por teléfono y también al destinatario <i class='icon-spinner icon-spin icon-large' style='font-size:50px;text-align:center;display:block;'></i>"
+} %>
 
-<div class="row-fluid">
-
-Estamos llamando por telegrafo
-
-</div>

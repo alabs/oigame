@@ -1,14 +1,18 @@
 <%= form_tag @sub_oigame ? sign_sub_oigame_campaign_path(@sub_oigame, @campaign) : sign_campaign_path, :id => "js-message-campaign", :honeypot => true do %>
-  <% if !user_signed_in? || current_user.name.blank? %>
-    <div class="form-field">
-      <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name), :value => cookies[:name] %>
-    </div>
+
+  <% unless @campaign.ttype == "call" %>
+    <% if !user_signed_in? || current_user.name.blank? %>
+      <div class="form-field">
+        <%= text_field_tag :name, nil, :required => true, :placeholder => t(:name), :value => cookies[:name] %>
+      </div>
+    <% end %>
+    <% if !user_signed_in? || current_user.email.blank? %>
+      <div class="form-field">
+        <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
+      </div>
+    <% end %>
   <% end %>
-  <% if !user_signed_in? || current_user.email.blank? %>
-    <div class="form-field">
-      <%= email_field_tag :email, nil, :id => "js-message-check-email", :required => true, :placeholder => t(:example_email), :value => cookies[:email] %>
-    </div>
-  <% end %>
+
   <% if ["mailing", "fax"].include? @campaign.ttype %>
     <div class="form-field">
       <%= check_box_tag :own_message, false,false, class: 'checkfb' %>
@@ -20,21 +24,29 @@
   <% end %>
 
   <% if @campaign.ttype == "call" %>
+    <div class="form-field" style="margin-bottom:10px;">
+      <%= render :partial => "telephone_countries" %>
+    </div>
+    
     <div class="form-field">
-      <%= text_field_tag :number, nil, :required => true, :placeholder => t(:telephone_number), :value => cookies[:telephone_number] %>
+
+      <div class="input-prepend">
+        <span class="add-on" id="js-prefix">0034</span>
+        <%= text_field_tag :telephone_number, nil, :required => true, :placeholder => t(:telephone_number), :value => cookies[:telephone_number], :class => "span9" %>
+      </div>
     </div>
   <% end %>
 
   <!-- comentando hasta que funcione -->
   <!-- <input class="checkfb" name="post_to_facebook" type="checkbox" checked value="0"></span> -->
-  <!-- <label for="checkfb" class="checkfblabel"><%= t(:share_with_my_friends_on_facebook) %></label> -->
+<!-- <label for="checkfb" class="checkfblabel"><%= t(:share_with_my_friends_on_facebook) %></label> -->
 
-  <div style="margin-left: 0px;" class="btn-campaign btn-campsign">
-    <%= button_tag @campaign.ttype_action %>
-  </div>
+<div style="margin-left: 0px;" class="btn-campaign btn-campsign">
+  <%= button_tag @campaign.ttype_action %>
+</div>
 
-  <div class="normas"><%= t(:by_signing_you_accept) %>
-    <%= link_to t(:privacy_policy), privacy_policy_path %>
-  </div>
+<div class="normas"><%= t(:by_signing_you_accept) %>
+  <%= link_to t(:privacy_policy), privacy_policy_path %>
+</div>
 
  <% end %>

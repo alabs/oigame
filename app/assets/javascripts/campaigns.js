@@ -140,4 +140,11 @@ yearSuffix: ''};
 
   $('.js-modal-thanks').modal()
 
+  // para campaigns del tipo call
+  $('#js-telephone-countries').select2()
+
+  $('#js-telephone-countries').on("change", function(e) {
+    $('#js-prefix').html(e.val);
+  });
+
 });
