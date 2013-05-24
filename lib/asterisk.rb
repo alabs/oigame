@@ -18,9 +18,13 @@ class Asterisk
   def make_call
     s = TCPSocket.new 'polar.oiga.me', 5038
     s.puts login
+    sleep 2
     s.puts ""
+    sleep 1
     s.puts get_template
+    sleep 2
     s.puts ""
+    sleep 1
     s.close
   end
 end
