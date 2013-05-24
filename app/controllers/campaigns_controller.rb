@@ -7,7 +7,7 @@ class CampaignsController < ApplicationController
   layout 'application', :except => [:widget, :widget_iframe]
 
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update, :destroy, :moderated, :activate, :participants, :add_credit]
-  before_filter :get_campaign_with_other_campaigns, only: [:signed]
+  before_filter :get_campaign_with_other_campaigns, only: [:signed, :call]
   before_filter :get_campaign, :except => [:index, :feed, :new, :create, :archived, :list]
   before_filter :protect_from_spam, :only => :sign
   before_filter :set_user_blank_parameters, only: :sign
@@ -200,8 +200,8 @@ class CampaignsController < ApplicationController
       end
 
       if @campaign.ttype == "call" 
-        caller_number = '00593984281670'
-        callee_number = '00593984281776'
+        caller_number = '00593984281670' # params["telephone_prefix"].strip + params["telephone_number"].strip
+        callee_number = '00593984281776' # @campaign.calls_recipients.split('\n')[0]
         asterisk = Asterisk.new(caller_number, callee_number)
         asterisk.make_call
         redirector_to :calling

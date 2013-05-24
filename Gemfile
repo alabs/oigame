@@ -119,3 +119,5 @@ gem 'airbrake'
 gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'dotenv-rails'
+
+gem 'select2-rails'

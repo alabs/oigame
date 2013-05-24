@@ -1,18 +1,16 @@
-<% @page_title = t(:propose_campaign) %>
-
+<% if @campaign.wstatus == "active" %>
+  <% @page_title = t(:edit_campaign) %>
+<% else %>
+  <% @page_title = t(:propose_campaign) %>
+<% end %>
+<% @header_top = @campaign.name %>
 
 <div class="row-fluid">
-
-  <%= render :partial => 'partials/diferencial' %>
-  <%= render :partial => 'partials/logo' %>
-
   <div class="span12">
-
     <div id="page-wrapper">
       <div id="create-campaigns">
         <div id="create-campaign-form" class="form-stacked">
           <h2><%= @page_title %></h2>
-
           <ol class="progtrckr" data-progtrckr-steps="3">
             <li class="progtrckr-done"><%= t(:step_1) %></li>
             <li class="progtrckr-done"><%= t(:step_2) %></li>
@@ -112,7 +110,14 @@
               <div id="control-group">
                 <div class="controls">
                   <%= link_to t('oigame.wizard.previous_step'), campaign_wizard_path(@campaign.slug, :first), :class => 'btn btn-inverse' %>
-                  <%= f.submit t('oigame.wizard.create_campaign'), :class => 'btn btn-inverse' %>
+
+                  <% if @campaign.wstatus == "active" %>
+                    <% submit_button = t(:edit_campaign) %>
+                  <% else %>
+                    <% submit_button = t('oigame.wizard.create_campaign') %>
+                  <% end %>
+
+                  <%= f.submit submit_button, :class => 'btn btn-inverse' %>
                 </div>
               </div>
             </fieldset>

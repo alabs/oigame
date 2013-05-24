@@ -1,7 +1,13 @@
-<% @page_title = t(:thank_you) %>
+<% @page_title = "Te estamos llamando..." %>
 
-<div class="row-fluid">
+<%= render :partial => "list_campaigns", :locals => {
+  :page_title => @page_title,
+  :campaign => @campaign,
+  :sub_oigame => @sub_oigame,
+  :campaigns => @campaigns,
+  :message_type => "success",
+  :no_paginate => true,
+  :no_btns => true,
+  :message => "call",
+} %>
 
-Estamos llamando por telegrafo
-
-</div>

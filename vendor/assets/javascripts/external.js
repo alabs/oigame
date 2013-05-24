@@ -28,3 +28,4 @@
 //= require jquery.flot.resize
 //= require jquery.flot.time
 //= require jquery.jtwt
+//= require select2
