@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524214333) do
+ActiveRecord::Schema.define(:version => 20130524221748) do
 
   create_table "bitcoins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20130524214333) do
     t.decimal  "rate",       :precision => 10, :scale => 4
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "typ"
   end
 
   create_table "sessions", :force => true do |t|

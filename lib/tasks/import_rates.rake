@@ -18,8 +18,16 @@ def import_csv
       # limpieza
       r[0].gsub!(/-\d/, '')
       r[1].strip!
+      r[2] = 'fixe'
 
       data << r 
+    elsif typ == 'mobile'
+      # limpieza
+      r[0].gsub!(/-\d/, '')
+      r[1].strip!
+      r[2] = 'mobile'
+
+      data << r       
     end
   end
 
@@ -31,15 +39,14 @@ def destroy_and_create
   csv_ovh_rates
   data = import_csv
   data.each do |d|
-    rate = Rate.create!(:country => d[0], :rate => d[1])
-    puts "#{rate.country}: #{rate.rate}"
+    rate = Rate.create!(:country => d[0], :rate => d[1], :typ => d[2])
+    puts "#{rate.country} (#{rate.typ}): #{rate.rate}"
   end
 end
 
 namespace :oigame do
   desc 'Import OVH telephony and fax rates'
   task(:rates => :environment) do
-    destroy_and_create if ENV['FORMAT'] == 'csv'
-    puts "PRUEBA CONSEGUIDA!"
+    destroy_and_create
   end
 end
