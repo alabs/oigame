@@ -13,10 +13,14 @@ Oigame::Application.routes.draw do
       post 'petition' => 'campaigns#sign'
       post 'message' => 'campaigns#sign'
       post 'fax' => 'campaigns#sign'
+      post 'call' => 'campaigns#sign'
 
       # New controller for signing
       post 'sign' => 'campaigns#sign'
       get 'signed'
+
+      get 'calling'
+      get 'call'
 
       # Validation controller
       get 'validate/:token' => 'campaigns#validate', :as => 'validate'

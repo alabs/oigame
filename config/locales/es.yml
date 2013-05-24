@@ -270,6 +270,7 @@ es:
   tags: 'Etiquetas'
   tags_most_used: 'Etiquetas más usadas'
   recipients: 'Destinatarios'
+  call_recipients: 'Destinatarios de teléfono'
   recipients_help: 'Lista de direcciones de correo de destinatarios, una por línea.'
   faxes_recipients_help: "Lista de números de fax, uno por línea."
   calls_recipients_help: "Lista de números de teléfono, uno por línea."

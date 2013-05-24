@@ -198,6 +198,15 @@ class CampaignsController < ApplicationController
 
         return
       end
+
+      if @campaign.ttype == "call" 
+        caller_number = '00593984281670'
+        callee_number = '00593984281776'
+        asterisk = Asterisk.new(caller_number, callee_number)
+        asterisk.make_call
+        redirector_to :calling
+        return
+      end
       
       # Create the instance of the methok
       instanke = modelk.new
@@ -240,6 +249,12 @@ class CampaignsController < ApplicationController
   end
 
   def signed
+  end
+
+  def calling
+  end
+
+  def call
   end
 
   def validate
@@ -452,6 +467,7 @@ class CampaignsController < ApplicationController
     urls[:campaigns] = "#{t_sub_oigame}campaigns_url".to_s
     urls[:signed] = "signed_#{t_sub_oigame}campaign_url".to_s
     urls[:campaign] = "#{t_sub_oigame}campaign_url".to_s
+    urls[:calling] = "call_#{t_sub_oigame}campaign_url".to_s
     urls
   end
 
