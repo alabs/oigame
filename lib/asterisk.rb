@@ -1,31 +1,96 @@
-require 'socket'
+require 'net/telnet'
 
 class Asterisk
 
   def initialize(caller_number, callee_number)
     @caller = caller_number
     @callee = callee_number
+    @socket = make_connection
   end
 
   def login
-    "Action: Login\r\nUsername: oigame\r\nSecret: #{APP_CONFIG[:ami_pass]}\r\nEvents: off"
+    tpl = "Action: Login\nUsername: oigame\nSecret: #{APP_CONFIG[:ami_pass]}\nEvents: off"
+    send_action(tpl)
+    
+    return process_lines
   end
 
-  def get_template
-    "ACTION: Originate\r\nChannel: Local/#{@caller}@clickoutcontext\r\nExten: #{@callee}\r\nPriority: 1\r\nTimeout: 60000\r\nContext: clickincontext"
+  def originate
+    login
+    tpl = "ACTION: Originate\nChannel: Local/#{@caller}@clickoutcontext\nExten: #{@callee}\nPriority: 1\nTimeout: 60000\nContext: clickincontext"
+    send_action(tpl)
+
+    return process_lines
   end
 
-  def make_call
-    s = TCPSocket.new 'polar.oiga.me', 5038
-    s.puts login
+  def channels
+    @socket = make_connection
+    login
+    tpl = "ACTION: Status"
+    send_action(tpl)
+
+    str = process_lines
+    arr = str.split("\n")
+
+    return process_channel_data(arr)
+  end
+
+  def process_channel_data(arr)
+    arr = arr[3..-1].split("")
+    data = {}
+    
+    first = arr.first
+    last = arr.last
+
+    chan = ""
+    first.each do |a|
+      if a.match(/Channel: /)
+        chan = a.split("\s").last
+      elsif a.match(/ChannelStateDesc: /)
+        state = a.split("\s").last
+        data[chan] = state
+      end
+    end
+
+    chan = ""
+    last.each do |a|
+      if a.match(/Channel: /)
+        chan = a.split("\s").last
+      elsif a.match(/State: /)
+        state = a.split("\s").last
+        data[chan] = state
+      end
+    end
+
+    return data
+  end
+
+  def make_connection
+    Net::Telnet::new("Host" => "polar.oiga.me", "Port" => 5038)
+  end
+
+  def disconnect
+    @socket.close
+  end
+
+  protected
+
+  def process_lines
+    data = ""
+    @socket.waitfor(/\n/) do |txt|
+      txt.split("\n").each do |line|
+        data += line+"\n"
+      end
+    end
+
+    return data
+  end
+
+  def send_action(tpl)
+    @socket.puts tpl
     sleep 2
-    s.puts ""
+    @socket.puts ""
     sleep 1
-    s.puts get_template
-    sleep 2
-    s.puts ""
-    sleep 1
-    s.close
   end
 end
 

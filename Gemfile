@@ -122,5 +122,3 @@ gem 'dotenv-rails'
 
 gem 'select2-rails'
 
-#gem 'ruby-asterisk', :git => 'git://github.com/staskobzar/ruby-asterisk.git'
-gem 'ruby-asterisk', :git => 'git://github.com/apardo/ruby-asterisk.git'
