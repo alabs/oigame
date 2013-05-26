@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/apardo/ruby-asterisk.git
+  revision: 9557a5a89e915b9328b1dd8ef02cabf23a54e872
+  specs:
+    ruby-asterisk (0.0.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -500,6 +506,7 @@ DEPENDENCIES
   resque
   resque_mailer
   rmagick
+  ruby-asterisk!
   ruby_parser
   sass-rails (= 3.2.3)
   select2-rails
