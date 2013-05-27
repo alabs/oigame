@@ -37,21 +37,28 @@ class Asterisk
 
   def process_channel_data(arr)
     arr = arr[3..-1].split("")
-    pp arr
     data = {}
 
     arr.each do |ar|
       chan = ""
+      states = []
       ar.each do |a|
         if a.match(/Channel: /)
           chan = a.split("\s").last
         elsif a.match(/ChannelStateDesc: /)
           state = a.split("\s").last
-          data[chan] = state
+          states.push state
         elsif a.match(/State: /)
           state = a.split("\s").last
-          data[chan] = state
+          states.push state
+        elsif a.match(/CallerIDNum: /)
+          num = a.split("\s").last
+          states.push num
         end
+        if chan.blank?
+          next
+        end
+        data[chan] = states
       end
     end
 
