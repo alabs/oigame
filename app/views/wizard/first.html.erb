@@ -36,7 +36,7 @@
               <div class="control-group">
                 <%= f.label :image, t(:image_of_campaign), :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.file_field :image, :class => 'input-file', :required => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.image_help'), 'data-original-title' => t(:image_of_campaign) %>
+                  <%= f.file_field :image, :class => 'input-file', :required => @campaign.created_at > (Time.now - 1.hour), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.image_help'), 'data-original-title' => t(:image_of_campaign) %>
                   <p><%= I18n.t(:minimal_size) %></p>
                   <% unless @campaign.errors[:image].blank? %>
                     <span class="error_message"><%= @campaign.errors[:image].to_sentence %></span>
