@@ -23,40 +23,37 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
     t.string   "slug"
     t.text     "intro"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.integer  "user_id"
     t.string   "image"
     t.text     "emails"
-    t.boolean  "moderated",                 :default => true
+    t.boolean  "moderated",               :default => true
     t.datetime "published_at"
     t.string   "target"
     t.datetime "duedate_at"
     t.string   "ttype"
-    t.string   "status",                    :default => "active"
+    t.string   "status",                  :default => "active"
+    t.time     "deleted_at"
     t.integer  "sub_oigame_id"
     t.string   "default_message_subject"
     t.text     "default_message_body"
-    t.boolean  "priority",                  :default => false
-    t.time     "deleted_at"
-    t.integer  "messages_count",            :default => 0
-    t.integer  "petitions_count",           :default => 0
-    t.boolean  "commentable",               :default => true
+    t.boolean  "priority",                :default => false
+    t.integer  "messages_count",          :default => 0
+    t.integer  "petitions_count",         :default => 0
+    t.boolean  "commentable",             :default => true
     t.integer  "category_id"
-    t.integer  "credit",                    :default => 0
+    t.integer  "credit",                  :default => 0
     t.text     "numbers"
-    t.integer  "faxes_count",               :default => 0
-    t.string   "wstatus",                   :default => "inactive"
-    t.boolean  "identity_card",             :default => false
-    t.boolean  "state",                     :default => false
-    t.boolean  "postal_code",               :default => false
+    t.integer  "faxes_count",             :default => 0
+    t.string   "wstatus",                 :default => "inactive"
+    t.boolean  "identity_card",           :default => false
+    t.boolean  "state",                   :default => false
+    t.boolean  "postal_code",             :default => false
     t.string   "hashtag"
     t.string   "video_url"
-    t.boolean  "informed_low_credit",       :default => false
-    t.text     "users_ids_who_favorite_it"
-    t.text     "users_ids_who_comment_it"
-    t.text     "users_ids_who_reblog_it"
-    t.integer  "updates_count",             :default => 0
+    t.boolean  "informed_low_credit",     :default => false
+    t.integer  "updates_count",           :default => 0
   end
 
   add_index "campaigns", ["deleted_at"], :name => "index_on_campaigns_deleted_at"
@@ -77,8 +74,8 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
     t.string   "email"
     t.string   "subject"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.boolean  "mailing",    :default => false
   end
 
@@ -117,27 +114,10 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
     t.integer  "revalidate_counter"
   end
 
-  create_table "inkwell_blog_items", :force => true do |t|
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.boolean  "is_reblog"
-    t.boolean  "is_comment"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "inkwell_favorite_items", :force => true do |t|
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.boolean  "is_comment"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "messages", :force => true do |t|
     t.integer  "campaign_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "email"
     t.boolean  "validated",          :default => false
     t.string   "token"
@@ -156,8 +136,8 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
   create_table "petitions", :force => true do |t|
     t.integer  "campaign_id"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.boolean  "validated",          :default => false
     t.string   "token"
     t.string   "name"
@@ -186,8 +166,8 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
@@ -265,12 +245,12 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",    :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -278,14 +258,14 @@ ActiveRecord::Schema.define(:version => 20130522202501) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "mailing",                               :default => false
+    t.string   "unconfirmed_email"
+    t.string   "authentication_token"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.boolean  "mailing",                :default => false
     t.string   "name"
     t.string   "vat"
-    t.string   "authentication_token"
-    t.string   "unconfirmed_email"
-    t.integer  "campaigns_count",                       :default => 0
+    t.integer  "campaigns_count",        :default => 0
     t.string   "provider"
     t.string   "uid"
     t.integer  "roles_mask"
