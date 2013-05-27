@@ -34,7 +34,7 @@
       <%= f.label :hashtag, t(:hashtag_of_campaign), :class => 'control-label' %>
       <div class="controls input-prepend">
         <span class="add-on">#</span>
-        <%= f.text_field :ht, :class => 'span6', :placeholder => t(:hashtag), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hashtag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
+        <%= f.text_field :ht, :class => 'span6', :placeholder => t(:hashtag), :required => true, :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.hashtag_help'), 'data-original-title' => t(:hashtag_of_campaign) %>
       </div>
     </div>
     <div id="control-group">
