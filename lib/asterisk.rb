@@ -23,6 +23,14 @@ class Asterisk
     return process_lines
   end
 
+  def send_message(jid, message)
+    login
+    tpl = "ACTION: JabberSend\n[ActionID:] 23\nJabber: asterisk\nScreenName: #{jid}\nJID: #{jid}\nMessage: #{message}"
+    send_action(tpl)
+
+    return process_lines
+  end
+
   def channels
     @socket = make_connection
     login
