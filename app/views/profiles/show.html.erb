@@ -18,11 +18,19 @@
             </ul>
             <div id="profileTabContent" class="tab-content">
               <div class="tab-pane fade in active" id="campaigns-published">
-                <%= render @published_campaigns %>
+                <% if @published_campaigns.count >= 1 %>
+                  <%= render @published_campaigns  %>
+                <% else %>
+                  <p>No hay campañas publicadas</p>
+                <% end %>
               </div>
               <% if user_signed_in? && current_user == @user %>
               <div class="tab-pane fade" id="campaigns-moderated">
-                <%= render @unpublished_campaigns %>
+                <% if @unpublished_campaigns.count >= 1 %>
+                  <%= render @unpublished_campaigns %>
+                <% else %>
+                  <p>No hay campañas sin publicar</p>
+                <% end %>
               </div>
               <% end %>
             </div>
