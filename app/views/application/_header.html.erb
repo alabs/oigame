@@ -19,7 +19,7 @@
         <ul class="nav navbar-text pull-right inline">
           <% if current_user %>
             <li>
-            <%= link_to edit_user_registration_path do %>
+            <%= link_to profile_path(current_user) do %>
               <img style="width:30px;" src="<%= avatar_url(current_user.email) %>" alt="<%= current_user.email %>"/>
               <b style="margin-bottom: 100px;"><%= current_user.name %></b>
             <% end %>
