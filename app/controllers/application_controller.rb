@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   helper :all
 
-  before_filter :set_locale, :header_data, :set_meta_defaults
+  before_filter :set_locale, :set_meta_defaults
   protect_from_forgery
 
   before_filter { |c| Authorization.current_user = c.current_user }
