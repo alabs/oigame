@@ -14,6 +14,8 @@
     <dd>
     <%= campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
     </dd>
+    <% else %>
+    <dd></dd>
     <% end %>
   <% end %>
   <dt><%= t(:published_at) %></dt>
