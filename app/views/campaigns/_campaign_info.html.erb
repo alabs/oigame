@@ -10,9 +10,11 @@
   </dd>
   <% if campaign.ttype == "fax" %>
     <dt><%= t(:credits) %></dt>
+    <% unless campaign.moderated? || campaign.archived? %>
     <dd>
     <%= campaign.credit.to_i %> (<%= link_to t(:add_credit),add_credit_campaign_path %>)
     </dd>
+    <% end %>
   <% end %>
   <dt><%= t(:published_at) %></dt>
   <dd>
