@@ -37,7 +37,7 @@
               <div class="control-group">
                 <%= f.label :category, t(:category_of_campaign), :class => 'control-label' %>
                 <div class="controls">
-                  <%= collection_select(:campaign, :category_id, Category.all, :id, :name, :prompt => t(:category_of_campaign) ) %>
+                  <%= collection_select(:campaign, :category_id, Category.all, :id, :name, { :prompt => t(:category_of_campaign)}, { :required => true} ) %>
                 </div>
               </div>
 
@@ -46,7 +46,7 @@
 
                 <% Campaign::TYPES.select do |k,v| %>
                   <div class="controls">
-                    <%= f.radio_button :ttype, k, :rel => 'popup_ayuda', 'data-content' => t("oigame.wizard.#{k}_help"), :class => "campaign-choose", 'data-original-title' => v[:name], 'data-placement' => 'top' %>
+                    <%= f.radio_button :ttype, k, :rel => 'popup_ayuda', 'data-content' => t("oigame.wizard.#{k}_help"), :class => "campaign-choose", 'data-original-title' => v[:name], 'data-placement' => 'top', :required => true %>
                     <%= f.label :ttype, :value => k do %>
                       <i class="<%= v[:img] %> icon-2x"></i>
                       <%= v[:name] %>
@@ -87,7 +87,7 @@
               <div class="control-group">
                 <%= f.label :target, t(:number_of_people), :class => 'control-label' %>
                 <div class="controls">
-                  <%= f.text_field :target, :class => 'span6', :placeholder => t(:number_of_people), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.people_help'), 'data-original-title' => t(:number_of_people) %>
+                  <%= f.text_field :target, :class => 'span6', :placeholder => t(:number_of_people), :rel => 'popup_ayuda', 'data-content' => t('oigame.wizard.people_help'), 'data-original-title' => t(:number_of_people), :required => true %>
                 </div>
               </div>
               <div class="control-group">
