@@ -21,7 +21,8 @@ namespace :oigame do
     #Mail.find_and_delete do |m|
     Mail.all do |m|
       begin
-        status = OVHFaxChecker.status m
+	ofc = OVHFaxChecker.new(m)
+        status = ofc.status
       rescue Net::POPAuthenticationError
         raise "-ERR Authentication failed."
       end
@@ -37,7 +38,7 @@ namespace :oigame do
           # si el fax falla le devolvemos el credito a la campaign
           if fax.check_code == 500 
             camp = Campaign.find status[:campaign_id]
-            camp.credit += FaxForRails::TAX 
+            camp.credit += 1 
             camp.save
           end
         end
