@@ -17,8 +17,9 @@ namespace :oigame do
         :enable_ssl => true
     end
 
-    # por defecto borra los mensajes que encuentre
-    Mail.find_and_delete do |m|
+    #TODO: por defecto borra los mensajes que encuentre
+    #Mail.find_and_delete do |m|
+    Mail.all do |m|
       begin
         status = OVHFaxChecker.status m
       rescue Net::POPAuthenticationError
