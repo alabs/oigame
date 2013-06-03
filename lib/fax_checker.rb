@@ -3,7 +3,6 @@
 class OVHFaxChecker
 
   # Acepta objetos de mail 
-
     # Devuelve un diccionario con el estado del mail. mail es un objeto que devuelve la
     # libreria mail, con sus metodos (mail.body.decoded, mail.date, mail.subject)
 
@@ -18,9 +17,9 @@ class OVHFaxChecker
   # 
   # ESTADOS
   # 100 - enviado         - "Envío de 'fax-1-1.pdf'  hacia 00442035146769 añadido en lista de espera"
-  # 200 - recibido        - "fax 'fax-1-1.pdf' a 00442035146769 se ha cumpletado"
-  # 500 - error           - "fax 'fax-1-1.pdf' a 0034917405210 falló"
-  # 500 - error           - "fax 'fax-1-1.pdf' a 00442035146769 ha sido puesto em memoria"
+  # 200 - reintentando    - "fax 'fax-1-1.pdf' a 00442035146769 ha sido puesto em memoria"
+  # 300 - recibido        - "fax 'fax-1-1.pdf' a 00442035146769 se ha cumpletado"
+  # 400 - error           - "fax 'fax-1-1.pdf' a 0034917405210 falló"
   # 000 - desconocido  :S - ????????????????
 
   def self.fax_id mail
@@ -52,30 +51,25 @@ class OVHFaxChecker
         status[:code]      = 100
         status[:ticket_id] = OVHFaxChecker.splitter(mail, 4, " es el ").to_i
         status[:message]   = "Processing"
-      when /se ha cumpletado/
-        status[:code]      = 200
-        status[:ticket_id] = OVHFaxChecker.splitter(mail, 22, 'IDTrabajo: ').to_i
       when /(ha sido puesto em memoria)/
-        # FIXME: lineas duplicadas :S 
-        # Antes esto estaba muy mal hecho, porque son codes diferentes (100/500)
-      # when /(ha sido puesto em memoria|falló)/
-        # Como hoy no estoy especialmente inspirado, vamos a usar la 
-        # magia del copypasting
         error_mes1 = OVHFaxChecker.splitter(mail, 24, 'Estado: ')
         error_mes2 = OVHFaxChecker.splitter(mail, 25, 'Estado: ')
         error_mes3 = OVHFaxChecker.splitter(mail, 26, 'Estado: ')
         ticket_id1 = OVHFaxChecker.splitter(mail, 27, 'IDTrabajo: ').to_i
         ticket_id2 = OVHFaxChecker.splitter(mail, 28, 'IDTrabajo: ').to_i
-        status[:code]      = 100
+        status[:code]      = 200
         status[:ticket_id] = ticket_id1 == 0 ? ticket_id2 : ticket_id1
         status[:message]   = error_mes1 ? error_mes1 : ( error_mes2 ? error_mes2 : error_mes3 )
+      when /se ha cumpletado/
+        status[:code]      = 300
+        status[:ticket_id] = OVHFaxChecker.splitter(mail, 22, 'IDTrabajo: ').to_i
       when /(falló)/
         error_mes1 = OVHFaxChecker.splitter(mail, 24, 'Estado: ')
         error_mes2 = OVHFaxChecker.splitter(mail, 25, 'Estado: ')
         error_mes3 = OVHFaxChecker.splitter(mail, 26, 'Estado: ')
         ticket_id1 = OVHFaxChecker.splitter(mail, 27, 'IDTrabajo: ').to_i
         ticket_id2 = OVHFaxChecker.splitter(mail, 28, 'IDTrabajo: ').to_i
-        status[:code]      = 500
+        status[:code]      = 400
         status[:ticket_id] = ticket_id1 == 0 ? ticket_id2 : ticket_id1
         status[:message]   = error_mes1 ? error_mes1 : ( error_mes2 ? error_mes2 : error_mes3 )
       else
