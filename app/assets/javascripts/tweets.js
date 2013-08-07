@@ -2,6 +2,8 @@
 
 // http://www.simonwhatley.co.uk/parsing-twitter-usernames-hashtags-and-urls-with-javascript
 
+/* Con el nuevo sistema los hastag ya vienen como enlaces
+
 String.prototype.parseURL = function() {
   return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
     return url.link(url);
@@ -22,18 +24,18 @@ String.prototype.twParseHashtag = function() {
   });
 };
 
+*/
 
+// Con la nueva API 1.1 acceder al user_timeline requiere autentificación (habrá q mudarse a identi.ca)
+// Solución inpirada en http://codepen.io/jasonmayes/pen/Ioype en base a parsear el widget oficial.
+// Debe activarse en la cuenta.
 $(function () {
   $.ajax({
+    url: "https://cdn.syndication.twimg.com/widgets/timelines/365141264582201344",
     dataType: "jsonp",
-    url: "https://api.twitter.com/1/statuses/user_timeline.json?screen_name=oigame",
-    success: function (twits) {
-      var html = '';
-      for (i = 0; i < twits.length; i++) {
-        html += '<li>' + twits[i].text + '</li>';
-      }
-      $('#twitter').html(html.parseURL().twParseUsername().twParseHashtag());
-      $('#twitter>li').carrusel();
+    success: function (pag) {
+      $('#twitter').html($(pag.body).find('.e-entry-title'));
+		$('#twitter>p.e-entry-title').carrusel();
     }
   });
 });
