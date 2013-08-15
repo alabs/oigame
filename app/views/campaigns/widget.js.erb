@@ -7,7 +7,7 @@ el.setAttribute('src', '<%= url_for widget_iframe_campaign_url(:protocol => "htt
 <% end %>
 el.setAttribute('width', '100%');
 // el height lo pasamos como un parametro, por ejemplo ?height=800
-el.setAttribute('height', '<%= params[:height] ? params[:height] + "px" : "500px" %>');
+el.setAttribute('height', '<%= (params[:height].to_i > 0) ? params[:height].to_i.to_s + "px" : "500px" %>');
 el.setAttribute('scrolling', 'no');
 el.setAttribute('frameborder', '0');
 // para no tener que usar document.write, buscamos este tag de script desde el que nos llaman y nos insertamos
