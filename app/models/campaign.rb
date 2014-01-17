@@ -44,14 +44,14 @@ class Campaign < ActiveRecord::Base
       :message    => I18n.t('oigame.campaigns.type.mailing_message'),
       :action     => I18n.t('oigame.campaigns.type.mailing_action'),
     },
-    :fax =>
-    {
-      :name       => I18n.t('fax'),
-      :img        => 'icon-print',
-      :model_name => 'Fax',
-      :message    => I18n.t('oigame.campaigns.type.fax_message'),
-      :action     => I18n.t('oigame.campaigns.type.fax_action'),
-    },
+    #:fax =>
+    #{
+    #  :name       => I18n.t('fax'),
+    #  :img        => 'icon-print',
+    #  :model_name => 'Fax',
+    #  :message    => I18n.t('oigame.campaigns.type.fax_message'),
+    #  :action     => I18n.t('oigame.campaigns.type.fax_action'),
+    #},
   }
   # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
 
