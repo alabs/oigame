@@ -15,9 +15,9 @@ set :user,            "ruby-data"
 set :group,           "ruby-data"
 set :use_sudo,        false
 
-role :web,    "polar.oiga.me"
-role :app,    "polar.oiga.me"
-role :db,     "polar.oiga.me", :primary => true
+role :web,    "beta.oiga.me"
+role :app,    "beta.oiga.me"
+role :db,     "beta.oiga.me", :primary => true
 
 #role :resque_worker, "polar.oiga.me"
 #role :resque_scheduler, "polar.oiga.me"
