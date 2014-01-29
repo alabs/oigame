@@ -28,7 +28,7 @@ gem 'capistrano-ext'
 # To use debugger
 
 group :test, :development do
-  gem 'jazz_hands'
+  #gem 'jazz_hands'
   gem 'minitest'
   gem 'capybara'
   # Pretty printed test output
@@ -38,6 +38,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'minitest-spec-rails'
+  gem 'iconv'
 end
 
 group :development do
@@ -45,7 +46,7 @@ group :development do
   #gem 'ruby-debug19', :require => 'ruby-debug'
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'debugger-ruby_core_source'
+  #gem 'debugger-ruby_core_source'
 end
 
 gem 'pry-rails'
