@@ -9,7 +9,7 @@
 
       <span class="title"><%= link_to campaign.name, campaign.get_absolute_url %></span>
 
-      <%= image_tag(avatar_url(campaign.user.email), :alt => campaign.user.name, :class => "pull-right img-user img-polaroid") %>
+      <%= link_to image_tag(avatar_url(campaign.user.email), :alt => campaign.user.name, :class => "pull-right img-user img-polaroid"), profile_path(campaign.user) %>
 
       <%= link_to campaign.get_absolute_url, :class => "campa-text"  do %>
         <%= campaign.to_html(truncate(campaign.intro,length:300,semparator:"...")).html_safe %>

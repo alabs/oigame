@@ -1,1 +1,39 @@
-<p id="profile-message">Estamos trabajando en la página de perfiles de usuarios, disculpar las molestias.</p>
+<% @page_title = t(:profile) %>
+<% if @user.name %>
+  <% @header_top = t(:profile_of) + " #{@user.name}" %>
+<% else %>
+  <% @header_top = t(:profile) %>
+<% end %>
+
+<div class="row-fluid">
+  <div class="span12" style="margin-left:25px;" id="profile-page">
+
+       
+            <ul id="profileTab" class="nav nav-tabs">
+              <li class="active"><a href="#campaigns-published" data-toggle="tab"><%= t(:published_campaigns) %></a></li>
+              <% if user_signed_in? && current_user == @user %>
+              <li><a href="#campaigns-moderated" data-toggle="tab"><%= t(:unpublished_campaigns) %></a></li>
+              <li><%= link_to t(:edit_account), edit_user_registration_path %></li>
+              <% end %>
+            </ul>
+            <div id="profileTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="campaigns-published">
+                <% if @published_campaigns.count >= 1 %>
+                  <%= render @published_campaigns  %>
+                <% else %>
+                  <p>No hay campañas publicadas</p>
+                <% end %>
+              </div>
+              <% if user_signed_in? && current_user == @user %>
+              <div class="tab-pane fade" id="campaigns-moderated">
+                <% if @unpublished_campaigns.count >= 1 %>
+                  <%= render @unpublished_campaigns %>
+                <% else %>
+                  <p>No hay campañas sin publicar</p>
+                <% end %>
+              </div>
+              <% end %>
+            </div>
+          
+  </div>
+</div>
