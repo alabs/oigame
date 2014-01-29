@@ -389,6 +389,8 @@ GEM
       oauth (~> 0.4.4)
       oauth2 (~> 0.6)
       simple_oauth (>= 0.1.5)
+    zeus (0.13.3)
+      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
@@ -458,3 +460,4 @@ DEPENDENCIES
   will_paginate
   will_paginate-bootstrap
   yaml_db
+  zeus

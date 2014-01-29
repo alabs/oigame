@@ -37,6 +37,7 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'minitest-spec-rails'
   gem 'iconv'
+  gem 'zeus'
 end
 
 group :development do
