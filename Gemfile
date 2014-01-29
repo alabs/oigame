@@ -33,8 +33,6 @@ group :test, :development do
   gem 'capybara'
   # Pretty printed test output
   gem 'turn'
-  gem 'spork-testunit'
-  gem 'spork-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'minitest-spec-rails'

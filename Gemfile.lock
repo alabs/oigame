@@ -332,12 +332,6 @@ GEM
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
     slop (3.4.4)
-    spork (1.0.0rc3)
-    spork-rails (3.2.1)
-      rails (>= 3.0.0, < 3.3.0)
-      spork (>= 1.0rc0)
-    spork-testunit (0.0.8)
-      spork (>= 0.6.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -453,8 +447,6 @@ DEPENDENCIES
   ruby_parser
   sass-rails (= 3.2.3)
   sitemap_generator
-  spork-rails
-  spork-testunit
   therubyracer
   thin
   thinking-sphinx (= 2.0.10)
