@@ -106,7 +106,7 @@ namespace :deploy do
       ln -sf #{shared_path}/config/newrelic.yml #{latest_release}/config/newrelic.yml &&
       ln -sf #{shared_path}/public/sitemap1.xml.gz #{latest_release}/public/sitemap1.xml.gz &&
       ln -sf #{shared_path}/public/sitemap_index.xml.gz #{latest_release}/public/sitemap_index.xml.gz &&
-      ln -sf #{shared_path}/config/recaptcha.rb #{latest_release}/config/initializers/recaptcha.rb
+      ln -sf #{shared_path}/config/recaptcha.rb #{latest_release}/config/initializers/recaptcha.rb &&
       ln -sf #{shared_path}/config/airbrake.rb #{latest_release}/config/initializers/airbrake.rb
     CMD
 

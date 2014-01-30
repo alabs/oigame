@@ -12,5 +12,4 @@ servers: 4
 daemonize: true
 chdir: /var/www/oiga.me/current
 
-address: 127.0.0.1
-port: 3562
+socket: /tmp/thin.production.sock
