@@ -20,12 +20,9 @@ set :user,            "oigame"
 set :group,           "oigame"
 set :use_sudo,        false
 
-role :web,    "polar.oiga.me"
-role :app,    "polar.oiga.me"
-role :db,     "polar.oiga.me", :primary => true
-
-#role :resque_worker, "polar.oiga.me"
-#role :resque_scheduler, "polar.oiga.me"
+role :web,    "oiga.me"
+role :app,    "oiga.me"
+role :db,     "oiga.me", :primary => true
 
 # set :workers, { "archive" => 1, "mailing" => 3, "search_index, cache_warming" => 1 } el número de workers
 #set :workers, { "mailer" => 1, "fax" => 1 }
