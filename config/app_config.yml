@@ -1,0 +1,30 @@
+defaults: &defaults
+  twitter_consumer_key: <%= ENV['TWITTER_CONSUMER_KEY'] %>
+  twitter_consumer_secret: <%= ENV['TWITTER_CONSUMER_SECRET'] %>
+  twitter_oauth_token: <%= ENV['TWITTER_OAUTH_TOKEN'] %>
+  twitter_oauth_token_secret: <%= ENV['TWITTER_OAUTH_TOKEN_SECRET'] %>
+  facebook_token: <%= ENV['FACEBOOK_TOKEN'] %>
+  facebook_page_token: <%= ENV['FACEBOOK_PAGE_TOKEN'] %>
+  facebook_app_id: <%= ENV['facebook_app_id'] %>
+  facebook_app_secret: <%= ENV['facebook_app_secret'] %>
+  our_fax_number: <%= ENV['OUR_FAX_NUMBER'] %>
+  our_fax_password: <%= ENV['OUR_FAX_PASSWORD'] %>
+  FACEBOOK_APP_ID: <%= ENV['FACEBOOK_APP_ID'] %>
+  FACEBOOK_SECRET: <%= ENV['FACEBOOK_SECRET'] %>
+  gw_domain: <%= ENV['GW_DOMAIN'] %>
+  gw_pass: <%= ENV['GW_PASS'] %>
+  ami_pass: <%= ENV['AMI_PASS'] %>
+
+production:
+  <<: *defaults
+  domain: <%= ENV['DOMAIN'] %>
+  host: <%= ENV['HOST'] %>
+  social_council_email: <%= ENV['SOCIAL_COUNCIL_EMAIL'] %>
+  fax_email_address: <%= ENV['FAX_EMAIL_ADDRESS'] %>
+  fax_email_port: <%= ENV['FAX_EMAIL_PORT'] %>
+  fax_email_user_name: <%= ENV['FAX_EMAIL_USER_NAME'] %>
+  fax_email_password: <%= ENV['FAX_EMAIL_PASSWORD']%>
+  fax_from_email_address: <%= ENV['FAX_FROM_EMAIL_ADDRESS' %>
+  popfax_password: <%= ENV['POPFAX_PASSWORD'] %>
+  ecofax_mail: <%= ENV['ECOFAX_MAIL'] %>
+  fax_test_email_address: <%= ENV['FAX_TEST_EMAIL_ADDRESS'] %>

@@ -7,8 +7,9 @@ tmp/
 *.swp
 *.swo
 *.swn
+
 public/uploads/
-config/app_config.yml
+
 config/newrelic.yml
 public/sitemap*
 .idea
