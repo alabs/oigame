@@ -1,4 +1,7 @@
 source 'http://rubygems.org'
+
+ruby '1.9.3'
+
 gem 'rails', '3.2.13'
 gem 'mysql2'
 # prepare for upgrade to postgres
@@ -20,6 +23,8 @@ gem 'flot-rails'
 gem 'thin'
 
 gem 'god'
+
+gem 'rails_12factor'
 
 gem 'capistrano'
 gem 'capistrano-ext'
@@ -58,7 +63,8 @@ gem 'redcarpet'
 gem "twitter", "~> 4.6.2"
 gem 'yaml_db'
 gem 'execjs'
-gem 'therubyracer'
+gem 'libv8', "3.16.14.3"
+gem 'therubyracer', "0.12.2"
 #gem 'cancan'
 gem 'newrelic_rpm'
 gem 'httparty'
