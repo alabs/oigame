@@ -82,8 +82,7 @@ gem 'fb_graph'
 gem "koala"
 
 gem 'rails_admin'
-gem 'mailcatcher'
-
+gem 'mailcatcher', :group => 'development'
 gem 'geocoder'
 
 gem 'tolk'
