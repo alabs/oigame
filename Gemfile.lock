@@ -117,7 +117,6 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     geocoder (1.1.8)
-    god (0.13.2)
     haml (4.0.2)
       tilt
     hashery (2.1.0)
@@ -423,7 +422,6 @@ DEPENDENCIES
   fb_graph
   flot-rails
   geocoder
-  god
   honeypot-captcha
   httparty
   iconv

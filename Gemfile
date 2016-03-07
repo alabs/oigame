@@ -22,7 +22,7 @@ gem 'flot-rails'
 #gem 'unicorn'
 gem 'thin'
 
-gem 'god'
+#gem 'god'
 
 gem 'rails_12factor'
 
