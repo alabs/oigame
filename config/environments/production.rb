@@ -63,7 +63,7 @@ Oigame::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
   # Para Devise
   config.action_mailer.default_url_options = { :host => 'oiga.me', :locale => I18n.locale }
   config.to_prepare { Devise::SessionsController.force_ssl }
@@ -75,7 +75,7 @@ Oigame::Application.configure do
     :enable_starttls_auto => false,
     :address => 'pulsar.oiga.me'
   }
-  
+
   # para que rule resque mailer
   config.action_mailer.perform_deliveries = true
 
@@ -89,6 +89,6 @@ Oigame::Application.configure do
   config.force_ssl = true
 
   # instancia de redis
-  config.cache_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
-  config.sesion_store = :redis_store, { :host => '127.0.0.1', :port => 6379 }
+  config.cache_store = :redis_store, { :host => 'dokku-redis-prod-oigame', :port => 6379 }
+  config.sesion_store = :redis_store, { :host => 'dokku-redis-prod-oigame', :port => 6379 }
 end
