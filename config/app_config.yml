@@ -17,7 +17,7 @@ defaults: &defaults
 
 production:
   <<: *defaults
-  domain: <%= ENV['DOMAIN'] %>
+  domain: 'https://oiga.me'
   host: <%= ENV['HOST'] %>
   social_council_email: <%= ENV['SOCIAL_COUNCIL_EMAIL'] %>
   fax_email_address: <%= ENV['FAX_EMAIL_ADDRESS'] %>
