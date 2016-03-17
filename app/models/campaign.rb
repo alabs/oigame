@@ -44,14 +44,14 @@ class Campaign < ActiveRecord::Base
       :message    => I18n.t('oigame.campaigns.type.mailing_message'),
       :action     => I18n.t('oigame.campaigns.type.mailing_action'),
     },
-    #:fax =>
-    #{
-    #  :name       => I18n.t('fax'),
-    #  :img        => 'icon-print',
-    #  :model_name => 'Fax',
-    #  :message    => I18n.t('oigame.campaigns.type.fax_message'),
-    #  :action     => I18n.t('oigame.campaigns.type.fax_action'),
-    #},
+    :fax =>
+    {
+      :name       => I18n.t('fax'),
+      :img        => 'icon-print',
+      :model_name => 'Fax',
+      :message    => I18n.t('oigame.campaigns.type.fax_message'),
+      :action     => I18n.t('oigame.campaigns.type.fax_action'),
+    },
   }
   # { :petition => 'Petición online', :mailing => 'Envio de correo', :fax => 'Envio de fax' }
 
@@ -116,7 +116,7 @@ class Campaign < ActiveRecord::Base
     end
 
     def last_campaigns_moderated(page = 1, sub_oigame = nil)
-      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true).page(page)  
+      where(:sub_oigame_id => sub_oigame).where(:wstatus => 'active').order('created_at DESC').where('moderated = ?', true).page(page)
     end
 
     def last_campaigns_moderated_without_pagination(sub_oigame = nil)
@@ -299,7 +299,7 @@ class Campaign < ActiveRecord::Base
   def get_absolute_url
     if sub_oigame.nil?
       return APP_CONFIG[:domain] + "/campaigns/" + slug
-    else 
+    else
       return APP_CONFIG[:domain] + "/o/" + sub_oigame.name + "/campaigns/" + slug
     end
   end
@@ -387,7 +387,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def obj_minus_gotten_result
-    target.to_i - participants_count 
+    target.to_i - participants_count
   end
 
   def messages_count
@@ -485,14 +485,14 @@ class Campaign < ActiveRecord::Base
   # custom validation for image width & height minimum dimensions
   def validate_minimum_image_size
     if self.image_width < 500 && self.image_height < 200
-      errors.add :image, "debe tener 500px de ancho y 200px de largo como mínimo" 
+      errors.add :image, "debe tener 500px de ancho y 200px de largo como mínimo"
     end
   end
 
   def validate_video_url_provider
     if !self.video_url.blank?
       unless self.video_url.start_with?("http://youtu.be/", "http://www.youtube.com/watch?v=", "https://www.youtube.com/watch?v=", "http://vimeo.com/")
-        errors.add :video_url, "must be a valid provider" 
+        errors.add :video_url, "must be a valid provider"
       end
     end
   end
@@ -501,4 +501,3 @@ class Campaign < ActiveRecord::Base
     self.ttype == 'fax'
   end
 end
-

@@ -76,12 +76,7 @@ class CampaignsController < ApplicationController
     @description = @campaign.to_html(@campaign.intro).html_safe
 
     @videotron = UnvlogIt.new(@campaign.video_url) unless @campaign.video_url.blank?
-
-    unless @campaign.ttype == 'fax'
-      @instanke = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize.new
-    else
-      @instanke = Fax.new
-    end
+    @instanke = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize.new
 
     @message_body = @campaign.default_message_body if @instanke.respond_to?(:body)
     @message_subject = @campaign.default_message_subject if @instanke.respond_to?(:subject)
