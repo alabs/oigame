@@ -77,7 +77,12 @@ class CampaignsController < ApplicationController
 
     @videotron = UnvlogIt.new(@campaign.video_url) unless @campaign.video_url.blank?
 
-    @instanke = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize.new
+    unless @campaign.ttype == 'fax'
+      @instanke = Campaign.types[@campaign.ttype.to_sym][:model_name].constantize.new
+    else
+      @instanke = Fax.new
+    end
+
     @message_body = @campaign.default_message_body if @instanke.respond_to?(:body)
     @message_subject = @campaign.default_message_subject if @instanke.respond_to?(:subject)
 
@@ -106,7 +111,7 @@ class CampaignsController < ApplicationController
     if @campaign.save
       if @sub_oigame
         redirect_url = sub_oigame_campaign_wizard_path(@sub_oigame, @campaign.slug, :first)
-      else 
+      else
         redirect_url = campaign_wizard_path(@campaign.slug, :first)
       end
       redirect_to redirect_url
@@ -198,7 +203,7 @@ class CampaignsController < ApplicationController
 
         return
       end
-      
+
       # Create the instance of the methok
       instanke = modelk.new
       instanke.campaign = @campaign
@@ -270,7 +275,7 @@ class CampaignsController < ApplicationController
 
     respond_to do |format|
       format.js
-      format.html 
+      format.html
       format.json { render :json => @campaigns }
       format.xml  { render :xml => @campaigns }
     end
@@ -279,7 +284,7 @@ class CampaignsController < ApplicationController
   def activate
     @campaign.activate!
 
-    if @sub_oigame.nil? 
+    if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'La campaña se ha activado con éxito'
     else
       redirect_to sub_oigame_campaign_url( @sub_oigame, @campaign ), :notice => 'La campaña se ha activado con éxito'
@@ -289,7 +294,7 @@ class CampaignsController < ApplicationController
   def deactivate
     @campaign.deactivate!
 
-    if @sub_oigame.nil? 
+    if @sub_oigame.nil?
       redirect_to @campaign, :notice => 'Campaña desactivada con éxito'
     else
       redirect_to sub_oigame_campaign_url( @sub_oigame, @campaign ), :notice => 'Campaña desactivada con éxito'
@@ -327,7 +332,7 @@ class CampaignsController < ApplicationController
 
     respond_to do |format|
       format.js
-      format.html 
+      format.html
       format.json { render :json => @campaigns }
       format.xml  { render :xml => @campaigns }
     end
@@ -357,7 +362,7 @@ class CampaignsController < ApplicationController
       if @sub_oigame.nil?
         # mirar en la deficion de indices lo del no_sub
         @campaigns = Campaign.active.search params[:q], :with => {:no_sub => true }  #, :order => :created_at, :sort => :asc
-      else 
+      else
         @campaigns = Campaign.active.search params[:q], :conditions => {:sub_oigame_id => @sub_oigame.id}
       end
     end
@@ -379,7 +384,7 @@ class CampaignsController < ApplicationController
     end
 
     @reference = secure_digest(Time.now, (1..10).map { rand.to_s})[0,29]
-    
+
     data = {}
     data[:reference] = @reference
     data[:name] = current_user.name
