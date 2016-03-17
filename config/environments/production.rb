@@ -83,7 +83,7 @@ Oigame::Application.configure do
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[oiga.me production exception] ",
     :sender_address => %{"notifier" <notifier@oiga.me>},
-    :exception_recipients => %w{debug@alabs.es}
+    :exception_recipients => %w{debug@alabs.org}
 
   # SSL en todo el sitio
   config.force_ssl = true
